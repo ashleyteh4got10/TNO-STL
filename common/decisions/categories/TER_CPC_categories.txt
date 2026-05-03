@@ -1,0 +1,247 @@
+CPC_custom_difficulties_dec = {
+	icon = GFX_decision_category_generic_communism
+	picture = GFX_CPC_Call_of_Crys7aL_L1nE
+	allowed = {
+		tag = CPC
+	}
+	visible_when_empty = yes
+	visible = {
+		is_ai = no
+		has_country_flag = CPC_custom_difficulties_dec_active
+	}
+	priority = {
+		base = 500
+	}
+}
+
+CPC_diplomacy_front = {
+	icon = GFX_decision_category_generic_foreign_policy
+	allowed = {
+		tag = CPC
+	}
+	visible = {
+		has_completed_focus = CPC_belated_consult
+		OR = {
+			check_variable = { CPC_SHX_dip_num < 10 }
+			check_variable = { CPC_IND_dip_num < 10 }
+		}
+	}
+	priority = {
+		base = 500
+	}
+}
+
+CPC_dem_riot_gui = {
+	icon = GFX_decision_category_generic_foreign_policy
+	allowed = { original_tag = CPC }
+	scripted_gui = TER_dem_riot_gui
+	visible = {
+		has_country_flag = CPC_admit_dem_riot
+	}
+	available = {
+		hidden_trigger = {
+			has_country_flag = CPC_admit_dem_riot
+		}
+	}
+	priority = 270
+}
+
+CPC_TRCW_GNG_Riots_GUI = {
+	icon = GFX_decision_category_guangdong_riots
+	allowed = { original_tag = CPC }
+	scripted_gui = CPC_TRCW_GNG_Riots_GUI
+	visible_when_empty = yes
+	visible = {
+		GNG = { exists = yes }
+		GNG = { has_country_flag = GNG_Riots_Show_GUI }
+	}
+	priority = 270
+}
+
+TER_Mongolia_Reunification_Conference = {
+	icon = GFX_decision_category_generic_foreign_policy
+	allowed = {
+		original_tag = CPC
+	}
+	scripted_gui = TER_MRC_gui
+	visible_when_empty = yes
+	priority = {
+		base = 250
+	}
+	visible = {
+		is_ai = no
+		check_variable = { CPC_MRC_phase > 0 }
+		check_variable = { CPC_MRC_phase < 6 }
+		NOT = { has_idea = CPC_MRC_modifier_idea }
+		NOT = { has_war_with = MON }
+		NOT = { MON = { has_cosmetic_tag = MON_MRC_1 } }
+		NOT = { check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan } }
+		hidden_trigger = {
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+		}
+	}
+	available = {
+		is_ai = no
+		check_variable = { CPC_MRC_phase > 0 }
+		check_variable = { CPC_MRC_phase < 6 }
+		NOT = { has_idea = CPC_MRC_modifier_idea }
+		NOT = { check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan } }
+		hidden_trigger = {
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+			NOT = { has_war_with = MON }
+			NOT = { MON = { has_cosmetic_tag = MON_MRC_1 } }
+		}
+	}
+}
+
+CPC_Hanzhong_construction = {
+	icon = GFX_decision_category_generic_building
+	scripted_gui = TER_Hanzhong_gui
+	allowed = { 
+		tag = CPC 
+	}
+	visible = { 
+		QIN = { exists = no }
+	}
+	available = { 
+		QIN = { exists = no }
+	}
+	visible_when_empty = yes
+	priority = {
+		base = 10
+	}
+}
+
+CPC_debug_dec = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		original_tag = CPC
+	}
+	available = {
+		is_debug = yes
+	}
+	visible = {
+		is_debug = yes
+	}
+}
+
+CPC_AI_dec = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		original_tag = CPC
+	}
+	available = {
+		CPC = { is_ai = yes }
+	}
+	visible = {
+		CPC = { is_ai = yes }
+	}
+}
+
+TIB_AI_dec = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		original_tag = TIB
+	}
+	available = {
+		TIB = { is_ai = yes }
+	}
+	visible = {
+		TIB = { is_ai = yes }
+	}
+}
+
+MEN_AI_dec = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		original_tag = MEN
+	}
+	available = {
+		MEN = { is_ai = yes }
+	}
+	visible = {
+		MEN = { is_ai = yes }
+	}
+}
+
+MON_AI_dec = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		original_tag = MON
+	}
+	available = {
+		MON = { is_ai = yes }
+	}
+	visible = {
+		MON = { is_ai = yes }
+	}
+}
+
+AZH_AI_dec = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		original_tag = AZH
+	}
+	available = {
+		AZH = { is_ai = yes }
+	}
+	visible = {
+		AZH = { is_ai = yes }
+	}
+}
+
+AI_eco_support = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		OR = {
+			original_tag = BJC
+			original_tag = WHC
+			original_tag = LZD
+			original_tag = DAT
+			original_tag = CPI
+		}
+	}
+	available = {
+		OR = {
+			BJC = { is_ai = yes }
+			WHC = { is_ai = yes }
+			LZD = { is_ai = yes }
+			DAT = { is_ai = yes }
+			CPI = { is_ai = yes }
+		}
+	}
+	visible = {
+		OR = {
+			BJC = { is_ai = yes }
+			WHC = { is_ai = yes }
+			LZD = { is_ai = yes }
+			DAT = { is_ai = yes }
+			CPI = { is_ai = yes }
+		}
+	}
+}
+
+TER_enemy_ai_dec = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		OR = {
+			tag = QIN
+			tag = TIB
+			tag = SIC
+			tag = CHI
+			tag = GNG
+			tag = JAP
+			is_in_faction_with = CHI
+			is_in_faction_with = JAP
+		}
+	}
+	available = {
+		CPC = { check_variable = { CPC_mode_array^3 = -1 } }
+		has_war_with = CPC
+		is_ai = yes
+	}
+	visible = {
+		is_ai = yes
+	}
+}
+

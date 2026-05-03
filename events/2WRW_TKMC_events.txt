@@ -1,0 +1,802 @@
+﻿
+add_namespace = kmcgp
+
+country_event = {
+	id = kmcgp.0
+	title = kmcgp.0.t
+	desc = kmcgp.0.d
+	picture = GFX_report_event_RUS_soldiers_bombed_city
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.0.a
+	}
+}
+
+country_event = { # Shchedrin's Grand Plan
+	id = kmcgp.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event kmcgp.1"}
+	title = kmcgp.1.t
+	desc = kmcgp.1.d
+	picture = GFX_report_event_IBR_guy_paper_meeting
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.1.a
+		set_country_flag = KMC_the_plan_has_been_revealed
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+country_event = { # Intro event
+	id = kmcgp.2
+	title = kmcgp.2.t
+	desc = kmcgp.2.d
+	picture = GFX_report_event_generic_boats
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.2.a
+		set_variable = { loot_amount = 0 }
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			set_country_flag = KMC_port_gui_open
+		}
+	}
+}
+
+country_event = { # raid neutral shipping oil tanker
+	id = kmcgp.3
+	title = kmcgp.3.t
+	desc = kmcgp.3.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.3.a
+		KMC_piracy_give_supplies = yes
+		add_dynamic_modifier = {
+			modifier = KMC_transfering_fuel_to_stockpile
+			days = 5
+		}
+		add_political_power = 10
+	}
+	option = {
+		name = kmcgp.3.b
+		KMC_piracy_give_supplies = yes
+		custom_effect_tooltip = KMC_add_oil_to_stores_tt
+		add_to_variable = { KMC_fuel_stored = 1 }
+		add_political_power = 10
+	}
+}
+
+country_event = { # raid neutral shipping weapons shipment
+	id = kmcgp.4
+	title = kmcgp.4.t
+	desc = kmcgp.4.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.4.a
+		KMC_piracy_give_supplies = yes
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 140
+			producer = KMC
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = 30
+			producer = KMC
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 5
+			producer = KMC
+		}
+		add_political_power = 10
+	}
+}
+
+country_event = { # raid neutral shipping luxury goods
+	id = kmcgp.5
+	title = kmcgp.5.t
+	desc = kmcgp.5.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.5.a
+		KMC_piracy_give_supplies = yes
+		add_political_power = 20
+	}
+}
+
+country_event = { # raid neutral shipping failure
+	id = kmcgp.6
+	title = kmcgp.6.t
+	desc = kmcgp.6.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.6.a
+	}
+}
+
+country_event = { #American raid luxury goods
+	id = kmcgp.7
+	title = kmcgp.7.t
+	desc = kmcgp.7.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.7.a
+		KMC_piracy_give_supplies_usa = yes
+		add_political_power = 30
+	}
+}
+
+country_event = { # vacant
+	id = kmcgp.8
+	title = kmcgp.8.t
+	desc = kmcgp.8.d
+	picture = GFX_report_event_RUS_soldiers_bombed_city
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.8.a
+	}
+}
+
+country_event = { #American raid guns
+	id = kmcgp.9
+	title = kmcgp.9.t
+	desc = kmcgp.9.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.9.a
+		KMC_piracy_give_supplies_usa = yes
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 140
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_1
+			amount = 30
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 5
+			producer = USA
+		}
+		add_political_power = 15
+	}
+}
+
+country_event = { #American raid fuel
+	id = kmcgp.10
+	title = kmcgp.10.t
+	desc = kmcgp.10.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.10.a
+		KMC_piracy_give_supplies_usa = yes
+		add_dynamic_modifier = {
+			modifier = KMC_transfering_fuel_to_stockpile_large
+			days = 5
+		}
+		add_political_power = 15
+	}
+	option = {
+		name = kmcgp.10.b
+		KMC_piracy_give_supplies_usa = yes
+		custom_effect_tooltip = KMC_add_oil_to_stores_large_tt
+		add_to_variable = { KMC_fuel_stored = 2 }
+		add_political_power = 15
+	}
+}
+
+country_event = { #Japanese raid luxury goods
+	id = kmcgp.11
+	title = kmcgp.11.t
+	desc = kmcgp.11.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.11.a
+		KMC_piracy_give_supplies_jap = yes
+		add_political_power = 30
+	}
+}
+country_event = { #Japanese raid guns
+	id = kmcgp.12
+	title = kmcgp.12.t
+	desc = kmcgp.12.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.12.a
+		KMC_piracy_give_supplies_jap = yes
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_2
+			amount = 140
+			producer = JAP
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_1
+			amount = 30
+			producer = JAP
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment_1
+			amount = 5
+			producer = JAP
+		}
+		add_political_power = 15
+	}
+}
+country_event = { #Japanese raid fuel
+	id = kmcgp.13
+	title = kmcgp.13.t
+	desc = kmcgp.13.d
+	picture = GFX_report_event_COG_boat
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.13.a
+		KMC_piracy_give_supplies_jap = yes
+		add_dynamic_modifier = {
+			modifier = KMC_transfering_fuel_to_stockpile_large
+			days = 5
+		}
+		add_political_power = 15
+	}
+	option = {
+		name = kmcgp.13.b
+		KMC_piracy_give_supplies_jap = yes
+		custom_effect_tooltip = KMC_add_oil_to_stores_large_tt
+		add_to_variable = { KMC_fuel_stored = 2 }
+		add_political_power = 15
+	}
+}
+country_event = { # Hold the Line
+	id = kmcgp.14
+	title = kmcgp.14.t
+	desc = kmcgp.14.d
+	picture = GFX_report_event_RUS_soviet_sniper
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.14.a
+		set_country_flag = emergancy_preperations
+	}
+}
+country_event = { # A Gift from a friend
+	id = kmcgp.15
+	title = kmcgp.15.t
+	desc = kmcgp.15.d
+	picture = GFX_report_event_generic_vodka
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.15.a
+	}
+}
+country_event = { # The Trial 
+	id = kmcgp.16
+	title = kmcgp.16.t
+	desc = kmcgp.16.d
+	picture = GFX_report_event_russia_tribunal
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.16.a
+		add_manpower = -1
+	}
+}
+country_event = { # Price of Loylaty
+	id = kmcgp.17
+	title = kmcgp.17.t
+	desc = kmcgp.17.d
+	picture = GFX_report_event_RUS_sailors
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.17.a
+		hidden_effect = {
+			country_event = { id = kmcgp.18 days = 14 }
+		}
+	}
+}
+
+country_event = { # A Toast
+	id = kmcgp.18
+	title = kmcgp.18.t
+	desc = kmcgp.18.d
+	picture = GFX_report_event_generic_vodka
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.18.a
+	}
+}
+country_event = { # Ship on the Horizon
+	id = kmcgp.19
+	title = kmcgp.19.t
+	desc = kmcgp.19.d
+	picture = GFX_report_event_IBR_ship_guns
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.19.a
+		hidden_effect = {
+			country_event = { id = kmcgp.20 days = 2 }
+		}
+	}
+}
+country_event = { # Change in Tactics
+	id = kmcgp.20
+	title = kmcgp.20.t
+	desc = kmcgp.20.d
+	picture = GFX_report_event_IBR_ship_stairs
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.20.a
+	}
+}
+country_event = { # An Unwelcome Interruption
+	id = kmcgp.21
+	title = kmcgp.21.t
+	desc = kmcgp.21.d
+	picture = GFX_report_event_SAF_arrest
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.21.a
+		hidden_effect = {
+			country_event = { id = kmcgp.22 days = 2 }
+		}
+	}
+}
+country_event = { # The Deal
+	id = kmcgp.22
+	title = kmcgp.22.t
+	desc = kmcgp.22.d
+	picture = GFX_report_event_USA_cia
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.22.a
+		set_country_flag = ivanov_found
+	}
+}
+country_event = { # Three Men in a Boat
+	id = kmcgp.23
+	title = kmcgp.23.t
+	desc = kmcgp.23.d
+	picture = GFX_report_event_BRG_boats_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.23.a
+	}
+}
+country_event = { # Appeal to America
+	id = kmcgp.24
+	title = kmcgp.24.t
+	desc = kmcgp.24.d
+	picture = GFX_report_event_IND_letter
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.24.a
+	}
+}
+country_event = { # The Opportunity
+	id = kmcgp.25
+	title = kmcgp.25.t
+	desc = kmcgp.25.d
+	picture = GFX_report_event_USA_cia
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.25.a
+		hidden_effect = {
+			country_event = { id = kmcgp.26 days = 21 }
+		}
+	}
+}
+country_event = { # The Terms
+	id = kmcgp.26
+	title = kmcgp.26.t
+	desc = kmcgp.26.d
+	picture = GFX_report_event_RUS_letter
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.26.a
+	}
+}
+country_event = { # American Ships
+	id = kmcgp.27
+	title = kmcgp.27.t
+	desc = kmcgp.27.d
+	picture = GFX_report_event_free_france_shipments
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.27.a
+	}
+}
+country_event = { # To Serve the Fleet
+	id = kmcgp.28
+	title = kmcgp.28.t
+	desc = kmcgp.28.d
+	picture = GFX_report_event_RUS_military
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.28.a
+	}
+}
+country_event = { # The Right man for the job
+	id = kmcgp.29
+	title = kmcgp.29.t
+	desc = kmcgp.29.d
+	picture = GFX_report_event_RUS_soviet_officers_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.29.a
+	}
+}
+country_event = { # The Assault
+	id = kmcgp.30
+	title = kmcgp.30.t
+	desc = kmcgp.30.d
+	picture = GFX_report_event_RUS_soldiers_bombed_city
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.30.a
+		create_navy_leader = {
+			name = "Vasily Arkhipov"
+			picture = "Portrait_Kamchatka_Vasily_Arkhipov.dds"
+			traits = { destroyer_leader }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			maneuvering_skill = 2
+			coordination_skill = 3
+			id = 09093
+		}
+	}
+}
+country_event = { # Operation Ithaca
+	id = kmcgp.31
+	title = kmcgp.31.t
+	desc = kmcgp.31.d
+	picture = GFX_report_event_RUS_marines
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.31.a
+		assign_ships_flags = yes
+		set_country_flag = no_more_changes
+		clr_country_flag = KMC_port_gui_open
+		custom_effect_tooltip = ships_locked_in
+		custom_effect_tooltip = your_order_to_launch
+	}
+}
+country_event = { # The Fleet Leaves
+	id = kmcgp.32
+	title = kmcgp.32.t
+	desc = kmcgp.32.d
+	picture = GFX_report_event_IBR_canarias_ship
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.32.a
+		TNO_Country_Closing_Screen_Show = yes
+		hidden_effect = {
+			remove_ideas = {
+				KMC_sailor_state
+				KMC_efficient_repairs
+				KMC_idea_secure_our_position
+				KMC_prof_dummy
+			}
+			remove_dynamic_modifier = {
+				modifier = KMC_dealing_with_up_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = KMC_profits_from_smuggling
+			}
+			remove_dynamic_modifier = {
+				modifier = KMC_professionalism_very_high_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = KMC_professionalism_high_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = KMC_professionalism_med_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = KMC_professionalism_low_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = KMC_professionalism_very_low_modifier
+			}
+			set_cosmetic_tag = KMC_end
+			promote_character = KMC_Power_Vacuum
+			destroy_ships = {
+				type = destroyer
+				count = all
+			}
+			destroy_ships = {
+				type = ship_hull_submarine
+				count = all
+			}
+			destroy_ships = {
+				type = ship_hull_heavy
+				count = all
+			}
+			delete_unit = {
+				state = 637
+				disband = no
+			}
+			KMC_Viktor_Medvedev = { set_nationality = XXX }
+			KMC_Ivan_Yumashev = { set_nationality = XXX }
+			KMC_Pavel_Kolesnik = { set_nationality = XXX }
+			KMC_Grigory_Shchedrin = { set_nationality = XXX }
+			KMC_Emil_Spirodnov = { set_nationality = XXX }
+			KMC_Nikolay_Smirnov = { set_nationality = XXX }
+			set_variable = { 637.nationality = 157 }
+		}
+		if = {
+			limit = {
+				has_country_flag = kmc_fully_supplied_navy
+			}
+			WRS = {
+				# transfer_le
+				calc_loot_from_sup = yes
+			}
+		}
+		WRS = {
+			custom_effect_tooltip = days_navy_arrive_tt
+			hidden_effect = {
+				country_event = { id = kmcgp.598 days = 30 }
+				country_event = { id = kmcgp.599 days = 60 }
+				country_event = { id = kmcgp.600 days = 90 }
+			}
+		}
+		# KMC = {
+		# 	every_unit_leader = {
+		# 		set_nationality = WRS
+		# 	}
+		# }
+		WRS = { change_tag_from = KMC }
+		custom_effect_tooltip = final_note_tt
+	}
+}
+
+country_event = { # vacant
+	id = kmcgp.33
+	title = kmcgp.33.t
+	desc = kmcgp.33.d
+	picture = GFX_report_event_IBR_canarias_ship
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.33.a
+	}
+}
+country_event = { # The End
+	id = kmcgp.34
+	title = kmcgp.34.t
+	desc = kmcgp.34.d
+	picture = GFX_report_event_RUS_nkvd_officer
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.34.a
+	}
+	option = {
+		name = kmcgp.34.b
+	}
+	option = {
+		name = kmcgp.34.c
+	}
+}
+
+
+	country_event = { # The Great Stairway to Freedom
+		id = kmcgp.598
+		title = kmcgp.598.t
+		desc = kmcgp.598.desc
+		picture = GFX_report_event_IBR_ship_stairs
+
+		fire_only_once = yes
+		is_triggered_only = yes
+	
+
+		option = {
+			name = kmcgp.598.a
+		}
+	}
+
+
+
+	country_event = { # Rust Buckets Among Titans
+		id = kmcgp.599
+		title = kmcgp.599.t
+		desc = kmcgp.599.desc
+		picture = GFX_report_event_generic_boats
+
+		fire_only_once = yes
+		is_triggered_only = yes
+	
+
+		option = {
+			name = kmcgp.599.a
+		}
+	
+	}
+
+country_event = { #Pacific Fleet Arrives
+	id = kmcgp.600
+	title = kmcgp.600.t
+	desc = kmcgp.600.d
+	picture = GFX_report_event_RUS_nkvd_officer
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.600.a
+		KMC = {
+			transfer_units_fraction= { #transfers stockpile
+				target = WRS
+				size = 1
+				stockpile_ratio = 0.5
+				army_ratio = 0
+				navy_ratio = 0
+				air_ratio = 0
+				keep_unit_leaders_trigger = {
+					always = yes
+				}
+			}
+			hidden_effect = {
+				XXX = {
+					KMC_Viktor_Medvedev = { set_nationality = WRS }
+					KMC_Ivan_Yumashev = { set_nationality = WRS }
+					KMC_Pavel_Kolesnik = { set_nationality = WRS }
+					KMC_Grigory_Shchedrin = { set_nationality = WRS }
+					KMC_Emil_Spirodnov = { set_nationality = WRS }
+					KMC_Nikolay_Smirnov = { set_nationality = WRS }
+				}
+			}
+		}
+		custom_effect_tooltip = transfer_saved_ships_tt
+		hidden_effect = {
+			WRS = {
+				load_oob = "KMC_1962_wrs"
+				if = {
+					limit = { has_country_flag = kmc_fully_supplied_navy }
+					add_to_variable = { loot_amount = sup_to_loot }
+				}
+				if = {
+					limit = { has_dlc = "Man the Guns" }
+					KMC_mtg_assign_ships = yes
+				}
+				else = {
+					KMC_non_mtg_assign_ships = yes
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KMC
+				}
+				country_event = kmcgp.34
+			}
+		}
+	}
+}
+
+
+country_event = { # testing event
+	id = kmcgp.999
+	title = kmcgp.999.t
+	desc = kmcgp.999.d
+	picture = GFX_report_event_RUS_soldiers_bombed_city
+
+	is_triggered_only = yes
+
+	option = {
+		if = {
+			limit = { has_dlc = "Man the Guns" }
+			KMC_mtg_assign_ships = yes
+		}
+		else = {
+			KMC_non_mtg_assign_ships = yes
+		}
+	}
+}
+
+country_event = { # testing event
+	id = kmcgp.998
+	title = kmcgp.998.t
+	desc = kmcgp.998.d
+	picture = GFX_report_event_RUS_soldiers_bombed_city
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.998.a
+	}
+}
+
+country_event = { #ai navy xp cheat
+	id = kmcgp.666
+	title = kmcgp.666.t
+	desc = kmcgp.666.d
+	picture = GFX_report_event_RUS_soldiers_bombed_city
+
+	is_triggered_only = yes
+
+	option = {
+		name = kmcgp.666.a
+		navy_experience = 500
+	}
+}
+
+
+

@@ -1,0 +1,908 @@
+focus_tree = {
+	id = RUS_second_west_russian_war_common_WAR_TREE
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = RUS
+		}
+	}
+	default = no
+	shared_focus = RUS_shukshin_operation_bagration
+}
+
+
+shared_focus = {
+	id = RUS_shukshin_operation_bagration
+	icon = GFX_NOV_Russias_Final_war
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+    allow_branch = {
+        has_country_flag = SWRW_LOAD_FOCUS_DAMN
+    }
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = NOV_shukshin_operation_bagration_tt
+			RUS = {
+				has_war = yes
+			}
+		}
+	}
+	x = 1
+	y = -2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NOV_shukshin_operation_bagration"
+		add_timed_idea = {
+			idea = NOV_Operation_Bagration_idea
+			days = 365
+		}
+		hidden_effect = {
+			RUS_remove_moskowien_cores = yes
+		}
+	}
+}
+
+# Moscow Branch
+shared_focus = {
+	id = RUS_shukshin_moscow_in_our_sights
+	icon = GFX_NOV_Moscow_in_our_Sights
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_operation_bagration
+	}
+	x = 0
+	y = 1
+	relative_position_id = RUS_shukshin_operation_bagration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NOV_shukshin_moscow_in_our_sights"
+		country_event = {
+			id = Shukshin_War.4
+			days = 1
+		}
+		add_timed_idea = {
+			idea = NOV_Moscow_Offensive_idea
+			days = 120
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_rally_the_partisans
+	icon = GFX_NOV_slaves_no_more
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_moscow_in_our_sights
+	}
+	x = -1
+	y = 1
+	relative_position_id = RUS_shukshin_moscow_in_our_sights
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NOV_shukshin_rally_the_partisans"
+		country_event = {
+			id = Shukshin_War.3
+			days = 1
+		}
+		add_timed_idea = {
+			idea = NOV_Partisan_Militas_idea
+			days = 270
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_inspire_the_muscovite_people
+	icon = GFX_NOV_rally_the_people
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_moscow_in_our_sights
+	}
+	x = 1
+	y = 1
+	relative_position_id = RUS_shukshin_moscow_in_our_sights
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NOV_shukshin_inspire_the_muscovite_people"
+		country_event = {
+			id = Shukshin_War.1
+			days = 1
+		}
+		every_state = {
+			limit = {
+				is_owned_by = MCW
+			}
+			start_resistance = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_moscow_is_behind_us
+	icon = GFX_NOV_for_the_liberation_of_all_russians
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_inspire_the_muscovite_people
+	}
+	prerequisite = {
+		focus = RUS_shukshin_rally_the_partisans
+	}
+	available = {
+		RUS = {
+			controls_state = 1442
+		}
+	}
+	x = 0
+	y = 2
+	relative_position_id = RUS_shukshin_moscow_in_our_sights
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus NOV_shukshin_inspire_the_muscovite_people"
+		country_event = {
+			id = Shukshin_War.7
+			days = 1
+		}
+		add_timed_idea = {
+			idea = NOV_Defenders_of_Moscow_idea
+			days = 60
+		}
+	}
+}
+
+# Left Hand
+shared_focus = {
+	id = RUS_shukshin_retrofit_old_soviet_equipment
+	icon = GFX_NOV_Operation_Bagration
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_operation_bagration
+	}
+	x = -3
+	y = 1
+	relative_position_id = RUS_shukshin_operation_bagration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_operation_bagration"
+		set_temp_variable = {
+			temp_econ_spending_amount = 0.1
+		}
+		econ_spend_money_once_effect_raw_money = yes
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 25000
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 2000
+		}
+		add_equipment_to_stockpile = {
+			type = anti_air_shoulder_equipment
+			amount = 2000
+		}
+		add_equipment_to_stockpile = {
+			type = mbt_equipment
+			amount = 500
+		}
+		add_equipment_to_stockpile = {
+			type = fighter_equipment
+			amount = 250
+		}
+		add_equipment_to_stockpile = {
+			type = interceptor_equipment
+			amount = 100
+		}
+		add_equipment_to_stockpile = {
+			type = tac_bomber_equipment
+			amount = 50
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_deploy_pontoon_bridges
+	icon = GFX_focus_GER_a_bridge_too_far
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_retrofit_old_soviet_equipment
+	}
+	x = -1
+	y = 1
+	relative_position_id = RUS_shukshin_retrofit_old_soviet_equipment
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_deploy_pontoon_bridges"
+		set_temp_variable = {
+			temp_econ_spending_amount = 0.05
+		}
+		econ_spend_money_once_effect_raw_money = yes
+		add_ideas = {
+			NOV_Pontoon_Bridges_idea
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_wartime_conscription
+	icon = GFX_NOV_remember_whats_at_stake
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_retrofit_old_soviet_equipment
+	}
+	prerequisite = {
+		focus = RUS_shukshin_deploy_pontoon_bridges
+	}
+	x = 0
+	y = 2
+	relative_position_id = RUS_shukshin_retrofit_old_soviet_equipment
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_wartime_conscription"
+		country_event = {
+			id = Shukshin_War.5
+			days = 1
+		}
+		add_timed_idea = {
+			idea = NOV_Wartime_Conscription_idea
+			days = 365
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_Forwards_for_Russia_WAR
+	icon = GFX_RUS_Forwards_for_Russia
+	cost = 2
+	dynamic = yes
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	relative_position_id = RUS_shukshin_wartime_conscription
+	prerequisite = {
+		focus = RUS_shukshin_wartime_conscription
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: RUS_Forwards_for_Russia"
+		add_ideas = RUS_Death_to_the_Germans_1
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 1000
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 1000
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 500
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_Rout_the_Bastards_WAR
+	icon = GFX_RUS_Rout_the_Bastards
+	cost = 2
+	bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	relative_position_id = RUS_Forwards_for_Russia_WAR
+	prerequisite = {
+		focus = RUS_Forwards_for_Russia_WAR
+	}
+	available = {
+		1442 = {
+			is_controlled_by = ROOT
+		}
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: RUS_Rout_the_Bastards"
+		swap_ideas = {
+			remove_idea = RUS_Death_to_the_Germans_1
+			add_idea = RUS_Death_to_the_Germans_2
+		}
+		add_manpower = 100000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1500
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 1500
+		}
+		if = {
+			#No Step Back Tanks
+			limit = {
+				has_dlc = "No Step Back"
+			}
+			add_equipment_to_stockpile = {
+				type = MBT_chassis
+				amount = 400
+			}
+			add_equipment_to_stockpile = {
+				type = APC_chassis
+				amount = 400
+			}
+		}
+		else = {
+			#Non-DLC Tanks
+			add_equipment_to_stockpile = {
+				type = MBT_equipment
+				amount = 400
+			}
+			add_equipment_to_stockpile = {
+				type = APC_equipment
+				amount = 400
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 800
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_wartime_propaganda
+	icon = GFX_NOV_wartime_propaganda
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_wartime_conscription
+	}
+	x = 1
+	y = 1
+	relative_position_id = RUS_shukshin_wartime_conscription
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_wartime_propaganda"
+		add_war_support = 0.15
+		add_stability = 0.075
+        add_timed_idea = {
+			idea = NOV_for_the_liberation_of_all_russians_idea
+			days = 180
+		}
+	}
+}
+
+# Right Hand
+shared_focus = {
+	id = RUS_shukshin_invest_in_feniks
+	icon = GFX_RUS_Expand_the_MIC
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_operation_bagration
+	}
+	x = 3
+	y = 1
+	relative_position_id = RUS_shukshin_operation_bagration
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_invest_in_feniks"
+		add_timed_idea = {
+			idea = NOV_Feniks_Production_Boost_idea
+			days = 100
+		}
+		set_temp_variable = {
+			temp_econ_spending_amount = 0.5
+		}
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_purchase_american_submarines
+	icon = GFX_NOV_Purchase_American_Submarines
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_invest_in_feniks
+	}
+	x = 1
+	y = 1
+	relative_position_id = RUS_shukshin_invest_in_feniks
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_purchase_american_submarines"
+		country_event = {
+			id = Shukshin_War.6
+			days = 1
+		}
+		set_temp_variable = {
+			temp_econ_spending_amount = 0.125
+		}
+		econ_spend_money_once_effect_raw_money = yes
+		custom_effect_tooltip = NOV_shukshin_purchase_american_submarines_tt
+		hidden_effect = {
+			if = {
+				limit = { has_dlc = "Man the Guns" }
+				load_oob = "NOV_american_submarine_purchase_mtg"
+			}
+			else = {
+				load_oob = "NOV_american_submarine_purchase"
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_contact_free_europe
+	icon = GFX_focus_GER_comrades_from_europe
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_purchase_american_submarines
+	}
+	prerequisite = {
+		focus = RUS_shukshin_invest_in_feniks
+	}
+	x = 0
+	y = 2
+	relative_position_id = RUS_shukshin_invest_in_feniks
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_contact_free_europe"
+		ENG = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = ENG
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		SWI = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = SWI
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		if = {
+			limit = {
+				country_exists = SCO
+			}
+			SCO = {
+				if = {
+					limit = {
+						NOT = {
+							is_in_faction_with = GER
+						}
+						country_exists = SCO
+					}
+					country_event = RUS_europeansupport.1
+				}
+			}
+		}
+		IRE = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		SWE = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		NOR = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		IBR = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = IBR
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		SPR = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = SPR
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		POR = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = POR
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		MNT = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = MNT
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		MAC = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = MAC
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		HUN = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = HUN
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		BOS = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = BOS
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		ROM = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		SER = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		CRO = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		GRE = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = GRE
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		FRA = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = FRA
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+		BUL = {
+			if = {
+				limit = {
+					NOT = {
+						is_in_faction_with = GER
+					}
+					country_exists = BUL
+				}
+				country_event = RUS_europeansupport.1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_shukshin_the_italian_connection
+	icon = GFX_focus_ITA_OLD_italy
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_contact_free_europe
+	}
+	x = -1
+	y = 1
+	relative_position_id = RUS_shukshin_contact_free_europe
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_the_italian_connection"
+		ITA = {
+			country_event = {
+				id = RUS_europeansupport.4
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_A_Tide_of_Iron_and_Steel_WAR
+	icon = GFX_RUS_A_Tide_of_Iron_and_Steel
+	cost = 2
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_contact_free_europe
+	}
+	x = 1
+	y = 1
+	relative_position_id = RUS_shukshin_contact_free_europe
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus RUS_shukshin_the_italian_connection"
+		add_ideas = RUS_March_of_Memories_1
+		if = { #No Step Back Tanks
+			limit = { has_dlc = "No Step Back" }
+			add_equipment_to_stockpile = {
+				type = MBT_chassis
+				amount = 1000
+			}
+			add_equipment_to_stockpile = {
+				type = APC_chassis
+				amount = 1000
+			}
+		}
+		else = { #Non Dlc Tanks
+			add_equipment_to_stockpile = {
+				type = MBT_equipment
+				amount = 1000
+			}
+			add_equipment_to_stockpile = {
+				type = APC_equipment
+				amount = 1000
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 500
+		}
+	}
+}
+shared_focus = {
+	id = RUS_Moscow_Red_Once_More_WAR
+	icon = GFX_RUS_Moscow_Red_Once_More
+	cost = 2
+	relative_position_id = RUS_A_Tide_of_Iron_and_Steel_WAR
+	prerequisite = { focus = RUS_A_Tide_of_Iron_and_Steel_WAR }
+	available = { 1442 = { is_controlled_by = ROOT } }
+	x = 0
+	y = 1
+    bypass = {
+        custom_trigger_tooltip = {
+            tooltip = SWRW_END_TT
+            has_global_flag = RUS_SWRW_End
+        }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: RUS_Moscow_Red_Once_More"
+		swap_ideas = {
+			remove_idea = RUS_March_of_Memories_1
+			add_idea = RUS_March_of_Memories_2
+		}
+		add_manpower = 100000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 3000
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 1500
+			producer = GER
+		}
+		if = { #No Step Back Tanks
+			limit = { has_dlc = "No Step Back" }
+			add_equipment_to_stockpile = {
+				type = MBT_chassis
+				amount = 800
+				producer = GER
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = MBT_equipment
+				amount = 800
+				producer = GER
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 800
+		}
+	}
+}
+
+
+# ZA RODINU!!! URAAAAA!!!! #
+shared_focus = {
+	id = RUS_shukshin_forward_russia
+	icon = GFX_RUS_Barbarossa_Redeemed
+	cost = 2
+	available_if_capitulated = no
+    available = {
+        has_global_flag = RUS_SWRW_End
+    }
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_shukshin_wartime_propaganda
+	}
+	prerequisite = {
+		focus = RUS_shukshin_moscow_is_behind_us
+	}
+	prerequisite = {
+		focus = RUS_shukshin_the_italian_connection
+	}
+	x = 0
+	y = 2
+	relative_position_id = RUS_shukshin_moscow_is_behind_us
+	completion_reward = {
+		custom_effect_tooltip = RUS_W_tt
+		SWRW_forward_russia = yes
+	}
+}

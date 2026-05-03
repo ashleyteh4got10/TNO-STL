@@ -1,0 +1,1276 @@
+focus_tree = {
+	id = HTC_focus_card
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = HTC
+		}
+	}
+	default = no
+
+	focus = {
+		id = HTC_card_1 #工业焦点
+		icon =  GFX_goals_CPC_factory_community_construction
+		x = 1
+		y = 0
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^1 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = 30
+			effect_tooltip = {
+				set_temp_variable = { popular_will_change = 2.5 }
+				CPC_XJ_popular_will_change = yes
+				set_temp_variable = { XJB_temp_change_pct = -0.5 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { popular_will_change = 2.5 }
+					CPC_XJ_popular_will_change = yes
+					set_temp_variable = { XJB_temp_change_pct = -0.5 }
+					XJB_pies_change = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HTC_card_1_construction 
+		icon = GFX_goals_CPC_tempered_into_a_steel
+		prerequisite = { focus = HTC_card_1 }
+		relative_position_id = HTC_card_1
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^1 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			random_list = {
+				60 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				20 = {
+					set_temp_variable = { gdp_growth_temp = 0.5 }
+					econ_gdp_growth_change = yes
+				}
+				15 = {
+					set_temp_variable = { temp_econ_GDP_boost_percentage = 0.005 }
+					econ_GDP_boost_once_percentage = yes
+				}
+				4 = {
+					set_temp_variable = { gdp_growth_temp = 0.5 }
+					econ_gdp_growth_change = yes
+					CPC = {
+						set_temp_variable = { gdp_growth_temp = 0.15 }
+						econ_gdp_growth_change = yes
+					}
+				}
+				1 = {
+					set_temp_variable = { pus_temp = 1 }
+					econ_pus_change = yes
+					CPC = {
+						set_temp_variable = { pus_temp = 1 }
+						econ_pus_change = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_1_training 
+		icon =  GFX_goals_CPC_city_Su_Fan_movement
+		prerequisite = { focus = HTC_card_1 }
+		relative_position_id = HTC_card_1
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^1 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			random_list = {
+				60 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				20 = {
+					TNO_improve_industrial_expertise_low = yes
+				}
+				15 = {
+					TNO_improve_industrial_expertise_med = yes
+				}
+				4 = {
+					TNO_improve_industrial_expertise_med = yes
+					CPC = {
+						TNO_improve_industrial_expertise_low = yes
+					}
+				}
+				1 = {
+					TNO_improve_industrial_expertise_high = yes
+					CPC = {
+						TNO_improve_industrial_expertise_med = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_1_end
+		icon =  GFX_goals_CPC_accumulate_more
+		prerequisite = { focus = HTC_card_1_training }
+		prerequisite = { focus = HTC_card_1_construction }
+		relative_position_id = HTC_card_1_training
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^1 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			TNO_improve_industrial_expertise_med = yes
+			effect_tooltip = {
+				set_temp_variable = { popular_will_change = -1 }
+				CPC_XJ_popular_will_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { popular_will_change = -1 }
+					CPC_XJ_popular_will_change = yes
+				}
+			}
+			CPC = { TNO_improve_industrial_expertise_low = yes
+					set_temp_variable = { debt_temp = 0.01 }
+					econ_national_debt_change = yes
+					CPC_XJB_clear_cards_states = yes
+				}
+			hidden_effect = {
+				uncomplete_national_focus = {
+					focus = HTC_card_1
+					uncomplete_children = yes
+				}
+				if = {
+					limit = { CPC = { check_variable = { CPC_hosting_service_XJB_var = 2 } } }
+					CPC = { 
+						country_event = { id = TER_support_backend_events.8 days = 1 }
+						Alert_XJB_card_enabled_remove_alerts = yes 
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HTC_card_2 #农业焦点
+		icon = GFX_goals_CPC_socialist_agriculture
+		x = 5
+		y = 0
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^2 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			effect_tooltip = {
+				set_temp_variable = { popular_will_change = 2.5 }
+				CPC_XJ_popular_will_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { popular_will_change = 2.5 }
+					CPC_XJ_popular_will_change = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HTC_card_2_farm 
+		icon = GFX_goals_CPC_wage_system
+		prerequisite = { focus = HTC_card_2 }
+		relative_position_id = HTC_card_2
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^2 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			random_list = {
+				60 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_agriculture_low = yes
+				}
+				4 = {
+					TNO_improve_agriculture_med = yes
+				}
+				1 = {
+					TNO_improve_agriculture_med = yes
+					CPC = {
+						TNO_improve_agriculture_low = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_2_LF 
+		icon = GFX_goals_CPC_field_investigation_movement
+		prerequisite = { focus = HTC_card_2 }
+		relative_position_id = HTC_card_2
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^2= 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			random_list = {
+				60 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				20 = {
+					TNO_improve_agriculture_low = yes
+				}
+				18 = {
+					TNO_improve_admin_efficiency_low = yes
+				}
+				2 = {
+					TNO_improve_admin_efficiency_low = yes
+					TNO_improve_agriculture_low = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_2_end
+		icon =  GFX_goals_CPC_pay_for_yourself
+		prerequisite = { focus = HTC_card_2_LF }
+		prerequisite = { focus = HTC_card_2_farm }
+		relative_position_id = HTC_card_2_LF
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^2 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			TNO_improve_agriculture_med = yes
+			CPC = {
+				TNO_improve_agriculture_low = yes
+				set_temp_variable = { debt_temp = 0.005 }
+				econ_national_debt_change = yes
+				CPC_XJB_clear_cards_states = yes
+			}
+			hidden_effect = {
+				uncomplete_national_focus = {
+					focus = HTC_card_2
+					uncomplete_children = yes
+				}
+				if = {
+					limit = { CPC = { check_variable = { CPC_hosting_service_XJB_var = 2 } } }
+					CPC = { 
+						country_event = { id = TER_support_backend_events.8 days = 1 }
+						Alert_XJB_card_enabled_remove_alerts = yes 
+					}
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HTC_card_3 #军事焦点
+		icon =  GFX_goals_CPC_reorganize_army
+		x = 9
+		y = 0
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^3 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -10
+			effect_tooltip = {
+				set_temp_variable = { popular_will_change = 2.5 }
+				CPC_XJ_popular_will_change = yes
+				set_temp_variable = { XJB_temp_change_pct = 2.5 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { popular_will_change = 2.5 }
+					CPC_XJ_popular_will_change = yes
+					set_temp_variable = { XJB_temp_change_pct = 2.5 }
+					XJB_pies_change = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HTC_card_3_construction 
+		icon =  GFX_goals_CPC_motorized_regiments
+		prerequisite = { focus = HTC_card_3 }
+		relative_position_id = HTC_card_3
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^3 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			effect_tooltip = {
+				set_temp_variable = { XJB_temp_change_pct = 1 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { XJB_temp_change_pct = 1 }
+					XJB_pies_change = yes
+				}
+			}
+			random_list = {
+				50 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_army_professionalism_low = yes
+				}
+				15 = {
+					TNO_improve_army_professionalism_med = yes
+				}
+				5 = {
+					TNO_improve_army_professionalism_med = yes
+					random_owned_state = {
+						add_building_construction = {
+							type = barracks
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_3_training 
+		icon =  GFX_goals_CPC_heavy_training
+		prerequisite = { focus = HTC_card_3 }
+		relative_position_id = HTC_card_3
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^3 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			effect_tooltip = {
+				set_temp_variable = { XJB_temp_change_pct = 1 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { XJB_temp_change_pct = 1 }
+					XJB_pies_change = yes
+				}
+			}
+			random_list = {
+				50 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_army_professionalism_low = yes
+				}
+				15 = {
+					TNO_improve_army_professionalism_med = yes
+				}
+				5 = {
+					TNO_improve_army_professionalism_med = yes
+					CPC = {
+						TNO_improve_army_professionalism_low = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_3_end
+		icon =  GFX_goals_CPC_prominent_role_model
+		prerequisite = { focus = HTC_card_3_training }
+		prerequisite = { focus = HTC_card_3_construction }
+		relative_position_id = HTC_card_3_training
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^3 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			effect_tooltip = {
+				set_temp_variable = { XJB_temp_change_pct = 2.5 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { XJB_temp_change_pct = 2.5 }
+					XJB_pies_change = yes
+				}
+			}
+			TNO_improve_army_professionalism_med = yes
+			CPC = {
+				TNO_improve_army_professionalism_low = yes
+				set_temp_variable = { debt_temp = 0.005 }
+				econ_national_debt_change = yes
+				CPC_XJB_clear_cards_states = yes
+			}
+			hidden_effect = {
+				uncomplete_national_focus = {
+					focus = HTC_card_3
+					uncomplete_children = yes
+				}
+				if = {
+					limit = { CPC = { check_variable = { CPC_hosting_service_XJB_var = 2 } } }
+					CPC = { 
+						country_event = { id = TER_support_backend_events.8 days = 1 }
+						Alert_XJB_card_enabled_remove_alerts = yes 
+					}
+				}
+			}
+		}
+	}
+
+	
+	focus = {
+		id = HTC_card_4 #教育焦点
+		icon = GFX_goals_CPC_Xian_university
+		x = 13
+		y = 0
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^4 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -15
+			effect_tooltip = {
+				set_temp_variable = { popular_will_change = 2.5 }
+				CPC_XJ_popular_will_change = yes
+				set_temp_variable = { XJB_temp_change_pct = -3 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { popular_will_change = 2.5 }
+					CPC_XJ_popular_will_change = yes
+					set_temp_variable = { XJB_temp_change_pct = -3 }
+					XJB_pies_change = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HTC_card_4_construction 
+		icon = GFX_goals_CPC_education_subsidy
+		prerequisite = { focus = HTC_card_4 }
+		relative_position_id = HTC_card_4
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^4 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			random_list = {
+				50 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_education_policy_effectiveness_low = yes
+				}
+				15 = {
+					TNO_improve_academic_base_low = yes
+				}
+				3 = {
+					TNO_improve_academic_base_low = yes
+					random_owned_state = {
+						add_building_construction = {
+							type = schools
+							level = 1
+						}
+					}
+				}
+				2 = {
+					TNO_improve_academic_base_med = yes
+					CPC = {
+						TNO_improve_academic_base_low = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_4_zhiqing 
+		icon =  GFX_goals_CPC_go_to_the_mountains_and_the_countryside
+		prerequisite = { focus = HTC_card_4 }
+		relative_position_id = HTC_card_4
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^4 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			CPC = { add_manpower = -100 }
+			add_manpower = 100
+			random_list = {
+				50 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_education_policy_effectiveness_low = yes
+				}
+				15 = {
+					TNO_improve_academic_base_low = yes
+				}
+				3 = {
+					TNO_improve_academic_base_med = yes
+				}
+				2 = {
+					TNO_improve_academic_base_med = yes
+					CPC = {
+						TNO_improve_academic_base_low = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_4_end
+		icon =  GFX_goals_CPC_TRCW_phase_1_1
+		prerequisite = { focus = HTC_card_4_zhiqing }
+		prerequisite = { focus = HTC_card_4_construction }
+		relative_position_id = HTC_card_4_zhiqing
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^4 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			effect_tooltip = {
+				set_temp_variable = { XJB_temp_change_pct = -3 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { XJB_temp_change_pct = -3 }
+					XJB_pies_change = yes
+				}
+			}
+			TNO_improve_academic_base_med = yes
+			CPC = {
+				TNO_improve_academic_base_low = yes
+				set_temp_variable = { debt_temp = 0.005 }
+				econ_national_debt_change = yes
+				CPC_XJB_clear_cards_states = yes
+			}
+			hidden_effect = {
+				uncomplete_national_focus = {
+					focus = HTC_card_4
+					uncomplete_children = yes
+				}
+				if = {
+					limit = { CPC = { check_variable = { CPC_hosting_service_XJB_var = 2 } } }
+					CPC = { 
+						country_event = { id = TER_support_backend_events.8 days = 1 }
+						Alert_XJB_card_enabled_remove_alerts = yes 
+					}
+				}
+			}
+		}
+	}
+
+	
+
+	focus = {
+		id = HTC_card_5 #商贸焦点
+		icon =  GFX_focus_generic_diplomacy_trade
+		x = 3
+		y = 3
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^5 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = 10
+			effect_tooltip = {
+				set_temp_variable = { popular_will_change = 2.5 }
+				CPC_XJ_popular_will_change = yes
+				set_temp_variable = { XJB_temp_change_pct = 0.5 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { popular_will_change = 2.5 }
+					CPC_XJ_popular_will_change = yes
+					set_temp_variable = { XJB_temp_change_pct = 0.5 }
+					XJB_pies_change = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HTC_card_5_construction 
+		icon =  GFX_focus_generic_open_road
+		prerequisite = { focus = HTC_card_5 }
+		relative_position_id = HTC_card_5
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^5 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			random_list = {
+				50 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_trade_laws_policy_effectiveness_low = yes
+				}
+				17 = {
+					TNO_improve_trade_laws_policy_effectiveness_med = yes
+				}
+				2 = {
+					random_owned_state = {
+						add_building_construction = { type = infrastructure level = 1 }
+						add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+					}
+				}
+				1 = {
+					random_owned_state = {
+						add_building_construction = { type = infrastructure level = 1 }
+						add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+					}
+					CPC = {
+						random_owned_state = {
+							add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.1 } }
+						}
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_5_market 
+		icon =  GFX_focus_generic_change_law_trade
+		prerequisite = { focus = HTC_card_5 }
+		relative_position_id = HTC_card_5
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^5 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			random_list = {
+				50 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_trade_laws_policy_effectiveness_low = yes
+				}
+				17 = {
+					TNO_improve_trade_laws_policy_effectiveness_med = yes
+				}
+				3 = {
+					random_owned_state = {
+						add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_5_end
+		icon =  GFX_focus_generic_gold_bars
+		prerequisite = { focus = HTC_card_5_market }
+		prerequisite = { focus = HTC_card_5_construction }
+		relative_position_id = HTC_card_5_market
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^5 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			effect_tooltip = {
+				set_temp_variable = { XJB_temp_change_pct = 1 }
+				XJB_pies_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { XJB_temp_change_pct = 1 }
+					XJB_pies_change = yes
+				}
+			}
+			TNO_improve_trade_laws_policy_effectiveness_low = yes
+			random_owned_state = {
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.2 } }
+			}
+			CPC = {
+				random_owned_state = {
+					add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.1 } }
+				}
+				set_temp_variable = { debt_temp = 0.005 }
+				econ_national_debt_change = yes
+				CPC_XJB_clear_cards_states = yes
+			}
+			hidden_effect = {
+				uncomplete_national_focus = {
+					focus = HTC_card_5
+					uncomplete_children = yes
+				}
+				if = {
+					limit = { CPC = { check_variable = { CPC_hosting_service_XJB_var = 2 } } }
+					CPC = { 
+						country_event = { id = TER_support_backend_events.8 days = 1 }
+						Alert_XJB_card_enabled_remove_alerts = yes 
+					}
+				}
+			}
+		}
+	}
+
+
+
+	focus = {
+		id = HTC_card_6 #医疗
+		icon =  GFX_goals_CPC_medical_subsidies
+		x = 11
+		y = 3
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^6 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			effect_tooltip = {
+				set_temp_variable = { popular_will_change = 2.5 }
+				CPC_XJ_popular_will_change = yes
+			}
+			hidden_effect = {
+				CPC = {
+					set_temp_variable = { popular_will_change = 2.5 }
+					CPC_XJ_popular_will_change = yes
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = HTC_card_6_construction 
+		icon =  GFX_focus_generic_change_law_healthcare
+		prerequisite = { focus = HTC_card_6 }
+		relative_position_id = HTC_card_6
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^6 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			random_list = {
+				50 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_health_care_policy_effectiveness_low = yes
+				}
+				17 = {
+					TNO_improve_health_care_policy_effectiveness_med = yes
+				}
+				2 = {
+					TNO_improve_healthcare_low = yes
+				}
+				1 = {
+					TNO_improve_healthcare_med = yes
+					random_owned_state = {
+						add_building_construction = { type = hospitals level = 1 }
+					}
+					CPC = {
+						TNO_improve_healthcare_low = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_6_publicize 
+		icon =  GFX_goals_CPC_big_community_is_preferred
+		prerequisite = { focus = HTC_card_6 }
+		relative_position_id = HTC_card_6
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^6 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			CPC = { add_manpower = -100 }
+			add_manpower = 100
+			random_list = {
+				50 = {
+					effect_tooltip = {
+						set_temp_variable = { popular_will_change = 2.5 }
+						CPC_XJ_popular_will_change = yes
+					}
+					hidden_effect = {
+						CPC = {
+							set_temp_variable = { popular_will_change = 2.5 }
+							CPC_XJ_popular_will_change = yes
+						}
+					}
+				}
+				30 = {
+					TNO_improve_health_care_policy_effectiveness_low = yes
+				}
+				15 = {
+					TNO_improve_health_care_policy_effectiveness_med = yes
+				}
+				3 = {
+					TNO_improve_healthcare_low = yes
+				}
+				2 = {
+					TNO_improve_healthcare_med = yes
+					CPC = {
+						TNO_improve_healthcare_low = yes
+					}
+				}
+			}
+		}
+	}
+	focus = {
+		id = HTC_card_6_end
+		icon = GFX_goals_CPC_supply_and_marketing_cooperative
+		prerequisite = { focus = HTC_card_6_publicize }
+		prerequisite = { focus = HTC_card_6_construction }
+		relative_position_id = HTC_card_6_publicize
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				CPC = { check_variable = { XJB_focus_card_state^6 = 2 } }
+				CPC = { NOT = { has_country_flag = CPC_TRCW_begins_flag } }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			TNO_improve_healthcare_med = yes
+			CPC = {
+				TNO_improve_healthcare_low = yes
+				set_temp_variable = { debt_temp = 0.005 }
+				econ_national_debt_change = yes
+				CPC_XJB_clear_cards_states = yes
+			}
+			hidden_effect = {
+				uncomplete_national_focus = {
+					focus = HTC_card_6
+					uncomplete_children = yes
+				}
+				if = {
+					limit = { CPC = { check_variable = { CPC_hosting_service_XJB_var = 2 } } }
+					CPC = { 
+						country_event = { id = TER_support_backend_events.8 days = 1 }
+						Alert_XJB_card_enabled_remove_alerts = yes 
+					}
+				}
+			}
+		}
+	}
+}

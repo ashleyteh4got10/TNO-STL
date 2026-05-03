@@ -1,0 +1,1725 @@
+## Generics ##
+
+#Hello, this is KD, this system may sound complicated but I'm here to explain how to set-up and expand this system step-by-step
+#The first thing to know is the AI simply won't use a chassis without a defined "template", thus this file is very important
+
+### IFV
+	generic_IFV = { #First we name the set of "templates" we are about to design
+	category = land #Then we define whether it is for tanks (land) or ships (naval), TNO does not use the air designer
+
+	available_for = {} #This block defines what countries can use it, you enter their tag here. If kept empty, every tag can use it
+
+	roles = { #This is the role of the template, for the AI to use it, it will need to match the role of the division templates you want the equipment to be used in
+		armor
+		land_light_tank
+	}
+
+	priority = { #This block determines how important this particular set of templates is compared to others
+		factor = 100
+		modifier = {
+			factor = 15
+			has_template_containing_unit = IFV
+		}
+		modifier = {
+			factor = 0.01
+			NOT = { has_template_containing_unit = IFV }
+		}
+	}
+
+	early_IFV_default = { #Every indermine the priority of this particular template compared to others in the set
+			factor = 35ividual template needs a name as well, for simplicity, use the same ones as the equipment
+		priority = { #This will det
+			modifier = { #You can use modifiers to change the priority of the template
+				OR = {
+					has_tech = NSB_IFV_1950
+					has_tech = NSB_MBT_1950
+				}
+				factor = 0
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = IFV_chassis_0 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						MBT_cannon_4
+						MBT_cannon_3
+						MBT_cannon_2
+						MBT_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = IFV_fixed_superstructure_turret
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 10 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 0
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			IFV_cannon_4
+			IFV_cannon_3
+			IFV_cannon_2
+			IFV_cannon
+			#Armor
+			IFV_three_man_tank_turret
+			tank_riveted_armor
+			tank_torsion_bar_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+	basic_IFV_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				OR = {
+					has_tech = NSB_IFV_1960
+					has_tech = NSB_MBT_1960
+				}
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = IFV_chassis_1 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						MBT_cannon_4
+						MBT_cannon_3
+						MBT_cannon_2
+						MBT_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = IFV_fixed_superstructure_turret
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 12 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 4
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			IFV_cannon_4
+			IFV_cannon_3
+			IFV_cannon_2
+			IFV_cannon
+			#Armor
+			IFV_three_man_tank_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+	modern_IFV_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				OR = {
+					has_tech = NSB_IFV_1970
+					has_tech = NSB_MBT_1970
+				}
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = IFV_chassis_2 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						MBT_cannon_4
+						MBT_cannon_3
+						MBT_cannon_2
+						MBT_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = IFV_fixed_superstructure_turret
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 16 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 8
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			IFV_cannon_4
+			IFV_cannon_3
+			IFV_cannon_2
+			IFV_cannon
+			#Armor
+			IFV_three_man_tank_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+
+	advanced_IFV_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				OR = {
+					has_tech = NSB_IFV_1980
+					has_tech = NSB_MBT_1980
+				}
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = IFV_chassis_3 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						MBT_cannon_4
+						MBT_cannon_3
+						MBT_cannon_2
+						MBT_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = IFV_fixed_superstructure_turret
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 20 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 16
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			IFV_cannon_4
+			IFV_cannon_3
+			IFV_cannon_2
+			IFV_cannon
+			#Armor
+			IFV_three_man_tank_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+	improved_IFV_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				OR = {
+					has_tech = NSB_IFV_1990
+					has_tech = NSB_MBT_1990
+				}
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = IFV_chassis_4 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						MBT_cannon_4
+						MBT_cannon_3
+						MBT_cannon_2
+						MBT_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = IFV_fixed_superstructure_turret
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 20 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 16
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			IFV_cannon_4
+			IFV_cannon_3
+			IFV_cannon_2
+			IFV_cannon
+			#Armor
+			IFV_three_man_tank_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+}
+
+## MBT
+#Skipping 1945 Chassis for my own sanity
+generic_MBT = {
+	category = land
+
+	available_for = {}
+
+	roles = {
+		armor
+		land_medium_tank
+	}
+
+	priority = {
+		factor = 100
+		modifier = {
+			factor = 10
+			has_template_containing_unit = MBT
+		}
+		modifier = {
+			factor = 0
+			NOT = { has_template_containing_unit = MBT }
+		}
+	}
+
+	basic_MBT_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_MBT_1960
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = MBT_chassis_1	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						heavy_cannon_4
+						heavy_cannon_3
+						heavy_cannon_2
+						heavy_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = MBT_fixed_superstructure_turret
+				suspension_type_slot = {
+					any_of = {
+						tank_hydropneumatic_suspension
+						tank_torsion_bar_suspension
+					}
+					upgrade > current
+				}
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 12 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 10
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			heavy_cannon_4
+			heavy_cannon_3
+			heavy_cannon_2
+			heavy_cannon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_welded_armor
+			tank_torsion_bar_suspension
+			tank_hydropneumatic_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+	modern_MBT_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_MBT_1970
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = MBT_chassis_2 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						heavy_cannon_4
+						heavy_cannon_3
+						heavy_cannon_2
+						heavy_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = MBT_fixed_superstructure_turret
+				suspension_type_slot = {
+					any_of = {
+						tank_hydropneumatic_suspension
+						tank_torsion_bar_suspension
+					}
+					upgrade > current
+				}
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 15 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 15
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			heavy_cannon_4
+			heavy_cannon_3
+			heavy_cannon_2
+			heavy_cannon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_welded_armor
+			tank_torsion_bar_suspension
+			tank_hydropneumatic_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+
+	advanced_MBT_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_MBT_1980
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = MBT_chassis_3 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						heavy_cannon_4
+						heavy_cannon_3
+						heavy_cannon_2
+						heavy_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = MBT_fixed_superstructure_turret
+				suspension_type_slot = {
+					any_of = {
+						tank_hydropneumatic_suspension
+						tank_torsion_bar_suspension
+					}
+					upgrade > current
+				}
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 20 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 20
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			heavy_cannon_4
+			heavy_cannon_3
+			heavy_cannon_2
+			heavy_cannon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_welded_armor
+			tank_torsion_bar_suspension
+			tank_hydropneumatic_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+	awesome_MBT_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_MBT_1990
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = MBT_chassis_4 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				main_armament_slot = { 		#All tanks require a main armament
+					any_of = { 				#I recommend using any_of and within a list of the specific equipment you want in the slot, slotted from best to worst
+						heavy_cannon_4
+						heavy_cannon_3
+						heavy_cannon_2
+						heavy_cannon
+					}
+					upgrade > current 		#This block makes it so the AI will automatically upgrade to better versisons of the module category if available
+				}
+				turret_type_slot = MBT_fixed_superstructure_turret
+				suspension_type_slot = {
+					any_of = {
+						tank_hydropneumatic_suspension
+						tank_torsion_bar_suspension
+					}
+					upgrade > current
+				}
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 20 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 20
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			heavy_cannon_4
+			heavy_cannon_3
+			heavy_cannon_2
+			heavy_cannon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_welded_armor
+			tank_torsion_bar_suspension
+			tank_hydropneumatic_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+}
+
+####2WRW
+####APC
+
+generic_APC = {
+	category = land
+
+	available_for = {}
+
+	roles = {
+		mobile
+		mechanized
+	}
+
+	priority = {
+		factor = 100
+		modifier = {
+			factor = 10
+			has_template_containing_unit = APC
+		}
+		modifier = {
+			factor = 0
+			NOT = { has_template_containing_unit = APC }
+		}
+	}
+
+	ww2_APC_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_APC_1950
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = APC_chassis_0 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				APC_armament_slot = MBT_fixed_superstructure_turret
+				APC_designation_slot = {
+					any_of = {
+						APC_infantry_AP_weapon_4
+						APC_infantry_AP_weapon_3
+						APC_infantry_AP_weapon_2
+						APC_infantry_AP_weapon
+					}
+					upgrade > current
+				}
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 4 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 0
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			APC_infantry_AP_weapon_4
+			APC_infantry_AP_weapon_3
+			APC_infantry_AP_weapon_2
+			APC_infantry_AP_weapon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+	early_cw_APC_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_APC_1960
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = APC_chassis_1 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				APC_armament_slot = MBT_fixed_superstructure_turret
+				APC_designation_slot = {
+					any_of = {
+						APC_infantry_AP_weapon_4
+						APC_infantry_AP_weapon_3
+						APC_infantry_AP_weapon_2
+						APC_infantry_AP_weapon
+					}
+					upgrade > current
+				}
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 4 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 0
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			APC_infantry_AP_weapon_4
+			APC_infantry_AP_weapon_3
+			APC_infantry_AP_weapon_2
+			APC_infantry_AP_weapon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+
+	basic_APC_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_APC_1970
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = APC_chassis_2 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				APC_armament_slot = MBT_fixed_superstructure_turret
+				APC_designation_slot = {
+					any_of = {
+						APC_infantry_AP_weapon_4
+						APC_infantry_AP_weapon_3
+						APC_infantry_AP_weapon_2
+						APC_infantry_AP_weapon
+					}
+					upgrade > current
+				}
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 4 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 0
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			APC_infantry_AP_weapon_4
+			APC_infantry_AP_weapon_3
+			APC_infantry_AP_weapon_2
+			APC_infantry_AP_weapon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+	improved_APC_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_APC_1980
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = APC_chassis_3 	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				APC_armament_slot = MBT_fixed_superstructure_turret
+				APC_designation_slot = {
+					any_of = {
+						APC_infantry_AP_weapon_4
+						APC_infantry_AP_weapon_3
+						APC_infantry_AP_weapon_2
+						APC_infantry_AP_weapon
+					}
+					upgrade > current
+				}
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 4 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 0
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			APC_infantry_AP_weapon_4
+			APC_infantry_AP_weapon_3
+			APC_infantry_AP_weapon_2
+			APC_infantry_AP_weapon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+
+	modern_APC_default = {
+		priority = {
+			factor = 35
+			modifier = { 
+				has_tech = NSB_APC_1990
+				factor = 0 #let's not waste XP here
+			}
+		}
+
+		target_variant = { 		#Here we define how the actual template will look
+			match_value = 1000 		#This is the value of the template when finished, the AI will construct the ones with the highest value
+			type = APC_chassis_4	#This block defines the particular equipment/chassis to be used
+			modules = { 			#From he we define the individual modules the template will use
+				APC_armament_slot = MBT_fixed_superstructure_turret
+				APC_designation_slot = {
+					any_of = {
+						APC_infantry_AP_weapon_4
+						APC_infantry_AP_weapon_3
+						APC_infantry_AP_weapon_2
+						APC_infantry_AP_weapon
+					}
+					upgrade > current
+				}
+				suspension_type_slot = tank_wheeled_suspension
+				armor_type_slot = tank_riveted_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						autocannon_turret
+						secondary_turret_hmg
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = command_optics
+				special_type_slot_4 = auto_loader
+				special_type_slot_5 = fire_control_system
+				special_type_slot_6 = night_vision
+				special_type_slot_7 = stabilizer
+				special_type_slot_8 = anti_tank_guided_missiles
+				special_type_slot_9 = additional_machine_guns
+				special_type_slot_10 = expanded_fuel_capacity
+				special_type_slot_11 = fire_protection_equipment
+				special_type_slot_12 = dozer_blade
+				special_type_slot_13 = ERA
+			}
+			upgrades = { 	#This block defines the value of the upgrades that can be added on to the build
+				tank_nsb_engine_upgrade = 4 #Remember to make sure the template has enough speed to be valid. It needs, at the minimum, 5km per hour.
+				tank_nsb_armor_upgrade = 0
+			}
+		}
+		allowed_modules = { #In this block, you list all modules the AI can use to fill the empty slots. Any modules not on this list will not be used. The AI will always prioritize the modules at the top of the list.
+			APC_infantry_AP_weapon_4
+			APC_infantry_AP_weapon_3
+			APC_infantry_AP_weapon_2
+			APC_infantry_AP_weapon
+			#Armor
+			MBT_fixed_superstructure_turret
+			tank_riveted_armor
+			tank_wheeled_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_2
+			tank_radio_1
+
+
+			autocannon_turret
+			secondary_turret_hmg
+			#Misc Modules for Third Slot
+			command_optics
+			auto_loader
+			fire_control_system
+			night_vision
+			stabilizer
+			anti_tank_guided_missiles
+			additional_machine_guns
+			expanded_fuel_capacity
+			fire_protection_equipment
+			dozer_blade
+			ERA
+		}
+	}
+}
+
+
+generic_heavy = {
+	category = land
+
+	available_for = {}
+
+	roles = {
+		armor
+		land_heavy_tank
+	}
+
+	priority = {
+		factor = 100
+		modifier = {
+			factor = 10
+			has_template_containing_unit = heavy_tank
+		}
+		modifier = {
+			factor = 0
+			NOT = { has_template_containing_unit = heavy_tank }
+		}
+	}
+
+	early_heavy_default = {
+		priority = {
+			factor = 35
+		}
+
+		target_variant = {
+			match_value = 1750
+			type = heavy_tank_chassis_0
+			modules = {
+				main_armament_slot = {
+					module = heavy_main_armament
+					upgrade > current
+
+				}
+				turret_type_slot = Heavy_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+						command_optics
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						smoke_emitter
+						smoke_launchers
+						additional_armour
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = {
+					module = tank_special_module
+					upgrade > current
+				}
+				special_type_slot_4 = {
+					any_of = {
+						fire_control_system
+						stabilizer
+						additional_machine_guns
+					}
+					upgrade > current
+				}
+			}
+			upgrades = {
+				tank_nsb_engine_upgrade = 2
+				tank_nsb_armor_upgrade = 5
+			}
+		}
+		allowed_modules = {
+			heavy_cannon_4
+			heavy_cannon_3
+			heavy_cannon_2
+			heavy_cannon
+			#Armor
+			Heavy_three_man_tank_turret
+			tank_welded_armor
+			tank_torsion_bar_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_1
+			tank_radio_2
+			#Smoke
+			smoke_launchers
+			smoke_emitter
+			#Misc Modules
+			anti_tank_guided_missiles
+			fire_control_system
+			additional_armour
+			stabilizer
+			additional_machine_guns
+			command_optics
+		}
+	}
+
+	basic_heavy_default = {
+		priority = {
+			factor = 35
+		}
+
+		target_variant = {
+			match_value = 1950
+			type = heavy_tank_chassis_1
+			modules = {
+				main_armament_slot = {
+					module = heavy_main_armament
+					upgrade > current
+
+				}
+				turret_type_slot = Heavy_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+						command_optics
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						smoke_emitter
+						smoke_launchers
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = {
+					module = tank_special_module
+					upgrade > current
+				}
+				special_type_slot_4 = {
+					any_of = {
+						fire_control_system
+						stabilizer
+						additional_machine_guns
+					}
+					upgrade > current
+				}
+			}
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 7
+			}
+		}
+		allowed_modules = {
+			heavy_cannon_4
+			heavy_cannon_3
+			heavy_cannon_2
+			heavy_cannon
+			#Armor
+			Heavy_three_man_tank_turret
+			tank_welded_armor
+			tank_torsion_bar_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_1
+			tank_radio_2
+			#Smoke
+			smoke_launchers
+			smoke_emitter
+			#Misc Modules
+			anti_tank_guided_missiles
+			fire_control_system
+			additional_armour
+			stabilizer
+			additional_machine_guns
+			command_optics
+		}
+	}
+
+
+	modern_heavy_default = {
+		priority = {
+			factor = 35
+		}
+
+		target_variant = {
+			match_value = 2250
+			type = heavy_tank_chassis_2
+			modules = {
+				main_armament_slot = {
+					module = heavy_main_armament
+					upgrade > current
+
+				}
+				turret_type_slot = Heavy_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+						command_optics
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						smoke_emitter
+						smoke_launchers
+						additional_armour
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = {
+					module = tank_special_module
+					upgrade > current
+				}
+				special_type_slot_4 = {
+					any_of = {
+						fire_control_system
+						stabilizer
+						additional_machine_guns
+					}
+					upgrade > current
+				}
+			}
+			upgrades = {
+				tank_nsb_engine_upgrade = 4
+				tank_nsb_armor_upgrade = 8
+			}
+		}
+		allowed_modules = {
+			heavy_cannon_4
+			heavy_cannon_3
+			heavy_cannon_2
+			heavy_cannon
+			#Armor
+			Heavy_three_man_tank_turret
+			tank_welded_armor
+			tank_torsion_bar_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_1
+			tank_radio_2
+			#Smoke
+			smoke_launchers
+			smoke_emitter
+			#Misc Modules
+			anti_tank_guided_missiles
+			fire_control_system
+			additional_armour
+			stabilizer
+			additional_machine_guns
+			command_optics
+		}
+	}
+
+	advanced_heavy_default = {
+		priority = {
+			factor = 35
+		}
+
+		target_variant = {
+			match_value = 2250
+			type = heavy_tank_chassis_2
+			modules = {
+				main_armament_slot = {
+					module = heavy_main_armament
+					upgrade > current
+
+				}
+				turret_type_slot = Heavy_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+
+				special_type_slot_1 = {
+					any_of = {
+						tank_radio_2
+						tank_radio_1
+						command_optics
+					}
+					upgrade > current
+				}
+				special_type_slot_2 = {
+					any_of = {
+						smoke_emitter
+						smoke_launchers
+						additional_armour
+					}
+					upgrade > current
+				}
+				special_type_slot_3 = {
+					module = tank_special_module
+					upgrade > current
+				}
+				special_type_slot_4 = {
+					any_of = {
+						fire_control_system
+						stabilizer
+						additional_machine_guns
+					}
+					upgrade > current
+				}
+			}
+			upgrades = {
+				tank_nsb_engine_upgrade = 4
+				tank_nsb_armor_upgrade = 8
+			}
+		}
+		allowed_modules = {
+			heavy_cannon_4
+			heavy_cannon_3
+			heavy_cannon_2
+			heavy_cannon
+			#Armor
+			Heavy_three_man_tank_turret
+			tank_welded_armor
+			tank_torsion_bar_suspension
+			tank_diesel_engine
+			#Radio
+			tank_radio_1
+			tank_radio_2
+			#Smoke
+			smoke_launchers
+			smoke_emitter
+			#Misc Modules
+			anti_tank_guided_missiles
+			fire_control_system
+			additional_armour
+			stabilizer
+			additional_machine_guns
+			command_optics
+		}
+	}
+}

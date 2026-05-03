@@ -1,0 +1,677 @@
+#我真是吃饱了撑的我来重做政务院 - Crys7aL_L1nE 20240725
+#动画进度条frame原理实现方式：1(100-右起百分比）(左起百分比)，应为7位数
+#假如通过票为47%、弃权票为19%，不通过票为34%，则对应的进度条frame为1066047，即1(100-34)(047)
+scripted_gui = {
+	TER_CPGAC_gui = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_CPGAC_gui"
+		visible = {
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+		
+		properties = {
+			TER_CPGAC_seal = { frame = CPGAC_seal_frame }
+			TER_CPGAC_btn_history_prop = { frame = CPGAC_btn_history_prop_frame }
+			TER_CPGAC_portrait_hog = { image = "[TER_CPGAC_portrait_hog]" }
+			TER_CPGAC_motion_detail_pic = { image = "[TER_CPGAC_proposal_pic]" }
+			TER_CPGAC_animated_progbar = { frame = TER_CPGAC_animated_progbar_frame }
+			TER_CPGAC_animated_progbar_yes_shading = { frame = frame_shadow_Y }
+			TER_CPGAC_animated_progbar_no_shading = { frame = frame_shadow_N }
+			CPGAC_btn_hog = { frame = CPGAC_btn_PM_frame }
+			CPGAC_btn_sec = { frame = CPGAC_btn_CS_frame }
+			CPGAC_ordinary_policy_option_slct = { frame = CPGAC_op_execute_faction }
+		}
+
+		triggers = {
+			CPGAC_recessing_strip_visible = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+			CPGAC_recessing_title_visible =  { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+			TER_CPGAC_animated_progbar_click_enabled = { check_variable = { TER_CPGAC_animated_bar_refresh = 1 } }
+			TER_CPGAC_seal_visible = { NOT = { check_variable = { CPGAC_btn_history_prop_frame = 2 } } }
+			quotation_visible = { 
+				NOT = { check_variable = { CPGAC_btn_PM_frame = 1 } }
+				NOT = { check_variable = { CPGAC_btn_CS_frame = 2 } }
+			}
+			CPGAC_btn_hog_visible = { NOT = { check_variable = { CPGAC_btn_CS_frame = 2 } } }
+			CPGAC_btn_sec_visible = { NOT = { check_variable = { CPGAC_btn_PM_frame = 1 } } }
+			CPGAC_btn_hog_click_enabled = { 
+				NOT = { has_country_flag = PM_health_0_punish } 
+				NOT = { has_country_flag = PM_Zhou_retire_flag }
+			}
+			CPGAC_btn_sec_click_enabled = { NOT = { has_country_flag = CS_patience_0_punish } }
+
+			CPGAC_btn_hog_name_visible = { NOT = { check_variable = { CPGAC_btn_CS_frame = 2 } } }
+			CPGAC_btn_sec_name_visible = { NOT = { check_variable = { CPGAC_btn_PM_frame = 1 } } }
+			CPGAC_ordinary_policy_option_slct_visible = { check_variable = { CPGAC_ordinary_policy^CPGAC_ordinary_policy_i = CPGAC_op_theme } }
+			CPGAC_ordinary_policy_option_visible = { NOT = { check_variable = { CPGAC_ordinary_policy^CPGAC_ordinary_policy_i = CPGAC_op_theme } } }
+			CPGAC_ordinary_policy_option_click_enabled = { 
+				OR = {
+					check_variable = { CPGAC_ordinary_policy_enable_times^CPGAC_ordinary_policy_i = -1 } 
+					check_variable = { CPGAC_ordinary_policy_enable_times^CPGAC_ordinary_policy_i > 0 } 
+				}
+			}
+		}
+
+		dynamic_lists = {
+			CPGAC_ordinary_policy_list = {
+				array = CPGAC_ordinary_policy
+				index = CPGAC_ordinary_policy_i
+				entry_container = CPGAC_ordinary_policy_option_list_ctn
+			}
+		}
+
+		effects = {
+			TER_CPGAC_btn_history_prop_click = { 
+				if = {
+					limit = { check_variable = { CPGAC_btn_history_prop_frame = 1 } }
+					set_variable = { CPGAC_btn_history_prop_frame = 2 }
+				}
+				else = {
+					set_variable = { CPGAC_btn_history_prop_frame = 1 }
+				}
+			}
+			CPGAC_btn_hog_click = {
+				if = {
+					limit = {  check_variable = { CPGAC_btn_PM_frame = 1 } }
+					set_variable = { CPGAC_btn_PM_frame = 2 }
+				}
+				else = { set_variable = { CPGAC_btn_PM_frame = 1 } }
+			}
+			CPGAC_btn_sec_click = {
+				if = {
+					limit = {  check_variable = { CPGAC_btn_CS_frame = 2 } }
+					set_variable = { CPGAC_btn_CS_frame = 1 }
+				}
+				else = { set_variable = { CPGAC_btn_CS_frame = 2 } }
+			}
+			CPGAC_ordinary_policy_option_slct_click = {
+				effect_tooltip = {
+					set_temp_variable = { CPGAC_op_theme_tmp = CPGAC_ordinary_policy^CPGAC_ordinary_policy_i }
+					set_temp_variable = { CPGAC_op_execute_faction_tmp = CPGAC_op_execute_faction }
+					CPGAC_end_ordinary_policy_sub_effect = yes
+				}
+			}
+			CPGAC_ordinary_policy_option_click = {
+				if = {
+					limit = { check_variable = { CPGAC_op_theme = 0 } }
+					hidden_effect = {
+						CPGAC_select_an_op_executor = yes
+					}
+				}
+				effect_tooltip = {
+					set_temp_variable = { CPGAC_op_theme_tmp = CPGAC_ordinary_policy^CPGAC_ordinary_policy_i }
+					set_temp_variable = { CPGAC_op_intensified_tmp = CPGAC_ordinary_policy_intensified^CPGAC_ordinary_policy_i }
+					CPGAC_end_ordinary_policy_effect = yes
+				}
+			}
+		}
+	}
+	#子界面-阵营选择
+	TER_CPGAC_faction_selector = {
+		context_type = player_context
+		window_name = "TER_CPGAC_faction_selector"
+		parent_window_name = "CPC_main_GUI"
+		visible = { 
+			check_variable = { CPGAC_btn_faction_select = 0 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+		effects = {
+			faction_CPC_btn_click = { 
+				set_variable = { CPGAC_btn_faction_select = 1 }
+				CPGAC_calc_voting_pies = yes
+			}
+			faction_DEM_btn_click = { 
+				set_variable = { CPGAC_btn_faction_select = 2 }
+				CPGAC_calc_voting_pies = yes
+			}
+			faction_LIB_btn_click = { 
+				set_variable = { CPGAC_btn_faction_select = 3 }
+				CPGAC_calc_voting_pies = yes
+			}
+		}
+	}
+	#子界面-阵营
+	TER_CPGAC_faction_parent = {
+		context_type = player_context
+		window_name = "TER_CPGAC_faction_parent"
+		parent_window_name = "CPC_main_GUI"
+		visible = { 
+			check_variable = { CPGAC_btn_faction_select > 0 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+	}
+	TER_CPGAC_faction_CPC = {
+		context_type = player_context
+		window_name = "TER_CPGAC_faction_CPC"
+		parent_window_name = "TER_CPGAC_faction_parent_instance"
+		visible = { 
+			check_variable = { CPGAC_btn_faction_select = 1 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+
+		properties = {
+			faction_pie_yes = { frame = CPGAC_printed_percent^1 }
+			faction_pie_no = { frame = CPGAC_printed_percent^2 }
+			faction_pie_unknown = { frame = CPGAC_printed_percent^3 }
+			faction_pie_mao = { frame = TER_PS_printed_percent^0 }
+			faction_pie_liu = { frame = TER_PS_printed_percent^1 }
+			faction_pie_sov = { frame = TER_PS_printed_percent^2 }
+			faction_pie_deng = { frame = TER_PS_printed_percent^3 }
+		}
+
+		triggers = {
+			faction_pie_mao_visible = { check_variable = { CPGAC_btn_reverse_num = 0 } }
+			faction_pie_liu_visible = { check_variable = { CPGAC_btn_reverse_num = 0 } }
+			faction_pie_sov_visible = { check_variable = { CPGAC_btn_reverse_num = 0 } }
+			faction_pie_deng_visible = { check_variable = { CPGAC_btn_reverse_num = 0 } }
+
+			faction_pie_yes_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal check_variable = { CPGAC_btn_reverse_num = 1 } }
+			faction_pie_no_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal check_variable = { CPGAC_btn_reverse_num = 1 } }
+			faction_pie_unknown_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal check_variable = { CPGAC_btn_reverse_num = 1 } }
+			faction_btn_reverse_click_enabled = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+			faction_btn_sub_anti_click_enabled = { check_variable = { CPGAC_btn_faction_skills_time > 0 } }
+			faction_btn_add_sup_click_enabled = { check_variable = { CPGAC_btn_faction_skills_time > 0 } }
+		}
+
+		effects = {
+			faction_btn_reverse_click = {
+				if = {
+					limit = { check_variable = { CPGAC_btn_reverse_num = 0 } }
+					set_variable = { CPGAC_btn_reverse_num = 1 }
+				}
+				else = {
+					set_variable = { CPGAC_btn_reverse_num = 0 }
+				}
+			}
+			faction_btn_sub_anti_click = {
+				subtract_from_variable = { CPGAC_btn_faction_skills_time = 1 }
+				set_temp_variable = { attitude_change_N_in_party_tmp^0 = -3 }
+				set_temp_variable = { attitude_change_N_in_party_tmp^1 = -3 }
+				set_temp_variable = { attitude_change_N_in_party_tmp^2 = -3 }
+				set_temp_variable = { attitude_change_N_in_party_tmp^3 = -3 }
+				CPGAC_calc_attitude_in_voting = yes
+				custom_effect_tooltip = "CPGAC_prop_faction_button_click_desc"
+				set_temp_variable = { num_to_add = 1 }
+				CPGAC_add_to_PM_pressure = yes
+			}
+			faction_btn_add_sup_click = {
+				subtract_from_variable = { CPGAC_btn_faction_skills_time = 1 }
+				set_temp_variable = { attitude_change_N_in_party_tmp^0 = 0 }
+				set_temp_variable = { attitude_change_N_in_party_tmp^1 = 0 }
+				set_temp_variable = { attitude_change_N_in_party_tmp^2 = 0 }
+				set_temp_variable = { attitude_change_N_in_party_tmp^3 = 0 }
+				set_temp_variable = { attitude_change_Y_in_party_tmp^0 = 3 }
+				set_temp_variable = { attitude_change_Y_in_party_tmp^1 = 3 }
+				set_temp_variable = { attitude_change_Y_in_party_tmp^2 = 3 }
+				set_temp_variable = { attitude_change_Y_in_party_tmp^3 = 3 }
+				CPGAC_calc_attitude_in_voting = yes
+				custom_effect_tooltip = "CPGAC_prop_faction_button_click_desc"
+				set_temp_variable = { num_to_add = 1 }
+				CPGAC_add_to_PM_pressure = yes
+			}
+			CPC_back_btn_click = { 
+				set_variable = { CPGAC_btn_faction_select = 0 }
+			}
+		}
+	}
+	TER_CPGAC_faction_DEM = {
+		context_type = player_context
+		window_name = "TER_CPGAC_faction_DEM"
+		parent_window_name = "TER_CPGAC_faction_parent_instance"
+		visible = { 
+			check_variable = { CPGAC_btn_faction_select = 2 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+
+		properties = {
+			faction_pie_yes = { frame = CPGAC_printed_percent^1 }
+			faction_pie_no = { frame = CPGAC_printed_percent^2 }
+			faction_pie_unknown = { frame = CPGAC_printed_percent^3 }
+		}
+
+		triggers = {
+			TER_CPGAC_recessing_DEM_visible = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+			faction_pie_yes_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+			faction_pie_no_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+			faction_pie_unknown_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+			faction_btn_sub_anti_click_enabled = { check_variable = { CPGAC_btn_faction_skills_time > 0 } }
+			faction_btn_add_sup_click_enabled = { check_variable = { CPGAC_btn_faction_skills_time > 0 } }
+		}
+
+		effects = {
+			DEM_back_btn_click = { 
+				set_variable = { CPGAC_btn_faction_select = 0 }
+			}
+			faction_btn_sub_anti_click = {
+				subtract_from_variable = { CPGAC_btn_faction_skills_time = 1 }
+				set_temp_variable = { attitude_change_N_tmp^0 = -5 }
+				CPGAC_calc_attitude_in_voting = yes
+				custom_effect_tooltip = "CPGAC_prop_faction_button_click_desc"
+				set_temp_variable = { num_to_add = 1 }
+				CPGAC_add_to_CS_popularity = yes
+			}
+			faction_btn_add_sup_click = {
+				subtract_from_variable = { CPGAC_btn_faction_skills_time = 1 }
+				set_temp_variable = { attitude_change_N_tmp^0 = 0 }
+				set_temp_variable = { attitude_change_Y_tmp^0 = 5 }
+				CPGAC_calc_attitude_in_voting = yes
+				custom_effect_tooltip = "CPGAC_prop_faction_button_click_desc"
+				set_temp_variable = { num_to_add = 1 }
+				CPGAC_add_to_CS_popularity = yes
+			}
+		}
+	}
+	TER_CPGAC_faction_LIB = {
+		context_type = player_context
+		window_name = "TER_CPGAC_faction_LIB"
+		parent_window_name = "TER_CPGAC_faction_parent_instance"
+
+		properties = {
+			faction_pie_yes = { frame = CPGAC_printed_percent^1 }
+			faction_pie_no = { frame = CPGAC_printed_percent^2 }
+			faction_pie_unknown = { frame = CPGAC_printed_percent^3 }
+		}
+
+		triggers = {
+			TER_CPGAC_recessing_LIB_visible = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+			faction_pie_yes_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+			faction_pie_no_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+			faction_pie_unknown_visible = { has_country_flag = CPC_we_have_an_ongoing_proposal }		
+			faction_btn_sub_anti_click_enabled = { check_variable = { CPGAC_btn_faction_skills_time > 0 } }
+			faction_btn_add_sup_click_enabled = { check_variable = { CPGAC_btn_faction_skills_time > 0 } }
+		}
+
+		visible = { 
+			check_variable = { CPGAC_btn_faction_select = 3 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+
+		effects = {
+			LIB_back_btn_click = { 
+				set_variable = { CPGAC_btn_faction_select = 0 }
+			}
+			faction_btn_sub_anti_click = {
+				subtract_from_variable = { CPGAC_btn_faction_skills_time = 1 }
+				set_temp_variable = { attitude_change_N_tmp^1 = -5 }
+				CPGAC_calc_attitude_in_voting = yes
+				custom_effect_tooltip = "CPGAC_prop_faction_button_click_desc"
+				set_temp_variable = { num_to_add = 1 }
+				CPGAC_add_to_CS_popularity = yes
+			}
+			faction_btn_add_sup_click = {
+				subtract_from_variable = { CPGAC_btn_faction_skills_time = 1 }
+				set_temp_variable = { attitude_change_N_tmp^1 = 0 }
+				set_temp_variable = { attitude_change_Y_tmp^1 = 5 }
+				CPGAC_calc_attitude_in_voting = yes
+				custom_effect_tooltip = "CPGAC_prop_faction_button_click_desc"
+				set_temp_variable = { num_to_add = 1 }
+				CPGAC_add_to_CS_popularity = yes
+			}
+		}
+	}
+	#子界面-总理、书记交互
+	TER_CPGAC_PM_subgui_parent = {
+		context_type = player_context
+		window_name = "TER_CPGAC_PM_subgui_parent"
+		parent_window_name = "CPC_main_GUI"
+		visible = { 
+			check_variable = { CPGAC_btn_PM_frame = 1 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+	}
+	TER_CPGAC_PM_subgui = {
+		context_type = player_context
+		window_name = "TER_CPGAC_PM_subgui"
+		parent_window_name = "TER_CPGAC_PM_subgui_parent_instance"
+		visible = { 
+			check_variable = { CPGAC_btn_PM_frame = 1 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+		properties = {
+			PM_health = { frame = CPGAC_trait_PM_health }
+			PM_pressure = { frame = CPGAC_trait_PM_pressure }
+		}
+		triggers = {
+			PM_pressure_visible = { check_variable = { CPGAC_trait_PM_pressure > 0 } }
+			PM_skill_click_enabled = { 
+				OR = { 
+					has_country_flag = CPC_we_have_an_ongoing_proposal
+					check_variable = { CPGAC_op_execute_faction > 0 }
+		 		} 
+			}
+		} 
+		effects = {
+			PM_skill_click = {
+				set_temp_variable = { num_to_add = 3 }
+				CPGAC_add_to_PM_pressure = yes
+				if = {
+					limit = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+					CPGAC_end_voting = yes
+				}
+				else = {
+					CPGAC_end_ordinary_policy = yes
+				}
+			}
+		}
+	}
+	TER_CPGAC_CS_subgui_parent = {
+		context_type = player_context
+		window_name = "TER_CPGAC_CS_subgui_parent"
+		parent_window_name = "CPC_main_GUI"
+		visible = { 
+			check_variable = { CPGAC_btn_CS_frame = 2 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+	}
+	TER_CPGAC_CS_subgui = {
+		context_type = player_context
+		window_name = "TER_CPGAC_CS_subgui"
+		parent_window_name = "TER_CPGAC_CS_subgui_parent_instance"
+		visible = { 
+			check_variable = { CPGAC_btn_CS_frame = 2 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+		properties = {
+			CS_patience = { frame = CPGAC_trait_CS_patience }
+			CS_reputation = { frame = CPGAC_trait_CS_reputation }
+		}
+		triggers = {
+			CS_reputation_visible = { check_variable = { CPGAC_trait_CS_reputation > 0 } }
+			CS_skill_click_enabled = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+		}
+		effects = {
+			CS_skill_click = {
+				set_temp_variable = { num_to_add = 3 }
+				CPGAC_add_to_CS_popularity = yes
+				add_to_variable = { CPGAC_ongoing_prop_option_click_times = 1 }
+			}
+		}
+	}
+	#子界面-历史议案
+	TER_CPGAC_history_prop_list_container_parent = {
+		context_type = player_context
+		window_name = "CPGAC_history_prop_list_container_parent"
+		parent_window_name = "CPC_main_GUI"
+		visible = { 
+			check_variable = { CPGAC_btn_history_prop_frame = 2 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+	}
+	TER_CPGAC_history_prop_list_container = {
+		context_type = player_context
+		window_name = "CPGAC_history_prop_list_container"
+		parent_window_name = "CPGAC_history_prop_list_container_parent_instance"
+		visible = { 
+			check_variable = { CPGAC_btn_history_prop_frame = 2 } 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+		properties = {
+			CPGAC_history_prop = { frame = CPGAC_history_prop_faction^CPGAC_history_prop_theme_i }
+		}
+
+		dynamic_lists = {
+			CPGAC_history_prop_list = {
+				array = CPGAC_history_prop_theme
+				index = CPGAC_history_prop_theme_i
+				entry_container = CPGAC_history_prop_list_ctn
+			}
+		}
+
+		triggers = {
+			CPGAC_history_prop_visible = { check_variable = { CPGAC_btn_history_prop_frame = 2 } }
+		}
+
+		effects = {
+			CPGAC_history_prop_click = {
+				effect_tooltip = { 
+					set_temp_variable = { prop_option_i_tmp = CPGAC_history_prop_option^CPGAC_history_prop_theme_i }
+					set_temp_variable = { ongoing_prop_num_tmp = CPGAC_history_prop_theme^CPGAC_history_prop_theme_i }
+					CPGAC_ongoing_prop_option_sub_effect = yes
+				}
+			}
+		}
+	}
+	#子界面-正在投票
+	TER_CPGAC_ongoing_prop_container_parent = {
+		context_type = player_context
+		window_name = "CPGAC_ongoing_prop_container_parent"
+		parent_window_name = "CPC_main_GUI"
+		visible = { 
+			check_variable = { CPGAC_btn_history_prop_frame = 1 }
+			has_country_flag = CPC_we_have_an_ongoing_proposal
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+	}
+	TER_CPGAC_ongoing_prop_container = {
+		context_type = player_context
+		window_name = "CPGAC_ongoing_prop_container"
+		parent_window_name = "CPGAC_ongoing_prop_container_parent_instance"
+		visible = { 
+			check_variable = { CPGAC_btn_history_prop_frame = 1 }
+			has_country_flag = CPC_we_have_an_ongoing_proposal
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+		properties = {
+			CPGAC_ongoing_prop_option = { frame = CPGAC_prop_option^CPGAC_prop_option_i }
+			CPGAC_ongoing_prop_select = { frame = CPGAC_option_chosen_vision }
+		}
+
+		dynamic_lists = {
+			CPGAC_ongoing_prop_option_list = {
+				array = CPGAC_prop_option
+				index = CPGAC_prop_option_i
+				entry_container = CPGAC_ongoing_prop_option_list_ctn
+			}
+		}
+
+		effects = {
+			CPGAC_ongoing_prop_option_click = {
+				if = {
+					limit = { check_variable = { CPGAC_ongoing_prop_option_click_times > 0 }
+							  NOT = { check_variable = { CPGAC_option_chosen_real = CPGAC_prop_option_i } } }
+					CPGAC_ongoing_prop_option_click_effect = yes
+				}
+				effect_tooltip = { #牛逼，一次不行得来两次
+					set_temp_variable = { ongoing_prop_num_tmp = CPGAC_ongoing_prop_num }
+					set_temp_variable = { prop_option_i_tmp = CPGAC_prop_option_i }
+					CPGAC_ongoing_prop_option_click_effect = yes
+				}
+				if = {
+					limit = { check_variable = { CPGAC_option_chosen_real = CPGAC_prop_option_i } }
+					custom_effect_tooltip = "CPGAC_prop_option_generic_we_have_chosen_this"
+				}
+				else = {
+					custom_effect_tooltip = "CPGAC_prop_option_generic_desc"
+				}
+				effect_tooltip = {
+					set_temp_variable = { ongoing_prop_num_tmp = CPGAC_ongoing_prop_num }
+					set_temp_variable = { prop_option_i_tmp = CPGAC_prop_option_i }
+					CPGAC_ongoing_prop_option_sub_effect = yes
+				}
+			}
+		}
+	}
+	#子界面-政策确认
+	TER_CPGAC_op_confirm_gui = {
+		context_type = player_context
+		window_name = "TER_CPGAC_op_confirm_gui"
+		visible = {
+			has_country_flag = CPGAC_open_op_confirm_gui
+		}
+
+		effects = {
+			TER_CPGAC_confirm_btn_CPC_click = { 
+				effect_tooltip = {
+					set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+					set_temp_variable = { CPGAC_op_execute_faction_tmp = 1 }
+					CPGAC_end_ordinary_policy_sub_effect = yes
+				}
+				set_temp_variable = { executor_num_tmp = 1 }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			TER_CPGAC_confirm_btn_DEM_click = { 
+				effect_tooltip = {
+					set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+					set_temp_variable = { CPGAC_op_execute_faction_tmp = 2 }
+					CPGAC_end_ordinary_policy_sub_effect = yes
+				}
+				set_temp_variable = { executor_num_tmp = 2 }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			TER_CPGAC_confirm_btn_LIB_click = { 
+				effect_tooltip = {
+					set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+					set_temp_variable = { CPGAC_op_execute_faction_tmp = 3 }
+					CPGAC_end_ordinary_policy_sub_effect = yes
+				}
+				set_temp_variable = { executor_num_tmp = 3 }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			TER_CPGAC_confirm_btn_no_click = { clr_country_flag = CPGAC_open_op_confirm_gui }
+		}
+	}
+	#子界面-紧急任务
+	TER_CPGAC_urgent_task_ctn = {
+		context_type = player_context
+		window_name = "TER_CPGAC_urgent_task_ctn"
+		parent_window_name = "CPC_main_GUI"
+		visible = {
+			has_country_flag = CPC_we_have_an_urgent_task
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+		}
+		properties = {
+			TER_CPGAC_urgent_task_prog_bar = { frame = CPGAC_ongoing_urgent_task_level }
+		}
+		triggers = {
+			TER_CPGAC_urgent_task_btn_1_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_field_investigation_movement }
+				NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing } 
+				check_variable = { CPGAC_ongoing_urgent_task_level < 4 }
+			}
+			TER_CPGAC_urgent_task_btn_2_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_the_four_clean_ups_movement }
+				NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing } 
+				check_variable = { CPGAC_ongoing_urgent_task_level < 4 }
+			}
+			TER_CPGAC_urgent_task_btn_3_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_Su_Fan_movement }
+				NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing } 
+				check_variable = { CPGAC_ongoing_urgent_task_level < 4 }
+			}
+			TER_CPGAC_urgent_task_btn_4_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_Force_to_go_through_the_Yellow_river }
+				NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing } 
+				check_variable = { CPGAC_ongoing_urgent_task_level < 4 }
+			}
+			TER_CPGAC_urgent_task_btn_5_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_recontact_NAJUA }
+				NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing } 
+				check_variable = { CPGAC_ongoing_urgent_task_level < 4 }
+			}
+			TER_CPGAC_urgent_task_icon_1_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_field_investigation_movement }
+				OR = {
+					has_country_flag = CPC_we_have_an_urgent_task_pushing
+					AND = {
+						NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing }
+						check_variable = { CPGAC_ongoing_urgent_task_level = 4 }
+					}
+				}
+			}
+			TER_CPGAC_urgent_task_icon_2_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_the_four_clean_ups_movement }
+				OR = {
+					has_country_flag = CPC_we_have_an_urgent_task_pushing
+					AND = {
+						NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing }
+						check_variable = { CPGAC_ongoing_urgent_task_level = 4 }
+					}
+				}
+			}
+			TER_CPGAC_urgent_task_icon_3_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_Su_Fan_movement }
+				OR = {
+					has_country_flag = CPC_we_have_an_urgent_task_pushing
+					AND = {
+						NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing }
+						check_variable = { CPGAC_ongoing_urgent_task_level = 4 }
+					}
+				}
+			}
+			TER_CPGAC_urgent_task_icon_4_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_Force_to_go_through_the_Yellow_river }
+				OR = {
+					has_country_flag = CPC_we_have_an_urgent_task_pushing
+					AND = {
+						NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing }
+						check_variable = { CPGAC_ongoing_urgent_task_level = 4 }
+					}
+				}
+			}
+			TER_CPGAC_urgent_task_icon_5_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_recontact_NAJUA }
+				OR = {
+					has_country_flag = CPC_we_have_an_urgent_task_pushing
+					AND = {
+						NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing }
+						check_variable = { CPGAC_ongoing_urgent_task_level = 4 }
+					}
+				}
+			}
+			TER_CPGAC_urgent_task_glow_visible = { has_country_flag = CPC_we_have_an_urgent_task_pushing }
+		}
+		effects = {
+			TER_CPGAC_urgent_task_btn_1_click = {
+				effect_tooltip = { TER_CPGAC_end_an_urgent_task = yes }
+				TER_motion_u_remove_alerts = yes
+				set_country_flag = CPC_we_have_an_urgent_task_pushing
+				hidden_effect = {
+					activate_mission = CPGAC_urgent_task_pushing
+				}
+			}
+			TER_CPGAC_urgent_task_btn_2_click = { 
+				effect_tooltip = { TER_CPGAC_end_an_urgent_task = yes }
+				TER_motion_u_remove_alerts = yes
+				set_country_flag = CPC_we_have_an_urgent_task_pushing
+				hidden_effect = {
+					activate_mission = CPGAC_urgent_task_pushing
+				}
+			}
+			TER_CPGAC_urgent_task_btn_3_click = { 
+				effect_tooltip = { TER_CPGAC_end_an_urgent_task = yes }
+				TER_motion_u_remove_alerts = yes
+				set_country_flag = CPC_we_have_an_urgent_task_pushing
+				hidden_effect = {
+					activate_mission = CPGAC_urgent_task_pushing
+				}
+			}
+			TER_CPGAC_urgent_task_btn_4_click = { 
+				effect_tooltip = { TER_CPGAC_end_an_urgent_task = yes }
+				TER_motion_u_remove_alerts = yes
+				set_country_flag = CPC_we_have_an_urgent_task_pushing
+				hidden_effect = {
+					activate_mission = CPGAC_urgent_task_pushing
+				}
+			}
+			TER_CPGAC_urgent_task_btn_5_click = { 
+				effect_tooltip = { TER_CPGAC_end_an_urgent_task = yes }
+				TER_motion_u_remove_alerts = yes
+				set_country_flag = CPC_we_have_an_urgent_task_pushing
+				hidden_effect = {
+					activate_mission = CPGAC_urgent_task_pushing
+				}
+			}
+		}
+	}
+	
+	#子界面-停摆
+	TER_CPGAC_we_fucked_up_ctn = {
+		context_type = player_context
+		window_name = "TER_CPGAC_we_fucked_up_ctn"
+		parent_window_name = "CPC_main_GUI"
+		visible = { 
+			check_variable = { CPC_GUI_tab_issue^1 = 2 }
+			has_country_flag = GAC_biggest_punish
+		}
+	}
+}

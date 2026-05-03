@@ -1,0 +1,374 @@
+scripted_gui = {
+	TER_NWB_main_GUI = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_NWB_main_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_frames^1 = 2 }
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+		}
+		dynamic_lists = {
+			NWB_map = {
+				array = global.china_northwest_states
+				index = idx
+				value = capital_city_id
+				entry_container = NWB_map_entry_container
+			}
+		}
+		properties = {
+			NWB_map_btn = {
+				image = "GFX_TER_NWB_state_[?global.china_northwest_states^idx]"
+				frame = capital_city_id:NWB_unity_level_map_vis
+				x = global.china_northwest_states_X^idx
+				y = global.china_northwest_states_Y^idx
+			}
+			NWB_leader_1_portrait = { image = [NWB_secretary_1_portrait] }
+			NWB_leader_2_portrait = { image = [NWB_secretary_2_portrait] }
+			TER_NWB_hosting_service_btn = { frame = CPC.CPC_hosting_service_NWB_var }
+			level_agriculture = { frame = CPC.NWB_visual_task_level^1 }
+			level_business = { frame = CPC.NWB_visual_task_level^2 }
+			level_infrastructure = { frame = CPC.NWB_visual_task_level^3 }
+			level_education = { frame = CPC.NWB_visual_task_level^4 }
+			level_security = { frame = CPC.NWB_visual_task_level^5 }
+			level_healthcare = { frame = CPC.NWB_visual_task_level^6 }
+			level_unity = { frame = CPC.NWB_visual_task_level^7 }
+
+			NWB_task_btn_agriculture = { frame = CPC.NWB_btn_visual_ctrl^1 }
+			NWB_task_btn_business = { frame = CPC.NWB_btn_visual_ctrl^2 }
+			NWB_task_btn_infrastructure = { frame = CPC.NWB_btn_visual_ctrl^3 }
+			NWB_task_btn_education = { frame = CPC.NWB_btn_visual_ctrl^4 }
+			NWB_task_btn_security = { frame = CPC.NWB_btn_visual_ctrl^5 }
+			NWB_task_btn_healthcare = { frame = CPC.NWB_btn_visual_ctrl^6 }
+		}
+		triggers = {
+			NWB_map_btn_visible = { NOT = { check_variable = { NWB_acted_state = global.china_northwest_states^idx } } }
+
+			XJB_pic_locked_visible = { 
+				OR = {
+					NOT = { has_country_flag = CPC_unlock_XJB }
+					has_country_flag = CPC_XJ_mess_up
+				}
+			}
+			NWB_ptmb_num_XJB_visible = {
+				has_country_flag = CPC_unlock_XJB
+				NOT = { has_country_flag = CPC_XJ_mess_up }
+			}
+			NWB_ptmb_line_XJB_visible = {
+				has_country_flag = CPC_unlock_XJB
+				NOT = { has_country_flag = CPC_XJ_mess_up }
+			}
+			NWB_Bureau_state_XJB_btn_add_visible = {
+				has_country_flag = CPC_unlock_XJB
+				NOT = { has_country_flag = CPC_XJ_mess_up }
+			}
+			NWB_Bureau_state_XJB_btn_subtract_visible = {
+				has_country_flag = CPC_unlock_XJB
+				NOT = { has_country_flag = CPC_XJ_mess_up }
+			}
+			XJB_pic_lacked_visible = {
+				has_country_flag = CPC_unlock_XJB
+				NOT = { has_country_flag = CPC_XJ_mess_up }
+				check_variable = { NCCPC_PP_XJB_provided < NCCPC_PP_XJB_needed }
+			}
+			XJB_pic_full_visible = {
+				has_country_flag = CPC_unlock_XJB
+				NOT = { has_country_flag = CPC_XJ_mess_up }
+				check_variable = {
+					var = NCCPC_PP_XJB_provided
+					value = NCCPC_PP_XJB_needed
+					compare = greater_than_or_equals
+				}
+			}
+			NWB_pic_lacked_visible = {
+				check_variable = { NCCPC_PP_NWB_provided < NCCPC_PP_NWB_needed }
+			}
+			NWB_pic_full_visible = {
+				check_variable = {
+					var = NCCPC_PP_NWB_provided
+					value = NCCPC_PP_NWB_needed
+					compare = greater_than_or_equals
+				}
+			}
+			SWB_pic_lacked_visible = {
+				check_variable = { NCCPC_PP_SWB_provided < NCCPC_PP_SWB_needed }
+			}
+			SWB_pic_full_visible = {
+				check_variable = {
+					var = NCCPC_PP_SWB_provided
+					value = NCCPC_PP_SWB_needed
+					compare = greater_than_or_equals
+				}
+			}
+			SCB_pic_locked_visible = { NOT = { has_country_flag = CPC_unlock_SCB } }
+			SCB_pic_unlocked_visible = { has_country_flag = CPC_unlock_SCB }
+			level_agriculture_visible = { check_variable = { NWB_visual_task_level^1 > 0 } }
+			level_business_visible = { check_variable = { NWB_visual_task_level^2 > 0 } }
+			level_infrastructure_visible = { check_variable = { NWB_visual_task_level^3 > 0 } }
+			level_education_visible = { check_variable = { NWB_visual_task_level^4 > 0 } }
+			level_security_visible = { check_variable = { NWB_visual_task_level^5 > 0 } }
+			level_healthcare_visible = { check_variable = { NWB_visual_task_level^6 > 0 } }
+			level_unity_visible = { check_variable = { NWB_visual_task_level^7 > 0 } }
+		}
+		effects = {
+			TER_NWB_hosting_service_btn_click = {
+				CPC_hosting_service_NWB = yes
+			}
+			NWB_map_btn_click = {
+				set_variable = { NWB_acted_state = capital_city_id }
+				TER_NWB_update_visual_effect = yes
+			}
+			NWB_balance_btn_click = {
+				TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+			}
+			NWB_task_btn_agriculture_click = { 
+				if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^1 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						OR = {
+							check_variable = { TER_NWB_PTMB_num_pct > 1 }
+							check_variable = { TER_NWB_PTMB_num_pct = 1 }
+						}
+					}
+					set_temp_variable = { task_num_tmp = 1 }
+					TER_NWB_activate_task = yes
+				}
+				else_if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^1 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						check_variable = { TER_NWB_PTMB_num_pct < 1 }
+					}
+					set_temp_variable = { pp_tmp = 10 }
+					divide_temp_variable = { pp_tmp = TER_NWB_PTMB_num_pct }
+					multiply_temp_variable = { pp_tmp = -1 }
+					add_political_power = pp_tmp
+					set_temp_variable = { task_num_tmp = 1 }
+					TER_NWB_activate_task = yes
+				}
+			}
+			NWB_task_btn_business_click = { 
+				if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^2 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						OR = {
+							check_variable = { TER_NWB_PTMB_num_pct > 1 }
+							check_variable = { TER_NWB_PTMB_num_pct = 1 }
+						}
+					}
+					set_temp_variable = { task_num_tmp = 2 }
+					TER_NWB_activate_task = yes
+				}
+				else_if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^2 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						check_variable = { TER_NWB_PTMB_num_pct < 1 }
+					}
+					set_temp_variable = { pp_tmp = 10 }
+					divide_temp_variable = { pp_tmp = TER_NWB_PTMB_num_pct }
+					multiply_temp_variable = { pp_tmp = -1 }
+					add_political_power = pp_tmp
+					set_temp_variable = { task_num_tmp = 2 }
+					TER_NWB_activate_task = yes
+				}
+			}
+			NWB_task_btn_infrastructure_click = { 
+				if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^3 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						OR = {
+							check_variable = { TER_NWB_PTMB_num_pct > 1 }
+							check_variable = { TER_NWB_PTMB_num_pct = 1 }
+						}
+					}
+					set_temp_variable = { task_num_tmp = 3 }
+					TER_NWB_activate_task = yes
+				}
+				else_if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^3 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						check_variable = { TER_NWB_PTMB_num_pct < 1 }
+					}
+					set_temp_variable = { pp_tmp = 10 }
+					divide_temp_variable = { pp_tmp = TER_NWB_PTMB_num_pct }
+					multiply_temp_variable = { pp_tmp = -1 }
+					add_political_power = pp_tmp
+					set_temp_variable = { task_num_tmp = 3 }
+					TER_NWB_activate_task = yes
+				}
+			}
+			NWB_task_btn_education_click = { 
+				if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^4 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						OR = {
+							check_variable = { TER_NWB_PTMB_num_pct > 1 }
+							check_variable = { TER_NWB_PTMB_num_pct = 1 }
+						}
+					}
+					set_temp_variable = { task_num_tmp = 4 }
+					TER_NWB_activate_task = yes
+				}
+				else_if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^4 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						check_variable = { TER_NWB_PTMB_num_pct < 1 }
+					}
+					set_temp_variable = { pp_tmp = 10 }
+					divide_temp_variable = { pp_tmp = TER_NWB_PTMB_num_pct }
+					multiply_temp_variable = { pp_tmp = -1 }
+					add_political_power = pp_tmp
+					set_temp_variable = { task_num_tmp = 4 }
+					TER_NWB_activate_task = yes
+				}
+			}
+			NWB_task_btn_security_click = { 
+				if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^5 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						OR = {
+							check_variable = { TER_NWB_PTMB_num_pct > 1 }
+							check_variable = { TER_NWB_PTMB_num_pct = 1 }
+						}
+					}
+					set_temp_variable = { task_num_tmp = 5 }
+					TER_NWB_activate_task = yes
+				}
+				else_if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^5 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						check_variable = { TER_NWB_PTMB_num_pct < 1 }
+					}
+					set_temp_variable = { pp_tmp = 10 }
+					divide_temp_variable = { pp_tmp = TER_NWB_PTMB_num_pct }
+					multiply_temp_variable = { pp_tmp = -1 }
+					add_political_power = pp_tmp
+					set_temp_variable = { task_num_tmp = 5 }
+					TER_NWB_activate_task = yes
+				}
+			}
+			NWB_task_btn_healthcare_click = { 
+				if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^6 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						OR = {
+							check_variable = { TER_NWB_PTMB_num_pct > 1 }
+							check_variable = { TER_NWB_PTMB_num_pct = 1 }
+						}
+					}
+					set_temp_variable = { task_num_tmp = 6 }
+					TER_NWB_activate_task = yes
+				}
+				else_if = {
+					limit = { 
+						NOT = { has_country_flag = NWB_activate_task } 
+						check_variable = { NWB_visual_task_level^6 < 3 }
+						NOT = { has_country_flag = CPC_NWB_all_missions_completed }
+						check_variable = { TER_NWB_PTMB_num_pct < 1 }
+					}
+					set_temp_variable = { pp_tmp = 10 }
+					divide_temp_variable = { pp_tmp = TER_NWB_PTMB_num_pct }
+					multiply_temp_variable = { pp_tmp = -1 }
+					add_political_power = pp_tmp
+					set_temp_variable = { task_num_tmp = 6 }
+					TER_NWB_activate_task = yes
+				}
+			}
+			NWB_Bureau_state_NWB_btn_add_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 1 }
+				TER_change_ptmb_num_NWB = yes
+			}
+			NWB_Bureau_state_NWB_btn_add_shift_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 20 }
+				TER_change_ptmb_num_NWB = yes
+			}
+			NWB_Bureau_state_NWB_btn_add_control_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 10 }
+				TER_change_ptmb_num_NWB = yes
+			}
+			NWB_Bureau_state_NWB_btn_subtract_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -1 }
+				TER_change_ptmb_num_NWB = yes
+			}
+			NWB_Bureau_state_NWB_btn_subtract_shift_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -20 }
+				TER_change_ptmb_num_NWB = yes
+			}
+			NWB_Bureau_state_NWB_btn_subtract_control_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -10 }
+				TER_change_ptmb_num_NWB = yes
+			}
+
+			NWB_Bureau_state_SWB_btn_add_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 1 }
+				TER_change_ptmb_num_SWB = yes
+			}
+			NWB_Bureau_state_SWB_btn_add_shift_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 20 }
+				TER_change_ptmb_num_SWB = yes
+			}
+			NWB_Bureau_state_SWB_btn_add_control_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 10 }
+				TER_change_ptmb_num_SWB = yes
+			}
+			NWB_Bureau_state_SWB_btn_subtract_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -1 }
+				TER_change_ptmb_num_SWB = yes
+			}
+			NWB_Bureau_state_SWB_btn_subtract_shift_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -20 }
+				TER_change_ptmb_num_SWB = yes
+			}
+			NWB_Bureau_state_SWB_btn_subtract_control_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -10 }
+				TER_change_ptmb_num_SWB = yes
+			}
+
+			NWB_Bureau_state_XJB_btn_add_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 1 }
+				TER_change_ptmb_num_XJB = yes
+			}
+			NWB_Bureau_state_XJB_btn_add_shift_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 20 }
+				TER_change_ptmb_num_XJB = yes
+			}
+			NWB_Bureau_state_XJB_btn_add_control_click = {
+				set_temp_variable = { PTMB_num_change_tmp = 10 }
+				TER_change_ptmb_num_XJB = yes
+			}
+			NWB_Bureau_state_XJB_btn_subtract_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -1 }
+				TER_change_ptmb_num_XJB = yes
+			}
+			NWB_Bureau_state_XJB_btn_subtract_shift_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -20 }
+				TER_change_ptmb_num_XJB = yes
+			}
+			NWB_Bureau_state_XJB_btn_subtract_control_click = {
+				set_temp_variable = { PTMB_num_change_tmp = -10 }
+				TER_change_ptmb_num_XJB = yes
+			}
+		}
+	}
+}

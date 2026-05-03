@@ -1,0 +1,106 @@
+VIN_support = {
+	VIN_support_1 = {
+		icon = GFX_generic_prepare_civil_war
+		cost = 0
+		available = {
+			has_war_with = VIC
+			surrender_progress > 0.3	
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+
+		complete_effect = {
+			LOY = { 
+					leave_faction = yes
+					declare_war_on = {
+						target = VIC
+						type = annex_everything
+					}
+					every_country = {
+						news_event = SEA_news.4
+					}
+					country_event = {
+						id = SEA_support.2
+						days = 30
+					}
+				}
+				JAP = {
+					set_temp_variable = { JAP.target = VIN }
+					set_temp_variable = { to_add = 1 }
+					TNO_add_num_volunteers = yes
+				}
+		}
+	}
+
+	VIN_support_2 = {
+		icon = GFX_generic_prepare_civil_war
+		cost = 0
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+		available = {
+			has_war_with = VIC
+			VIC = {
+				controls_province = 4379
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		complete_effect = {
+			create_country_leader = {
+				name = "SEA_Yang_Wenming"
+				picture = "gfx/leaders/SEA/Yang_Wenming.png"
+				ideology = despotism_military_junta_subtype
+				traits = { }
+				expire = "1999.1.1.1"
+			}
+			kill_country_leader = yes
+			set_party_name = {
+				ideology = despotism
+				long_name = "VIN_final_party_long"
+				name = "VIN_final_party"
+			}
+			set_politics = {
+				ruling_party = despotism
+			}
+			set_popularities = {
+				despotism = 100
+			}
+			every_country = {
+				news_event = SEA_news.5
+			}
+		}
+	}
+}
+
+QYC_support = {
+	QYC_support_1 = {
+		icon = GFX_generic_prepare_civil_war
+		cost = 0
+		available = {
+			CPC = { check_variable = { SCB_JP_alert_value = 100 } }
+			QYC = { NOT = { has_idea = SEA_stop_operation } }
+		}
+		ai_will_do = {
+			factor = 10
+		}
+
+		complete_effect = {
+			add_ideas = { SEA_stop_operation }
+			CPC = {
+				TER_SCB_initialization = yes
+				Alert_SCB_JP_alert_100_remove_alerts = yes
+				Alert_SCB_rev_enabled_remove_alerts = yes
+				Alert_SCB_trade_state_remove_alerts = yes
+				set_variable = { CPC_GUI_tab_frames^0 = 2 }
+				set_variable = { CPC_GUI_tab_frames^1 = 1 }
+				set_variable = { CPC_GUI_tab_frames^2 = 1 }
+				set_variable = { CPC_GUI_tab_frames^3 = 1 }
+				set_variable = { CPC_GUI_tab_frames^4 = 1 }
+			}
+		}
+	}
+}

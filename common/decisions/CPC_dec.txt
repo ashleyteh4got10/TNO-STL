@@ -1,0 +1,3166 @@
+CPC_custom_difficulties_dec = {
+	CPC_CD_easy_mode = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			NOT = { check_variable = { CPC_mode_num = 1 } }
+			NOT = { check_variable = { CPC_mode_num = -1 } }
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_num = 1 }
+		}
+	}
+	CPC_CD_hard_mode = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			NOT = { check_variable = { CPC_mode_num = -1 } }
+			NOT = { check_variable = { CPC_mode_num = 1 } }
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_num = -1 }
+		}
+	}
+	CPC_CD_hard_mode_1 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = -1 }
+			NOT = { check_variable = { CPC_mode_array^1 = -1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^1 = -1 }
+			custom_effect_tooltip = "CPC_CD_hard_mode_1_tt"
+		}
+	}
+	CPC_CD_hard_mode_2 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = -1 }
+			NOT = { check_variable = { CPC_mode_array^2 = -1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^2 = -1 }
+			custom_effect_tooltip = "CPC_CD_hard_mode_2_tt"
+			hidden_effect = {
+				CHI = { add_ideas =  { CPC_easy_mode_idea } }
+				LOY = { add_ideas =  { CPC_easy_mode_idea } }
+				SHX = { add_ideas =  { CPC_easy_mode_idea } }
+			}
+		}
+	}
+	CPC_CD_hard_mode_3 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = -1 }
+			NOT = { check_variable = { CPC_mode_array^3 = -1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^3 = -1 }
+			custom_effect_tooltip = "CPC_CD_hard_mode_3_tt"
+		}
+	}
+	CPC_CD_hard_mode_4 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = -1 }
+			NOT = { check_variable = { CPC_mode_array^4 = -1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^4 = -1 }
+			CHI = {
+				country_lock_all_division_template = no
+				division_template = {
+					name = "Custom TER Division"
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 0 y = 4 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+						infantry = { x = 1 y = 4 }
+						artillery_brigade = { x = 2 y = 0 }
+						artillery_brigade = { x = 2 y = 1 }
+						artillery_brigade = { x = 2 y = 2 }
+						artillery_brigade = { x = 2 y = 3 }
+						infantry = { x = 3 y = 0 }
+						infantry = { x = 3 y = 1 }
+						infantry = { x = 3 y = 2 }
+						infantry = { x = 3 y = 3 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1 }
+						artillery = { x = 0 y = 2 }
+						anti_tank = { x = 0 y = 3 }
+					}
+				}
+				random_controlled_state = {
+					create_unit = {
+						division = "division_template = \"Custom TER Division\" start_experience_factor = 1 start_equipment_factor = 1"
+						owner = PREV
+						count = 5
+					}
+				}
+			}
+		}
+	}
+	CPC_CD_hard_mode_5 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = -1 }
+			NOT = { check_variable = { CPC_mode_array^5 = -1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^5 = -1 }
+			add_ideas = { CPC_hard_mode_idea }
+		}
+	}
+	CPC_CD_hard_mode_6 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = -1 }
+			NOT = { check_variable = { CPC_mode_array^6 = -1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			hidden_effect = {
+				add_ideas = { CPC_hard_mode_idea }
+				set_variable = { CPC_mode_array^1 = -1 }
+				set_variable = { CPC_mode_array^2 = -1 }
+				set_variable = { CPC_mode_array^3 = -1 }
+				set_variable = { CPC_mode_array^4 = -1 }
+				set_variable = { CPC_mode_array^5 = -1 }
+				set_variable = { CPC_mode_array^6 = -1 }
+				CHI = { add_ideas =  { CPC_easy_mode_idea } }
+				LOY = { add_ideas =  { CPC_easy_mode_idea } }
+				SHX = { add_ideas =  { CPC_easy_mode_idea } }
+				CHI = {
+					country_lock_all_division_template = no
+					division_template = {
+						name = "Custom TER Division"
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+							infantry = { x = 0 y = 3 }
+							infantry = { x = 0 y = 4 }
+							infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+							infantry = { x = 1 y = 3 }
+							infantry = { x = 1 y = 4 }
+							artillery_brigade = { x = 2 y = 0 }
+							artillery_brigade = { x = 2 y = 1 }
+							artillery_brigade = { x = 2 y = 2 }
+							artillery_brigade = { x = 2 y = 3 }
+							infantry = { x = 3 y = 0 }
+							infantry = { x = 3 y = 1 }
+							infantry = { x = 3 y = 2 }
+							infantry = { x = 3 y = 3 }
+						}
+						support = {
+							recon = { x = 0 y = 0 }
+							engineer = { x = 0 y = 1 }
+							artillery = { x = 0 y = 2 }
+							anti_tank = { x = 0 y = 3 }
+						}
+					}
+					random_controlled_state = {
+						create_unit = {
+							division = "division_template = \"Custom TER Division\" start_experience_factor = 2 start_equipment_factor = 1"
+							owner = PREV
+							count = 10
+						}
+					}
+				}
+			}
+			custom_effect_tooltip = "CPC_CD_hard_mode_6_tt"
+		}
+	}
+
+	CPC_CD_easy_mode_1 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = 1 }
+			NOT = { check_variable = { CPC_mode_array^1 = 1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^1 = 1 }
+			custom_effect_tooltip = CPC_CD_easy_mode_1_tt
+		}
+	}
+	CPC_CD_easy_mode_2 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = 1 }
+			NOT = { check_variable = { CPC_mode_array^2 = 1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^2 = 1 }
+			set_variable = { SWB_region_military_pct_mine^0 = 100 } 
+			set_variable = { SWB_region_military_pct_mine^1 = 100 }
+			set_variable = { SWB_region_military_pct_mine^2 = 100 }
+			set_variable = { SWB_region_military_pct_city^0 = 100 } 
+			set_variable = { SWB_region_development_pct_mine^0 = 100 } 
+			set_variable = { SWB_region_development_pct_mine^1 = 100 }
+			set_variable = { SWB_region_development_pct_mine^2 = 100 }
+			set_variable = { SWB_region_development_pct_city^0 = 100 }
+			SWB_calc_dev_mil_effect = yes
+			SWB_calc_balance = yes
+			SWB_calc_modifiers = yes
+			custom_effect_tooltip = "CPC_CD_easy_mode_2_tt"
+		}
+	}
+	CPC_CD_easy_mode_3 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = 1 }
+			NOT = { check_variable = { CPC_mode_array^3 = 1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^3 = 1 }
+			custom_effect_tooltip = "CPC_CD_easy_mode_3_tt"
+		}
+	}
+	CPC_CD_easy_mode_4 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			NOT = { check_variable = { CPC_mode_array^4 = 1 } }
+			check_variable = { CPC_mode_num = 1 }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^4 = 1 } 
+			set_variable = { CRC.TER_SCB_rev_level_unify = 5 } 
+			set_variable = { CRC.TER_SCB_rev_level_equip = 5 } 
+			set_variable = { CRC.TER_SCB_rev_level_org = 5 } 
+			set_variable = { VIC.TER_SCB_rev_level_unify = 5 } 
+			set_variable = { VIC.TER_SCB_rev_level_equip = 5 } 
+			set_variable = { VIC.TER_SCB_rev_level_org = 5 } 
+			set_variable = { KPA.TER_SCB_rev_level_unify = 5 } 
+			set_variable = { KPA.TER_SCB_rev_level_equip = 5 } 
+			set_variable = { KPA.TER_SCB_rev_level_org = 5 } 
+			custom_effect_tooltip = "CPC_CD_easy_mode_4_tt"
+		}
+	}
+	CPC_CD_easy_mode_5 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = 1 }
+			NOT = { check_variable = { CPC_mode_array^5 = 1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^5 = 1 } 
+			set_variable = { CPC_NCCPC_political_power_gain = 2 }
+			set_variable = { CPC_NCCPC_stability_factor = 0.2 }
+			set_variable = { CPC_NCCPC_war_support_factor = 0.2 }
+			set_variable = { CPC_NCCPC_production_factory_max_efficiency_factor = 0.2 }
+			set_variable = { CPC_NCCPC_production_factory_efficiency_gain_factor = 0.2 }
+			set_variable = { CPC_NCCPC_line_change_production_efficiency_factor = 0.2 }
+			set_variable = { CPC_NCCPC_production_speed_buildings_factor = 0.2 }
+			set_variable = { CPC_NCCPC_add_to_GDP_growth = 2 }
+			TER_CPC_update_ptmb_pct_dynmod = yes
+			NCCPC_spirit_clamp = yes
+			custom_effect_tooltip = "CPC_CD_easy_mode_5_tt"
+		}
+	}
+	CPC_CD_easy_mode_6 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = 1 }
+			OR = {
+				NOT = { check_variable = { CPC_mode_array^6 = 1 } }
+				NOT = { check_variable = { CPC_mode_array^7 = 1 } }
+			}
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^6 = 1 }
+			set_variable = { TER_pol_str_real_percent^1 = 0 }
+			set_variable = { TER_pol_str_real_percent^2 = 0 }
+			set_variable = { TER_pol_str_real_percent^3 = 0 }
+			set_variable = { TER_pol_str_real_percent^0 = 100 }
+			calc_politics_powers_in_CPC = yes
+			custom_effect_tooltip = "CPC_CD_easy_mode_6_tt"
+		}
+	}
+	CPC_CD_easy_mode_7 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = 1 }
+			OR = {
+				NOT = { check_variable = { CPC_mode_array^6 = 1 } }
+				NOT = { check_variable = { CPC_mode_array^7 = 1 } }
+			}
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^7 = 1 }
+			set_variable = { TER_pol_str_real_percent^1 = 100 }
+			set_variable = { TER_pol_str_real_percent^2 = 0 }
+			set_variable = { TER_pol_str_real_percent^3 = 0 }
+			set_variable = { TER_pol_str_real_percent^0 = 0 }
+			calc_politics_powers_in_CPC = yes
+			custom_effect_tooltip = "CPC_CD_easy_mode_7_tt"
+		}
+	}
+	CPC_CD_easy_mode_8 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = 1 }
+			NOT = { check_variable = { CPC_mode_array^8 = 1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			set_variable = { CPC_mode_array^8 = 1 } 
+			add_ideas = {CPC_easy_mode_idea}
+		}
+	}
+	CPC_CD_easy_mode_9 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_mode_num = 1 }
+			NOT = { check_variable = { CPC_mode_array^9 = 1 } }
+		}
+		available = {
+		}
+		complete_effect = {
+			hidden_effect = {
+				set_country_flag = CPC_baby_bus_flag
+				add_ideas =  { CPC_easy_mode_idea }
+				set_variable = { CPC_mode_array^1 = 1 } 
+				set_variable = { CPC_mode_array^2 = 1 } 
+				set_variable = { CPC_mode_array^3 = 1 } 
+				set_variable = { CPC_mode_array^4 = 1 } 
+				set_variable = { CPC_mode_array^5 = 1 }
+				set_variable = { CPC_mode_array^8 = 1 } 
+				set_variable = { CPC_mode_array^9 = 1 } 
+				set_variable = { CRC.TER_SCB_rev_level_unify = 5 } 
+				set_variable = { CRC.TER_SCB_rev_level_equip = 5 } 
+				set_variable = { CRC.TER_SCB_rev_level_org = 5 } 
+				set_variable = { VIC.TER_SCB_rev_level_unify = 5 } 
+				set_variable = { VIC.TER_SCB_rev_level_equip = 5 } 
+				set_variable = { VIC.TER_SCB_rev_level_org = 5 } 
+				set_variable = { KPA.TER_SCB_rev_level_unify = 5 } 
+				set_variable = { KPA.TER_SCB_rev_level_equip = 5 } 
+				set_variable = { KPA.TER_SCB_rev_level_org = 5 } 
+				set_variable = { SWB_region_military_pct_mine^0 = 100 } 
+				set_variable = { SWB_region_military_pct_mine^1 = 100 }
+				set_variable = { SWB_region_military_pct_mine^2 = 100 }
+				set_variable = { SWB_region_military_pct_city^0 = 100 } 
+				set_variable = { SWB_region_development_pct_mine^0 = 100 } 
+				set_variable = { SWB_region_development_pct_mine^1 = 100 }
+				set_variable = { SWB_region_development_pct_mine^2 = 100 }
+				set_variable = { SWB_region_development_pct_city^0 = 100 }
+				SWB_calc_dev_mil_effect = yes
+				SWB_calc_balance = yes
+				SWB_calc_modifiers = yes
+				set_variable = { CPC_NCCPC_political_power_gain = 2 }
+				set_variable = { CPC_NCCPC_stability_factor = 0.2 }
+				set_variable = { CPC_NCCPC_war_support_factor = 0.2 }
+				set_variable = { CPC_NCCPC_production_factory_max_efficiency_factor = 0.2 }
+				set_variable = { CPC_NCCPC_production_factory_efficiency_gain_factor = 0.2 }
+				set_variable = { CPC_NCCPC_line_change_production_efficiency_factor = 0.2 }
+				set_variable = { CPC_NCCPC_production_speed_buildings_factor = 0.2 }
+				set_variable = { CPC_NCCPC_add_to_GDP_growth = 2 }
+				TER_CPC_update_ptmb_pct_dynmod = yes
+				NCCPC_spirit_clamp = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				# Starting tech
+				set_technology = {
+					basic_train = 1
+				
+				
+					##Infantry##
+					infantry_weapons_1 = 1
+					night_vision_1 = 1
+
+					infantry_kit_1 = 1
+					infantry_weapons_2 = 1
+					night_vision_2 = 1
+					infantry_kit_2 = 1
+					infantry_weapons_improvements_mine_1 = 1
+					infantry_kit_3 = 1
+					infantry_weapons_improvements_ammo_1 = 1
+					infantry_weapons_improvements_grenade_1 = 1
+					#
+					infantry_weapons_3 = 1
+					night_vision_3 = 1
+					infantry_kit_4 = 1
+					infantry_weapons_improvements_mine_2 = 1
+					basic_infantry_equipment = 1
+					support_weapons = 1
+					support_weapons_hmg_1 = 1
+					combat_support_equipment_1 = 1
+
+					combat_support_equipment_2 = 1
+					support_weapons_arty_1 = 1
+					infantry_at = 1
+					infantry_at_upgrade_1 = 1
+					#
+					infantry_at2 = 1
+					motorized_infantry = 1
+					motorized_infantry_1 = 1
+					motorized_infantry_2 = 1
+					marines = 1
+					#
+					tech_special_forces = 1
+					marines2 = 1
+					marines3 = 1
+					tech_mountaineers = 1
+					#
+					paratroopers = 1
+					paratroopers2 = 1
+				
+					##Support Companies##
+					tech_support = 1
+					tech_engineers = 1
+					assault_weapons_1 = 1
+					tech_engineers2 = 1
+					assault_weapons_2 = 1
+					tech_engineers3 = 1
+					tech_recon = 1
+					tech_recon2 = 1
+					tech_recon3 = 1
+					tech_military_police = 1
+					tech_maintenance_company = 1
+					tech_maintenance_company2 = 1
+					tech_field_hospital = 1
+					tech_field_hospital2 = 1
+					tech_logistics_company = 1
+					tech_logistics_company2 = 1
+					tech_signal_company = 1
+					tech_signal_company2 = 1
+					tech_transport_helicopter_company = 1
+					tech_attack_helicopter_company = 1
+				
+					##Armor##
+
+					# See NSB section #
+				
+					##Artillery##
+
+					# See NSB section #
+				
+					##Land Doctrine##
+					combined_operations = 1
+				
+					##Naval Doctrine##
+					blue_water_navy = 1
+				
+					##Helicopters##
+					very_early_helicopter = 1
+					early_helicopter = 1
+					transport_helicopter_1960 = 1
+					scout_helicopter_1960 = 1
+					attack_helicopter_1960 = 1
+				
+					##Light Aircraft##
+					early_fighter = 1
+					fighter_1945 = 1
+					cv_1945_fighter = 1
+					fighter_1950 = 1
+					cv_1950_fighter = 1
+					fighter_1960 = 1
+					cv_1960_fighter = 1
+					interceptor_1945 = 1
+					interceptor_1950 = 1
+					interceptor_1960 = 1
+					CAS_1945 = 1
+					cv_1945_CAS = 1
+					CAS_1950 = 1
+					cv_1950_CAS = 1
+					CAS_1960 = 1
+					cv_1960_CAS = 1
+				
+					##Heavy Aircraft##
+					strategic_bomber1 = 1
+					heavy_air_1945 = 1
+					heavy_air_1950 = 1
+					heavy_air_1960 = 1
+					tac_bomber1 = 1
+					tac_air_1945 = 1
+					tac_air_1950 = 1
+					tac_air_1960 = 1
+					transport_air1 = 1
+					transport_air_1945 = 1
+					transport_air_1950 = 1
+					transport_air_1960 = 1
+				
+					##Air Doctrine##
+					air_supremacy = 1
+				
+					##Engineering##
+					electronic_mechanical_engineering = 1
+					radio = 1
+					radio_detection = 1
+					decimetric_radar = 1
+					centimetric_radar = 1
+					radar_1950 = 1
+					radar_1960 = 1
+					mechanical_computing = 1
+					computing_machine = 1
+					improved_computing_machine = 1
+					advanced_computing_machine = 1
+					computing_machine_1950 = 1
+					computing_machine_1960 = 1
+					basic_encryption = 1
+					improved_encryption = 1
+					advanced_encryption = 1
+					encryption_1950 = 1
+					encryption_1960 = 1
+					basic_decryption = 1
+					improved_decryption = 1
+					advanced_decryption = 1
+					decryption_1950 = 1
+					decryption_1960 = 1
+				
+					helicopter_engines = 1
+					jet_engines = 1
+					jet_engines_bombers = 1
+					improved_jet_engines_1 = 1
+					improved_jet_engines_bombers_1 = 1
+				
+					##Industry##
+					ww2_line_production = 1
+					mass_production_1 = 1
+					mass_production_2 = 1
+					building_construction_1 = 1
+					resource_extraction_methods = 1
+					excavation0 = 1
+					excavation1 = 1
+					rubber_processing = 1
+					energy_technology_1 = 1
+					nuclear_technology_1 = 1
+					social_construction_1 = 1
+					administration_construction_1 = 1
+					military_construction_1 = 1
+					production_unit_gain_1 = 1
+					production_unit_gain_2 = 1
+					consumer_goods_reduction_1 = 1
+					consumer_goods_reduction_2 = 1
+				
+					##WMDs##
+					ICBM = 1
+					MRBM = 1
+					SRBM = 1
+					nuclear_reactors = 1
+					nuclear_weapons = 1
+				}
+
+				# NSB tech #
+
+				if = {
+					limit = {
+						NOT = { has_dlc = "No Step Back" }
+					}
+					set_technology = {
+						IFV_1945 = 1
+						MBT_1945 = 1
+						APC_1945 = 1
+						APC_1950 = 1
+						APC_1950_basic_turret = 1
+						#APC_1950_basic_engine = 1
+						APC_1950_basic_armor = 1
+						APC_1960 = 1
+						IFV_1950 = 1
+						IFV_1950_basic_turret = 1
+						IFV_1950_basic_armor = 1
+						#IFV_1950_basic_engine = 1
+						IFV_1960 = 1
+						MBT_1950 = 1
+						MBT_1950_basic_turret = 1
+						#MBT_1950_basic_engine = 1
+						MBT_1950_basic_armor = 1
+						MBT_1960 = 1
+						AC_1945 = 1
+						AC_1950 = 1
+						AC_1960 = 1
+					
+						Heavy_1945 = 1
+						Heavy_1950 = 1
+						Heavy_1960 = 1
+						Superheavy_1945 = 1
+						Superheavy_1950 = 1
+					
+						antiair_1945 = 1
+						antiair_1950 = 1
+						light_SPAA_1950 = 1
+						light_SPAA_1960 = 1
+						SPAA_1950 = 1
+						artillery_1945 = 1
+						artillery_1950 = 1
+						light_SPART_1950 = 1
+						light_SPART_1950_soft_attack = 1
+						SPART_1950 = 1
+						SPART_1950_soft_attack = 1
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "No Step Back"
+					}
+					set_technology = {
+						NSB_APC_1945 = 1
+						NSB_APC_1950 = 1
+						#
+						#
+						NSB_APC_1960 = 1
+						NSB_IFV_1945 = 1
+						NSB_IFV_1945_modules_1 = 1
+						NSB_IFV_1945_modules_2 = 1
+						NSB_IFV_1950 = 1
+						NSB_IFV_1950_modules_1 = 1
+						NSB_IFV_1950_modules_2 = 1
+						NSB_IFV_1960 = 1
+						NSB_MBT_1945 = 1
+						NSB_MBT_1945_modules_1 = 1
+						NSB_MBT_1945_modules_2 = 1
+						NSB_MBT_1950 = 1
+						NSB_MBT_1950_modules_1 = 1
+						NSB_MBT_1950_modules_2 = 1
+						NSB_MBT_1960 = 1
+						NSB_AC_1945 = 1
+						NSB_AC_1950 = 1
+						NSB_AC_1960 = 1
+						NSB_Armour_1 = 1
+						NSB_Armour_2 = 1
+						NSB_Engine_1 = 1
+						NSB_Engine_2 = 1
+					
+						NSB_heavy_1945 = 1
+						NSB_heavy_1950 = 1
+						NSB_heavy_1960 = 1
+						NSB_superheavy_1945 = 1
+						NSB_superheavy_1950 = 1
+					
+						NSB_artillery_1945 = 1
+						NSB_artillery_1950 = 1
+						NSB_artillery_MODULE = 1
+						NSB_artillery_1950_SA = 1
+					
+						NSB_antiair_1945 = 1
+						NSB_antiair_1950 = 1
+						NSB_antiair_MODULE = 1
+						NSB_antiair_1950_AA = 1
+					}
+				}
+			}
+			custom_effect_tooltip = "CPC_CD_easy_mode_9_tt"
+		}
+	}
+}
+TER_Mongolia_Reunification_Conference = {
+	TER_MRC_phase_1_1 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 20
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 1 }
+			check_variable = { MRC_choice^1 = 0 }
+		}
+		available = {
+			check_variable = { CPC_MRC_phase = 1 }
+			NOT = { check_variable = { MRC_choice^1 = 1 } }
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^1 = 1 }
+			set_temp_variable = { MRC_at_change = 15 }
+			MRC_at_change_CPC = yes
+			set_temp_variable = { MRC_at_change = 0 }
+			set_temp_variable = { MRC_at_change = -15 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_1_2 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 20
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 1 }
+			check_variable = { MRC_choice^1 = 0 }
+		}
+		available = {
+			check_variable = { CPC_MRC_phase = 1 }
+			NOT = { check_variable = { MRC_choice^1 = 2 } }
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^1 = 2 }
+			set_temp_variable = { MRC_at_change = -10 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_1_3 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 20
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 1 }
+			check_variable = { MRC_choice^1 = 0 }
+		}
+		available = {
+			check_variable = { CPC_MRC_phase = 1 }
+			NOT = { check_variable = { MRC_choice^1 = 3 } }
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^1 = 3 }
+			set_temp_variable = { MRC_at_change = -20 }
+			MRC_at_change_CPC = yes
+			set_temp_variable = { MRC_at_change = 0 }
+			set_temp_variable = { MRC_at_change = 10 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+
+	TER_MRC_phase_2_1 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 2 }
+			check_variable = { MRC_choice^2 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 2 }
+				NOT = { check_variable = { MRC_choice^1 = 2 } }
+				check_variable = { MRC_choice^1 = 1 }
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^2 = 1 }
+			if = {
+				limit = { check_variable = { MRC_choice^1 = 1 } }
+				set_temp_variable = { MRC_at_change = 5 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = -5 }
+				MRC_at_change_MON = yes
+			}
+			else = {
+				set_temp_variable = { MRC_at_change = 10 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = -10 }
+				MRC_at_change_MON = yes
+			}
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_2_2 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 2 }
+			check_variable = { MRC_choice^2 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 2 }
+				NOT = { check_variable = { MRC_choice^2 = 2 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 1 }
+					check_variable = { MRC_choice^1 = 2 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^2 = 2 }
+			if = {
+				limit = { NOT = { check_variable = { MRC_choice^1 = 1 } } }
+				set_temp_variable = { MRC_at_change = 5 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = -5 }
+				MRC_at_change_MON = yes
+			}
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_2_3 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 15
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 2 }
+			check_variable = { MRC_choice^2 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 2 }
+				NOT = { check_variable = { MRC_choice^2 = 3 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^2 = 3 }
+			set_temp_variable = { MRC_at_change = -5 }
+			MRC_at_change_CPC = yes
+			set_temp_variable = { MRC_at_change = 0 }
+			set_temp_variable = { MRC_at_change = 5 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_2_4 = {
+		icon = GFX_decision_category_generic_communism
+		cost = 0
+		ai_will_do = {
+			base = 15
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 2 }
+			check_variable = { MRC_choice^2 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 2 }
+				NOT = { check_variable = { MRC_choice^2 = 4 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^2 = 4 }
+			set_temp_variable = { MRC_at_change = -10 }
+			MRC_at_change_CPC = yes
+			set_temp_variable = { MRC_at_change = 0 }
+			set_temp_variable = { MRC_at_change = 10 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_3_1 = {
+		icon = GFX_decision_generic_prepare_civil_war
+		cost = 0
+		ai_will_do = {
+			base = 5
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 3 }
+			check_variable = { MRC_choice^3 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 3 }
+				NOT = { check_variable = { MRC_choice^3 = 1 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 1 }
+					check_variable = { MRC_choice^1 = 2 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^3 = 1 }
+			if = {
+				limit = { check_variable = { MRC_choice^1 = 1 } }
+				set_temp_variable = { MRC_at_change = 10 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = -10 }
+				MRC_at_change_MON = yes
+			}
+			else = {
+				set_temp_variable = { MRC_at_change = 15 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = -15 }
+				MRC_at_change_MON = yes
+			}
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_3_2 = {
+		icon = GFX_decision_generic_prepare_civil_war
+		cost = 0
+		ai_will_do = {
+			base = 15
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 3 }
+			check_variable = { MRC_choice^3 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 3 }
+				NOT = { check_variable = { MRC_choice^3 = 2 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 1 }
+					check_variable = { MRC_choice^1 = 2 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^3 = 2 }
+			if = {
+				limit = { NOT = { check_variable = { MRC_choice^1 = 1 } } }
+				set_temp_variable = { MRC_at_change = 5 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = -5 }
+				MRC_at_change_MON = yes
+			}
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_3_3 = {
+		icon = GFX_decision_generic_prepare_civil_war
+		cost = 0
+		ai_will_do = {
+			base = 20
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 3 }
+			check_variable = { MRC_choice^3 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 3 }
+				NOT = { check_variable = { MRC_choice^3 = 3 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 1 }
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^3 = 3 }
+			set_temp_variable = { MRC_at_change = 7.5 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_3_4 = {
+		icon = GFX_decision_generic_prepare_civil_war
+		cost = 0
+		ai_will_do = {
+			base = 25
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 3 }
+			check_variable = { MRC_choice^3 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 3 }
+				NOT = { check_variable = { MRC_choice^3 = 4 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^3 = 4 }
+			set_temp_variable = { MRC_at_change = -10 }
+			MRC_at_change_CPC = yes
+			set_temp_variable = { MRC_at_change = 0 }
+			set_temp_variable = { MRC_at_change = 15 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+
+	TER_MRC_phase_4_1 = {
+		icon = GFX_decision_generic_shake_hands
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 4 }
+			check_variable = { MRC_choice^4 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 4 }
+				NOT = { check_variable = { MRC_choice^4 = 1 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 1 }
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^4 = 1 }
+			if = {
+				limit = { check_variable = { MRC_choice^1 = 1 } }
+			}
+			else_if = {
+				limit = { check_variable = { MRC_choice^1 = 2 } }
+				set_temp_variable = { MRC_at_change = 10 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = -5 }
+				MRC_at_change_MON = yes
+			}
+			else_if = {
+				limit = { check_variable = { MRC_choice^1 = 3 } }
+				set_temp_variable = { MRC_at_change = 15 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = -10 }
+				MRC_at_change_MON = yes
+			}
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_4_2 = {
+		icon = GFX_decision_generic_shake_hands
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 4 }
+			check_variable = { MRC_choice^4 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 4 }
+				NOT = { check_variable = { MRC_choice^4 = 2 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^4 = 2 }
+			if = {
+				limit = { check_variable = { MRC_choice^1 = 2 } }
+				set_temp_variable = { MRC_at_change = -10 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = 10 }
+				MRC_at_change_MON = yes
+			}
+			else_if = {
+				limit = { check_variable = { MRC_choice^1 = 3 } }
+				set_temp_variable = { MRC_at_change = -20 }
+				MRC_at_change_CPC = yes
+				set_temp_variable = { MRC_at_change = 0 }
+				set_temp_variable = { MRC_at_change = 15 }
+				MRC_at_change_MON = yes
+			}
+			custom_effect_tooltip = "MRC_make_decision_tt"
+			custom_effect_tooltip = "TER_MRC_phase_4_2_tt"
+		}
+	}
+
+	TER_MRC_phase_5_1 = {
+		icon = GFX_decision_generic_money
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 5 }
+			check_variable = { MRC_choice^5 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 5 }
+				NOT = { check_variable = { MRC_choice^5 = 1 } }
+				check_variable = { MRC_choice^1 = 3 }
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^5 = 1 }
+			set_temp_variable = { MRC_at_change = 10 }
+			MRC_at_change_CPC = yes
+			set_temp_variable = { MRC_at_change = 0 }
+			set_temp_variable = { MRC_at_change = -15 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_5_2 = {
+		icon = GFX_decision_generic_money
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 5 }
+			check_variable = { MRC_choice^5 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 5 }
+				NOT = { check_variable = { MRC_choice^5 = 2 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^5 = 2 }
+			set_temp_variable = { MRC_at_change = 5 }
+			MRC_at_change_CPC = yes
+			set_temp_variable = { MRC_at_change = 0 }
+			set_temp_variable = { MRC_at_change = -7.5 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_5_3 = {
+		icon = GFX_decision_generic_money
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 5 }
+			check_variable = { MRC_choice^5 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 5 }
+				NOT = { check_variable = { MRC_choice^5 = 3 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^5 = 3 }
+			set_temp_variable = { MRC_at_change = 2.5 }
+			MRC_at_change_CPC = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_5_4 = {
+		icon = GFX_decision_generic_money
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 5 }
+			check_variable = { MRC_choice^5 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 5 }
+				NOT = { check_variable = { MRC_choice^5 = 4 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 1 }
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^5 = 4 }
+			set_temp_variable = { MRC_at_change = 7.5 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+	TER_MRC_phase_5_5 = {
+		icon = GFX_decision_generic_money
+		cost = 0
+		ai_will_do = {
+			base = 20
+		}
+		visible = {
+			check_variable = { CPC_MRC_phase = 5 }
+			check_variable = { MRC_choice^5 = 0 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = TER_MRC_we_can_choose_this
+				check_variable = { CPC_MRC_phase = 5 }
+				NOT = { check_variable = { MRC_choice^5 = 5 } }
+				OR = {
+					check_variable = { MRC_choice^1 = 1 }
+					check_variable = { MRC_choice^1 = 2 }
+					check_variable = { MRC_choice^1 = 3 }
+				}
+			}
+		}
+		complete_effect = {
+			set_variable = { MRC_choice^5 = 5 }
+			set_temp_variable = { MRC_at_change = -10 }
+			MRC_at_change_CPC = yes
+			set_temp_variable = { MRC_at_change = 0 }
+			set_temp_variable = { MRC_at_change = 10 }
+			MRC_at_change_MON = yes
+			custom_effect_tooltip = "MRC_make_decision_tt"
+		}
+	}
+
+	TER_MRC_damn_we_should_go = {
+		icon = GFX_decision_generic_propaganda_off
+		cost = 0
+		ai_will_do = {
+			base = 0
+		}
+		visible = { always = yes }
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		fire_only_once = yes
+		complete_effect = {
+			country_event = CPC_main_story_events.84
+		}
+	}
+}
+CPC_TRCW_GNG_Riots_GUI = {
+	CPC_strengthen_GFT_propaganda = {
+		icon = GFX_decision_guangdong_GFT
+		visible = {
+			GNG = {
+				NOT = {	has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+			check_variable = { GNG_selected_riot_group = 1 }
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	
+		cost = 5
+	
+		fire_only_once = no
+		days_remove = 5
+		days_re_enable = 10
+	
+		remove_effect = {
+			effect_tooltip = {
+				set_temp_variable = { GNG_Riots_GFT_Strength_Temp = 3 }
+				GNG_Riots_GFT_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = 3 }
+				GNG_Riots_GFT_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = 3 }
+				GNG_Despair_Change = yes
+			}
+			hidden_effect = {
+				GNG = {
+					set_temp_variable = { GNG_Riots_GFT_Strength_Temp = 3 }
+					GNG_Riots_GFT_Strength_Change = yes
+					set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = 3 }
+					GNG_Riots_GFT_Radicalism_Change = yes
+					set_temp_variable = { GNG_Riots_Despair_Temp = 3 }
+					GNG_Despair_Change = yes
+				}
+			}
+		}
+	}
+	CPC_strengthen_GFT_activists = {
+		icon = GFX_decision_guangdong_GFT
+		visible = {
+			GNG = {
+				NOT = {	has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+			check_variable = { GNG_selected_riot_group = 1 }
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	
+		cost = 15
+	
+		fire_only_once = no
+		days_remove = 10
+		days_re_enable = 10
+	
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -20
+			}
+			effect_tooltip = {
+				set_temp_variable = { GNG_Riots_GFT_Strength_Temp = 5 }
+				GNG_Riots_GFT_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = 5 }
+				GNG_Riots_GFT_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = 3.5 }
+				GNG_Despair_Change = yes
+			}
+			hidden_effect = {
+				GNG = {
+					set_temp_variable = { GNG_Riots_GFT_Strength_Temp = 5 }
+					GNG_Riots_GFT_Strength_Change = yes
+					set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = 5 }
+					GNG_Riots_GFT_Radicalism_Change = yes
+					set_temp_variable = { GNG_Riots_Despair_Temp = 3.5 }
+					GNG_Despair_Change = yes
+				}
+			}
+		}
+	}
+	CPC_strengthen_GFT_against_JAP = {
+		icon = GFX_decision_guangdong_GFT
+		visible = {
+			GNG = {
+				NOT = {	has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+			check_variable = { GNG_selected_riot_group = 1 }
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	
+		cost = 25
+	
+		fire_only_once = no
+		days_remove = 15
+		days_re_enable = 10
+		complete_effect = {
+			if = { limit = { is_ai = yes }
+			set_variable = { GNG_selected_riot_group = 2 } }
+		}
+		remove_effect = {
+			GNG = {
+				add_manpower = -200
+			}
+			effect_tooltip = {
+				set_temp_variable = { GNG_Riots_GFT_Strength_Temp = 7 }
+				GNG_Riots_GFT_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = 7 }
+				GNG_Riots_GFT_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = 5.5 }
+				GNG_Despair_Change = yes
+				set_temp_variable = { GNG_Japan_Riots_Temp = 3 }
+				GNG_Japanese_Intervention_Change = yes
+			}
+			hidden_effect = {
+				GNG = {
+					set_temp_variable = { GNG_Riots_GFT_Strength_Temp = 7 }
+					GNG_Riots_GFT_Strength_Change = yes
+					set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = 7 }
+					GNG_Riots_GFT_Radicalism_Change = yes
+					set_temp_variable = { GNG_Riots_Despair_Temp = 5.5 }
+					GNG_Despair_Change = yes
+					set_temp_variable = { GNG_Japan_Riots_Temp = 3 }
+					GNG_Japanese_Intervention_Change = yes
+				}
+			}
+		}
+	}
+	CPC_strengthen_GFT_comfort_JAP = {
+		icon = GFX_decision_guangdong_GFT
+		visible = {
+			GNG = {
+				NOT = {	has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+			check_variable = { GNG_selected_riot_group = 1 }
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	
+		cost = 25
+	
+		fire_only_once = no
+		days_remove = 15
+		days_re_enable = 10
+	
+		remove_effect = {
+			GNG = {
+				add_stability = 0.01
+			}
+			if = {
+				limit = { 
+					GNG = {
+						OR = {
+							has_country_leader = { character = GNG_morita_akio } 
+							has_country_leader = { character = GNG_matsushita_masaharu } 
+						}
+					}
+				}
+				add_days_mission_timeout = {
+					mission = CPC_JAP_fuck_GNG_date_left
+					days = 5
+				}
+			}
+			else = {
+				add_days_mission_timeout = {
+					mission = CPC_JAP_fuck_GNG_date_right
+					days = 5
+				}
+			}
+			effect_tooltip = {
+				set_temp_variable = { GNG_Riots_GFT_Strength_Temp = -2 }
+				GNG_Riots_GFT_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = -2 }
+				GNG_Riots_GFT_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = -5 }
+				GNG_Despair_Change = yes
+				set_temp_variable = { GNG_Japan_Riots_Temp = -5 }
+				GNG_Japanese_Intervention_Change = yes
+			}
+			hidden_effect = {
+				GNG = {
+					set_temp_variable = { GNG_Riots_GFT_Strength_Temp = -2 }
+					GNG_Riots_GFT_Strength_Change = yes
+					set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = -2 }
+					GNG_Riots_GFT_Radicalism_Change = yes
+					set_temp_variable = { GNG_Riots_Despair_Temp = -5 }
+					GNG_Despair_Change = yes
+					set_temp_variable = { GNG_Japan_Riots_Temp = -5 }
+					GNG_Japanese_Intervention_Change = yes
+				}
+			}
+		}
+	}
+	CPC_strengthen_CCL_propaganda = {
+		icon = GFX_decision_guangdong_CCL
+		visible = {
+			GNG = {
+				NOT = {	has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+			check_variable = { GNG_selected_riot_group = 2 }
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	
+		cost = 5
+	
+		fire_only_once = no
+		days_remove = 5
+		days_re_enable = 10
+	
+		remove_effect = {
+			effect_tooltip = {
+				set_temp_variable = { GNG_Riots_CCL_Strength_Temp = 3 }
+				GNG_Riots_CCL_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = 3 }
+				GNG_Riots_CCL_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = 3 }
+				GNG_Despair_Change = yes
+			}
+			hidden_effect = {
+				GNG = {
+					set_temp_variable = { GNG_Riots_CCL_Strength_Temp = 3 }
+					GNG_Riots_CCL_Strength_Change = yes
+					set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = 3 }
+					GNG_Riots_CCL_Radicalism_Change = yes
+					set_temp_variable = { GNG_Riots_Despair_Temp = 3 }
+					GNG_Despair_Change = yes
+				}
+			}
+		}
+	}
+	CPC_strengthen_CCL_activists = {
+		icon = GFX_decision_guangdong_CCL
+		visible = {
+			GNG = {
+				NOT = {	has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+			check_variable = { GNG_selected_riot_group = 2 }
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	
+		cost = 15
+	
+		fire_only_once = no
+		days_remove = 10
+		days_re_enable = 10
+	
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -20
+			}
+			effect_tooltip = {
+				set_temp_variable = { GNG_Riots_CCL_Strength_Temp = 5 }
+				GNG_Riots_CCL_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = 5 }
+				GNG_Riots_CCL_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = 3.5 }
+				GNG_Despair_Change = yes
+			}
+			hidden_effect = {
+				GNG = {
+					set_temp_variable = { GNG_Riots_CCL_Strength_Temp = 5 }
+					GNG_Riots_CCL_Strength_Change = yes
+					set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = 5 }
+					GNG_Riots_CCL_Radicalism_Change = yes
+					set_temp_variable = { GNG_Riots_Despair_Temp = 3.5 }
+					GNG_Despair_Change = yes
+				}
+			}
+		}
+	}
+	CPC_strengthen_CCL_against_JAP = {
+		icon = GFX_decision_guangdong_CCL
+		visible = {
+			GNG = {
+				NOT = {	has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+			check_variable = { GNG_selected_riot_group = 2 }
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	
+		cost = 25
+	
+		fire_only_once = no
+		days_remove = 15
+		days_re_enable = 10
+
+		complete_effect = {
+			if = { limit = { is_ai = yes }
+			set_variable = { GNG_selected_riot_group = 1 } }
+		}
+
+		remove_effect = {
+			GNG = {
+				add_manpower = -200
+			}
+			effect_tooltip = {
+				set_temp_variable = { GNG_Riots_CCL_Strength_Temp = 7 }
+				GNG_Riots_CCL_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = 7 }
+				GNG_Riots_CCL_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = 5.5 }
+				GNG_Despair_Change = yes
+				set_temp_variable = { GNG_Japan_Riots_Temp = 3 }
+				GNG_Japanese_Intervention_Change = yes
+			}
+			hidden_effect = {
+				GNG = {
+					set_temp_variable = { GNG_Riots_CCL_Strength_Temp = 7 }
+					GNG_Riots_CCL_Strength_Change = yes
+					set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = 7 }
+					GNG_Riots_CCL_Radicalism_Change = yes
+					set_temp_variable = { GNG_Riots_Despair_Temp = 5.5 }
+					GNG_Despair_Change = yes
+					set_temp_variable = { GNG_Japan_Riots_Temp = 3 }
+					GNG_Japanese_Intervention_Change = yes
+				}
+			}
+		}
+	}
+	CPC_strengthen_CCL_comfort_JAP = {
+		icon = GFX_decision_guangdong_CCL
+		visible = {
+			GNG = {
+				NOT = {	has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+			check_variable = { GNG_selected_riot_group = 2 }
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	
+		cost = 25
+	
+		fire_only_once = no
+		days_remove = 15
+		days_re_enable = 10
+	
+		remove_effect = {
+			GNG = {
+				add_stability = 0.01
+			}
+			if = {
+				limit = { 
+					GNG = {
+						OR = {
+							has_country_leader = { character = GNG_morita_akio } 
+							has_country_leader = { character = GNG_matsushita_masaharu } 
+						}
+					}
+				}
+				add_days_mission_timeout = {
+					mission = CPC_JAP_fuck_GNG_date_left
+					days = 5
+				}
+			}
+			else = {
+				add_days_mission_timeout = {
+					mission = CPC_JAP_fuck_GNG_date_right
+					days = 5
+				}
+			}
+			effect_tooltip = {
+				set_temp_variable = { GNG_Riots_CCL_Strength_Temp = -2 }
+				GNG_Riots_CCL_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = -2 }
+				GNG_Riots_CCL_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = -5 }
+				GNG_Despair_Change = yes
+				set_temp_variable = { GNG_Japan_Riots_Temp = -5 }
+				GNG_Japanese_Intervention_Change = yes
+			}
+			hidden_effect = {
+				GNG = {
+					set_temp_variable = { GNG_Riots_CCL_Strength_Temp = -2 }
+					GNG_Riots_CCL_Strength_Change = yes
+					set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = -2 }
+					GNG_Riots_CCL_Radicalism_Change = yes
+					set_temp_variable = { GNG_Riots_Despair_Temp = -5 }
+					GNG_Despair_Change = yes
+					set_temp_variable = { GNG_Japan_Riots_Temp = -5 }
+					GNG_Japanese_Intervention_Change = yes
+				}
+			}
+		}
+	}
+	CPC_JAP_fuck_GNG_date_left = {
+		icon = GFX_decision_guangdong_japanese
+		fire_only_once = yes
+		available = {
+			hidden_trigger = { always = no }	
+		}
+		cancel_trigger = {
+			OR = {
+				GNG = { exists = no }
+				has_completed_focus = CPC_turn_hostility_into_friendship
+			}
+		}
+		visible = {
+			has_country_flag = CPC_talk_with_GNG
+		}
+		activation = {
+			has_country_flag = CPC_talk_with_GNG
+		}
+		is_good = no
+		days_mission_timeout = 300
+	
+		timeout_effect = {
+			clr_country_flag = CPC_go_fuck_GNG
+			GNG = {
+				leave_faction = yes
+				declare_war_on = {
+					target = CPC
+					type = annex_everything
+				}
+				hidden_effect = {
+					load_oob = GNG_TRCW_strong
+				}
+			}
+		}
+	}
+	CPC_JAP_fuck_GNG_date_right = {
+		icon = GFX_decision_guangdong_japanese
+		fire_only_once = yes
+		available = {
+			hidden_trigger = { always = no }	
+		}
+		cancel_trigger = {
+			OR = {
+				GNG = { exists = no }
+				has_completed_focus = CPC_good_bye_silicon_dream
+			}
+		}
+		visible = {
+			has_country_flag = CPC_go_fuck_GNG
+		}
+		activation = {
+			has_country_flag = CPC_go_fuck_GNG
+		}
+		is_good = no
+		days_mission_timeout = 200
+	
+		timeout_effect = {
+			clr_country_flag = CPC_go_fuck_GNG
+			GNG = {
+				leave_faction = yes
+				declare_war_on = {
+					target = CPC
+					type = annex_everything
+				}
+				hidden_effect = {
+					load_oob = GNG_TRCW_strong
+				}
+			}
+		}
+	}
+}
+CPC_dem_riot_gui = {
+	CPC_dem_riot_change_weekly = {
+		allowed = { tag = CPC }
+		icon = GFX_decision_revolt
+		activation = {
+			has_country_flag = CPC_admit_dem_riot
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_admit_dem_riot }
+			}
+		}
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_admit_dem_riot }
+			}
+		}
+		is_good = no
+		days_mission_timeout = 5
+		timeout_effect = {
+			if = {
+				limit = { is_ai = yes }
+				if = { 
+					limit = { check_variable = { CPC_dem_riot_selected^0 = 2 } }
+					set_variable = { CPC_dem_riot_selected^0 = 1 }
+					set_variable = { CPC_dem_riot_selected^1 = 2 }
+				}
+				else_if = { 
+					limit = { check_variable = { CPC_dem_riot_selected^1 = 2 } }
+					set_variable = { CPC_dem_riot_selected^1 = 1 }
+					set_variable = { CPC_dem_riot_selected^2 = 2 }
+				}
+				else_if = { 
+					limit = { check_variable = { CPC_dem_riot_selected^2 = 2 } }
+					set_variable = { CPC_dem_riot_selected^2 = 1 }
+					set_variable = { CPC_dem_riot_selected^0 = 2 }
+				}
+			}
+			activate_mission = CPC_dem_riot_change_weekly
+			set_temp_variable = { TER_dem_power_tmp = -2 }
+			set_temp_variable = { TER_dem_radical_tmp = 3 }
+			if = {
+				limit = { BJC = { exists = yes } }
+				set_temp_variable = { target = BJC }
+				CPC_dem_riot_power_change = yes
+				CPC_dem_riot_radical_change = yes
+			}
+			if = {
+				limit = { WHC = { exists = yes } }
+				set_temp_variable = { target = WHC }
+				CPC_dem_riot_power_change = yes
+				CPC_dem_riot_radical_change = yes
+			}
+			if = {
+				limit = { LZD = { exists = yes } }
+				set_temp_variable = { target = LZD }
+				CPC_dem_riot_power_change = yes
+				CPC_dem_riot_radical_change = yes
+			}
+			CPC_dem_riot_weekly_effect = yes
+		}
+  	}
+	CPC_dem_riot_congress_mission = {
+		allowed = { tag = CPC }
+		icon = GFX_decision_revolt
+		activation = {
+			has_country_flag = CPC_admit_dem_riot
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_admit_dem_riot }
+			}
+		}
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_admit_dem_riot }
+			}
+		}
+		is_good = yes
+		days_mission_timeout = 150
+		timeout_effect = {
+			custom_effect_tooltip = "CPC_dem_riot_congress_mission_tt"
+			hidden_effect = {
+				CPC_dem_riot_congress_effect = yes
+			}
+		}
+  	}
+	CPC_dem_riot_BJC_1 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 5
+		visible = { check_variable = { CPC_dem_riot_selected^0 = 2 }
+					BJC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = BJC }
+			set_temp_variable = { TER_dem_power_tmp = 2.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = 1.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_BJC_2 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 7
+		visible = { check_variable = { CPC_dem_riot_selected^0 = 2 }
+					BJC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = BJC }
+			set_temp_variable = { TER_dem_power_tmp = 6.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = 2 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_BJC_3 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 10
+		visible = { check_variable = { CPC_dem_riot_selected^0 = 2 }
+					BJC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = BJC }
+			set_temp_variable = { TER_dem_power_tmp = 0.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -2.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_BJC_4 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 75
+		fire_only_once = no
+		days_remove = 15
+		visible = { check_variable = { CPC_dem_riot_selected^0 = 2 }
+					BJC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { target = BJC }
+			set_temp_variable = { TER_dem_power_tmp = 7.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -6.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+
+	CPC_dem_riot_WHC_1 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 5
+		visible = { check_variable = { CPC_dem_riot_selected^1 = 2 }
+					WHC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = WHC }
+			set_temp_variable = { TER_dem_power_tmp = 2.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = 1.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_WHC_2 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 7
+		visible = { check_variable = { CPC_dem_riot_selected^1 = 2 }
+					WHC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = WHC }
+			set_temp_variable = { TER_dem_power_tmp = 6.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = 2 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_WHC_3 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 10
+		visible = { check_variable = { CPC_dem_riot_selected^1 = 2 }
+					WHC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = WHC }
+			set_temp_variable = { TER_dem_power_tmp = 0.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -2.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_WHC_4 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+		fire_only_once = no
+		days_remove = 15
+		visible = { check_variable = { CPC_dem_riot_selected^1 = 2 }
+					WHC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { target = WHC }
+			set_temp_variable = { TER_dem_power_tmp = 7.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -6.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_LZD_1 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 5
+		visible = { check_variable = { CPC_dem_riot_selected^2 = 2 }
+					LZD = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = LZD }
+			set_temp_variable = { TER_dem_power_tmp = 2.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = 1.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_LZD_2 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 7
+		visible = { check_variable = { CPC_dem_riot_selected^2 = 2 }
+					LZD = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = LZD }
+			set_temp_variable = { TER_dem_power_tmp = 6.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = 2 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_LZD_3 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 20
+		fire_only_once = no
+		days_remove = 10
+		visible = { check_variable = { CPC_dem_riot_selected^2 = 2 }
+					LZD = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = LZD }
+			set_temp_variable = { TER_dem_power_tmp = 0.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -2.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+	CPC_dem_riot_LZD_4 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CPC }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+		fire_only_once = no
+		days_remove = 15
+		visible = { check_variable = { CPC_dem_riot_selected^2 = 2 }
+					LZD = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { target = LZD }
+			set_temp_variable = { TER_dem_power_tmp = 7.5 }
+			CPC_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -6.5 }
+			CPC_dem_riot_radical_change = yes
+		}
+	}
+}
+CPC_diplomacy_front = {
+	CPC_trip_to_Shanxi = {
+		icon = GFX_decision_generic_form_nation
+		visible = { has_country_flag = CPC_diplomacy_front_SHX }
+		available = { always = no }
+	}
+	CPC_trip_to_Shanxi_o1 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+
+		fire_only_once = yes
+		visible = { 
+			has_country_flag = CPC_diplomacy_front_SHX 
+			check_variable = { CPC_SHX_dip_num < 2 }
+		}
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			set_variable = { CPC_SHX_dip_num = 2 }
+		}
+	}
+	CPC_trip_to_Shanxi_o2 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			check_variable = { CPC_SHX_dip_num = 2 }
+		}
+		available = {
+			check_variable = { CPC_SHX_dip_num = 2 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			set_variable = { CPC_SHX_dip_num = 3 }
+			hidden_effect = {
+				SHX = {
+					kill_country_leader = yes
+					retire_character = SHX_fu_zuoyi
+				}
+				CPC = {
+					country_event = {
+						id = CPC_main_story_events.72
+						days = 2
+					}
+				}
+			}
+		}
+	}
+	CPC_trip_to_Shanxi_o3 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			check_variable = { CPC_SHX_dip_num = 3 }
+		}
+		available = {
+			check_variable = { CPC_SHX_dip_num = 3 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			set_variable = { CPC_SHX_dip_num = 4 }
+		}
+	}
+	CPC_trip_to_Shanxi_o4 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			check_variable = { CPC_SHX_dip_num = 4 }
+		}
+		available = {
+			check_variable = { CPC_SHX_dip_num = 4 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			set_variable = { CPC_SHX_dip_num = 5 }
+			DAT = {
+				transfer_state = 621
+				add_state_core = 621
+				transfer_state = 2422
+				add_state_core = 2422
+				hidden_effect = {
+					load_oob = DAT_begin
+				}
+				start_border_war = {
+					change_state_after_war = no
+					attacker = { 
+						state = 2418
+						num_provinces = 3
+						on_win = TER_support_backend_events.4
+						on_lose = TER_support_backend_events.4
+						on_cancel = TER_support_backend_events.4
+					}
+					defender = { 
+						state = 2422
+						num_provinces = 3
+						on_win = TER_support_backend_events.4
+						on_lose = TER_support_backend_events.4
+						on_cancel = TER_support_backend_events.4
+					}
+				}
+			}
+		}
+	}
+	CPC_trip_to_Shanxi_o5 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 14
+		visible = {
+			check_variable = { CPC_SHX_dip_num = 5 }
+		}
+		available = {
+			check_variable = { CPC_SHX_dip_num = 5 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			diplomatic_relation = {
+				country = DAT
+				relation = military_access
+				active = yes
+			}
+			diplomatic_relation = {
+				country = DAT
+				relation = non_aggression_pact
+				active = yes
+			}
+			621 = { set_demilitarized_zone = no }
+			DAT = {
+				cancel_border_war = {
+					attacker = 2418
+					defender = 2422
+				}
+				diplomatic_relation = {
+					country = CPC
+					relation = non_aggression_pact
+					active = yes
+				}
+				diplomatic_relation = {
+					country = CPC
+					relation = military_access
+					active = yes
+				}
+			}
+			set_variable = { CPC_SHX_dip_num = 6 }
+		}
+	}
+	CPC_trip_to_Shanxi_o6 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			check_variable = { CPC_SHX_dip_num = 6 }
+		}
+		available = {
+			check_variable = { CPC_SHX_dip_num = 6 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			diplomatic_relation = {
+				country = DAT
+				relation = guarantee
+				active = yes
+			}
+			TNO_improve_army_professionalism_low = yes
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			custom_effect_tooltip = "CPC_DAT_rebuild_army_tt"
+			hidden_effect = {
+				CPC = { 
+					set_autonomy = {
+						target = DAT
+						autonomy_state = autonomy_Liberated_area
+					} 
+				}
+				DAT = {
+					load_oob = DAT_PLA
+					add_ideas = ANRL_puppet
+					set_politics = {
+						ruling_party = paternalism
+					}
+					set_popularities = {
+						communist = 60
+						paternalism = 40
+					}
+				}
+			}
+			set_variable = { CPC_SHX_dip_num = 7 }
+		}
+	}
+	CPC_trip_to_Shanxi_o7 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 50
+		days_remove = 90
+		visible = {
+			check_variable = { CPC_SHX_dip_num > 6 }
+		}
+		available = {
+			check_variable = { CPC_SHX_dip_num > 6 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				add_resource = {
+					type = power
+					amount = 5
+				}
+			}
+			add_to_variable = { CPC_SHX_dip_num = 1 }
+		}
+	}
+	CPC_trip_to_Shanxi_o8 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 50
+		days_remove = 90
+		visible = {
+			check_variable = { CPC_SHX_dip_num > 6 }
+		}
+		available = {
+			check_variable = { CPC_SHX_dip_num > 6 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+		remove_effect = {
+			TNO_improve_industrial_expertise_low = yes
+			add_to_variable = { CPC_SHX_dip_num = 1 }
+		}
+	}
+	CPC_trip_to_Shanxi_o9 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 50
+		days_remove = 90
+		visible = {
+			check_variable = { CPC_SHX_dip_num > 6 }
+		}
+		available = {
+			check_variable = { CPC_SHX_dip_num > 6 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+		remove_effect = {
+			TNO_improve_industrial_equipment_low = yes
+			add_to_variable = { CPC_SHX_dip_num = 1 }
+		}
+	}
+	CPC_trip_to_India = {
+		icon = GFX_decision_generic_form_nation
+		visible = { has_country_flag = CPC_diplomacy_front_IND }
+		available = { always = no }
+	}
+	CPC_trip_to_India_o1 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+
+		fire_only_once = yes
+		visible = { 
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num < 2 }
+		}
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			set_variable = { CPC_IND_dip_num = 2 }
+		}
+	}
+	CPC_trip_to_India_o2 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num = 2 }
+		}
+		available = {
+			check_variable = { CPC_IND_dip_num = 2 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			set_variable = { CPC_IND_dip_num = 3 }
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+			IND = {
+				add_popularity = {
+					ideology = communist
+					popularity = 0.05
+				}
+			}
+			hidden_effect = {
+				CPC = {
+					country_event = {
+						id = CPC_main_story_events.76
+						days = 2
+					}
+				}
+			}
+		}
+	}
+
+	CPC_trip_to_India_o3 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num = 3 }
+		}
+		available = {
+			check_variable = { CPC_IND_dip_num = 3 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			IND = {
+				add_popularity = {
+					ideology = communist
+					popularity = 0.05
+				}
+			}
+			set_variable = { CPC_IND_dip_num = 4 }
+		}
+	}
+
+	CPC_trip_to_India_o4 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num = 4 }
+		}
+		available = {
+			check_variable = { CPC_IND_dip_num = 4 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			set_variable = { CPC_IND_dip_num = 5 }
+			diplomatic_relation = {
+				country = IND
+				relation = non_aggression_pact
+				active = yes
+			}
+			IND = {
+				diplomatic_relation = {
+					country = CPC
+					relation = non_aggression_pact
+					active = yes
+				}
+			}
+		}
+	}
+
+	CPC_trip_to_India_o5 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num = 5 }
+		}
+		available = {
+			check_variable = { CPC_IND_dip_num = 5 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			set_variable = { CPC_IND_dip_num = 6 }
+			country_event = CPC_main_story_events.77
+		}
+	}
+
+	CPC_trip_to_India_o6 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num = 6 }
+		}
+		available = {
+			check_variable = { CPC_IND_dip_num = 6 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = "CPC_dip_dec_tt"
+			country_event = CPC_main_story_events.126
+			add_opinion_modifier = {
+				target = USA
+				modifier = TNO_opened_diplomatic_relations
+			}
+			add_opinion_modifier = {
+				target = IND
+				modifier = TNO_opened_diplomatic_relations
+			}
+			set_variable = { CPC_IND_dip_num = 7 }
+		}
+	}
+
+	CPC_trip_to_India_o71 = {
+		icon = GFX_decision_drug_trade_increase
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num > 6 }
+		}
+		available = {
+			check_variable = { CPC_IND_dip_num > 6 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			set_temp_variable = { NADT_research_speed_factor_tmp = 0.025 }
+			TER_PLA_CMC_add_modifier_effect = yes
+			add_to_variable = { CPC_IND_dip_num = 1 }
+		}
+	}
+
+	CPC_trip_to_India_o72 = {
+		icon = GFX_decision_generic_form_nation
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 7
+		visible = {
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num > 6 }
+		}
+		available = {
+			check_variable = { CPC_IND_dip_num > 6 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			TNO_improve_army_professionalism_low = yes
+			set_temp_variable = { CMC_army_org_regain_tmp = 0.05 }
+			set_temp_variable = { CMC_ap_monthly_rate_tmp = 1 }
+			TER_PLA_CMC_add_modifier_effect = yes
+			add_to_variable = { CPC_IND_dip_num = 1 }
+		}
+	}
+
+	CPC_trip_to_India_o73 = {
+		icon = GFX_decision_category_generic_building
+		ai_will_do = { factor = 20 }
+		cost = 10
+		days_remove = 100
+		visible = {
+			has_country_flag = CPC_diplomacy_front_IND 
+			check_variable = { CPC_IND_dip_num > 6 }
+		}
+		available = {
+			TIB = { exists = no }
+			check_variable = { CPC_IND_dip_num > 6 }
+		}
+		fire_only_once = yes
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			1963 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+				}
+			}
+			1339 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+				}
+			}
+			add_to_variable = { CPC_IND_dip_num = 1 }
+		}
+	}
+}
+CPC_Hanzhong_construction = {
+	CPC_HZ_1_dec = {
+		icon = GFX_decision_generic_infrastructure
+		visible = {
+			always = yes
+		}
+		ai_will_do = { factor = 20 }
+		days_remove = 300
+		fire_only_once = yes
+		complete_effect = {
+			country_event = {
+				id = CPC_Yang_Yingcai_stories.4
+				days = 100
+			}
+		}
+		remove_effect = {
+			add_victory_points = {
+				province = 17053
+				value = 3
+			}
+			2413 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = supply_node
+					level = 1
+					instant_build = yes
+					province = 17053
+				}
+			}
+			build_railway = {
+				path = { 16941 4256 16993 17053 }
+				level = 2
+ 				start_province = 16941
+ 				target_province = 17053
+			}
+			set_country_flag = CPC_HZ_unlock
+			country_event = CPC_HZ.1
+			custom_effect_tooltip = "CPC_HZ_unlock"	
+		}
+	}
+	CPC_HZ_E1_dec = {
+		icon = GFX_decision_generic_heavy_industry
+		visible = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		ai_will_do = { factor = 20 }
+		available = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		days_remove = 300
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CPC_HZ_construction_begins
+		}
+		remove_effect = {
+			clr_country_flag = CPC_HZ_construction_begins
+			2413 = {
+				add_building_construction = {
+					type = offices
+					level = 2
+					instant_build = yes
+				}
+			}
+			add_to_variable = {
+				CPC_HZ_amount = 1
+			}
+			add_victory_points = {
+				province = 17053
+				value = 3
+			}
+			if = {
+				limit = { check_variable = { CPC_HZ_amount = 2 } }
+				2413 = {
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+				}
+				set_variable = {
+					CPC_HZ_amount = 0
+				}
+			}
+			add_stability = 0.01
+			add_manpower = 5000
+			set_country_flag = TER_HZ_E1_fin
+			custom_effect_tooltip = "TER_HZ_E1_fin"	
+		}
+	}
+	CPC_HZ_E2_dec = {
+		icon = GFX_decision_generic_heavy_industry
+		visible = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		ai_will_do = { factor = 20 }
+		available = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		days_remove = 300
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CPC_HZ_construction_begins
+		}
+		remove_effect = {
+			clr_country_flag = CPC_HZ_construction_begins
+			set_temp_variable = { pus_temp = 1 }
+			country_event = CPC_HZ.3
+			econ_pus_change = yes
+			add_victory_points = {
+				province = 17053
+				value = 3
+			}
+			2413 = {
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_to_variable = {
+				CPC_HZ_amount = 1
+			}
+			if = {
+				limit = { check_variable = { CPC_HZ_amount = 2 } }
+				2413 = {
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+				}
+				set_variable = {
+					CPC_HZ_amount = 0
+				}
+			}
+			add_stability = 0.01
+			add_manpower = 5000
+			set_country_flag = TER_HZ_E2_fin
+			custom_effect_tooltip = "TER_HZ_E2_fin"	
+		}
+	}
+	CPC_HZ_W1_dec = {
+		icon = GFX_decision_generic_heavy_industry
+		visible = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		ai_will_do = { factor = 20 }
+		available = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		days_remove = 300
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CPC_HZ_construction_begins
+		}
+		remove_effect = {
+			clr_country_flag = CPC_HZ_construction_begins
+			country_event = CPC_HZ.6
+			add_victory_points = {
+				province = 17053
+				value = 3
+			}
+			2413 = {
+				add_building_construction = {
+					type = hospitals
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_to_variable = {
+				CPC_HZ_amount = 1
+			}
+			if = {
+				limit = { check_variable = { CPC_HZ_amount = 2 } }
+				2413 = {
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+				}
+				set_variable = {
+					CPC_HZ_amount = 0
+				}
+			}
+			add_stability = 0.01
+			add_manpower = 5000
+			set_country_flag = TER_HZ_W1_fin
+			custom_effect_tooltip = "TER_HZ_W1_fin"	
+		}
+	}
+	CPC_HZ_W2_dec = {
+		icon = GFX_decision_generic_heavy_industry
+		visible = {
+			has_country_flag = CPC_HZ_unlock
+			has_country_flag = TER_HZ_W1_fin
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		ai_will_do = { factor = 20 }
+		available = {
+			has_country_flag = CPC_HZ_unlock
+			has_country_flag = TER_HZ_W1_fin
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		days_remove = 300
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CPC_HZ_construction_begins
+		}
+		remove_effect = {
+			clr_country_flag = CPC_HZ_construction_begins
+			country_event = CPC_HZ.7
+			add_victory_points = {
+				province = 17053
+				value = 3
+			}
+			2413 = {
+				add_building_construction = {
+					type = barracks
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = stronghold_network
+					level = 1
+				}
+			}
+			add_to_variable = {
+				CPC_HZ_amount = 1
+			}
+			if = {
+				limit = { check_variable = { CPC_HZ_amount = 2 } }
+				2413 = {
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+				}
+				set_variable = {
+					CPC_HZ_amount = 0
+				}
+			}
+			add_stability = 0.01
+			add_manpower = 5000
+			set_country_flag = TER_HZ_W2_fin
+			custom_effect_tooltip = "TER_HZ_W2_fin"	
+		}
+	}
+	CPC_HZ_N_dec = {
+		icon = GFX_decision_generic_heavy_industry
+		visible = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		ai_will_do = { factor = 20 }
+		available = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		days_remove = 300
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CPC_HZ_construction_begins
+		}
+		remove_effect = {
+			clr_country_flag = CPC_HZ_construction_begins
+			country_event = CPC_HZ.4
+			add_victory_points = {
+				province = 17053
+				value = 3
+			}
+			2413 = {
+				add_building_construction = {
+					type = fuel_silo
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_to_variable = {
+				CPC_HZ_amount = 1
+			}
+			if = {
+				limit = { check_variable = { CPC_HZ_amount = 2 } }
+				2413 = {
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+				}
+				set_variable = {
+					CPC_HZ_amount = 0
+				}
+			}
+			add_stability = 0.01
+			add_manpower = 5000
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+			set_country_flag = TER_HZ_N_fin
+			custom_effect_tooltip = "TER_HZ_N_fin"	
+		}
+	}
+	CPC_HZ_S_dec = {
+		icon = GFX_decision_generic_heavy_industry
+		visible = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		available = {
+			has_country_flag = CPC_HZ_unlock
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_HZ_construction_begins }
+			}
+		}
+		ai_will_do = { factor = 20 }
+		days_remove = 300
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CPC_HZ_construction_begins
+		}
+		remove_effect = {
+			clr_country_flag = CPC_HZ_construction_begins
+			country_event = CPC_HZ.5
+			add_victory_points = {
+				province = 17053
+				value = 3
+			}
+			2413 = {
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = prisons
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_to_variable = {
+				CPC_HZ_amount = 1
+			}
+			if = {
+				limit = { check_variable = { CPC_HZ_amount = 2 } }
+				2413 = {
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+				}
+				set_variable = {
+					CPC_HZ_amount = 0
+				}
+			}
+			add_stability = 0.01
+			add_manpower = 3000
+			set_country_flag = TER_HZ_S_fin
+			custom_effect_tooltip = "TER_HZ_S_fin"	
+		}
+	}
+	
+    CPC_debug_dec_11 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		visible = {
+			has_country_flag = TNO_ArcadeMode_enable
+		}
+		available = {
+			has_country_flag = TNO_ArcadeMode_enable
+		}
+		complete_effect = {
+			custom_effect_tooltip = "CPC_debug_dec_11_tt_for_joy"
+			hidden_effect = { 
+				set_country_flag = CPC_ArcadeMode_Nuke
+				TERNuclearProgramCompletion = yes
+			}
+		}
+	}
+}

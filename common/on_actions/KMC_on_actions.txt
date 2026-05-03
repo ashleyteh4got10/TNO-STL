@@ -1,0 +1,209 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			KMC = {
+				if = {
+					limit = {
+						is_ai = yes
+					}
+					country_event = { id = kmcgp.666 days = 1 }
+				}
+				set_country_flag = cannot_raid
+				set_country_flag = gui_alert_visible
+
+				remove_ideas = KMC_prof_dummy
+				add_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier }
+				set_variable = { KMC_dealing_with_up_pp = 0 }
+				country_lock_all_division_template = yes
+
+				country_event = { id = kmcgp.2 days = 1 } #event. The Shadow of a Fleet
+
+				set_variable = { KMC_professionalism = 1 }
+				set_variable = { KMC_prof_pp = 0.01 }
+				#set_variable = { KMC_give_supplies_amount = 0 }
+				#set_variable = { KMC_give_supplies_amount_usa = 0 }
+				#set_variable = { KMC_give_supplies_amount_jap = 0 }
+				set_variable = { KMC_american_concern = 13 }
+				set_variable = { KMC_japanese_concern = 21 }
+				set_variable = { KMC_supplies = 10 }
+				set_variable = { KMC_unsanctioned_tick = 5 }
+				set_variable = { KMC_fuel_stored = 0 }
+				set_variable = { KMC_american_concern_decay = 3 }
+				set_variable = { KMC_japanese_concern_decay = 3 }
+
+				#NAVAL GUI SETUP
+				set_variable = { SELECTED_SHIP = 11 }
+				#battleship
+				set_variable = { KMC_supplies_or = 0 }
+				#destroyers
+				set_variable = { KMC_supplies_rykov = 0 }
+				set_variable = { KMC_supplies_ryanyy = 0 }
+				set_variable = { KMC_supplies_bukharin = 0 }
+				set_variable = { KMC_supplies_uritskiy = 0 }
+				#submarines
+				set_variable = { KMC_supplies_shch101 = 0 }
+				set_variable = { KMC_supplies_shch102 = 0 }
+				set_variable = { KMC_supplies_shch103 = 0 }
+				set_variable = { KMC_supplies_shch104 = 0 }
+				set_variable = { KMC_supplies_shch105 = 0 }
+				set_variable = { KMC_supplies_shch106 = 9 }
+				set_variable = { KMC_supplies_shch107 = 0 }
+				set_variable = { KMC_supplies_shch108 = 0 }
+				set_variable = { KMC_supplies_shch109 = 0 }
+				set_variable = { KMC_supplies_shch110 = 0 }
+
+
+				#Setting fuel stores for each ship
+
+				set_variable = { KMC_fuel_stored_or = 0 }
+				set_variable = { KMC_fuel_stored_rykov = 0 }
+				set_variable = { KMC_fuel_stored_ryanyy = 0 }
+				set_variable = { KMC_fuel_stored_bukharin = 0 }
+				set_variable = { KMC_fuel_stored_uritskiy = 0 }
+				set_variable = { KMC_fuel_stored_shch101 = 0 }
+				set_variable = { KMC_fuel_stored_shch102 = 0 }
+				set_variable = { KMC_fuel_stored_shch103 = 0 }
+				set_variable = { KMC_fuel_stored_shch104 = 0 }
+				set_variable = { KMC_fuel_stored_shch105 = 0 }
+				set_variable = { KMC_fuel_stored_shch106 = 0 }
+				set_variable = { KMC_fuel_stored_shch107 = 0 }
+				set_variable = { KMC_fuel_stored_shch108 = 0 }
+				set_variable = { KMC_fuel_stored_shch109 = 0 }
+				set_variable = { KMC_fuel_stored_shch110 = 0 }
+
+				#Set max supplies ship types
+
+				set_variable = { KMC_battleship_max_supplies = 800 }
+				set_variable = { KMC_destroyer_max_supplies = 400 }
+				set_variable = { KMC_sub_max_supplies = 300 }
+
+				set_variable = { KMC_battleship_max_fuel = 2 }
+				set_variable = { KMC_destroyer_max_fuel = 1 }
+				set_variable = { KMC_sub_max_fuel = 1 }
+
+				#Set max supplies
+
+				set_variable = { KMC_supplies_or_max = KMC_battleship_max_supplies }
+				set_variable = { KMC_supplies_rykov_max = KMC_destroyer_max_supplies }
+				set_variable = { KMC_supplies_ryanyy_max = KMC_destroyer_max_supplies }
+				set_variable = { KMC_supplies_bukharin_max = KMC_destroyer_max_supplies }
+				set_variable = { KMC_supplies_uritskiy_max = KMC_destroyer_max_supplies }
+				set_variable = { KMC_supplies_shch101_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch102_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch103_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch104_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch105_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch106_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch107_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch108_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch109_max = KMC_sub_max_supplies }
+				set_variable = { KMC_supplies_shch110_max = KMC_sub_max_supplies }
+
+				#Set max fuel
+
+				set_variable = { KMC_fuel_or_max = KMC_battleship_max_fuel }
+				set_variable = { KMC_fuel_rykov_max = KMC_destroyer_max_fuel }
+				set_variable = { KMC_fuel_ryanyy_max = KMC_destroyer_max_fuel }
+				set_variable = { KMC_fuel_bukharin_max = KMC_destroyer_max_fuel }
+				set_variable = { KMC_fuel_uritskiy_max = KMC_destroyer_max_fuel }
+				set_variable = { KMC_fuel_shch101_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch102_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch103_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch104_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch105_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch106_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch107_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch108_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch109_max = KMC_sub_max_fuel }
+				set_variable = { KMC_fuel_shch110_max = KMC_sub_max_fuel }
+
+				#smuggling variables 
+				set_variable = { KMC_smuggling_supplies = 3 }
+				set_variable = { KMC_smuggling_weapons = 5 }
+				set_variable = { KMC_smuggling_fuel = 1 }
+				set_variable = { KMC_smuggling_mission_length = 90 }
+
+				set_variable = { fuel_smuggling_network_size = 0 }
+				set_variable = { weapons_smuggling_network_size = 0 }
+				set_variable = { supplies_smuggling_network_size = 0 }
+				set_variable = { general_smuggling_netowrk_size = 1 }
+				set_variable = { black_market_trades_av = 1 }
+
+				set_variable = { fuel_smuggling_network_size_convoys = 0 }
+				set_variable = { fuel_smuggling_network_size_manpower = 0 }
+
+				set_variable = { weapons_smuggling_network_size_convoys = 0 }
+				set_variable = { weapons_smuggling_network_size_manpower = 0 }
+				
+				set_variable = { supplies_smuggling_network_size_convoys = 0 }
+				set_variable = { supplies_smuggling_network_size_manpower = 0 }
+
+				#black market
+
+				set_variable = { KMC_price_base_infeq = 100 }
+				set_variable = { KMC_price_base_supeq = 100 }
+				set_variable = { KMC_price_base_ateq = 150 }
+				set_variable = { KMC_price_base_fuelship = 100 }
+			}
+		}
+	}
+
+	on_monthly_KMC = {
+		effect = {
+			KMC ={
+				subtract_from_variable = { KMC_american_concern = var:KMC_american_concern_decay }
+				if = {
+					limit = {
+						has_country_flag = KMC_has_american_support
+					}
+					clamp_variable = {
+						var = KMC_american_concern
+						min = -20
+						max = 100
+					}
+				}
+				else = {
+					clamp_variable = {
+						var = KMC_american_concern
+						min = 0
+						max = 100
+					}
+				}
+				subtract_from_variable = { KMC_japanese_concern = var:KMC_japanese_concern_decay }
+				if = {
+					limit = {
+						has_country_flag = KMC_japanese_support
+					}
+					clamp_variable = {
+						var = KMC_japanese_concern
+						min = -20
+						max = 100
+					}
+				}
+				else = {
+					clamp_variable = {
+						var = KMC_japanese_concern
+						min = 0
+						max = 100
+					}
+				}
+			}
+		}
+	}
+
+	on_declare_war = {
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						tag = KMC
+					}
+				}
+				KMC = {
+					country_event = { id = kmcgp.14 days = 10 }
+					set_country_flag = emergancy_preperations
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,898 @@
+
+### Shared focus
+### Comintern
+shared_focus = {
+    id = TOT_the_found_of_comintern
+    icon = GFX_goal_TOT_the_found_of_comintern
+    relative_position_id = TOT_Dip_event
+    x = 40
+    y = 15
+    prerequisite = {
+        focus = TOT_Dip_event
+    }
+    cost = 3
+    cancelable = no
+    available = {
+        has_global_flag = COMECON_FOUNDED
+    }
+    select_effect = {
+        hidden_effect = {
+            create_faction = TOT_comintern
+            TOT_comintern_startup = yes
+            every_country = {
+                limit = {
+                    OR = {
+                        has_idea = KOM_socintern_associate
+                        has_idea = KOM_socintern_member
+                    }
+                    NOT = { tag = ROOT }
+                    is_subject = no
+                    NOT = { tag = TOT }
+                }
+                country_event = {
+                    id = TOT_comintern.1
+                }
+            }
+            remove_ideas = {
+                KOM_socintern_associate
+                KOM_socintern_member
+            }
+        }
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_the_found_of_comintern_tt
+        hidden_effect = {
+            add_ideas = TOT_comintern_leader
+            set_global_flag = TOT_comintern_eeclaration_released
+            every_country = {
+                limit = {
+                    OR = {
+                        has_idea = TOT_comintern_member
+                        has_idea = TOT_comintern_temp_gov
+                    }
+                }
+                
+                TOT_comintern_add_to_comintern = yes
+            }
+    
+            TOT_comintern_member_reflesh = yes
+    
+            TOT_comintern_comecon_startup = yes
+
+		    econ_join_sphere_CME = yes
+
+            every_country = {
+                news_event = TOT_comintern_news.1
+            }
+        }
+    }
+}
+shared_focus = {
+    id = TOT_Reorganize_Comintern_institutions
+    icon = GFX_focus_RUS_new_soviet_state
+    relative_position_id = TOT_the_found_of_comintern
+    x = 0
+    y = 1
+    cost = 1
+    prerequisite = {
+        focus = TOT_the_found_of_comintern
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_focus_not_completed
+    }
+}
+shared_focus = {
+    id = TOT_the_found_of_omc
+    icon = GFX_goal_TOT_the_found_of_omc
+    relative_position_id = TOT_Reorganize_Comintern_institutions
+    x = -1
+    y = 2
+    cost = 3
+    prerequisite = {
+        focus = TOT_Reorganize_Comintern_institutions
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_comintern_omc_found_enabled
+        hidden_effect = {
+            set_global_flag = TOT_comintern_omc_found_enabled
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_the_found_of_ias
+    icon = GFX_goal_TOT_the_found_of_ias
+    relative_position_id = TOT_Reorganize_Comintern_institutions
+    x = 1
+    y = 2
+    cost = 3
+    prerequisite = {
+        focus = TOT_Reorganize_Comintern_institutions
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_comintern_IAS_found_enabled
+        hidden_effect = {
+            set_global_flag = TOT_comintern_IAS_found_enabled
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_influence_of_comintern
+    icon = GFX_focus_generic_socialism_first
+    relative_position_id = TOT_the_found_of_comintern
+    x = 6
+    y = 1
+    cost = 1
+    prerequisite = {
+        focus = TOT_the_found_of_comintern
+    }
+    completion_reward = {
+        add_stability = 0.2
+        add_war_support = 0.2
+    }
+}
+
+shared_focus = {
+    id = TOT_enemies_front_us
+    icon = GFX_focus_generic_orthographic_europe
+    relative_position_id = TOT_influence_of_comintern
+    x = 0
+    y = 2
+    cost = 1
+    prerequisite = {
+        focus = TOT_influence_of_comintern
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_enemies_front_us_tt
+        add_political_power = 20
+    }
+}
+
+shared_focus = {
+    id = TOT_northern_europe_problem
+    icon = GFX_focus_KOM_the_scandinavian_sphere
+    relative_position_id = TOT_enemies_front_us
+    x = -2
+    y = 1
+    cost = 5
+    prerequisite = {
+        focus = TOT_enemies_front_us
+    }
+    completion_reward = {
+        add_political_power = 20
+        custom_effect_tooltip = TOT_northern_europe_problem_tooltip
+        hidden_effect = {
+            country_event = {
+                id = TOT_fopo_event.6
+            }
+            USA = {
+                country_event = {
+                    id = TOT_fopo_event.5
+                }
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_ne_support_cp
+    icon = GFX_focus_TYM_live_among_wolves
+    relative_position_id = TOT_northern_europe_problem
+    x = -1
+    y = 1
+    cost = 5
+    prerequisite = {
+        focus = TOT_northern_europe_problem
+    }
+    completion_reward = {
+        every_country = {
+            limit = {
+                OR = {
+                    tag = NOR
+                    tag = SWE
+                    tag = DEN
+                }
+            }
+            add_popularity = {
+                ideology = communist
+                popularity = 0.03
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_ne_more_support
+    icon = GFX_focus_RUS_a_revolutionary_indoctrination
+    relative_position_id = TOT_ne_support_cp
+    x = 0
+    y = 2
+    cost = 5
+    prerequisite = {
+        focus = TOT_ne_support_cp
+    }
+    completion_reward = {
+        every_country = {
+            limit = {
+                OR = {
+                    tag = NOR
+                    tag = SWE
+                    tag = DEN
+                }
+            }
+            add_popularity = {
+                ideology = communist
+                popularity = 0.03
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_ne_attack
+    icon = GFX_TOT_ne_attack
+    relative_position_id = TOT_ne_support_cp
+    x = -2
+    y = 1
+    cost = 5
+    prerequisite = {
+        focus = TOT_ne_support_cp
+    }
+    available = {
+        OR = {
+            TOT_SOV_lose_ne = yes
+            has_country_leader_ideology = communist_stratocratic_communism_subtype
+        }
+    }
+    completion_reward = {
+        if = {
+            limit = {
+                SWE = {
+                    NOT = {
+                        has_government = communist
+                    }
+                }
+            }
+            declare_war_on = {
+                target = SWE
+                type = annex_everything
+            }
+        }
+        if = {
+            limit = {
+                DEN = {
+                    NOT = {
+                        has_government = communist
+                    }
+                }
+            }
+            declare_war_on = {
+                target = DEN
+                type = annex_everything
+            }
+        }
+        if = {
+            limit = {
+                NOR = {
+                    NOT = {
+                        has_government = communist
+                    }
+                }
+            }
+            declare_war_on = {
+                target = NOR
+                type = annex_everything
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_ne_finland_problem
+    icon = GFX_TOT_Finland
+    relative_position_id = TOT_northern_europe_problem
+    x = 1
+    y = 1
+    cost = 5
+    prerequisite = {
+        focus = TOT_northern_europe_problem
+    }
+    completion_reward = {
+        add_political_power = 20
+    }
+}
+
+shared_focus = {
+    id = TOT_ne_finland_border
+    icon = GFX_TOT_ne_finland_border
+    relative_position_id = TOT_ne_finland_problem
+    x = 2
+    y = 1
+    cost = 5
+    prerequisite = {
+        focus = TOT_ne_finland_problem
+    }
+    completion_reward = {
+        every_country = {
+            limit = {
+                owns_state = 1712
+            }
+            country_event = {
+                id = TOT_FIN.1
+            }
+        }   
+    }
+}
+
+shared_focus = {
+    id = TOT_ne_support_cpf
+    icon = GFX_TOT_Red_Finland
+    relative_position_id = TOT_ne_finland_problem
+    x = 0
+    y = 2
+    cost = 5
+    available = {
+        NOT = {
+            has_war_with = FIN
+        }
+    }
+    prerequisite = {
+        focus = TOT_ne_finland_problem
+    }
+    completion_reward = {
+        if = {
+            limit = {
+                FIN = {
+                    exists = yes
+                    has_government = communist
+                }
+            }
+            FIN = {
+                add_ideas = {
+                    FIN_TOT_Soviet_Support
+                }
+            }
+        }
+        else_if = {
+            limit = {
+                RFI = {
+                    exists = yes
+                }
+            }
+            RFI = {
+                add_ideas = {
+                    FIN_TOT_Soviet_Support
+                }
+            }
+        }
+        else = {
+            FIN = {
+                add_popularity = {
+                    ideology = communist
+                    popularity = 0.10
+                }
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_red_scandinavia
+    icon = GFX_TOT_red_scandinavia
+    relative_position_id = TOT_ne_support_cpf
+    x = -1
+    y = 2
+    cost = 5
+    prerequisite = {
+        focus = TOT_ne_more_support
+    }
+    prerequisite = {
+        focus = TOT_ne_support_cpf
+    }
+    completion_reward = {
+        add_political_power = 100
+        every_country = {
+            limit = {
+                OR = {
+                    tag = NOR
+                    tag = SWE
+                    tag = DEN
+                }
+                OR = {
+                    has_government = communist
+                    has_government = socialist
+                }
+            }
+            event_target:TOT_comintern_leader_target = {
+                add_to_faction = PREV
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_central_europe_problem
+    icon = GFX_focus_RUS_russia_defeats_germany
+    relative_position_id = TOT_northern_europe_problem
+    x = 6
+    y = 0
+    cost = 2
+    prerequisite = {
+        focus = TOT_enemies_front_us
+    }
+    completion_reward = {
+        add_political_power = 50
+        custom_effect_tooltip = TOT_central_europe_problem_tooltip
+    }
+}
+
+shared_focus = {
+    id = TOT_ce_support_comrades
+    icon = GFX_focus_RUS_soviet_arms
+    relative_position_id = TOT_central_europe_problem
+    x = 3
+    y = 1
+    cost = 1
+    prerequisite = {
+        focus = TOT_central_europe_problem
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_focus_not_completed
+        send_equipment = {
+            equipment = infantry_equipment
+            amount = 2000
+            target = DE5
+        }
+        send_equipment = {
+            equipment = infantry_equipment
+            amount = 2000
+            target = DE2
+        }
+        send_equipment = {
+            equipment = infantry_equipment
+            amount = 2000
+            target = DE6
+        }
+        send_equipment = {
+            equipment = infantry_equipment
+            amount = 2000
+            target = DE7
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_berlin_moscow_sbs
+    icon = GFX_TOT_berlin_moscow_sbs
+    relative_position_id = TOT_ce_support_comrades
+    x = 0
+    y = 2
+    cost = 5
+    available = {
+        DE1 = {
+            exists = yes
+        }
+    }
+    prerequisite = {
+        focus = TOT_ce_support_comrades
+    }
+    completion_reward = {
+        add_political_power = 50
+        set_temp_variable = { gdp_growth_temp = 0.35 }
+        econ_gdp_growth_change = yes
+        DE1 = {
+            set_temp_variable = { gdp_growth_temp = 0.5 }
+            econ_gdp_growth_change = yes
+            add_ideas = TOT_comintern_member
+            TOT_comintern_add_to_comintern = yes
+        }
+        hidden_effect = {
+            if = {
+                limit = {
+                    DE9 = {
+                        exists = yes
+                    }
+                    DE8 = {
+                        exists = no
+                    }
+                }
+                POL = {
+                    annex_country = {
+                        target = DE9
+                        transfer_troops = yes
+                    }
+                }
+                POL = {
+                    transfer_state = 63
+                    transfer_state = 66
+                    transfer_state = 67
+                    transfer_state = 97
+                    transfer_state = 2528
+                    transfer_state = 2529
+                    every_owned_state = {
+                        limit = {
+                            OR = {
+                                state = 63
+                                state = 66
+                                state = 67
+                                state = 85
+                                state = 87
+                                state = 97
+                                state = 2528
+                                state = 2529
+                            }
+                        }
+                        add_core_of = POL
+                    }
+                }
+                transfer_state = 5
+                transfer_state = 89
+                transfer_state = 91
+                transfer_state = 1387
+                transfer_state = 1388
+                transfer_state = 1389
+                transfer_state = 1390
+                transfer_state = 1391
+                transfer_state = 1392
+                transfer_state = 1393
+                transfer_state = 1394
+                transfer_state = 2526
+                every_owned_state = {
+                    limit = {
+                        OR = {
+                            state = 5
+                            state = 89
+                            state = 91
+                            state = 1387
+                            state = 1388
+                            state = 1389
+                            state = 1390
+                            state = 1391
+                            state = 1392
+                            state = 1393
+                            state = 1394
+                            state = 2526
+                        }
+                    }
+                    add_core_of = event_target:TOT_against_GER_leader
+                }
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_ostrava_treaty
+    icon = GFX_focus_RUS_soviet_cosmopolitanism
+    relative_position_id = TOT_ne_finland_border
+    x = 0
+    y = 2
+    cost = 5
+    prerequisite = {
+        focus = TOT_ce_debrecen_treaty
+    }
+    prerequisite = {
+        focus = TOT_ne_finland_border
+    }
+    completion_reward = {
+        POL = {
+            set_temp_variable = { gdp_growth_temp = 0.5 }
+            econ_gdp_growth_change = yes
+        }
+        if = {
+            limit = {
+                country_exists = DE1
+            }
+            DE1 = {
+                set_temp_variable = { gdp_growth_temp = 0.5 }
+                econ_gdp_growth_change = yes
+            }
+        }
+        if = {
+            limit = {
+                country_exists = DE2
+            }
+            DE2 = {
+                set_temp_variable = { gdp_growth_temp = 0.5 }
+                econ_gdp_growth_change = yes
+            }
+        }
+        if = {
+            limit = {
+                country_exists = DE5
+            }
+            DE5 = {
+                set_temp_variable = { gdp_growth_temp = 0.5 }
+                econ_gdp_growth_change = yes
+            }
+        }
+        if = {
+            limit = {
+                country_exists = DE6
+            }
+            DE6 = {
+                set_temp_variable = { gdp_growth_temp = 0.5 }
+                econ_gdp_growth_change = yes
+            }
+        }
+        if = {
+            limit = {
+                country_exists = DE7
+            }
+            DE7 = {
+                set_temp_variable = { gdp_growth_temp = 0.5 }
+                econ_gdp_growth_change = yes
+            }
+        }
+        set_temp_variable = { gdp_growth_temp = 0.5 }
+        econ_gdp_growth_change = yes
+    }
+}
+
+shared_focus = {
+    id = TOT_ce_help_cph
+    icon = GFX_TOT_Hungary_and_Slovakia
+    relative_position_id = TOT_central_europe_problem
+    x = -1
+    y = 2
+    cost = 5
+    prerequisite = {
+        focus = TOT_central_europe_problem
+    }
+    completion_reward = {
+        add_political_power = -75
+        declare_war_on = {
+            target = HUN
+            type = annex_everything
+        }
+        hidden_effect = {
+            SLO = {
+                country_event = {
+                    id = TOT_fopo_event.10
+                    days = 10
+                }
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_ce_debrecen_treaty
+    icon = GFX_TOT_ce_debrecen_treaty
+    relative_position_id = TOT_ce_help_cph
+    x = 0
+    y = 1
+    cost = 5
+    available = {
+        HUN = {
+            has_government = communist
+        }
+        ROM = {
+            has_character = ROM_Nicolae_Ceausescu
+        }
+    }
+    prerequisite = {
+        focus = TOT_ce_help_cph
+    }
+    prerequisite = {
+        focus = TOT_ce_take_over_romanina
+    }
+    completion_reward = {
+        country_event = {
+            id = TOT_fopo_event.9
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_ce_take_over_romanina
+    icon = GFX_TOT_Romanina_problem
+    relative_position_id = TOT_central_europe_problem
+    x = 1
+    y = 2
+    cost = 5
+    prerequisite = {
+        focus = TOT_central_europe_problem
+    }
+
+    completion_reward = {
+        if = {
+            limit = {
+                country_exists = TNS
+            }
+            declare_war_on = {
+                target = TNS
+                type = annex_everything
+            }
+        }
+        if = {
+            limit = {
+                ROM  = {
+                    is_puppet_of = ROOT
+                }
+            }
+            ROM = {
+                every_owned_state = {
+                    limit = {
+                        OR = {
+                            state = 192
+                            state = 198
+                            state = 1282
+                            state = 1285
+                            state = 78
+                            state = 1966
+                            state = 1965
+                            state = 1286
+                            state = 80
+                        }
+                    }
+                    add_core_of = ROOT
+                }
+
+                every_owned_state = {
+                    limit = {
+                        is_core_of = ROOT
+                    }
+                    ROOT = {
+                        transfer_state = PREV
+                    }
+                }
+
+                if = {
+                    limit = {
+                        NOT = {
+                            has_focus_tree = TOT_ROM_focus_tree
+                        }
+                    }
+
+                    country_event = {
+                        id = TOTROM.1
+                        days = 30
+                    }
+
+                    TOT = {
+                        SOV_comintern_mil_committee_ROM = {
+                            set_nationality = PREV.PREV
+                        }
+                        ROM_Nicolae_Ceausescu = {
+                            set_nationality = PREV.PREV
+                        }
+                    }
+
+                    promote_character = SOV_comintern_mil_committee_ROM
+
+                    set_cosmetic_tag = TOT_ROM
+
+                    set_popularities = {
+                        communist = 25
+                        socialist = 15
+                        progressivism = 20
+                        liberal_conservatism = 10
+                        conservatism = 10
+                        paternalism = 0
+                        despotism = 10
+                        fascism = 10
+                        national_socialism = 0
+                        ultranationalism = 0
+                    }
+
+                    set_party_name = {
+                        ideology = communist
+                        name = TOT_ROM_communist_party
+                        long_name = TOT_ROM_communist_party_long
+                    }
+
+                    set_party_name = {
+                        ideology = socialist
+                        name = TOT_ROM_communist_party
+                        long_name = TOT_ROM_communist_party_long
+                    }
+
+                    set_party_name = {
+                        ideology = despotism
+                        name = TOT_ROM_despotism_party
+                        long_name = TOT_ROM_despotism_party
+                    }
+                }
+            }
+        }
+        else = {
+            declare_war_on = {
+                target = ROM
+                type = annex_everything
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_ce_support_yugoslavia
+    icon = GFX_TOT_support_yugoslavia
+    relative_position_id = TOT_ce_take_over_romanina
+    x = 0
+    y = 1
+    cost = 5
+    prerequisite = {
+        focus = TOT_ce_take_over_romanina
+    }
+    prerequisite = {
+        focus = TOT_ce_take_over_romanina
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_ce_support_yugoslavia_tt
+        hidden_effect = {
+            add_equipment_to_stockpile = {
+                type = infantry_equipment
+                amount = -2000
+            }
+        } 
+    }
+}
+
+shared_focus = {
+    id = TOT_ce_support_albania
+    icon = GFX_TOT_support_albania
+    relative_position_id = TOT_ce_support_yugoslavia
+    x = -1
+    y = 1
+    cost = 5
+    prerequisite = {
+        focus = TOT_ce_support_yugoslavia
+    }
+    prerequisite = {
+        focus = TOT_ce_debrecen_treaty
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_focus_not_completed
+        send_equipment = {
+            equipment = infantry_equipment
+            amount = 2500
+            target = ALB
+        }
+        hidden_effect = {
+            ALB = {
+                inherit_technology = ITA
+            }
+        }
+    }
+}
+
+shared_focus = {
+    id = TOT_attack_italy
+    icon = GFX_TOT_attack_italy
+    relative_position_id = TOT_ce_support_albania
+    x = 0
+    y = 1
+    cost = 5
+    prerequisite = {
+        focus = TOT_ce_support_albania
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_attack_italy_tt
+        TOT_attack_italy_se = yes
+    }
+}
+
+shared_focus = {
+    id = TOT_Second_Heart_Revolution
+    icon = GFX_focus_generic_socialist_progressive_values
+    relative_position_id = TOT_berlin_moscow_sbs
+    x = -1
+    y = 3
+    cost = 5
+    prerequisite = {
+        focus = TOT_berlin_moscow_sbs
+    }
+    prerequisite = {
+        focus = TOT_red_scandinavia
+    }
+    prerequisite = {
+        focus = TOT_attack_italy
+    }
+    completion_reward = {
+        custom_effect_tooltip = TOT_focus_not_completed
+        add_political_power = 200
+    }
+}
+

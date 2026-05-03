@@ -1,0 +1,675 @@
+	shared_focus = {
+		id = CPC_equity_budget
+		icon = GFX_goals_CPC_equity_budget
+		cost = 3
+		x = 14
+		y = 0
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.132  days = 3 }
+			set_temp_variable = { debt_temp = 0.25 }
+			econ_national_debt_change = yes
+			tno_max_workhours_improve = yes
+			tno_minimum_wage_improve = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_S_redeem_company_shares }
+			set_temp_variable = { times_tmp = 3 }
+			CPGAC_unlock_limited_policy_effect = yes
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_increase_citizens_subsidy }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 1 }
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 3 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 35 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 80 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 65 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 40 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 55 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 5 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 20 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 45 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 70 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 20 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 50 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 30 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+		}
+	}
+
+	shared_focus = {
+		id = CPC_industry_combination
+		icon = GFX_goals_CPC_industry_combination
+		cost = 3
+		prerequisite = {
+			focus = CPC_equity_budget
+		}
+		relative_position_id = CPC_equity_budget
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.133  days = 3 }
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.01 }
+			econ_GDP_boost_once_percentage = yes
+			if = { 
+				limit = { has_completed_focus = CPC_unified_production_criterion_Liu }
+				set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_S_develop_industry }
+				set_temp_variable = { times_tmp = 2 }
+				CPGAC_unlock_limited_policy_effect = yes
+			}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_unified_production_criterion_Liu
+		icon = GFX_goals_CPC_unified_production_criterion_Liu
+		cost = 3
+		prerequisite = {
+			focus = CPC_equity_budget
+		}
+		relative_position_id = CPC_equity_budget
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.74  days = 3 }
+			set_temp_variable = { gdp_growth_temp = 0.2 }
+			econ_gdp_growth_change = yes
+			if = { 
+				limit = { has_completed_focus = CPC_industry_combination }
+				set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_S_develop_industry }
+				set_temp_variable = { times_tmp = 2 }
+				CPGAC_unlock_limited_policy_effect = yes
+			}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_city_Su_Fan_movement
+		icon = GFX_goals_CPC_city_Su_Fan_movement
+		cost = 3
+		prerequisite = {
+			focus = CPC_industry_combination
+			focus = CPC_unified_production_criterion_Liu
+		}
+		relative_position_id = CPC_industry_combination
+		x = 1
+		y = 1
+		available = {
+			NOT = { has_country_flag = CPC_we_have_an_urgent_task }
+		}
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.134  days = 3 }
+			TNO_improve_gender_rights_policy_effectiveness_low = yes
+			set_temp_variable = { begin_ut_temp = token:CPGAC_u_Su_Fan_movement }
+			set_temp_variable = { days_temp = 150 }
+			TER_CPGAC_begin_an_urgent_task = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_education_subsidy
+		icon = GFX_goals_CPC_education_subsidy
+		cost = 3
+		prerequisite = {
+			focus = CPC_city_Su_Fan_movement
+		}
+		available = {
+			CPC_we_have_UT_Su_Fan = yes
+			has_country_flag = CPGAC_prop_increase_citizens_flag
+		}
+		relative_position_id = CPC_city_Su_Fan_movement
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { debt_temp = 0.3 }
+			econ_national_debt_change = yes
+			set_temp_variable = { inflation_temp = 0.1 }
+			econ_inflation_change = yes
+			TNO_improve_academic_base_low = yes
+			TNO_improve_industrial_expertise_low = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_S_we_need_more_schools }
+			set_temp_variable = { times_tmp = 2 }
+			CPGAC_unlock_limited_policy_effect = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_monitoring_working_hours_standards
+		icon = GFX_goals_CPC_monitoring_working_hours_standards
+		cost = 3
+		prerequisite = {
+			focus = CPC_city_Su_Fan_movement
+		}
+		available = {
+			CPC_we_have_UT_Su_Fan = yes
+			has_country_flag = CPGAC_prop_increase_citizens_flag
+		}
+		relative_position_id = CPC_city_Su_Fan_movement
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.135  days = 3 }
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_central_group_enters_factory }
+			CPGAC_intensify_policy_effect = yes
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_labor_protection_compensation_Liu
+		icon = GFX_goals_CPC_labor_protection_compensation_Liu
+		cost = 3
+		prerequisite = {
+			focus =  CPC_monitoring_working_hours_standards
+		}
+		relative_position_id =  CPC_monitoring_working_hours_standards
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_11_tmp = 0.004 }
+			set_temp_variable = { RBM_2_tmp = 0.05 }
+			set_temp_variable = { RBM_1_tmp = -0.05 }
+			CPC_RBM_modifier_change = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_medical_subsidies
+		icon = GFX_goals_CPC_medical_subsidies
+		cost = 3
+		prerequisite = {
+			focus = CPC_education_subsidy
+		}
+		available = {
+			CPC_we_have_UT_Su_Fan = yes
+		}
+		bypass_if_unavailable = yes
+		relative_position_id = CPC_education_subsidy
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_11_tmp = 0.004 }
+			CPC_RBM_modifier_change = yes
+			set_temp_variable = { debt_temp = 0.3 }
+			econ_national_debt_change = yes
+			set_temp_variable = { inflation_temp = 0.1 }
+			econ_inflation_change = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_S_we_need_more_hospitals }
+			set_temp_variable = { times_tmp = 2 }
+			CPGAC_unlock_limited_policy_effect = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_professional_skills_development
+		icon = GFX_goals_CPC_professional_skills_development
+		cost = 3
+		prerequisite = {
+			focus = CPC_monitoring_working_hours_standards
+		}
+		available = {
+			CPC_we_have_UT_Su_Fan = yes
+		}
+		bypass_if_unavailable = yes
+		relative_position_id = CPC_monitoring_working_hours_standards
+		x = 1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.01 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { debt_temp = 0.2 }
+			econ_national_debt_change = yes
+			set_temp_variable = { inflation_temp = 0.1 }
+			econ_inflation_change = yes
+			TNO_improve_industrial_expertise_med = yes
+		}
+	}
+
+
+	shared_focus = {
+		id = CPC_tempered_into_a_steel
+		icon = GFX_goals_CPC_tempered_into_a_steel
+		cost = 3
+		prerequisite = {
+			focus = CPC_medical_subsidies
+			focus = CPC_professional_skills_development
+		}
+		relative_position_id = CPC_medical_subsidies
+		x = 2
+		y = 1
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.136  days = 3 }
+			CPC_RBM_level_up = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { temp_law = token:CPC_industrial_reform_law }
+			TNO_add_assorted_law = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_cooperatives_lead_retail_investors
+		icon = GFX_goals_CPC_cooperatives_lead_retail_investors
+		cost = 3
+		x = 5
+		y = 0
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		completion_reward = {
+			add_political_power = -21
+			set_temp_variable = { RBM_11_tmp = 0.004 }
+			CPC_RBM_modifier_change = yes
+			TNO_worsen_agriculture_low = yes
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_relaxation_of_self_individual_farmers }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 1 }
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 2 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 35 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 80 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 65 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 40 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 55 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 5 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 20 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 45 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 70 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 20 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 50 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 30 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_cooperatives_stand_up
+		icon = GFX_goals_CPC_cooperatives_stand_up
+		cost = 3
+		prerequisite = {
+			focus = CPC_cooperatives_lead_retail_investors
+		}
+		relative_position_id = CPC_cooperatives_lead_retail_investors
+		available = {
+			has_country_flag = CPGAC_prop_relaxation_of_self_individual_farmers_flag
+		}
+		x = 0
+		y = 1
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_acquisition_of_cooperatives }
+			CPGAC_intensify_policy_effect = yes
+			TNO_improve_agriculture_low = yes
+		}
+	}
+
+	
+	
+	shared_focus = {
+		id = CPC_trepall_the_purchase
+		icon = GFX_goals_CPC_trepall_the_purchase
+		cost = 3
+		prerequisite = {
+			focus = CPC_cooperatives_lead_retail_investors
+		}
+		relative_position_id = CPC_cooperatives_lead_retail_investors
+		x = -2
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_1_tmp = 0.05 }
+			set_temp_variable = { RBM_10_tmp = 0.2 }
+			set_temp_variable = { RBM_11_tmp = 0.002 }
+			CPC_RBM_modifier_change = yes
+		}
+	}
+
+	
+	
+	shared_focus = {
+		id = CPC_retail_contract
+		icon = GFX_goals_CPC_retail_contract
+		cost = 3
+		prerequisite = {
+			focus = CPC_cooperatives_lead_retail_investors
+		}
+		relative_position_id = CPC_cooperatives_lead_retail_investors
+		x = 2
+		y = 1
+		completion_reward = {
+			add_political_power = -21
+			country_event = { id = CPC_main_story_events.146 days = 3 }
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.01 }
+			econ_GDP_boost_once_percentage = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_work_point_system
+		icon = GFX_goals_CPC_work_point_system
+		cost = 3
+		prerequisite = {
+			focus = CPC_cooperatives_stand_up
+			focus = CPC_trepall_the_purchase
+		}
+		relative_position_id = CPC_cooperatives_stand_up
+		x = -1
+		y = 1
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.139  days = 3 }
+			set_temp_variable = { RBM_2_tmp = 0.05 }
+			set_temp_variable = { RBM_9_tmp = 0.05 }
+			CPC_RBM_modifier_change = yes
+			TNO_improve_agriculture_low = yes
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_pay_for_yourself
+		icon = GFX_goals_CPC_pay_for_yourself
+		cost = 3
+		prerequisite = {
+			focus = CPC_retail_contract
+		}
+		relative_position_id = CPC_retail_contract
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_5_tmp = 0.05 }
+			set_temp_variable = { RBM_2_tmp = 0.05 }
+			CPC_RBM_modifier_change = yes
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_agricultural_bank
+		icon = GFX_goals_CPC_agricultural_bank
+		cost = 3
+		prerequisite = {
+			focus = CPC_work_point_system
+			focus = CPC_pay_for_yourself
+		}
+		relative_position_id = CPC_work_point_system
+		x = -2
+		y = 1
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.137  days = 3 }
+			set_temp_variable = { RBM_3_tmp = -0.1 }
+			set_temp_variable = { RBM_5_tmp = 0.05 }
+			set_temp_variable = { RBM_12_tmp = -0.3 }
+			CPC_RBM_modifier_change = yes
+			set_temp_variable = { business_tax_temp = 0.03 }
+			econ_business_tax_rate_change = yes
+			set_temp_variable = { money_reserves_temp = 0.6 }
+			econ_money_reserves_change_raw_money = yes
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_rebuild_ABC }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 1 }
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 2 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 40 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 75 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 65 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 45 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 50 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 10 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 20 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 45 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 50 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 40 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 50 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 40 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+		}
+	}
+
+	shared_focus = {
+		id = CPC_rural_market
+		icon = GFX_goals_CPC_rural_market
+		cost = 3
+		prerequisite = {
+			focus = CPC_work_point_system
+			focus = CPC_pay_for_yourself
+		}
+		relative_position_id = CPC_work_point_system
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.145 days = 2 }
+			CPC_RBM_level_up = yes
+			set_temp_variable = { RBM_11_tmp = 0.004 }
+			set_temp_variable = { RBM_12_tmp = 0.1 }
+			CPC_RBM_modifier_change = yes
+			set_temp_variable = { NCCPC_8_tmp = 0.015 }
+			TER_CPC_NCCPC_modifier_change_effect = yes
+			add_stability = -0.07
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_supply_and_marketing_cooperative
+		icon = GFX_goals_CPC_supply_and_marketing_cooperative
+		cost = 3
+		prerequisite = {
+			focus = CPC_work_point_system
+			focus = CPC_pay_for_yourself
+		}
+		relative_position_id = CPC_work_point_system
+		x = 4
+		y = 1
+		completion_reward = {
+			TNO_improve_agriculture_low = yes
+			country_event = CPC_main_story_events.70
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_small_low_interest_loan
+		icon = GFX_goals_CPC_small_low_interest_loan
+		cost = 3
+		prerequisite = {
+			focus = CPC_agricultural_bank
+		}
+		available = {
+			has_country_flag = CPGAC_prop_rebuild_ABC_flag
+		}
+		relative_position_id = CPC_agricultural_bank
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { money_reserves_temp = 0.3 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { inflation_temp = 0.1 }
+			econ_inflation_change = yes
+			set_temp_variable = { gdp_growth_temp = -0.2 }
+			econ_gdp_growth_change = yes
+			TNO_improve_agriculture_low = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_increase_agricultural_loans }
+			CPGAC_intensify_policy_effect = yes
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_research_bonds
+		icon = GFX_goals_CPC_research_bonds
+		cost = 3
+		prerequisite = {
+			focus = CPC_agricultural_bank
+		}
+		available = {
+			has_country_flag = CPGAC_prop_rebuild_ABC_flag
+		}
+		relative_position_id = CPC_agricultural_bank
+		x = 1
+		y = 1
+		completion_reward = {
+			country_event = { id = CPC_main_story_events.138  days = 3 }
+			set_temp_variable = { money_reserves_temp = 0.3 }
+			econ_money_reserves_change_raw_money = yes
+			TNO_improve_research_facilities_low = yes
+		}
+	}
+
+	
+
+	shared_focus = {
+		id = CPC_bureau_of_market_statistics
+		icon = GFX_goals_CPC_bureau_of_market_statistics
+		cost = 3
+		prerequisite = {
+			focus = CPC_rural_market
+		}
+		relative_position_id = CPC_rural_market
+		x = 0
+		y = 1
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		completion_reward = {
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_lower_food_prices }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 1 }
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 10 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 75 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 65 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 25 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 75 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 10 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 20 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 65 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 30 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 60 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 40 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 50 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+		}
+	}
+
+
+	shared_focus = {
+		id = CPC_acquisition_section
+		icon = GFX_goals_CPC_acquisition_section
+		cost = 3
+		prerequisite = {
+			focus = CPC_supply_and_marketing_cooperative
+		}
+		relative_position_id = CPC_supply_and_marketing_cooperative
+		x = -1
+		y = 1
+		completion_reward = {
+			TNO_improve_industrial_equipment_low = yes
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_price_section
+		icon = GFX_goals_CPC_price_section
+		cost = 3
+		prerequisite = {
+			focus = CPC_supply_and_marketing_cooperative
+		}
+		relative_position_id = CPC_supply_and_marketing_cooperative
+		x = 1
+		y = 1
+		completion_reward = {
+			TNO_improve_agriculture_low = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_L_check_local_finances }
+			CPGAC_intensify_policy_effect = yes
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_discount_deposit
+		icon = GFX_goals_CPC_discount_deposit
+		cost = 3
+		prerequisite = {
+			focus = CPC_small_low_interest_loan
+			focus = CPC_research_bonds
+		}
+		relative_position_id = CPC_small_low_interest_loan
+		x = 1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_11_tmp = 0.004 }
+			CPC_RBM_modifier_change = yes
+			TNO_improve_agriculture_low = yes
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_big_package_sale
+		icon = GFX_goals_CPC_big_package_sale
+		cost = 3
+		prerequisite = {
+			focus = CPC_acquisition_section
+			focus = CPC_price_section
+		}
+		relative_position_id = CPC_acquisition_section
+		x = 1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_11_tmp = 0.004 }
+			CPC_RBM_modifier_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.01 }
+			econ_GDP_boost_once_percentage = yes
+		}
+	}
+
+	
+	
+	shared_focus = {
+		id = CPC_rural_new_economy
+		icon = GFX_goals_CPC_rural_new_economy
+		cost = 3
+		prerequisite = {
+			focus = CPC_bureau_of_market_statistics
+			focus = CPC_discount_deposit
+			focus = CPC_big_package_sale
+		}
+		relative_position_id = CPC_bureau_of_market_statistics
+		x = 0
+		y = 2
+		completion_reward = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.03 }
+			econ_GDP_boost_once_percentage = yes
+			add_political_power = 100
+			CPC_RBM_level_up = yes
+			set_temp_variable = { temp_law = token:CPC_agricutural_reform_law_2 }
+			TNO_add_assorted_law = yes
+		}
+	}

@@ -1,0 +1,1313 @@
+#Professionalism idea set
+
+KMC_set_professionalism_level = {
+	if = {
+		limit = {
+			check_variable = { KMC_professionalism < 20 }
+		}
+		hidden_effect = {
+			remove_dynamic_modifier = { modifier = KMC_professionalism_low_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_med_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_high_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier }
+		}
+		add_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier }
+	}
+	else_if = {
+		limit = {
+			check_variable = { KMC_professionalism > 19 }
+			check_variable = { KMC_professionalism < 40 }
+		}
+		hidden_effect = {
+			remove_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_med_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_high_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier }
+		}
+		add_dynamic_modifier = { modifier = KMC_professionalism_low_modifier }
+	}
+	else_if = {
+		limit = {
+			check_variable = { KMC_professionalism > 39 }
+			check_variable = { KMC_professionalism < 60 }
+		}
+		hidden_effect = {
+			remove_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_low_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_high_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier }
+		}
+		add_dynamic_modifier = { modifier = KMC_professionalism_med_modifier }
+	}
+	else_if = {
+		limit = {
+			check_variable = { KMC_professionalism > 59 }
+			check_variable = { KMC_professionalism < 80 }
+		}
+		hidden_effect = {
+			remove_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_low_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_med_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier }
+		}
+		add_dynamic_modifier = { modifier = KMC_professionalism_high_modifier }
+	}
+	else_if = {
+		limit = {
+			check_variable = { KMC_professionalism > 79 }
+		}
+		hidden_effect = {
+			remove_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_low_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_med_modifier }
+			remove_dynamic_modifier = { modifier = KMC_professionalism_high_modifier }
+		}
+		add_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier }
+	}
+}
+
+#Professionalism pp calc
+
+KMC_professionalism_pp_calc = { #temp_prof_pp_calc
+	set_temp_variable = { temp_prof_pp_calc = KMC_professionalism }
+	divide_temp_variable = { temp_prof_pp_calc = 200 }
+	set_variable = { KMC_prof_pp = temp_prof_pp_calc }
+	force_update_dynamic_modifier = yes
+}
+
+# Professionalism inc/dec
+
+KMC_increase_professionalism_large = { #inc large
+	custom_effect_tooltip = KMC_increase_professionalism_large_tt
+	add_to_variable = { KMC_professionalism = 9 }
+	clamp_variable = {
+		var = KMC_professionalism 
+		min = 0
+		max = 100
+	}
+	hidden_effect = {
+		KMC_set_professionalism_level = yes
+		KMC_professionalism_pp_calc = yes
+	}
+}
+KMC_increase_professionalism_med = { #inc med
+	custom_effect_tooltip = KMC_increase_professionalism_med_tt
+	add_to_variable = { KMC_professionalism = 6 }
+	clamp_variable = {
+		var = KMC_professionalism 
+		min = 0
+		max = 100
+	}
+	hidden_effect = {
+		KMC_set_professionalism_level = yes
+		KMC_professionalism_pp_calc = yes
+	}
+}
+KMC_increase_professionalism_small = { #inc small
+	custom_effect_tooltip = KMC_increase_professionalism_small_tt
+	add_to_variable = { KMC_professionalism = 3 }
+	clamp_variable = {
+		var = KMC_professionalism 
+		min = 0
+		max = 100
+	}
+	hidden_effect = {
+		KMC_set_professionalism_level = yes
+		KMC_professionalism_pp_calc = yes
+	}
+}
+
+KMC_reduce_professionalism_large = { #red large
+	custom_effect_tooltip = KMC_reduce_professionalism_large_tt
+	subtract_from_variable = { KMC_professionalism = 9 }
+	clamp_variable = {
+		var = KMC_professionalism 
+		min = 0
+		max = 100
+	}
+	hidden_effect = {
+		KMC_set_professionalism_level = yes
+		KMC_professionalism_pp_calc = yes
+	}
+}
+KMC_reduce_professionalism_med = { #red med
+	custom_effect_tooltip = KMC_reduce_professionalism_med_tt
+	subtract_from_variable = { KMC_professionalism = 6 }
+	clamp_variable = {
+		var = KMC_professionalism 
+		min = 0
+		max = 100
+	}
+	hidden_effect = {
+		KMC_set_professionalism_level = yes
+		KMC_professionalism_pp_calc = yes
+	}
+}
+KMC_reduce_professionalism_small = { #red small
+	custom_effect_tooltip = KMC_reduce_professionalism_small_tt
+	subtract_from_variable = { KMC_professionalism = 3 }
+	clamp_variable = {
+		var = KMC_professionalism 
+		min = 0
+		max = 100
+	}
+	hidden_effect = {
+		KMC_set_professionalism_level = yes
+		KMC_professionalism_pp_calc = yes
+	}
+}
+
+#Piracy Supplies Calc
+KMC_piracy_give_supplies_calc = { # calc, needs to be run on decision before getting event
+	set_temp_variable = { KMC_temp_supplies_calc = KMC_professionalism } #Professionalism
+	divide_temp_variable = { KMC_temp_supplies_calc = 5 } #divided by 5
+	randomize_temp_variable = { # random number [1,5]
+		var = KMC_random
+		distribution = uniform
+		min = 1
+		max = 5
+	}
+	add_to_temp_variable = { KMC_temp_supplies_calc = KMC_random } #prof/5 + [1,5]
+	round_temp_variable = KMC_temp_supplies_calc #rounding to integer
+	set_variable = { KMC_give_supplies_amount = KMC_temp_supplies_calc } #move from temp modifier
+}
+
+#Piracy Supplies USA calc
+KMC_piracy_give_supplies_usa_calc = {# calc, needs to be run on decision before getting event
+	set_temp_variable = { KMC_temp_supplies_calc = KMC_professionalism } # Professionalism
+	set_temp_variable = { KMC_adjusted_concern = KMC_american_concern } #move concern to temp
+	divide_temp_variable = { KMC_adjusted_concern = 12 } #divide concern by 12
+	clamp_temp_variable = { #clamp it to at least 1
+		var = KMC_adjusted_concern
+		min = 1
+	}
+	divide_temp_variable = { KMC_temp_supplies_calc = KMC_adjusted_concern } #divide prof by adj concern
+	randomize_temp_variable = { # random number [1,5]
+		var = KMC_random
+		distribution = uniform
+		min = 1
+		max = 5
+	}
+	add_to_temp_variable = { KMC_temp_supplies_calc = KMC_random } #add random number
+	round_temp_variable = KMC_temp_supplies_calc #rounding to integer
+	set_variable = { KMC_give_supplies_amount_usa = KMC_temp_supplies_calc } #move from temp modifier
+}
+
+#Piracy Supplies JAP calc
+KMC_piracy_give_supplies_jap_calc = {# calc, needs to be run on decision before getting event
+	set_temp_variable = { KMC_temp_supplies_calc = KMC_professionalism } # Professionalism
+	set_temp_variable = { KMC_adjusted_concern = KMC_japanese_concern } #move concern to temp
+	divide_temp_variable = { KMC_adjusted_concern = 12 } #divide concern by 12
+	clamp_temp_variable = { #clamp it to at least 1
+		var = KMC_adjusted_concern
+		min = 1
+	}
+	divide_temp_variable = { KMC_temp_supplies_calc = KMC_adjusted_concern } #divide prof by adj concern
+	randomize_temp_variable = { # random number [1,5]
+		var = KMC_random
+		distribution = uniform
+		min = 1
+		max = 5
+	}
+	add_to_temp_variable = { KMC_temp_supplies_calc = KMC_random } #add random number
+	round_temp_variable = KMC_temp_supplies_calc #rounding to integer
+	set_variable = { KMC_give_supplies_amount_jap = KMC_temp_supplies_calc } #move from temp modifier
+}
+
+#Piracy Give Supplies
+
+KMC_piracy_give_supplies = { # give, needs calc to be run first to give the correct amount
+	custom_effect_tooltip = KMC_piracy_give_supplies_tt
+	add_to_variable = { KMC_supplies = KMC_give_supplies_amount }
+}
+
+#Piracy Give Supplies
+
+KMC_piracy_give_supplies_usa = { # give, needs calc to be run first to give the correct amount
+	custom_effect_tooltip = KMC_piracy_give_supplies_usa_tt
+	add_to_variable = { KMC_supplies = KMC_give_supplies_amount_usa }
+}
+
+#Piracy Give Supplies
+
+KMC_piracy_give_supplies_jap = { # give, needs calc to be run first to give the correct amount
+	custom_effect_tooltip = KMC_piracy_give_supplies_jap_tt
+	add_to_variable = { KMC_supplies = KMC_give_supplies_amount_jap }
+}
+
+#American Concern
+
+KMC_increase_american_concern_large = { #inc large
+	custom_effect_tooltip = KMC_increase_american_concern_large_tt
+	add_to_variable = { KMC_american_concern = 10 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_american_support
+		}
+		clamp_variable = {
+			var = KMC_american_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_american_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_increase_american_concern_med = { #inc med
+	custom_effect_tooltip = KMC_increase_american_concern_med_tt
+	add_to_variable = { KMC_american_concern = 5 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_american_support
+		}
+		clamp_variable = {
+			var = KMC_american_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_american_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_increase_american_concern_low = { #inc small
+	custom_effect_tooltip = KMC_increase_american_concern_low_tt
+	add_to_variable = { KMC_american_concern = 3 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_american_support
+		}
+		clamp_variable = {
+			var = KMC_american_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_american_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_reduce_american_concern_large = { #red large
+	custom_effect_tooltip = KMC_reduce_american_concern_large_tt
+	subtract_from_variable = { KMC_american_concern = 10 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_american_support
+		}
+		clamp_variable = {
+			var = KMC_american_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_american_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_reduce_american_concern_med = { #red med
+	custom_effect_tooltip = KMC_reduce_american_concern_med_tt
+	subtract_from_variable = { KMC_american_concern = 5 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_american_support
+		}
+		clamp_variable = {
+			var = KMC_american_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_american_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_reduce_american_concern_small = { #red small
+	custom_effect_tooltip = KMC_reduce_american_concern_small_tt
+	subtract_from_variable = { KMC_american_concern = 3 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_american_support
+		}
+		clamp_variable = {
+			var = KMC_american_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_american_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+
+#Japanese Concern
+
+KMC_increase_japanese_concern_large = { #inc large
+	custom_effect_tooltip = KMC_increase_japanese_concern_large_tt
+	add_to_variable = { KMC_japanese_concern = 10 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_japanese_support
+		}
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_increase_japanese_concern_med = { #inc med
+	custom_effect_tooltip = KMC_increase_japanese_concern_med_tt
+	add_to_variable = { KMC_japanese_concern = 5 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_japanese_support
+		}
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_increase_japanese_concern_low = { #inc small
+	custom_effect_tooltip = KMC_increase_japanese_concern_low_tt
+	add_to_variable = { KMC_japanese_concern = 3 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_japanese_support
+		}
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_reduce_japanese_concern_large = { #red large
+	custom_effect_tooltip = KMC_reduce_japanese_concern_large_tt
+	subtract_from_variable = { KMC_japanese_concern = 10 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_japanese_support
+		}
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_reduce_japanese_concern_med = { #red med
+	custom_effect_tooltip = KMC_reduce_japanese_concern_med_tt
+	subtract_from_variable = { KMC_japanese_concern = 5 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_japanese_support
+		}
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+KMC_reduce_japanese_concern_small = { #red small
+	custom_effect_tooltip = KMC_reduce_japanese_concern_small_tt
+	subtract_from_variable = { KMC_japanese_concern = 3 }
+	if = {
+		limit = {
+			has_country_flag = KMC_has_japanese_support
+		}
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = -20
+			max = 100
+		}
+	}
+	else = {
+		clamp_variable = {
+			var = KMC_japanese_concern
+			min = 0
+			max = 100
+		}
+	}
+}
+
+#Unsanctioned Piracy tick
+
+KMC_decrease_unsanctioned_piracy_tick = {
+	custom_effect_tooltip = KMC_decrease_unsanctioned_piracy_tick_tt
+	subtract_from_variable = { KMC_unsanctioned_tick = 1 }
+	clamp_variable = { 
+		var = KMC_unsanctioned_tick
+		min = 0
+	}
+}
+KMC_increase_unsanctioned_piracy_tick = {
+	custom_effect_tooltip = KMC_increase_unsanctioned_piracy_tick_tt
+	add_to_variable = { KMC_unsanctioned_tick = 1 }
+}
+
+#Port Gui
+
+#Add Supplies Buttons
+
+KMC_port_add_supplies_small = {
+	meta_effect = { #add 10
+		text = {
+			set_temp_variable = { temp_max_supplies = KMC_supplies_[SELECTED_SHIP]_max }
+			subtract_from_temp_variable = { temp_max_supplies = KMC_supplies_[SELECTED_SHIP] }
+			clamp_temp_variable = {
+				var = temp_max_supplies
+				max = KMC_supplies
+				min = 0
+			}
+			clamp_temp_variable = {
+				var = temp_max_supplies
+				max = 10
+				min = 0
+			}
+			add_to_variable = { KMC_supplies_[SELECTED_SHIP] = temp_max_supplies }
+			subtract_from_variable = { KMC_supplies = temp_max_supplies }
+			clamp_variable = {
+				var = KMC_supplies_[SELECTED_SHIP]
+				max = KMC_supplies_[SELECTED_SHIP]_max
+			}
+		}
+		SELECTED_SHIP = "[This.GetSelectedShip]"
+	}
+}
+KMC_port_add_supplies_med = {
+	meta_effect = { #add 50
+		text = {
+			set_temp_variable = { temp_max_supplies = KMC_supplies_[SELECTED_SHIP]_max }
+			subtract_from_temp_variable = { temp_max_supplies = KMC_supplies_[SELECTED_SHIP] }
+			clamp_temp_variable = {
+				var = temp_max_supplies
+				max = KMC_supplies
+				min = 0
+			}
+			clamp_temp_variable = {
+				var = temp_max_supplies
+				max = 50
+				min = 0
+			}
+			add_to_variable = { KMC_supplies_[SELECTED_SHIP] = temp_max_supplies }
+			subtract_from_variable = { KMC_supplies = temp_max_supplies }
+			clamp_variable = {
+				var = KMC_supplies_[SELECTED_SHIP]
+				max = KMC_supplies_[SELECTED_SHIP]_max
+			}
+		}
+		SELECTED_SHIP = "[This.GetSelectedShip]"
+	}
+}
+KMC_port_add_supplies_large = {
+	meta_effect = { #add 100
+		text = {
+			set_temp_variable = { temp_max_supplies = KMC_supplies_[SELECTED_SHIP]_max }
+			subtract_from_temp_variable = { temp_max_supplies = KMC_supplies_[SELECTED_SHIP] }
+			clamp_temp_variable = {
+				var = temp_max_supplies
+				max = KMC_supplies
+				min = 0
+			}
+			clamp_temp_variable = {
+				var = temp_max_supplies
+				max = 100
+				min = 0
+			}
+			add_to_variable = { KMC_supplies_[SELECTED_SHIP] = temp_max_supplies }
+			subtract_from_variable = { KMC_supplies = temp_max_supplies }
+			clamp_variable = {
+				var = KMC_supplies_[SELECTED_SHIP]
+				max = KMC_supplies_[SELECTED_SHIP]_max
+			}
+		}
+		SELECTED_SHIP = "[This.GetSelectedShip]"
+	}
+}
+
+#Subtract Supplies Buttons
+
+KMC_port_sub_supplies_small = {
+	meta_effect = { # subtract 10
+		text = {
+			set_temp_variable = { temp_supplies_ship_subtract = KMC_supplies_[SELECTED_SHIP] }
+			clamp_temp_variable = {
+				var = temp_supplies_ship_subtract
+				max = 10
+				min = 0
+			}
+			subtract_from_variable = { KMC_supplies_[SELECTED_SHIP] = temp_supplies_ship_subtract }
+			add_to_variable = { KMC_supplies = temp_supplies_ship_subtract }
+		}
+		SELECTED_SHIP = "[This.GetSelectedShip]"
+	}
+}
+KMC_port_sub_supplies_med = {
+	meta_effect = { # subtract 50
+		text = {
+			set_temp_variable = { temp_supplies_ship_subtract = KMC_supplies_[SELECTED_SHIP] }
+			clamp_temp_variable = {
+				var = temp_supplies_ship_subtract
+				max = 50
+				min = 0
+			}
+			subtract_from_variable = { KMC_supplies_[SELECTED_SHIP] = temp_supplies_ship_subtract }
+			add_to_variable = { KMC_supplies = temp_supplies_ship_subtract }
+		}
+		SELECTED_SHIP = "[This.GetSelectedShip]"
+	}
+}
+KMC_port_sub_supplies_large = {
+	meta_effect = { # subtract 100
+		text = {
+			set_temp_variable = { temp_supplies_ship_subtract = KMC_supplies_[SELECTED_SHIP] }
+			clamp_temp_variable = {
+				var = temp_supplies_ship_subtract
+				max = 100
+				min = 0
+			}
+			subtract_from_variable = { KMC_supplies_[SELECTED_SHIP] = temp_supplies_ship_subtract }
+			add_to_variable = { KMC_supplies = temp_supplies_ship_subtract }
+		}
+		SELECTED_SHIP = "[This.GetSelectedShip]"
+	}
+}
+
+# Add fuel button
+
+kmc_port_add_fuel_effect = {
+	meta_effect = { #add 
+		text = {
+			set_temp_variable = { temp_max_fuel = KMC_fuel_[SELECTED_SHIP]_max }
+			subtract_from_temp_variable = { temp_max_fuel = KMC_fuel_stored_[SELECTED_SHIP] }
+			clamp_temp_variable = {
+				var = temp_max_fuel
+				max = KMC_fuel_stored
+				min = 0
+			}
+			clamp_temp_variable = {
+				var = temp_max_fuel
+				max = 1
+				min = 0
+			}
+			add_to_variable = { KMC_fuel_stored_[SELECTED_SHIP] = temp_max_fuel }
+			subtract_from_variable = { KMC_fuel_stored = temp_max_fuel }
+			clamp_variable = {
+				var = KMC_fuel_stored_[SELECTED_SHIP]
+				max = KMC_fuel_[SELECTED_SHIP]_max
+			}
+		}
+		SELECTED_SHIP = "[This.GetSelectedShip]"
+	}
+}
+
+#Subtract fuel button
+
+kmc_port_sub_fuel_effect = {
+	meta_effect = { # subtract 
+		text = {
+			set_temp_variable = { temp_fuel_ship_subtract = KMC_fuel_stored_[SELECTED_SHIP] }
+			clamp_temp_variable = {
+				var = temp_fuel_ship_subtract
+				max = 1
+				min = 0
+			}
+			subtract_from_variable = { KMC_fuel_stored_[SELECTED_SHIP] = temp_fuel_ship_subtract }
+			add_to_variable = { KMC_fuel_stored = temp_fuel_ship_subtract }
+		}
+		SELECTED_SHIP = "[This.GetSelectedShip]"
+	}
+}
+
+
+#Smuggling effects 
+#buy price calc to be done on change price mission tick
+
+set_price_all_buy = { 
+	set_price_infeq_buy = yes
+	set_price_supeq_buy = yes
+	set_price_ateq_buy = yes
+	set_price_fuelship_buy = yes
+}
+
+set_price_infeq_buy = {
+	set_temp_variable = { temp_infeq = KMC_price_base_infeq }
+	randomize_temp_variable = {
+		var = smugrand
+		distribution = binomial
+		min = 0
+		max = 20
+	}
+	round_temp_variable = smugrand
+	random_list = {
+		1 = {
+			add_to_temp_variable = { temp_infeq = smugrand }
+		}
+		1 = {
+			subtract_from_temp_variable = { temp_infeq = smugrand }
+		}
+	}
+	set_variable = { KMC_price_current_infeq_buy = temp_infeq }
+}
+
+set_price_supeq_buy = {
+	set_temp_variable = { temp_supeq = KMC_price_base_supeq }
+	randomize_temp_variable = {
+		var = smugrand
+		distribution = binomial
+		min = 0
+		max = 20
+	}
+	round_temp_variable = smugrand
+	random_list = {
+		1 = {
+			add_to_temp_variable = { temp_supeq = smugrand }
+		}
+		1 = {
+			subtract_from_temp_variable = { temp_supeq = smugrand }
+		}
+	}
+	set_variable = { KMC_price_current_supeq_buy = temp_supeq }
+}
+
+set_price_ateq_buy = {
+	set_temp_variable = { temp_ateq = KMC_price_base_ateq }
+	randomize_temp_variable = {
+		var = smugrand
+		distribution = binomial
+		min = 0
+		max = 30
+	}
+	round_temp_variable = smugrand
+	random_list = {
+		1 = {
+			add_to_temp_variable = { temp_ateq = smugrand }
+		}
+		1 = {
+			subtract_from_temp_variable = { temp_ateq = smugrand }
+		}
+	}
+	set_variable = { KMC_price_current_ateq_buy = temp_ateq }
+}
+
+
+set_price_fuelship_buy = {
+	set_temp_variable = { temp_fuelship = KMC_price_base_fuelship }
+	randomize_temp_variable = {
+		var = smugrand
+		distribution = binomial
+		min = 0
+		max = 20
+	}
+	round_temp_variable = smugrand
+	random_list = {
+		1 = {
+			add_to_temp_variable = { temp_fuelship = smugrand }
+		}
+		1 = {
+			subtract_from_temp_variable = { temp_fuelship = smugrand }
+		}
+	}
+	set_variable = { KMC_price_current_fuelship_buy = temp_fuelship }
+}
+
+#sell price calc to be done on change price mission tick
+
+set_price_all_sell = { 
+	set_price_infeq_sell = yes
+	set_price_supeq_sell = yes
+	set_price_ateq_sell = yes
+	set_price_fuelship_sell = yes
+}
+
+set_price_infeq_sell = {
+	set_temp_variable = { temp_infeq = KMC_price_base_infeq }
+	randomize_temp_variable = {
+		var = smugrand
+		distribution = binomial
+		min = 0
+		max = 20
+	}
+	round_temp_variable = smugrand
+	random_list = {
+		1 = {
+			add_to_temp_variable = { temp_infeq = smugrand }
+		}
+		1 = {
+			subtract_from_temp_variable = { temp_infeq = smugrand }
+		}
+	}
+	set_variable = { KMC_price_current_infeq_sell = temp_infeq }
+}
+
+set_price_supeq_sell = {
+	set_temp_variable = { temp_supeq = KMC_price_base_supeq }
+	randomize_temp_variable = {
+		var = smugrand
+		distribution = binomial
+		min = 0
+		max = 20
+	}
+	round_temp_variable = smugrand
+	random_list = {
+		1 = {
+			add_to_temp_variable = { temp_supeq = smugrand }
+		}
+		1 = {
+			subtract_from_temp_variable = { temp_supeq = smugrand }
+		}
+	}
+	set_variable = { KMC_price_current_supeq_sell = temp_supeq }
+}
+
+set_price_ateq_sell = {
+	set_temp_variable = { temp_ateq = KMC_price_base_ateq }
+	randomize_temp_variable = {
+		var = smugrand
+		distribution = binomial
+		min = 0
+		max = 30
+	}
+	round_temp_variable = smugrand
+	random_list = {
+		1 = {
+			add_to_temp_variable = { temp_ateq = smugrand }
+		}
+		1 = {
+			subtract_from_temp_variable = { temp_ateq = smugrand }
+		}
+	}
+	set_variable = { KMC_price_current_ateq_sell = temp_ateq }
+}
+
+
+set_price_fuelship_sell = {
+	set_temp_variable = { temp_fuelship_sell = KMC_price_base_fuelship }
+	randomize_temp_variable = {
+		var = smugrand
+		distribution = binomial
+		min = 0
+		max = 20
+	}
+	round_temp_variable = smugrand
+	random_list = {
+		1 = {
+			add_to_temp_variable = { temp_fuelship_sell = smugrand }
+		}
+		1 = {
+			subtract_from_temp_variable = { temp_fuelship_sell = smugrand }
+		}
+	}
+	set_variable = { KMC_price_current_fuelship_sell = temp_fuelship_sell }
+}
+
+# ship assignmnet
+
+assign_ships_flags = {
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_or = KMC_battleship_max_supplies }
+				check_variable = { KMC_fuel_stored_or = KMC_battleship_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_or
+		}
+		
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_rykov = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_rykov = KMC_destroyer_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_rykov
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_ryanyy = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_ryanyy = KMC_destroyer_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_ryanyy
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_bukharin = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_bukharin = KMC_destroyer_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_bukharin
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_uritskiy = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_uritskiy = KMC_destroyer_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_uritskiy
+		}
+	}
+
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch101 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch101 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch101
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch102 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch102 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch102
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch103 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch103 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch103
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch104 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch104 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch104
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch105 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch105 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch105
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch106 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch106 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch106
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch107 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch107 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch107
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch108 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch108 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch108
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch109 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch109 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch109
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_shch110 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch110 = KMC_sub_max_fuel }
+			}
+		}
+		WRS = {
+			set_country_flag = KMC_fully_supplied_shch110
+		}
+	}
+	if = {
+		limit = {
+			AND = {
+				check_variable = { KMC_supplies_or = KMC_battleship_max_supplies }
+				check_variable = { KMC_fuel_stored_or = KMC_battleship_max_fuel }
+
+				check_variable = { KMC_supplies_rykov = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_rykov = KMC_destroyer_max_fuel }
+
+				check_variable = { KMC_supplies_ryanyy = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_ryanyy = KMC_destroyer_max_fuel }
+
+				check_variable = { KMC_supplies_bukharin = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_bukharin = KMC_destroyer_max_fuel }
+
+				check_variable = { KMC_supplies_uritskiy = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_uritskiy = KMC_destroyer_max_fuel }
+
+				check_variable = { KMC_supplies_shch101 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch101 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch102 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch102 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch103 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch103 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch104 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch104 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch105 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch105 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch106 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch106 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch107 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch107 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch108 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch108 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch109 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch109 = KMC_sub_max_fuel }
+
+				check_variable = { KMC_supplies_shch110 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch110 = KMC_sub_max_fuel }
+			}
+		}
+		set_country_flag = kmc_fully_supplied_navy
+		WRS = {
+			set_country_flag = kmc_fully_supplied_navy
+		}
+	}
+}
+
+KMC_mtg_assign_ships = {
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_or
+		}
+		load_oob = KMC_st_mtg_or
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_rykov
+		}
+		load_oob = KMC_st_mtg_rykov
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_ryanyy
+		}
+		load_oob = KMC_st_mtg_ryanyy
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_bukharin
+		}
+		load_oob = KMC_st_mtg_bukharin
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_uritskiy
+		}
+		load_oob = KMC_st_mtg_uritskiy
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch101
+		}
+		load_oob = KMC_st_mtg_shch101
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch102
+		}
+		load_oob = KMC_st_mtg_shch102
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch103
+		}
+		load_oob = KMC_st_mtg_shch103
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch104
+		}
+		load_oob = KMC_st_mtg_shch104
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch105
+		}
+		load_oob = KMC_st_mtg_shch105
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch106
+		}
+		load_oob = KMC_st_mtg_shch106
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch107
+		}
+		load_oob = KMC_st_mtg_shch107
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch108
+		}
+		load_oob = KMC_st_mtg_shch108
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch109
+		}
+		load_oob = KMC_st_mtg_shch109
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch110
+		}
+		load_oob = KMC_st_mtg_shch110
+	}
+	clr_country_flag = KMC_fully_supplied_or
+	clr_country_flag = KMC_fully_supplied_rykov
+	clr_country_flag = KMC_fully_supplied_ryanyy
+	clr_country_flag = KMC_fully_supplied_bukharin
+	clr_country_flag = KMC_fully_supplied_uritskiy
+	clr_country_flag = KMC_fully_supplied_shch101
+	clr_country_flag = KMC_fully_supplied_shch102
+	clr_country_flag = KMC_fully_supplied_shch103
+	clr_country_flag = KMC_fully_supplied_shch104
+	clr_country_flag = KMC_fully_supplied_shch105
+	clr_country_flag = KMC_fully_supplied_shch106
+	clr_country_flag = KMC_fully_supplied_shch107
+	clr_country_flag = KMC_fully_supplied_shch108
+	clr_country_flag = KMC_fully_supplied_shch109
+	clr_country_flag = KMC_fully_supplied_shch110
+}
+
+KMC_non_mtg_assign_ships = {
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_or
+		}
+		load_oob = KMC_st_or
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_rykov
+		}
+		load_oob = KMC_st_rykov
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_ryanyy
+		}
+		load_oob = KMC_st_ryanyy
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_bukharin
+		}
+		load_oob = KMC_st_bukharin
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_uritskiy
+		}
+		load_oob = KMC_st_uritskiy
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch101
+		}
+		load_oob = KMC_st_shch101
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch102
+		}
+		load_oob = KMC_st_shch102
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch103
+		}
+		load_oob = KMC_st_shch103
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch104
+		}
+		load_oob = KMC_st_shch104
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch105
+		}
+		load_oob = KMC_st_shch105
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch106
+		}
+		load_oob = KMC_st_shch106
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch107
+		}
+		load_oob = KMC_st_shch107
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch108
+		}
+		load_oob = KMC_st_shch108
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch109
+		}
+		load_oob = KMC_st_shch109
+	}
+	if = {
+		limit = {
+			has_country_flag = KMC_fully_supplied_shch110
+		}
+		load_oob = KMC_st_shch110
+	}
+	clr_country_flag = KMC_fully_supplied_or
+	clr_country_flag = KMC_fully_supplied_rykov
+	clr_country_flag = KMC_fully_supplied_ryanyy
+	clr_country_flag = KMC_fully_supplied_bukharin
+	clr_country_flag = KMC_fully_supplied_uritskiy
+	clr_country_flag = KMC_fully_supplied_shch101
+	clr_country_flag = KMC_fully_supplied_shch102
+	clr_country_flag = KMC_fully_supplied_shch103
+	clr_country_flag = KMC_fully_supplied_shch104
+	clr_country_flag = KMC_fully_supplied_shch105
+	clr_country_flag = KMC_fully_supplied_shch106
+	clr_country_flag = KMC_fully_supplied_shch107
+	clr_country_flag = KMC_fully_supplied_shch108
+	clr_country_flag = KMC_fully_supplied_shch109
+	clr_country_flag = KMC_fully_supplied_shch110
+}
+
+calc_loot_from_sup = {
+	set_variable = { sup_to_loot = KMC.kmc_supplies }
+	divide_variable = { sup_to_loot = 400 }
+	round_variable = sup_to_loot
+}

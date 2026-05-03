@@ -1,0 +1,922 @@
+add_namespace = WORLD_TER
+
+news_event = {
+	id = WORLD_TER.1
+
+	title = WORLD_TER.1.t
+	desc = WORLD_TER.1.desc
+	picture = GFX_news_event_Mongolia_civil_war_over
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.1.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.2
+
+	title = WORLD_TER.2.t
+	desc = WORLD_TER.2.desc
+	picture = GFX_news_event_Wen_Yiduo_Died_in_Kunming
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.2.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = {
+				limit = { original_tag = CPC }
+					every_country = {
+						news_event = {
+							id = WORLD_TER.3
+							days = 30
+						}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.3
+
+	title = WORLD_TER.3.t
+	desc = WORLD_TER.3.desc
+	picture = GFX_news_event_Gao_Zongwu_arrived_in_Japan
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.3.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = {
+				limit = { original_tag = CPC }
+				every_country = {
+					news_event = {
+						id = WORLD_TER.4
+						days = 30
+					}
+					news_event = {
+						id = WORLD_TER.12
+						days = 15
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.4
+
+	title = WORLD_TER.4.t
+	desc = WORLD_TER.4.desc
+	picture = GFX_news_event_WHY_DO_YOU_SELL_OUR_MOTHERLAND
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.4.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+				if = {
+					limit = { original_tag = CPC }
+					every_country = {
+						news_event = {
+							id = WORLD_TER.5
+							days = 30
+						}
+						news_event = {
+							id = WORLD_TER.13
+							days = 15
+						}
+					}	
+				}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.5
+
+	title = WORLD_TER.5.t
+	desc = WORLD_TER.5.desc
+	picture = GFX_news_event_ITS_ALL_YOUR_FAULT_PRESIDENT_GAO
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.5.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.6
+
+	title = WORLD_TER.6.t
+	desc = WORLD_TER.6.desc
+	picture = GFX_news_event_Guangdong_entirely_walks_into_hell
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.6.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = { 
+				limit = { is_ai = no }
+				set_temp_variable = { TNO_temp_super_event = token:SE_SOUTHWESTERN_CHINA_WAR }
+				TNO_fire_super_event = yes
+				every_country = {
+					news_event = {
+						id = WORLD_TER.7
+						days = 7
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.7
+
+	title = WORLD_TER.7.t
+	desc = WORLD_TER.7.desc
+	picture = GFX_news_event_BJC_we_rise
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.7.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = { 
+				limit = { original_tag = CPC }
+				every_country = {
+					news_event = {
+						id = WORLD_TER.8
+						days = 30
+					}
+				}
+				BJC_REVOLT_1 = yes
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.8
+
+	title = WORLD_TER.8.t
+	desc = WORLD_TER.8.desc
+	picture = GFX_news_event_BJC_we_unite
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.8.a
+		ai_chance = { factor = 20 }
+		hidden_effect ={
+			if = { 
+				limit = { original_tag = CPC }
+				BJC = {
+					set_politics = {
+						ruling_party = socialist
+					}
+					retire_character = BJC_Chu_Anping
+					set_popularities = {
+						communist = 0
+						ultranationalism = 0
+						national_socialism = 0
+						socialist = 78
+						progressivism = 0
+						liberalism = 15
+						conservatism = 0
+						paternalism = 0
+						despotism = 7
+						fascism = 0
+					}
+					set_party_name = {
+						ideology = liberalism
+						long_name = BJC_2_liberalism_party_long
+						name = BJC_2_liberalism_party
+					}
+					country_event = {
+						id = TER_support_backend_events.12
+						days = 60
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.9
+
+	title = WORLD_TER.9.t
+	desc = WORLD_TER.9.desc
+	picture = GFX_news_event_Guangdong_entirely_walks_into_hell
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.9.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.10
+	title = WORLD_TER.10.t
+	desc = WORLD_TER.10.desc
+	picture = GFX_news_NOW_WE_LOSE_GUANGDONG
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.10.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = { 
+				limit = { original_tag = CPC }
+				every_country = {
+					news_event = {
+						id = WORLD_TER.11
+						days = 30
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.11
+	title = WORLD_TER.11.t
+	desc = WORLD_TER.11.desc
+	picture = GFX_news_DAMN_JAPAN_GETS_ANOTHER_VICTORY
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.11.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = { 
+				limit = { original_tag = CPC }
+				KIS = {
+					set_cosmetic_tag = KIS_GUX
+					retire_country_leader = yes
+					CHI = {
+						set_autonomy = {
+							target = KIS
+							autonomy_state = autonomy_china_warlord_regime
+						}
+					}
+					create_country_leader = {
+						name = "KIS_Duan_Xiwen"
+						ideology = despotism_civilian_dictatorship_subtype
+						picture = "gfx/leaders/KIS/KIS_Duan_Xiwen.png"
+					}
+					set_popularities = {
+						despotism = 100
+					}
+					set_capital = {
+						state = 599
+					}
+					add_ideas = Sphere_Chinese_Warlord
+					set_party_name = {
+						ideology = despotism
+						long_name = KIS_GUX_despotism_party_long
+						name = KIS_GUX_despotism_party_long
+					}
+					remove_ideas = KTW_support_from_IJN
+					remove_ideas = KTW_special_war
+					delete_units = {
+						division_template = "Dai 130 Shidan Marine"
+					}
+					delete_units = {
+						division_template = "Dai 130 Shidan Mountaineer"
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.12
+	title = WORLD_TER.12.t
+	desc = WORLD_TER.12.desc
+	picture = GFX_news_Southwest_eco_meeting
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.12.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = {
+				limit = { original_tag = CPC }
+				CPC = {
+					country_event = {
+						id = CPC_main_story_events.14
+						days = 10
+					}
+				}
+			}
+		}
+	}
+}
+news_event = {
+	id = WORLD_TER.13
+	title = WORLD_TER.13.t
+	desc = WORLD_TER.13.desc
+	picture = GFX_news_Lu_Han_quit
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.13.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = {
+				limit = { original_tag = CPC }
+				GUX = {
+					transfer_state = 1464
+					leave_faction = yes
+					country_event = {
+						id = TER_support_backend_events.11
+						days = 28
+					}
+				}
+			}
+		}
+	}
+}
+news_event = {
+	id = WORLD_TER.14
+	title = WORLD_TER.14.t
+	desc = WORLD_TER.14.desc
+	picture = GFX_news_GUX_fuck_off_RGOC
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.14.a
+		ai_chance = { factor = 20 }
+		
+	}
+}
+news_event = {
+	id = WORLD_TER.15
+	title = WORLD_TER.15.t
+	desc = WORLD_TER.15.desc
+	picture = GFX_news_event_Japanese_go_to_Lhasa
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.15.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = {
+				limit = { original_tag = CPC }
+				TIB = {
+					country_event = {
+						id = TER_support_backend_events.14
+						days = 20
+					}
+				}
+			}
+		}
+	}
+}
+news_event = {
+	id = WORLD_TER.16
+	title = WORLD_TER.16.t
+	desc = WORLD_TER.16.desc
+	picture = GFX_news_event_War_above_the_mountain
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.16.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.17
+	title = WORLD_TER.17.t
+	desc = WORLD_TER.17.desc
+	picture = GFX_news_event_Bstan_Dzinrgya_Mtsho_arrived_at_India
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.17.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = {
+				limit = { original_tag = CPC }
+				every_country = {
+					news_event = {
+						id = WORLD_TER.18
+						days = 10
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.18
+	title = WORLD_TER.18.t
+	desc = WORLD_TER.18.desc
+	picture = GFX_news_event_Dawang_back
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.18.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = {
+				limit = { original_tag = CPC }
+				1963 = {
+					set_demilitarized_zone = yes
+				}
+				2209 = {
+					set_demilitarized_zone = yes
+				}
+				every_country = {
+					news_event = {
+						id = WORLD_TER.19
+						days = 15
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.19
+	title = WORLD_TER.19.t
+	desc = WORLD_TER.19.desc
+	picture = GFX_news_event_India_Tibet_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.19.a
+		ai_chance = { factor = 20 }
+		hidden_effect = {
+			if = {
+				limit = { original_tag = CPC }
+				927 = {
+					set_demilitarized_zone = yes
+				}
+				TIB = {
+					country_event = {
+						id = TER_support_backend_events.15
+						days = 45
+					}
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.20
+	title = WORLD_TER.20.t
+	desc = WORLD_TER.20.desc
+	picture = GFX_news_event_Tibet_Collapse
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.20.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+#IT COMES YEEEEEEEAAAAAAHHHHHHHHHHHHHHH
+news_event = {
+	id = WORLD_TER.21
+	title = WORLD_TER.21.t
+	desc = WORLD_TER.21.desc
+	picture = GFX_news_TRCW_begins
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.21.a
+		ai_chance = { factor = 20 }
+		if = {
+			limit = { is_ai = no }
+			if = {
+				limit = { CPC = { CPC_begin_TRCW_good_trigger = yes } }
+				set_temp_variable = { TNO_temp_super_event = token:SE_TRCW_good }
+				TNO_fire_super_event = yes
+			}
+			else_if = {
+				limit = { CPC = { CPC_begin_TRCW_normal_trigger = yes } }
+				set_temp_variable = { TNO_temp_super_event = token:SE_TRCW }
+				TNO_fire_super_event = yes
+			}
+			else_if = {
+				limit = { CPC = { CPC_begin_TRCW_bad_trigger = yes } }
+				set_temp_variable = { TNO_temp_super_event = token:SE_TRCW_bad }
+				TNO_fire_super_event = yes
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.22
+	title = WORLD_TER.22.t
+	desc = WORLD_TER.22.desc
+	picture = GFX_news_TER_TRCW_a_new_China
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.22.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.23
+	title = WORLD_TER.23.t
+	desc = WORLD_TER.23.desc
+	picture = GFX_news_TER_TRCW_third_sino_japanese_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.23.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.24
+	title = WORLD_TER.24.t
+	desc = WORLD_TER.24.desc
+	picture = GFX_news_TER_TRCW_wins
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.24.a
+		ai_chance = { factor = 20 }
+		if = {
+			limit = { is_ai = no }
+			if = {
+				limit = { CPC = { CPC_ending_good_trigger = yes } }
+				set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_REUNIFIED_GOOD }
+				TNO_fire_super_event = yes
+			}
+			else_if = {
+				limit = { CPC = { CPC_ending_normal_trigger = yes
+								  has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype } }
+				set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_REUNIFIED_NORMAL_MAO }
+				TNO_fire_super_event = yes
+			}
+			else_if = {
+				limit = { CPC = { CPC_ending_normal_trigger = yes
+							      has_country_leader_ideology = communist_liu_shaoqi_thought_subtype } }
+				set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_REUNIFIED_NORMAL_LIU }
+				TNO_fire_super_event = yes
+			}
+			else_if = {
+				limit = { CPC = { CPC_ending_bad_trigger = yes } }
+				set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_REUNIFIED_BAD }
+				TNO_fire_super_event = yes
+			}
+		}
+	}
+}
+
+news_event = {
+	id = WORLD_TER.25
+	title = WORLD_TER.25.t
+	desc = WORLD_TER.25.desc
+	picture = GFX_news_TER_TRCW_failure_1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.25.a
+		ai_chance = { factor = 20 }
+		if = {
+			limit = { is_ai = no }
+			set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_IS_IN_HELL }
+			TNO_fire_super_event = yes
+		}
+		if = {
+			limit = { original_tag = ZXB }
+			hidden_effect = {
+				country_event = {
+					id = WORLD_TER.251
+					days = 3
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = WORLD_TER.251
+	title = WORLD_TER.251.t
+	desc = WORLD_TER.251.desc
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.251.a
+		ai_chance = { factor = 20 }
+		custom_effect_tooltip = "CPC_TRCW_Xibei_Anarchy_end_tt"
+		TNO_Country_Closing_Screen_Show = yes
+	}	
+}
+
+news_event = {
+	id = WORLD_TER.26
+	title = WORLD_TER.26.t
+	desc = WORLD_TER.26.desc
+	picture = GFX_news_TER_TRCW_failure_2
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.26.a
+		ai_chance = { factor = 20 }
+		if = {
+			limit = { is_ai = no }
+			set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_COLLAPSED }
+			TNO_fire_super_event = yes
+		}
+	}
+}
+news_event = {
+	id = WORLD_TER.27
+	title = WORLD_TER.27.t
+	desc = WORLD_TER.27.desc
+	picture = GFX_news_TER_dem_riot_begin
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.27.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.28
+	title = WORLD_TER.28.t
+	desc = WORLD_TER.28.desc
+	picture = GFX_news_TER_dem_riot_end_1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.28.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.29
+	title = WORLD_TER.29.t
+	desc = WORLD_TER.29.desc
+	picture = GFX_news_TER_dem_riot_end_2
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.29.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.30
+	title = WORLD_TER.30.t
+	desc = WORLD_TER.30.desc
+	picture = GFX_news_TER_dem_riot_end_3
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.30.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.31
+	title = WORLD_TER.31.t
+	desc = WORLD_TER.31.desc
+	picture = GFX_news_event_CPIML_rises
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.31.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.32
+	title = WORLD_TER.32.t
+	desc = WORLD_TER.32.desc
+	picture = GFX_news_CPC_we_ve_got_Sichuan
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.32.a1
+		trigger = { tag = CPC }
+		ai_chance = { factor = 20 }
+	}
+	option = {
+		name = WORLD_TER.32.a2
+		trigger = { 
+			OR = {
+				is_in_faction_with = JAP
+				tag = JAP 
+			}
+		}
+		ai_chance = { factor = 20 }
+	}
+	option = {
+		name = WORLD_TER.32.a3
+		trigger = { 
+			NOT = {
+				tag = CPC
+				is_in_faction_with = JAP
+				tag = JAP 
+			}
+		}
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.33
+	title = WORLD_TER.33.t
+	desc = WORLD_TER.33.desc
+	picture = GFX_news_CPC_Liu_Shaoqi_win
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.33.a1
+		trigger = { tag = CPC }
+		ai_chance = { factor = 20 }
+	}
+	option = {
+		name = WORLD_TER.33.a2
+		trigger = { 
+			OR = {
+				is_in_faction_with = JAP
+				tag = JAP 
+			}
+		}
+		ai_chance = { factor = 20 }
+	}
+	option = {
+		name = WORLD_TER.33.a3
+		trigger = { 
+			NOT = {
+				tag = CPC
+				is_in_faction_with = JAP
+				tag = JAP 
+			}
+		}
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.34
+	title = WORLD_TER.34.t
+	desc = WORLD_TER.34.desc
+	picture = GFX_news_CPC_Mao_Zedong_win
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.34.a1
+		trigger = { tag = CPC }
+		ai_chance = { factor = 20 }
+	}
+	option = {
+		name = WORLD_TER.34.a2
+		trigger = { 
+			OR = {
+				is_in_faction_with = JAP
+				tag = JAP 
+			}
+		}
+		ai_chance = { factor = 20 }
+	}
+	option = {
+		name = WORLD_TER.34.a3
+		trigger = { 
+			NOT = {
+				tag = CPC
+				is_in_faction_with = JAP
+				tag = JAP 
+			}
+		}
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.35
+	title = WORLD_TER.35.t
+	desc = WORLD_TER.35.desc
+	picture = GFX_news_TER_nobusuke_Kishi
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.35.a
+		ai_chance = { factor = 20 }
+	}
+}
+
+news_event = {
+	id = WORLD_TER.36
+	title = WORLD_TER.36.t
+	desc = WORLD_TER.36.desc
+	picture = GFX_news_event_EAACP_foundation
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = WORLD_TER.36.a
+		ai_chance = { factor = 20 }
+		if = {
+			limit = { is_ai = no }
+			set_temp_variable = { TNO_temp_super_event = token:SE_TER_RGOC_WIN }
+			TNO_fire_super_event = yes
+		}
+		hidden_effect = {
+			if = {
+				limit = { is_ai = no }
+				TWN = { 
+					country_event = { 
+						id = WORLD_TER.361 
+						days = 10 
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = WORLD_TER.361
+	title = WORLD_TER.361.t
+	desc = WORLD_TER.361.desc
+	is_triggered_only = yes
+	option = {
+		name = WORLD_TER.361.a
+		ai_chance = { factor = 20 }
+		custom_effect_tooltip = "CPC_TRCW_RGOC_wins_end_tt"
+		TNO_Country_Closing_Screen_Show = yes
+	}
+}
+
+news_event = { #OH MY FUCKING GOD IS THIS TER ZOMBIES REFERENCE
+	id = WORLD_TER.666
+	title = WORLD_TER.666.t
+	desc = WORLD_TER.666.desc
+	picture = GFX_news_event_TER_zombies_01
+	is_triggered_only = yes
+	option = {
+		name = WORLD_TER.666.a
+		ai_chance = { factor = 20 }
+		custom_effect_tooltip = "WORLD_TER.666.tt"
+	}
+}

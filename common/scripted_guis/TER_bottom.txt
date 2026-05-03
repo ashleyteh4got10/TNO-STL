@@ -1,0 +1,172 @@
+
+scripted_gui = {
+	TER_bottom_gui = {
+		context_type = player_context
+		parent_window_token = top_bar
+		window_name = "TER_bottom_gui"
+	
+		visible = {
+			tag = CPC
+		}
+
+		triggers = {
+			NCCPC_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^0 = 2 }
+										check_variable = { CPC_GUI_tab_issue^0 = 2 } }
+			NWB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^1 = 2 } 
+									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
+			SWB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^2 = 2 } 
+									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
+			XJB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^3 = 2 } 
+									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
+			SCB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^4 = 2 } 
+									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
+			CPGAC_entry_btn_visible = { check_variable = { CPC_GUI_tab_issue^1 = 2 } }
+			CMC_entry_btn_visible = { check_variable = { CPC_GUI_tab_issue^2 = 2 } }
+		}
+
+		effects = {
+			CMC_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open 
+					TER_NWB_calc_party_members = yes
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+			CPGAC_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open 
+					TER_CPGAC_update_bar = yes
+					TER_NWB_calc_party_members = yes
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+			NCCPC_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open 
+					TER_NWB_calc_party_members = yes
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+			NWB_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open 
+					TER_NWB_calc_party_members = yes
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+			SCB_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open 
+					TER_NWB_calc_party_members = yes
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open
+				}
+			}
+			XJB_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open 
+					TER_NWB_calc_party_members = yes
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+			SWB_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open
+					TER_NWB_calc_party_members = yes 
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+		}
+	}
+
+	TER_bottom_gui_2 = {
+		context_type = player_context
+		parent_window_token = top_bar
+		window_name = "TER_bottom_gui_2"
+	
+		visible = {
+			tag = CPC
+			has_country_flag = CPC_TRCW_begins_flag
+		}
+
+		effects = {
+			TRCW_entry_btn_click = {
+				if = { 
+					limit = {not = { has_country_flag = CPC_TRCW_gui_open } }
+					set_country_flag = CPC_TRCW_gui_open
+					TER_NWB_calc_party_members = yes
+				}
+				else = { clr_country_flag = CPC_TRCW_gui_open }
+			}
+		}
+	}
+}

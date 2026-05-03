@@ -1,0 +1,2887 @@
+OMS_2WRW_great_trial_PT_category = {
+	OMS_PT_2WRW_grand_offensive_stratagem_decision = {
+		icon = GFX_decision_generic_
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		days_remove = 56
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_decrease_tt
+			hidden_effect = {
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_grand_offensive_stratagem
+		}
+		remove_effect = {
+			remove_ideas = OMS_grand_offensive_stratagem
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+	}
+	OMS_PT_2WRW_ceaseless_assault_stratagem_decision = {
+		icon = GFX_decision_generic_
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		days_remove = 56
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_decrease_tt
+			hidden_effect = {
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_ceaseless_assault_stratagem
+		}
+		remove_effect = {
+			remove_ideas = OMS_ceaseless_assault_stratagem
+			add_timed_idea = {
+				idea = OMS_ceaseless_assault_stratagem_aftereffects
+				days = 30
+			}
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+	}
+	OMS_PT_2WRW_chemical_saturation_stratagem_decision = {
+		icon = GFX_decision_generic_
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		days_remove = 56
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_decrease_tt
+			hidden_effect = {
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_chemical_saturation_stratagem
+			every_possible_country = {
+				limit = {
+					OR = {
+						original_tag = GER
+						original_tag = MCW
+						original_tag = OST
+						original_tag = CAU
+					}
+				}
+				add_ideas = OMS_chemical_saturation_stratagem_pakt_side
+			}
+		}
+		remove_effect = {
+			remove_ideas = OMS_chemical_saturation_stratagem
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			every_possible_country = {
+				limit = {
+					OR = {
+						original_tag = GER
+						original_tag = MCW
+						original_tag = OST
+						original_tag = CAU
+					}
+				}
+				remove_ideas = OMS_chemical_saturation_stratagem_pakt_side
+			}
+		}
+	}
+	OMS_PT_2WRW_firestorm_assault_stratagem_decision = {
+		icon = GFX_decision_generic_
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		days_remove = 56
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_decrease_tt
+			hidden_effect = {
+				subtract_from_variable = { OMS_readiness = 2 }
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_firestorm_assault_stratagem
+			every_possible_country = {
+				limit = {
+					OR = {
+						original_tag = GER
+						original_tag = MCW
+						original_tag = OST
+						original_tag = CAU
+					}
+				}
+				add_ideas = OMS_firestorm_assault_stratagem_pakt_side
+			}
+		}
+		remove_effect = {
+			remove_ideas = OMS_firestorm_assault_stratagem
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			every_possible_country = {
+				limit = {
+					OR = {
+						original_tag = GER
+						original_tag = MCW
+						original_tag = OST
+						original_tag = CAU
+					}
+				}
+				remove_ideas = OMS_firestorm_assault_stratagem_pakt_side
+			}
+		}
+	}
+	OMS_PT_2WRW_start_bio_chem_war = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		fire_only_once = yes
+
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision OMS_PT_2WRW_start_bio_chem_war"
+			GER = {
+				add_dynamic_modifier = {
+					modifier = GER_biologic_warfare_dynmod
+					days = 180
+				}
+				add_dynamic_modifier = {
+					modifier = OMS_chemical_warfare_dynmod
+					days = 180
+				}
+				add_dynamic_modifier = {
+					modifier = 2WRW_collateral_damage_dynmod
+					days = 180
+				}
+			}
+			add_dynamic_modifier = {
+				modifier = 2WRW_collateral_damage_dynmod
+				days = 180
+			}
+			hidden_effect = { add_command_power = -25 }
+
+
+			### BIOLOGIC
+			set_variable = { OMS_biologic_breakthrough_factor = 0.15 }
+			set_variable = { OMS_biologic_army_speed_factor = -0.01 }
+			set_variable = { OMS_biologic_terrain_trait_xp_gain_factor = 0.05 }
+
+			set_variable = { GER_biologic_land_bunker_effectiveness_factor = -0.20 }
+
+			### CHEMICAL
+			set_variable = { OMS_chemical_gdp_growth_modifier = -0.05 }
+			set_variable = { OMS_chemical_army_org_regain = -0.10 }
+			set_variable = { OMS_chemical_mobilization_speed = -0.50 }
+			set_variable = { OMS_chemical_resistance_growth = 0.05 }
+			set_variable = { OMS_chemical_monthly_population = -0.10 }
+
+
+			### COLLATERAL
+			set_variable = { OMS_collateral_monthly_population = -0.40 }
+			set_variable = { OMS_collateral_army_speed_factor = -0.05 }
+			set_variable = { OMS_collateral_land_bunker_effectiveness_factor = -0.15 }
+			set_variable = { OMS_collateral_gdp_growth_modifier = -0.10 }
+			set_variable = { OMS_collateral_recruitable_population_factor = -0.02 }
+
+			set_variable = { OMS_collateral_buff_mult = 1 }
+			set_variable = { OMS_chemical_buff_mult = 1 }
+			set_variable = { OMS_biologic_buff_mult = 1 }
+		}
+	}
+
+	OMS_PT_2WRW_kill_em_all = {
+		icon = GFX_decision_generic_
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		days_remove = 70
+
+
+		complete_effect = {
+			GER = {
+				add_ideas = GER_kill_em_all
+			}
+		}
+		remove_effect = {
+			GER = {
+				remove_ideas = GER_kill_em_all
+				add_war_support = -0.2
+				add_stability = -0.1
+			}
+		}
+	}
+}
+
+
+
+OMS_2WRW_great_trial_category = {
+
+	OMS_2WRW_end_it_all = {
+		icon = GFX_decision_generic
+		visible = {
+			has_country_flag = OMS_we_will_win_decision
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_variable = { OMS_readiness = 1 }
+			custom_effect_tooltip = OMS_2WRW_end_it_all_tt
+			hidden_effect = {
+				set_political_power = 0
+				set_war_support = 0
+				add_command_power = -999
+				army_experience = -999
+				air_experience = -999
+				navy_experience = -999
+				SWRW_mistrial_beginning = yes
+			}
+		}
+	}
+	
+	# Western Front Decisions
+	OMS_2WRW_show_western_front_decisions = {
+		icon = GFX_decision_generic_
+		visible = {
+			NOT = {
+				has_country_flag = OMS_2WRW_show_western_front_decisions
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		complete_effect = {
+			set_country_flag = OMS_2WRW_show_western_front_decisions
+		}
+	}
+	OMS_2WRW_hide_western_front_decisions = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_western_front_decisions
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		complete_effect = {
+			clr_country_flag = OMS_2WRW_show_western_front_decisions
+		}
+	}
+	OMS_2WRW_grand_offensive_stratagem_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_western_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+			check_variable = { OMS_readiness > 4.99 }
+		}
+		days_remove = 56
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_decrease_tt
+			hidden_effect = {
+				subtract_from_variable = { OMS_readiness = 5 }
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_grand_offensive_stratagem
+		}
+		remove_effect = {
+			remove_ideas = OMS_grand_offensive_stratagem
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+	}
+	OMS_2WRW_ceaseless_assault_stratagem_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_western_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+			check_variable = { OMS_readiness > 1.99 }
+		}
+		days_remove = 56
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_decrease_tt
+			hidden_effect = {
+				subtract_from_variable = { OMS_readiness = 2 }
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_ceaseless_assault_stratagem
+		}
+		remove_effect = {
+			remove_ideas = OMS_ceaseless_assault_stratagem
+			add_timed_idea = {
+				idea = OMS_ceaseless_assault_stratagem_aftereffects
+				days = 30
+			}
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+	}
+	OMS_2WRW_chemical_saturation_stratagem_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_western_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+			check_variable = { OMS_readiness > 1.99 }
+		}
+		days_remove = 56
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_decrease_tt
+			hidden_effect = {
+				subtract_from_variable = { OMS_readiness = 2 }
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_chemical_saturation_stratagem
+			every_possible_country = {
+				limit = {
+					OR = {
+						original_tag = GER
+						original_tag = MCW
+						original_tag = OST
+						original_tag = CAU
+					}
+				}
+				add_ideas = OMS_chemical_saturation_stratagem_pakt_side
+			}
+		}
+		remove_effect = {
+			remove_ideas = OMS_chemical_saturation_stratagem
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			every_possible_country = {
+				limit = {
+					OR = {
+						original_tag = GER
+						original_tag = MCW
+						original_tag = OST
+						original_tag = CAU
+					}
+				}
+				remove_ideas = OMS_chemical_saturation_stratagem_pakt_side
+			}
+		}
+	}
+	OMS_2WRW_firestorm_assault_stratagem_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_western_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+			check_variable = { OMS_readiness > 1.99 }
+		}
+		days_remove = 56
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_decrease_tt
+			hidden_effect = {
+				subtract_from_variable = { OMS_readiness = 2 }
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_firestorm_assault_stratagem
+			every_possible_country = {
+				limit = {
+					OR = {
+						original_tag = GER
+						original_tag = MCW
+						original_tag = OST
+						original_tag = CAU
+					}
+				}
+				add_ideas = OMS_firestorm_assault_stratagem_pakt_side
+			}
+		}
+		remove_effect = {
+			remove_ideas = OMS_firestorm_assault_stratagem
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			every_possible_country = {
+				limit = {
+					OR = {
+						original_tag = GER
+						original_tag = MCW
+						original_tag = OST
+						original_tag = CAU
+					}
+				}
+				remove_ideas = OMS_firestorm_assault_stratagem_pakt_side
+			}
+		}
+	}
+	OMS_2WRW_strategic_repossession_theorem_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_western_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_western_front_decision
+			}
+		}
+		custom_cost_text = decision_cost_25_cp
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		days_remove = 28
+		days_re_enable = 200
+		complete_effect = {
+			custom_effect_tooltip = OMS_readiness_increase_tt
+			add_to_variable = { OMS_readiness = 4 }
+			hidden_effect = {
+				add_command_power = -25
+				set_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_ideas = OMS_strategic_repossession_theorem
+		}
+		remove_effect = {
+			remove_ideas = OMS_strategic_repossession_theorem
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_western_front_decision
+			}
+			add_war_support = 0.1
+			set_temp_variable = { money_reserves_temp = 1 }
+			if = {
+				limit = {
+					controls_state = 1442
+				}
+				add_to_temp_variable = { money_reserves_temp = 1 }
+			}
+			if = {
+				limit = {
+					controls_state = 1397
+				}
+				add_to_temp_variable = { money_reserves_temp = 1 }
+			}
+			if = {
+				limit = {
+					controls_state = 1428
+				}
+				add_to_temp_variable = { money_reserves_temp = 1 }
+			}
+			if = {
+				limit = {
+					controls_state = 234
+				}
+				add_to_temp_variable = { money_reserves_temp = 1 }
+			}
+			econ_money_reserves_change_raw_money = yes
+		}
+	}
+	# Home Front Decisions
+	OMS_2WRW_show_home_front_decisions = {
+		icon = GFX_decision_generic_
+		visible = {
+			NOT = {
+				has_country_flag = OMS_2WRW_show_home_front_decisions
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		complete_effect = {
+			set_country_flag = OMS_2WRW_show_home_front_decisions
+		}
+	}
+	OMS_2WRW_hide_home_front_decisions = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_home_front_decisions
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		complete_effect = {
+			clr_country_flag = OMS_2WRW_show_home_front_decisions
+		}
+	}
+	OMS_2WRW_expropriate_assets_non_combatants_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_home_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		custom_cost_text = decision_cost_25_pp
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		days_remove = 35
+		days_re_enable = 150
+		modifier = { poverty_monthly_rate = -0.02 }
+		complete_effect = {
+			add_war_support = -0.05
+			add_stability = -0.05
+			hidden_effect = {
+				add_political_power = -25
+				set_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = OMS_readiness_increase_tt
+			add_to_variable = { OMS_readiness = 5 }
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+	}
+	OMS_2WRW_expand_labor_force_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_home_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		custom_cost_text = decision_cost_25_pp
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		days_remove = 30
+		days_re_enable = 150
+		complete_effect = {
+			add_ideas = {
+				OMS_expand_labor_force
+			}
+			hidden_effect = {
+				add_political_power = -25
+				set_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = OMS_readiness_increase_tt
+			remove_ideas = OMS_expand_labor_force
+			TNO_worsen_industrial_expertise_med = yes
+			add_to_variable = { OMS_readiness = 2 }
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+	}
+	OMS_2WRW_propaganda_saturation_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_home_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		custom_cost_text = decision_cost_15_cp_15_pp
+		custom_cost_trigger = {
+			command_power > 14.99
+			has_political_power > 14.99
+		}
+		days_remove = 70
+		days_re_enable = 150
+		complete_effect = {
+			add_ideas = {
+				OMS_propaganda_saturation
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.2 }
+			econ_spend_money_once_effect_raw_money = yes
+			hidden_effect = {
+				add_political_power = -15
+				add_command_power = -15
+				set_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		remove_effect = {
+			remove_ideas = {
+				OMS_propaganda_saturation
+			}
+			TNO_improve_press_rights_policy_effectiveness_low = yes
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+	}
+	OMS_2WRW_crush_defeatist_sentiments_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_home_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		custom_cost_text = decision_cost_15_cp_15_pp
+		custom_cost_trigger = {
+			command_power > 14.99
+			has_political_power > 14.99
+		}
+		days_remove = 30
+		days_re_enable = 150
+		complete_effect = {
+			add_ideas = {
+				OMS_crush_defeatist_sentiments
+			}
+			hidden_effect = {
+				add_political_power = -15
+				add_command_power = -15
+				set_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		remove_effect = {
+			remove_ideas = OMS_crush_defeatist_sentiments
+			TNO_improve_security_policy_effectiveness_low = yes
+			TNO_improve_draft_exemptions_policy_effectiveness_low = yes
+			TNO_improve_conscription_policy_effectiveness_low = yes
+			add_stability = 0.05
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+	}
+	OMS_2WRW_find_additional_volunteers_decision = {
+		icon = GFX_decision_generic_
+		visible = {
+			has_country_flag = OMS_2WRW_show_home_front_decisions
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		custom_cost_text = decision_cost_15_cp_15_pp
+		custom_cost_trigger = {
+			command_power > 14.99
+			has_political_power > 14.99
+		}
+		days_remove = 30
+		days_re_enable = 150
+		complete_effect = {
+			add_ideas = {
+				OMS_find_additional_volunteers
+			}
+			TNO_worsen_army_professionalism_low = yes
+			hidden_effect = {
+				add_political_power = -25
+				set_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+		remove_effect = {
+			remove_ideas = OMS_find_additional_volunteers
+			TNO_worsen_army_professionalism_low = yes
+			hidden_effect = {
+				clr_country_flag = OMS_2WRW_has_home_front_decisions
+			}
+		}
+	}
+}
+
+OMS_2WRW_readiness_category = {
+	OMS_2WRW_readiness_construct_siberian_redoubts = {
+		icon = GFX_decision_generic
+		visible = {
+			has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		custom_cost_text = decision_cost_10_cp
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		days_remove = 60
+		days_re_enable = 75
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		remove_effect = {
+			set_temp_variable = { OMS_readiness_change_var = 5 }
+			OMS_readiness_change = yes
+			846 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			848 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			847 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			871 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			573 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	OMS_2WRW_readiness_construct_finnish_logistics = {
+		icon = GFX_decision_generic
+		visible = {
+			has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			has_completed_focus = OMS_in_bobrikov_footsteps
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			#has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			has_completed_focus = OMS_in_bobrikov_footsteps
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		custom_cost_text = decision_cost_10_cp
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		fire_only_once = yes
+		days_remove = 60
+		#days_re_enable = 75
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		remove_effect = {
+			set_temp_variable = { OMS_readiness_change_var = 5 }
+			OMS_readiness_change = yes
+			build_railway = {
+				level = 1
+				build_only_on_allied = yes
+				start_province = 3338
+				target_province = 94
+			}
+			build_railway = {
+				level = 1
+				build_only_on_allied = yes
+				start_province = 94
+				target_province = 9206
+			}
+			build_railway = {
+				level = 1
+				build_only_on_allied = yes
+				start_province = 9206
+				target_province = 11105
+			}
+		}
+	}
+
+	OMS_2WRW_readiness_construct_nikolaigrad_redoubts = {
+		icon = GFX_decision_generic
+		visible = {
+			has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			has_completed_focus = OMS_in_bobrikov_footsteps
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			#has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			has_completed_focus = OMS_in_bobrikov_footsteps
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		custom_cost_text = decision_cost_10_cp
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		fire_only_once = yes
+		days_remove = 60
+		#days_re_enable = 75
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		remove_effect = {
+			set_temp_variable = { OMS_readiness_change_var = 5 }
+			OMS_readiness_change = yes
+			111 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11105
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			1712 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9206
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			1715 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3083
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+			1716 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3122
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	OMS_2WRW_readiness_construct_establish_baltic_navy = {
+		icon = GFX_decision_generic
+		visible = {
+			has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			has_completed_focus = OMS_in_bobrikov_footsteps
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			#has_country_flag = OMS_readiness_redoubt_decisions_enabled #Why are you checking this twice?
+			has_completed_focus = OMS_in_bobrikov_footsteps
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		custom_cost_text = decision_cost_10_cp
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		fire_only_once = yes
+		days_remove = 60
+		#days_re_enable = 75
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		remove_effect = {
+			set_temp_variable = { OMS_readiness_change_var = 5 }
+			OMS_readiness_change = yes
+			111 = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = naval_base
+					level = 3
+					province = 11105
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 3
+					province = 11105
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 3
+					instant_build = yes
+				}
+			}
+			1715 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					province = 3083
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 3083
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			1716 = {
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					province = 3122
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 3122
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			1359 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 3134
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 3134
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	OMS_2WRW_readiness_construct_western_redoubts = {
+		icon = GFX_decision_generic
+		visible = {
+			has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			
+		}
+		custom_cost_text = decision_cost_10_cp
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		days_remove = 60
+		days_re_enable = 75
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		remove_effect = {
+			set_temp_variable = { OMS_readiness_change_var = 5 }
+			OMS_readiness_change = yes
+			400 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			853 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			214 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			850 = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+
+	OMS_2WRW_readiness_construct_far_eastern_redoubts = {
+		icon = GFX_decision_generic
+		visible = {
+			has_country_flag = OMS_readiness_redoubt_decisions_enabled
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		available = {
+			has_completed_focus = OMS_siberian_redoubts
+			NOT = {
+				has_war_with = GER
+			}
+		}
+		custom_cost_text = decision_cost_10_cp
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		days_remove = 60
+		days_re_enable = 75
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		remove_effect = {
+			set_temp_variable = { OMS_readiness_change_var = 5 }
+			OMS_readiness_change = yes
+			every_owned_state = {
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = MAN
+					}
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = MEN
+					}
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = XIN
+					}
+				}
+				add_building_construction = { #they're paranoid enough to do this
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = yes
+						limit_to_border_country = YUN
+					}
+				}
+			}
+			329 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			556 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			564 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			563 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			561 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+			886 = {
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+OMS_national_redoubt_program_category = {
+	OMS_construct_tomsk_bunkers = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = OMS_national_redoubt_construction
+			}
+			has_country_flag = OMS_a_new_siberian_plan_flag
+		}
+
+		modifier = {
+			civilian_expenditures_factor = 0.10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision OMS_construct_sverdlovsk_bunkers"
+			set_country_flag = OMS_national_redoubt_construction
+			hidden_effect = { add_command_power = -25 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove OMS_construct_sverdlovsk_bunkers"
+			clr_country_flag = OMS_national_redoubt_construction
+			add_to_variable = { OMS_CSB_bunker = 1 }
+			578 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 7789
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 12536
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 1718
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	OMS_construct_kra_bunkers = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = OMS_national_redoubt_construction
+			}
+			has_country_flag = OMS_a_new_siberian_plan_flag
+		}
+
+		modifier = {
+			civilian_expenditures_factor = 0.10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision OMS_construct_sverdlovsk_bunkers"
+			set_country_flag = OMS_national_redoubt_construction
+			hidden_effect = { add_command_power = -25 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove OMS_construct_sverdlovsk_bunkers"
+			clr_country_flag = OMS_national_redoubt_construction
+			add_to_variable = { OMS_CSB_bunker = 1 }
+			757 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 4724
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 7815
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 10649
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	OMS_construct_nov_bunkers = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = OMS_national_redoubt_construction
+			}
+			has_country_flag = OMS_a_new_siberian_plan_flag
+		}
+
+		modifier = {
+			civilian_expenditures_factor = 0.10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision OMS_construct_sverdlovsk_bunkers"
+			set_country_flag = OMS_national_redoubt_construction
+			hidden_effect = { add_command_power = -25 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove OMS_construct_sverdlovsk_bunkers"
+			clr_country_flag = OMS_national_redoubt_construction
+			add_to_variable = { OMS_CSB_bunker = 1 }
+			570 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 7825
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 4734
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 4866
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	OMS_construct_kem_bunkers = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = OMS_national_redoubt_construction
+			}
+			has_country_flag = OMS_a_new_siberian_plan_flag
+		}
+
+		modifier = {
+			civilian_expenditures_factor = 0.10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision OMS_construct_sverdlovsk_bunkers"
+			set_country_flag = OMS_national_redoubt_construction
+			hidden_effect = { add_command_power = -25 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove OMS_construct_sverdlovsk_bunkers"
+			clr_country_flag = OMS_national_redoubt_construction
+			add_to_variable = { OMS_CSB_bunker = 1 }
+			569 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 4789
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 1685
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 12631
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+
+	OMS_construct_irk_bunkers = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = OMS_national_redoubt_construction
+			}
+			has_country_flag = OMS_a_new_siberian_plan_flag
+		}
+
+		modifier = {
+			civilian_expenditures_factor = 0.10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision OMS_construct_sverdlovsk_bunkers"
+			set_country_flag = OMS_national_redoubt_construction
+			hidden_effect = { add_command_power = -25 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove OMS_construct_sverdlovsk_bunkers"
+			clr_country_flag = OMS_national_redoubt_construction
+			add_to_variable = { OMS_FE_bunker = 1 }
+			566 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 1727
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 6835
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 4797
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	OMS_construct_bry_bunkers = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = OMS_national_redoubt_construction
+			}
+			has_country_flag = OMS_a_new_siberian_plan_flag
+		}
+
+		modifier = {
+			civilian_expenditures_factor = 0.10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision OMS_construct_sverdlovsk_bunkers"
+			set_country_flag = OMS_national_redoubt_construction
+			hidden_effect = { add_command_power = -25 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove OMS_construct_sverdlovsk_bunkers"
+			clr_country_flag = OMS_national_redoubt_construction
+			add_to_variable = { OMS_FE_bunker = 1 }
+			564 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 14459
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 10528
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 8551
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	OMS_construct_mag_bunkers = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = OMS_national_redoubt_construction
+			}
+			has_country_flag = OMS_a_new_siberian_plan_flag
+		}
+
+		modifier = {
+			civilian_expenditures_factor = 0.10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		custom_cost_trigger = { command_power > 24.99 }
+		custom_cost_text = decision_cost_25_cp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision OMS_construct_sverdlovsk_bunkers"
+			set_country_flag = OMS_national_redoubt_construction
+			hidden_effect = { add_command_power = -25 }
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove OMS_construct_sverdlovsk_bunkers"
+			clr_country_flag = OMS_national_redoubt_construction
+			add_to_variable = { OMS_FE_bunker = 1 }
+			562 = {
+				add_building_construction = {
+					type = bunker
+					level = 5
+					instant_build = yes
+					province = 12683
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 8552
+				}
+				add_building_construction = {
+					type = bunker
+					level = 3
+					instant_build = yes
+					province = 1865
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = radar_station
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+OMS_2WRWCE_PostApoc_category = {
+	OMS_propaganda_to_people = {
+		icon = GFX_decision_generic_propaganda_off
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.2
+			weekly_manpower = 20
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+		days_re_enable = 7
+
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -5 }
+		}
+
+		remove_effect = {
+			Postnuke_Legitimacy_Gain_Med = yes
+		}
+	}
+
+	OMS_search_the_available_supply = {
+		icon = GFX_decision_ODF_supply
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.05
+			weekly_manpower = 10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+		days_re_enable = 7
+
+
+		custom_cost_trigger = { command_power > 4.99 political_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp_5_pp
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -5 add_political_power = -5 }
+		}
+
+		remove_effect = {
+			Postnuke_Equipment_Gain_Small = yes
+		}
+	}
+
+	OMS_extend_military_training = {
+		icon = GFX_decision_ODF_militarization
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = -0.1
+			weekly_manpower = -10
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 15
+
+
+		cost = 30
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			Postnuke_Militarization_Gain_Small = yes
+			TNO_improve_training_policy_effectiveness_low = yes
+		}
+	}
+
+	OMS_product_the_military_things = {
+		icon = GFX_decision_category_generic_building
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = -0.05
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+		days_re_enable = 7
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Equipment > 6 }
+				tooltip = PostApocEquipmentBigThanFour
+			}
+		}
+
+		complete_effect = {
+			subtract_from_variable = { Antarctica_Equipment = 4 }
+		}
+
+		remove_effect = {
+			Postnuke_Militarization_Gain_Med = yes
+			set_temp_variable = { pus_temp = 1 }
+			econ_pus_change = yes
+		}
+	}
+
+	OMS_search_supply_in_wasteland = {
+		icon = GFX_decision_generic_nuclear_radiation
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = -0.05
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+		days_re_enable = 7
+
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+		}
+
+		remove_effect = {
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			Postnuke_Equipment_Gain_Med = yes
+		}
+	}
+
+	OMS_rading_wasteland = {
+		icon = GFX_decision_generic_radiation
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 21
+		days_re_enable = 7
+
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 4 }
+				tooltip = PostApoc_train_light_infantry_tt
+			}
+		}
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+			Postnuke_Militarization_Loss_Small = yes
+		}	
+
+		remove_effect = {
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			Postnuke_Equipment_Gain_Small = yes
+			custom_effect_tooltip = gain_loot_1
+			add_to_variable = { loot_amount = 1 }
+		}
+	}
+
+	OMS_cap_the_NOV = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		cost = 30
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 570
+			}
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 20 }
+				check_variable = { Antarctica_Legitimacy > 20 }
+				check_variable = { Antarctica_Equipment > 10 }
+				tooltip = PostApoc_capture_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			has_global_flag = SWRW_postnuke_out_bunker_NOW
+		}
+
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+			hidden_effect = { subtract_from_variable = { Antarctica_Militarization = 20 } subtract_from_variable = { Antarctica_Legitimacy = 20 } subtract_from_variable = { Antarctica_Equipment = 10 } }
+		}
+
+		remove_effect = {
+			Postnuke_Legitimacy_Gain_Med = yes
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			570 = {
+				transfer_state_to = OMS
+				add_core_of = OMS
+
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.75"
+					owner = OMS
+					prioritize_location = 7925
+				}
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+					owner = OMS
+					prioritize_location = 12606
+				}
+			}
+		}
+	}
+
+	OMS_cap_the_NOV2 = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		cost = 30
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 40
+			}
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 20 }
+				check_variable = { Antarctica_Legitimacy > 20 }
+				check_variable = { Antarctica_Equipment > 10 }
+				tooltip = PostApoc_capture_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			has_global_flag = SWRW_postnuke_out_bunker_NOW
+		}
+
+		visible = {
+			owns_state = 570
+		}
+
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+			hidden_effect = { subtract_from_variable = { Antarctica_Militarization = 20 } subtract_from_variable = { Antarctica_Legitimacy = 20 } subtract_from_variable = { Antarctica_Equipment = 10 } }
+		}
+
+		remove_effect = {
+			Postnuke_Legitimacy_Gain_Med = yes
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			40 = {
+				transfer_state_to = OMS
+				add_core_of = OMS
+
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.75"
+					owner = OMS
+					prioritize_location = 1794
+				}
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+					owner = OMS
+					prioritize_location = 11410
+				}
+			}
+		}
+	}
+
+	OMS_cap_the_KEM = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 569
+			}
+		}
+
+		cost = 30
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 20 }
+				check_variable = { Antarctica_Legitimacy > 20 }
+				check_variable = { Antarctica_Equipment > 10 }
+				tooltip = PostApoc_capture_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			has_global_flag = SWRW_postnuke_out_bunker_NOW
+		}
+
+		visible = {
+			owns_state = 570
+		}
+
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+			hidden_effect = { subtract_from_variable = { Antarctica_Militarization = 20 } subtract_from_variable = { Antarctica_Legitimacy = 20 } subtract_from_variable = { Antarctica_Equipment = 10 } }
+		}
+
+		remove_effect = {
+			Postnuke_Legitimacy_Gain_Med = yes
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			569 = {
+				transfer_state_to = OMS
+				add_core_of = OMS
+
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.75"
+					owner = OMS
+					prioritize_location = 1685
+				}
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+					owner = OMS
+					prioritize_location = 4789
+				}
+			}
+		}
+	}
+
+	OMS_cap_the_ORL = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		cost = 30
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 654
+			}
+		}
+
+		available = {
+			Postnuke_Legitimacy_Gain_Med = yes
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 20 }
+				check_variable = { Antarctica_Legitimacy > 20 }
+				check_variable = { Antarctica_Equipment > 10 }
+				tooltip = PostApoc_capture_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			has_global_flag = SWRW_postnuke_out_bunker_NOW
+		}
+
+		visible = {
+			OR = {
+				owns_state = 569
+				owns_state = 40
+			}
+		}
+
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+			hidden_effect = { subtract_from_variable = { Antarctica_Militarization = 20 } subtract_from_variable = { Antarctica_Legitimacy = 20 } subtract_from_variable = { Antarctica_Equipment = 10 } }
+		}
+
+		remove_effect = {
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			654 = {
+				transfer_state_to = OMS
+				add_core_of = OMS
+
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.75"
+					owner = OMS
+					prioritize_location = 4800
+				}
+			}
+		}
+	}
+
+	OMS_cap_the_TYM = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		cost = 30
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 403
+			}
+		}
+
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 20 }
+				check_variable = { Antarctica_Legitimacy > 20 }
+				check_variable = { Antarctica_Equipment > 10 }
+				tooltip = PostApoc_capture_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			has_global_flag = SWRW_postnuke_out_bunker_NOW
+		}
+
+
+		complete_effect = {
+
+			add_to_variable = { OMS_team_doing = 1 } 
+			hidden_effect = { subtract_from_variable = { Antarctica_Militarization = 20 } subtract_from_variable = { Antarctica_Legitimacy = 20 } subtract_from_variable = { Antarctica_Equipment = 10 } }
+		}
+
+		remove_effect = {
+			Postnuke_Legitimacy_Gain_Med = yes
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			403 = {
+				transfer_state_to = OMS
+				add_core_of = OMS
+
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.75"
+					owner = OMS
+					prioritize_location = 1387
+				}
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+					owner = OMS
+					prioritize_location = 12521
+				}
+			}
+		}
+	}
+
+	OMS_cap_the_TYM2 = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		cost = 30
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 572
+			}
+		}
+
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 20 }
+				check_variable = { Antarctica_Legitimacy > 20 }
+				check_variable = { Antarctica_Equipment > 10 }
+				tooltip = PostApoc_capture_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			has_global_flag = SWRW_postnuke_out_bunker_NOW
+		}
+
+		visible = {
+			owns_state = 403
+		}
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+			hidden_effect = { subtract_from_variable = { Antarctica_Militarization = 20 } subtract_from_variable = { Antarctica_Legitimacy = 20 } subtract_from_variable = { Antarctica_Equipment = 10 } }
+		}
+
+		remove_effect = {
+			Postnuke_Legitimacy_Gain_Med = yes
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			572 = {
+				transfer_state_to = OMS
+				add_core_of = OMS
+
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.75"
+					owner = OMS
+					prioritize_location = 1292
+				}
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+					owner = OMS
+					prioritize_location = 12106
+				}
+			}
+		}
+	}
+
+	OMS_cap_the_580 = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		cost = 30
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 580
+			}
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 20 }
+				check_variable = { Antarctica_Legitimacy > 20 }
+				check_variable = { Antarctica_Equipment > 10 }
+				tooltip = PostApoc_capture_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			has_global_flag = SWRW_postnuke_out_bunker_NOW
+		}
+
+		visible = {
+			580 = {
+				is_owned_by = ZZZ
+			}
+			403 = {
+				is_owned_by = OMS
+			}
+		}
+
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+			hidden_effect = { subtract_from_variable = { Antarctica_Militarization = 20 } subtract_from_variable = { Antarctica_Legitimacy = 20 } subtract_from_variable = { Antarctica_Equipment = 10 } }
+		}
+
+		remove_effect = {
+			Postnuke_Legitimacy_Gain_Med = yes
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			580 = {
+				transfer_state_to = OMS
+				add_core_of = OMS
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+					owner = OMS
+					prioritize_location = 1812
+				}
+			}
+		}
+	}
+
+	OMS_cap_the_SVR = {
+		icon = GFX_decision_generic_fort
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = 0.25
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+		days_remove = 30
+
+		fire_only_once = yes
+
+		cost = 30
+
+		highlight_states = {
+			highlight_state_targets = {
+				state = 653
+			}
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 20 }
+				check_variable = { Antarctica_Legitimacy > 20 }
+				check_variable = { Antarctica_Equipment > 10 }
+				tooltip = PostApoc_capture_tt
+			}
+			custom_trigger_tooltip = {
+				check_variable = { OMS_team_doing < OMS_team_doing_max }
+				tooltip = OMS_team_doing_tt
+			}
+			has_global_flag = SWRW_postnuke_out_bunker_NOW
+		}
+
+		visible = {
+			owns_state = 403
+		}
+
+		complete_effect = {
+			add_to_variable = { OMS_team_doing = 1 } 
+			hidden_effect = { subtract_from_variable = { Antarctica_Militarization = 20 } subtract_from_variable = { Antarctica_Legitimacy = 20 } subtract_from_variable = { Antarctica_Equipment = 10 } }
+		}
+
+		remove_effect = {
+			Postnuke_Legitimacy_Gain_Med = yes
+			subtract_from_variable = { OMS_team_doing = 1 } 
+			653 = {
+				transfer_state_to = OMS
+				add_core_of = OMS
+
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.75"
+					owner = OMS
+					prioritize_location = 1821
+				}
+				create_unit = {
+					division = "name = \"Black League Light Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.6"
+					owner = OMS
+					prioritize_location = 10189
+				}
+			}
+		}
+	}
+
+	OMS_deploy_infantry = {
+		icon = GFX_decision_market_infantry
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+			political_power_gain = -0.05
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 60
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 4 }
+				tooltip = PostApoc_train_light_infantry_tt
+			}
+			has_equipment = {
+				infantry_equipment > 400
+			}
+		}
+
+		cost = 30
+
+		complete_effect = {
+			Postnuke_Militarization_Loss_Small = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -400
+				producer = OMS
+			}
+		}
+
+		remove_effect = {
+			571 = {
+				create_unit = {
+					division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = OMS
+					prioritize_location = 10696
+				}
+			}
+		}
+	}
+
+	OMS_get_armor_design = {
+		icon = GFX_decision_market_armor
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 30
+
+		fire_only_once = yes
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 4 }
+				tooltip = PostApoc_train_light_infantry_tt
+			}
+		}
+
+		cost = 30
+
+		complete_effect = {
+			Postnuke_Militarization_Loss_Small = yes
+		}
+
+		remove_effect = {
+			set_country_flag = OMS_get_tank_design
+			create_equipment_variant = {
+				name = "T-34-85"
+				type = MBT_chassis_0
+				parent_version = 0
+				modules = {
+					main_armament_slot = MBT_cannon
+					turret_type_slot = MBT_three_man_tank_turret
+					suspension_type_slot = tank_torsion_bar_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_diesel_engine
+					special_type_slot_1 = secondary_turret_hmg
+				}
+				icon = GFX_WRS_MBT_1945_medium
+				upgrades = {
+					tank_nsb_engine_upgrade = 6
+					tank_nsb_armor_upgrade = 6
+				}
+			}
+			create_equipment_variant = {
+				name = "T-44-85"
+				type = MBT_chassis_1
+				parent_version = 0
+				modules = {
+					main_armament_slot = MBT_cannon
+					turret_type_slot = MBT_three_man_tank_turret
+					suspension_type_slot = tank_torsion_bar_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_diesel_engine
+					special_type_slot_1 = secondary_turret_hmg
+				}
+				icon = GFX_WRS_MBT_1950_medium
+				upgrades = {
+					tank_nsb_engine_upgrade = 6
+					tank_nsb_armor_upgrade = 6
+				}
+			}
+
+			create_equipment_variant = {
+				name = "PT-50"
+				type = IFV_chassis_1
+				parent_version = 0
+				modules = {
+					main_armament_slot = IFV_cannon
+					turret_type_slot = IFV_two_man_tank_turret
+					suspension_type_slot = tank_torsion_bar_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_diesel_engine
+					special_type_slot_1 = command_optics
+				}
+
+				icon = GFX_CSB_IFV_1950_medium
+				upgrades = {
+					tank_nsb_engine_upgrade = 3
+					tank_nsb_armor_upgrade = 2
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = MBT_chassis_0
+				amount = 5
+				producer = OMS
+			}
+			add_equipment_to_stockpile = {
+				type = MBT_chassis_1
+				amount = 5
+				producer = OMS
+			}
+			add_equipment_to_stockpile = {
+				type = IFV_chassis_1
+				amount = 5
+				producer = OMS
+			}
+
+			division_template = {
+				name = "Armored Division"
+				regiments = {
+					elite_infantry = { x = 0 y = 0 }
+					elite_infantry = { x = 0 y = 1 }
+					elite_infantry = { x = 0 y = 2 }
+					elite_infantry = { x = 0 y = 3 }
+					MBT = { x = 1 y = 0 }
+					MBT = { x = 1 y = 1 }
+					MBT = { x = 1 y = 2 }
+					IFV = { x = 1 y = 3 }
+					IFV = { x = 2 y = 0 }
+					IFV = { x = 2 y = 1 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					recon = { x = 0 y = 1 }
+					MBT_engineer = { x = 0 y = 2 }
+				}
+			}
+		}
+	}
+
+	OMS_deploy_armor_division = {
+		icon = GFX_decision_generic_tank
+		allowed = {
+			original_tag = OMS
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		days_remove = 60
+
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { Antarctica_Militarization > 4 }
+				tooltip = PostApoc_train_light_infantry_tt
+			}
+			has_equipment = {
+				infantry_equipment > 640
+			}
+		}
+
+		visible = {
+			has_country_flag = OMS_get_tank_design
+		}
+
+		cost = 30
+
+		complete_effect = {
+			Postnuke_Militarization_Loss_Small = yes	
+		}
+
+		remove_effect = {
+			add_equipment_to_stockpile = { type = MBT_chassis_0 amount = 100 producer = OMS }
+			add_equipment_to_stockpile = {
+				type = MBT_chassis_0
+				amount = 40
+				producer = OMS
+			}
+			add_equipment_to_stockpile = {
+				type = IFV_chassis_1
+				amount = 120
+				producer = OMS
+			}
+			571 = {
+				create_unit = {
+					division = "name = \"Black League Armored Division\" division_template = \"Armored Division\" start_experience_factor = 0.5 start_equipment_factor = 0.01"
+					owner = OMS
+					prioritize_location = 10696
+				}
+			}
+		}
+	}
+}
+

@@ -1,0 +1,6417 @@
+shared_focus = {
+	id = RUS_One_Once_More_new
+	icon = GFX_RUS_One_Once_More
+	cost = 1
+	ai_will_do = { factor = 1 }
+	x = 10
+	y = -2
+	completion_reward = {
+		set_stability = 0.5
+		set_war_support = 0.5
+		log = "[GetDateText]: [Root.GetName]: RUS_One_Once_More"
+		custom_effect_tooltip = RUS_One_Once_More_tt
+		add_stability = 0.2
+		add_war_support = 0.2
+		add_political_power = 25
+		set_temp_variable = { pus_temp = 6 }
+		econ_pus_change = yes
+		set_country_flag = RUS_One_Once_More_finish
+		mark_focus_tree_layout_dirty = yes
+		country_event = { id = SWRW_RUS_unification.1 days = 2 }
+	}
+}
+
+shared_focus = {
+	id = RUS_our_real_situation
+	icon = GFX_focus_USA_duty_to_country
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_One_Once_More_new }
+	relative_position_id = RUS_One_Once_More_new
+	x = -1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 25
+		country_event = { id = SWRW_RUS.3 days = 5 }
+	}
+}
+
+shared_focus = {
+	id = RUS_build_our_party
+	icon = GFX_focus_generic_left_unity
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_our_real_situation }
+	relative_position_id = RUS_our_real_situation
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		set_party_name = {
+		ideology = paternalism
+		long_name = RUS_commie_paternalism
+		name = RUS_commie_paternalism_short
+	}
+	set_party_name = {
+		ideology = liberalism
+		long_name = RUS_commie_liberalism
+		name = RUS_commie_liberalism_short
+	}
+	set_party_name = {
+		ideology = progressivism
+		long_name = RUS_commie_progressivism_long
+		name = RUS_commie_progressivism_short
+	}
+	set_party_name = {
+		ideology = despotism
+		long_name = RUS_commie_despotism_long
+		name = RUS_commie_despotism_short
+	}
+	set_party_name = {
+		ideology = communist
+		long_name = RUS_commie_communist_long
+		name = RUS_commie_communist_short
+	}
+	set_party_name = {
+		ideology = socialist
+		long_name = RUS_commie_socialist_long
+		name = RUS_commie_socialist_short
+	}
+	}
+}
+
+
+shared_focus = {
+	id = RUS_looking_the_moscow
+	icon = GFX_focus_generic_left_unity_warfare
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_build_our_party }
+	relative_position_id = RUS_build_our_party
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_stability = 0.1
+		add_war_support = 0.1
+		army_funding_maximal_increase_high = yes
+		army_funding_minimal_increase_low = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_our_country_runs_well
+	icon = GFX_focus_generic_balancing_the_council
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_One_Once_More_new }
+	relative_position_id = RUS_One_Once_More_new
+	x = 1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		TNO_improve_political_parties_policy_effectiveness_med = yes
+		TNO_improve_religious_rights_policy_effectiveness_med = yes
+		TNO_improve_trade_unions_policy_effectiveness_high = yes
+		TNO_improve_immigration_policy_effectiveness_med = yes
+		TNO_improve_slavery_policy_effectiveness_low = yes
+		TNO_improve_public_meetings_policy_effectiveness_low = yes
+		TNO_improve_press_rights_policy_effectiveness_low = yes
+		TNO_improve_vote_franchise_policy_effectiveness_monthly_med = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_build_our_faction
+	icon = GFX_focus_generic_unity
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_our_country_runs_well }
+	relative_position_id = RUS_our_country_runs_well
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 25
+		add_ideas = CSTO_Guardian_of_Eurasia
+		SWRW_Add_RUS_To_Cold_War_GUI = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_prepare_our_army
+	icon = GFX_focus_generic_army_officers
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_build_our_faction }
+	relative_position_id = RUS_build_our_faction
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5000
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 2500
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 1000
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 1000
+		}
+	}
+}
+
+
+shared_focus = {
+	id = RUS_but_before_that
+	icon = GFX_focus_USA_chep_no_sleep
+	cost = 2
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_prepare_our_army }
+	prerequisite = { focus = RUS_looking_the_moscow }
+	relative_position_id = RUS_prepare_our_army
+	x = -1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_we_have_to_look_yourself
+	icon = GFX_focus_generic_blood_iron_and_democracy
+	cost = 2
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_but_before_that }
+	relative_position_id = RUS_but_before_that
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_commie_we_have_to_look_yourself_tt
+		add_ideas = RUS_The_Peoples_Strength
+		set_country_flag = RUS_commie_show_focus_tree_main
+		set_country_flag = RUS_show_focus_tree_main
+		mark_focus_tree_layout_dirty = yes
+	}
+
+}
+#ECONOMY
+shared_focus = {
+	id = RUS_commie_the_problem_is_economy
+	icon = GFX_focus_RUS_budget_debate
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_we_have_to_look_yourself }
+	relative_position_id = RUS_commie_we_have_to_look_yourself
+	x = 10
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		custom_effect_tooltip = RUS_commie_the_problem_is_economy_tt
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		econ_raise_min_credit_rating = yes
+		set_country_flag = SOV_FIVE_YEARS_PLAN_OPEN
+		set_temp_variable = { temp_econ_spending_amount = 1 }
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_improve_trade_laws_policy_effectiveness_monthly_med = yes
+		tno_trade_laws_worsen = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 5
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_import_industrial_machinery
+	icon = GFX_focus_generic_machine_red
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_industrial_centric_development }
+	relative_position_id = RUS_commie_industrial_centric_development
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 1 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.3 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { pus_temp = 4 }
+		econ_pus_change = yes
+		TNO_improve_industrial_equipment_high = yes
+		TNO_improve_industrial_expertise_med = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_industrial_centric_development
+	icon = GFX_focus_generic_industrial_progress_red
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_problem_is_economy }
+	relative_position_id = RUS_commie_the_problem_is_economy
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		TNO_worsen_regulations_policy_effectiveness_low = yes
+		set_temp_variable = { econ_centralization_temp = -5 }
+		econ_centralization_change = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 1 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.6 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.5 }
+		econ_inflation_change = yes
+		add_ideas = IRK_new_siberian_plan
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = offices
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = offices
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_localized_accessories
+	icon = GFX_focus_RUS_fruit_of_siberia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_import_industrial_machinery }
+	relative_position_id = RUS_commie_import_industrial_machinery
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_low = yes
+		set_temp_variable = { temp_econ_spending_amount = 4 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+	}
+	
+}
+######
+shared_focus = {
+	id = RUS_commie_transport_modernization
+	icon = GFX_focus_generic_railway_work
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_problem_is_economy }
+	relative_position_id = RUS_commie_the_problem_is_economy
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		custom_effect_tooltip = RUS_commie_transport_modernization_tt
+		562 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = thermoelectric_plant
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		889 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		561 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		563 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		564 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = thermoelectric_plant
+				level = 1
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		568 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		757 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		569 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		
+		570 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		40 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		571 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		572 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		403 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		573 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		753 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		399 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		252 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		256 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		249 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		850 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		851 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_urban_development_initiatives
+	icon = GFX_focus_generic_public_housing
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_transport_modernization }
+	relative_position_id = RUS_commie_transport_modernization
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { gdp_growth_temp = 0.2 }
+		econ_gdp_growth_change = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+		country_event = { id = SWRW_RUS.4 days = 5 }
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_invite_foreign_company
+	icon = GFX_focus_generic_foreign_investment
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_import_industrial_machinery }
+	relative_position_id = RUS_commie_urban_development_initiatives
+	x = -2
+	y = 2
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_low = yes
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+		TNO_improve_trade_laws_policy_effectiveness_med = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_the_resources_is_lot
+	icon = GFX_focus_RUS_the_resources_of_siberia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_urban_development_initiatives }
+	relative_position_id = RUS_commie_urban_development_initiatives
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_worsen_regulations_policy_effectiveness_low = yes
+		TNO_improve_poverty_med = yes
+		add_resource = {
+			type = oil
+			amount = 20
+			state = 562
+		}
+		add_resource = {
+			type = chromium
+			amount = 21
+			state = 563
+		}
+		add_resource = {
+			type = tungsten
+			amount = 26
+			state = 564
+		}
+		add_resource = {
+			type = oil
+			amount = 32
+			state = 329
+		}
+		add_resource = {
+			type = chromium
+			amount = 21
+			state = 568
+		}
+		add_resource = {
+			type = tungsten
+			amount = 24
+			state = 570
+		}
+		add_resource = {
+			type = oil
+			amount = 30
+			state = 403
+		}
+		add_resource = {
+			type = chromium
+			amount = 29
+			state = 403
+		}
+		add_resource = {
+			type = tungsten
+			amount = 25
+			state = 403
+		}
+		add_resource = {
+			type = oil
+			amount = 24
+			state = 850
+		}
+		add_resource = {
+			type = chromium
+			amount = 22
+			state = 400
+		}
+		add_resource = {
+			type = tungsten
+			amount = 23
+			state = 252
+		}
+		set_temp_variable = { money_reserves_temp = 6 }
+		econ_money_reserves_change_raw_money = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_integrate_industrial
+	icon = GFX_focus_generic_continue_regional_interconnection
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_resources_is_lot }
+	relative_position_id = RUS_commie_the_resources_is_lot
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		TNO_impove_regulations_policy_effectiveness_low = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+		TNO_improve_industrial_equipment_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_global_development_project
+	icon = GFX_focus_generic_the_global_market
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_integrate_industrial }
+	relative_position_id = RUS_commie_integrate_industrial
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		every_country = {
+			limit = {
+				OR = {
+					is_in_faction_with = RUS
+					check_variable = { ECON_SPHERE_LEADER = RUS }
+				}
+				NOT = {
+					tag = RUS
+				}
+			}
+			set_temp_variable = { gdp_growth_temp = 2 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.1 }
+			econ_GDP_boost_once_percentage = yes
+			TNO_improve_industrial_equipment = yes
+			TNO_improve_industrial_expertise = yes
+			hidden_effect = {
+				TNO_improve_industrial_equipment = yes
+				TNO_improve_industrial_expertise = yes
+			}
+			econ_raise_max_credit_rating = yes
+			TNO_improve_poverty_high = yes
+		}
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 0.85 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+	}
+}
+
+
+######
+
+shared_focus = {
+	id = RUS_commie_military_construction
+	icon = GFX_focus_generic_industrial_progress_red
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_problem_is_economy }
+	relative_position_id = RUS_commie_the_problem_is_economy
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 10 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.11 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_high = yes
+		set_temp_variable = { pus_temp = 8 }
+		econ_pus_change = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_manning_the_factories
+	icon = GFX_focus_generic_denouce_the_reformists
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_military_construction }
+	relative_position_id = RUS_commie_military_construction
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 3 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_high = yes
+		set_temp_variable = { pus_temp = 5 }
+		econ_pus_change = yes
+		tno_regulations_worsen = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_establishment_employment_working_group
+	icon = GFX_focus_generic_modern_construction_equipment_yellow
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_manning_the_factories }
+	relative_position_id = RUS_commie_manning_the_factories
+	x = 0
+	y = 2
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		country_event = { id = SWRW_RUS.1 }
+		set_temp_variable = { temp_econ_spending_amount = 0.225 }
+		TNO_improve_poverty_med = yes
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_improve_industrial_expertise_high = yes
+		TNO_worsen_admin_efficiency_low = yes
+		random_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.05 }
+			econ_state_value_change_multiply = yes
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = schools
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.05 }
+			econ_state_value_change_multiply = yes
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = schools
+				level = 1
+				instant_build = yes
+			}
+		}
+		every_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.035 }
+			econ_state_value_change_multiply = yes
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_workers_gowork
+	icon = GFX_focus_generic_change_law_labor
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_manning_the_factories }
+	relative_position_id = RUS_commie_manning_the_factories
+	x = 1
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		tno_max_workhours_worsen = yes
+		TNO_improve_max_workhours_policy_effectiveness_high = yes
+	}
+	
+}
+######
+
+shared_focus = {
+	id = RUS_commie_finish_the_economy
+	icon = GFX_focus_generic_a_streamlined_economy
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_global_development_project }
+	prerequisite = { focus = RUS_commie_manning_the_factories }
+	prerequisite = { focus = RUS_commie_import_industrial_machinery }
+	relative_position_id = RUS_commie_the_resources_is_lot
+	x = 0
+	y = 3
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		econ_raise_max_credit_rating = yes
+		econ_raise_min_credit_rating = yes
+		econ_raise_credit_rating = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+		set_temp_variable = { gdp_growth_temp = 0.35 }
+		econ_gdp_growth_change = yes
+		TNO_improve_agriculture_med = yes
+		set_temp_variable = { temp_gdp_gained = 0.1 }
+		econ_money_reserves_change_percent_gdp = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 2
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 2
+			uses = 2
+			category = industry
+		}
+		country_event = { id = SWRW_RUS.2 days = 5 }
+	}
+	
+}
+
+#############################ECOxSOC
+
+shared_focus = {
+	id = RUS_commie_tax_control
+	icon = GFX_focus_generic_overbearing_taxation
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_social_need_help }
+	prerequisite = { focus = RUS_commie_the_problem_is_economy }
+	relative_position_id = RUS_commie_the_problem_is_economy
+	x = -5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		add_dynamic_modifier = { modifier = RUS_new_tax_system }
+		SWRW_RUS_add_tariff_tax_rate_025 = yes
+		set_temp_variable = { gdp_growth_temp = -0.1 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_get_tax_for_rich
+	icon = GFX_focus_generic_we_failed_the_rich
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_tax_control }
+	relative_position_id = RUS_commie_tax_control
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		SWRW_RUS_add_sales_tax_rate_050 = yes
+		set_temp_variable = { gdp_growth_temp = -0.1 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_cut_tax_for_poors
+	icon = GFX_focus_GNG_tax_relief
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_get_tax_for_rich }
+	relative_position_id = RUS_commie_get_tax_for_rich
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		SWRW_RUS_subtract_business_tax_rate_050 = yes
+		SWRW_RUS_subtract_income_tax_rate_050 = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_looks_how_many_money_there_is
+	icon = GFX_focus_generic_the_almighty_dollar
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_cut_tax_for_poors }
+	relative_position_id = RUS_commie_cut_tax_for_poors
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { money_reserves_temp = 15 }
+		econ_money_reserves_change_raw_money = yes
+		set_temp_variable = { inflation_temp = -0.1 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_change_tax_law
+	icon = GFX_focus_generic_change_law_speech
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_looks_how_many_money_there_is }
+	relative_position_id = RUS_commie_looks_how_many_money_there_is
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_income_taxation_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_invest_and_invest
+	icon = GFX_focus_generic_foreign_investment
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_change_tax_law }
+	relative_position_id = RUS_commie_change_tax_law
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_gdp_paid = 0.1 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 1.5 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.5 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+#############################ECOxSOC
+
+#############################ARMYxSOC
+
+shared_focus = {
+	id = RUS_commie_draft_it
+	icon = GFX_focus_generic_draft_our_blood
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_social_need_help }
+	prerequisite = { focus = RUS_commie_the_army_need_better }
+	relative_position_id = RUS_commie_the_social_need_help
+	x = -5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_draft_exemptions_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_expend_supervision
+	icon = GFX_focus_USA_bring_back_our_boys
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_draft_it }
+	relative_position_id = RUS_commie_draft_it
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_military_supervision_improve = yes
+	}
+	
+}
+
+
+shared_focus = {
+	id = RUS_commie_women_in_army
+	icon = GFX_focus_generic_female_soldier_2
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_expend_supervision }
+	relative_position_id = RUS_commie_expend_supervision
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_gender_rights_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_expend_immigration
+	icon = GFX_focus_USA_immigration_and_nationality_act
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_women_in_army }
+	relative_position_id = RUS_commie_women_in_army
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_immigration_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_give_money_to_servicer
+	icon = GFX_focus_generic_pay_them_well
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_expend_immigration }
+	relative_position_id = RUS_commie_expend_immigration
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 0.5 }
+		econ_spend_money_once_effect_raw_money = yes
+		add_manpower = 400000
+		TNO_improve_military_supervision_policy_effectiveness_low = yes
+		TNO_improve_conscription_policy_effectiveness_low = yes
+		TNO_improve_training_policy_effectiveness_low = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_low = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_what_do_you_do
+	icon = GFX_focus_YUN_what_did_you_do_in_the_war
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_give_money_to_servicer }
+	relative_position_id = RUS_commie_give_money_to_servicer
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_slavery_improve = yes
+		TNO_worsen_slavery_policy_effectiveness_med = yes
+		TNO_improve_slavery_policy_effectiveness_monthly_low = yes
+	}
+	
+}
+
+#############################ARMYxSOC
+
+
+
+#ARMY
+shared_focus = {
+	id = RUS_commie_the_army_need_better
+	icon = GFX_focus_RUS_preserve_the_union
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_we_have_to_look_yourself }
+	relative_position_id = RUS_commie_we_have_to_look_yourself
+	x = -10
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_military_supervision_policy_effectiveness_high = yes
+		TNO_improve_conscription_policy_effectiveness_med = yes
+		TNO_improve_training_policy_effectiveness_med = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_med = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_the_politicized_army
+	icon = GFX_focus_generic_communist_deal
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_army_need_better }
+	relative_position_id = RUS_commie_the_army_need_better
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_the_professional_army
+	}
+	completion_reward = {
+		add_stability = 0.1
+		add_war_support = 0.1
+		add_political_power = 150
+		add_ideas = RUS_pol_army
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_the_professional_army
+	icon = GFX_focus_generic_integrate_the_militias
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_army_need_better }
+	relative_position_id = RUS_commie_the_army_need_better
+	x = 1
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_the_politicized_army
+	}
+	completion_reward = {
+		add_war_support = 0.1
+		add_political_power = -50
+		add_ideas = RUS_pro_army
+	}
+	
+}
+shared_focus = {
+	id = RUS_commie_extra_the_military
+	icon = GFX_focus_generic_deploy_the_militia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = RUS_commie_the_professional_army
+		focus = RUS_commie_the_politicized_army
+	}
+	relative_position_id = RUS_commie_the_professional_army
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_specialized_army
+	}
+	completion_reward = {
+		tno_conscription_worsen = yes
+		TNO_improve_conscription_policy_effectiveness_high = yes
+		country_event = { id = SWRW_RUS.7 days = 5 }
+		country_event = { id = SWRW_RUS.349 days = 42 }
+	}
+	
+}
+shared_focus = {
+	id = RUS_commie_specialized_army
+	icon = GFX_focus_generic_militarize_the_outskirts
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = RUS_commie_the_professional_army
+		focus = RUS_commie_the_politicized_army
+	}
+	relative_position_id = RUS_commie_the_professional_army
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_extra_the_military
+	}
+	completion_reward = {
+		TNO_training_improve = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_advanced_training_project
+	icon = GFX_focus_generic_reform_the_militias
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = RUS_commie_specialized_army
+		focus = RUS_commie_extra_the_military
+	}
+	relative_position_id = RUS_commie_extra_the_military
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 0.5 }
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_military_supervision_improve = yes
+		TNO_improve_conscription_policy_effectiveness_monthly_med = yes
+		TNO_improve_training_policy_effectiveness_monthly_med = yes
+		TNO_improve_army_professionalism_med = yes
+	}
+	
+}
+
+###
+shared_focus = {
+	id = RUS_commie_soviet_land_forces
+	icon = GFX_focus_generic_military_discipline
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_commie_advanced_training_project
+	}
+	relative_position_id = RUS_commie_advanced_training_project
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_army_professionalism_med = yes
+		army_experience = 50
+		add_tech_bonus = {
+			name = infantry_weapons
+			ahead_reduction = 5
+			uses = 3
+			category = infantry_weapons
+		}
+		add_tech_bonus = {
+			name = infantry_weapons
+			bonus = 2
+			uses = 3
+			category = infantry_weapons
+		}
+		load_oob = SWRW_NEW_FORCES
+	}
+	
+}
+shared_focus = {
+	id = RUS_commie_army_equipment_modernization
+	icon = GFX_focus_generic_tank_warfare
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_commie_soviet_land_forces
+	}
+	relative_position_id = RUS_commie_soviet_land_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		add_tech_bonus = {
+			name = helicopter
+			ahead_reduction = 5
+			uses = 3
+			category = helicopter
+		}
+		add_tech_bonus = {
+			name = helicopter
+			bonus = 2
+			uses = 3
+			category = helicopter
+		}
+	}
+	
+}
+###
+shared_focus = {
+	id = RUS_commie_soviet_air_forces
+	icon = GFX_focus_generic_air_training_program
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_commie_advanced_training_project
+	}
+	relative_position_id = RUS_commie_advanced_training_project
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		air_experience = 50
+		add_tech_bonus = {
+			name = air_equipment
+			ahead_reduction = 5
+			uses = 1
+			category = air_equipment
+		}
+		add_tech_bonus = {
+			name = air_equipment
+			bonus = 2
+			uses = 1
+			category = air_equipment
+		}
+	}
+	
+}
+shared_focus = {
+	id = RUS_commie_air_force_equipment_modernization
+	icon = GFX_focus_generic_ofn_airfields
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_commie_soviet_air_forces
+	}
+	relative_position_id = RUS_commie_soviet_air_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		add_ideas = USA_SAW_Helicopter_Gunships_idea
+		add_tech_bonus = {
+			name = air_equipment
+			ahead_reduction = 5
+			uses = 1
+			category = air_equipment
+		}
+		add_tech_bonus = {
+			name = air_equipment
+			bonus = 2
+			uses = 1
+			category = air_equipment
+		}
+	}
+	
+}
+###
+shared_focus = {
+	id = RUS_commie_soviet_naval_forces
+	icon = GFX_focus_generic_new_naval_fleet
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_commie_advanced_training_project
+	}
+	relative_position_id = RUS_commie_advanced_training_project
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		navy_experience = 50
+		add_tech_bonus = {
+			name = naval_equipment
+			ahead_reduction = 1
+			uses = 5
+			category = naval_equipment
+		}
+		add_tech_bonus = {
+			name = naval_equipment
+			bonus = 2
+			uses = 5
+			category = naval_equipment
+		}
+		set_technology = {
+			ww2_submarine = 1
+			ww2_destroyer = 1
+			ww2_frigate = 1
+			ww2_cruiser = 1
+			ww2_battleship = 1
+			transport = 1
+			smoke_generator = 1
+			sonar = 1
+			basic_depth_charge = 1
+			basic_torpedo = 1
+			basic_battery = 1
+			basic_naval_mines = 1
+			basic_secondary_battery = 1
+		}
+	}
+	
+}
+shared_focus = {
+	id = RUS_commie_naval_force_equipment_modernization
+	icon = GFX_focus_generic_navy_talk
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_commie_soviet_naval_forces
+	}
+	relative_position_id = RUS_commie_soviet_naval_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		add_tech_bonus = {
+			name = naval_equipment
+			ahead_reduction = 1
+			uses = 5
+			category = naval_equipment
+		}
+		add_tech_bonus = {
+			name = naval_equipment
+			bonus = 2
+			uses = 5
+			category = naval_equipment
+		}
+		set_technology = {
+			improved_ship_hull_carrier = 1
+		}
+		create_equipment_variant = {
+			name = "Soviet Class"
+			type = ship_hull_carrier_3
+			parent_version = 0
+			modules = {
+				fixed_ship_deck_slot_1 = ship_deck_space
+				fixed_ship_deck_slot_2 = ship_deck_space
+				fixed_ship_anti_air_slot = ship_anti_air_2
+				fixed_ship_radar_slot = ship_radar_1
+				fixed_ship_engine_slot = carrier_ship_engine_3
+				fixed_ship_secondaries_slot = ship_secondaries_2
+				front_1_custom_slot = ship_armor_carrier_deck
+				mid_1_custom_slot = ship_deck_space
+				mid_2_custom_slot = ship_deck_space
+			}
+		}
+		add_equipment_production = {
+			equipment = {
+				type = ship_hull_carrier_3
+				creator = "RUS"
+				version_name = "Soviet Class"
+			}
+			requested_factories = 10
+			progress = 0.5
+			amount = 1
+		}
+		add_equipment_production = {
+			equipment = {
+				type = ship_hull_carrier_3
+				creator = "RUS"
+				version_name = "Soviet Class"
+			}
+			requested_factories = 10
+			progress = 0.5
+			amount = 1
+		}
+		hidden_effect = {
+			load_oob = KMC_st_mtg_or
+			load_oob = KMC_st_mtg_rykov
+			load_oob = KMC_st_mtg_ryanyy
+			load_oob = KMC_st_mtg_bukharin
+			load_oob = KMC_st_mtg_uritskiy
+			load_oob = KMC_st_mtg_shch101
+			load_oob = KMC_st_mtg_shch102
+			load_oob = KMC_st_mtg_shch103
+			load_oob = KMC_st_mtg_shch104
+			load_oob = KMC_st_mtg_shch105
+			load_oob = KMC_st_mtg_shch106
+			load_oob = KMC_st_mtg_shch107
+			load_oob = KMC_st_mtg_shch108
+			load_oob = KMC_st_mtg_shch109
+			load_oob = KMC_st_mtg_shch110
+		}
+	}
+	
+}
+#####
+shared_focus = {
+	id = RUS_commie_finish_army_modernization
+	icon = GFX_focus_generic_a_better_world
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = RUS_commie_air_force_equipment_modernization
+		focus = RUS_commie_army_equipment_modernization
+		focus = RUS_commie_naval_force_equipment_modernization
+	}
+	relative_position_id = RUS_commie_soviet_land_forces
+	x = 0
+	y = 2
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_military_supervision_policy_effectiveness_high = yes
+		TNO_improve_conscription_policy_effectiveness_high = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_high = yes
+		TNO_training_improve = yes
+		TNO_improve_army_professionalism_high = yes
+	}
+	
+}
+
+
+
+
+#SOCIAL
+shared_focus = {
+	id = RUS_commie_the_social_need_help
+	icon = GFX_focus_USA_get_in_loser_were_saving_america
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_we_have_to_look_yourself }
+	relative_position_id = RUS_commie_we_have_to_look_yourself
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_income_taxation_policy_effectiveness_monthly_med = yes
+		TNO_improve_minimum_wage_policy_effectiveness_monthly_med = yes
+		TNO_improve_max_workhours_policy_effectiveness_monthly_med = yes
+		TNO_improve_pensions_policy_effectiveness_monthly_med = yes
+		TNO_improve_unemployment_policy_effectiveness_monthly_med = yes
+		TNO_improve_regulations_policy_effectiveness_monthly_low = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_social_security_policy
+	icon = GFX_focus_USA_blue_cross_blue_shield
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_social_need_help }
+	relative_position_id = RUS_commie_the_social_need_help
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		add_political_power = 25
+		TNO_improve_health_care_policy_effectiveness_monthly_low = yes
+		TNO_improve_education_policy_effectiveness_monthly_low = yes
+		TNO_improve_penal_system_policy_effectiveness_monthly_low = yes
+		TNO_improve_gender_rights_policy_effectiveness_monthly_low = yes
+		TNO_improve_security_policy_effectiveness_monthly_low = yes
+		TNO_health_care_improve = yes
+		TNO_improve_healthcare_high = yes
+		TNO_improve_poverty_high = yes
+		country_event = { id = SWRW_RUS.5 days = 5 }
+	}
+
+	
+}
+
+shared_focus = {
+	id = RUS_commie_the_sad_state_of_agriculture_in_our_country
+	icon = GFX_focus_USA_hart_combat_rural_flight
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_social_security_policy }
+	relative_position_id = RUS_commie_social_security_policy
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		country_event = { id = SWRW_RUS.348 days = 7 }
+		TNO_improve_agriculture_med = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2.5 }
+		econ_GDP_boost_once_flat = yes
+		TNO_improve_admin_efficiency_high = yes
+		TNO_improve_poverty_high = yes
+		TNO_improve_academic_base_high = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_compulsory_education_program
+	icon = GFX_focus_generic_higher_education
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_sad_state_of_agriculture_in_our_country }
+	relative_position_id = RUS_commie_the_sad_state_of_agriculture_in_our_country
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_education_policy_effectiveness_high = yes
+		TNO_education_improve = yes
+		TNO_improve_academic_base_high = yes
+		country_event = { id = SWRW_RUS.6 days = 5 }
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_the_economic
+	icon = GFX_focus_generic_economy_green_line_question
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_compulsory_education_program }
+	relative_position_id = RUS_commie_compulsory_education_program
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_commie_the_socialized_economic
+	icon = GFX_focus_generic_graph_rising_gold
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_economic }
+	relative_position_id = RUS_commie_the_economic
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_the_yagoda_economic
+		focus = RUS_commie_we_dont_change
+	}
+	completion_reward = {
+		set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Socialized_Economy }
+		econ_subtype_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		set_temp_variable = { gdp_growth_temp = 0.05 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { econ_centralization_temp = -20 }
+		econ_centralization_change = yes
+	}
+	
+}
+shared_focus = {
+	id = RUS_commie_the_yagoda_economic
+	icon = GFX_focus_generic_good_economy
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_economic }
+	relative_position_id = RUS_commie_the_economic
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_we_dont_change
+		focus = RUS_commie_the_socialized_economic
+	}
+	completion_reward = {
+		set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Yagoda }
+		econ_subtype_change = yes
+		set_temp_variable = { inflation_temp = 0.2 }
+		econ_inflation_change = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { econ_centralization_temp = -20 }
+		econ_centralization_change = yes
+	}
+	
+}
+shared_focus = {
+	id = RUS_commie_we_dont_change
+	icon = GFX_focus_RUS_central_committee
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_economic }
+	relative_position_id = RUS_commie_the_economic
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_the_yagoda_economic
+		focus = RUS_commie_the_socialized_economic
+	}
+	completion_reward = {
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_finish_social_reform
+	icon = GFX_focus_generic_healthcare_act
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = RUS_commie_we_dont_change
+		focus = RUS_commie_the_yagoda_economic
+		focus = RUS_commie_the_socialized_economic
+	}
+	relative_position_id = RUS_commie_we_dont_change
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		add_stability = 0.3
+		add_war_support = 0.3
+		TNO_improve_health_care_policy_effectiveness_monthly_MED = yes
+		TNO_improve_education_policy_effectiveness_monthly_MED = yes
+		TNO_improve_penal_system_policy_effectiveness_monthly_MED = yes
+		TNO_improve_gender_rights_policy_effectiveness_monthly_MED = yes
+		TNO_improve_security_policy_effectiveness_monthly_MED = yes
+		TNO_improve_income_taxation_policy_effectiveness_monthly_med = yes
+		TNO_improve_minimum_wage_policy_effectiveness_monthly_med = yes
+		TNO_improve_max_workhours_policy_effectiveness_monthly_med = yes
+		TNO_improve_pensions_policy_effectiveness_monthly_med = yes
+		TNO_improve_unemployment_policy_effectiveness_monthly_med = yes
+		TNO_improve_regulations_policy_effectiveness_monthly_MED = yes
+		TNO_improve_trade_laws_policy_effectiveness_monthly_MED = yes
+	}
+	
+}
+
+
+####
+shared_focus = {
+	id = RUS_commie_extend_the_government
+	icon = GFX_focus_generic_national_land_reform
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_social_need_help }
+	relative_position_id = RUS_commie_the_social_need_help
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_admin_efficiency_high = yes
+		add_ideas = IRK_labor_battalions
+	}
+	
+}
+shared_focus = {
+	id = RUS_commie_patriotism_and_nationalism
+	icon = GFX_focus_RUS_ussr
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_extend_the_government }
+	relative_position_id = RUS_commie_extend_the_government
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		add_ideas = IRK_ironclad_union
+		country_event = { id = SWRW_RUS.350 days = 14 }
+	}
+	
+}
+####
+
+shared_focus = {
+	id = RUS_commie_protect_the_nation
+	icon = GFX_focus_RUS_a_revolutionary_indoctrination
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_the_social_need_help }
+	relative_position_id = RUS_commie_the_social_need_help
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		add_ideas = IRK_remember_the_revolution
+		TNO_improve_gender_rights_policy_effectiveness_high = yes
+		TNO_gender_rights_improve = yes
+	}
+}
+shared_focus = {
+	id = RUS_the_KGB
+	icon = GFX_focus_RUS_nkvd
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_commie_protect_the_nation }
+	relative_position_id = RUS_commie_protect_the_nation
+	x = 0 
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { Agency = token:Espionage_KGB }
+		set_variable = { TNO_Espionage_AgencyLeader = token:Espionage_Andropov }
+		Espionage_Enable = yes
+		Espionage_Initialize_RUS_Vars = yes
+	}
+	
+}
+
+
+
+shared_focus = {
+	id = RUS_forward
+	icon = GFX_focus_RUS_soviet_flag
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = RUS_finish_social_reform
+		focus = RUS_commie_finish_army_modernization
+		focus = RUS_commie_finish_the_economy
+	}
+	relative_position_id = RUS_commie_finish_the_economy
+	x = -10
+	y = 2
+	available = {
+		date > 1975.1.1
+	}
+	allow_branch = {
+		has_country_flag = RUS_commie_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_forward_tt
+		add_stability = 0.1
+		add_war_support = 0.1
+		add_political_power = 25
+		set_country_flag = LAST_PREPARE_TO_2WRW
+		mark_focus_tree_layout_dirty = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_the_final_attack_to_einheitspakt
+	icon = GFX_focus_GER_grand_cold_wall
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = RUS_forward
+	}
+	relative_position_id = RUS_commie_finish_the_economy
+	x = -10
+	y = 3
+	available = {
+		date > 1975.1.1
+	}
+	allow_branch = {
+		has_country_flag = LAST_PREPARE_TO_2WRW
+	}
+	completion_reward = {
+		set_global_flag = SECOND_WRW_HAS_BEGUN
+		set_variable = { RUS_surrender_limit = 0.0 }
+		add_war_support = 0.2
+		add_stability = 0.1
+		custom_effect_tooltip = RUS_The_Peoples_Army_Marches_West_tt
+		hidden_effect = {
+			SWRW_initiate = yes
+			SWRW_launch_war_declaration_events = yes
+			WRW_load_war_portraits = yes
+			MCW = {
+				load_oob = GER_1962
+			}
+			load_oob = SWRW_NEW_FORCES
+			load_oob = SWRW_NEW_FORCES
+			set_country_flag = SWRW_LOAD_FOCUS_DAMN
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	
+}
+
+
+
+
+
+#############################################################################################
+#DEMOCARTIC
+
+shared_focus = {
+	id = rus_democratic_One_Once_More_new
+	icon = GFX_focus_SAM_popular_structures_of_freedom
+	cost = 1
+	ai_will_do = { factor = 1 }
+	x = 10
+	y = -2
+	completion_reward = {
+		set_stability = 0.5
+		set_war_support = 0.5
+		log = "[GetDateText]: [Root.GetName]: RUS_One_Once_More"
+		custom_effect_tooltip = RUS_One_Once_More_tt
+		add_stability = 0.2
+		add_war_support = 0.2
+		add_political_power = 25
+		set_temp_variable = { pus_temp = 6 }
+		econ_pus_change = yes
+		set_country_flag = RUS_One_Once_More_finish
+		mark_focus_tree_layout_dirty = yes
+		country_event = { id = SWRW_RUS_unification.1 days = 2 }
+	}
+}
+
+shared_focus = {
+	id = rus_democratic_our_real_situation
+	icon = GFX_focus_USA_duty_to_country
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_One_Once_More_new }
+	relative_position_id = rus_democratic_One_Once_More_new
+	x = -1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 25
+		country_event = { id = SWRW_RUS.3 days = 5 }
+	}
+}
+
+shared_focus = {
+	id = rus_democratic_build_our_party
+	icon = GFX_focus_generic_convene_the_party
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_our_real_situation }
+	relative_position_id = rus_democratic_our_real_situation
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		set_party_name = {
+		ideology = paternalism
+		long_name = rus_democratic_paternalism
+		name = rus_democratic_paternalism_short
+	}
+	set_party_name = {
+		ideology = liberalism
+		long_name = rus_democratic_liberalism
+		name = rus_democratic_liberalism_short
+	}
+	set_party_name = {
+		ideology = progressivism
+		long_name = rus_democratic_progressivism_long
+		name = rus_democratic_progressivism_short
+	}
+	set_party_name = {
+		ideology = despotism
+		long_name = rus_democratic_despotism_long
+		name = rus_democratic_despotism_short
+	}
+	set_party_name = {
+		ideology = communist
+		long_name = rus_democratic_communist_long
+		name = rus_democratic_communist_short
+	}
+	set_party_name = {
+		ideology = socialist
+		long_name = rus_democratic_socialist_long
+		name = rus_democratic_socialist_short
+	}
+	}
+}
+
+
+shared_focus = {
+	id = rus_democratic_looking_the_moscow
+	icon = GFX_focus_RUS_the_russian_people_deliver_us
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_build_our_party }
+	relative_position_id = rus_democratic_build_our_party
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_stability = 0.1
+		add_war_support = 0.1
+		army_funding_maximal_increase_high = yes
+		army_funding_minimal_increase_low = yes
+	}
+}
+
+shared_focus = {
+	id = rus_democratic_our_country_runs_well
+	icon = GFX_focus_generic_balancing_the_council
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_One_Once_More_new }
+	relative_position_id = rus_democratic_One_Once_More_new
+	x = 1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		TNO_improve_political_parties_policy_effectiveness_med = yes
+		TNO_improve_religious_rights_policy_effectiveness_med = yes
+		TNO_improve_trade_unions_policy_effectiveness_high = yes
+		TNO_improve_immigration_policy_effectiveness_med = yes
+		TNO_improve_slavery_policy_effectiveness_low = yes
+		TNO_improve_public_meetings_policy_effectiveness_low = yes
+		TNO_improve_press_rights_policy_effectiveness_low = yes
+		TNO_improve_vote_franchise_policy_effectiveness_monthly_med = yes
+	}
+}
+
+shared_focus = {
+	id = rus_democratic_build_our_faction
+	icon = GFX_focus_generic_unity
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_our_country_runs_well }
+	relative_position_id = rus_democratic_our_country_runs_well
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 25
+		add_ideas = CSTO_Guardian_of_Eurasia
+		set_country_flag = HAS_ECON_SPHERE
+		create_faction = very_generic_russian_faction
+		set_variable = { ECON_SPHERE_LEADER = RUS }
+		SWRW_Add_RUS_To_Cold_War_GUI = yes
+	}
+}
+
+
+shared_focus = {
+	id = rus_democratic_prepare_our_army
+	icon = GFX_focus_generic_army_officers
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_build_our_faction }
+	relative_position_id = rus_democratic_build_our_faction
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5000
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 2500
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 1000
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 1000
+		}
+	}
+}
+
+
+shared_focus = {
+	id = rus_democratic_but_before_that
+	icon = GFX_focus_USA_chep_no_sleep
+	cost = 2
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_prepare_our_army }
+	prerequisite = { focus = rus_democratic_looking_the_moscow }
+	relative_position_id = rus_democratic_prepare_our_army
+	x = -1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = rus_democratic_we_have_to_look_yourself
+	icon = GFX_focus_generic_blood_iron_and_democracy
+	cost = 2
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_but_before_that }
+	relative_position_id = rus_democratic_but_before_that
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		custom_effect_tooltip = rus_democratic_we_have_to_look_yourself_tt
+		add_ideas = RUS_The_Peoples_Strength
+		set_country_flag = rus_democratic_show_focus_tree_main
+		set_country_flag = RUS_show_focus_tree_main
+		mark_focus_tree_layout_dirty = yes
+	}
+
+}
+#ECONOMY
+shared_focus = {
+	id = rus_democratic_the_problem_is_economy
+	icon = GFX_focus_RUS_budget_debate
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_we_have_to_look_yourself }
+	relative_position_id = rus_democratic_we_have_to_look_yourself
+	x = 10
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		custom_effect_tooltip = rus_democratic_the_problem_is_economy_tt
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		econ_raise_min_credit_rating = yes
+		set_country_flag = SOV_FIVE_YEARS_PLAN_OPEN
+		set_temp_variable = { temp_econ_spending_amount = 1 }
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_improve_trade_laws_policy_effectiveness_monthly_med = yes
+		tno_trade_laws_worsen = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 5
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_import_industrial_machinery
+	icon = GFX_focus_generic_machine_red
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_industrial_centric_development }
+	relative_position_id = rus_democratic_industrial_centric_development
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 1 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.3 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { pus_temp = 4 }
+		econ_pus_change = yes
+		TNO_improve_industrial_equipment_high = yes
+		TNO_improve_industrial_expertise_med = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_industrial_centric_development
+	icon = GFX_focus_generic_industrial_progress_red
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_problem_is_economy }
+	relative_position_id = rus_democratic_the_problem_is_economy
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		TNO_worsen_regulations_policy_effectiveness_low = yes
+		set_temp_variable = { econ_centralization_temp = -5 }
+		econ_centralization_change = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 1 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.6 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.5 }
+		econ_inflation_change = yes
+		add_ideas = IRK_new_siberian_plan
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = offices
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = offices
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_localized_accessories
+	icon = GFX_focus_RUS_fruit_of_siberia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_import_industrial_machinery }
+	relative_position_id = rus_democratic_import_industrial_machinery
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_low = yes
+		set_temp_variable = { temp_econ_spending_amount = 4 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+	}
+	
+}
+######
+shared_focus = {
+	id = rus_democratic_transport_modernization
+	icon = GFX_focus_generic_railway_work
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_problem_is_economy }
+	relative_position_id = rus_democratic_the_problem_is_economy
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		custom_effect_tooltip = rus_democratic_transport_modernization_tt
+		562 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = thermoelectric_plant
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		889 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		561 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		563 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		564 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = thermoelectric_plant
+				level = 1
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		568 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		757 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		569 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		
+		570 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		40 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		571 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		572 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		403 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		573 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		753 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		399 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		252 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		256 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		249 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		850 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		851 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_urban_development_initiatives
+	icon = GFX_focus_generic_public_housing
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_transport_modernization }
+	relative_position_id = rus_democratic_transport_modernization
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { gdp_growth_temp = 0.2 }
+		econ_gdp_growth_change = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+		country_event = { id = SWRW_RUS.4 days = 5 }
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_the_resources_is_lot
+	icon = GFX_focus_RUS_the_resources_of_siberia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_urban_development_initiatives }
+	relative_position_id = rus_democratic_urban_development_initiatives
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_worsen_regulations_policy_effectiveness_low = yes
+		TNO_improve_poverty_med = yes
+		add_resource = {
+			type = oil
+			amount = 20
+			state = 562
+		}
+		add_resource = {
+			type = chromium
+			amount = 21
+			state = 563
+		}
+		add_resource = {
+			type = tungsten
+			amount = 26
+			state = 564
+		}
+		add_resource = {
+			type = oil
+			amount = 32
+			state = 329
+		}
+		add_resource = {
+			type = chromium
+			amount = 21
+			state = 568
+		}
+		add_resource = {
+			type = tungsten
+			amount = 24
+			state = 570
+		}
+		add_resource = {
+			type = oil
+			amount = 30
+			state = 403
+		}
+		add_resource = {
+			type = chromium
+			amount = 29
+			state = 403
+		}
+		add_resource = {
+			type = tungsten
+			amount = 25
+			state = 403
+		}
+		add_resource = {
+			type = oil
+			amount = 24
+			state = 850
+		}
+		add_resource = {
+			type = chromium
+			amount = 22
+			state = 400
+		}
+		add_resource = {
+			type = tungsten
+			amount = 23
+			state = 252
+		}
+		set_temp_variable = { money_reserves_temp = 6 }
+		econ_money_reserves_change_raw_money = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+######
+
+shared_focus = {
+	id = rus_democratic_military_construction
+	icon = GFX_focus_generic_industrial_progress_red
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_problem_is_economy }
+	relative_position_id = rus_democratic_the_problem_is_economy
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 10 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.11 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_high = yes
+		set_temp_variable = { pus_temp = 8 }
+		econ_pus_change = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_manning_the_factories
+	icon = GFX_focus_generic_denouce_the_reformists
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_military_construction }
+	relative_position_id = rus_democratic_military_construction
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 3 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_high = yes
+		set_temp_variable = { pus_temp = 5 }
+		econ_pus_change = yes
+		tno_regulations_worsen = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_workers_gowork
+	icon = GFX_focus_generic_change_law_labor
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_manning_the_factories }
+	relative_position_id = rus_democratic_manning_the_factories
+	x = 1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		tno_max_workhours_worsen = yes
+		TNO_improve_max_workhours_policy_effectiveness_high = yes
+	}
+	
+}
+######
+
+shared_focus = {
+	id = rus_democratic_finish_the_economy
+	icon = GFX_focus_generic_a_streamlined_economy
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_resources_is_lot }
+	prerequisite = { focus = rus_democratic_manning_the_factories }
+	prerequisite = { focus = rus_democratic_import_industrial_machinery }
+	relative_position_id = rus_democratic_the_resources_is_lot
+	x = 0
+	y = 3
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		econ_raise_max_credit_rating = yes
+		econ_raise_min_credit_rating = yes
+		econ_raise_credit_rating = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+		set_temp_variable = { gdp_growth_temp = 0.35 }
+		econ_gdp_growth_change = yes
+		TNO_improve_agriculture_med = yes
+		set_temp_variable = { temp_gdp_gained = 0.1 }
+		econ_money_reserves_change_percent_gdp = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 2
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 2
+			uses = 2
+			category = industry
+		}
+		country_event = { id = SWRW_RUS.2 days = 5 }
+	}
+	
+}
+
+#ARMY
+shared_focus = {
+	id = rus_democratic_the_army_need_better
+	icon = GFX_focus_generic_denouce_the_reformists
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_we_have_to_look_yourself }
+	relative_position_id = rus_democratic_we_have_to_look_yourself
+	x = -9
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_military_supervision_policy_effectiveness_high = yes
+		TNO_improve_conscription_policy_effectiveness_med = yes
+		TNO_improve_training_policy_effectiveness_med = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_med = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_the_politicized_army
+	icon = GFX_focus_generic_a_war_cabinet
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_army_need_better }
+	relative_position_id = rus_democratic_the_army_need_better
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_democratic_the_professional_army
+	}
+	completion_reward = {
+		add_stability = 0.1
+		add_war_support = 0.1
+		add_political_power = 150
+		add_ideas = RUS_pol_army
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_the_professional_army
+	icon = GFX_focus_generic_integrate_the_militias
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_army_need_better }
+	relative_position_id = rus_democratic_the_army_need_better
+	x = 1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_democratic_the_politicized_army
+	}
+	completion_reward = {
+		add_war_support = 0.1
+		add_political_power = -50
+		add_ideas = RUS_pro_army
+	}
+	
+}
+shared_focus = {
+	id = rus_democratic_extra_the_military
+	icon = GFX_focus_generic_deploy_the_militia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_democratic_the_professional_army
+		focus = rus_democratic_the_politicized_army
+	}
+	relative_position_id = rus_democratic_the_professional_army
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_democratic_specialized_army
+	}
+	completion_reward = {
+		tno_conscription_worsen = yes
+		TNO_improve_conscription_policy_effectiveness_high = yes
+		country_event = { id = SWRW_RUS.7 days = 5 }
+		country_event = { id = SWRW_RUS.349 days = 42 }
+	}
+	
+}
+shared_focus = {
+	id = rus_democratic_specialized_army
+	icon = GFX_focus_generic_militarize_the_outskirts
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_democratic_the_professional_army
+		focus = rus_democratic_the_politicized_army
+	}
+	relative_position_id = rus_democratic_the_professional_army
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_democratic_extra_the_military
+	}
+	completion_reward = {
+		TNO_training_improve = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_advanced_training_project
+	icon = GFX_focus_generic_reform_the_militias
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_democratic_specialized_army
+		focus = rus_democratic_extra_the_military
+	}
+	relative_position_id = rus_democratic_extra_the_military
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 0.5 }
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_military_supervision_improve = yes
+		TNO_improve_conscription_policy_effectiveness_monthly_med = yes
+		TNO_improve_training_policy_effectiveness_monthly_med = yes
+		TNO_improve_army_professionalism_med = yes
+	}
+	
+}
+
+###
+shared_focus = {
+	id = rus_democratic_soviet_land_forces
+	icon = GFX_focus_generic_military_discipline
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_democratic_advanced_training_project
+	}
+	relative_position_id = rus_democratic_advanced_training_project
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_army_professionalism_med = yes
+		army_experience = 50
+		add_tech_bonus = {
+			name = infantry_weapons
+			ahead_reduction = 5
+			uses = 3
+			category = infantry_weapons
+		}
+		add_tech_bonus = {
+			name = infantry_weapons
+			bonus = 2
+			uses = 3
+			category = infantry_weapons
+		}
+	}
+	
+}
+shared_focus = {
+	id = rus_democratic_army_equipment_modernization
+	icon = GFX_focus_generic_tank_warfare
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_democratic_soviet_land_forces
+	}
+	relative_position_id = rus_democratic_soviet_land_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		add_tech_bonus = {
+			name = helicopter
+			ahead_reduction = 5
+			uses = 3
+			category = helicopter
+		}
+		add_tech_bonus = {
+			name = helicopter
+			bonus = 2
+			uses = 3
+			category = helicopter
+		}
+	}
+	
+}
+###
+shared_focus = {
+	id = rus_democratic_soviet_air_forces
+	icon = GFX_focus_generic_air_training_program
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_democratic_advanced_training_project
+	}
+	relative_position_id = rus_democratic_advanced_training_project
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		air_experience = 50
+		add_tech_bonus = {
+			name = air_equipment
+			ahead_reduction = 5
+			uses = 1
+			category = air_equipment
+		}
+		add_tech_bonus = {
+			name = air_equipment
+			bonus = 2
+			uses = 1
+			category = air_equipment
+		}
+		load_oob = SWRW_NEW_FORCES
+	}
+	
+}
+shared_focus = {
+	id = rus_democratic_air_force_equipment_modernization
+	icon = GFX_focus_generic_ofn_airfields
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_democratic_soviet_air_forces
+	}
+	relative_position_id = rus_democratic_soviet_air_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		add_ideas = USA_SAW_Helicopter_Gunships_idea
+		add_tech_bonus = {
+			name = air_equipment
+			ahead_reduction = 5
+			uses = 1
+			category = air_equipment
+		}
+		add_tech_bonus = {
+			name = air_equipment
+			bonus = 2
+			uses = 1
+			category = air_equipment
+		}
+	}
+	
+}
+###
+shared_focus = {
+	id = rus_democratic_soviet_naval_forces
+	icon = GFX_focus_generic_new_naval_fleet
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_democratic_advanced_training_project
+	}
+	relative_position_id = rus_democratic_advanced_training_project
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		navy_experience = 50
+		add_tech_bonus = {
+			name = naval_equipment
+			ahead_reduction = 1
+			uses = 5
+			category = naval_equipment
+		}
+		add_tech_bonus = {
+			name = naval_equipment
+			bonus = 2
+			uses = 5
+			category = naval_equipment
+		}
+		set_technology = {
+			ww2_submarine = 1
+			ww2_destroyer = 1
+			ww2_frigate = 1
+			ww2_cruiser = 1
+			ww2_battleship = 1
+			transport = 1
+			smoke_generator = 1
+			sonar = 1
+			basic_depth_charge = 1
+			basic_torpedo = 1
+			basic_battery = 1
+			basic_naval_mines = 1
+			basic_secondary_battery = 1
+		}
+	}
+	
+}
+shared_focus = {
+	id = rus_democratic_naval_force_equipment_modernization
+	icon = GFX_focus_generic_navy_talk
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_democratic_soviet_naval_forces
+	}
+	relative_position_id = rus_democratic_soviet_naval_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		add_tech_bonus = {
+			name = naval_equipment
+			ahead_reduction = 1
+			uses = 5
+			category = naval_equipment
+		}
+		add_tech_bonus = {
+			name = naval_equipment
+			bonus = 2
+			uses = 5
+			category = naval_equipment
+		}
+		set_technology = {
+			improved_ship_hull_carrier = 1
+		}
+		create_equipment_variant = {
+			name = "Soviet Class"
+			type = ship_hull_carrier_3
+			parent_version = 0
+			modules = {
+				fixed_ship_deck_slot_1 = ship_deck_space
+				fixed_ship_deck_slot_2 = ship_deck_space
+				fixed_ship_anti_air_slot = ship_anti_air_2
+				fixed_ship_radar_slot = ship_radar_1
+				fixed_ship_engine_slot = carrier_ship_engine_3
+				fixed_ship_secondaries_slot = ship_secondaries_2
+				front_1_custom_slot = ship_armor_carrier_deck
+				mid_1_custom_slot = ship_deck_space
+				mid_2_custom_slot = ship_deck_space
+			}
+		}
+		add_equipment_production = {
+			equipment = {
+				type = ship_hull_carrier_3
+				creator = "RUS"
+				version_name = "Soviet Class"
+			}
+			requested_factories = 10
+			progress = 0.5
+			amount = 1
+		}
+		add_equipment_production = {
+			equipment = {
+				type = ship_hull_carrier_3
+				creator = "RUS"
+				version_name = "Soviet Class"
+			}
+			requested_factories = 10
+			progress = 0.5
+			amount = 1
+		}
+		hidden_effect = {
+			load_oob = KMC_st_mtg_or
+			load_oob = KMC_st_mtg_rykov
+			load_oob = KMC_st_mtg_ryanyy
+			load_oob = KMC_st_mtg_bukharin
+			load_oob = KMC_st_mtg_uritskiy
+			load_oob = KMC_st_mtg_shch101
+			load_oob = KMC_st_mtg_shch102
+			load_oob = KMC_st_mtg_shch103
+			load_oob = KMC_st_mtg_shch104
+			load_oob = KMC_st_mtg_shch105
+			load_oob = KMC_st_mtg_shch106
+			load_oob = KMC_st_mtg_shch107
+			load_oob = KMC_st_mtg_shch108
+			load_oob = KMC_st_mtg_shch109
+			load_oob = KMC_st_mtg_shch110
+		}
+	}
+	
+}
+#####
+shared_focus = {
+	id = rus_democratic_finish_army_modernization
+	icon = GFX_focus_generic_a_better_world
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_democratic_air_force_equipment_modernization
+		focus = rus_democratic_army_equipment_modernization
+		focus = rus_democratic_naval_force_equipment_modernization
+	}
+	relative_position_id = rus_democratic_soviet_land_forces
+	x = 0
+	y = 2
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_military_supervision_policy_effectiveness_high = yes
+		TNO_improve_conscription_policy_effectiveness_high = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_high = yes
+		TNO_training_improve = yes
+		TNO_improve_army_professionalism_high = yes
+	}
+	
+}
+
+
+
+
+#SOCIAL
+shared_focus = {
+	id = rus_democratic_the_social_need_help
+	icon = GFX_focus_USA_get_in_loser_were_saving_america
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_we_have_to_look_yourself }
+	relative_position_id = rus_democratic_we_have_to_look_yourself
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_income_taxation_policy_effectiveness_monthly_med = yes
+		TNO_improve_minimum_wage_policy_effectiveness_monthly_med = yes
+		TNO_improve_max_workhours_policy_effectiveness_monthly_med = yes
+		TNO_improve_pensions_policy_effectiveness_monthly_med = yes
+		TNO_improve_unemployment_policy_effectiveness_monthly_med = yes
+		TNO_improve_regulations_policy_effectiveness_monthly_low = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_social_security_policy
+	icon = GFX_focus_USA_blue_cross_blue_shield
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_social_need_help }
+	relative_position_id = rus_democratic_the_social_need_help
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		add_political_power = 25
+		TNO_improve_health_care_policy_effectiveness_monthly_low = yes
+		TNO_improve_education_policy_effectiveness_monthly_low = yes
+		TNO_improve_penal_system_policy_effectiveness_monthly_low = yes
+		TNO_improve_gender_rights_policy_effectiveness_monthly_low = yes
+		TNO_improve_security_policy_effectiveness_monthly_low = yes
+		TNO_health_care_improve = yes
+		TNO_improve_healthcare_high = yes
+		TNO_improve_poverty_high = yes
+		country_event = { id = SWRW_RUS.5 days = 5 }
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_the_sad_state_of_agriculture_in_our_country
+	icon = GFX_focus_USA_hart_combat_rural_flight
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_social_security_policy }
+	relative_position_id = rus_democratic_social_security_policy
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		country_event = { id = SWRW_RUS.348 days = 7 }
+		TNO_improve_agriculture_med = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2.5 }
+		econ_GDP_boost_once_flat = yes
+		TNO_improve_admin_efficiency_high = yes
+		TNO_improve_poverty_high = yes
+		TNO_improve_academic_base_high = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_compulsory_education_program
+	icon = GFX_focus_generic_higher_education
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_sad_state_of_agriculture_in_our_country }
+	relative_position_id = rus_democratic_the_sad_state_of_agriculture_in_our_country
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_education_policy_effectiveness_high = yes
+		TNO_education_improve = yes
+		TNO_improve_academic_base_high = yes
+		country_event = { id = SWRW_RUS.6 days = 5 }
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_the_economic
+	icon = GFX_focus_generic_economy_green_line_question
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_compulsory_education_program }
+	relative_position_id = rus_democratic_compulsory_education_program
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_the_socialized_economic
+	icon = GFX_focus_generic_graph_rising_gold
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_economic }
+	relative_position_id = rus_democratic_the_economic
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_democratic_the_yagoda_economic
+		focus = rus_democratic_we_dont_change
+	}
+	completion_reward = {
+		set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Socialized_Economy }
+		econ_subtype_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		set_temp_variable = { gdp_growth_temp = 0.05 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { econ_centralization_temp = -20 }
+		econ_centralization_change = yes
+	}
+	
+}
+shared_focus = {
+	id = rus_democratic_the_yagoda_economic
+	icon = GFX_focus_generic_good_economy
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_economic }
+	relative_position_id = rus_democratic_the_economic
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_democratic_we_dont_change
+		focus = rus_democratic_the_socialized_economic
+	}
+	completion_reward = {
+		set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Yagoda }
+		econ_subtype_change = yes
+		set_temp_variable = { inflation_temp = 0.2 }
+		econ_inflation_change = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { econ_centralization_temp = -20 }
+		econ_centralization_change = yes
+	}
+	
+}
+shared_focus = {
+	id = rus_democratic_we_dont_change
+	icon = GFX_focus_generic_modern_construction_equipment_yellow
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_economic }
+	relative_position_id = rus_democratic_the_economic
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_democratic_the_yagoda_economic
+		focus = rus_democratic_the_socialized_economic
+	}
+	completion_reward = {
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_finish_social_reform
+	icon = GFX_focus_generic_healthcare_act
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_democratic_we_dont_change
+		focus = rus_democratic_the_yagoda_economic
+		focus = rus_democratic_the_socialized_economic
+	}
+	relative_position_id = rus_democratic_we_dont_change
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		add_stability = 0.3
+		add_war_support = 0.3
+		TNO_improve_health_care_policy_effectiveness_monthly_MED = yes
+		TNO_improve_education_policy_effectiveness_monthly_MED = yes
+		TNO_improve_penal_system_policy_effectiveness_monthly_MED = yes
+		TNO_improve_gender_rights_policy_effectiveness_monthly_MED = yes
+		TNO_improve_security_policy_effectiveness_monthly_MED = yes
+		TNO_improve_income_taxation_policy_effectiveness_monthly_med = yes
+		TNO_improve_minimum_wage_policy_effectiveness_monthly_med = yes
+		TNO_improve_max_workhours_policy_effectiveness_monthly_med = yes
+		TNO_improve_pensions_policy_effectiveness_monthly_med = yes
+		TNO_improve_unemployment_policy_effectiveness_monthly_med = yes
+		TNO_improve_regulations_policy_effectiveness_monthly_MED = yes
+		TNO_improve_trade_laws_policy_effectiveness_monthly_MED = yes
+	}
+	
+}
+
+
+####
+shared_focus = {
+	id = rus_democratic_extend_the_government
+	icon = GFX_focus_generic_national_land_reform
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_social_need_help }
+	relative_position_id = rus_democratic_the_social_need_help
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_admin_efficiency_high = yes
+		add_ideas = IRK_labor_battalions
+	}
+	
+}
+shared_focus = {
+	id = rus_democratic_patriotism_and_nationalism
+	icon = GFX_focus_RUS_friends_in_russia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_extend_the_government }
+	relative_position_id = rus_democratic_extend_the_government
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		add_stability = 0.2
+		add_war_support = 0.2
+		add_political_power = 300
+		TNO_improve_public_meetings_policy_effectiveness_high = yes
+		country_event = { id = SWRW_RUS.350 days = 14 }
+	}
+	
+}
+####
+
+shared_focus = {
+	id = rus_democratic_protect_the_nation
+	icon = GFX_focus_RUS_torn_russian_flag
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_social_need_help }
+	relative_position_id = rus_democratic_the_social_need_help
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		add_ideas = IRK_remember_the_revolution
+		TNO_improve_gender_rights_policy_effectiveness_high = yes
+		TNO_gender_rights_improve = yes
+	}
+}
+shared_focus = {
+	id = rus_democratic_the_KGB
+	icon = GFX_focus_RUS_russian_eagle
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_protect_the_nation }
+	relative_position_id = rus_democratic_protect_the_nation
+	x = 0 
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { Agency = token:Espionage_KGB }
+		set_variable = { TNO_Espionage_AgencyLeader = token:Espionage_Andropov }
+		Espionage_Enable = yes
+		Espionage_Initialize_RUS_Vars = yes
+	}
+	
+}
+
+
+
+shared_focus = {
+	id = rus_democratic_forward
+	icon = GFX_focus_RUS_legacy_of_democratic_russia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_democratic_finish_social_reform
+		focus = rus_democratic_finish_army_modernization
+		focus = rus_democratic_finish_the_economy
+	}
+	relative_position_id = rus_democratic_finish_the_economy
+	x = -9
+	y = 2
+	available = {
+		date > 1975.1.1
+	}
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_forward_tt
+		add_stability = 0.1
+		add_war_support = 0.1
+		add_political_power = 25
+		set_country_flag = LAST_PREPARE_TO_2WRW
+		mark_focus_tree_layout_dirty = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_democratic_the_final_attack_to_einheitspakt
+	icon = GFX_focus_GER_grand_cold_wall
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_democratic_forward
+	}
+	relative_position_id = rus_democratic_finish_the_economy
+	x = -10
+	y = 3
+	available = {
+		date > 1975.1.1
+	}
+	allow_branch = {
+		has_country_flag = LAST_PREPARE_TO_2WRW
+	}
+	completion_reward = {
+		set_global_flag = SECOND_WRW_HAS_BEGUN
+		set_variable = { RUS_surrender_limit = 0.0 }
+		add_war_support = 0.2
+		add_stability = 0.1
+		custom_effect_tooltip = RUS_The_Peoples_Army_Marches_West_tt
+		hidden_effect = {
+			SWRW_initiate = yes
+			SWRW_launch_war_declaration_events = yes
+			WRW_load_war_portraits = yes
+			MCW = {
+				load_oob = GER_1962
+			}
+			load_oob = SWRW_NEW_FORCES
+			load_oob = SWRW_NEW_FORCES
+			set_country_flag = SWRW_LOAD_FOCUS_DAMN
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	
+}
+
+############################################
+#AUTH
+
+
+shared_focus = {
+	id = rus_auth_One_Once_More_new
+	icon = GFX_RUS_Slava
+	cost = 1
+	ai_will_do = { factor = 1 }
+	x = 10
+	y = -2
+	completion_reward = {
+		set_stability = 0.5
+		set_war_support = 0.5
+		log = "[GetDateText]: [Root.GetName]: RUS_One_Once_More"
+		custom_effect_tooltip = RUS_One_Once_More_tt
+		add_stability = 0.2
+		add_war_support = 0.2
+		add_political_power = 25
+		set_temp_variable = { pus_temp = 6 }
+		econ_pus_change = yes
+		set_country_flag = RUS_One_Once_More_finish
+		mark_focus_tree_layout_dirty = yes
+		country_event = { id = SWRW_RUS_unification.1 days = 2 }
+	}
+}
+
+shared_focus = {
+	id = rus_auth_our_real_situation
+	icon = GFX_focus_USA_duty_to_country
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_One_Once_More_new }
+	relative_position_id = rus_auth_One_Once_More_new
+	x = -1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 25
+		country_event = { id = SWRW_RUS.3 days = 5 }
+	}
+}
+
+shared_focus = {
+	id = rus_auth_build_our_party
+	icon = GFX_focus_GER_guide_the_party
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_our_real_situation }
+	relative_position_id = rus_auth_our_real_situation
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		set_party_name = {
+		ideology = paternalism
+		long_name = rus_auth_paternalism
+		name = rus_auth_paternalism_short
+	}
+	set_party_name = {
+		ideology = liberalism
+		long_name = rus_auth_liberalism
+		name = rus_auth_liberalism_short
+	}
+	set_party_name = {
+		ideology = progressivism
+		long_name = rus_auth_progressivism_long
+		name = rus_auth_progressivism_short
+	}
+	set_party_name = {
+		ideology = conservatism
+		long_name = rus_auth_conservatism_long
+		name = rus_auth_conservatism_short
+	}
+	set_party_name = {
+		ideology = communist
+		long_name = rus_auth_communist_long
+		name = rus_auth_communist_short
+	}
+	set_party_name = {
+		ideology = socialist
+		long_name = rus_auth_socialist_long
+		name = rus_auth_socialist_short
+	}
+	}
+}
+
+
+shared_focus = {
+	id = rus_auth_looking_the_moscow
+	icon = GFX_focus_RUS_the_russian_people_deliver_us
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_build_our_party }
+	relative_position_id = rus_auth_build_our_party
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_stability = 0.1
+		add_war_support = 0.1
+		army_funding_maximal_increase_high = yes
+		army_funding_minimal_increase_low = yes
+	}
+}
+
+shared_focus = {
+	id = rus_auth_our_country_runs_well
+	icon = GFX_focus_generic_balancing_the_council
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_One_Once_More_new }
+	relative_position_id = rus_auth_One_Once_More_new
+	x = 1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		TNO_improve_political_parties_policy_effectiveness_med = yes
+		TNO_improve_religious_rights_policy_effectiveness_med = yes
+		TNO_improve_trade_unions_policy_effectiveness_high = yes
+		TNO_improve_immigration_policy_effectiveness_med = yes
+		TNO_improve_slavery_policy_effectiveness_low = yes
+		TNO_improve_public_meetings_policy_effectiveness_low = yes
+		TNO_improve_press_rights_policy_effectiveness_low = yes
+		TNO_improve_vote_franchise_policy_effectiveness_monthly_med = yes
+	}
+}
+
+shared_focus = {
+	id = rus_auth_build_our_faction
+	icon = GFX_focus_generic_unity
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_our_country_runs_well }
+	relative_position_id = rus_auth_our_country_runs_well
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 25
+		add_ideas = CSTO_Guardian_of_Eurasia
+		set_country_flag = HAS_ECON_SPHERE
+		create_faction = very_generic_russian_faction
+		set_variable = { ECON_SPHERE_LEADER = RUS }
+		SWRW_Add_RUS_To_Cold_War_GUI = yes
+	}
+}
+
+
+shared_focus = {
+	id = rus_auth_prepare_our_army
+	icon = GFX_focus_generic_army_officers
+	cost = 1
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_build_our_faction }
+	relative_position_id = rus_auth_build_our_faction
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 5000
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 2500
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 1000
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 1000
+		}
+	}
+}
+
+
+shared_focus = {
+	id = rus_auth_but_before_that
+	icon = GFX_focus_generic_a_new_dawn
+	cost = 2
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_prepare_our_army }
+	prerequisite = { focus = rus_auth_looking_the_moscow }
+	relative_position_id = rus_auth_prepare_our_army
+	x = -1.5
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = rus_auth_we_have_to_look_yourself
+	icon = GFX_focus_GNG_the_public_order_and_police_law
+	cost = 2
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_but_before_that }
+	relative_position_id = rus_auth_but_before_that
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_One_Once_More_finish
+	}
+	completion_reward = {
+		custom_effect_tooltip = rus_auth_we_have_to_look_yourself_tt
+		TNO_security_improve = yes
+		TNO_security_improve = yes
+		TNO_slavery_worsen = yes
+		TNO_slavery_worsen = yes
+		TNO_improve_slavery_policy_effectiveness_high = yes
+
+		set_country_flag = rus_auth_show_focus_tree_main
+		set_country_flag = RUS_show_focus_tree_main
+		mark_focus_tree_layout_dirty = yes
+	}
+
+}
+#ECONOMY
+shared_focus = {
+	id = rus_auth_the_problem_is_economy
+	icon = GFX_focus_RUS_budget_debate
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_we_have_to_look_yourself }
+	relative_position_id = rus_auth_we_have_to_look_yourself
+	x = 9
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		custom_effect_tooltip = rus_auth_the_problem_is_economy_tt
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		econ_raise_min_credit_rating = yes
+		set_country_flag = SOV_FIVE_YEARS_PLAN_OPEN
+		set_temp_variable = { temp_econ_spending_amount = 1 }
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_improve_trade_laws_policy_effectiveness_monthly_med = yes
+		tno_trade_laws_worsen = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 5
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_import_industrial_machinery
+	icon = GFX_focus_generic_machine_red
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_industrial_centric_development }
+	relative_position_id = rus_auth_industrial_centric_development
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 1 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.3 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { pus_temp = 4 }
+		econ_pus_change = yes
+		TNO_improve_industrial_equipment_high = yes
+		TNO_improve_industrial_expertise_med = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_industrial_centric_development
+	icon = GFX_focus_generic_industrial_progress_red
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_problem_is_economy }
+	relative_position_id = rus_auth_the_problem_is_economy
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		TNO_worsen_regulations_policy_effectiveness_low = yes
+		set_temp_variable = { econ_centralization_temp = -5 }
+		econ_centralization_change = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 1 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.6 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.5 }
+		econ_inflation_change = yes
+		add_ideas = IRK_new_siberian_plan
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = offices
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_building_construction = {
+				type = offices
+				level = 1
+				instant_build = yes
+			}
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = air_base
+				level = 2
+				instant_build = yes
+			}
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_localized_accessories
+	icon = GFX_focus_RUS_fruit_of_siberia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_import_industrial_machinery }
+	relative_position_id = rus_auth_import_industrial_machinery
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_low = yes
+		set_temp_variable = { temp_econ_spending_amount = 4 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+	}
+	
+}
+######
+shared_focus = {
+	id = rus_auth_transport_modernization
+	icon = GFX_focus_generic_railway_work
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_problem_is_economy }
+	relative_position_id = rus_auth_the_problem_is_economy
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		custom_effect_tooltip = rus_auth_transport_modernization_tt
+		562 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = thermoelectric_plant
+				level = 1
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		889 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		561 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		563 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		564 = {
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = thermoelectric_plant
+				level = 1
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		568 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		757 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		569 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		
+		570 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		40 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		571 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		572 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		403 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		573 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		753 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		399 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		252 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		256 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		249 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		850 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		851 = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.1 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_urban_development_initiatives
+	icon = GFX_focus_generic_public_housing
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_transport_modernization }
+	relative_position_id = rus_auth_transport_modernization
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { gdp_growth_temp = 0.2 }
+		econ_gdp_growth_change = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 1
+		}
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+		country_event = { id = SWRW_RUS.4 days = 5 }
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_the_resources_is_lot
+	icon = GFX_focus_RUS_the_resources_of_siberia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_urban_development_initiatives }
+	relative_position_id = rus_auth_urban_development_initiatives
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_worsen_regulations_policy_effectiveness_low = yes
+		TNO_improve_poverty_med = yes
+		add_resource = {
+			type = oil
+			amount = 20
+			state = 562
+		}
+		add_resource = {
+			type = chromium
+			amount = 21
+			state = 563
+		}
+		add_resource = {
+			type = tungsten
+			amount = 26
+			state = 564
+		}
+		add_resource = {
+			type = oil
+			amount = 32
+			state = 329
+		}
+		add_resource = {
+			type = chromium
+			amount = 21
+			state = 568
+		}
+		add_resource = {
+			type = tungsten
+			amount = 24
+			state = 570
+		}
+		add_resource = {
+			type = oil
+			amount = 30
+			state = 403
+		}
+		add_resource = {
+			type = chromium
+			amount = 29
+			state = 403
+		}
+		add_resource = {
+			type = tungsten
+			amount = 25
+			state = 403
+		}
+		add_resource = {
+			type = oil
+			amount = 24
+			state = 850
+		}
+		add_resource = {
+			type = chromium
+			amount = 22
+			state = 400
+		}
+		add_resource = {
+			type = tungsten
+			amount = 23
+			state = 252
+		}
+		set_temp_variable = { money_reserves_temp = 6 }
+		econ_money_reserves_change_raw_money = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+######
+
+shared_focus = {
+	id = rus_auth_military_construction
+	icon = GFX_focus_GER_the_second_bormann_ausschuss
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_problem_is_economy }
+	relative_position_id = rus_auth_the_problem_is_economy
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 10 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.11 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_high = yes
+		set_temp_variable = { pus_temp = 8 }
+		econ_pus_change = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 1
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 3
+			uses = 1
+			category = industry
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_manning_the_factories
+	icon = GFX_focus_generic_denouce_the_reformists
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_military_construction }
+	relative_position_id = rus_auth_military_construction
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_med = yes
+		set_temp_variable = { temp_econ_spending_amount = 3 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_high = yes
+		set_temp_variable = { pus_temp = 5 }
+		econ_pus_change = yes
+		tno_regulations_worsen = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_workers_gowork
+	icon = GFX_focus_GER_revival_of_the_mittelstand
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_manning_the_factories }
+	relative_position_id = rus_auth_manning_the_factories
+	x = 1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		tno_max_workhours_worsen = yes
+		TNO_improve_max_workhours_policy_effectiveness_high = yes
+	}
+	
+}
+######
+
+shared_focus = {
+	id = rus_auth_finish_the_economy
+	icon = GFX_focus_GER_economic_planning
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_resources_is_lot }
+	prerequisite = { focus = rus_auth_manning_the_factories }
+	prerequisite = { focus = rus_auth_import_industrial_machinery }
+	relative_position_id = rus_auth_the_resources_is_lot
+	x = 0
+	y = 3
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		econ_raise_max_credit_rating = yes
+		econ_raise_min_credit_rating = yes
+		econ_raise_credit_rating = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+		set_temp_variable = { gdp_growth_temp = 0.35 }
+		econ_gdp_growth_change = yes
+		TNO_improve_agriculture_med = yes
+		set_temp_variable = { temp_gdp_gained = 0.1 }
+		econ_money_reserves_change_percent_gdp = yes
+		add_tech_bonus = {
+			name = industry
+			ahead_reduction = 3
+			uses = 2
+			category = industry
+		}
+		add_tech_bonus = {
+			name = industry
+			bonus = 2
+			uses = 2
+			category = industry
+		}
+		country_event = { id = SWRW_RUS.2 days = 5 }
+	}
+	
+}
+
+#ARMY
+shared_focus = {
+	id = rus_auth_the_army_need_better
+	icon = GFX_focus_generic_denouce_the_reformists
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_we_have_to_look_yourself }
+	relative_position_id = rus_auth_we_have_to_look_yourself
+	x = -9
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_military_supervision_policy_effectiveness_high = yes
+		TNO_improve_conscription_policy_effectiveness_med = yes
+		TNO_improve_training_policy_effectiveness_med = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_med = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_the_politicized_army
+	icon = GFX_focus_generic_a_war_cabinet
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_army_need_better }
+	relative_position_id = rus_auth_the_army_need_better
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_auth_the_professional_army
+	}
+	completion_reward = {
+		add_stability = 0.1
+		add_war_support = 0.1
+		add_political_power = 150
+		add_ideas = RUS_pol_army
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_the_professional_army
+	icon = GFX_focus_GER_nazi_guns
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_army_need_better }
+	relative_position_id = rus_auth_the_army_need_better
+	x = 1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_auth_the_politicized_army
+	}
+	completion_reward = {
+		add_war_support = 0.1
+		add_political_power = -50
+		add_ideas = RUS_pro_army
+	}
+	
+}
+shared_focus = {
+	id = rus_auth_extra_the_military
+	icon = GFX_focus_generic_deploy_the_militia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_auth_the_professional_army
+		focus = rus_auth_the_politicized_army
+	}
+	relative_position_id = rus_auth_the_professional_army
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_auth_specialized_army
+	}
+	completion_reward = {
+		tno_conscription_worsen = yes
+		TNO_improve_conscription_policy_effectiveness_high = yes
+		country_event = { id = SWRW_RUS.7 days = 5 }
+		country_event = { id = SWRW_RUS.349 days = 42 }
+	}
+	
+}
+shared_focus = {
+	id = rus_auth_specialized_army
+	icon = GFX_focus_generic_militarize_the_outskirts
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_auth_the_professional_army
+		focus = rus_auth_the_politicized_army
+	}
+	relative_position_id = rus_auth_the_professional_army
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_auth_extra_the_military
+	}
+	completion_reward = {
+		TNO_training_improve = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_advanced_training_project
+	icon = GFX_focus_generic_reform_the_militias
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_auth_specialized_army
+		focus = rus_auth_extra_the_military
+	}
+	relative_position_id = rus_auth_extra_the_military
+	x = -1
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 0.5 }
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_military_supervision_improve = yes
+		TNO_improve_conscription_policy_effectiveness_monthly_med = yes
+		TNO_improve_training_policy_effectiveness_monthly_med = yes
+		TNO_improve_army_professionalism_med = yes
+	}
+	
+}
+
+###
+shared_focus = {
+	id = rus_auth_soviet_land_forces
+	icon = GFX_focus_generic_military_discipline
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_auth_advanced_training_project
+	}
+	relative_position_id = rus_auth_advanced_training_project
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_army_professionalism_med = yes
+		army_experience = 50
+		add_tech_bonus = {
+			name = infantry_weapons
+			ahead_reduction = 5
+			uses = 3
+			category = infantry_weapons
+		}
+		add_tech_bonus = {
+			name = infantry_weapons
+			bonus = 2
+			uses = 3
+			category = infantry_weapons
+		}
+	}
+	
+}
+shared_focus = {
+	id = rus_auth_army_equipment_modernization
+	icon = GFX_focus_generic_tank_warfare
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_auth_soviet_land_forces
+	}
+	relative_position_id = rus_auth_soviet_land_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		add_tech_bonus = {
+			name = helicopter
+			ahead_reduction = 5
+			uses = 3
+			category = helicopter
+		}
+		add_tech_bonus = {
+			name = helicopter
+			bonus = 2
+			uses = 3
+			category = helicopter
+		}
+	}
+	
+}
+###
+shared_focus = {
+	id = rus_auth_soviet_air_forces
+	icon = GFX_focus_generic_air_training_program
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_auth_advanced_training_project
+	}
+	relative_position_id = rus_auth_advanced_training_project
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		air_experience = 50
+		add_tech_bonus = {
+			name = air_equipment
+			ahead_reduction = 5
+			uses = 1
+			category = air_equipment
+		}
+		add_tech_bonus = {
+			name = air_equipment
+			bonus = 2
+			uses = 1
+			category = air_equipment
+		}
+		load_oob = SWRW_NEW_FORCES
+	}
+	
+}
+shared_focus = {
+	id = rus_auth_air_force_equipment_modernization
+	icon = GFX_focus_generic_ofn_airfields
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_auth_soviet_air_forces
+	}
+	relative_position_id = rus_auth_soviet_air_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		add_ideas = USA_SAW_Helicopter_Gunships_idea
+		add_tech_bonus = {
+			name = air_equipment
+			ahead_reduction = 5
+			uses = 1
+			category = air_equipment
+		}
+		add_tech_bonus = {
+			name = air_equipment
+			bonus = 2
+			uses = 1
+			category = air_equipment
+		}
+	}
+	
+}
+###
+shared_focus = {
+	id = rus_auth_soviet_naval_forces
+	icon = GFX_focus_generic_new_naval_fleet
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_auth_advanced_training_project
+	}
+	relative_position_id = rus_auth_advanced_training_project
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		navy_experience = 50
+		add_tech_bonus = {
+			name = naval_equipment
+			ahead_reduction = 1
+			uses = 5
+			category = naval_equipment
+		}
+		add_tech_bonus = {
+			name = naval_equipment
+			bonus = 2
+			uses = 5
+			category = naval_equipment
+		}
+		set_technology = {
+			ww2_submarine = 1
+			ww2_destroyer = 1
+			ww2_frigate = 1
+			ww2_cruiser = 1
+			ww2_battleship = 1
+			transport = 1
+			smoke_generator = 1
+			sonar = 1
+			basic_depth_charge = 1
+			basic_torpedo = 1
+			basic_battery = 1
+			basic_naval_mines = 1
+			basic_secondary_battery = 1
+		}
+	}
+	
+}
+shared_focus = {
+	id = rus_auth_naval_force_equipment_modernization
+	icon = GFX_focus_generic_navy_talk
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_auth_soviet_naval_forces
+	}
+	relative_position_id = rus_auth_soviet_naval_forces
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		add_tech_bonus = {
+			name = naval_equipment
+			ahead_reduction = 1
+			uses = 5
+			category = naval_equipment
+		}
+		add_tech_bonus = {
+			name = naval_equipment
+			bonus = 2
+			uses = 5
+			category = naval_equipment
+		}
+		set_technology = {
+			improved_ship_hull_carrier = 1
+		}
+		create_equipment_variant = {
+			name = "Soviet Class"
+			type = ship_hull_carrier_3
+			parent_version = 0
+			modules = {
+				fixed_ship_deck_slot_1 = ship_deck_space
+				fixed_ship_deck_slot_2 = ship_deck_space
+				fixed_ship_anti_air_slot = ship_anti_air_2
+				fixed_ship_radar_slot = ship_radar_1
+				fixed_ship_engine_slot = carrier_ship_engine_3
+				fixed_ship_secondaries_slot = ship_secondaries_2
+				front_1_custom_slot = ship_armor_carrier_deck
+				mid_1_custom_slot = ship_deck_space
+				mid_2_custom_slot = ship_deck_space
+			}
+		}
+		add_equipment_production = {
+			equipment = {
+				type = ship_hull_carrier_3
+				creator = "RUS"
+				version_name = "Soviet Class"
+			}
+			requested_factories = 10
+			progress = 0.5
+			amount = 1
+		}
+		add_equipment_production = {
+			equipment = {
+				type = ship_hull_carrier_3
+				creator = "RUS"
+				version_name = "Soviet Class"
+			}
+			requested_factories = 10
+			progress = 0.5
+			amount = 1
+		}
+		hidden_effect = {
+			load_oob = KMC_st_mtg_or
+			load_oob = KMC_st_mtg_rykov
+			load_oob = KMC_st_mtg_ryanyy
+			load_oob = KMC_st_mtg_bukharin
+			load_oob = KMC_st_mtg_uritskiy
+			load_oob = KMC_st_mtg_shch101
+			load_oob = KMC_st_mtg_shch102
+			load_oob = KMC_st_mtg_shch103
+			load_oob = KMC_st_mtg_shch104
+			load_oob = KMC_st_mtg_shch105
+			load_oob = KMC_st_mtg_shch106
+			load_oob = KMC_st_mtg_shch107
+			load_oob = KMC_st_mtg_shch108
+			load_oob = KMC_st_mtg_shch109
+			load_oob = KMC_st_mtg_shch110
+		}
+	}
+	
+}
+#####
+shared_focus = {
+	id = rus_auth_finish_army_modernization
+	icon = GFX_focus_GER_expand_the_orpo
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = {
+		focus = rus_auth_air_force_equipment_modernization
+		focus = rus_auth_army_equipment_modernization
+		focus = rus_auth_naval_force_equipment_modernization
+	}
+	relative_position_id = rus_auth_soviet_land_forces
+	x = 0
+	y = 2
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_military_supervision_policy_effectiveness_high = yes
+		TNO_improve_conscription_policy_effectiveness_high = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_high = yes
+		TNO_training_improve = yes
+		TNO_improve_army_professionalism_high = yes
+	}
+	
+}
+
+
+
+
+#SOCIAL
+shared_focus = {
+	id = rus_auth_the_social_need_help
+	icon = GFX_focus_USA_yockey_safe_act
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_we_have_to_look_yourself }
+	relative_position_id = rus_auth_we_have_to_look_yourself
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_income_taxation_policy_effectiveness_monthly_med = yes
+		TNO_improve_minimum_wage_policy_effectiveness_monthly_med = yes
+		TNO_improve_max_workhours_policy_effectiveness_monthly_med = yes
+		TNO_improve_pensions_policy_effectiveness_monthly_med = yes
+		TNO_improve_unemployment_policy_effectiveness_monthly_med = yes
+		TNO_improve_regulations_policy_effectiveness_monthly_low = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_social_security_policy
+	icon = GFX_focus_USA_blue_cross_blue_shield
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_social_need_help }
+	relative_position_id = rus_auth_the_social_need_help
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		add_political_power = 25
+		TNO_improve_health_care_policy_effectiveness_monthly_low = yes
+		TNO_improve_education_policy_effectiveness_monthly_low = yes
+		TNO_improve_penal_system_policy_effectiveness_monthly_low = yes
+		TNO_improve_gender_rights_policy_effectiveness_monthly_low = yes
+		TNO_improve_security_policy_effectiveness_monthly_low = yes
+		TNO_health_care_improve = yes
+		TNO_improve_healthcare_high = yes
+		TNO_improve_poverty_high = yes
+		country_event = { id = SWRW_RUS.5 days = 5 }
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_the_sad_state_of_agriculture_in_our_country
+	icon = GFX_focus_GNG_a_shock_to_the_system
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_social_security_policy }
+	relative_position_id = rus_auth_social_security_policy
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		country_event = { id = SWRW_RUS.348 days = 7 }
+		TNO_improve_agriculture_med = yes
+		set_temp_variable = { temp_econ_GDP_boost_flat = 2.5 }
+		econ_GDP_boost_once_flat = yes
+		TNO_improve_admin_efficiency_high = yes
+		TNO_improve_poverty_high = yes
+		TNO_improve_academic_base_high = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_compulsory_education_program
+	icon = GFX_focus_generic_higher_education
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_sad_state_of_agriculture_in_our_country }
+	relative_position_id = rus_auth_the_sad_state_of_agriculture_in_our_country
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_education_policy_effectiveness_high = yes
+		TNO_education_improve = yes
+		TNO_improve_academic_base_high = yes
+		country_event = { id = SWRW_RUS.6 days = 5 }
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_the_economic
+	icon = GFX_focus_generic_economy_green_line_question
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_compulsory_education_program }
+	relative_position_id = rus_auth_compulsory_education_program
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_the_socialized_economic
+	icon = GFX_focus_generic_graph_rising_gold
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_economic }
+	relative_position_id = rus_auth_the_economic
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_auth_the_yagoda_economic
+		focus = rus_auth_we_dont_change
+	}
+	completion_reward = {
+		set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Socialized_Economy }
+		econ_subtype_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		set_temp_variable = { gdp_growth_temp = 0.05 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { econ_centralization_temp = -20 }
+		econ_centralization_change = yes
+	}
+	
+}
+shared_focus = {
+	id = rus_auth_the_yagoda_economic
+	icon = GFX_focus_generic_good_economy
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_economic }
+	relative_position_id = rus_auth_the_economic
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_auth_we_dont_change
+		focus = rus_auth_the_socialized_economic
+	}
+	completion_reward = {
+		set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Yagoda }
+		econ_subtype_change = yes
+		set_temp_variable = { inflation_temp = 0.2 }
+		econ_inflation_change = yes
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { econ_centralization_temp = -20 }
+		econ_centralization_change = yes
+	}
+	
+}
+shared_focus = {
+	id = rus_auth_we_dont_change
+	icon = GFX_focus_generic_modern_construction_equipment_yellow
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_economic }
+	relative_position_id = rus_auth_the_economic
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	mutually_exclusive = {
+		focus = rus_auth_the_yagoda_economic
+		focus = rus_auth_the_socialized_economic
+	}
+	completion_reward = {
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_finish_social_reform
+	icon = GFX_focus_generic_healthcare_act
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_auth_we_dont_change
+		focus = rus_auth_the_yagoda_economic
+		focus = rus_auth_the_socialized_economic
+	}
+	relative_position_id = rus_auth_we_dont_change
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		add_stability = 0.3
+		add_war_support = 0.3
+		TNO_improve_health_care_policy_effectiveness_monthly_MED = yes
+		TNO_improve_education_policy_effectiveness_monthly_MED = yes
+		TNO_improve_penal_system_policy_effectiveness_monthly_MED = yes
+		TNO_improve_gender_rights_policy_effectiveness_monthly_MED = yes
+		TNO_improve_security_policy_effectiveness_monthly_MED = yes
+		TNO_improve_income_taxation_policy_effectiveness_monthly_med = yes
+		TNO_improve_minimum_wage_policy_effectiveness_monthly_med = yes
+		TNO_improve_max_workhours_policy_effectiveness_monthly_med = yes
+		TNO_improve_pensions_policy_effectiveness_monthly_med = yes
+		TNO_improve_unemployment_policy_effectiveness_monthly_med = yes
+		TNO_improve_regulations_policy_effectiveness_monthly_MED = yes
+		TNO_improve_trade_laws_policy_effectiveness_monthly_MED = yes
+	}
+	
+}
+
+
+####
+shared_focus = {
+	id = rus_auth_extend_the_government
+	icon = GFX_focus_generic_cctv
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_social_need_help }
+	relative_position_id = rus_auth_the_social_need_help
+	x = 2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_admin_efficiency_high = yes
+		add_ideas = IRK_labor_battalions
+	}
+	
+}
+shared_focus = {
+	id = rus_auth_patriotism_and_nationalism
+	icon = GFX_focus_RUS_friends_in_russia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_extend_the_government }
+	relative_position_id = rus_auth_extend_the_government
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		add_stability = 0.2
+		add_war_support = 0.2
+		add_political_power = 300
+		TNO_improve_public_meetings_policy_effectiveness_high = yes
+		country_event = { id = SWRW_RUS.350 days = 14 }
+	}
+	
+}
+####
+
+shared_focus = {
+	id = rus_auth_protect_the_nation
+	icon = GFX_focus_GNG_discontent_is_no_excuse
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_social_need_help }
+	relative_position_id = rus_auth_the_social_need_help
+	x = -2
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		add_ideas = IRK_remember_the_revolution
+		TNO_improve_gender_rights_policy_effectiveness_high = yes
+		TNO_gender_rights_improve = yes
+	}
+}
+shared_focus = {
+	id = rus_auth_the_KGB
+	icon = GFX_focus_RUS_russian_eagle
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_protect_the_nation }
+	relative_position_id = rus_auth_protect_the_nation
+	x = 0 
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { Agency = token:Espionage_KGB }
+		set_variable = { TNO_Espionage_AgencyLeader = token:Espionage_Andropov }
+		Espionage_Enable = yes
+		Espionage_Initialize_RUS_Vars = yes
+	}
+	
+}
+
+
+
+shared_focus = {
+	id = rus_auth_forward
+	icon = GFX_focus_RUS_legacy_of_democratic_russia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_auth_finish_social_reform
+		focus = rus_auth_finish_army_modernization
+		focus = rus_auth_finish_the_economy
+	}
+	relative_position_id = rus_auth_finish_the_economy
+	x = -9
+	y = 2
+	available = {
+		date > 1975.1.1
+	}
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_forward_tt
+		add_stability = 0.1
+		add_war_support = 0.1
+		add_political_power = 25
+		set_country_flag = LAST_PREPARE_TO_2WRW
+		mark_focus_tree_layout_dirty = yes
+	}
+	
+}
+
+shared_focus = {
+	id = rus_auth_the_final_attack_to_einheitspakt
+	icon = GFX_focus_GER_grand_cold_wall
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { 
+		focus = rus_auth_forward
+	}
+	relative_position_id = rus_auth_finish_the_economy
+	x = -10
+	y = 3
+	available = {
+		date > 1975.1.1
+	}
+	allow_branch = {
+		has_country_flag = LAST_PREPARE_TO_2WRW
+	}
+	completion_reward = {
+		set_global_flag = SECOND_WRW_HAS_BEGUN
+		set_variable = { RUS_surrender_limit = 0.0 }
+		add_war_support = 0.2
+		add_stability = 0.1
+		custom_effect_tooltip = RUS_The_Peoples_Army_Marches_West_tt
+		hidden_effect = {
+			SWRW_initiate = yes
+			SWRW_launch_war_declaration_events = yes
+			WRW_load_war_portraits = yes
+			MCW = {
+				load_oob = GER_1962
+			}
+			load_oob = SWRW_NEW_FORCES
+			load_oob = SWRW_NEW_FORCES
+			set_country_flag = SWRW_LOAD_FOCUS_DAMN
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	
+}
+
+
+
+
+
+shared_focus = {
+	id = RUS_auth_tax_control
+	icon = GFX_focus_generic_overbearing_taxation
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_social_need_help }
+	prerequisite = { focus = rus_auth_the_problem_is_economy }
+	relative_position_id = rus_auth_the_problem_is_economy
+	x = -5
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		add_dynamic_modifier = { modifier = RUS_new_tax_system }
+		SWRW_RUS_add_tariff_tax_rate_025 = yes
+		set_temp_variable = { gdp_growth_temp = -0.1 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_get_tax_for_rich
+	icon = GFX_focus_generic_we_failed_the_rich
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_tax_control }
+	relative_position_id = RUS_auth_tax_control
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		SWRW_RUS_add_sales_tax_rate_050 = yes
+		set_temp_variable = { gdp_growth_temp = -0.1 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_cut_tax_for_poors
+	icon = GFX_focus_GNG_tax_relief
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_get_tax_for_rich }
+	relative_position_id = RUS_auth_get_tax_for_rich
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		SWRW_RUS_subtract_business_tax_rate_050 = yes
+		SWRW_RUS_subtract_income_tax_rate_050 = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_looks_how_many_money_there_is
+	icon = GFX_focus_generic_the_almighty_dollar
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_cut_tax_for_poors }
+	relative_position_id = RUS_auth_cut_tax_for_poors
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { money_reserves_temp = 15 }
+		econ_money_reserves_change_raw_money = yes
+		set_temp_variable = { inflation_temp = -0.1 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_change_tax_law
+	icon = GFX_focus_generic_change_law_speech
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_looks_how_many_money_there_is }
+	relative_position_id = RUS_auth_looks_how_many_money_there_is
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_income_taxation_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_invest_and_invest
+	icon = GFX_focus_generic_foreign_investment
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_change_tax_law }
+	relative_position_id = RUS_auth_change_tax_law
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_gdp_paid = 0.1 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 1.5 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.5 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+#############################ECOxSOC
+
+#############################ARMYxSOC
+
+shared_focus = {
+	id = RUS_auth_draft_it
+	icon = GFX_focus_generic_draft_our_blood
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_social_need_help }
+	prerequisite = { focus = rus_auth_the_army_need_better }
+	relative_position_id = rus_auth_the_social_need_help
+	x = -5
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_draft_exemptions_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_expend_supervision
+	icon = GFX_focus_USA_bring_back_our_boys
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_draft_it }
+	relative_position_id = RUS_auth_draft_it
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_military_supervision_improve = yes
+	}
+	
+}
+
+
+shared_focus = {
+	id = RUS_auth_women_in_army
+	icon = GFX_focus_generic_female_soldier_2
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_expend_supervision }
+	relative_position_id = RUS_auth_expend_supervision
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_gender_rights_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_expend_immigration
+	icon = GFX_focus_USA_immigration_and_nationality_act
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_women_in_army }
+	relative_position_id = RUS_auth_women_in_army
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_immigration_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_give_money_to_servicer
+	icon = GFX_focus_generic_pay_them_well
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_expend_immigration }
+	relative_position_id = RUS_auth_expend_immigration
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 0.5 }
+		econ_spend_money_once_effect_raw_money = yes
+		add_manpower = 400000
+		TNO_improve_military_supervision_policy_effectiveness_low = yes
+		TNO_improve_conscription_policy_effectiveness_low = yes
+		TNO_improve_training_policy_effectiveness_low = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_low = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_what_do_you_do
+	icon = GFX_focus_YUN_what_did_you_do_in_the_war
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_give_money_to_servicer }
+	relative_position_id = RUS_auth_give_money_to_servicer
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_slavery_improve = yes
+		TNO_worsen_slavery_policy_effectiveness_med = yes
+		TNO_improve_slavery_policy_effectiveness_monthly_low = yes
+	}
+	
+}
+
+###################################
+
+shared_focus = {
+	id = RUS_democratic_tax_control
+	icon = GFX_focus_generic_overbearing_taxation
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_social_need_help }
+	prerequisite = { focus = rus_democratic_the_problem_is_economy }
+	relative_position_id = rus_democratic_the_problem_is_economy
+	x = -5
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		add_dynamic_modifier = { modifier = RUS_new_tax_system }
+		SWRW_RUS_add_tariff_tax_rate_025 = yes
+		set_temp_variable = { gdp_growth_temp = -0.1 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_get_tax_for_rich
+	icon = GFX_focus_generic_we_failed_the_rich
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_tax_control }
+	relative_position_id = RUS_democratic_tax_control
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		SWRW_RUS_add_sales_tax_rate_050 = yes
+		set_temp_variable = { gdp_growth_temp = -0.1 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_cut_tax_for_poors
+	icon = GFX_focus_GNG_tax_relief
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_get_tax_for_rich }
+	relative_position_id = RUS_democratic_get_tax_for_rich
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+		SWRW_RUS_subtract_business_tax_rate_050 = yes
+		SWRW_RUS_subtract_income_tax_rate_050 = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_looks_how_many_money_there_is
+	icon = GFX_focus_generic_the_almighty_dollar
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_cut_tax_for_poors }
+	relative_position_id = RUS_democratic_cut_tax_for_poors
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { money_reserves_temp = 15 }
+		econ_money_reserves_change_raw_money = yes
+		set_temp_variable = { inflation_temp = -0.1 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_change_tax_law
+	icon = GFX_focus_generic_change_law_speech
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_looks_how_many_money_there_is }
+	relative_position_id = RUS_democratic_looks_how_many_money_there_is
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_income_taxation_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_invest_and_invest
+	icon = GFX_focus_generic_foreign_investment
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_change_tax_law }
+	relative_position_id = RUS_democratic_change_tax_law
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_gdp_paid = 0.1 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 1.5 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.5 }
+		econ_inflation_change = yes
+	}
+	
+}
+
+#############################ECOxSOC
+
+#############################ARMYxSOC
+
+shared_focus = {
+	id = RUS_democratic_draft_it
+	icon = GFX_focus_generic_draft_our_blood
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_social_need_help }
+	prerequisite = { focus = rus_democratic_the_army_need_better }
+	relative_position_id = rus_democratic_the_social_need_help
+	x = -5
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_draft_exemptions_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_expend_supervision
+	icon = GFX_focus_USA_bring_back_our_boys
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_draft_it }
+	relative_position_id = RUS_democratic_draft_it
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_military_supervision_improve = yes
+	}
+	
+}
+
+
+shared_focus = {
+	id = RUS_democratic_women_in_army
+	icon = GFX_focus_generic_female_soldier_2
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_expend_supervision }
+	relative_position_id = RUS_democratic_expend_supervision
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_gender_rights_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_expend_immigration
+	icon = GFX_focus_USA_immigration_and_nationality_act
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_women_in_army }
+	relative_position_id = RUS_democratic_women_in_army
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_immigration_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_give_money_to_servicer
+	icon = GFX_focus_generic_pay_them_well
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_expend_immigration }
+	relative_position_id = RUS_democratic_expend_immigration
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 0.5 }
+		econ_spend_money_once_effect_raw_money = yes
+		add_manpower = 400000
+		TNO_improve_military_supervision_policy_effectiveness_low = yes
+		TNO_improve_conscription_policy_effectiveness_low = yes
+		TNO_improve_training_policy_effectiveness_low = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_low = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_what_do_you_do
+	icon = GFX_focus_YUN_what_did_you_do_in_the_war
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_give_money_to_servicer }
+	relative_position_id = RUS_democratic_give_money_to_servicer
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		tno_slavery_improve = yes
+		TNO_worsen_slavery_policy_effectiveness_med = yes
+		TNO_improve_slavery_policy_effectiveness_monthly_low = yes
+	}
+	
+}
+
+
+shared_focus = {
+	id = RUS_auth_invite_foreign_company
+	icon = GFX_focus_generic_foreign_investment
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_import_industrial_machinery }
+	relative_position_id = rus_auth_urban_development_initiatives
+	x = -2
+	y = 2
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_low = yes
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+		TNO_improve_trade_laws_policy_effectiveness_med = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_auth_integrate_industrial
+	icon = GFX_focus_generic_continue_regional_interconnection
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_the_resources_is_lot }
+	relative_position_id = rus_auth_the_resources_is_lot
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		TNO_impove_regulations_policy_effectiveness_low = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+		TNO_improve_industrial_equipment_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_auth_global_development_project
+	icon = GFX_focus_generic_the_global_market
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_auth_integrate_industrial }
+	relative_position_id = RUS_auth_integrate_industrial
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		every_country = {
+			limit = {
+				OR = {
+					is_in_faction_with = RUS
+					check_variable = { ECON_SPHERE_LEADER = RUS }
+				}
+				NOT = {
+					tag = RUS
+				}
+			}
+			set_temp_variable = { gdp_growth_temp = 2 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.1 }
+			econ_GDP_boost_once_percentage = yes
+			TNO_improve_industrial_equipment = yes
+			TNO_improve_industrial_expertise = yes
+			hidden_effect = {
+				TNO_improve_industrial_equipment = yes
+				TNO_improve_industrial_expertise = yes
+			}
+			econ_raise_max_credit_rating = yes
+			TNO_improve_poverty_high = yes
+		}
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 0.85 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_auth_establishment_employment_working_group
+	icon = GFX_focus_generic_modern_construction_equipment_yellow
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_auth_manning_the_factories }
+	relative_position_id = rus_auth_manning_the_factories
+	x = 0
+	y = 2
+	allow_branch = {
+		has_country_flag = rus_auth_show_focus_tree_main
+	}
+	completion_reward = {
+		country_event = { id = SWRW_RUS.1 }
+		set_temp_variable = { temp_econ_spending_amount = 0.225 }
+		TNO_improve_poverty_med = yes
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_improve_industrial_expertise_high = yes
+		TNO_worsen_admin_efficiency_low = yes
+		random_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.05 }
+			econ_state_value_change_multiply = yes
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = schools
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.05 }
+			econ_state_value_change_multiply = yes
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = schools
+				level = 1
+				instant_build = yes
+			}
+		}
+		every_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.035 }
+			econ_state_value_change_multiply = yes
+		}
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_invite_foreign_company
+	icon = GFX_focus_generic_foreign_investment
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_import_industrial_machinery }
+	relative_position_id = rus_democratic_urban_development_initiatives
+	x = -2
+	y = 2
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		TNO_improve_poverty_low = yes
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		random_owned_controlled_state = {
+			add_extra_state_shared_building_slots = 2
+		}
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+		TNO_improve_trade_laws_policy_effectiveness_med = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_democratic_integrate_industrial
+	icon = GFX_focus_generic_continue_regional_interconnection
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_the_resources_is_lot }
+	relative_position_id = rus_democratic_the_resources_is_lot
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		TNO_impove_regulations_policy_effectiveness_low = yes
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+		TNO_improve_industrial_equipment_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_global_development_project
+	icon = GFX_focus_generic_the_global_market
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = RUS_democratic_integrate_industrial }
+	relative_position_id = RUS_democratic_integrate_industrial
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = RUS_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		every_country = {
+			limit = {
+				OR = {
+					is_in_faction_with = RUS
+					check_variable = { ECON_SPHERE_LEADER = RUS }
+				}
+				NOT = {
+					tag = RUS
+				}
+			}
+			set_temp_variable = { gdp_growth_temp = 2 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.1 }
+			econ_GDP_boost_once_percentage = yes
+			TNO_improve_industrial_equipment = yes
+			TNO_improve_industrial_expertise = yes
+			hidden_effect = {
+				TNO_improve_industrial_equipment = yes
+				TNO_improve_industrial_expertise = yes
+			}
+			econ_raise_max_credit_rating = yes
+			TNO_improve_poverty_high = yes
+		}
+		set_temp_variable = { temp_gdp_paid = 0.05 }
+		econ_spend_money_once_effect_GDP_percent = yes
+		set_temp_variable = { gdp_growth_temp = 0.85 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_establishment_employment_working_group
+	icon = GFX_focus_generic_modern_construction_equipment_yellow
+	cost = 3
+	ai_will_do = { factor = 1 }
+	prerequisite = { focus = rus_democratic_manning_the_factories }
+	relative_position_id = rus_democratic_manning_the_factories
+	x = 0
+	y = 2
+	allow_branch = {
+		has_country_flag = rus_democratic_show_focus_tree_main
+	}
+	completion_reward = {
+		country_event = { id = SWRW_RUS.1 }
+		set_temp_variable = { temp_econ_spending_amount = 0.225 }
+		TNO_improve_poverty_med = yes
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_improve_industrial_expertise_high = yes
+		TNO_worsen_admin_efficiency_low = yes
+		random_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.05 }
+			econ_state_value_change_multiply = yes
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = schools
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.05 }
+			econ_state_value_change_multiply = yes
+			add_extra_state_shared_building_slots = 2
+			add_building_construction = {
+				type = schools
+				level = 1
+				instant_build = yes
+			}
+		}
+		every_owned_state = {
+			set_temp_variable = { state_value_multiplier_temp = 1.035 }
+			econ_state_value_change_multiply = yes
+		}
+	}
+	
+}

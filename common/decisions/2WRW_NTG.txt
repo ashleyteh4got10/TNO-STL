@@ -1,0 +1,119 @@
+NTG_Power_Struggle = {
+	NTG_meet_with_delegates = {
+		icon = GFX_decision_generic_invitation
+		cost = 20
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 2 }
+			NTG_trust_delegates_increase = yes
+			add_popularity = { ideology = communist popularity = 0.01 }
+		}
+	}
+	NTG_request_political_backing = {
+		icon = GFX_decision_generic_document_socialism
+		cost = 10
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 2 }
+			NTG_trust_delegates_decrease = yes
+			TNO_improve_vote_franchise_policy_effectiveness_low = yes
+			add_political_power = 40
+		}
+	}
+	NTG_ensure_political_loyalty = {
+		icon = GFX_decision_generic_corruption
+		cost = 30
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 4 }
+			NTG_trust_delegates_increase = yes
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			econ_spend_money_once_effect_raw_money = yes
+			TNO_improve_political_parties_policy_effectiveness_low = yes
+		}
+	}
+	NTG_meet_with_military_officials  = {
+		icon = GFX_decision_generic_military_parade
+		cost = 20
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 2 }
+			NTG_trust_army_increase = yes
+			TNO_improve_military_supervision_policy_effectiveness_low = yes
+		}
+	}
+	NTG_request_military_assistance = {
+		icon = GFX_decision_generic_use_force
+		cost = 10
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 2 }
+			NTG_trust_army_decrease = yes
+			add_stability = 0.05
+			TNO_improve_security_policy_effectiveness_low = yes
+		}
+	}
+	NTG_prioritize_military_research = {
+		icon = GFX_decision_generic_research
+		cost = 30
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 4 }
+			NTG_trust_army_increase = yes
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			econ_spend_money_once_effect_raw_money = yes
+			TNO_improve_army_professionalism_low = yes
+		}
+	}
+	NTG_meet_with_the_peoples_commissars  = {
+		icon = GFX_decision_generic_workers
+		cost = 20
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 2 }
+			NTG_trust_people_increase = yes
+			TNO_improve_public_meetings_policy_effectiveness_low = yes
+		}
+	}
+	NTG_enact_emergency_taxes = {
+		icon = GFX_decision_generic_money
+		cost = 10
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 2 }
+			NTG_trust_people_decrease = yes
+			set_temp_variable = { money_reserves_temp = 0.2 }
+			econ_money_reserves_change_raw_money = yes
+			TNO_improve_income_taxation_policy_effectiveness_low = yes
+		}
+	}
+	NTG_allow_greater_liberties = {
+		icon = GFX_decision_generic_american_aid
+		cost = 30
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 4 }
+			NTG_trust_people_increase = yes
+			TNO_worsen_penal_system_policy_effectiveness_low = yes
+		}
+	}
+	NTG_continue_public_works = {
+		icon = GFX_decision_generic_infrastructure
+		cost = 25
+		days_re_enable = 30
+		complete_effect = {
+			set_temp_variable = { number = 4 }
+			NTG_trust_people_increase = yes
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			econ_spend_money_once_effect_raw_money = yes
+			random_owned_controlled_state = {
+				limit = { is_controlled_by = NTG }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}

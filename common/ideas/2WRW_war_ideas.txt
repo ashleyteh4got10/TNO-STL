@@ -1,0 +1,205 @@
+ideas = {
+	country = {
+	
+		### GENERIC NATIONAL SPIRITS ###
+	
+		WRW_integrated_administration = { # NatSpirit to make the RK's not surrender
+			picture = generic_german_advisors
+			modifier = {
+				surrender_limit = 1
+				command_power_gain_mult = 0.25
+				conscription_factor = 0.125
+				hidden_modifier = {
+					ai_focus_defense_factor = 1000
+					ai_focus_war_production_factor = 500
+				}
+			}
+		}
+		
+		WRW_partisan_uprisings = { # NatSpirit that disrupts supplies in both the RK as well as Germany
+			picture = BRY_Idealistic_Revolutionaries
+			modifier = {
+				stability_factor = -0.20
+				conscription_factor = -0.15
+				supply_consumption_factor = 0.33
+				army_speed_factor = -0.33
+				required_garrison_factor = 0.25
+			}
+			targeted_modifier = {
+				tag = GER
+				supply_consumption_factor = 0.08
+			}
+		}
+
+		GAW_partisan_uprisings = { 
+			picture = BRY_Idealistic_Revolutionaries
+			modifier = {
+				stability_factor = -0.20
+				conscription_factor = -0.15
+				supply_consumption_factor = 0.33
+				army_speed_factor = -0.33
+				required_garrison_factor = 0.25
+			}
+			targeted_modifier = {
+				tag = CHI
+				supply_consumption_factor = 0.08
+			}
+		}
+
+		RUS_military_advisors = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea RUS_military_advisors"
+				add_to_variable = { RUS.USA_mil_adv = 0.05 }
+			}
+			on_remove = {
+				subtract_from_variable = { RUS.USA_mil_adv = 0.05 }
+			}
+			cancel = { has_war = no }
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_attache
+			modifier = {
+				experience_gain_army_factor = 0.2
+				planning_speed = 0.1
+				army_attack_factor = 0.05
+				army_defence_factor = 0.05
+			}
+			targeted_modifier = { #For tooltip purpose only
+				tag = RUS
+				experience_gain_army = 0.05
+				command_power_gain = 0.05
+			}
+		}
+		RUS_technician_aid = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea RUS_technician_aid"
+				add_to_variable = { RUS.USA_tec_aid = 0.05 }
+			}
+			on_remove = {
+				subtract_from_variable = { RUS.USA_tec_aid = 0.05 }
+			}
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_breakneck_industrialization
+			modifier = {
+				research_speed_factor = 0.05
+				industrial_capacity_factory = 0.2
+				production_speed_buildings_factor = 0.2
+			}
+			targeted_modifier = {
+				tag = RUS
+				political_power_gain = 0.05
+			}
+		}
+
+		RUS_sabotage_effort = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea RUS_sabotage_effort"
+				add_to_variable = { RUS.RUS_sab_eff = 0.03 }
+			}
+			on_remove = {
+				subtract_from_variable = { RUS.RUS_sab_eff = 0.03 }
+			}
+			cancel = { has_war = no }
+			allowed = { always = no }
+			removal_cost = -1
+			picture = USA_cia_seal
+			modifier = {
+				industrial_capacity_factory = -0.1
+				army_attack_factor = -0.025
+			}
+			targeted_modifier = {
+				tag = RUS
+				army_attack_factor = 0.03
+				command_power_gain = 0.03
+			}
+		}
+		
+		WRW_nationwide_strikes = { # NatSpirit that disrupts RK industry
+			picture = generic_Social_Rights_3
+			modifier = {
+				stability_factor = -0.2
+				industrial_capacity_factory = -0.25
+				consumer_goods_use_modifier = 0.20
+			}
+		}
+		
+		WRW_intensified_bombing_runs = { # NatSpirit that makes you more vulnerable to bombing
+			picture = RUS_luftwaffe_bombings
+			modifier = {
+				stability_factor = -0.05
+				army_speed_factor = -0.1
+				industry_air_damage_factor = 0.25
+				industry_repair_factor = -0.33
+				production_speed_buildings_factor = -0.33
+			}
+		}
+		
+		RUS_corporate_concessions = { # Megacorp event chain
+			picture = LIB_widespread_corruption
+			modifier = {
+				air_attack_factor = -0.15
+				air_bombing_targetting = -0.25
+			}
+		}
+		
+		GER_corporate_concessions = { # Megacorp event chain
+			picture = LIB_widespread_corruption
+			modifier = {
+				industrial_capacity_factory = -0.2
+			}
+		}
+		
+		GER_disloyal_corporations = { # Megacorp event chain
+			picture = LIB_widespread_corruption
+			modifier = {
+				industrial_capacity_factory = -0.1
+			}
+			cancel = {
+				NOT = { has_country_flag = GER_SWRW_ongoing }
+			}
+		}
+		
+		WRW_red_cross_help = { # Red Cross
+			picture = NOV_humanitarian_aid
+			modifier = {
+				army_attack_factor = -0.05
+			}
+			cancel = {
+				has_war = no
+			}
+			equipment_bonus = {
+				infantry = {
+					casualty_trickleback = 0.1
+					experience_loss_factor = -0.05
+				}
+			}
+			# targeted_modifier = {
+			# 	tag = USA
+			# 	intel_from_operatives_factor = 0.1
+			# }
+		}
+		GER_rerouted_settlers_funds = { # Norway event chain
+			picture = BRY_wheels_of_labor
+			modifier = {
+				war_support_factor = -0.1
+				industrial_capacity_factory = -0.05
+			}
+		}
+		
+		GER_naval_maps = { # Norway event chain
+			picture = YEM_The_Aden_Arsenal
+			name = GER_naval_maps
+			modifier = {
+				invasion_preparation = 0.5
+			}
+		}
+		GER_naval_maps_2 = { # Norway event chain
+			picture = YEM_The_Aden_Arsenal
+			name = GER_naval_maps
+			modifier = {
+				invasion_preparation = 0.8
+			}
+		}
+	}
+}

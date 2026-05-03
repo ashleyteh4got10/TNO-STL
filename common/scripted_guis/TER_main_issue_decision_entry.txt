@@ -1,0 +1,37 @@
+scripted_gui = {
+	TER_main_issue_entry_GUI = {
+		context_type = decision_category
+		window_name = "TER_main_issue_entry_GUI"
+		visible = {
+			always = yes
+		}
+		triggers = {
+			btn_CPC_click_enabled = { NOT = { has_country_flag = CPC_NCCPC_canceled_final } }
+			btn_CPGAC_click_enabled = { NOT = { has_country_flag = CPC_GAC_canceled_final } }
+		}
+		effects = {
+			btn_CPC_click = {
+				set_country_flag = CPC_main_GUI_open 
+				set_variable = { CPC_GUI_tab_issue^0 = 2 }
+				set_variable = { CPC_GUI_tab_issue^1 = 1 }
+				set_variable = { CPC_GUI_tab_issue^2 = 1 }
+				TER_NWB_calc_party_members = yes
+			}
+			btn_CPGAC_click = {
+				set_country_flag = CPC_main_GUI_open 
+				set_variable = { CPC_GUI_tab_issue^0 = 1 }
+				set_variable = { CPC_GUI_tab_issue^1 = 2 }
+				set_variable = { CPC_GUI_tab_issue^2 = 1 }
+				TER_CPGAC_update_bar = yes
+				TER_NWB_calc_party_members = yes
+			}
+			btn_PLA_click = {
+				set_country_flag = CPC_main_GUI_open 
+				set_variable = { CPC_GUI_tab_issue^0 = 1 }
+				set_variable = { CPC_GUI_tab_issue^1 = 1 }
+				set_variable = { CPC_GUI_tab_issue^2 = 2 }
+				TER_NWB_calc_party_members = yes
+			}
+		}
+	}
+}

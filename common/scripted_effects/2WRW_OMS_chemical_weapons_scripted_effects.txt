@@ -1,0 +1,385 @@
+OMS_initialise_chemical_weapons_gui = {
+	set_country_flag = OMS_chemical_weapons_gui_enabled
+	set_country_flag = gui_alert_visible
+	set_country_flag = country_has_gui
+	set_variable = { OMS_chemical_weapons_gui_current_stage = 0 }
+	set_variable = { OMS_chemical_weapons_gui_stockpile_limit = 25 }
+	set_variable = { OMS_chemical_weapons_gui_chemical_stability = 100 }
+	set_variable = { OMS_chemical_weapons_gui_biologic_stability = 100 }
+}
+
+OMS_initialise_chemical_post_apoc = {
+	set_country_flag = OMS_chemical_weapons_gui_enabled
+	set_country_flag = gui_alert_visible
+	set_country_flag = country_has_gui
+	set_variable = { OMS_chemical_weapons_gui_current_stage = 1 }
+	set_variable = { OMS_chemical_weapons_gui_stockpile_limit = 100 }
+	set_variable = { OMS_chemical_weapons_gui_chemical_stability = 26 }
+	set_variable = { OMS_chemical_weapons_gui_biologic_stability = 26 }
+	set_variable = { OMS_chemical_weapons_gui_current_stockpile = 10 }
+}
+
+OMS_chemical_weapons_gui_stockpile_change = {
+	add_to_variable = { OMS_chemical_weapons_gui_current_stockpile = OMS_chemical_weapons_gui_adding_to_stockpile }
+	if = {
+		limit = { check_variable = {OMS_chemical_weapons_gui_adding_to_stockpile > 0}}
+		custom_effect_tooltip = OMS_chemical_weapons_gui_stockpile_increase_tt
+	}
+	else_if = {
+		limit = { check_variable = {OMS_chemical_weapons_gui_adding_to_stockpile < 0}}
+		custom_effect_tooltip = OMS_chemical_weapons_gui_stockpile_decrease_tt
+	}
+	clamp_variable = {
+		var = OMS_chemical_weapons_gui_current_stockpile
+		min = 0
+		max = OMS_chemical_weapons_gui_stockpile_limit
+	}
+}
+
+OMS_chemical_weapons_gui_stability_change = {
+	add_to_variable = { OMS_chemical_weapons_gui_chemical_stability = OMS_chemical_weapons_gui_chemical_stability_change }
+	add_to_variable = { OMS_chemical_weapons_gui_biologic_stability = OMS_chemical_weapons_gui_biologic_stability_change }
+	# Chemical Stability Change
+	if = {
+		limit = { check_variable = { OMS_chemical_weapons_gui_chemical_stability_change > 0 } }
+		custom_effect_tooltip = OMS_chemical_weapons_gui_chemical_stability_increase_tt
+	}
+	else_if = {
+		limit = { check_variable = { OMS_chemical_weapons_gui_chemical_stability_change < 0 } }
+		custom_effect_tooltip = OMS_chemical_weapons_gui_chemical_stability_decrease_tt
+	}
+	
+	# Biologic Stability Change
+	if = {
+		limit = { check_variable = { OMS_chemical_weapons_gui_biologic_stability_change > 0 } }
+		custom_effect_tooltip = OMS_chemical_weapons_gui_biologic_stability_increase_tt
+	}
+	else_if = {
+		limit = { check_variable = { OMS_chemical_weapons_gui_biologic_stability_change < 0 } }
+		custom_effect_tooltip = OMS_chemical_weapons_gui_biologic_stability_decrease_tt
+	}
+	
+	clamp_variable = {
+		var = OMS_chemical_weapons_gui_chemical_stability
+		min = 0
+		max = 100
+	}
+	clamp_variable = {
+		var = OMS_chemical_weapons_gui_biologic_stability
+		min = 0
+		max = 100
+	}
+}
+
+OMS_chemical_weapons_gui_stockpile_limit_change = {
+	add_to_variable = { OMS_chemical_weapons_gui_stockpile_limit = OMS_chemical_weapons_gui_stockpile_limit_change }
+	if = {
+		limit = { NOT = { checK_variable = { OMS_chemical_weapons_gui_stockpile_limit = 100 }}}
+		custom_effect_tooltip = OMS_chemical_weapons_gui_stockpile_limit_change_tt
+	}
+	clamp_variable = {
+		var = OMS_chemical_weapons_gui_stockpile_limit
+		min = 0
+		max = 100
+	}
+}
+
+OMS_chemical_weapons_gui_calculate_final = { # ik this could be better code
+	# Stage multipliers (shared)
+	set_temp_variable = { stage_0_mult = 0.3 }
+	set_temp_variable = { stage_1_mult = 0.6 }
+	set_temp_variable = { stage_2_mult = 1.0 }
+
+	# Initialize separate buffs
+	set_temp_variable = { buff_chemical = 0 }
+	set_temp_variable = { buff_biologic = 0 }
+
+	# Var for collateral
+	set_temp_variable = { chemical_collateral_dmg_calc = 0 }
+	set_temp_variable = { biologic_collateral_dmg_calc = 0 }
+
+	set_temp_variable = { chemical_stability = OMS_chemical_weapons_gui_chemical_stability }
+	set_temp_variable = { biologic_stability = OMS_chemical_weapons_gui_biologic_stability }
+
+
+	if = {
+		limit = {
+			check_variable = { chemical_stability > 50.99 }
+		}
+		set_temp_variable = { calc = 100 }
+		subtract_from_temp_variable = { calc = chemical_stability }
+		divide_temp_variable = { calc = 50 }
+		set_temp_variable = { chemical_stability = calc }
+		
+	}
+	else_if = {
+		limit = {
+			check_variable = { chemical_stability < 51 }
+		}
+		set_temp_variable = { chemical_collateral_dmg_calc = chemical_stability}
+
+		set_temp_variable = { chemical_stability = 1 }
+
+
+		set_temp_variable = { calc = 1 }
+		divide_temp_variable = { chemical_collateral_dmg_calc = 50 }
+		subtract_from_temp_variable = { calc = chemical_collateral_dmg_calc }
+		set_temp_variable = { chemical_collateral_dmg_calc = calc }
+
+		log = "[?chemical_collateral_dmg_calc]"
+		
+
+
+	}
+
+	if = {
+		limit = {
+			check_variable = { biologic_stability > 50.99 }
+		}
+		set_temp_variable = { calc = 100 }
+		subtract_from_temp_variable = { calc = biologic_stability }
+		divide_temp_variable = { calc = 50 }
+		set_temp_variable = { biologic_stability = calc }
+	}
+	else_if = {
+		limit = {
+			check_variable = { biologic_stability < 51 }
+		}
+		set_temp_variable = { biologic_collateral_dmg_calc = biologic_stability}
+
+		set_temp_variable = { biologic_stability = 1 }
+
+
+		set_temp_variable = { calc = 1 }
+		divide_temp_variable = { biologic_collateral_dmg_calc = 50 }
+		subtract_from_temp_variable = { calc = biologic_collateral_dmg_calc }
+		set_temp_variable = { biologic_collateral_dmg_calc = calc }
+
+		log = "[?biologic_collateral_dmg_calc]"
+
+
+	}
+
+	#OMS_chemical_weapons_gui_current_stage
+	if = {
+		limit = {
+			check_variable = { OMS_chemical_weapons_gui_current_stage = 0 }
+		}
+		add_to_temp_variable = { buff_biologic = stage_0_mult }
+		add_to_temp_variable = { buff_chemical = stage_0_mult }
+	}
+	else_if = {
+		limit = {
+			check_variable = { OMS_chemical_weapons_gui_current_stage = 1 }
+		}
+		add_to_temp_variable = { buff_biologic = stage_1_mult }
+		add_to_temp_variable = { buff_chemical = stage_1_mult }
+	}
+	else_if = {
+		limit = {
+			check_variable = { OMS_chemical_weapons_gui_current_stage = 2 }
+		}
+		add_to_temp_variable = { buff_biologic = stage_2_mult }
+		add_to_temp_variable = { buff_chemical = stage_2_mult }
+	}
+
+	add_to_temp_variable = { buff_chemical = chemical_stability }
+	add_to_temp_variable = { buff_biologic = biologic_stability }
+
+	divide_temp_variable = { buff_chemical = 2 }
+	divide_temp_variable = { buff_biologic = 2 }
+
+	add_to_variable = { OMS_collateral_buff_mult = chemical_collateral_dmg_calc }
+	add_to_variable = { OMS_collateral_buff_mult = biologic_collateral_dmg_calc }
+
+	divide_variable = { OMS_collateral_buff_mult = 2 }
+
+	set_variable = { OMS_chemical_buff_mult = buff_chemical }
+	set_variable = { OMS_biologic_buff_mult = buff_biologic }
+
+
+	log = "[?OMS_collateral_buff_mult]"
+	log = "[?OMS_chemical_buff_mult]"
+	log = "[?OMS_biologic_buff_mult]"
+
+	#######################################################
+	### DYNAMIC MODIFIER AREA ### DYNAMIC MODIFIER AREA ###
+	#######################################################
+	# OMS_collateral_buff_mult
+	# OMS_chemical_buff_mult
+	# OMS_biologic_buff_mult
+
+	### BIOLOGIC
+	set_variable = { OMS_biologic_breakthrough_factor = 0.15 }
+	set_variable = { OMS_biologic_army_speed_factor = -0.01 }
+	set_variable = { OMS_biologic_terrain_trait_xp_gain_factor = 0.05 }
+
+	set_variable = { GER_biologic_land_bunker_effectiveness_factor = -0.20 }
+
+	### CHEMICAL
+	set_variable = { OMS_chemical_gdp_growth_modifier = -0.05 }
+	set_variable = { OMS_chemical_army_org_regain = -0.10 }
+	set_variable = { OMS_chemical_mobilization_speed = -0.50 }
+	set_variable = { OMS_chemical_resistance_growth = 0.05 }
+	set_variable = { OMS_chemical_monthly_population = -0.10 }
+
+
+	### COLLATERAL
+	set_variable = { OMS_collateral_monthly_population = -0.40 }
+	set_variable = { OMS_collateral_army_speed_factor = -0.05 }
+	set_variable = { OMS_collateral_land_bunker_effectiveness_factor = -0.15 }
+	set_variable = { OMS_collateral_gdp_growth_modifier = -0.10 }
+	set_variable = { OMS_collateral_recruitable_population_factor = -0.02 }
+
+	### APPLY BUFF MULTIPLIERS
+	multiply_variable = { OMS_biologic_breakthrough_factor = OMS_biologic_buff_mult }
+	multiply_variable = { OMS_biologic_army_speed_factor = OMS_biologic_buff_mult }
+	multiply_variable = { OMS_biologic_terrain_trait_xp_gain_factor = OMS_biologic_buff_mult }
+	multiply_variable = { GER_biologic_land_bunker_effectiveness_factor = OMS_biologic_buff_mult }
+
+
+	multiply_variable = { OMS_chemical_gdp_growth_modifier = OMS_chemical_buff_mult }
+	multiply_variable = { OMS_chemical_army_org_regain = OMS_chemical_buff_mult }
+	multiply_variable = { OMS_chemical_mobilization_speed = OMS_chemical_buff_mult }
+	multiply_variable = { OMS_chemical_resistance_growth = OMS_chemical_buff_mult }
+	multiply_variable = { OMS_chemical_monthly_population = OMS_chemical_buff_mult }
+
+	add_dynamic_modifier = {
+		modifier = OMS_biologic_warfare_dynmod
+		days = 180
+	}
+
+	GER = {
+		add_dynamic_modifier = {
+			modifier = GER_biologic_warfare_dynmod
+			days = 180
+		}
+		add_dynamic_modifier = {
+			modifier = OMS_chemical_warfare_dynmod
+			days = 180
+		}
+	}
+
+	OST = {
+		add_dynamic_modifier = {
+			modifier = GER_biologic_warfare_dynmod
+			days = 180
+		}
+		add_dynamic_modifier = {
+			modifier = OMS_chemical_warfare_dynmod
+			days = 180
+		}
+	}
+
+	UKR = {
+		add_dynamic_modifier = {
+			modifier = GER_biologic_warfare_dynmod
+			days = 180
+		}
+		add_dynamic_modifier = {
+			modifier = OMS_chemical_warfare_dynmod
+			days = 180
+		}
+	}
+
+	MCW = {
+		add_dynamic_modifier = {
+			modifier = GER_biologic_warfare_dynmod
+			days = 180
+		}
+		add_dynamic_modifier = {
+			modifier = OMS_chemical_warfare_dynmod
+			days = 180
+		}
+	}
+
+	CAU = {
+		add_dynamic_modifier = {
+			modifier = GER_biologic_warfare_dynmod
+			days = 180
+		}
+		add_dynamic_modifier = {
+			modifier = OMS_chemical_warfare_dynmod
+			days = 180
+		}
+	}
+
+	multiply_variable = { OMS_collateral_monthly_population = OMS_collateral_buff_mult }
+	multiply_variable = { OMS_collateral_army_speed_factor = OMS_collateral_buff_mult }
+	multiply_variable = { OMS_collateral_land_bunker_effectiveness_factor = OMS_collateral_buff_mult }
+	multiply_variable = { OMS_collateral_gdp_growth_modifier = OMS_collateral_buff_mult }
+	multiply_variable = { OMS_collateral_recruitable_population_factor = OMS_collateral_buff_mult }
+
+	if = {
+		limit = {
+			NOT = {
+				check_variable = { OMS_collateral_buff_mult = 0 }
+			}
+		}
+		OMS = {
+			add_dynamic_modifier = {
+				modifier = 2WRW_collateral_damage_dynmod
+				days = 180
+			}
+		}
+		GER = {
+			add_dynamic_modifier = {
+				modifier = 2WRW_collateral_damage_dynmod
+				days = 180
+			}
+		}
+		MCW = {
+			add_dynamic_modifier = {
+				modifier = 2WRW_collateral_damage_dynmod
+				days = 180
+			}
+		}
+		OST = {
+			add_dynamic_modifier = {
+				modifier = 2WRW_collateral_damage_dynmod
+				days = 180
+			}
+		}
+		UKR = {
+			add_dynamic_modifier = {
+				modifier = 2WRW_collateral_damage_dynmod
+				days = 180
+			}
+		}
+		CAU = {
+			add_dynamic_modifier = {
+				modifier = 2WRW_collateral_damage_dynmod
+				days = 180
+			}
+		}
+	}
+}
+
+OMS_debug_clear_modifiers = {
+	remove_dynamic_modifier = { modifier = OMS_biologic_warfare_dynmod }
+	remove_dynamic_modifier = { modifier = OMS_chemical_warfare_dynmod }
+	remove_dynamic_modifier = { modifier = 2WRW_collateral_damage_dynmod }
+
+	#GER = {
+	#	remove_dynamic_modifier = { modifier = GER_biologic_warfare_dynmod }
+	#}
+
+	OMS = {
+		remove_dynamic_modifier = { modifier = 2WRW_collateral_damage_dynmod }
+	}	
+	GER = {
+		remove_dynamic_modifier = { modifier = 2WRW_collateral_damage_dynmod }
+	}
+	MCW = {
+		remove_dynamic_modifier = { modifier = 2WRW_collateral_damage_dynmod }
+	}
+	OST = {
+		remove_dynamic_modifier = { modifier = 2WRW_collateral_damage_dynmod }
+	}
+	UKR = {
+		remove_dynamic_modifier = { modifier = 2WRW_collateral_damage_dynmod }
+	}
+	CAU = {
+		remove_dynamic_modifier = { modifier = 2WRW_collateral_damage_dynmod }
+	}
+}

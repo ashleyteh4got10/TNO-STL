@@ -1,0 +1,1060 @@
+#Behavior file
+
+scripted_gui = {
+
+	KMC_port_gui_open = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "KMC_port_gui_open"
+
+		visible = {
+			tag = KMC
+			has_country_flag = KMC_the_plan_has_been_revealed
+			NOT = {
+				has_country_flag = no_more_Changes
+			}
+		}
+
+		ai_test_interval = 168
+
+		ai_weights = {
+			kmc_port_gui_open_button_click = {
+				ai_will_do = {
+					base = 0
+					modifier = {
+						NOT = { has_country_flag = KMC_port_gui_open }
+						add = 10
+					}
+				}
+			}
+		}
+
+		effects = {
+			kmc_port_gui_open_button_click = {
+				if = {
+					limit = { NOT = { has_country_flag = KMC_port_gui_open } }
+					set_country_flag = KMC_port_gui_open
+				}
+				else_if = {
+					limit = { has_country_flag = KMC_port_gui_open }
+					clr_country_flag = KMC_port_gui_open
+				}
+				clr_country_flag = gui_alert_visible
+			}
+		}
+		
+		triggers = {
+			gui_alert_visible = {
+				has_country_flag = gui_alert_visible
+			}
+		}
+	}
+
+	KMC_port_gui = {
+		window_name = "KMC_port_gui_main_window"
+		context_type = player_context
+
+		visible = {
+			has_country_flag = KMC_port_gui_open
+		}
+
+		ai_enabled = { original_tag = KMC }
+
+		ai_test_interval = 168
+
+		ai_max_weight_taken_per_test = 3
+
+		ai_weights = {
+			kmc_port_add_supplies_large_click = {
+				ai_will_do = {
+					base = 10
+				}
+			}
+			kmc_port_add_fuel_click = {
+				ai_will_do = {
+					base = 10
+				}
+			}
+
+			# ship selection
+
+			kmc_port_ship_12_click = {#rykov
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							NOT = {
+								check_variable = { KMC_supplies_rykov = KMC_destroyer_max_supplies }
+								check_variable = { KMC_fuel_stored_rykov = KMC_destroyer_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_13_click = {#ryanyy
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_rykov = KMC_destroyer_max_supplies }
+								check_variable = { KMC_fuel_stored_rykov = KMC_destroyer_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_ryanyy = KMC_destroyer_max_supplies }
+								check_variable = { KMC_fuel_stored_ryanyy = KMC_destroyer_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_14_click = {#bukharin
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_ryanyy = KMC_destroyer_max_supplies }
+								check_variable = { KMC_fuel_stored_ryanyy = KMC_destroyer_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_bukharin = KMC_destroyer_max_supplies }
+								check_variable = { KMC_fuel_stored_bukharin = KMC_destroyer_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_15_click = {#uritskiy
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_bukharin = KMC_destroyer_max_supplies }
+								check_variable = { KMC_fuel_stored_bukharin = KMC_destroyer_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_uritskiy = KMC_destroyer_max_supplies }
+								check_variable = { KMC_fuel_stored_uritskiy = KMC_destroyer_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_1_click = {#shch101
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_uritskiy = KMC_destroyer_max_supplies }
+								check_variable = { KMC_fuel_stored_uritskiy = KMC_destroyer_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch101 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch101 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_2_click = {#shch102
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch101 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch101 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch102 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch102 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_3_click = {#shch103
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch102 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch102 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch103 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch103 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_4_click = {#shch104
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch103 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch103 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch104 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch104 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_5_click = {#shch105
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch104 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch104 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch105 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch105 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_6_click = {#shch106
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch105 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch105 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch106 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch106 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_7_click = {#shch107
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch106 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch106 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch107 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch107 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_8_click = {#shch108
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch107 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch107 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch108 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch108 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_9_click = {#shch109
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch108 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch108 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch109 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch109 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_10_click = {#shch110
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch109 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch109 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_shch110 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch110 = KMC_sub_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+			kmc_port_ship_11_click = {#OR
+				ai_will_do = {
+					base = 0
+					modifier = {
+						AND = {
+							AND = {
+								check_variable = { KMC_supplies_shch110 = KMC_sub_max_supplies }
+								check_variable = { KMC_fuel_stored_shch110 = KMC_sub_max_fuel }
+							}
+							NOT = {
+								check_variable = { KMC_supplies_or = KMC_battleship_max_supplies }
+								check_variable = { KMC_fuel_stored_or = KMC_battleship_max_fuel }
+							}
+						}
+						add = 20
+					}
+				}
+			}
+		}
+
+		effects = {
+
+			kmc_port_close_click = {
+				clr_country_flag = KMC_port_gui_open
+			}
+
+			#Ship select
+
+			kmc_port_ship_1_click = {
+				set_variable = { selected_ship = 1 }
+			}
+			kmc_port_ship_2_click = {
+				set_variable = { selected_ship = 2 }
+			}
+			kmc_port_ship_3_click = {
+				set_variable = { selected_ship = 3 }
+			}
+			kmc_port_ship_4_click = {
+				set_variable = { selected_ship = 4 }
+			}
+			kmc_port_ship_5_click = {
+				set_variable = { selected_ship = 5 }
+			}
+			kmc_port_ship_6_click = {
+				set_variable = { selected_ship = 6 }
+			}
+			kmc_port_ship_7_click = {
+				set_variable = { selected_ship = 7 }
+			}
+			kmc_port_ship_8_click = {
+				set_variable = { selected_ship = 8 }
+			}
+			kmc_port_ship_9_click = {
+				set_variable = { selected_ship = 9 }
+			}
+			kmc_port_ship_10_click = {
+				set_variable = { selected_ship = 10 }
+			}
+			kmc_port_ship_11_click = {
+				set_variable = { selected_ship = 11 }
+			}
+			kmc_port_ship_12_click = {
+				set_variable = { selected_ship = 12 }
+			}
+			kmc_port_ship_13_click = {
+				set_variable = { selected_ship = 13 }
+			}
+			kmc_port_ship_14_click = {
+				set_variable = { selected_ship = 14 }
+			}
+			kmc_port_ship_15_click = {
+				set_variable = { selected_ship = 15 }
+			}
+
+			#action tab
+
+			kmc_port_add_supplies_small_click = {
+				KMC_port_add_supplies_small = yes
+			}
+			kmc_port_add_supplies_med_click = {
+				KMC_port_add_supplies_med = yes
+			}
+			kmc_port_add_supplies_large_click = {
+				KMC_port_add_supplies_large = yes
+			}
+			kmc_port_sub_supplies_small_click = {
+				KMC_port_sub_supplies_small = yes
+			}
+			kmc_port_sub_supplies_med_click = {
+				KMC_port_sub_supplies_med = yes
+			}
+			kmc_port_sub_supplies_large_click = {
+				KMC_port_sub_supplies_large = yes
+			}
+			kmc_port_add_fuel_click = {
+				kmc_port_add_fuel_effect = yes
+			}
+			kmc_port_sub_fuel_click = {
+				kmc_port_sub_fuel_effect = yes
+			}
+
+			#ships in port
+
+			ship_in_port_or_r_click = {
+				set_variable = { selected_ship = 11 }
+			}
+			ship_in_port_or_y_click = {
+				set_variable = { selected_ship = 11 }
+			}
+			ship_in_port_or_g_click = {
+				set_variable = { selected_ship = 11 }
+			}
+
+			ship_in_port_rykov_r_click = {
+				set_variable = { selected_ship = 12 }
+			}
+			ship_in_port_rykov_y_click = {
+				set_variable = { selected_ship = 12 }
+			}
+			ship_in_port_rykov_g_click = {
+				set_variable = { selected_ship = 12 }
+			}
+
+			ship_in_port_ryanyy_r_click = {
+				set_variable = { selected_ship = 13 }
+			}
+			ship_in_port_ryanyy_y_click = {
+				set_variable = { selected_ship = 13 }
+			}
+			ship_in_port_ryanyy_g_click = {
+				set_variable = { selected_ship = 13 }
+			}
+
+			ship_in_port_bukharin_r_click = {
+				set_variable = { selected_ship = 14 }
+			}
+			ship_in_port_bukharin_y_click = {
+				set_variable = { selected_ship = 14 }
+			}
+			ship_in_port_bukharin_g_click = {
+				set_variable = { selected_ship = 14 }
+			}
+
+			ship_in_port_uritskiy_r_click = {
+				set_variable = { selected_ship = 15 }
+			}
+			ship_in_port_uritskiy_y_click = {
+				set_variable = { selected_ship = 15 }
+			}
+			ship_in_port_uritskiy_g_click = {
+				set_variable = { selected_ship = 15 }
+			}
+
+			ship_in_port_s101_r_click = {
+				set_variable = { selected_ship = 1 }
+			}
+			ship_in_port_s101_y_click = {
+				set_variable = { selected_ship = 1 }
+			}
+			ship_in_port_s101_g_click = {
+				set_variable = { selected_ship = 1 }
+			}
+
+			ship_in_port_s102_r_click = {
+				set_variable = { selected_ship = 2 }
+			}
+			ship_in_port_s102_y_click = {
+				set_variable = { selected_ship = 2 }
+			}
+			ship_in_port_s102_g_click = {
+				set_variable = { selected_ship = 2 }
+			}
+
+			ship_in_port_s103_r_click = {
+				set_variable = { selected_ship = 3 }
+			}
+			ship_in_port_s103_y_click = {
+				set_variable = { selected_ship = 3 }
+			}
+			ship_in_port_s103_g_click = {
+				set_variable = { selected_ship = 3 }
+			}
+
+			ship_in_port_s104_r_click = {
+				set_variable = { selected_ship = 4 }
+			}
+			ship_in_port_s104_y_click = {
+				set_variable = { selected_ship = 4 }
+			}
+			ship_in_port_s104_g_click = {
+				set_variable = { selected_ship = 4 }
+			}
+
+			ship_in_port_s105_r_click = {
+				set_variable = { selected_ship = 5 }
+			}
+			ship_in_port_s105_y_click = {
+				set_variable = { selected_ship = 5 }
+			}
+			ship_in_port_s105_g_click = {
+				set_variable = { selected_ship = 5 }
+			}
+
+			ship_in_port_s106_r_click = {
+				set_variable = { selected_ship = 6 }
+			}
+			ship_in_port_s106_y_click = {
+				set_variable = { selected_ship = 6 }
+			}
+			ship_in_port_s106_g_click = {
+				set_variable = { selected_ship = 6 }
+			}
+
+			ship_in_port_s107_r_click = {
+				set_variable = { selected_ship = 7 }
+			}
+			ship_in_port_s107_y_click = {
+				set_variable = { selected_ship = 7 }
+			}
+			ship_in_port_s107_g_click = {
+				set_variable = { selected_ship = 7 }
+			}
+
+			ship_in_port_s108_r_click = {
+				set_variable = { selected_ship = 8 }
+			}
+			ship_in_port_s108_y_click = {
+				set_variable = { selected_ship = 8 }
+			}
+			ship_in_port_s108_g_click = {
+				set_variable = { selected_ship = 8 }
+			}
+
+			ship_in_port_s109_r_click = {
+				set_variable = { selected_ship = 9 }
+			}
+			ship_in_port_s109_y_click = {
+				set_variable = { selected_ship = 9 }
+			}
+			ship_in_port_s109_g_click = {
+				set_variable = { selected_ship = 9 }
+			}
+
+			ship_in_port_s110_r_click = {
+				set_variable = { selected_ship = 10 }
+			}
+			ship_in_port_s110_y_click = {
+				set_variable = { selected_ship = 10 }
+			}
+			ship_in_port_s110_g_click = {
+				set_variable = { selected_ship = 10 }
+			}
+		}
+
+		triggers = {
+			
+			#select highlights
+			
+			ship_select_highlight_1_visible = {
+				check_variable = { selected_ship = 1 }
+			}
+			ship_select_highlight_2_visible = {
+				check_variable = { selected_ship = 2 }
+			}
+			ship_select_highlight_3_visible = {
+				check_variable = { selected_ship = 3 }
+			}
+			ship_select_highlight_4_visible = {
+				check_variable = { selected_ship = 4 }
+			}
+			ship_select_highlight_5_visible = {
+				check_variable = { selected_ship = 5 }
+			}
+			ship_select_highlight_6_visible = {
+				check_variable = { selected_ship = 6 }
+			}
+			ship_select_highlight_7_visible = {
+				check_variable = { selected_ship = 7 }
+			}
+			ship_select_highlight_8_visible = {
+				check_variable = { selected_ship = 8 }
+			}
+			ship_select_highlight_9_visible = {
+				check_variable = { selected_ship = 9 }
+			}
+			ship_select_highlight_10_visible = {
+				check_variable = { selected_ship = 10 }
+			}
+			ship_select_highlight_11_visible = {
+				check_variable = { selected_ship = 11 }
+			}
+			ship_select_highlight_12_visible = {
+				check_variable = { selected_ship = 12 }
+			}
+			ship_select_highlight_13_visible = {
+				check_variable = { selected_ship = 13 }
+			}
+			ship_select_highlight_14_visible = {
+				check_variable = { selected_ship = 14 }
+			}
+			ship_select_highlight_15_visible = {
+				check_variable = { selected_ship = 15 }
+			}
+
+			#select fuel indicator
+
+			ship_fuel_indicator_1_visible = {
+				check_variable = { KMC_fuel_stored_shch101 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_2_visible = {
+				check_variable = { KMC_fuel_stored_shch102 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_3_visible = {
+				check_variable = { KMC_fuel_stored_shch103 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_4_visible = {
+				check_variable = { KMC_fuel_stored_shch104 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_5_visible = {
+				check_variable = { KMC_fuel_stored_shch105 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_6_visible = {
+				check_variable = { KMC_fuel_stored_shch106 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_7_visible = {
+				check_variable = { KMC_fuel_stored_shch107 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_8_visible = {
+				check_variable = { KMC_fuel_stored_shch108 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_9_visible = {
+				check_variable = { KMC_fuel_stored_shch109 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_10_visible = {
+				check_variable = { KMC_fuel_stored_shch110 = KMC_sub_max_fuel }
+			}
+			ship_fuel_indicator_11_visible = {
+				check_variable = { KMC_fuel_stored_or = KMC_battleship_max_fuel }
+			}
+			ship_fuel_indicator_12_visible = {
+				check_variable = { KMC_fuel_stored_rykov = KMC_destroyer_max_fuel }
+			}
+			ship_fuel_indicator_13_visible = {
+				check_variable = { KMC_fuel_stored_ryanyy = KMC_destroyer_max_fuel }
+			}
+			ship_fuel_indicator_14_visible = {
+				check_variable = { KMC_fuel_stored_bukharin = KMC_destroyer_max_fuel }
+			}
+			ship_fuel_indicator_15_visible = {
+				check_variable = { KMC_fuel_stored_uritskiy = KMC_destroyer_max_fuel }
+			}
+
+			#select supplies indicator
+
+			ship_supplies_indicator_1_visible = {
+				check_variable = { KMC_supplies_shch101 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_2_visible = {
+				check_variable = { KMC_supplies_shch102 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_3_visible = {
+				check_variable = { KMC_supplies_shch103 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_4_visible = {
+				check_variable = { KMC_supplies_shch104 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_5_visible = {
+				check_variable = { KMC_supplies_shch105 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_6_visible = {
+				check_variable = { KMC_supplies_shch106 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_7_visible = {
+				check_variable = { KMC_supplies_shch107 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_8_visible = {
+				check_variable = { KMC_supplies_shch108 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_9_visible = {
+				check_variable = { KMC_supplies_shch109 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_10_visible = {
+				check_variable = { KMC_supplies_shch110 = KMC_sub_max_supplies }
+			}
+			ship_supplies_indicator_11_visible = {
+				check_variable = { KMC_supplies_or = KMC_battleship_max_supplies }
+			}
+			ship_supplies_indicator_12_visible = {
+				check_variable = { KMC_supplies_rykov = KMC_destroyer_max_supplies }
+			}
+			ship_supplies_indicator_13_visible = {
+				check_variable = { KMC_supplies_ryanyy = KMC_destroyer_max_supplies }
+			}
+			ship_supplies_indicator_14_visible = {
+				check_variable = { KMC_supplies_bukharin = KMC_destroyer_max_supplies }
+			}
+			ship_supplies_indicator_15_visible = {
+				check_variable = { KMC_supplies_uritskiy = KMC_destroyer_max_supplies }
+			}
+
+			#ships in port
+			#or
+
+			ship_in_port_or_r_visible = {
+				check_variable = { KMC_supplies_or = 0 }
+				check_variable = { KMC_fuel_stored_or = 0 }
+			}
+			ship_in_port_or_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_or = 0 }
+						check_variable = { KMC_fuel_stored_or = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_or = KMC_battleship_max_supplies }
+						check_variable = { KMC_fuel_stored_or = KMC_battleship_max_fuel }
+					}
+				}
+			}
+			ship_in_port_or_g_visible = {
+				check_variable = { KMC_supplies_or = KMC_battleship_max_supplies }
+				check_variable = { KMC_fuel_stored_or = KMC_battleship_max_fuel }
+			}
+			#rykov
+			ship_in_port_rykov_r_visible = {
+				check_variable = { KMC_supplies_rykov = 0 }
+				check_variable = { KMC_fuel_stored_rykov = 0 }
+			}
+			ship_in_port_rykov_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_rykov = 0 }
+						check_variable = { KMC_fuel_stored_rykov = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_rykov = KMC_destroyer_max_supplies }
+						check_variable = { KMC_fuel_stored_rykov = KMC_destroyer_max_fuel }
+					}
+				}
+			}
+			ship_in_port_rykov_g_visible = {
+				check_variable = { KMC_supplies_rykov = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_rykov = KMC_destroyer_max_fuel }
+			}
+			#ryanyy
+			ship_in_port_ryanyy_r_visible = {
+				check_variable = { KMC_supplies_ryanyy = 0 }
+				check_variable = { KMC_fuel_stored_ryanyy = 0 }
+			}
+			ship_in_port_ryanyy_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_ryanyy = 0 }
+						check_variable = { KMC_fuel_stored_ryanyy = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_ryanyy = KMC_destroyer_max_supplies }
+						check_variable = { KMC_fuel_stored_ryanyy = KMC_destroyer_max_fuel }
+					}
+				}
+			}
+			ship_in_port_ryanyy_g_visible = {
+				check_variable = { KMC_supplies_ryanyy = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_ryanyy = KMC_destroyer_max_fuel }
+			}
+			#bukharin
+			ship_in_port_bukharin_r_visible = {
+				check_variable = { KMC_supplies_bukharin = 0 }
+				check_variable = { KMC_fuel_stored_bukharin = 0 }
+			}
+			ship_in_port_bukharin_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_bukharin = 0 }
+						check_variable = { KMC_fuel_stored_bukharin = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_bukharin = KMC_destroyer_max_supplies }
+						check_variable = { KMC_fuel_stored_bukharin = KMC_destroyer_max_fuel }
+					}
+				}
+			}
+			ship_in_port_bukharin_g_visible = {
+				check_variable = { KMC_supplies_bukharin = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_bukharin = KMC_destroyer_max_fuel }
+			}
+			#uritskiy
+			ship_in_port_uritskiy_r_visible = {
+				check_variable = { KMC_supplies_uritskiy = 0 }
+				check_variable = { KMC_fuel_stored_uritskiy = 0 }
+			}
+			ship_in_port_uritskiy_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_uritskiy = 0 }
+						check_variable = { KMC_fuel_stored_uritskiy = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_uritskiy = KMC_destroyer_max_supplies }
+						check_variable = { KMC_fuel_stored_uritskiy = KMC_destroyer_max_fuel }
+					}
+				}
+			}
+			ship_in_port_uritskiy_g_visible = {
+				check_variable = { KMC_supplies_uritskiy = KMC_destroyer_max_supplies }
+				check_variable = { KMC_fuel_stored_uritskiy = KMC_destroyer_max_fuel }
+			}
+			#shch101
+			ship_in_port_s101_r_visible = {
+				check_variable = { KMC_supplies_shch101 = 0 }
+				check_variable = { KMC_fuel_stored_shch101 = 0 }
+			}
+			ship_in_port_s101_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch101 = 0 }
+						check_variable = { KMC_fuel_stored_shch101 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch101 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch101 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s101_g_visible = {
+				check_variable = { KMC_supplies_shch101 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch101 = KMC_sub_max_fuel }
+			}
+			#shch102
+			ship_in_port_s102_r_visible = {
+				check_variable = { KMC_supplies_shch102 = 0 }
+				check_variable = { KMC_fuel_stored_shch102 = 0 }
+			}
+			ship_in_port_s102_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch102 = 0 }
+						check_variable = { KMC_fuel_stored_shch102 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch102 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch102 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s102_g_visible = {
+				check_variable = { KMC_supplies_shch102 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch102 = KMC_sub_max_fuel }
+			}
+			#shch103
+			ship_in_port_s103_r_visible = {
+				check_variable = { KMC_supplies_shch103 = 0 }
+				check_variable = { KMC_fuel_stored_shch103 = 0 }
+			}
+			ship_in_port_s103_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch103 = 0 }
+						check_variable = { KMC_fuel_stored_shch103 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch103 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch103 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s103_g_visible = {
+				check_variable = { KMC_supplies_shch103 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch103 = KMC_sub_max_fuel }
+			}
+			#shch104
+			ship_in_port_s104_r_visible = {
+				check_variable = { KMC_supplies_shch104 = 0 }
+				check_variable = { KMC_fuel_stored_shch104 = 0 }
+			}
+			ship_in_port_s104_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch104 = 0 }
+						check_variable = { KMC_fuel_stored_shch104 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch104 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch104 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s104_g_visible = {
+				check_variable = { KMC_supplies_shch104 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch104 = KMC_sub_max_fuel }
+			}
+			#shch105
+			ship_in_port_s105_r_visible = {
+				check_variable = { KMC_supplies_shch105 = 0 }
+				check_variable = { KMC_fuel_stored_shch105 = 0 }
+			}
+			ship_in_port_s105_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch105 = 0 }
+						check_variable = { KMC_fuel_stored_shch105 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch105 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch105 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s105_g_visible = {
+				check_variable = { KMC_supplies_shch105 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch105 = KMC_sub_max_fuel }
+			}
+			#shch106
+			ship_in_port_s106_r_visible = {
+				check_variable = { KMC_supplies_shch106 = 0 }
+				check_variable = { KMC_fuel_stored_shch106 = 0 }
+			}
+			ship_in_port_s106_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch106 = 0 }
+						check_variable = { KMC_fuel_stored_shch106 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch106 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch106 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s106_g_visible = {
+				check_variable = { KMC_supplies_shch106 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch106 = KMC_sub_max_fuel }
+			}
+			#shch107
+			ship_in_port_s107_r_visible = {
+				check_variable = { KMC_supplies_shch107 = 0 }
+				check_variable = { KMC_fuel_stored_shch107 = 0 }
+			}
+			ship_in_port_s107_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch107 = 0 }
+						check_variable = { KMC_fuel_stored_shch107 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch107 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch107 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s107_g_visible = {
+				check_variable = { KMC_supplies_shch107 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch107 = KMC_sub_max_fuel }
+			}
+			#shch108
+			ship_in_port_s108_r_visible = {
+				check_variable = { KMC_supplies_shch108 = 0 }
+				check_variable = { KMC_fuel_stored_shch108 = 0 }
+			}
+			ship_in_port_s108_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch108 = 0 }
+						check_variable = { KMC_fuel_stored_shch108 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch108 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch108 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s108_g_visible = {
+				check_variable = { KMC_supplies_shch108 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch108 = KMC_sub_max_fuel }
+			}
+			#shch109
+			ship_in_port_s109_r_visible = {
+				check_variable = { KMC_supplies_shch109 = 0 }
+				check_variable = { KMC_fuel_stored_shch109 = 0 }
+			}
+			ship_in_port_s109_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch109 = 0 }
+						check_variable = { KMC_fuel_stored_shch109 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch109 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch109 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s109_g_visible = {
+				check_variable = { KMC_supplies_shch109 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch109 = KMC_sub_max_fuel }
+			}
+			#shch110
+			ship_in_port_s110_r_visible = {
+				check_variable = { KMC_supplies_shch110 = 0 }
+				check_variable = { KMC_fuel_stored_shch110 = 0 }
+			}
+			ship_in_port_s110_y_visible = {
+				NOT = {
+					AND = {
+						check_variable = { KMC_supplies_shch110 = 0 }
+						check_variable = { KMC_fuel_stored_shch110 = 0 }
+					}
+					AND = {
+						check_variable = { KMC_supplies_shch110 = KMC_sub_max_supplies }
+						check_variable = { KMC_fuel_stored_shch110 = KMC_sub_max_fuel }
+					}
+				}
+			}
+			ship_in_port_s110_g_visible = {
+				check_variable = { KMC_supplies_shch110 = KMC_sub_max_supplies }
+				check_variable = { KMC_fuel_stored_shch110 = KMC_sub_max_fuel }
+			}
+		}
+	}
+}
+	#KMC_port_action_tab = {
+	#	window_name = "KMC_port_action_tab"
+	#	context_type = player_context
+	#	
+	#	visible = {
+	#		has_country_flag = KMC_port_gui_open
+	#	}
+	#	
+	#	effects = {
+	#		
+	#	}
+	#}

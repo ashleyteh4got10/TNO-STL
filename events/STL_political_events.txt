@@ -1,0 +1,487 @@
+add_namespace = WORLD_2WRWTER
+add_namespace = CPC_RUS
+add_namespace = LAO_LPDR
+
+news_event = { #Communist Coup in Laos
+	id = WORLD_2WRWTER.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event WORLD.16814" }
+	title = WORLD_2WRWTER.1.t
+	desc = WORLD_2WRWTER.1.desc
+	picture = GFX_news_event_LAO_Communist_Coup
+
+	is_triggered_only = yes
+
+	option = { #
+		name = WORLD_2WRWTER.1.a
+		ai_chance = { factor = 1 }
+
+	}
+}
+
+news_event = { 
+	id = WORLD_2WRWTER.114514
+	immediate = { log = "[GetDateText]: [Root.GetName]: event WORLD.16814" }
+	title = WORLD_2WRWTER.114514.t
+	desc = WORLD_2WRWTER.114514.desc
+	picture = GFX_news_event_STL_april_fools_news_event
+
+	is_triggered_only = yes
+
+	option = { #
+		name = WORLD_2WRWTER.114514.a
+		set_temp_variable = { TNO_temp_super_event = token:SE_THE_GREAT_MAGICAL_GIRL_WITCH_TRIAL }
+		TNO_fire_super_event = yes
+		ai_chance = { factor = 1 }
+	}
+}
+
+news_event = { #Sino-Russia War
+	id = WORLD_2WRWTER.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event WORLD_2WRWTER.3" }
+	title = WORLD_2WRWTER.3.t
+	desc = WORLD_2WRWTER.3.desc
+	picture = GFX_news_event_sino_russia_war
+
+	is_triggered_only = yes
+
+	option = { #
+		name = WORLD_2WRWTER.3.a
+		ai_chance = { factor = 1 }
+		trigger = {
+			OR = {
+				is_in_faction_with = CPC
+				original_tag = CPC
+			}
+		}
+	    set_temp_variable = { TNO_temp_super_event = token:SE_SINO_RUSSIA_WAR }
+		TNO_fire_super_event = yes
+	}
+
+	option = {
+		name = WORLD_2WRWTER.3.b
+		trigger = {
+			OR = {
+				is_in_faction_with = RUS
+				tag = RUS
+			}
+		}
+	    set_temp_variable = { TNO_temp_super_event = token:SE_SINO_RUSSIA_WAR }
+		TNO_fire_super_event = yes
+	}
+
+	option = {
+		name = WORLD_2WRWTER.3.c
+		trigger = {
+			NOT = {
+				is_in_faction_with = RUS
+				is_in_faction_with = CPC
+				tag = RUS
+				original_tag = CPC
+			}
+		}
+		set_temp_variable = { TNO_temp_super_event = token:SE_SINO_RUSSIA_WAR }
+		TNO_fire_super_event = yes
+	}
+}
+
+news_event = {
+	id = WORLD_2WRWTER.400
+
+	title = WORLD_TER.400.t
+	desc = WORLD_TER.400.desc
+	picture = GFX_event_pic_Sino_Soviet
+	
+	is_triggered_only = yes
+	
+	option = { #
+		name = WORLD_TER.400.a
+		trigger = { 
+			OR = {
+				is_in_faction_with = CPC
+				tag = CPC
+				has_government = communist
+				has_government = socialist
+			}
+		}
+	}
+	
+	option = {
+		name = WORLD_TER.400.b
+		trigger = {
+			OR = {
+				is_in_faction_with = GER
+				tag = GER
+			}
+		}
+	}
+
+	option = {
+		name = WORLD_TER.400.c
+		trigger = {
+			OR = {
+				is_in_faction_with = JAP
+				tag = JAP
+			}
+		}
+	}
+
+	option = {
+		name = WORLD_TER.400.d
+		trigger = {
+			NOT = {
+				is_in_faction_with = JAP
+				is_in_faction_with = GER
+				is_in_faction_with = CPC
+				tag = JAP
+				tag = GER
+				tag = CPC
+			}
+		}
+	}
+}
+
+country_event = { #LPDR Time
+	id = LAO_LPDR.1
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event LAO_LPDR.1"
+	}
+	title = LAO_republic_scripted.3.t
+	desc = LAO_republic_scripted.3.d
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #Souphanouvong
+		name = LAO_republic_scripted.3.a
+		promote_character = {
+			character = LAO_Souphanouvong
+			ideology = communist_national_communism_subtype
+		}
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+		}
+		set_country_leader_description = {
+			desc = "POLITICS_SOUPHANOUVONG_2_DESC"
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.5
+		}
+		set_cosmetic_tag = LAO_LPDR
+		set_party_name = {
+			ideology = socialist
+			long_name = LAO_PPPL_party_long
+			name = LAO_PPPL_party
+		}
+		set_party_name = {
+			ideology = communist
+			long_name = LAO_PPPL_party_long
+			name = LAO_PPPL_party
+		}
+		econ_leave_sphere = yes
+		leave_faction = yes
+		remove_all_ministers = yes
+		remove_ideas = { 
+			LAO_King_Sisavang_Vatthana
+			LAO_The_Royal_Lao_Army
+			LAO_The_Golden_Triangle
+			LAO_Indochinese_Communist_Party_Insurgency_Minor
+		}
+		add_ideas = {
+			LAO_Kaysone_Phomvihane_hog
+			LAO_Phoun_Sipaseuth_for
+			LAO_Nouhak_Phomsavan_eco
+			LAO_Khamtai_Siphandon_sec
+		}
+		VIC = {
+			add_to_faction = LAO
+		}
+		every_country = {
+			limit = { is_ai = no }
+			news_event = {
+				id = WORLD_2WRWTER.1
+			}
+		}
+		JAP = {
+			set_temp_variable = { gdp_growth_temp = -0.1 } #The Financial Community Will Remember This, but that much since Laos is nto developed
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+
+country_event = {
+	id = CPC_RUS.1
+
+	title = CPC_RUS.1.t
+	desc = CPC_RUS.1.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = CPC_RUS.1.o
+		every_country = {
+			limit = {
+				not = {
+					tag = SOV
+				}
+				or = {
+					is_in_faction_with = SOV
+				}
+			}
+			CPC = { add_to_faction = PREV }
+			PREV = { econ_join_sphere_CPC = yes }
+		}
+		CPC = {
+			add_to_faction = SOV
+			set_faction_name = Eurasia_National_Revolutionary_League
+			transfer_state = 329
+		    add_state_core = 329
+		}
+		SOV = { 
+			remove_ideas = CSTO_Guardian_of_Eurasia
+			add_ideas = ANRL_Leader_SOV
+			set_country_flag = HAS_ECON_SPHERE
+			econ_join_sphere_CPC = yes
+		}
+
+		hidden_effect = {
+        every_country = {
+			news_event = {
+				id = WORLD_2WRWTER.400
+			}
+		}
+}  
+		SOV = {
+			remove_state_core = 329
+	      }
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = CPC_RUS.2
+
+	title = CPC_RUS.2.t
+	desc = CPC_RUS.2.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+
+	option = {
+		name = CPC_RUS.2.o
+
+		effect_tooltip = {
+			every_country = {
+			limit = {
+				not = {
+					tag = SOV
+				}
+				or = {
+					is_in_faction_with = SOV
+				}
+			}
+			CPC = { add_to_faction = PREV }
+			PREV = { econ_join_sphere_CPC = yes }
+		}
+		CPC = { add_to_faction = SOV }
+		SOV = { 
+			remove_ideas = CSTO_Guardian_of_Eurasia
+			add_ideas = ANRL_Leader_SOV 
+			set_country_flag = HAS_ECON_SPHERE
+			econ_join_sphere_CPC = yes
+		}
+		transfer_state = 329
+		add_state_core = 329
+		SOV = {
+			remove_state_core = 329
+	      }
+		}
+	}
+}
+
+country_event = {
+	id = CPC_RUS.3
+
+	title = CPC_RUS.3.t
+	desc = CPC_RUS.3.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = CPC_RUS.3.a
+
+		CPC = { 
+			country_event = {
+				id = CPC_RUS.4
+				days = 7
+		}
+		}
+	}
+}
+
+country_event = {
+	id = CPC_RUS.4
+
+	title = CPC_RUS.4.t
+	desc = CPC_RUS.4.desc
+
+	is_triggered_only = yes
+
+	option = {
+		ai_chance = { factor = 100 }
+		name = CPC_RUS.4.a
+		SOV = {
+			country_event = {
+				id = CPC_RUS.6
+				days = 14
+			}
+		}
+	}
+
+	option = {
+		name = CPC_RUS.4.b
+		SOV = { 
+			set_country_flag = HAS_ECON_SPHERE
+			econ_join_sphere_CPC = yes
+			diplomatic_relation = {
+				country = CPC
+				relation = non_aggression_pact
+				active = yes
+			}
+			add_state_core = 408
+			add_state_core = 657
+			add_state_core = 1364
+			add_state_core = 1644
+			add_state_core = 1646
+
+			transfer_state = 408
+			transfer_state = 657
+			transfer_state = 1364
+			transfer_state = 1644
+			transfer_state = 1646
+		}
+		diplomatic_relation = {
+			country = SOV
+			relation = non_aggression_pact
+			active = yes
+		}
+		add_opinion_modifier = {
+			target = CPC
+			modifier = RUS_CPC_treaty_of_nap
+		}
+		add_opinion_modifier = {
+			target = SOV
+			modifier = RUS_CPC_treaty_of_nap
+		}
+	}
+
+	option = {
+		name = CPC_RUS.4.c
+		SOV = {
+			country_event = {
+				id = CPC_RUS.5
+				days = 14
+			}
+		}
+	}
+
+}
+
+country_event = {
+	id = CPC_RUS.5
+
+	title = CPC_RUS.5.t
+	desc = CPC_RUS.5.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = CPC_RUS.5.a
+		SOV = {
+			declare_war_on = {
+				target = CPC
+				type = annex_everything
+			}
+		}
+		every_country = {
+			limit = {
+				is_ai = no
+			}
+			news_event = {
+				id = WORLD_2WRWTER.3
+			}
+		}
+	}
+}
+
+country_event = {
+	id = CPC_RUS.6
+
+	title = CPC_RUS.6.t
+	desc = CPC_RUS.6.desc
+
+	is_triggered_only = yes
+
+	option = {
+		name = CPC_RUS.6.a
+		ai_chance = {
+			factor = 0
+			modifer = {
+				factor = 100
+				CPC = {
+					has_country_flag = 2WRWTER_test_war
+				}
+			}
+		}
+		SOV = {
+			declare_war_on = {
+				target = CPC
+				type = annex_everything
+			}
+		}
+		every_country = {
+			limit = {
+				is_ai = no
+			}
+			news_event = {
+				id = WORLD_2WRWTER.3
+			}
+		}
+	}
+
+	option = {
+		name = CPC_RUS.5.b
+		SOV = { 
+			set_country_flag = HAS_ECON_SPHERE
+			econ_join_sphere_CPC = yes
+			diplomatic_relation = {
+				country = CPC
+				relation = non_aggression_pact
+				active = yes
+			}
+			remove_state_core = 329
+		}
+		transfer_state = 329
+		diplomatic_relation = {
+			country = SOV
+			relation = non_aggression_pact
+			active = yes
+		}
+		add_opinion_modifier = {
+			target = CPC
+			modifier = RUS_CPC_treaty_of_nap
+		}
+		add_opinion_modifier = {
+			target = SOV
+			modifier = RUS_CPC_treaty_of_nap
+		}
+	}
+}
+
+
+	
+

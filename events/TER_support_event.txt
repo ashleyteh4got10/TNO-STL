@@ -1,0 +1,858 @@
+add_namespace = TER_support_backend_events
+###印度方面隐藏事件，用于简单标定CPI[ML]的爆发与否，以及印度的回信态度
+country_event = { #用于ROI统一的状况
+	id = TER_support_backend_events.1
+	title = TER_support_backend_events.1.t
+	desc = TER_support_backend_events.1.d
+	is_triggered_only = yes
+	option = {
+		name = TER_support_backend_events.1.o1
+		ai_chance = { base = 8 }
+		CPC = {
+			country_event = {
+				id = CPC_main_story_events.112
+				days = 25
+			}
+		}
+	}
+	option = {
+		name = TER_support_backend_events.1.o2
+		ai_chance = { base = 2 }
+		CPC = {
+			country_event = {
+				id = CPC_main_story_events.114
+				days = 25
+			}
+		}
+	}
+}
+
+country_event = { #用于AZH统一的状况
+	id = TER_support_backend_events.2
+	title = TER_support_backend_events.2.t
+	desc = TER_support_backend_events.2.d
+	is_triggered_only = yes
+	option = {
+		name = TER_support_backend_events.2.o1
+		ai_chance = { base = 8 }
+		CPC = {
+			country_event = {
+				id = CPC_main_story_events.113
+				days = 25
+			}
+		}
+	}
+	option = {
+		name = TER_support_backend_events.2.o2
+		ai_chance = { base = 2 }
+		CPC = {
+			country_event = {
+				id = CPC_main_story_events.114
+				days = 25
+			}
+		}
+	}
+}
+
+country_event = { #用于CPI建立根据地
+	id = TER_support_backend_events.3
+	title = TER_support_backend_events.3.t
+	desc = TER_support_backend_events.3.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = TER_support_backend_events.3.o
+		ai_chance = { base = 1 }
+		CPC_CPIML_tag_unified = yes
+	}
+}
+
+country_event = { #用于山西停战
+	id = TER_support_backend_events.4
+	title = TER_support_backend_events.4.t
+	desc = TER_support_backend_events.4.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = TER_support_backend_events.4.o
+		ai_chance = { base = 1 }
+	}
+}
+###自动托管定期触发隐藏事件
+country_event = { # NCCPC
+	id = TER_support_backend_events.5
+	title = TER_support_backend_events.5.t
+	desc = TER_support_backend_events.5.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = TER_support_backend_events.5.o
+		ai_chance = { base = 1 }
+		if = {
+			limit = { NOT = { has_country_flag = CPC_NCCPC_canceled_final } }
+			if = {
+				limit = { check_variable = { CPC_hosting_service_NCCPC_var = 2 } }
+				if = {
+					limit = { NOT = { has_country_flag = NCCPC_buget_confirmed } }
+					set_variable = { NCCPC_next_party_budget = NCCPC_current_party_pop }
+					multiply_variable = { NCCPC_next_party_budget = 0.025 }
+					set_country_flag = NCCPC_buget_confirmed
+					TER_NCCPC_budget_remove_alerts = yes
+				}
+				if = {
+					limit = { date < 1962.12.31 }
+					TER_NCCPC_remove_alerts = yes
+					if = { 
+						limit = { 
+							check_variable = { CPC_NCCPC_choose_num = 0 }
+							NOT = {
+								has_country_flag = special_care_selected
+								has_country_flag = praise_selected
+								has_country_flag = criticize_button_selected
+							}
+						} 
+						praise_for_mao = yes
+						add_to_variable = { CPC_NCCPC_choose_num = 1 }
+					}
+					else_if = { 
+						limit = { 
+							check_variable = { CPC_NCCPC_choose_num = 1 } 
+							NOT = {
+								has_country_flag = special_care_selected
+								has_country_flag = praise_selected
+								has_country_flag = criticize_button_selected
+							}
+						} 
+						praise_for_liu = yes
+						add_to_variable = { CPC_NCCPC_choose_num = 1 }
+					}
+					else_if = { 
+						limit = { 
+							check_variable = { CPC_NCCPC_choose_num = 2 } 
+							NOT = {
+								has_country_flag = special_care_selected
+								has_country_flag = praise_selected
+								has_country_flag = criticize_button_selected
+							}
+						} 
+						praise_for_li = yes
+						add_to_variable = { CPC_NCCPC_choose_num = 1 }
+					}
+					else_if = { 
+						limit = { 
+							check_variable = { CPC_NCCPC_choose_num = 3 } 
+							NOT = {
+								has_country_flag = special_care_selected
+								has_country_flag = praise_selected
+								has_country_flag = criticize_button_selected
+							}
+						} 
+						praise_for_deng = yes
+						set_variable = { CPC_NCCPC_choose_num = 0 }
+					}
+				}
+				else = {
+					TER_NCCPC_remove_alerts = yes
+					if = { 
+						limit = { 
+							check_variable = { CPC_NCCPC_choose_num = 0 }
+							NOT = {
+								has_country_flag = special_care_selected
+								has_country_flag = praise_selected
+								has_country_flag = criticize_button_selected
+							}
+						} 
+						special_care_for_mao = yes
+						add_to_variable = { CPC_NCCPC_choose_num = 1 }
+					}
+					else_if = { 
+						limit = { 
+							check_variable = { CPC_NCCPC_choose_num = 1 } 
+							NOT = {
+								has_country_flag = special_care_selected
+								has_country_flag = praise_selected
+								has_country_flag = criticize_button_selected
+							}
+						} 
+						special_care_for_liu = yes
+						add_to_variable = { CPC_NCCPC_choose_num = 1 }
+					}
+					else_if = { 
+						limit = { 
+							check_variable = { CPC_NCCPC_choose_num = 2 } 
+							NOT = {
+								has_country_flag = special_care_selected
+								has_country_flag = praise_selected
+								has_country_flag = criticize_button_selected
+							}
+						} 
+						special_care_for_li = yes
+						add_to_variable = { CPC_NCCPC_choose_num = 1 }
+					}
+					else_if = { 
+						limit = { 
+							check_variable = { CPC_NCCPC_choose_num = 3 } 
+							NOT = {
+								has_country_flag = special_care_selected
+								has_country_flag = praise_selected
+								has_country_flag = criticize_button_selected
+							}
+						} 
+						special_care_for_deng = yes
+						set_variable = { CPC_NCCPC_choose_num = 0 }
+					}
+				}
+			}
+		}
+		else = {
+			set_variable = { CPC_hosting_service_NCCPC_var = 1 }
+			add_political_power = 10
+		}
+	}
+}
+
+country_event = { # NWB
+	id = TER_support_backend_events.6
+	title = TER_support_backend_events.6.t
+	desc = TER_support_backend_events.6.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = TER_support_backend_events.6.o
+		ai_chance = { base = 1 }
+		if = {
+			limit = { 
+				check_variable = { CPC_hosting_service_NWB_var = 2 }
+				NOT = { 
+					OR = {
+						has_country_flag = CPC_TRCW_begins_flag
+						has_global_flag = CPC_WINS_TRCW
+					}
+			 	}
+			}
+			set_temp_variable = { pp_tmp = 5 }
+			divide_temp_variable = { pp_tmp = TER_NWB_PTMB_num_pct }
+			multiply_temp_variable = { pp_tmp = -1 }
+			add_political_power = pp_tmp
+			#遍历六大任务情况
+			while_loop_effect = {
+				limit = { 
+					NOT = { has_country_flag = CPC_NWB_all_missions_completed } 
+					NOT = { has_country_flag = NWB_activate_task }
+				}
+				random_list = {
+					1 = { set_variable = { NWB_acted_state = 283 } }
+					1 = { set_variable = { NWB_acted_state = 604 } }
+					1 = { set_variable = { NWB_acted_state = 616 } }
+					1 = { set_variable = { NWB_acted_state = 764 } }
+					1 = { set_variable = { NWB_acted_state = 906 } }
+					1 = { set_variable = { NWB_acted_state = 955 } }
+					1 = { set_variable = { NWB_acted_state = 1302 } }
+					1 = { set_variable = { NWB_acted_state = 2408 } }
+					1 = { set_variable = { NWB_acted_state = 2409 } }
+					1 = { set_variable = { NWB_acted_state = 2423 } }
+					1 = { set_variable = { NWB_acted_state = 2424 } }
+					1 = { set_variable = { NWB_acted_state = 2425 } }
+					1 = { set_variable = { NWB_acted_state = 2426 } }
+					1 = { set_variable = { NWB_acted_state = 2427 } }
+					1 = { set_variable = { NWB_acted_state = 2429 } }
+				}
+				var:NWB_acted_state = {
+					CPC_hosting_service_NWB_event_effect = yes
+				}
+			}
+		}
+		else = {
+			set_variable = { CPC_hosting_service_NWB_var = 1 }
+			add_political_power = 10
+		}
+	}
+}
+
+country_event = { # SWB
+	id = TER_support_backend_events.7
+	title = TER_support_backend_events.7.t
+	desc = TER_support_backend_events.7.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = TER_support_backend_events.7.o
+		ai_chance = { base = 1 }
+		if = {
+			limit = { 
+				NOT = { 
+					OR = {
+						has_country_flag = CPC_TRCW_begins_flag
+						has_global_flag = CPC_WINS_TRCW
+					}
+			 	}
+			}
+			if = {
+				limit = { 
+					XIK = { exists = yes } 
+					NOT = { XIK = { has_country_flag = SWB_focus_begins } }
+				}
+				if = {
+					limit = { check_variable = { TER_SWB_map_controller_state = 2 } }
+					set_variable = { SWB_focus_state^0 = 2 }
+					XIK = { set_country_flag = SWB_focus_begins }
+					set_country_flag = SWB_focus_begins
+					add_political_power = -20
+					Alert_SWB_focus_enabled_remove_alerts = yes
+				}
+				else = {
+					set_temp_variable_to_random = {
+						var = idx
+						min = 0
+						max = 3
+						integer = yes
+					}
+					set_variable = { SWB_focus_state^idx = 2 }
+					XIK = { set_country_flag = SWB_focus_begins }
+					set_country_flag = SWB_focus_begins
+					add_political_power = -20
+					Alert_SWB_focus_enabled_remove_alerts = yes
+				}
+			}
+			else_if = {
+				limit = { 
+					XIK = { exists = no } 
+					NOT = { has_country_flag = SWB_focus_begins }
+				}
+				set_temp_variable_to_random = {
+					var = idx
+					min = 0
+					max = 3
+					integer = yes
+				}
+				set_variable = { SWB_focus_state^idx = 2 }
+				set_country_flag = SWB_focus_begins
+				add_political_power = -20
+				Alert_SWB_focus_enabled_remove_alerts = yes
+			}
+		}
+		else = {
+			set_variable = { CPC_hosting_service_SWB_var = 1 }
+			add_political_power = 10
+		}
+	}
+}
+
+country_event = { # XJB
+	id = TER_support_backend_events.8
+	title = TER_support_backend_events.8.t
+	desc = TER_support_backend_events.8.d
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TER_support_backend_events.8" }
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = TER_support_backend_events.8.o
+		ai_chance = { base = 1 }
+		if = {
+			limit = { 
+				NOT = { 
+					OR = {
+						has_country_flag = CPC_TRCW_begins_flag
+						has_global_flag = CPC_WINS_TRCW
+						has_country_flag = CPC_XJ_mess_up
+					}
+			 	}
+			}
+			if = {
+				limit = { 
+					NOT = { has_country_flag = XJB_focus_working }
+					check_variable = { XJB_abilities_num > 2 }
+				}
+				subtract_from_variable = { XJB_abilities_num = 3 }
+				CPC_XJB_clear_cards_states = yes
+				set_variable_to_random = {
+					var = XJB_selected_card
+					min = 1
+					max = 6
+					integer = yes
+				}
+				CPC_XJB_fix_position_focus = yes
+				set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
+				while_loop_effect = {
+					limit = { check_variable = { XJB_abilities_num > 0 } }
+					set_variable_to_random = {
+						var = XJ_id
+						min = 1
+						max = 12
+						integer = yes
+					}
+					CPC_XJB_choose_state_visual_upgrade = yes
+					if = { 
+						limit = { 
+							var:XJ_state_active = { 
+								NOT = { has_state_flag = CPC_XJ_working }
+								OR = {
+									is_controlled_by = ROS
+									is_controlled_by = HTC
+								}
+							}
+						} 
+						set_temp_variable_to_random = {
+							var = XJB_vice_focus_index
+							min = 0
+							max = 13
+							integer = yes
+						}
+						CPC_XJB_start_the_region_focus = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { 
+					NOT = { has_country_flag = XJB_focus_working }
+					check_variable = { XJB_abilities_num < 2 }
+				}
+				country_event = { id = TER_support_backend_events.8 days = 1 }
+			}
+		}
+		else = {
+			set_variable = { CPC_hosting_service_XJB_var = 1 }
+			add_political_power = 10
+		}
+	}
+}
+
+
+###云贵冲突辅助事件，用于延时触发云贵战争。
+country_event = {
+	id = TER_support_backend_events.10
+	title = TER_support_backend_events.10.t
+	desc = TER_support_backend_events.10.d
+	is_triggered_only = yes
+	option = {
+		name = TER_support_backend_events.10.o
+		ai_chance = { factor = 10 }
+			GUZ = {
+				leave_faction = yes
+				declare_war_on = {
+					target = LOY
+					type = annex_everything
+				}
+			}
+		}
+}
+
+###西南战争###
+country_event = {
+	id = TER_support_backend_events.11
+	title = TER_support_backend_events.11.t
+	desc = TER_support_backend_events.11.d
+	is_triggered_only = yes
+	option = {
+		name = TER_support_backend_events.11.o
+		ai_chance = { factor = 10 }
+		CHI = {
+			end_puppet = GUX
+			end_puppet = LOY
+			end_puppet = GUZ
+			end_puppet = CHQ
+			set_temp_variable = { CHI.target = CHQ }
+			CHI = { TNO_increase_volunteer_cap_2 = yes }
+			if = {
+				limit = { CPC = { has_country_flag = CPC_YEAH_WE_CHOOSE_TO_FUCK_SIC } }
+				set_temp_variable = { CHI.target = CHQ }
+				CHI = { TNO_increase_volunteer_cap_3 = yes }
+			}
+		}
+		CHQ = { 
+			leave_faction = yes
+			declare_war_on = {
+				target = XIK
+				type = annex_everything
+			}
+			give_military_access = SIC
+		}
+		SIC = {
+			add_to_war = {
+				targeted_alliance = CHQ
+				enemy = XIK
+			}
+			give_military_access = CHQ
+		}
+		CPC = {
+			if = { limit = { has_country_flag = CPC_YEAH_WE_CHOOSE_TO_FUCK_SIC } 
+				add_to_war = {
+					targeted_alliance = XIK
+					enemy = SIC
+				} 
+				add_to_war = {
+					targeted_alliance = XIK
+					enemy = CHQ
+				}
+			}
+		}
+		GUX = {
+			leave_faction = yes
+		}
+		KIS = {
+			transfer_state = 1464
+			add_state_core = 1464
+			transfer_state = 2391
+			add_state_core = 2391
+			transfer_state = 2392
+			add_state_core = 2392
+			load_oob = KIS_war
+			declare_war_on = {
+				target = GUX
+				type = annex_everything
+			}
+			add_ideas = KTW_support_from_IJN
+			add_ideas = KTW_special_war
+		}
+		JAP = {
+			set_temp_variable = { JAP.target = KIS }
+			TNO_increase_volunteer_cap_4 = yes
+		}
+		GUX = {
+			add_ideas = KTW_broadsword_troops
+			add_ideas = KTW_no_place_to_run
+			add_ideas = KTW_no_bullets_no_grain
+			add_ideas = KTW_drop_the_bomb
+		}
+		LOY = {
+			leave_faction = yes
+			country_event = TER_support_backend_events.10
+		}
+		every_country = {
+			news_event = {
+				id = WORLD_TER.6
+				days = 2
+			}
+		}		
+	}
+}
+
+####北京战争####
+country_event = {
+	id = TER_support_backend_events.12
+	title = TER_support_backend_events.12.t
+	desc = TER_support_backend_events.12.d
+	is_triggered_only = yes
+	option = {
+		name = TER_support_backend_events.12.o
+		ai_chance = { factor = 10 }
+		MAN = {
+			leave_faction = yes
+			declare_war_on = {
+				target = BJC
+				type = annex_everything
+			}
+		}
+		every_country = {
+			news_event = WORLD_TER.9
+		}		
+	}
+}
+
+####三次国内革命战争超事件调试####
+country_event = {
+	id = TER_support_backend_events.13
+	title = TER_support_backend_events.13.t
+	desc = TER_support_backend_events.13.d
+	is_triggered_only = yes
+	option = {
+		name = TER_support_backend_events.13.o1
+		set_temp_variable = { TNO_temp_super_event = token:SE_TRCW }
+		TNO_fire_super_event = yes
+	}
+	option = {
+		name = TER_support_backend_events.13.o2
+		set_temp_variable = { TNO_temp_super_event = token:SE_TRCW_good }
+		TNO_fire_super_event = yes
+	}
+	option = {
+		name = TER_support_backend_events.13.o3
+		set_temp_variable = { TNO_temp_super_event = token:SE_TRCW_bad }
+		TNO_fire_super_event = yes
+	}
+}
+
+####康藏战争触发器
+country_event = {
+	id = TER_support_backend_events.14
+	title = TER_support_backend_events.14.t
+	desc = TER_support_backend_events.14.d
+	is_triggered_only = yes
+	option = {
+		name = TER_support_backend_events.14.o
+		ai_chance = { factor = 20 }
+		TIB = {
+			declare_war_on = {
+				target = XIK
+				type = annex_everything
+			}
+		}
+		964 = {
+			set_demilitarized_zone = no
+		}
+		JAP = {
+			set_temp_variable = { JAP.target = TIB }
+			TNO_increase_volunteer_cap_1 = yes
+		}
+		AZH = {
+			set_temp_variable = { AZH.target = TIB }
+			TNO_increase_volunteer_cap_1 = yes
+		}
+		every_country = {
+			news_event = {
+				id = WORLD_TER.16
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_support_backend_events.15
+	title = TER_support_backend_events.15.t
+	desc = TER_support_backend_events.15.d
+	is_triggered_only = yes
+	option = {
+		name = TER_support_backend_events.15.o
+		ai_chance = { factor = 20 }
+		BHU = {
+			transfer_state = 2209
+		}
+		927 = {
+			set_demilitarized_zone = no
+		}
+		322 = {
+			set_demilitarized_zone = yes
+		}
+		every_state = {
+			limit = { is_core_of = TIB }
+			add_core_of = XGZ
+		}
+		1961 = {
+			set_demilitarized_zone = no
+		}
+		every_country = {
+			news_event = {
+				id = WORLD_TER.20
+				days = 1
+			}
+		}
+	}
+}
+
+####自动造核
+country_event = {
+	id = TER_support_backend_events.16
+	title = TER_support_backend_events.16.t
+	desc = TER_support_backend_events.16.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = TER_support_backend_events.15.o
+		ai_chance = { factor = 20 }
+		every_state = {
+			limit = { 
+				controller = { 
+					original_tag = CPC
+					is_in_faction_with = CPC
+			 	}
+				NOT = { is_core_of = CPC }
+				OR = {
+					has_state_flag = TER_CHINA_CAPITAL_STATE
+					check_variable = { china_state_ref > 0 }
+				}
+			}
+			add_core_of = CPC
+		}
+		if = {
+			limit = { CPC = { has_country_flag = CPC_TRCW_begins_flag } }
+			country_event = { id = TER_support_backend_events.16 days = 15 }
+		}
+	}
+}
+
+####日本内阁总辞
+country_event = {
+	id = TER_support_backend_events.17
+	title = TER_support_backend_events.17.t
+	desc = TER_support_backend_events.17.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = TER_support_backend_events.17.o
+		ai_chance = { factor = 20 }
+		JAP = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "JAP_Chozen_Naikaku"
+				desc = "JAP_Chozen_Naikaku_desc"
+				traits = {
+					JAP_fallen_empire
+				}
+				picture = "gfx/leaders/JAP/JAP_Chozen_Naikaku.png"
+				ideology = paternalism_oligarchy_subtype
+			}
+			set_politics = { ruling_party = paternalism }
+			JAP_clear_PM_flags = yes
+			remove_all_ministers = yes
+			JAP_remove_all_showa_ideas = yes
+			remove_ideas = JAP_showa_emperor_gaw
+			add_ideas = JAP_showa_emperor_ter
+			set_popularities = {
+				paternalism = 100
+			}
+			JAP_Kido_Kouichi = {
+				remove_advisor_role = { slot = head_of_government }
+				add_advisor_role = {
+					advisor = {
+						slot = head_of_government	
+						idea_token = JAP_Kouichi_Kido_Jushin_hog
+						traits = {
+							head_of_government
+							hog_backroom_backstabber
+						}
+						ledger = civilian
+						cost = -1
+						can_be_fired = no
+						ai_will_do = { factor = 0 }
+					}
+				}
+			}
+			add_ideas = {
+				JAP_Kouichi_Kido_Jushin_hog
+				JAP_Sugita_Ichiji_for
+				JAP_Yamigawa_Masamichi_eco
+				JAP_Saito_Noboru_sec
+			}
+			remove_mission = JAP_yearly_balance_check_dynamic
+			set_party_name = {
+				ideology = paternalism
+				long_name = JAP_paternalism_jushin_long
+				name = JAP_paternalism_jushin
+			}
+			set_country_flag = JAP_dlc_failed
+			JAP_tree_swap = yes
+			TNO_Country_Closing_Screen_Show = yes
+		}
+		TWN = { country_event = TWN_skeleton.14 }
+		every_country = {
+			news_event = { id = WORLD_TER.35 }
+		}
+	}
+}
+
+country_event = {
+	id = TER_support_backend_events.18
+	title = TER_support_backend_events.18.t
+	desc = TER_support_backend_events.18.d
+	is_triggered_only = yes
+	option = { 
+		name = TER_support_backend_events.18.o1
+		set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_REUNIFIED_GOOD }
+		TNO_fire_super_event = yes
+	}
+	option = {
+		name = TER_support_backend_events.18.o2
+		set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_REUNIFIED_NORMAL_MAO }
+		TNO_fire_super_event = yes
+	}
+	option = {
+		name = TER_support_backend_events.18.o3
+		set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_REUNIFIED_BAD }
+		TNO_fire_super_event = yes
+	}
+	option = {
+		name = TER_support_backend_events.18.o4
+		set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_COLLAPSED }
+		TNO_fire_super_event = yes
+	}
+	option = {
+		name = TER_support_backend_events.18.o5
+		set_temp_variable = { TNO_temp_super_event = token:SE_CHINA_IS_IN_HELL }
+		TNO_fire_super_event = yes
+	}
+}
+
+country_event = {
+	id = TER_support_backend_events.19
+	title = TER_support_backend_events.19.t
+	desc = TER_support_backend_events.19.d
+	is_triggered_only = yes
+	hidden = yes
+	option = { 
+		name = TER_support_backend_events.19.o1
+		JAP = { 
+			add_to_faction = LAO
+			declare_war_on = {
+				target = MON
+				type = annex_everything
+			} 
+			declare_war_on = {
+				target = VIC
+				type = annex_everything
+			} 
+			declare_war_on = {
+				target = CRC
+				type = annex_everything
+			} 
+			declare_war_on = {
+				target = KPA
+				type = annex_everything
+			} 
+			declare_war_on = {
+				target = BJC
+				type = annex_everything
+			} 
+			declare_war_on = {
+				target = WHC
+				type = annex_everything
+			} 
+			declare_war_on = {
+				target = LZD
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = QYC
+				type = annex_everything
+			} 
+			every_country = {
+				limit = { is_in_faction_with = JAP }
+				add_to_war = {
+					targeted_alliance = JAP
+					enemy = MON
+				}
+				add_to_war = {
+					targeted_alliance = JAP
+					enemy = VIC
+				}
+				add_to_war = {
+					targeted_alliance = JAP
+					enemy = CRC
+				}
+				add_to_war = {
+					targeted_alliance = JAP
+					enemy = KPA
+				}
+				add_to_war = {
+					targeted_alliance = JAP
+					enemy = BJC
+				}
+				add_to_war = {
+					targeted_alliance = JAP
+					enemy = WHC
+				}
+				add_to_war = {
+					targeted_alliance = JAP
+					enemy = LZD
+				}
+				add_to_war = {
+					targeted_alliance = JAP
+					enemy = QYC
+				}
+			}
+		}
+		every_country = {
+			news_event = { id = WORLD_CAM.8 }
+		}
+	}
+}

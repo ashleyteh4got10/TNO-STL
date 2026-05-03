@@ -1,0 +1,1203 @@
+###CPC Second Phase
+shared_focus = {
+	id = CPC_PLA_announcement
+	icon = GFX_goals_CPC_expand_the_troop
+	cost = 1
+	x = 23
+	y = 0
+	available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_announcement"
+		hidden_effect = {
+			country_event = { id = CPC_main_story_events.121 days = 5 }
+		}
+		tno_conscription_improve = yes
+		#议案主题
+		set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_PLA_announcement }
+		set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+
+		#议案选项
+		add_to_array = { CPGAC_prop_option = 1 }
+		add_to_array = { CPGAC_prop_option_in_party = 0 }
+		add_to_array = { CPGAC_prop_option = 1 }
+		add_to_array = { CPGAC_prop_option_in_party = 1 }
+
+		#初始态度 - 党内
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 100 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 100 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 100 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 100 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 0 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 0 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 0 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 0 }
+		
+		#初始态度 - 党外
+		set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 90 }
+		set_temp_variable = { CPGAC_no_attitude_tmp^0 = 0 }
+
+		set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 90 }
+		set_temp_variable = { CPGAC_no_attitude_tmp^1 = 0 }
+		
+		#启动议案
+		TER_CPGAC_begin_a_proposal = yes
+		custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_reform_Mission_command
+	icon = GFX_goals_CPC_PLA_reform_Mission_command
+	mutually_exclusive = {
+		focus = CPC_PLA_reform_Centralized_command
+	}
+	available = {
+		has_country_flag = CPGAC_prop_CPC_PLA_reform_L
+	}
+	relative_position_id = CPC_PLA_announcement
+	prerequisite = { focus = CPC_PLA_announcement }
+	cost = 1
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_reform_Mission_command"
+		set_temp_variable = { CMC_army_org_regain_tmp = 0.05 }
+		set_temp_variable = { CMC_cp_gain_tmp = 0.1 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_emphasize_military_democracy
+	icon = GFX_goals_CPC_prominent_role_model
+	relative_position_id = CPC_PLA_reform_Mission_command
+	prerequisite = { focus = CPC_PLA_reform_Mission_command }
+	cost = 1
+	x = -3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_emphasize_military_democracy"
+		set_temp_variable = { CMC_army_org_regain_tmp = 0.05 }
+		set_temp_variable = { CMC_army_ad_tmp = 0.025 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_newtype_reorg_movement
+	icon = GFX_goals_CPC_reorganize_army
+	relative_position_id = CPC_PLA_reform_Mission_command
+	prerequisite = { focus = CPC_PLA_reform_Mission_command }
+	available = {
+		NOT = { has_country_flag = CMC_reform_task_flag }
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+	}
+	cost = 1
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_newtype_reorg_movement"
+		set_temp_variable = { CMC_xp_gain_tmp = 0.05 }
+		set_temp_variable = { CMC_cmf_tmp = -0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_mil_3 }
+		TER_PLA_CMC_reform_begins = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_emphasize_backend_construction
+	icon = GFX_goals_CPC_accumulate_more
+	relative_position_id = CPC_PLA_emphasize_military_democracy
+	prerequisite = { focus = CPC_PLA_emphasize_military_democracy }
+	prerequisite = { focus = CPC_PLA_newtype_reorg_movement }
+	available = {
+		NOT = { has_country_flag = CMC_reform_task_flag }
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+	}
+	cost = 1
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_emphasize_backend_construction"
+		set_temp_variable = { CMC_lrr_tmp = 0.05 }
+		set_temp_variable = { CMC_sf_tmp = 0.05 }
+		set_temp_variable = { CMC_cmf_tmp = -0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_equip_2 }
+		TER_PLA_CMC_reform_begins = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_reform_Centralized_command
+	icon = GFX_goals_CPC_PLA_reform_Centralized_command
+	mutually_exclusive = {
+		focus = CPC_PLA_reform_Mission_command
+	}
+	available = {
+		has_country_flag = CPGAC_prop_CPC_PLA_reform_R
+	}
+	relative_position_id = CPC_PLA_announcement
+	prerequisite = { focus = CPC_PLA_announcement }
+	cost = 1
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_reform_Centralized_command"
+		set_temp_variable = { CMC_pp_gain_tmp = 0.1 }
+		set_temp_variable = { CMC_cp_gain_tmp = 0.075 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_strengthen_military_staff_officer
+	icon = GFX_goals_CPC_professionalization_of_officers
+	relative_position_id = CPC_PLA_reform_Centralized_command
+	prerequisite = { focus = CPC_PLA_reform_Centralized_command }
+	available = {
+		NOT = { has_country_flag = CMC_reform_task_flag }
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+	}
+	cost = 1
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_strengthen_military_staff_officer"
+		set_temp_variable = { CMC_pp_gain_tmp = 0.05 }
+		set_temp_variable = { CMC_cp_gain_tmp = 0.075 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_mil_3 }
+		TER_PLA_CMC_reform_begins = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_Regularization_of_the_PLA
+	icon = GFX_goals_CPC_recognize_new_war
+	relative_position_id = CPC_PLA_reform_Centralized_command
+	prerequisite = { focus = CPC_PLA_reform_Centralized_command }
+	cost = 1
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_Regularization_of_the_PLA"
+		set_temp_variable = { CMC_cmf_tmp = -0.05 }
+		set_temp_variable = { CMC_army_ad_tmp = 0.025 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_regular_confrontation_exercises
+	icon = GFX_goals_CPC_self_propelled_heavy_firepower
+	relative_position_id = CPC_PLA_strengthen_military_staff_officer
+	prerequisite = { focus = CPC_PLA_strengthen_military_staff_officer }
+	prerequisite = { focus = CPC_PLA_Regularization_of_the_PLA }
+	available = {
+		NOT = { has_country_flag = CMC_reform_task_flag }
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+	}
+	cost = 1
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_regular_confrontation_exercises"
+		set_temp_variable = { CMC_mcp_tmp = 50 }
+		set_temp_variable = { CMC_xp_gain_tmp = 0.05 }
+		set_temp_variable = { CMC_cmf_tmp = -0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_equip_3 }
+		TER_PLA_CMC_reform_begins = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_reorg_movement
+	icon = GFX_goals_CPC_four_first
+	relative_position_id = CPC_PLA_announcement
+	prerequisite = { focus = CPC_PLA_announcement }
+	available = {
+		NOT = { has_country_flag = CMC_reform_task_flag }
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+	}
+	prerequisite = { 
+		focus = CPC_PLA_reform_Centralized_command
+		focus = CPC_PLA_reform_Mission_command
+	}
+	cost = 1
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_reorg_movement"
+		tno_training_improve = yes
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_pol_2 }
+		TER_PLA_CMC_reform_begins = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_military_academy_construction
+	icon = GFX_goals_CPC_notebook_of_quotations
+	relative_position_id = CPC_PLA_reorg_movement
+	prerequisite = { focus = CPC_PLA_reorg_movement }
+	available = {
+		NOT = { has_country_flag = CMC_reform_task_flag }
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+	}
+	cost = 1
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_military_academy_construction"
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_mil_1 }
+		TER_PLA_CMC_reform_task_without_options_begins = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_FOR_THE_FINAL_TRIUMPH
+	icon = GFX_goals_CPC_PLA_FOR_THE_FINAL_TRIUMPH
+	relative_position_id = CPC_PLA_emphasize_backend_construction
+	prerequisite = { focus = CPC_PLA_emphasize_backend_construction }
+	prerequisite = { focus = CPC_PLA_military_academy_construction }
+	available = {
+		NOT = { has_country_flag = CMC_reform_task_flag }
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+	}
+	cost = 1
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_FOR_THE_FINAL_TRIUMPH"
+		set_temp_variable = { CMC_xp_gain_tmp = 0.05 }
+		set_temp_variable = { CMC_xp_loss_tmp = -0.05 }
+		set_temp_variable = { CMC_lrr_tmp = 0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		hidden_effect = {
+			country_event = { id = CPC_main_story_events.122 days = 15 }
+		}
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_mil_4 }
+		TER_PLA_CMC_reform_task_without_options_begins = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+		set_temp_variable = { temp_law = token:CPC_military_reform_law_1 }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_PLA_FOR_THE_NATIONAL_LIBERATION
+	icon = GFX_goals_CPC_PLA_FOR_THE_NATIONAL_LIBERATION
+	relative_position_id = CPC_PLA_regular_confrontation_exercises
+	prerequisite = { focus = CPC_PLA_regular_confrontation_exercises }
+	prerequisite = { focus = CPC_PLA_military_academy_construction }
+	available = {
+		NOT = { has_country_flag = CMC_reform_task_flag }
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+	}
+	cost = 1
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_PLA_FOR_THE_NATIONAL_LIBERATION"
+		set_temp_variable = { CMC_mcp_tmp = 50 }
+		set_temp_variable = { CMC_cp_gain_tmp = 0.1 }
+		set_temp_variable = { CMC_pp_gain_tmp = 0.1 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		hidden_effect = {
+			country_event = { id = CPC_main_story_events.123 days = 15 }
+		}
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_mil_4 }
+		TER_PLA_CMC_reform_task_without_options_begins = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+
+		set_temp_variable = { temp_law = token:CPC_military_reform_law_2 }
+		TNO_add_assorted_law = yes
+	}
+}
+###foreign###
+
+shared_focus = {
+	id = CPC_belated_consult
+	icon = GFX_goals_CPC_belated_consult
+	cost = 2
+	x = 33
+	y = 0
+	available = {
+		has_country_flag = CPC_Hai_Nan_has_send_their_message
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_belated_consult"
+		custom_effect_tooltip = "CPC_belated_consult_tt"
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.1
+				days = 14
+			}
+			country_event = {
+				id = CPC_main_story_events.108
+				days = 70
+			}
+			country_event = {
+				id = CPC_main_story_events.69
+				days = 180
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = CPC_message_from_east_mon
+	icon = GFX_goals_CPC_message_from_east_mon
+	cost = 3
+	x = 0
+	y = 1
+	allow_branch = {
+		has_country_flag = CPC_allow_focus_NAJUA
+	}
+	available = {
+		NOT = { has_country_flag = CPC_we_have_an_urgent_task }
+	}
+	select_effect = {
+		country_event = { id = CPC_main_story_events.106 }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_message_from_east_mon"
+		set_temp_variable = { begin_ut_temp = token:CPGAC_u_recontact_NAJUA }
+		set_temp_variable = { days_temp = 140 }
+		TER_CPGAC_begin_an_urgent_task = yes
+	}
+	relative_position_id = CPC_belated_consult
+	prerequisite = { focus = CPC_belated_consult }
+}
+
+shared_focus = {
+	id = CPC_rearrange_najua
+	icon = GFX_goals_CPC_rearrange_najua
+	cost = 2
+	x = -1
+	y = 1
+	available = {
+		CPC_we_have_UT_NAJUA = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_rearrange_najua"
+		add_manpower = -1500
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -100
+		}
+		TNO_improve_army_professionalism_low = yes
+	}
+	relative_position_id = CPC_message_from_east_mon
+	prerequisite = { focus = CPC_message_from_east_mon }
+}
+
+shared_focus = {
+	id = CPC_rebuild_party_najua
+	icon = GFX_goals_CPC_rebuild_party_najua
+	cost = 2
+	x = 1
+	y = 1
+	available = {
+		CPC_we_have_UT_NAJUA = yes
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_rebuild_party_najua"
+		add_manpower = -500
+		add_political_power = -50
+		TNO_improve_admin_efficiency_low = yes
+	}
+	relative_position_id = CPC_message_from_east_mon
+	prerequisite = { focus = CPC_message_from_east_mon }
+}
+
+shared_focus = {
+	id = CPC_two_buddha_scramble
+	icon = GFX_goals_CPC_two_buddha_scramble
+	cost = 2
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_two_buddha_scramble"
+		country_event = { id = CPC_main_story_events.61 }
+		hidden_effect = {
+			country_event = { 
+				id = CPC_main_story_events.62 
+				days = 5
+			}
+		}
+	}
+	relative_position_id = CPC_belated_consult
+	prerequisite = { focus = CPC_belated_consult }
+}
+
+shared_focus = {
+	id = CPC_positive_contact
+	icon = GFX_goals_CPC_positive_contact
+	cost = 2
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_positive_contact"
+		add_dynamic_modifier = {
+			modifier = SCB_CPC_modifier
+		}
+        custom_effect_tooltip = "CPC_Unlock_SEA_GUI"
+		hidden_effect = {
+			TER_SCB_visual_update = yes
+		}
+		set_country_flag = CPC_unlock_SCB
+	}
+	relative_position_id = CPC_belated_consult
+	prerequisite = { focus = CPC_belated_consult }
+}
+
+shared_focus = {
+	id = CPC_armed_pilgrimage
+	icon = GFX_goals_CPC_armed_pilgrimage
+	cost = 2
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_armed_pilgrimage"
+		country_event = CPC_main_story_events.64
+	}
+	relative_position_id = CPC_two_buddha_scramble
+	prerequisite = { focus = CPC_two_buddha_scramble }
+}
+
+shared_focus = {
+	id = CPC_overrun_in_southeast
+	icon = GFX_goals_CPC_overrun_in_southeast
+	cost = 2
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_overrun_in_southeast"
+		add_political_power = 200
+	}
+	relative_position_id = CPC_positive_contact
+	prerequisite = { focus = CPC_positive_contact }
+}
+
+shared_focus = {
+	id = CPC_obtain_buddhist_scriptures
+	icon = GFX_goals_CPC_obtain_buddhist_scriptures
+	cost = 2
+	x = 1
+	y = 1
+	available = {
+		has_country_flag = CPC_India_has_send_their_message
+		CPC_everything_is_settled_down_in_INDIA = yes
+	}
+	completion_reward = {
+		country_event = CPC_main_story_events.111
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_obtain_buddhist_scriptures"
+	}
+	relative_position_id = CPC_armed_pilgrimage
+	prerequisite = { focus = CPC_armed_pilgrimage }
+	prerequisite = { focus = CPC_overrun_in_southeast }
+}
+
+shared_focus = {
+	id = CPC_falling_leaves
+	icon = GFX_goals_CPC_falling_leaves
+	cost = 2
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_falling_leaves"
+		country_event = CPC_main_story_events.67
+	}
+	relative_position_id = CPC_overrun_in_southeast
+	prerequisite = { focus = CPC_armed_pilgrimage }
+	prerequisite = { focus = CPC_overrun_in_southeast }
+}
+
+shared_focus = {
+	id = CPC_meet_the_panchen
+	icon = GFX_goals_CPC_meet_the_panchen
+	cost = 2
+	x = 1
+	y = 1
+	available = {
+		TIB = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_meet_the_panchen"
+		country_event = CPC_main_story_events.63
+	}
+	relative_position_id = CPC_rearrange_najua
+	prerequisite = { focus = CPC_armed_pilgrimage }
+	prerequisite = { focus = CPC_overrun_in_southeast }
+}
+
+shared_focus = {
+	id = CPC_corridor_between_yunnan_and_burma
+	icon = GFX_goals_CPC_corridor_between_yunnan_and_burma
+	cost = 2
+	x = -3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_corridor_between_yunnan_and_burma"
+		country_event = { id = CPC_main_story_events.115 }
+		KPA = { 
+			TNO_improve_army_professionalism_med = yes
+			TNO_improve_agriculture_med = yes
+		}
+		set_temp_variable = { CPC.target = KPA }
+		CPC = { TNO_increase_volunteer_cap_2 = yes }
+	}
+	relative_position_id = CPC_meet_the_panchen
+	prerequisite = { focus = CPC_meet_the_panchen }
+}
+
+shared_focus = {
+	id = CPC_red_trace_in_jungle
+	icon = GFX_goals_CPC_red_trace_in_jungle
+	cost = 2
+	x = 0
+	y = 1
+	bypass = {
+		OR = {
+			VIN = { exists = no }
+			VIC = { has_war_with = VIN }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_red_trace_in_jungle"
+		hidden_effect = { 
+			begin_civilwar_in_Vietnam = yes
+			VIC = { load_oob = VIC_CW_level_4 }
+			set_temp_variable = { CPC.target = VIC }
+			CPC = { TNO_increase_volunteer_cap_2 = yes }
+		}
+		custom_effect_tooltip = "begin_civilwar_in_vietnam_tt"
+	}
+	relative_position_id = CPC_meet_the_panchen
+	prerequisite = { focus = CPC_meet_the_panchen }
+}
+
+shared_focus = {
+	id = CPC_blood_in_country_of_buddhist
+	icon = GFX_goals_CPC_blood_in_country_of_buddhist
+	cost = 2
+	x = 3
+	y = 1
+	available = {
+		CRC = {
+			exists = yes
+		}
+	}
+	bypass = {
+		CAM = { exists = no }
+		PCC = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_blood_in_country_of_buddhist"
+		custom_effect_tooltip = "CPC_SCB_tutorial_tt"
+        set_temp_variable = { CPC.target = CRC }
+		CPC = { TNO_increase_volunteer_cap_4 = yes }
+		set_temp_variable = { THA.target = CAM }
+		THA = { TNO_increase_volunteer_cap_4 = yes }
+	}
+	relative_position_id = CPC_meet_the_panchen
+	prerequisite = { focus = CPC_meet_the_panchen }
+}
+
+shared_focus = {
+	id = CPC_victory_in_southeast
+	icon = GFX_goals_CPC_victory_in_southeast
+	cost = 2
+	x = 3
+	y = 1
+	relative_position_id = CPC_corridor_between_yunnan_and_burma
+	prerequisite = { focus = CPC_corridor_between_yunnan_and_burma }
+	prerequisite = { focus = CPC_red_trace_in_jungle }
+	prerequisite = { focus = CPC_blood_in_country_of_buddhist }
+	available = {
+		VIN = { exists = no }
+		CAM = { exists = no }
+		BUR = { exists = no }
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_victory_in_southeast"
+		custom_effect_tooltip = "CPC_victory_in_southeast_tt"
+		hidden_effect = {
+			VIC = {
+				create_faction = SEA_revolution_league
+				add_to_faction = KPA
+				if = {
+					limit = { CPI =  { exists = yes } }
+					add_to_faction = CPI
+				}
+			}
+			every_country = {
+				news_event = { id = SEA_news.11 days = 3 }
+			}
+			THA = {
+				country_event = { id = SEA_support.3 days = 30 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_5_1_festival
+	icon = GFX_goals_CPC_1968_5_1_festival
+	relative_position_id = CPC_victory_in_southeast
+	x = -16
+	y = 2
+	cost = 1
+	available = {
+		date > 1968.5.1
+	}
+	bypass = {	
+	}
+	completion_reward = {
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_preparatory_conference
+	icon = GFX_goals_CPC_1968_preliminary_meeting
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_5_1_festival
+	}
+	relative_position_id = CPC_1968_5_1_festival
+	x = 0
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = {
+		country_event = {
+			id = CPC_9th_congress.2
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_deputies_from_SIC
+	icon = GFX_goals_CPC_1968_deputies_from_SIC
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_preparatory_conference
+	}
+	relative_position_id = CPC_1968_preparatory_conference
+	x = -2
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = {
+		country_event = { id = CPC_9th_congress.11 days = 3 }
+		TNO_improve_healthcare_med = yes
+		TNO_improve_army_professionalism_med = yes
+		TNO_improve_industrial_equipment_med = yes
+		XIK = {
+		    set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 } 
+			econ_GDP_boost_once_percentage = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_deputies_from_QIN
+	icon = GFX_goals_CPC_1968_deputies_from_QIN
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_preparatory_conference
+	}
+	relative_position_id = CPC_1968_preparatory_conference
+	x = 0
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = { 
+		country_event = {
+			id = CPC_9th_congress.3
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_deputies_from_XIN
+	icon = GFX_goals_CPC_1968_deputies_from_XIN
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_preparatory_conference
+	}
+	relative_position_id = CPC_1968_preparatory_conference
+	x = 2
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = {
+		if = {
+			limit = { HTC = { is_puppet_of = CPC } }
+			country_event = { id = CPC_9th_congress.16 days = 3 }
+			hidden_effect = {
+				set_temp_variable = { NP_speed_tmp = 1.5 }
+				NADT_NP_change_monthly_speed = yes
+			}
+			custom_effect_tooltip = "TER_XJ_SP_ended"
+		}
+		else = {
+			declare_war_on = {
+				target = HTC
+				type = puppet_wargoal_focus
+			}
+			declare_war_on = {
+				target = ROS
+				type = puppet_wargoal_focus
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_deputies_from_XIK
+	icon = GFX_goals_CPC_1968_deputies_from_XIK
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_deputies_from_SIC
+	}
+	relative_position_id = CPC_1968_deputies_from_SIC
+	x = 0
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = {
+		XIK = { clr_country_flag = SWB_focus_begins }
+		annex_country = {
+			target = XIK
+			transfer_troops = yes
+		}
+		clr_country_flag = SWB_focus_begins
+		set_variable = { SWB_focus_state^0 = 1 }
+		set_variable = { SWB_focus_state^1 = 1 }
+		set_variable = { SWB_focus_state^2 = 1 }
+		set_variable = { SWB_focus_state^3 = 1 }
+		hidden_effect = {
+			every_state = {
+				if = { limit = { is_core_of = XIK }
+					add_core_of = CPC
+					remove_core_of = XIK
+				}
+			}
+			Alert_SWB_focus_enabled_alerts = yes 
+			if = {
+				limit = { check_variable = { CPC_hosting_service_SWB_var = 2 } }
+				country_event = TER_support_backend_events.7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_deputies_from_QGN
+	icon = GFX_goals_CPC_1968_deputies_from_QGN
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_deputies_from_QIN
+	}
+	relative_position_id = CPC_1968_deputies_from_QIN
+	x = 0
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = { 
+		add_stability = 0.1
+		TNO_improve_admin_efficiency_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_deputies_from_TIB
+	icon = GFX_goals_CPC_1968_deputies_from_TIB
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_deputies_from_XIN
+	}
+	relative_position_id = CPC_1968_deputies_from_XIN
+	x = 0
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = { 
+		country_event = { id = CPC_9th_congress.12 days = 3 }
+		annex_country = {
+			target = XGZ
+			transfer_troops = yes
+		}
+		hidden_effect = {
+			every_state = {
+				if = { limit = { is_core_of = XGZ }
+					add_core_of = CPC
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_central_ministries
+	icon = GFX_goals_CPC_1968_central_ministries
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_deputies_from_TIB
+	}
+	prerequisite = {
+		focus = CPC_1968_deputies_from_QGN
+	}
+	prerequisite = {
+		focus = CPC_1968_deputies_from_XIK
+	}
+	relative_position_id = CPC_1968_deputies_from_QGN
+	x = 0
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = { 
+		country_event = CPC_9th_congress.5
+		hidden_effect = {
+			country_event = {
+				id = CPC_9th_congress.8
+				days = 4
+			}
+			country_event = {
+				id = CPC_9th_congress.9
+				days = 10
+			}
+			country_event = {
+				id = CPC_9th_congress.10
+				days = 13
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_interior_ministry
+	icon = GFX_goals_CPC_1968_interior_ministry
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_central_ministries
+	}
+	relative_position_id = CPC_1968_central_ministries
+	x = -3
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = { 
+		country_event = CPC_9th_congress.15
+		TNO_improve_admin_efficiency_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_industry_ministry
+	icon = GFX_goals_CPC_1968_industry_ministry
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_central_ministries
+	}
+	relative_position_id = CPC_1968_central_ministries
+	x = -1
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = { 
+		CPC_PLAAF_dummy_swap = yes
+		country_event = CPC_9th_congress.13
+		TNO_improve_industrial_expertise_low = yes
+		TNO_improve_industrial_equipment_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_agriculture_ministry
+	icon = GFX_goals_CPC_1968_agriculture_ministry
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_central_ministries
+	}
+	relative_position_id = CPC_1968_central_ministries
+	x = 1
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = {
+		country_event = CPC_9th_congress.14
+		TNO_improve_agriculture_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_foreign_ministry
+	icon = GFX_goals_CPC_1968_foreign_ministry
+	cost = 1
+	prerequisite = {
+		focus = CPC_1968_central_ministries
+	}
+	relative_position_id = CPC_1968_central_ministries
+	x = 3
+	y = 1
+	available = {}
+	bypass = {}
+	completion_reward = { 
+		country_event = CPC_9th_congress.6
+		TNO_improve_trade_laws_policy_effectiveness_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_1968_GOOD_NEWS
+	icon = GFX_goals_CPC_1968_GOOD_NEWS
+	cost = 1
+	available = {
+		is_faction_leader = yes
+		has_completed_focus = CPC_victory_in_southeast
+	}
+	prerequisite = {
+		focus = CPC_1968_foreign_ministry
+	}
+	prerequisite = {
+		focus = CPC_1968_agriculture_ministry
+	}
+	prerequisite = {
+		focus = CPC_1968_industry_ministry
+	}
+	prerequisite = {
+		focus = CPC_1968_interior_ministry
+	}
+	relative_position_id = CPC_1968_central_ministries
+	x = 0
+	y = 2
+	available = {}
+	bypass = {}
+	completion_reward = { 
+		country_event = {
+			id = CPC_9th_congress.7
+			days = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_BEGINS
+	icon = GFX_goals_CPC_NUKE_BEGINS
+	relative_position_id = CPC_1968_5_1_festival
+	cost = 3
+	x = 8
+	y = 0
+	available = { 
+		CPC_phase_2_done_most_focuses = yes
+	}
+	bypass = {}
+	completion_reward = { 
+		add_research_slot = 1
+		TNO_improve_academic_base_low = yes
+		TNO_improve_research_facilities_med = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_select_a_manager
+	icon = GFX_goals_CPC_NUKE_confirm_the_manager
+	relative_position_id = CPC_NUKE_BEGINS
+	prerequisite = {
+		focus = CPC_NUKE_BEGINS
+	}
+	cost = 3
+	x = 0
+	y = 1
+	available = {
+	}
+	bypass = {}
+	completion_reward = { 
+		NADT_nuclear_program_initialize = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_expand_research_institute
+	icon = GFX_goals_CPC_NUKE_expand_research_institute
+	relative_position_id = CPC_NUKE_select_a_manager
+	prerequisite = {
+		focus = CPC_NUKE_select_a_manager
+	}
+	cost = 3
+	x = -2
+	y = 1
+	available = {
+	}
+	bypass = {}
+	completion_reward = { 
+		set_temp_variable = { debt_temp = 0.1 }
+		econ_national_debt_change = yes
+		set_temp_variable = { NP_speed_tmp = 1 }
+		NADT_NP_change_monthly_speed = yes
+		random_owned_controlled_state = {
+			add_building_construction = {
+				type = schools
+				level = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_select_college_talents
+	icon = GFX_goals_CPC_NUKE_select_the_researchers
+	relative_position_id = CPC_NUKE_expand_research_institute
+	prerequisite = {
+		focus = CPC_NUKE_expand_research_institute
+	}
+	cost = 3
+	x = 0
+	y = 1
+	available = {
+	}
+	bypass = {}
+	completion_reward = { 
+		set_temp_variable = { debt_temp = 0.1 }
+		econ_national_debt_change = yes
+		TNO_improve_academic_base_low = yes
+		set_temp_variable = { NP_speed_tmp = 1 }
+		NADT_NP_change_monthly_speed = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_verify_the_nuclear_theory
+	icon = GFX_goals_CPC_NUKE_verify_the_nuclear_theory
+	relative_position_id = CPC_NUKE_select_college_talents
+	prerequisite = {
+		focus = CPC_NUKE_select_college_talents
+	}
+	cost = 3
+	x = 0
+	y = 1
+	available = {
+	}
+	bypass = {}
+	completion_reward = { 
+		set_temp_variable = { NP_prog_tmp = 10 }
+		NADT_NP_instantly_change_progress = yes
+		TNO_improve_research_facilities_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_select_a_experimental_site
+	icon = GFX_goals_CPC_NUKE_select_a_experimental_site
+	relative_position_id = CPC_NUKE_select_a_manager
+	prerequisite = {
+		focus = CPC_NUKE_select_a_manager
+	}
+	cost = 3
+	x = 2
+	y = 1
+	available = {
+	}
+	bypass = {}
+	completion_reward = { 
+		set_temp_variable = { NP_speed_tmp = 0.5 }
+		NADT_NP_change_monthly_speed = yes
+		if = {
+			limit = { HTC = { is_puppet_of = CPC } }
+			617 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+				}
+			}
+		}
+		else = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_supporting_industries
+	icon = GFX_goals_CPC_NUKE_supporting_industries
+	relative_position_id = CPC_NUKE_select_a_experimental_site
+	prerequisite = {
+		focus = CPC_NUKE_select_a_experimental_site
+	}
+	cost = 3
+	x = 0
+	y = 1
+	available = {
+	}
+	bypass = {}
+	completion_reward = { 
+		set_temp_variable = { debt_temp = 0.3 }
+		econ_national_debt_change = yes
+		TNO_improve_industrial_expertise_low = yes
+		TNO_improve_industrial_equipment_low = yes
+		set_temp_variable = { NP_speed_tmp = 0.5 }
+		NADT_NP_change_monthly_speed = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_searching_uranium_mine
+	icon = GFX_goals_CPC_NUKE_where_is_the_FUCKING_Uranium_deposit
+	relative_position_id = CPC_NUKE_supporting_industries
+	prerequisite = {
+		focus = CPC_NUKE_supporting_industries
+	}
+	cost = 3
+	x = 0
+	y = 1
+	available = {
+	}
+	bypass = {}
+	completion_reward = { 
+		905 = {
+			add_resource = {
+				type = uranium
+				amount = 6
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_NUKE_day_by_day
+	icon = GFX_goals_CPC_NUKE_day_by_day
+	relative_position_id = CPC_NUKE_searching_uranium_mine
+	prerequisite = {
+		focus = CPC_NUKE_searching_uranium_mine
+	}
+	prerequisite = {
+		focus = CPC_NUKE_verify_the_nuclear_theory
+	}
+	cost = 3
+	x = -2
+	y = 1
+	available = {
+	}
+	bypass = {}
+	completion_reward = { 
+		set_temp_variable = { NP_speed_tmp = 1 }
+		NADT_NP_change_monthly_speed = yes
+		set_temp_variable = { NP_prog_tmp = 5 }
+		NADT_NP_instantly_change_progress = yes
+		TNO_improve_research_facilities_med = yes
+	}
+}

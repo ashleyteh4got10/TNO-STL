@@ -1,0 +1,1030 @@
+on_actions = {
+	on_state_control_changed = {
+		effect = {
+			###MUSCOVITE AWAKENING###
+			
+			if = {
+				limit = {
+					FROM = {
+						OR = {
+							#has_idea = MSK_dissolution_start
+							original_tag = GER
+							is_puppet_of = GER
+							original_tag = OKB
+							original_tag = TUR
+							original_tag = FIN
+							original_tag = ROM
+							original_tag = UKR
+							original_tag = CRI
+							original_tag = CAU
+
+							original_tag = JAP
+							is_puppet_of = JAP
+							original_tag = CHI
+							is_puppet_of = CHI
+							original_tag = MEN
+
+							
+							is_moskowien_splits = yes
+						}
+					}
+					ROOT = {
+						OR = {
+							original_tag = MOS
+							original_tag = EST
+							original_tag = LAT
+							original_tag = LIT
+							original_tag = BLR
+							
+							AND = {
+								original_tag = UKR
+								NOT = {
+									is_puppet_of = GER 
+								}
+							}
+							
+							AND = {
+								original_tag = CAU
+								NOT = {
+									is_puppet_of = GER 
+								}
+							}
+
+							AND = {
+								original_tag = OST
+								NOT = {
+									is_puppet_of = GER 
+								}
+							}
+
+							AND = {
+								original_tag = OKB
+								NOT = {
+									is_puppet_of = GER 
+								}
+							}
+
+							AND = {
+								original_tag = FUK
+								NOT = {
+									is_puppet_of = GER 
+								}
+							}
+
+							AND = {
+								original_tag = UKS
+								NOT = {
+									is_puppet_of = GER 
+								}
+							}
+							AND = {
+								original_tag = ORL
+								NOT = {
+									is_puppet_of = GER 
+								}
+							}
+
+							is_russian_nation = yes
+							
+						}
+						NOT = {
+							AND = { 
+								tag = PRM
+								has_government = national_socialism
+							}
+						}
+					}
+				}
+				# North to South #
+				if = {
+					limit = {
+						FROM.FROM = {state = 195} #St. Petersburg
+					}
+					if = {
+						limit = { 
+							has_global_flag = RUS_swrw_ongoing_global  #This flag seems to be unused, only one hit in all events. Keeping this here specifically as it was here.
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.7 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.7 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 1442 } } #Moscow
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						news_event = { id = WORLD.40004 hours = 6 }
+						RUS = {
+							set_temp_variable = { temp_exhaustion = -5 }
+							WRW_add_war_exhaustion = yes
+						}
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 5 } } #Kongisberg/East Prussia
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = OMS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+							NOT = { has_global_flag = SWRW_WW3_STARTED } #fuck dumb ai will cap it twice
+						}
+						set_global_flag = OMS_CPS_OFN_war_inevitable
+						news_event = { id = SWRW_Omskmilestones.1 hours = 6 }
+						GER = { 
+							add_province_modifier = {
+								static_modifiers = { GER_Endsieg }
+								province = { all_provinces = yes }
+							}
+						}
+						set_global_flag = SWRW_WW3_STARTED
+						RUS = {
+							set_temp_variable = { temp_exhaustion = -5 }
+							WRW_add_war_exhaustion = yes		
+							country_event = { id = OMS_checks.3 days = 8 } #This is what causes Japanese intervention! Konigsberg is the likeliest city to fall, and this could be cheesed, but I think this is good enough.							
+						}
+					}
+				}
+
+				else_if = {
+					limit = { FROM.FROM = { state = 242 } } #Smolensk
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}						
+						ROOT = { country_event = { id = ceswrw.3 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.3 hours = 6 } }
+						if = {
+							limit = {
+								GER = { has_war_with = OMS }
+								NOT = { has_global_flag = Smolensk_triggered_event }
+							}
+							set_global_flag = Smolensk_triggered_event
+							OMS = {country_event = { id = OMS_POSTNUKE.103 days = 7 }}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						FROM.FROM = {state = 243} #Volgograd
+					}
+					if = {
+						limit = { GER = { has_war_with = RUS } }
+						ROOT = { country_event = { id = ceswrw.4 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.4 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 244 } } #Astrakhan
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.11 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.11 hours = 6 } }
+					}
+				}
+				# Caucasia
+				else_if = {
+					limit = { FROM.FROM = { state = 232 } } #Chechnya
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.12 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.12 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 231 } } #Georgia/Sakartvelo
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.8 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.8 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 1552 } } #Baku
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.6 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.6 hours = 6 } }
+					}
+				}
+				# Ukraine
+				else_if = {
+					limit = { FROM.FROM = { state = 1397 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.2 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.2 hours = 6 } }
+					}
+				}
+			
+			}
+			else = {
+				if = {
+					limit = { FROM.FROM = { state = 195 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.32 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.32 hours = 6 } }
+						if = {
+							limit = {
+								RUS = {original_tag = OMS}
+							}
+							country_event = { id = OMS_POSTNUKE.131 days = 1 }
+						}
+					}
+				}
+				if = {
+					limit = { FROM.FROM = { state = 242 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.33 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.33 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 243 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.33 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.33 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 244 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.36 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.36 hours = 6 } }
+					}
+				}
+				# Caucasia
+				else_if = {
+					limit = { FROM.FROM = { state = 232 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.37 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.37 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 231 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.38 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.38 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 1552 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.39 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.39 hours = 6 } }
+					}
+				}
+				# Ukraine
+				else_if = {
+					limit = { FROM.FROM = { state = 1532 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.30 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.30 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 1428 } }
+					1428 = { reset_state_name = yes }
+					reset_province_name = 525
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.34 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.34 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 1397 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.31 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.31 hours = 6 } }
+					}
+				}
+			}
+			
+			if = {
+				limit = { ROOT = { is_russian_aligned = yes } }
+				
+				## RUSSIAN STATES ##
+				
+				if = {
+					limit = { FROM.FROM = { state = 214 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.9 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.9 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 397 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.10 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.10 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 400 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.13 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.13 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 571 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.14 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.14 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 403 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.15 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.15 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 570 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.16 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.16 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 754 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.17 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.17 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 578 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.18 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.18 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 249 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.19 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.19 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 653 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.20 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.20 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 863 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}						ROOT = { country_event = { id = ceswrw.21 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.21 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 850 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.22 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.22 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 221 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = OMS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						OMS = { country_event = { id = OMS_POSTNUKE.115 days = 7 } }
+					}
+				}
+				
+				## JAPAN ##
+				else_if = {
+					limit = { FROM.FROM = { state = 809 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = OMS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}	
+						OMS = { country_event = { id = OMS_far_eastern.15 hours = 6 } }
+					}
+					else = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.59 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.59 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 810 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.60 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.60 hours = 6 } }
+					}
+				}
+				#else_if = { # japan irkutsk
+				#	limit = { FROM.FROM = { state = 566 } }
+				#	if = {
+				#		limit = { JAP = { has_war_with = RUS } }
+				#		OMS = { clr_country_flag = OMS_irkutsk_lost }
+				#	}
+				#}
+
+				## GERMANY ##
+				
+				if = {
+					limit = { FROM.FROM = { state = 64 } } #Berlin/Germania
+					if = {
+						limit = { 
+							AND = {
+								GER = { 
+									has_war_with = RUS 
+								}
+								NOT = {
+									GER = {
+										has_war_with = OMS
+									}	
+								}
+							}
+						}
+						ROOT = { country_event = { id = ceswrw.23 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.23 hours = 6 } }
+					}
+					if = {
+						limit = {
+							GER = {
+								has_war_with = OMS
+							}
+						}
+						OMS = { country_event = { id = OMS_nuclearfoci.1 hours = 1 } }
+					}
+					if = {
+						limit = {
+							GER = {
+								has_war_with = OMS
+							}
+							has_global_flag = PostApocTime
+							NOT = { has_global_flag = already_trigger_postnuke123_twice }
+						}
+						OMS = { country_event = { id = OMS_POSTNUKE.123 days = 2 } }
+						set_global_flag = already_trigger_postnuke123_twice
+					}
+					
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 85 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}						
+						ROOT = { country_event = { id = ceswrw.24 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.24 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 62 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.25 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.25 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 66 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.26 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.26 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 775 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.29 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.29 hours = 6 } }
+					}
+				}
+				
+				## POLAND ##
+				
+				else_if = {
+					limit = { FROM.FROM = { state = 10 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.27 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.27 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 88 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.28 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.28 hours = 6 } }
+					}
+				}
+			}
+			
+			else = {
+				
+				## RUSSIAN STATES ##
+				
+				if = {
+					limit = { FROM.FROM = { state = 214 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.40 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.40 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 397 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.42 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.42 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 400 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.41 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.41 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 571 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.43 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.43 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 403 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.44 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.44 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 570 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}					
+						ROOT = { country_event = { id = ceswrw.45 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.45 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 754 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}				
+						ROOT = { country_event = { id = ceswrw.46 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.46 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 578 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}				
+						ROOT = { country_event = { id = ceswrw.47 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.47 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 249 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}				
+						ROOT = { country_event = { id = ceswrw.48 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.48 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 653 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}			
+						ROOT = { country_event = { id = ceswrw.49 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.49 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 863 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}		
+						ROOT = { country_event = { id = ceswrw.50 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.50 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 850 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}			
+						ROOT = { country_event = { id = ceswrw.51 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.51 hours = 6 } }
+					}
+				}
+				
+				## GERMANY ##
+				
+				if = {
+					limit = { FROM.FROM = { state = 64 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}			
+						ROOT = { country_event = { id = ceswrw.52 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.52 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 85 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}			
+						ROOT = { country_event = { id = ceswrw.53 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.53 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 62 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}		
+						ROOT = { country_event = { id = ceswrw.54 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.54 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 66 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}	
+						ROOT = { country_event = { id = ceswrw.55 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.55 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 775 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.58 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.58 hours = 6 } }
+					}
+				}
+				
+				## POLAND ##
+				
+				else_if = {
+					limit = { FROM.FROM = { state = 10 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.56 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.56 hours = 6 } }
+					}
+				}
+				else_if = {
+					limit = { FROM.FROM = { state = 88 } }
+					if = {
+						limit = { 
+							NOT = { has_global_flag = RUS_swrw_End } #This is set in Russian peacedeals
+							GER = { has_war_with = RUS } #Duh.
+							NOT = { has_global_flag = NUCLEAR_WAR } #Nuclear war has not happened
+						}
+						ROOT = { country_event = { id = ceswrw.57 hours = 6 } }
+						FROM = { country_event = { id = ceswrw.57 hours = 6 } }
+					}
+				}
+			}
+		}
+	}
+	
+	### TENSION ###
+	
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = { 
+					has_global_flag = RUS_swrw_ongoing_global 
+					NOT = { has_global_flag = RUS_swrw_End } 
+					}
+
+				if = { # increases tension for every conquered state
+					limit = {
+						FROM.FROM = {
+							OR = {
+								is_core_of = PAU
+								is_core_of = MCW
+								is_core_of = OKB
+							}
+						}
+					}
+					set_temp_variable = { temp_tension = 0.5 }
+					WRW_add_tension = yes
+				}
+				else_if = { 
+					limit = {
+						FROM.FROM = {
+							is_core_of = UKR
+						}
+					}
+					set_temp_variable = { temp_tension = 1 }
+					WRW_add_tension = yes
+				}
+				else_if = { 
+					limit = {
+						FROM.FROM = {
+							is_core_of = CAU
+						}
+					}
+					set_temp_variable = { temp_tension = 1 }
+					WRW_add_tension = yes
+				}
+				else_if = { 
+					limit = {
+						FROM.FROM = {
+							OR = {
+								is_core_of = OST
+								is_core_of = BLR
+								is_core_of = LIT
+								is_core_of = LAT
+								is_core_of = EST
+								is_core_of = FIN
+								is_core_of = NOR
+								is_core_of = PER
+							}
+						}
+					}
+					set_temp_variable = { temp_tension = 1.5 }
+					WRW_add_tension = yes
+				}
+				else_if = { 
+					limit = {
+						FROM.FROM = {
+							OR = {
+								is_core_of = POL
+								is_core_of = GGN
+								is_core_of = ENG
+								is_core_of = ROM
+								is_core_of = HUN
+								is_core_of = SLO
+							}
+						}
+					}
+					set_temp_variable = { temp_tension = 3 }
+					WRW_add_tension = yes
+				}
+				else_if = { 
+					limit = {
+						FROM.FROM = {
+							is_core_of = GER
+						}
+					}
+					set_temp_variable = { temp_tension = 5 }
+					WRW_add_tension = yes
+				}
+			}
+		}
+	}
+}

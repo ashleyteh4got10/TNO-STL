@@ -1,0 +1,535 @@
+﻿##################################
+###   Great Asian War Events   ###
+##################################
+
+add_namespace = tnolar_gaw
+
+#ids: 
+#1-99 - 省份陷落事件
+#100-199 - 盟国投降事件
+#999 - 日本本土陷落事件
+#2000 - 美德援助事件
+
+
+
+country_event = { #满洲边境光复
+	id = tnolar_gaw.1
+	title = tnolar_gaw.1.t
+	desc = tnolar_gaw.1.d
+	picture = GFX_TNOLAR_report_event_Broken_Great_Wall
+
+	trigger = {
+		MAN = {
+			OR = {
+       			NOT = {
+					has_full_control_of_state = 1640	#LAR地块-锦州
+				}
+				NOT = {
+					has_full_control_of_state = 610		#LAR地块-热河
+				}
+				NOT = {
+					has_full_control_of_state = 1641	#LAR地块-兴安西
+				}
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.1"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.1.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+	}
+}
+
+country_event = { #锦州光复
+	id = tnolar_gaw.2
+	title = tnolar_gaw.2.t
+	desc = tnolar_gaw.2.d
+	picture = GFX_TNOLAR_report_event_mother_and_child
+
+	trigger = {
+		MAN = {
+			NOT = {
+       			controls_province = 9835	#LAR地块-锦州城
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.2"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.2.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+	}
+}
+
+country_event = { #沈阳光复
+	id = tnolar_gaw.3
+	title = tnolar_gaw.3.t
+	desc = tnolar_gaw.3.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao2
+
+	trigger = {
+		MAN = {
+			NOT = {
+       			controls_state = 1265	#LAR地块-奉天
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.3"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.3.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+	}
+}
+
+country_event = { #新京光复
+	id = tnolar_gaw.4
+	title = tnolar_gaw.4.t
+	desc = tnolar_gaw.4.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_draw
+
+	trigger = {
+		MAN = {
+			NOT = {
+       			controls_state = 328	#LAR地块-新京
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.4"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.4.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+
+		hidden_effect = {
+			country_event = {
+				id = tnolar_chi_flavor.600
+				days = 7
+				random_days = 4
+			}
+		}
+	}
+}
+
+country_event = { #大连光复
+	id = tnolar_gaw.5
+	title = tnolar_gaw.5.t
+	desc = tnolar_gaw.5.d
+	picture = GFX_TNOLAR_report_event_Ship_is_on_fire
+
+	trigger = {
+		JAP = {
+			NOT = {
+       			controls_state = 810	#LAR地块-大连
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.5"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.5.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+	}
+}
+
+country_event = { #哈尔滨光复
+	id = tnolar_gaw.6
+	title = tnolar_gaw.6.t
+	desc = tnolar_gaw.6.d
+	picture = GFX_TNOLAR_report_event_Burnt_Manchukuo_posters
+
+	trigger = {
+		MAN = {
+			NOT = {
+       			controls_state = 801	#LAR地块-哈尔滨
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.6"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.6.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.14
+				}
+			}
+		}
+	}
+}
+
+country_event = { #齐齐哈尔光复
+	id = tnolar_gaw.7
+	title = tnolar_gaw.7.t
+	desc = tnolar_gaw.7.d
+	picture = GFX_TNOLAR_report_event_the_red_army
+
+	trigger = {
+		MAN = {
+			NOT = {
+       			controls_province = 1588	#LAR地块-齐齐哈尔
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.7"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.7.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+	}
+}
+
+country_event = { #海参崴光复
+	id = tnolar_gaw.8
+	title = tnolar_gaw.8.t
+	desc = tnolar_gaw.8.d
+	picture = GFX_TNOLAR_report_event_Flag_of_the_Republic_of_China_stamp
+
+	trigger = {
+		JAP = {
+			NOT = {
+       			controls_state = 809	#LAR地块-海参崴
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.8"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.8.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+	}
+}
+
+country_event = { #安东光复
+	id = tnolar_gaw.9
+	title = tnolar_gaw.9.t
+	desc = tnolar_gaw.9.d
+	picture = GFX_TNOLAR_report_event_sunset
+
+	trigger = {
+		MAN = {
+			NOT = {
+       			controls_province = 6981	#LAR地块-安东城
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.9"
+	}
+
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_gaw.9.a
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+		CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -25 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+country_event = { #朝鲜边界被越过
+	id = tnolar_gaw.999
+	title = tnolar_gaw.999.t
+	desc = tnolar_gaw.999.d
+	picture = GFX_
+
+	trigger = {
+		JAP = {
+			OR = {
+				NOT = {
+       				has_full_control_of_state = 1024	#LAR地块-平北
+				}
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = JAP
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.1000"
+	}
+
+	fire_only_once = yes
+	timeout_days = 7
+
+	
+	option = {
+		name = tnolar_gaw.999.a
+		hidden_effect = {
+			set_global_flag = TNOLAR_GAW_Tsushima_Tunnel_blocked
+
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.102
+				}
+			}
+		}
+	}
+}
+
+country_event = { #日本本土陷落
+	id = tnolar_gaw.1000
+	title = tnolar_gaw.1000.t
+	desc = tnolar_gaw.1000.d
+	picture = GFX_
+
+	trigger = {
+		JAP = {
+			OR = {
+				NOT = {
+       				has_full_control_of_state = 1845	#LAR地块-福冈
+				}
+				NOT = {
+       				has_full_control_of_state = 650		#LAR地块-广岛
+				}
+				NOT = {
+       				has_full_control_of_state = 631		#LAR地块-京都
+				}
+				NOT = {
+       				has_full_control_of_state = 1834	#LAR地块-名古屋
+				}
+				NOT = {
+       				has_full_control_of_state = 536		#LAR地块-北海道
+				}
+				NOT = {
+       				has_full_control_of_state = 1821	#LAR地块-仙台
+				}
+			}
+		}
+		has_global_flag = TNOLAR_GAW_in_progress
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.1000"
+	}
+
+	fire_only_once = yes
+	timeout_days = 7
+
+	
+	option = { #谈判-胜利结局
+		name = tnolar_gaw.1000.a
+		country_event = tnolar_chi.700
+	}
+	option = { #拒绝-核灭世
+		name = tnolar_gaw.1000.b
+		hidden_effect = {
+			JAP = {
+				country_event = {
+					id = nuclearwar.6
+					days = 1
+				}
+			}
+		}
+	}
+}
+
+country_event = {	#德美援助
+	id = tnolar_gaw.2000
+	immediate = { log = "[GetDateText]: [Root.GetName]: event tnolar_gaw.2000" }
+	title = tnolar_gaw.2000.t
+	desc = tnolar_gaw.2000.d
+	picture = GFX_report_event_CHI_soldiers_jungle
+
+	fire_only_once = no
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_gaw.2000.a
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+			producer = GER
+		}
+		#add_equipment_to_stockpile = {
+		#	type = support_equipment
+		#	amount = 200
+		#	producer = JAP
+		#}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 100
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 100
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = MBT_chassis
+			amount = 20
+			producer = GER
+		}
+		set_temp_variable = { money_reserves_temp = 0.6 }
+		econ_money_reserves_change_raw_money = yes
+
+		hidden_effect = {
+			if = {
+				limit = {
+					OR = {
+						has_war_with = JAP
+						has_country_flag = CHI_war_prepare
+					}
+				}
+				country_event = {
+					id = tnolar_gaw.2000
+					days = 60
+					random_days = 3
+				}
+			}
+		}
+	}
+}
+

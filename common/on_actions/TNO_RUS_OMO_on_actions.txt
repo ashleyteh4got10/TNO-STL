@@ -1,0 +1,110 @@
+on_actions = {
+    on_capitulation = {
+        effect = {
+            if = {
+                limit = {
+                    FROM = {
+                        tag = OMO
+                    }
+                }
+                if = {
+                    limit = {
+                        ROOT = {
+                            is_in_faction_with = GER
+                            OR = {
+                                tag = POL
+                                tag = GGN
+                                tag = MCW
+                                tag = CAU
+                                tag = BLR
+                                tag = DST
+                                tag = OST
+                                tag = UKR
+                            }
+                        }
+                    }
+                    ROOT = {
+                        every_owned_state = {
+                            add_core_of = OMO
+                        }
+                    }
+                    OMO = {
+                        annex_country = {
+                            target = ROOT
+                            transfer_troops = no
+                        }
+                    }
+                    if = {
+                        limit = {
+                            NOT = {
+                                country_exists = POL
+                                country_exists = UKR
+                                country_exists = BLR
+                                country_exists = DST
+                                country_exists = OST
+                                country_exists = GGN
+                                country_exists = CAU
+                                country_exists = MCW
+                            }
+                        }
+                        OMO = {
+                            transfer_state = 195
+                            add_state_core = 195
+                            transfer_state = 196
+                            add_state_core = 196
+                            transfer_state = 137
+                            add_state_core = 137
+                            transfer_state = 1532
+                            add_state_core = 1532
+                            every_state = {
+                                limit = {
+                                    OR = {
+                                        is_core_of = DST
+                                        is_core_of = OST
+                                        is_core_of = BLR
+                                    }
+                                }
+                                transfer_state_to = OMO
+                                add_core_of = OMO
+                            }
+                            every_country = {
+                                limit = {
+                                    is_in_faction_with = GER
+                                }
+                                white_peace = PREV
+                            }
+                        }
+                        if = {
+                            limit = { #compatibility with Goering Expanded because why the fuck no
+                                has_global_flag = german_civil_war_goeringvic
+                            }
+                            GER = {
+                                country_event = { id = goering_schoerner.1 days = 3 }
+                            }
+                        }
+                    }
+                    set_global_flag = skip_default_capitulation
+                }
+                else = {
+                    ROOT = {
+                        white_peace = FROM
+                        leave_faction = yes
+                        remove_faction_status = yes
+                        if = {
+                            limit = {
+                                is_subject_of = GER
+                            }
+                            GER = {
+                                set_autonomy = {
+                                    target = ROOT
+                                    autonomy_state = autonomy_free
+                                }
+                            }
+                        }
+                    }
+                    set_global_flag = skip_default_capitulation
+                }
+            }
+        }
+    }
+}

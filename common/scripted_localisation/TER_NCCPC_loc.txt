@@ -1,0 +1,919 @@
+defined_text = {
+	name = TER_bottom_CPC_logo
+	text = {
+		trigger = { check_variable = { CPC_GUI_tab_frames^0 = 2 } }
+		localization_key = GFX_NCCPC_bottom_entry_right
+	}
+	text = {
+		trigger = { check_variable = { CPC_GUI_tab_frames^1 = 2 } }
+		localization_key = GFX_NWB_bottom_entry_right
+	}
+	text = {
+		trigger = { check_variable = { CPC_GUI_tab_frames^2 = 2 } }
+		localization_key = GFX_SWB_bottom_entry_right
+	}
+	text = {
+		trigger = { check_variable = { CPC_GUI_tab_frames^3 = 2 } }
+		localization_key = GFX_XJB_bottom_entry_right
+	}
+	text = {
+		trigger = { check_variable = { CPC_GUI_tab_frames^4 = 2 } }
+		localization_key = GFX_SCB_bottom_entry_right
+	}
+}
+
+defined_text = {
+	name = TER_GDP_present_from_NCCPC
+	text = {
+		trigger = { check_variable = { CPC.CPC_NCCPC_add_to_GDP_growth < 0 } }
+		localization_key = CPC_GDP_pct_1
+	}
+	text = {
+		trigger = { check_variable = { CPC.CPC_NCCPC_add_to_GDP_growth = 0 } }
+		localization_key = CPC_GDP_pct_2
+	}
+	text = {
+		trigger = { check_variable = { CPC.CPC_NCCPC_add_to_GDP_growth > 0 } }
+		localization_key = CPC_GDP_pct_3
+	}
+}
+
+defined_text = {
+	name = CPC_red_star_in_rev_base_XJB
+	text = {
+		trigger = { 
+			CPC = { 
+				NOT = { has_country_flag = CPC_unlock_XJB } 
+				NOT = { has_country_flag = CPC_XJ_mess_up }
+			}
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+		}
+		localization_key = CPC_red_star_in_rev_base_lost_relation
+	}
+	text = {
+		trigger = { 
+			CPC = { 
+				NOT = { has_country_flag = CPC_unlock_XJB } 
+				has_country_flag = CPC_XJ_mess_up 
+			}
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+		}
+		localization_key = CPC_red_star_in_rev_base_dissolution
+	}
+	text = {
+		localization_key = CPC_red_star_in_rev_base_XJB_tt
+	}
+}
+
+defined_text = {
+	name = CPC_red_star_in_rev_base_NWB
+	text = {
+		trigger = { 
+			CPC = { NOT = { has_country_flag = CPC_unlock_NWB } } 
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+		}
+		localization_key = CPC_red_star_in_rev_base_stop
+	}
+	text = {
+		localization_key = CPC_red_star_in_rev_base_NWB_tt
+	}
+}
+
+defined_text = {
+	name = CPC_red_star_in_rev_base_SWB
+	text = {
+		trigger = { 
+			CPC = { NOT = { has_country_flag = CPC_unlock_SWB } } 
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+		}
+		localization_key = CPC_red_star_in_rev_base_lost_relation
+	}
+	text = {
+		localization_key = CPC_red_star_in_rev_base_SWB_tt
+	}
+}
+
+defined_text = {
+	name = Get_Nuclear_modifier_tt
+	text = {
+		trigger = { CPC = { has_country_flag = TER_We_have_nuke } }
+		localization_key = Get_Nuclear_modifier_tt_3
+	}
+	text = {
+		trigger = { CPC = { has_country_flag = TER_Nuclear_Program_Started } }
+		localization_key = Get_Nuclear_modifier_tt_2
+	}
+	text = {
+		localization_key = Get_Nuclear_modifier_tt_1
+	}
+}
+
+defined_text = {
+	name = CPC_red_star_in_rev_base_SCB
+	text = {
+		trigger = { 
+			CPC = { 
+				has_country_flag = CPC_unlock_SCB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				QYC = {
+					NOT = { has_idea = SEA_stop_operation }
+				}
+		 	} 
+		}
+		localization_key = CPC_red_star_in_rev_base_SCB_tt
+	}
+	text = {
+		trigger = { QYC = { has_idea = SEA_stop_operation } }
+		localization_key = CPC_red_star_in_rev_base_stop
+	}
+	text = {
+		localization_key = CPC_red_star_in_rev_base_lost_relation
+	}
+}
+
+defined_text = {
+	name = TER_GDP_present_from_SWB
+	text = {
+		trigger = { check_variable = { CPC.SWB_gdp_growth_modifier < 0 } }
+		localization_key = CPC_GDP_pct_1
+	}
+	text = {
+		trigger = { check_variable = { CPC.SWB_gdp_growth_modifier = 0 } }
+		localization_key = CPC_GDP_pct_2
+	}
+	text = {
+		trigger = { check_variable = { CPC.SWB_gdp_growth_modifier > 0 } }
+		localization_key = CPC_GDP_pct_3
+	}
+}
+
+defined_text = {
+	name = CPC_pie_0_desc
+	text = {
+		trigger = {
+			has_country_flag = CPC_Mao_Zedong_Go
+		}
+		localization_key = CPC_NCCPC_Mao_entry_tt_2
+	}
+	text = {
+		localization_key = CPC_NCCPC_Mao_entry_tt
+	}
+}
+
+defined_text = {
+	name = CPC_pie_1_desc
+	text = {
+		trigger = {
+			has_country_flag = CPC_Liu_Shaoqi_Go
+		}
+		localization_key = CPC_NCCPC_Liu_entry_tt_2
+	}
+	text = {
+		localization_key = CPC_NCCPC_Liu_entry_tt
+	}
+}
+
+defined_text = {
+	name = CPC_pie_2_desc
+	text = {
+		trigger = {
+			has_country_flag = CPC_9th_congress_leader_changed
+		}
+		localization_key = CPC_NCCPC_Li_entry_tt_2
+	}
+	text = {
+		localization_key = CPC_NCCPC_Li_entry_tt
+	}
+}
+
+defined_text = {
+	name = CPC_brief_intro_2
+	text = {
+		trigger = {
+			has_country_flag = CPC_9th_congress_leader_changed
+		}
+		localization_key = CPC_li_power_2
+	}
+	text = {
+		localization_key = CPC_li_power
+	}
+}
+
+
+defined_text = {
+	name = CPC_pie_0_portrait
+	text = {
+		trigger = {
+			has_country_flag = CPC_9th_congress_leader_changed
+			has_country_flag = CPC_Mao_Zedong_Go
+		}
+		localization_key = GFX_pol_str_portrait_Jiang_Qing
+	}
+	text = {
+		trigger = {
+			has_country_flag = CPC_9th_congress_leader_changed
+			NOT = { has_country_flag = CPC_Mao_Zedong_Go }
+		}
+		localization_key = GFX_CPC_leader_Mao_ZeDong_old
+	}
+	text = {
+		localization_key = GFX_CPC_leader_Mao_ZeDong
+	}
+}
+
+defined_text = {
+	name = CPC_pie_1_portrait
+	text = {
+		trigger = {
+			has_country_flag = CPC_9th_congress_leader_changed
+			has_country_flag = CPC_Liu_Shaoqi_Go
+		}
+		localization_key = GFX_pol_str_portrait_Bo_YiBo_old
+	}
+	text = {
+		trigger = {
+			has_country_flag = CPC_9th_congress_leader_changed
+			NOT = { has_country_flag = CPC_Liu_Shaoqi_Go }
+		}
+		localization_key = GFX_CPC_leader_Liu_ShaoQi_old
+	}
+	text = {
+		localization_key = GFX_CPC_leader_Liu_ShaoQi
+	}
+}
+
+defined_text = {
+	name = CPC_pie_2_portrait
+	text = {
+		trigger = {
+			has_country_flag = CPC_9th_congress_leader_changed
+		}
+		localization_key = GFX_CPC_leader_Zhou_Yang
+	}
+	text = {
+		localization_key = GFX_CPC_leader_Li_LiSan
+	}
+}
+
+defined_text = {
+	name = CPC_pie_3_portrait
+	text = {
+		trigger = {
+			has_country_flag = CPC_9th_congress_leader_changed
+		}
+		localization_key = GFX_CPC_leader_Deng_XiaoPing_old
+	}
+	text = {
+		localization_key = GFX_CPC_leader_Deng_XiaoPing
+	}
+}
+
+defined_text = {
+	name = CPC_NCCPC_info_pics
+	text = {
+		trigger = { has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype }
+		localization_key = "mao_zedong_thought_TER_subtype_desc_pic"
+	}
+	text = {
+		trigger = { has_country_leader_ideology = communist_liu_shaoqi_thought_subtype }
+		localization_key = "Liu_Shaoqi_thought_subtype_desc_pic"
+	}
+	text = {
+		localization_key = ""
+	}
+}
+
+defined_text = {
+	name = TER_NCCPC_portraits_left
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 }
+					has_country_flag = CPC_Kangsheng_go }
+		localization_key = GFX_pol_str_portrait_Jiang_Qing
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 } }
+		localization_key = GFX_pol_str_portrait_Kang_Sheng
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = GFX_pol_str_portrait_Bo_YiBo_old
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 } }
+		localization_key = GFX_pol_str_portrait_Bo_YiBo
+	}
+	
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = GFX_pol_str_portrait_Hu_Jiwei
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 } }
+		localization_key = GFX_pol_str_portrait_Bo_Gu
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 3 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = GFX_pol_str_portrait_Chen_Yun_old
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 3 } }
+		localization_key = GFX_pol_str_portrait_Chen_Yun
+	}
+}
+
+defined_text = {
+	name = TER_NCCPC_names_left
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 }
+					has_country_flag = CPC_Kangsheng_go }
+		localization_key = CPC_Jiang_Qing
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 } }
+		localization_key = CPC_Kang_Sheng
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 } }
+		localization_key = CPC_Bo_Yibo
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = CPC_Hu_Jiwei
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 } }
+		localization_key = CPC_Bo_Gu
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 3 } }
+		localization_key = CPC_Chen_Yun
+	}
+}
+
+defined_text = {
+	name = TER_NCCPC_portraits_right
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = GFX_pol_str_portrait_Lin_Biao
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 } }
+		localization_key = GFX_pol_str_portrait_Gao_Gang
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = GFX_pol_str_portrait_Liu_Lantao
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 } }
+		localization_key = GFX_pol_str_portrait_Tao_Zhu
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = GFX_pol_str_portrait_Yu_Guangyuan
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 } }
+		localization_key = GFX_pol_str_Portrait_Zhang_WenTian
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 3 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = GFX_pol_str_portrait_Li_XianNian_old
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 3 } }
+		localization_key = GFX_pol_str_portrait_Li_XianNian
+	}
+}
+
+defined_text = {
+	name = TER_NCCPC_names_right
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = CPC_Lin_Biao
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 } }
+		localization_key = CPC_Gao_Gang
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = CPC_Liu_Lantao
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 } }
+		localization_key = CPC_Tao_Zhu
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = CPC_Yu_Guangyuan
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 } }
+		localization_key = CPC_Zhang_WenTian
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 3 } }
+		localization_key = CPC_Li_XianNian
+	}
+}
+
+defined_text = {
+	name = TER_NCCPC_faction_name
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 } }
+		localization_key = CPC_mao_power
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = CPC_li_power_2
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 } }
+		localization_key = CPC_liu_power
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 } }
+		localization_key = CPC_li_power
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 3 } }
+		localization_key = CPC_deng_power
+	}
+}
+
+defined_text = {
+	name = TER_NCCPC_faction_desc
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 0 } }
+		localization_key = CPC_mao_power_desc
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 1 } }
+		localization_key = CPC_liu_power_desc
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 }
+					has_country_flag = CPC_9th_congress_leader_changed }
+		localization_key = CPC_li_power_desc_2
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 2 } }
+		localization_key = CPC_li_power_desc
+	}
+	text = {
+		trigger = { check_variable = { CPC_NCCPC_choose_num = 3 } }
+		localization_key = CPC_deng_power_desc
+	}
+}
+
+defined_text = {
+	name = NCCPC_graph_label_month
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 0 }
+		}
+		localization_key = NCCPC_graph_label_month_12
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 1 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_1
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 2 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_2
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 3 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_3
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+				modulo_temp_variable = { months = 12 }
+				check_variable = { months = 4 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_4
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 5 }
+		}
+		localization_key = NCCPC_graph_label_month_5
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 6 }
+		}
+		localization_key = NCCPC_graph_label_month_6
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 7 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_7
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 8 }
+			
+		}
+		localization_key = NCCPC_graph_label_month_8
+	}
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 9 }
+			
+		}
+		localization_key = NCCPC_graph_label_month_9
+	}        
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }  
+			add_to_temp_variable = { i = 1}   
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 10 }
+			
+		}
+		localization_key = NCCPC_graph_label_month_10
+	}
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 11 }
+			
+		}
+		localization_key = NCCPC_graph_label_month_11
+	}
+}
+
+defined_text = {
+	name = NCCPC_graph_label_year 
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}   
+			set_temp_variable = { yearmonths = NCCPC_graph_months^i }
+			check_variable = { yearmonths < NCCPC_month_standred_1 }
+		}
+		localization_key = NCCPC_graph_label_year_TYBLY #The year before last year
+	}
+
+	text = {
+			trigger = {
+				set_temp_variable = { i = segment_idx }
+				add_to_temp_variable = { i = 1}   
+				set_temp_variable = { yearmonths = NCCPC_graph_months^i } 
+				check_variable = { yearmonths > NCCPC_month_standred_12 }
+			}
+		localization_key = NCCPC_graph_label_year_NOW
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			add_to_temp_variable = { i = 1}   
+			set_temp_variable = { yearmonths = NCCPC_graph_months^i }
+				NOT = {
+					AND = {
+						check_variable = { yearmonths < NCCPC_month_standred_1 }
+						check_variable = { yearmonths > NCCPC_month_standred_12 }
+					}
+				}
+			}
+		localization_key = NCCPC_graph_label_year_LAST    
+	}
+}
+
+defined_text = { 
+	name = NCCPC_graph_first_label_year 
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }add_to_temp_variable = { i = 1}   
+			set_temp_variable = { yearmonths = NCCPC_graph_months^i }
+			check_variable = { yearmonths < NCCPC_month_standred_1 }
+		}
+		localization_key = NCCPC_graph_label_year_TYBLY #The year before last year
+	}
+
+	text = {
+			trigger = {
+				set_temp_variable = { i = segment_idx }add_to_temp_variable = { i = 1}   
+				set_temp_variable = { yearmonths = NCCPC_graph_months^i } 
+				check_variable = { yearmonths > NCCPC_month_standred_12 }
+			}
+		localization_key = NCCPC_graph_label_year_NOW
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }add_to_temp_variable = { i = 1}   
+			set_temp_variable = { yearmonths = NCCPC_graph_months^i }
+				NOT = {
+					AND = {
+						check_variable = { yearmonths < NCCPC_month_standred_1 }
+						check_variable = { yearmonths > NCCPC_month_standred_12 }
+					}
+				}
+			}
+		localization_key = NCCPC_graph_label_year_LAST    
+	}
+}
+
+defined_text = {
+	name = NCCPC_graph_first_label_month
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 0 }
+		}
+		localization_key = NCCPC_graph_label_month_12
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 1 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_1
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 2 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_2
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 3 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_3
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+				modulo_temp_variable = { months = 12 }
+				check_variable = { months = 4 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_4
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 5 }
+		}
+		localization_key = NCCPC_graph_label_month_5
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 6 }
+		}
+		localization_key = NCCPC_graph_label_month_6
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 7 }
+			
+			
+		}
+		localization_key = NCCPC_graph_label_month_7
+	}
+
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 8 }
+			
+		}
+		localization_key = NCCPC_graph_label_month_8
+	}
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 9 }
+			
+		}
+		localization_key = NCCPC_graph_label_month_9
+	}        
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }    
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 10 }
+			
+		}
+		localization_key = NCCPC_graph_label_month_10
+	}
+	text = {
+		trigger = {
+			set_temp_variable = { i = segment_idx }
+			set_temp_variable = { months = NCCPC_graph_months^i }
+			add_to_temp_variable = { months = 12 }
+			modulo_temp_variable = { months = 12 }
+			check_variable = { months = 11 }
+			
+		}
+		localization_key = NCCPC_graph_label_month_11
+	}
+}
+
+defined_text = {
+	name = NCCPC_Line_graph_display_unit_name 
+	text = {
+		trigger = { check_variable = { NCCPC_Line_graph_display_unit = 0 } }
+		localization_key = NCCPC_graph_label_unit_none
+	}
+	text = {
+		trigger = { check_variable = { NCCPC_Line_graph_display_unit = 1 } }
+		localization_key = NCCPC_graph_label_unit_k
+	}
+	text = {
+		trigger = { check_variable = { NCCPC_Line_graph_display_unit = 2 } }
+		localization_key = NCCPC_graph_label_unit_m
+	}
+	text = {
+		trigger = { check_variable = { NCCPC_Line_graph_display_unit = 3 } }
+		localization_key = NCCPC_graph_label_unit_b
+	}
+	text = {
+		trigger = { check_variable = { NCCPC_Line_graph_display_unit = -1 } }
+		localization_key = NCCPC_graph_label_unit_pct
+	}
+}
+
+defined_text = {
+	name = NCCPC_grapht_mode_select
+	text = {
+		trigger = {
+			check_variable = { NCCPC_graph_mode_left_num = 2 }
+			check_variable = { NCCPC_graph_mode_right_num = 1 }
+		}
+		localization_key = NCCPC_mode_left_tt
+	}
+	text = {
+		trigger = {
+			check_variable = { NCCPC_graph_mode_left_num = 1 }
+			check_variable = { NCCPC_graph_mode_right_num = 2 }
+		}
+		localization_key = NCCPC_mode_right_tt
+	}
+}
+
+defined_text = {
+	name = NCCPC_info_icon_dynamic
+	text = {
+		trigger = {
+			check_variable = { NCCPC_graph_mode_left_num = 2 }
+			check_variable = { NCCPC_graph_mode_right_num = 1 }
+		}
+		localization_key = NCCPC_budget_mechanic_desc
+	}
+	text = {
+		trigger = {
+			check_variable = { NCCPC_graph_mode_left_num = 1 }
+			check_variable = { NCCPC_graph_mode_right_num = 2 }
+		}
+		localization_key = NCCPC_pop_mechanic_desc
+	}
+}

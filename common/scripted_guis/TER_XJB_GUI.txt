@@ -1,0 +1,237 @@
+scripted_gui = {
+	TER_XJB_main_GUI = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_XJB_main_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_frames^3 = 2 }
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+		}
+
+		properties = {
+			TER_XJB_hosting_service_btn = { frame = CPC_hosting_service_XJB_var }
+			TER_XJB_scene = { image = "[TER_XJB_region_scene]" }
+			TER_XJB_flags_icon = { image = "[This.GetFlag]" }
+			XJB_Leader_portraits = { image = "[XJB_Leader_Portraits]" }
+			XJB_pie_Ma = { frame = XJB_printed_pct_M }
+			XJB_pie_Soviet = { frame = XJB_printed_pct_C }
+			XJB_popular_overlay_bar = { frame = XJ_popular_will }
+			TER_XJB_emoji_face = { image = "[TER_XJ_emoji_face]" }
+			XJB_focus_cards_1 = { frame = XJB_focus_card_state^1 }
+			XJB_focus_cards_2 = { frame = XJB_focus_card_state^2 }
+			XJB_focus_cards_3 = { frame = XJB_focus_card_state^3 }
+			XJB_focus_cards_4 = { frame = XJB_focus_card_state^4 }
+			XJB_focus_cards_5 = { frame = XJB_focus_card_state^5 }
+			XJB_focus_cards_6 = { frame = XJB_focus_card_state^6 }
+			TER_XJB_focus_icon = { frame = XJB_selected_icon }
+			XJB_vice_focus_btn = { frame = XJB_vice_focus_array^XJB_vice_focus_index }
+		}
+
+		dynamic_lists = {
+			TER_XJB_flags = {
+				array = global.TER_XJ_display_region
+				index = i
+				change_scope = yes
+				entry_container = TER_XJB_flags_ctn
+			}
+			XJB_vice_focus_list = {
+				array = XJB_vice_focus_array
+				index = XJB_vice_focus_index
+				change_scope = no
+				entry_container = XJB_vice_focus_ctn
+			}
+		}
+		
+		triggers = {
+			TER_XJB_state_infos_2_visible = {
+				var:XJ_state_active = {
+					has_state_flag = CPC_XJ_working
+				}
+			}
+			map_XJB_Hetian_visible = {
+				NOT = { check_variable = { XJ_id = 1 } }
+			}
+			map_XJB_Dzungaria_visible = {
+				NOT = { check_variable = { XJ_id = 2 } }
+			}
+			map_XJB_Dihua_visible = {
+				NOT = { check_variable = { XJ_id = 3 } }
+			}
+			map_XJB_Hami_visible = {
+				NOT = { check_variable = { XJ_id = 4 } }
+			}
+			map_XJB_Kashgar_visible = {
+				NOT = { check_variable = { XJ_id = 5 } }
+			}
+			map_XJB_Aksaichin_visible = {
+				NOT = { check_variable = { XJ_id = 6 } }
+			}
+			map_XJB_Taklamakan_visible = {
+				NOT = { check_variable = { XJ_id = 7 } }
+			}
+			map_XJB_Yining_visible = {
+				NOT = { check_variable = { XJ_id = 8 } }
+			}
+			map_XJB_Aksu_visible = {
+				NOT = { check_variable = { XJ_id = 9 } }
+			}
+			map_XJB_Tahcheng_visible = {
+				NOT = { check_variable = { XJ_id = 10 } }
+			}
+			map_XJB_Yanqi_visible = {
+				NOT = { check_variable = { XJ_id = 11 } }
+			}
+			map_XJB_Olgii_visible = {
+				NOT = { check_variable = { XJ_id = 12 } }
+			}
+			XJB_vice_banned_visible = {
+				meta_trigger = {
+					text = { [XJB_target_country] = { OR = { original_tag = XIN
+													  		 original_tag = ETR } } }
+					XJB_target_country = "[?XJ_state_active:controller.GetTag]"
+				}
+			}
+			CPC_XJB_wartime_visible = {
+				HTC = { has_war = yes }
+			}			
+		}
+
+		effects = {
+			TER_XJB_hosting_service_btn_click = {
+				CPC_hosting_service_XJB = yes
+			}
+			XJB_focus_cards_1_click = {
+				if = {
+					limit = { NOT = { has_country_flag = XJB_focus_working }
+							  check_variable = { XJB_abilities_num > 2 } }
+					subtract_from_variable = { XJB_abilities_num = 3 }
+					CPC_XJB_clear_cards_states = yes
+					set_variable = { XJB_selected_card = 1 }
+					CPC_XJB_fix_position_focus = yes
+					set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
+				}
+			}
+			XJB_focus_cards_2_click = {
+				if = {
+					limit = { NOT = { has_country_flag = XJB_focus_working }
+							  check_variable = { XJB_abilities_num > 2 } }
+					subtract_from_variable = { XJB_abilities_num = 3 }
+					CPC_XJB_clear_cards_states = yes
+					set_variable = { XJB_selected_card = 2 }
+					CPC_XJB_fix_position_focus = yes
+					set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
+				}
+			}
+			XJB_focus_cards_3_click = {
+				if = {
+					limit = { NOT = { has_country_flag = XJB_focus_working }
+							  check_variable = { XJB_abilities_num > 2 } }
+					subtract_from_variable = { XJB_abilities_num = 3 }
+					CPC_XJB_clear_cards_states = yes
+					set_variable = { XJB_selected_card = 3 }
+					CPC_XJB_fix_position_focus = yes
+					set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
+				}
+			}
+			XJB_focus_cards_4_click = {
+				if = {
+					limit = { NOT = { has_country_flag = XJB_focus_working } 
+							  check_variable = { XJB_abilities_num > 2 }}
+					subtract_from_variable = { XJB_abilities_num = 3 }
+					CPC_XJB_clear_cards_states = yes
+					set_variable = { XJB_selected_card = 4 }
+					CPC_XJB_fix_position_focus = yes
+					set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
+				}
+			}
+			XJB_focus_cards_5_click = {
+				if = {
+					limit = { NOT = { has_country_flag = XJB_focus_working }
+							  check_variable = { XJB_abilities_num > 2 } }
+					subtract_from_variable = { XJB_abilities_num = 3 }
+					CPC_XJB_clear_cards_states = yes
+					set_variable = { XJB_selected_card = 5 }
+					CPC_XJB_fix_position_focus = yes
+					set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
+				}
+			}
+			XJB_focus_cards_6_click = {
+				if = {
+					limit = { NOT = { has_country_flag = XJB_focus_working }
+							  check_variable = { XJB_abilities_num > 2 } }
+					subtract_from_variable = { XJB_abilities_num = 3 }
+					CPC_XJB_clear_cards_states = yes
+					set_variable = { XJB_selected_card = 6 }
+					CPC_XJB_fix_position_focus = yes
+					set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
+				}
+			}
+			map_XJB_Hetian_click = {
+				set_variable = { XJ_id = 1 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Dzungaria_click = {
+				set_variable = { XJ_id = 2 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Dihua_click = {
+				set_variable = { XJ_id = 3 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Hami_click = {
+				set_variable = { XJ_id = 4 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Kashgar_click = {
+				set_variable = { XJ_id = 5 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Aksaichin_click = {
+				set_variable = { XJ_id = 6 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Taklamakan_click = {
+				set_variable = { XJ_id = 7 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Yining_click = {
+				set_variable = { XJ_id = 8 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Aksu_click = {
+				set_variable = { XJ_id = 9 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Tahcheng_click = {
+				set_variable = { XJ_id = 10 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Yanqi_click = {
+				set_variable = { XJ_id = 11 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+			map_XJB_Olgii_click = {
+				set_variable = { XJ_id = 12 }
+				CPC_XJB_choose_state_visual_upgrade = yes
+			}
+
+
+			XJB_vice_focus_btn_click = {
+				effect_tooltip = {
+					CPC_XJB_start_the_region_focus = yes
+				}
+				hidden_effect = {
+					if = {
+						limit = { var:XJ_state_active = { NOT = { has_state_flag = CPC_XJ_working } }
+								  check_variable = { XJB_abilities_num > 0 } }
+						CPC_XJB_start_the_region_focus = yes
+						hidden_effect = {
+							CPC_XJB_choose_state_visual_upgrade = yes
+						}
+					}
+				}
+			}
+		}
+	}
+}

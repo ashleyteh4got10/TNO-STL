@@ -1,0 +1,1345 @@
+CPC_AI_dec = {
+	CPC_AI_dec_MRC = { #蒙古和谈辅助
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		available = {
+			check_variable = { CPC_MRC_phase > 0 }
+			check_variable = { CPC_MRC_phase < 6 }
+			NOT = { has_idea = CPC_MRC_modifier_idea }
+			hidden_trigger = {
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+		}
+		fire_only_once = yes
+		fixed_random_seed = no
+		complete_effect = {
+			division_template = {
+				name = "Custom TER Division"
+				is_locked = yes
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 0 y = 3 }
+					infantry = { x = 0 y = 4 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 1 y = 3 }
+					infantry = { x = 1 y = 4 }
+					artillery_brigade = { x = 2 y = 0 }
+					artillery_brigade = { x = 2 y = 1 }
+					artillery_brigade = { x = 2 y = 2 }
+					artillery_brigade = { x = 2 y = 3 }
+					infantry = { x = 3 y = 0 }
+					infantry = { x = 3 y = 1 }
+					infantry = { x = 3 y = 2 }
+					infantry = { x = 3 y = 3 }
+				}
+				support = {
+					recon = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+					artillery = { x = 0 y = 2 }
+					anti_tank = { x = 0 y = 3 }
+				}
+			}
+			set_variable = { CPC_MRC_phase = 6 }
+			hidden_effect = { 
+				if = { 
+					limit =  {
+						has_game_rule = {
+							rule = CPC_outer_mongolia_status
+							option = CPC_outer_mongolia_cpc
+						}
+					}
+				 #自治区
+					set_variable = { MRC_choice^1 = 1 }
+					set_variable = { MRC_choice^2 = 2 }
+					set_variable = { MRC_choice^3 = 1 }
+					set_variable = { MRC_choice^4 = 1 }
+					set_variable = { MRC_choice^5 = 5 }
+					set_variable = { MRC_at_CPC = 100 }
+					set_variable = { MRC_at_MON = 75 }
+				}		
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = CPC_outer_mongolia_status
+						option = CPC_outer_mongolia_fed
+					}
+				}
+				#共和国联邦
+					set_variable = { MRC_choice^1 = 2 }
+					set_variable = { MRC_choice^2 = 3 }
+					set_variable = { MRC_choice^3 = 2 }
+					set_variable = { MRC_choice^4 = 1 }
+					set_variable = { MRC_choice^5 = 3 }
+					set_variable = { MRC_at_CPC = 85 }
+					set_variable = { MRC_at_MON = 85 }
+			}	
+		      else_if = {
+				limit =  {
+						has_game_rule = {
+							rule = CPC_outer_mongolia_status
+							option = CPC_outer_mongolia_mon
+						}
+			  }
+			  #独立
+			  		set_variable = { MRC_choice^1 = 3 }
+					set_variable = { MRC_choice^2 = 4 }
+					set_variable = { MRC_choice^3 = 3 }
+					set_variable = { MRC_choice^4 = 1 }
+					set_variable = { MRC_choice^5 = 2 }
+					set_variable = { MRC_at_CPC = 75 }
+					set_variable = { MRC_at_MON = 100 }
+			}
+			 else_if = {
+				limit = {
+					has_game_rule = {
+						rule = CPC_outer_mongolia_status
+						option = CPC_outer_mongolia_war
+					}
+				}
+				#最后手段
+				country_event = { id = CPC_main_story_events.84 days = 25 }
+			 }
+			else = {
+				#随机
+			random_list = {
+				15 = { #独立
+					set_variable = { MRC_choice^1 = 3 }
+					set_variable = { MRC_choice^2 = 4 }
+					set_variable = { MRC_choice^3 = 3 }
+					set_variable = { MRC_choice^4 = 1 }
+					set_variable = { MRC_choice^5 = 2 }
+					set_variable = { MRC_at_CPC = 75 }
+					set_variable = { MRC_at_MON = 100 }
+				}
+				50 = { #联邦
+					set_variable = { MRC_choice^1 = 2 }
+					set_variable = { MRC_choice^2 = 3 }
+					set_variable = { MRC_choice^3 = 2 }
+					set_variable = { MRC_choice^4 = 1 }
+					set_variable = { MRC_choice^5 = 3 }
+					set_variable = { MRC_at_CPC = 85 }
+					set_variable = { MRC_at_MON = 85 }
+				}
+				60 = { #自治区
+					set_variable = { MRC_choice^1 = 1 }
+					set_variable = { MRC_choice^2 = 2 }
+					set_variable = { MRC_choice^3 = 1 }
+					set_variable = { MRC_choice^4 = 1 }
+					set_variable = { MRC_choice^5 = 5 }
+					set_variable = { MRC_at_CPC = 100 }
+					set_variable = { MRC_at_MON = 75 }
+				}
+				3 = { #失败，武统
+					country_event = { id = CPC_main_story_events.84 days = 25 }
+				}
+			}
+			 }
+
+		}
+	}
+}
+	CPC_AI_dec_ptmb = { #党员数量自动化
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		available = {
+			NOT = { has_country_flag = CPC_TRCW_begins_flag }
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+			has_country_flag = CPC_unlock_NWB
+		}
+		fixed_random_seed = no
+		days_re_enable = 30
+		complete_effect = {
+			TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+		}
+	}
+	CPC_AI_dec_CPGAC_prop = { #政务院拉票操作
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		available = {
+			NOT = { has_country_flag = CPC_TRCW_begins_flag }
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+			has_active_mission = CPGAC_prop_voting_program
+			check_variable = { CPGAC_total_yes_attitude < CPGAC_total_no_attitude }
+		}
+		fixed_random_seed = no
+		days_re_enable = 62
+		complete_effect = {
+			random_list = {
+				50 = {
+					random_list = {
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^0 = -9 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^1 = -9 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^2 = -9 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^3 = -9 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^0 = -6 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^1 = -6 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^2 = -6 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^3 = -6 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^0 = 3 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^1 = 3 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^2 = 3 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^3 = 3 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^0 = -3 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^1 = -3 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^2 = -3 }
+							set_temp_variable = { attitude_change_N_in_party_tmp^3 = -3 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^0 = 6 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^1 = 6 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^2 = 6 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^3 = 6 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^0 = 9 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^1 = 9 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^2 = 9 }
+							set_temp_variable = { attitude_change_Y_in_party_tmp^3 = 9 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+					}
+				}
+				25 = {
+					random_list = {
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_tmp^0 = -15 }
+							set_temp_variable = { attitude_change_Y_tmp^0 = 0 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_tmp^0 = -10 }
+							set_temp_variable = { attitude_change_Y_tmp^0 = 5 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_tmp^0 = -5 }
+							set_temp_variable = { attitude_change_Y_tmp^0 = 10 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_tmp^0 = 0 }
+							set_temp_variable = { attitude_change_Y_tmp^0 = 15 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+					}
+				}
+				25 = {
+					random_list = {
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_tmp^1 = -15 }
+							set_temp_variable = { attitude_change_Y_tmp^1 = 0 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_tmp^1 = -10 }
+							set_temp_variable = { attitude_change_Y_tmp^1 = 5 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_tmp^1 = -5 }
+							set_temp_variable = { attitude_change_Y_tmp^1 = 10 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+						1 = {
+							subtract_from_variable = { CPGAC_btn_faction_skills_time = 3 }
+							set_temp_variable = { attitude_change_N_tmp^1 = 0 }
+							set_temp_variable = { attitude_change_Y_tmp^1 = 15 }
+							CPGAC_calc_attitude_in_voting = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+							set_temp_variable = { num_to_add = 1 }
+							CPGAC_add_to_PM_pressure = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	CPC_AI_dec_CPGAC_policy = { #政务院政策操作
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		available = {
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+			NOT = { has_active_mission = CPGAC_policy_executing }
+			NOT = { has_country_flag = CPC_we_have_an_urgent_task }
+		}
+		fixed_random_seed = no
+		days_re_enable = 62
+		complete_effect = {
+			random_list = {
+				1 = {
+					set_temp_variable = { executor_num_tmp = 1 }
+				}
+				1 = {
+					set_temp_variable = { executor_num_tmp = 2 }
+				}
+				1 = {
+					set_temp_variable = { executor_num_tmp = 3 }
+				}
+			}
+			if = {
+				limit = { has_country_flag = CPC_phase_1 }
+				random_list = {
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p1_restore_trade }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p1_food_price_limit_requistion }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p1_reduced_investment_budget }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p1_recover_integrate_industry }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p1_recover_liberate_minds }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p1_recover_disaster_relief }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype
+					any_of = {
+						array = CPGAC_ordinary_policy
+						value = v
+						index = i
+						check_variable = { v = token:CPGAC_o_p2_M_S_public_private_partnership }
+						check_variable = { CPGAC_ordinary_policy_enable_times^i > 0 }
+					}
+				}
+				set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_S_public_private_partnership }
+				set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype
+					any_of = {
+						array = CPGAC_ordinary_policy
+						value = v
+						index = i
+						check_variable = { v = token:CPGAC_o_p2_M_S_develop_industry }
+						check_variable = { CPGAC_ordinary_policy_enable_times^i > 0 }
+					}
+				}
+				set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_S_develop_industry }
+				set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype
+					any_of = {
+						array = CPGAC_ordinary_policy
+						value = v
+						index = i
+						check_variable = { v = token:CPGAC_o_p2_M_S_rectify_factory_environment }
+						check_variable = { CPGAC_ordinary_policy_enable_times^i > 0 }
+					}
+				}
+				set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_S_rectify_factory_environment }
+				set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype
+				}
+				random_list = {
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_restrict_individual_business }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_urban_rural_conference }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_down_to_the_countryside }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_additional_cooperatives }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_labor_protection_allowance }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_clean_up_our_party }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_M_handle_registered_residence }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_liu_shaoqi_thought_subtype
+					any_of = {
+						array = CPGAC_ordinary_policy
+						value = v
+						index = i
+						check_variable = { v = token:CPGAC_o_p2_L_S_redeem_company_shares }
+						check_variable = { CPGAC_ordinary_policy_enable_times^i > 0 }
+					}
+				}
+				set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_S_redeem_company_shares }
+				set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_liu_shaoqi_thought_subtype
+					any_of = {
+						array = CPGAC_ordinary_policy
+						value = v
+						index = i
+						check_variable = { v = token:CPGAC_o_p2_L_S_develop_industry }
+						check_variable = { CPGAC_ordinary_policy_enable_times^i > 0 }
+					}
+				}
+				set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_S_develop_industry }
+				set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_liu_shaoqi_thought_subtype
+					any_of = {
+						array = CPGAC_ordinary_policy
+						value = v
+						index = i
+						check_variable = { v = token:CPGAC_o_p2_L_S_we_need_more_schools }
+						check_variable = { CPGAC_ordinary_policy_enable_times^i > 0 }
+					}
+				}
+				set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_S_we_need_more_schools }
+				set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_liu_shaoqi_thought_subtype
+					any_of = {
+						array = CPGAC_ordinary_policy
+						value = v
+						index = i
+						check_variable = { v = token:CPGAC_o_p2_L_S_we_need_more_hospitals }
+						check_variable = { CPGAC_ordinary_policy_enable_times^i > 0 }
+					}
+				}
+				set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_S_we_need_more_hospitals }
+				set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+				CPGAC_begin_ordinary_policy = yes
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_2 
+					has_country_leader_ideology = communist_liu_shaoqi_thought_subtype
+				}
+				random_list = {
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_acquisition_of_cooperatives }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_lower_food_prices }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_increase_agricultural_loans }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_check_local_finances }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_central_group_enters_factory }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p2_L_handle_registered_residence }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_3
+					NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				}
+				random_list = {
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_more_weapons }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_more_money }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_more_GDP }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_less_inflation }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_more_army }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+				}
+			}
+			else_if = {
+				limit = { 
+					has_country_flag = CPC_phase_3
+					has_country_flag = CPC_TRCW_begins_flag
+				}
+				random_list = {
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_more_weapons }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_more_money }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_more_GDP }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+					1 = {
+						set_variable = { confirm_op_theme = token:CPGAC_o_p3_we_need_less_inflation }
+						set_temp_variable = { CPGAC_op_theme_tmp = confirm_op_theme }
+						CPGAC_begin_ordinary_policy = yes
+					}
+				}
+			}
+		}
+	}
+	CPC_AI_dec_UT = { #政务院紧急任务
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		available = {
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+			has_country_flag = CPC_we_have_an_urgent_task
+			NOT = { has_active_mission = CPGAC_urgent_task_pushing }
+		}
+		fixed_random_seed = no
+		days_re_enable = 10
+		complete_effect = {
+			TER_motion_u_remove_alerts = yes
+			set_country_flag = CPC_we_have_an_urgent_task_pushing
+			hidden_effect = {
+				activate_mission = CPGAC_urgent_task_pushing
+			}
+		}
+	}
+	CPC_AI_dec_bureau_SWB = { #西南局矿点分配
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		available = {
+			NOT = { has_country_flag = CPC_TRCW_begins_flag }
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+			NOT = { has_country_flag = SWB_focus_begins }
+		}
+		fixed_random_seed = no
+		days_re_enable = 100
+		complete_effect = {
+			if = {
+				limit = { date < 1965.12.01 }
+				set_variable = { city_state_weapon_var^1 = 1 }
+				set_variable = { city_state_consumer_var^1 = 2 }
+				set_variable = { city_state_weapon_var^2 = 1 }
+				set_variable = { city_state_consumer_var^2 = 2 }
+				set_variable = { city_state_weapon_var^3 = 1 }
+				set_variable = { city_state_consumer_var^3 = 2 }
+				set_variable = { city_state_weapon_var^4 = 1 }
+				set_variable = { city_state_consumer_var^4 = 2 }
+
+				set_variable = { mine_state_mine_var^1 = 2 }
+				set_variable = { mine_state_trade_var^1 = 1 }
+				set_variable = { mine_state_mine_var^2 = 2 }
+				set_variable = { mine_state_trade_var^2 = 1 }
+				set_variable = { mine_state_mine_var^3 = 2 }
+				set_variable = { mine_state_trade_var^3 = 1 }
+				set_variable = { mine_state_mine_var^4 = 2 }
+				set_variable = { mine_state_trade_var^4 = 1 }
+				set_variable = { mine_state_mine_var^5 = 2 }
+				set_variable = { mine_state_trade_var^5 = 1 }
+				set_variable = { mine_state_mine_var^6 = 2 }
+				set_variable = { mine_state_trade_var^6 = 1 }
+				set_variable = { mine_state_mine_var^7 = 2 }
+				set_variable = { mine_state_trade_var^7 = 1 }
+				set_variable = { mine_state_mine_var^8 = 2 }
+				set_variable = { mine_state_trade_var^8 = 1 }
+				set_variable = { mine_state_mine_var^9 = 2 }
+				set_variable = { mine_state_trade_var^9 = 1 }
+				SWB_calc_modifiers = yes
+			}
+			else = {
+				set_variable = { city_state_weapon_var^1 = 2 }
+				set_variable = { city_state_consumer_var^1 = 1 }
+				set_variable = { city_state_weapon_var^2 = 2 }
+				set_variable = { city_state_consumer_var^2 = 1 }
+				set_variable = { city_state_weapon_var^3 = 2 }
+				set_variable = { city_state_consumer_var^3 = 1 }
+				set_variable = { city_state_weapon_var^4 = 2 }
+				set_variable = { city_state_consumer_var^4 = 1 }
+
+				set_variable = { mine_state_mine_var^1 = 2 }
+				set_variable = { mine_state_trade_var^1 = 1 }
+				set_variable = { mine_state_mine_var^2 = 2 }
+				set_variable = { mine_state_trade_var^2 = 1 }
+				set_variable = { mine_state_mine_var^3 = 2 }
+				set_variable = { mine_state_trade_var^3 = 1 }
+				set_variable = { mine_state_mine_var^4 = 2 }
+				set_variable = { mine_state_trade_var^4 = 1 }
+				set_variable = { mine_state_mine_var^5 = 2 }
+				set_variable = { mine_state_trade_var^5 = 1 }
+				set_variable = { mine_state_mine_var^6 = 2 }
+				set_variable = { mine_state_trade_var^6 = 1 }
+				set_variable = { mine_state_mine_var^7 = 2 }
+				set_variable = { mine_state_trade_var^7 = 1 }
+				set_variable = { mine_state_mine_var^8 = 2 }
+				set_variable = { mine_state_trade_var^8 = 1 }
+				set_variable = { mine_state_mine_var^9 = 2 }
+				set_variable = { mine_state_trade_var^9 = 1 }
+				SWB_calc_modifiers = yes
+			}
+		}
+	}
+	CPC_AI_dec_bureau_SCB = { #华南局起义
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		available = {
+			has_country_flag = CPC_phase_2
+			check_variable = { CPC_AI_SEA_MOVEMENT < 3 }
+			has_completed_focus = CPC_overrun_in_southeast
+		}
+		days_remove = 50
+		days_re_enable = 50
+		complete_effect = {
+			if = {
+				limit = { check_variable = { CPC_AI_SEA_MOVEMENT = 0 } }
+				KPA = {
+					set_variable = { TER_SCB_rev_level_unify = 5 }
+					set_variable = { TER_SCB_rev_level_equip = 5 }
+					set_variable = { TER_SCB_rev_level_org = 5 }
+				}
+				begin_civilwar_in_burma = yes
+				set_temp_variable = { CPC.target = KPA }
+				CPC = { TNO_increase_volunteer_cap_2 = yes }
+			}
+			else_if = {
+				limit = { check_variable = { CPC_AI_SEA_MOVEMENT = 1 } }
+				CRC = {
+					set_variable = { TER_SCB_rev_level_unify = 5 }
+					set_variable = { TER_SCB_rev_level_equip = 5 }
+					set_variable = { TER_SCB_rev_level_org = 5 }
+				}
+				begin_civilwar_in_cambodia = yes
+				set_temp_variable = { CPC.target = CRC }
+				CPC = { TNO_increase_volunteer_cap_2 = yes }
+			}
+			else_if = {
+				limit = { check_variable = { CPC_AI_SEA_MOVEMENT = 2 } }
+				VIC = {
+					set_variable = { TER_SCB_rev_level_unify = 5 }
+					set_variable = { TER_SCB_rev_level_equip = 5 }
+					set_variable = { TER_SCB_rev_level_org = 5 }
+				}
+				begin_civilwar_in_Vietnam = yes
+				set_temp_variable = { CPC.target = VIC }
+				CPC = { TNO_increase_volunteer_cap_2 = yes }
+			}
+			add_to_variable = { CPC_AI_SEA_MOVEMENT = 1 }
+		}
+	}
+	CPC_AI_dec_infantry_support_0 = { #战争辅助轮，为了应对蠢到家的AI而写，我劝AI好自为之，，，
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		days_remove = 30
+		available = {
+			OR = {
+				CRC = { has_war = yes }
+				VIC = { has_war = yes }
+				KPA = { has_war = yes }
+				has_war = yes
+			}
+			date < 1970.01.01
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+		}
+		modifier = {
+			land_night_attack = 0.2
+			army_attack_factor = 0.2
+			army_defence_factor = 0.2
+			army_speed_factor = 0.2
+			army_org_factor = 0.2
+			army_org_regain = 0.2
+			dig_in_speed_factor = 0.2
+			max_planning = 0.20
+			political_power_gain = 0.2
+			planning_speed = 0.2
+			land_reinforce_rate = 0.2
+			terrain_penalty_reduction = 0.2
+			experience_loss_factor = -0.2
+			supply_consumption_factor = -0.2
+			attrition = -0.2
+			army_bonus_air_superiority_factor = 0.2
+			enemy_army_bonus_air_superiority_factor = -0.2
+			air_superiority_bonus_in_combat = 0.2
+			cas_damage_reduction = 0.2
+			ai_focus_aggressive_factor = 1.0
+			misc_income_percent_of_GDP_modifier = 0.05
+			weekly_manpower = 5000
+		}
+		targeted_modifier = {
+			tag = VIC
+			land_night_attack = 0.2
+			army_attack_factor = 0.2
+			army_defence_factor = 0.2
+			army_speed_factor = 0.2
+			army_org_factor = 0.2
+			army_org_regain = 0.2
+			dig_in_speed_factor = 0.2
+			max_planning = 0.20
+			political_power_gain = 0.2
+			planning_speed = 0.2
+			land_reinforce_rate = 0.2
+			terrain_penalty_reduction = 0.2
+			experience_loss_factor = -0.2
+			supply_consumption_factor = -0.2
+			attrition = -0.2
+			army_bonus_air_superiority_factor = 0.2
+			enemy_army_bonus_air_superiority_factor = -0.2
+			air_superiority_bonus_in_combat = 0.2
+			cas_damage_reduction = 0.2
+			ai_focus_aggressive_factor = 1.0
+			misc_income_percent_of_GDP_modifier = 0.05
+			weekly_manpower = 5000
+		}
+		targeted_modifier = {
+			tag = KPA
+			land_night_attack = 0.2
+			army_attack_factor = 0.2
+			army_defence_factor = 0.2
+			army_speed_factor = 0.2
+			army_org_factor = 0.2
+			army_org_regain = 0.2
+			dig_in_speed_factor = 0.2
+			max_planning = 0.20
+			political_power_gain = 0.2
+			planning_speed = 0.2
+			land_reinforce_rate = 0.2
+			terrain_penalty_reduction = 0.2
+			experience_loss_factor = -0.2
+			supply_consumption_factor = -0.2
+			attrition = -0.2
+			army_bonus_air_superiority_factor = 0.2
+			enemy_army_bonus_air_superiority_factor = -0.2
+			air_superiority_bonus_in_combat = 0.2
+			cas_damage_reduction = 0.2
+			ai_focus_aggressive_factor = 1.0
+			misc_income_percent_of_GDP_modifier = 0.05
+			weekly_manpower = 5000
+		}
+		targeted_modifier = {
+			tag = CRC
+			land_night_attack = 0.2
+			army_attack_factor = 0.2
+			army_defence_factor = 0.2
+			army_speed_factor = 0.2
+			army_org_factor = 0.2
+			army_org_regain = 0.2
+			dig_in_speed_factor = 0.2
+			max_planning = 0.20
+			political_power_gain = 0.2
+			planning_speed = 0.2
+			land_reinforce_rate = 0.2
+			terrain_penalty_reduction = 0.2
+			experience_loss_factor = -0.2
+			supply_consumption_factor = -0.2
+			attrition = -0.2
+			army_bonus_air_superiority_factor = 0.2
+			enemy_army_bonus_air_superiority_factor = -0.2
+			air_superiority_bonus_in_combat = 0.2
+			cas_damage_reduction = 0.2
+			ai_focus_aggressive_factor = 1.0
+			misc_income_percent_of_GDP_modifier = 0.05
+			weekly_manpower = 5000
+		}
+	}
+	CPC_AI_dec_infantry_support = { #战争辅助轮，为了应对蠢到家的AI而写，我劝AI好自为之，，，
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		days_remove = 30
+		available = {
+			date > 1970.01.01
+			NOT = { has_global_flag = CPC_WINS_TRCW }
+		}
+		modifier = {
+			land_night_attack = 0.2
+			army_attack_factor = 0.2
+			army_defence_factor = 0.2
+			army_speed_factor = 0.2
+			army_org_factor = 0.2
+			army_org_regain = 0.2
+			dig_in_speed_factor = 0.2
+			max_planning = 0.20
+			political_power_gain = 0.2
+			planning_speed = 0.2
+			land_reinforce_rate = 0.2
+			terrain_penalty_reduction = 0.2
+			experience_loss_factor = -0.2
+			supply_consumption_factor = -0.2
+			attrition = -0.2
+			army_bonus_air_superiority_factor = 0.2
+			enemy_army_bonus_air_superiority_factor = -0.2
+			air_superiority_bonus_in_combat = 0.2
+			cas_damage_reduction = 0.2
+			ai_focus_aggressive_factor = 1.0
+			misc_income_percent_of_GDP_modifier = 0.05
+			weekly_manpower = 5000
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = anti_air_shoulder_equipment
+				amount = 900
+			}
+			random_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Custom TER Division\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = PREV
+					count = 2
+				}
+			}
+		}
+	}
+}
+
+TIB_AI_dec = {
+	TIB_AI_dec_infantry_support = { #战争辅助轮，为了应对蠢到家的AI而写，我劝AI好自为之，，，
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		days_remove = 30
+		available = {
+			has_war = yes
+			NOT = {
+				has_war_with = CPC
+			}
+		}
+		modifier = {
+			land_night_attack = 0.40
+			army_attack_factor = 1.0
+			army_defence_factor = 1.0
+			army_speed_factor = 0.50
+			army_org_factor = 1.0
+			army_org_regain = 2.0
+			dig_in_speed_factor = 2.0
+			max_planning = 0.50
+			political_power_gain = 2.0
+			planning_speed = 1.0
+			land_reinforce_rate = 0.50
+			terrain_penalty_reduction = 1.0
+			experience_loss_factor = -1.0
+			supply_consumption_factor = -1.0
+			attrition = -1.0
+			army_bonus_air_superiority_factor = 1.0
+			enemy_army_bonus_air_superiority_factor = -1.0
+			air_superiority_bonus_in_combat = 1.0
+			cas_damage_reduction = 1.0
+			ai_focus_aggressive_factor = 1.0
+			misc_income_percent_of_GDP_modifier = 0.05
+			weekly_manpower = 5000
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = anti_air_shoulder_equipment
+				amount = 900
+			}
+		}
+	}
+	TIB_AI_dec_infantry_support_2 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		days_remove = 30
+		available = {
+			AND = {
+				has_war_with = XIK
+				XIK = { NOT = { has_cosmetic_tag = XIK_UNIFIED } }
+				controls_province = 19747
+			}
+		}
+		complete_effect = {
+			white_peace = XIK
+			JAP = {
+				set_temp_variable = { JAP.target = TIB }
+				TNO_clear_num_volunteers = yes
+			}
+			964 = {
+				transfer_state_to = TIB
+				add_core_of = TIB
+			}
+			2374 = {
+				set_demilitarized_zone = no
+			}
+			every_country = {
+				news_event = {
+					id = WORLD_TER.17
+					days = 2
+				}
+			}
+		}
+	}
+}
+
+MON_AI_dec = {
+	MON_AI_dec_infantry_support = { #战争辅助轮，为了应对蠢到家的AI而写，我劝AI好自为之，，，
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		days_remove = 30
+		available = {
+			date > 1962.03.01
+			NOT = {
+				has_war_with = CPC
+			}
+			has_war_with = MEN
+		}
+		modifier = {
+			land_night_attack = 0.40
+			army_attack_factor = 1.0
+			army_defence_factor = 1.0
+			army_speed_factor = 0.50
+			army_org_factor = 1.0
+			army_org_regain = 2.0
+			dig_in_speed_factor = 2.0
+			max_planning = 0.50
+			political_power_gain = 2.0
+			planning_speed = 1.0
+			land_reinforce_rate = 0.50
+			terrain_penalty_reduction = 1.0
+			experience_loss_factor = -1.0
+			supply_consumption_factor = -1.0
+			attrition = -1.0
+			army_bonus_air_superiority_factor = 1.0
+			enemy_army_bonus_air_superiority_factor = -1.0
+			air_superiority_bonus_in_combat = 1.0
+			cas_damage_reduction = 1.0
+			ai_focus_aggressive_factor = 1.0
+			misc_income_percent_of_GDP_modifier = 0.05
+			weekly_manpower = 5000
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = 900
+			}
+			add_equipment_to_stockpile = {
+				type = anti_air_shoulder_equipment
+				amount = 900
+			}
+		}
+	}
+}
+
+MEN_AI_dec = { #蒙疆用
+	MEN_AI_dec_infantry_support = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 9999
+		}
+		days_remove = 30
+		available = {
+			has_war_with = MFN
+			surrender_progress > 0.6
+		}
+		complete_effect = {
+			MON = {
+				white_peace = MEN
+				transfer_state = 815
+				add_state_core = 815
+				transfer_state = 2405
+				add_state_core = 2405
+				transfer_state = 2401
+				add_state_core = 2401
+				transfer_state = 2403
+				add_state_core = 2403
+				transfer_state = 2404
+				add_state_core = 2404
+				transfer_state = 330
+				add_state_core = 330
+				set_capital = { state = 330 remember_old_capital = no }
+			}
+			MFN = {
+				white_peace = MEN
+				transfer_state = 2408
+				transfer_state = 2409
+			}
+			PRC = {
+				white_peace = MEN
+			}
+			every_country = {
+				news_event = {
+					id = WORLD_TER.1
+					days = 3
+				}
+			}
+			JAP = { add_to_faction = MEN }
+			CHI_save_pre_puppet_politics = yes
+			CHI = {
+				set_autonomy = {
+					target = MEN
+					autonomy_state = autonomy_china_warlord_regime
+				}
+			}
+			CHI_apply_pre_puppet_politics = yes
+			330 = { state_control_effect_330 = yes }
+			612 = { state_control_effect_612 = yes }
+			621 = { state_control_effect_621 = yes }
+			814 = { state_control_effect_814 = yes }
+			815 = { state_control_effect_815 = yes }
+			955 = { state_control_effect_955 = yes }
+			set_global_flag = skip_default_capitulation
+			
+			621 = { set_demilitarized_zone = yes }
+		}
+	}
+}
+
+AZH_AI_dec = {
+	AZH_AI_dec_1 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		days_remove = 30
+		available = {
+			has_war_with = CPC
+			OR = {
+				surrender_progress > 0.1
+				AND = {
+					NOT = { has_country_flag = non_aggression_pact_with_CPC }
+					CPI = { exists = no }
+				}
+			}
+		}
+		complete_effect = {
+			leave_faction = yes
+			every_enemy_country = {
+				limit = { 
+					OR = {
+						is_in_faction_with = CPC 
+						original_tag = CPC
+					}
+				}
+				white_peace = AZH
+			}
+		}
+	}
+}
+
+AI_eco_support = {
+	AI_eco_support_1 = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		days_remove = 25
+		available = {
+			exists = yes
+		}
+		modifier = {
+			gdp_growth_modifier = 7
+		}
+		complete_effect = {
+			set_temp_variable = { debt_temp = -0.5 }
+			econ_national_debt_change = yes
+		}
+	}
+}
+
+TER_enemy_ai_dec = { #进阶难度
+	TER_enemy_ai_support = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		ai_will_do = {
+			base = 10
+		}
+		days_remove = 30
+		available = {
+			has_war_with = CPC
+		}
+		modifier = {
+			land_night_attack = 0.20
+			army_attack_factor = 0.5
+			army_defence_factor = 0.5
+			army_speed_factor = 0.5
+			army_org_factor = 0.5
+			army_org_regain = 1.0
+			dig_in_speed_factor = 1.0
+			max_planning = 0.25
+			political_power_gain = 2.0
+			planning_speed = 0.5
+			land_reinforce_rate = 0.25
+			terrain_penalty_reduction = 0.5
+			experience_loss_factor = -0.5
+			supply_consumption_factor = -0.5
+			attrition = -0.5
+			army_bonus_air_superiority_factor = 0.5
+			enemy_army_bonus_air_superiority_factor = -0.5
+			air_superiority_bonus_in_combat = 0.5
+			cas_damage_reduction = 0.5
+			ai_focus_aggressive_factor = 1.0
+			ai_badass_factor = 1.0
+			ai_desired_divisions_factor = 1.0
+			misc_income_percent_of_GDP_modifier = 0.05
+			weekly_manpower = 5000
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 3000
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 3000
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 3000
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = 3000
+			}
+			add_equipment_to_stockpile = {
+				type = anti_air_shoulder_equipment
+				amount = 3000
+			}
+		}
+	}
+}

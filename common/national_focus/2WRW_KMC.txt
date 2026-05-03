@@ -1,0 +1,909 @@
+focus_tree = {
+	id = KMC_initial
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = KMC
+		}
+	}
+	default = no
+
+	## INITIAL ##
+
+	focus = {
+		id = KMC_frozen_east
+		icon = KMC_Frozen_East
+		cost = 1
+		x = 8
+		y = 0
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_frozen_east"
+			navy_experience = 10
+			custom_effect_tooltip = set_KMC_professionalism_tt
+			country_event = { id = kmcgp.17 days = 5 }
+		}
+	}
+
+	focus = {
+		id = KMC_we_do_what_we_must
+		icon = GFX_focus_generic_ship_trade
+		cost = 1
+		x = -1
+		y = 1
+		relative_position_id = KMC_frozen_east
+		prerequisite = {
+			focus = KMC_frozen_east
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_we_do_what_we_must"
+			custom_effect_tooltip = unlock_smug_decisions_tt
+			hidden_effect = {
+				add_dynamic_modifier = { modifier = KMC_profits_from_smuggling }
+			  }
+			hidden_effect = {
+				activate_mission = smuggling_profits_mission
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_we_take_what_is_necessary
+		icon = GFX_We_take_what_is_necesssary
+		cost = 1
+		x = 1
+		y = 1
+		relative_position_id = KMC_frozen_east
+		prerequisite = {
+			focus = KMC_frozen_east
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_we_take_what_is_necessary"
+			custom_effect_tooltip = KMC_piracy_decisions_unlock_tt
+			hidden_effect = {
+				activate_mission = unsanctioned_piracy_mission
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_to_save_men
+		icon = GFX_focus_MAG_siberian_army
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_we_take_what_is_necessary
+		prerequisite = {
+			focus = KMC_we_take_what_is_necessary
+		}
+		prerequisite = {
+			focus = KMC_we_do_what_we_must
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_to_save_men"
+			add_stability = 0.05
+		}
+	}
+
+	focus = {
+		id = KMC_to_save_ships
+		icon = GFX_focus_generic_subdue_the_navy
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_we_do_what_we_must
+		prerequisite = {
+			focus = KMC_we_take_what_is_necessary
+		}
+		prerequisite = {
+			focus = KMC_we_do_what_we_must
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_to_save_ships"
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 2
+				producer = KMC
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_secure_our_position
+		icon = GFX_secure_our_position
+		cost = 3.6
+		x = 1
+		y = 1
+		relative_position_id = KMC_to_save_ships
+		prerequisite = {
+			focus = KMC_to_save_men
+		}
+		prerequisite = {
+			focus = KMC_to_save_ships
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_to_rebuild"
+			add_timed_idea = { idea = KMC_idea_secure_our_position days = 240 }
+		}
+	}
+
+	focus = {
+		id = KMC_the_plan
+		icon = GFX_KMC_shchedrins_grand_plan
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_secure_our_position
+		prerequisite = {
+			focus = KMC_secure_our_position
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_the_plan"
+			add_political_power = 25
+			custom_effect_tooltip = ship_interface_available_tt
+			country_event = {
+				id = kmcgp.1
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_assess_our_assets # build air field have event that gives one transport plane
+		icon = GFX_focus_generic_socialist_plane
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_the_plan
+		prerequisite = {
+			focus = KMC_the_plan
+		}
+		allow_branch = {
+			has_country_flag = KMC_the_plan_has_been_revealed
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_wot"
+			637 = {
+				set_building_level = {
+					type = air_base
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_1
+				amount = 12
+				producer = KMC
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment_1
+				amount = 7
+				producer = KMC
+			}
+			add_equipment_to_stockpile = {
+				type = transport_plane_equipment_1
+				amount = 2
+				producer = KMC
+			}
+		}
+	}
+
+	#Prof Branch
+
+	focus = {
+		id = KMC_deal_with_professionalism_crisis
+		icon = GFX_focus_KMC_deal_with_professionalism_crisis
+		cost = 3.6
+		x = 5
+		y = 1
+		ai_will_do = {
+			factor = 100
+		}
+		relative_position_id = KMC_assess_our_assets
+		prerequisite = {
+			focus = KMC_assess_our_assets
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_deal_with_professionalism_crisis"
+			add_political_power = 150
+			country_event = kmcgp.15
+			hidden_effect = {
+				add_dynamic_modifier = { modifier = KMC_dealing_with_up_modifier }
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_reintroduce_naval_commissars
+		icon = GFX_focus_KOM_loyal_police_force
+		cost = 3.6
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 100
+		}
+		relative_position_id = KMC_deal_with_professionalism_crisis
+		prerequisite = {
+			focus = KMC_deal_with_professionalism_crisis
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_reintroduce_naval_commissars"
+			KMC_decrease_unsanctioned_piracy_tick = yes
+			add_popularity = {
+				ideology = communist
+				popularity = 0.05
+			}
+			country_event = kmcgp.28
+		}
+	}
+
+	focus = { # unlocks more missions for dealing with unsanctioned piracyKMC_investigate_the_quatermasters
+		id = KMC_the_problem_of_plunder
+		icon = GFX_focus_generic_the_best_guns_money_can_buy
+		cost = 3.6
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 100
+		}
+		relative_position_id = KMC_reintroduce_naval_commissars
+		prerequisite = {
+			focus = KMC_reintroduce_naval_commissars
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_the_problem_of_plunder"
+			custom_effect_tooltip = kmc_gain_up_decision_tt
+		}
+	}
+
+	focus = { # unlocks more missions for dealing with unsanctioned piracy
+		id = KMC_investigate_the_quatermasters
+		icon = GFX_investigate_the_quatermasters
+		cost = 3.6
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 100
+		}
+		relative_position_id = KMC_the_problem_of_plunder
+		prerequisite = {
+			focus = KMC_the_problem_of_plunder
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_investigate_the_quatermasters"
+			custom_effect_tooltip = kmc_gain_up_decision_tt
+		}
+	}
+
+	focus = { #add rules of engagement
+		id = KMC_tighten_rules_of_engagement
+		icon = GFX_focus_generic_constitution
+		cost = 3.6
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 50
+		}
+		relative_position_id = KMC_deal_with_professionalism_crisis
+		prerequisite = {
+			focus = KMC_deal_with_professionalism_crisis
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_tighten_rules_of_engagement"
+			add_political_power = 50
+			swap_ideas = {
+				remove_idea = tno_military_supervision_no_supervision
+				add_idea = tno_military_supervision_rules_of_engagement
+			}
+			country_event = kmcgp.19
+		}
+	}
+
+	focus = { #add combat schooling
+		id = KMC_increase_training_standards
+		icon = GFX_focus_IRK_in_the_trenches
+		cost = 3.6
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 50
+		}
+		relative_position_id = KMC_tighten_rules_of_engagement
+		prerequisite = {
+			focus = KMC_tighten_rules_of_engagement
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_increase_training_standards"
+			add_political_power = 50
+			swap_ideas = {
+				remove_idea = tno_training_basic_training
+				add_idea = tno_training_combat_schooling
+			}
+		}
+	}
+
+	focus = { 
+		id = KMC_security_service
+		icon = GFX_focus_IRK_the_response
+		cost = 3.6
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 50
+		}
+		relative_position_id = KMC_increase_training_standards
+		prerequisite = {
+			focus = KMC_increase_training_standards
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_security_service"
+			add_political_power = 50
+			swap_ideas = {
+				remove_idea = tno_security_regulated_police
+				add_idea = tno_security_oppressive_police
+			}
+		}
+	}
+
+	focus = { #gets decision to end unsanctioned piracy
+		id = KMC_make_our_move
+		icon = GFX_focus_generic_experimental_training_methods
+		cost = 3.6
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 100
+		}
+		relative_position_id = KMC_security_service
+		prerequisite = {
+			focus = KMC_security_service
+		}
+		prerequisite = {
+			focus = KMC_investigate_the_quatermasters
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_make_our_move"
+			add_political_power = 50
+			custom_effect_tooltip = kmc_make_our_move_tt
+		}
+	}
+
+	#Smug Branch
+
+	focus = {
+		id = KMC_review_the_networks
+		icon = GFX_focus_generic_economic_opportunity
+		cost = 3.6
+		x = -5
+		y = 1
+		relative_position_id = KMC_assess_our_assets
+		prerequisite = {
+			focus = KMC_assess_our_assets
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_review_the_networks"
+			subtract_from_variable = { KMC_smuggling_mission_length = 5 }
+			add_days_mission_timeout = {
+				mission = smuggling_profits_mission
+				days = -5
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_contacts_in_alaska
+		icon = GFX_focus_generic_oil_barrels
+		cost = 3.6
+		x = -1
+		y = 1
+		relative_position_id = KMC_review_the_networks
+		prerequisite = {
+			focus = KMC_review_the_networks
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_contacts_in_alaska"
+			custom_effect_tooltip = increase_fuel_smuggling_network_tt
+			add_to_variable = { KMC_smuggling_fuel = 7 }
+			add_to_variable = { fuel_smuggling_network_size = 1 }
+			add_to_variable = { general_smuggling_netowrk_size = 1 }
+			add_to_variable = { fuel_smuggling_network_size_convoys = 3 }
+			add_to_variable = { fuel_smuggling_network_size_manpower = 150 }
+			country_event = kmcgp.21
+
+		}
+	}
+
+	focus = {
+		id = KMC_contacts_in_manchuria
+		icon = GFX_focus_MAG_supply_base_moses
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_contacts_in_alaska
+		prerequisite = {
+			focus = KMC_contacts_in_alaska
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_contacts_in_manchuria"
+			custom_effect_tooltip = increase_weapons_smuggling_network_tt
+			add_to_variable = { KMC_smuggling_weapons = 20 }
+			add_to_variable = { weapons_smuggling_network_size = 1 }
+			add_to_variable = { general_smuggling_netowrk_size = 1 }
+			add_to_variable = { weapons_smuggling_network_size_convoys = 2 }
+			add_to_variable = { weapons_smuggling_network_size_manpower = 500 }
+			country_event = kmcgp.23
+		}
+	}
+
+	focus = {
+		id = KMC_sourcing_supplies
+		icon = GFX_focus_generic_change_law_trade
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_contacts_in_manchuria
+		prerequisite = {
+			focus = KMC_contacts_in_manchuria
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_contacts_in_manchuria"
+			custom_effect_tooltip = increase_supplies_smuggling_network_tt
+			add_to_variable = { KMC_smuggling_supplies = 10 }
+			add_to_variable = { supplies_smuggling_network_size = 1 }
+			add_to_variable = { general_smuggling_netowrk_size = 1 }
+			add_to_variable = { supplies_smuggling_network_size_convoys = 2 }
+			add_to_variable = { supplies_smuggling_network_size_manpower = 100 }
+		}
+	}
+
+	focus = {
+		id = KMC_repair_efforts
+		icon = GFX_RAJ_India_Place_The_Orders
+		cost = 3.6
+		x = 1
+		y = 1
+		relative_position_id = KMC_review_the_networks
+		prerequisite = {
+			focus = KMC_review_the_networks
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_repair_efforts"
+			add_ideas = KMC_efficient_repairs
+		}
+	}
+
+	focus = {
+		id = KMC_convert_captured_ships
+		icon = GFX_Convert_captured_ships
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_repair_efforts
+		prerequisite = {
+			focus = KMC_repair_efforts
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_convert_captured_ships"
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 3
+				producer = KMC
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_administering_the_system
+		icon = GFX_focus_generic_administration
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_convert_captured_ships
+		prerequisite = {
+			focus = KMC_convert_captured_ships
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_administering_the_system"
+			add_political_power = 50
+		}
+	}
+
+	focus = {
+		id = KMC_finding_a_buyer
+		icon = GFX_Pacific_black_market
+		cost = 3.6
+		x = -1
+		y = 1
+		relative_position_id = KMC_administering_the_system
+		prerequisite = {
+			focus = KMC_administering_the_system
+		}
+		prerequisite = {
+			focus = KMC_sourcing_supplies
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_finding_a_buyer"
+			hidden_effect = {
+				activate_mission = black_market_prices
+				set_price_all_buy = yes
+				set_price_all_sell = yes
+				set_variable = { black_market_trades_av = general_smuggling_netowrk_size }
+			}
+			custom_effect_tooltip = finding_a_buyer_tt
+		}
+	}
+
+
+
+	## AMERICAN BRANCH ##
+
+	focus = {
+		id = KMC_appeal_to_america
+		icon = GFX_align_america2
+		cost = 3.6
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		relative_position_id = KMC_assess_our_assets
+		prerequisite = {
+			focus = KMC_assess_our_assets
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_appeal_to_america"
+			add_political_power = 50
+			country_event = kmcgp.24
+		}
+	}
+
+	focus = {
+		id = KMC_a_legitimate_state
+		icon = GFX_A_legitimate_state
+		cost = 3.6
+		x = -1
+		y = 1
+		relative_position_id = KMC_appeal_to_america
+		prerequisite = {
+			focus = KMC_appeal_to_america
+	}
+		completion_reward = {
+			tno_public_meetings_improve = yes
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_a_legitimate_state"
+		}
+	}
+
+	focus = { #cant raid america anymore, they decay quicker
+		id = KMC_safe_passage_for_americans
+		icon = GFX_focus_generic_naval_hit_and_run
+		cost = 3.6
+		x = 1
+		y = 1
+		relative_position_id = KMC_appeal_to_america
+		prerequisite = {
+			focus = KMC_appeal_to_america
+		}
+		completion_reward = {
+			custom_effect_tooltip = KMC_safe_passage_for_americans_tt
+			set_variable = { KMC_american_concern_decay = 6 }
+			set_country_flag = ended_american_raids
+			add_stability = 0.05
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_safe_passage_for_americans"
+		}
+	}
+
+	focus = {
+		id = KMC_finding_an_in
+		icon = GFX_focus_USA_covert_operative
+		cost = 3.6
+		x = 1
+		y = 1
+		relative_position_id = KMC_a_legitimate_state
+		prerequisite = {
+			focus = KMC_a_legitimate_state
+		}
+		prerequisite = {
+			focus = KMC_safe_passage_for_americans
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = KMC_finding_an_in_trigger_tt
+				check_variable = { KMC_american_concern < 20 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = an_opportunity_is_available
+				has_country_flag = ivanov_found 
+			}
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_finding_an_in"
+			add_political_power = 25
+			country_event = kmcgp.25
+		}
+	}
+
+	focus = { #navy xp
+		id = KMC_establish_naval_attache
+		icon = GFX_focus_USA_withdraw_american_soldiers
+		cost = 3.6
+		x = -2
+		y = 1
+		relative_position_id = KMC_finding_an_in
+		prerequisite = {
+			focus = KMC_finding_an_in
+		}
+		
+		completion_reward = {
+			navy_experience = 30
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_establish_naval_attache"
+		}
+	}
+
+	focus = { # stability
+		id = KMC_letters_of_marque
+		icon = GFX_letters_of_marque
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_finding_an_in
+		prerequisite = {
+			focus = KMC_finding_an_in
+		}
+		
+		completion_reward = {
+			add_stability = 0.05
+			custom_effect_tooltip = KMC_letters_of_marque_tt
+			set_variable = { KMC_japanese_concern_decay = 0 }
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_letters_of_marque"
+		}
+	}
+
+	focus = { # stability
+		id = KMC_poke_the_kraken
+		icon = GFX_focus_JAP_our_presence_is_everywhere
+		cost = 3.6
+		x = 2
+		y = 1
+		relative_position_id = KMC_finding_an_in
+		prerequisite = {
+			focus = KMC_finding_an_in
+		}
+		
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_poke_the_kraken"
+			custom_effect_tooltip = poke_the_kraken_tt
+			set_country_flag = poke_the_kraken
+		}
+	}
+
+	focus = { #naval access
+		id = KMC_pirates_in_the_carribbean
+		icon = GFX_pirates_in_the_carribbean
+		cost = 3.6
+		x = 0
+		y = 1
+		relative_position_id = KMC_letters_of_marque
+		prerequisite = {
+			focus = KMC_establish_naval_attache
+		}
+		prerequisite = {
+			focus = KMC_letters_of_marque
+		}
+		prerequisite = {
+			focus = KMC_poke_the_kraken
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = KMC_pirates_in_the_carribbean_trigger_tt
+				check_variable = { KMC_japanese_concern > 59 }
+			}
+		}
+		completion_reward = {
+			set_country_flag = KMC_has_american_support
+			add_stability = 0.05
+			USA = {
+				give_military_access = KMC
+			}
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_pirates_in_the_carribbean"
+		}
+	}
+
+# FINAL BIT
+
+	focus = { #stability
+		id = KMC_a_route_secured
+		icon = GFX_focus_generic_a_better_world
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = KMC_pirates_in_the_carribbean
+		prerequisite = {
+			focus = KMC_finding_a_buyer
+		}
+		prerequisite = {
+			focus = KMC_pirates_in_the_carribbean
+		}
+		prerequisite = {
+			focus = KMC_make_our_move
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_a_route_secured"
+			add_stability = 0.05
+			country_event = kmcgp.27
+		}
+	}
+
+	focus = { #stability
+		id = KMC_lets_go_home
+		icon = GFX_Operation_ithaca
+		cost = 1
+		x = 0
+		y = 1
+		relative_position_id = KMC_a_route_secured
+		prerequisite = {
+			focus = KMC_a_route_secured
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_a_route_secured"
+			activate_mission = kmc_final_preperations
+			custom_effect_tooltip = time_to_go_home_now_boys
+		}
+	}
+
+	focus = { #stability
+		id = KMC_naval_infantry
+		icon = GFX_focus_IRK_nkvd_guards_divisions
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = KMC_make_our_move
+		prerequisite = {
+			focus = KMC_make_our_move
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_naval_infantry"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = marine_tech
+			}
+		}
+	}
+
+	focus = { #stability
+		id = KMC_theory
+		icon = GFX_focus_generic_army_focus_red
+		cost = 3
+		x = -2
+		y = 1
+		relative_position_id = KMC_naval_infantry
+		prerequisite = {
+			focus = KMC_naval_infantry
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_theory"
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+
+	focus = { #stability
+		id = KMC_tactics
+		icon = GFX_KMC_Rifles
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = KMC_naval_infantry
+		prerequisite = {
+			focus = KMC_naval_infantry
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_tactics"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+
+	focus = { #stability
+		id = KMC_practice
+		icon = GFX_Naval_engineers
+		cost = 3
+		x = 2
+		y = 1
+		relative_position_id = KMC_naval_infantry 
+		prerequisite = {
+			focus = KMC_naval_infantry
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_practice"
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = engineers_tech
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_more_efficient_routes
+		icon = GFX_focus_generic_economic_opportunity
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = KMC_finding_a_buyer
+		prerequisite = {
+			focus = KMC_finding_a_buyer
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_more_efficient_routes"
+			add_days_mission_timeout = {
+				mission = smuggling_profits_mission
+				days = -10
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_dockyard
+		icon = GFX_focus_generic_shipping_expansion
+		cost = 3
+		x = 0
+		y = 1
+		relative_position_id = KMC_more_efficient_routes
+		prerequisite = {
+			focus = KMC_more_efficient_routes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_dockyard"
+			add_offsite_building = {
+				type = dockyard
+				level = 1
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_factory
+		icon = GFX_focus_generic_factories_red
+		cost = 3
+		x = -2
+		y = 1
+		relative_position_id = KMC_more_efficient_routes
+		prerequisite = {
+			focus = KMC_more_efficient_routes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_factory"
+			add_offsite_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+	}
+
+	focus = {
+		id = KMC_more_convoys
+		icon = GFX_focus_generic_subdue_the_navy
+		cost = 3
+		x = 2
+		y = 1
+		relative_position_id = KMC_more_efficient_routes
+		prerequisite = {
+			focus = KMC_more_efficient_routes
+		}
+		completion_reward = {
+			log = "[GetDateText]: [Root.GetName]: Focus KMC_factory"
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 2
+				producer = KMC
+			}
+		}
+	}
+}

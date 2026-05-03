@@ -1,0 +1,808 @@
+#  SCRIPTED GUIS:
+# For all the stuff see
+#	- WEAPONS BUILDUP
+#	- WEAPONS STABILITY
+#	- WEAPONS DEBUG
+
+scripted_gui = {
+
+	2WRW_OMS_ChemWeapons_OpenButtonContainer = {
+		window_name = "2WRW_Omsk_Chemical_Weapons_AccessButton"
+		context_type = player_context
+		parent_window_token = politics_tab
+		dirty = 2WRW_OMS_ChemWeapons_ButtonContainer_Dirty 
+
+		visible = {
+			tag = OMS
+			has_country_flag = OMS_chemical_weapons_gui_enabled
+		}
+
+		effects = {
+			2WRW_Omsk_Chemical_Weapons_OpenButton_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_global_flag = PostApocTime
+						}
+					}
+				if = {
+					limit = { NOT = { has_country_flag = OMS_chemical_weapons_open } }
+					set_country_flag = OMS_chemical_weapons_open
+				}
+				else_if = {
+					limit = { has_country_flag = OMS_chemical_weapons_open }
+					clr_country_flag = OMS_chemical_weapons_open
+				}
+				clr_country_flag = gui_alert_visible
+				add_to_variable = { 2WRW_OMS_ChemWeapons_ButtonContainer_Dirty = 1 }
+				}
+				else = { 
+					if = {
+						limit = { NOT = { has_country_flag = OMS_GT_GUI_open_flag } }
+						set_country_flag = OMS_GT_GUI_open_flag
+					}
+					else_if = {
+						limit = { has_country_flag = OMS_GT_GUI_open_flag }
+						clr_country_flag = OMS_GT_GUI_open_flag
+					}
+				}
+
+			}
+			2WRW_Omsk_Chemical_Weapons_OpenButton_right_click = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = OMS_chemical_weapons_gui_debug }
+						is_debug = yes
+					}
+					set_country_flag = OMS_chemical_weapons_gui_debug
+				}
+				else_if = {
+					limit = {
+						has_country_flag = OMS_chemical_weapons_gui_debug
+						is_debug = yes
+					}
+					clr_country_flag = OMS_chemical_weapons_gui_debug
+				}
+				add_to_variable = { 2WRW_OMS_ChemWeapons_ButtonContainer_Dirty = 1 }
+			}
+		}
+
+		triggers = {
+			gui_alert_visible = {
+				has_country_flag = gui_alert_visible
+			}			
+		}
+	}
+
+	2WRW_OMS_Chemical_Weapons_GUI = {
+		context_type = player_context
+		parent_window_token = top_bar
+		window_name = "2WRW_OMS_Chemical_Weapons_GUI"
+
+		visible = {
+			AND = {
+				tag = OMS
+				has_country_flag = OMS_chemical_weapons_open
+			}
+		}
+
+		############################################
+		### WEAPONS BUILDUP ### WWEAPONS BUILDUP ###
+		############################################
+
+		triggers = {
+			OMS_chemical_weapons_gui_effect_button_1_click_enabled = {
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_1_cooldown }
+				OMS_chemical_weapons_gui_effect_button_1_conditions_met = yes
+			}
+			OMS_chemical_weapons_gui_effect_button_2_click_enabled = {
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_2_cooldown }
+				OMS_chemical_weapons_gui_effect_button_2_conditions_met = yes
+			}
+			OMS_chemical_weapons_gui_effect_button_3_click_enabled = {
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_3_cooldown }
+				OMS_chemical_weapons_gui_effect_button_3_conditions_met = yes
+			}
+			OMS_chemical_weapons_gui_effect_button_4_click_enabled = {
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_4_cooldown }
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_4_already_clicked }
+				OMS_chemical_weapons_gui_effect_button_4_conditions_met = yes
+			}
+			OMS_chemical_weapons_gui_effect_button_5_click_enabled = {
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_5_cooldown }
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_5_already_clicked }
+				OMS_chemical_weapons_gui_effect_button_5_conditions_met = yes
+			}
+			OMS_chemical_weapons_gui_effect_button_6_click_enabled = {
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_6_cooldown }
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_6_already_clicked }
+				OMS_chemical_weapons_gui_effect_button_6_conditions_met = yes
+			}
+			OMS_chemical_weapons_gui_effect_button_7_click_enabled = {
+				NOT = { has_country_flag = OMS_chemical_weapons_gui_effect_button_7_cooldown }
+				OMS_chemical_weapons_gui_effect_button_7_conditions_met = yes
+			}
+		}
+
+		effects = {
+			chemical_weapons_gui_close_button_click = {
+                clr_country_flag = OMS_chemical_weapons_open
+            }
+			
+			OMS_chemical_weapons_gui_effect_button_1_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_chemical_weapons_gui_effect_button_1_cooldown
+				country_event = { id = OMS_chemical_weapons_cooldown.1 days = 14 }
+				set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -3 }
+				set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -3 }
+				OMS_chemical_weapons_gui_stability_change = yes
+
+
+				add_political_power = -15
+				army_experience = -10
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 1.5 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+            }
+			OMS_chemical_weapons_gui_effect_button_2_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_chemical_weapons_gui_effect_button_2_cooldown
+				country_event = { id = OMS_chemical_weapons_cooldown.2 days = 14 }
+				set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -3 }
+				set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -3 }
+				OMS_chemical_weapons_gui_stability_change = yes
+
+				add_political_power = -30
+				set_temp_variable = { pus_temp = -2 }
+				econ_pus_change = yes
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 2.5 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+            }
+			OMS_chemical_weapons_gui_effect_button_3_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_chemical_weapons_gui_effect_button_3_cooldown
+				country_event = { id = OMS_chemical_weapons_cooldown.3 days = 14 }
+				set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -3 }
+				set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -3 }
+				OMS_chemical_weapons_gui_stability_change = yes
+
+				add_political_power = -50
+				subtract_from_variable = { OMS_chemical_weapons_gui_research_speed = 0.03 }
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 3.5 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+            }
+			OMS_chemical_weapons_gui_effect_button_4_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_chemical_weapons_gui_effect_button_4_cooldown
+				country_event = { id = OMS_chemical_weapons_cooldown.4 days = 30 }
+
+				if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 0 } }
+
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -3 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -3 }
+					OMS_chemical_weapons_gui_stability_change = yes
+
+					add_political_power = -75
+					set_temp_variable = { temp_econ_spending_amount = 0.05 }
+					econ_spend_money_once_effect_raw_money = yes
+					set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 5 }
+					OMS_chemical_weapons_gui_stockpile_change = yes
+				}
+				else_if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 1 } }
+
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -5 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -5 }
+					OMS_chemical_weapons_gui_stability_change = yes
+
+					add_political_power = -75
+					set_temp_variable = { temp_econ_spending_amount = 0.01 }
+					econ_spend_money_once_effect_raw_money = yes
+					set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 5 }
+					OMS_chemical_weapons_gui_stockpile_change = yes
+				}
+				else_if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 2 } }
+					
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -5 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -5 }
+					OMS_chemical_weapons_gui_stability_change = yes
+
+					add_political_power = -100
+					set_temp_variable = { temp_econ_spending_amount = 0.025 }
+					econ_spend_money_once_effect_raw_money = yes
+					add_ideas = OMS_spetsgruppa_chemical_training
+				}
+            }
+			OMS_chemical_weapons_gui_effect_button_5_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_chemical_weapons_gui_effect_button_5_cooldown
+				country_event = { id = OMS_chemical_weapons_cooldown.5 days = 30 }
+
+				if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 0 } }
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -2 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologicl_stability_change = -2 }
+					OMS_chemical_weapons_gui_stability_change = yes
+					
+					add_political_power = -150
+					set_temp_variable = { temp_econ_spending_amount = 0.15 }
+					econ_spend_money_once_effect_raw_money = yes
+					set_temp_variable = { pus_temp = -2 }
+					econ_pus_change = yes
+				}
+				else_if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 1 } }
+
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -3 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -3 }
+					OMS_chemical_weapons_gui_stability_change = yes
+
+					add_political_power = -100
+					set_temp_variable = { temp_econ_spending_amount = 0.15 }
+					econ_spend_money_once_effect_raw_money = yes
+					set_temp_variable = { pus_temp = -2 }
+					econ_pus_change = yes
+				}
+				else_if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 2 } }
+
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -5 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -5 }
+					OMS_chemical_weapons_gui_stability_change = yes
+
+
+					add_political_power = -150
+					set_temp_variable = { temp_econ_spending_amount = 0.15 }
+					econ_spend_money_once_effect_raw_money = yes
+					set_temp_variable = { pus_temp = -4 }
+					econ_pus_change = yes
+				}
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 10 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+            }
+			OMS_chemical_weapons_gui_effect_button_6_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_chemical_weapons_gui_effect_button_6_cooldown
+				country_event = { id = OMS_chemical_weapons_cooldown.6 days = 30 }
+
+				if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 0 } }
+
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -2 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -2 }
+					OMS_chemical_weapons_gui_stability_change = yes
+
+					add_political_power = -200
+					set_temp_variable = { temp_econ_spending_amount = 0.35 }
+					econ_spend_money_once_effect_raw_money = yes
+					add_command_power = -50
+					add_to_variable = { OMS_chemical_weapons_gui_research_speed = 0.05 }
+				}
+				else_if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 1 } }
+
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -3 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -3 }
+					OMS_chemical_weapons_gui_stability_change = yes
+
+					add_political_power = -150
+					add_stability = -0.03
+					add_command_power = -50
+				}
+				else_if = {
+					limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 2 } }
+
+					set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -5 }
+					set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -5 }
+					OMS_chemical_weapons_gui_stability_change = yes
+
+					add_political_power = -200
+					add_stability = -0.03
+					add_command_power = -50
+				}
+            }
+			OMS_chemical_weapons_gui_effect_button_7_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_chemical_weapons_gui_effect_button_7_cooldown
+				country_event = { id = OMS_chemical_weapons_cooldown.7 days = 30 }
+            }
+		}
+
+		###############################################
+		### WEAPONS STABILITY ### WEAPONS STABILITY ###									
+		###############################################
+		triggers = {
+			OMS_stability_chemical_weapons_gui_effect_button_1_click_enabled = {
+				NOT = { has_country_flag = OMS_stability_chemical_weapons_gui_effect_button_1_cooldown }
+				OMS_stability_chemical_weapons_gui_effect_button_1_conditions_met = yes
+			}
+			OMS_stability_chemical_weapons_gui_effect_button_2_click_enabled = {
+				NOT = { has_country_flag = OMS_stability_chemical_weapons_gui_effect_button_2_cooldown }
+				OMS_stability_chemical_weapons_gui_effect_button_2_conditions_met = yes
+			}
+			OMS_stability_chemical_weapons_gui_effect_button_3_click_enabled = {
+				NOT = { has_country_flag = OMS_stability_chemical_weapons_gui_effect_button_3_cooldown }
+				OMS_stability_chemical_weapons_gui_effect_button_3_conditions_met = yes
+			}
+			OMS_stability_chemical_weapons_gui_effect_button_4_click_enabled = {
+				NOT = { has_country_flag = OMS_stability_chemical_weapons_gui_effect_button_4_cooldown }
+				OMS_stability_chemical_weapons_gui_effect_button_4_conditions_met = yes
+			}
+			OMS_stability_chemical_weapons_gui_effect_button_5_click_enabled = {
+				NOT = { has_country_flag = OMS_stability_chemical_weapons_gui_effect_button_5_cooldown }
+				OMS_stability_chemical_weapons_gui_effect_button_5_conditions_met = yes
+			}
+			OMS_stability_chemical_weapons_gui_effect_button_6_click_enabled = {
+				NOT = { has_country_flag = OMS_stability_chemical_weapons_gui_effect_button_6_cooldown }
+				OMS_stability_chemical_weapons_gui_effect_button_6_conditions_met = yes
+			}
+			OMS_stability_chemical_weapons_gui_effect_button_7_click_enabled = {
+				NOT = { has_country_flag = OMS_stability_chemical_weapons_gui_effect_button_7_cooldown }
+				OMS_stability_chemical_weapons_gui_effect_button_7_conditions_met = yes
+			}
+		}
+
+		effects = {
+			chemical_weapons_gui_close_button_click = {
+                clr_country_flag = OMS_chemical_weapons_open
+            }
+			
+			OMS_stability_chemical_weapons_gui_effect_button_1_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_stability_chemical_weapons_gui_effect_button_1_cooldown
+				country_event = { id = OMS_stability_chemical_weapons_cooldown.1 days = 14 }
+				add_political_power = -100
+            }
+			OMS_stability_chemical_weapons_gui_effect_button_2_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_stability_chemical_weapons_gui_effect_button_2_cooldown
+				country_event = { id = OMS_stability_chemical_weapons_cooldown.2 days = 14 }
+				set_temp_variable = { pus_temp = -2 }
+				econ_pus_change = yes
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = -5 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+            }
+			OMS_stability_chemical_weapons_gui_effect_button_3_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_stability_chemical_weapons_gui_effect_button_3_cooldown
+				country_event = { id = OMS_stability_chemical_weapons_cooldown.3 days = 14 }
+				add_political_power = -5
+				set_temp_variable = { pus_temp = -2 }
+				econ_pus_change = yes
+				
+				set_temp_variable = { temp_econ_spending_amount = 0.15 }
+				econ_spend_money_once_effect_raw_money = yes
+            }
+			OMS_stability_chemical_weapons_gui_effect_button_4_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_stability_chemical_weapons_gui_effect_button_4_cooldown
+				country_event = { id = OMS_stability_chemical_weapons_cooldown.4 days = 30 }
+				set_temp_variable = { pus_temp = -2 }
+				econ_pus_change = yes
+
+            }
+			OMS_stability_chemical_weapons_gui_effect_button_5_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_stability_chemical_weapons_gui_effect_button_5_cooldown
+				country_event = { id = OMS_stability_chemical_weapons_cooldown.5 days = 14 }
+				set_temp_variable = { pus_temp = -1 }
+				econ_pus_change = yes
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = -5 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+
+            }
+			OMS_stability_chemical_weapons_gui_effect_button_6_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_stability_chemical_weapons_gui_effect_button_6_cooldown
+				country_event = { id = OMS_stability_chemical_weapons_cooldown.6 days = 14 }
+				set_temp_variable = { pus_temp = -1 }
+				econ_pus_change = yes
+				add_political_power = -5
+            }
+			OMS_stability_chemical_weapons_gui_effect_button_7_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_dirty = 1 }
+				set_country_flag = OMS_stability_chemical_weapons_gui_effect_button_7_cooldown
+				country_event = { id = OMS_stability_chemical_weapons_cooldown.7 days = 14 }
+				add_political_power = -50
+            }
+		}
+
+
+		triggers = {
+			gui_alert_visible = {
+				has_country_flag = gui_alert_visible
+			}
+		}
+
+
+
+		#######################################
+		### WEAPONS DEBUG ### WEAPONS DEBUG ###
+		#######################################
+		effects = {
+			debug_add_stockpile_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 1 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+			}
+			debug_add_stockpile_shift_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 10 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+			}
+			debug_sub_stockpile_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = -1 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+			}
+			debug_sub_stockpile_shift_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = -10 }
+				OMS_chemical_weapons_gui_stockpile_change = yes
+			}
+
+			debug_add_stockpile_limit_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_stockpile_limit_change = 1 }
+				OMS_chemical_weapons_gui_stockpile_limit_change = yes
+			}
+
+			debug_add_stockpile_limit_shift_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_stockpile_limit_change = 10 }
+				OMS_chemical_weapons_gui_stockpile_limit_change = yes
+			}
+
+			debug_subtract_stockpile_limit_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_stockpile_limit_change = -1 }
+				OMS_chemical_weapons_gui_stockpile_limit_change = yes
+			}
+
+			debug_subtract_stockpile_limit_shift_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_stockpile_limit_change = -10 }
+				OMS_chemical_weapons_gui_stockpile_limit_change = yes
+			}
+
+			debug_add_stability_chemical_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = 1 }
+				OMS_chemical_weapons_gui_stability_change = yes
+			}
+
+			debug_add_stability_chemical_shift_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = 10 }
+				OMS_chemical_weapons_gui_stability_change = yes
+			}
+	
+			debug_sub_stability_chemical_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -1 }
+				OMS_chemical_weapons_gui_stability_change = yes
+			}
+
+			debug_sub_stability_chemical_shift_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -10 }
+				OMS_chemical_weapons_gui_stability_change = yes
+			}
+
+			debug_add_stability_biologic_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = 1 }
+				OMS_chemical_weapons_gui_stability_change = yes
+			}
+
+			debug_add_stability_biologic_shift_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = 10 }
+				OMS_chemical_weapons_gui_stability_change = yes
+			}
+
+	
+			debug_sub_stability_biologic_shift_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -10 }
+				OMS_chemical_weapons_gui_stability_change = yes
+			}
+
+			debug_sub_stability_biologic_click = {
+				set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -1 }
+				OMS_chemical_weapons_gui_stability_change = yes
+			}
+	
+
+			#OMS_chemical_weapons_gui_adding_to_stockpile
+			debug_stage_change_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_current_stage = 1 }
+				clamp_variable = {
+					var = OMS_chemical_weapons_gui_current_stage
+					min = 0
+					max = 2
+				}
+			}
+			debug_stage_change_right_click = {
+				add_to_variable = { OMS_chemical_weapons_gui_current_stage = -1 }
+				clamp_variable = {
+					var = OMS_chemical_weapons_gui_current_stage
+					min = 0
+					max = 2
+				}
+			}
+
+		}
+
+		triggers = {
+			debug_add_stockpile_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+			debug_sub_stockpile_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+
+			debug_add_stockpile_limit_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+			debug_sub_stockpile_limit_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+
+			debug_add_stability_chemical_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+			debug_sub_stability_chemical_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+		
+			debug_add_stability_biologic_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+			debug_sub_stability_biologic_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+
+		
+			debug_stage_change_visible = { has_country_flag = OMS_chemical_weapons_gui_debug }
+
+		}
+		
+
+		properties = {
+			OMS_chemical_weapons_gui_stockpiles_progress_bar = { frame = OMS_chemical_weapons_gui_current_stockpile }
+		}
+	}
+
+	2WRW_OMS_Nuke_Counter = {
+		context_type = player_context
+		window_name = 2WRW_OMS_topbar_nuke_counter
+		parent_window_token = top_bar
+
+		visible = {
+			AND = {
+				tag = OMS
+				check_variable = { nuclear_stockpile > 0 }
+				always = no 
+			}
+		}
+	}
+
+	2WRW_OMS_Far_East_Provinces = {
+		window_name = "2WRW_OMS_Far_East_Provinces"
+		context_type = decision_category
+
+		visible = {
+			has_global_flag = OMS_CPS_OFN_war_inevitable
+		}
+
+		dynamic_lists = {
+			omsk_map_fill_grid = {
+				array = OMS_far_east_states
+				entry_container = 2WRW_OMS_Far_East_Provinces_fill
+				value = OMS_v
+				index = OMS_i
+			}
+		}
+
+		triggers = {
+			Far_East_Provinces_button_visible = {
+				set_temp_variable = { OMS_map_button_y = OMS_map_y^OMS_i }
+				add_to_temp_variable = { OMS_map_button_y = 1 }
+
+				if = {
+					limit = {
+						check_variable = { OMS_far_east_selected_state = OMS_v }
+					}
+					set_temp_variable = { oms_map_button_frame = 2 }
+				}
+				else = {
+					set_temp_variable = { oms_map_button_frame = 1 }
+				}
+			}
+		}
+
+		effects = {
+			Far_East_Provinces_button_click = {
+				set_variable = { OMS_far_east_selected_state = OMS_v }
+				#OMS_get_far_east_state = yes
+			}
+		}
+
+		properties = {
+			Far_East_Provinces_fill = {
+				frame = OMS_v:gui_display_frame
+				image = "GFX_OMS_PROVINCE_FILL_[?OMS_i]"
+				x = OMS_map_x^OMS_i
+				y = OMS_map_y^OMS_i
+			}
+			Far_East_Provinces_button = {
+				frame = oms_map_button_frame
+				image = "GFX_OMS_PROVINCE_FILL_SELECT_[?OMS_i]"
+				x = OMS_map_x^OMS_i
+				y = OMS_map_button_y
+			}
+		}
+	}
+
+	
+}
+
+scripted_gui = {
+	SWRW_OMS_postnuke_Situation_Overview = {
+		context_type = decision_category
+		window_name = "postnuke_Situation_Overview_GUI"
+
+		visible = {
+			always = yes
+		}
+		
+		effects = {
+			Antarctica_Situation_Overview_GUI_Flag_1_Overlay_click = {
+				set_variable = { Antarctica_Decision_GUI_Tab_Id = 1 }
+				set_variable = { Antarctica_Decision_GUI_Tab_Scope = WRS }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_2_Overlay_click = {
+				set_variable = { Antarctica_Decision_GUI_Tab_Id = 2 }
+				set_variable = { Antarctica_Decision_GUI_Tab_Scope = YGR }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_3_Overlay_click = {
+				set_variable = { Antarctica_Decision_GUI_Tab_Id = 3 }
+				set_variable = { Antarctica_Decision_GUI_Tab_Scope = KMC }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_4_Overlay_click = {
+				set_variable = { Antarctica_Decision_GUI_Tab_Id = 4 }
+				set_variable = { Antarctica_Decision_GUI_Tab_Scope = TOM }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_5_Overlay_click = {
+				set_variable = { Antarctica_Decision_GUI_Tab_Id = 5 }
+				set_variable = { Antarctica_Decision_GUI_Tab_Scope = OMS }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_6_Overlay_click = {
+				set_variable = { Antarctica_Decision_GUI_Tab_Id = 6 }
+				set_variable = { Antarctica_Decision_GUI_Tab_Scope = IRK }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_7_Overlay_click = {
+				set_variable = { Antarctica_Decision_GUI_Tab_Id = 7 }
+				set_variable = { Antarctica_Decision_GUI_Tab_Scope = POV }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_8_Overlay_click = {
+				set_variable = { Antarctica_Decision_GUI_Tab_Id = 8 }
+				set_variable = { Antarctica_Decision_GUI_Tab_Scope = FUK }
+			}
+		}
+		
+		triggers = {
+			Antarctica_Situation_Overview_GUI_Flag_1_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				WRS = { exists = yes }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_1_Overlay_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				WRS = { exists = yes }
+			}
+
+			Antarctica_Situation_Overview_GUI_Flag_2_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				YGR = { exists = yes }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_2_Overlay_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				YGR = { exists = yes }
+			}
+
+			Antarctica_Situation_Overview_GUI_Flag_3_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				KMC = { exists = yes }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_3_Overlay_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				KMC = { exists = yes }
+			}
+
+			Antarctica_Situation_Overview_GUI_Flag_4_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				TOM = { exists = yes }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_4_Overlay_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				TOM = { exists = yes }
+			}
+
+			Antarctica_Situation_Overview_GUI_Flag_5_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				OMS = { exists = yes }
+			}
+			Antarctica_Situation_Overview_GUI_Flag_5_Overlay_visible = {
+				has_global_flag = SWRW_postnuke_situation_flag
+				OMS = { exists = yes }
+			}
+
+			Antarctica_Situation_Overview_GUI_Flag_6_visible = {
+				IRK = { exists = yes }
+				has_global_flag = SWRW_postnuke_situation_flag
+			}
+			Antarctica_Situation_Overview_GUI_Flag_6_Overlay_visible = {
+				IRK = { exists = yes }
+				has_global_flag = SWRW_postnuke_situation_flag
+			}
+			Antarctica_Situation_Overview_GUI_Flag_7_visible = {
+				POV = { exists = yes }
+				has_global_flag = SWRW_postnuke_situation_flag
+			}
+			Antarctica_Situation_Overview_GUI_Flag_7_Overlay_visible = {
+				POV = { exists = yes }
+				has_global_flag = SWRW_postnuke_situation_flag
+			}
+			Antarctica_Situation_Overview_GUI_Flag_8_visible = {
+				FUK = { exists = yes }
+				has_global_flag = SWRW_postnuke_situation_flag
+			}
+			Antarctica_Situation_Overview_GUI_Flag_8_Overlay_visible = {
+				FUK = { exists = yes }
+				has_global_flag = SWRW_postnuke_situation_flag
+			}
+			
+			Antarctica_Situation_Overview_GUI_Bar_1_Cover_visible = {
+				NOT = { check_variable = { Antarctica_Decision_GUI_Tab_Scope = ROOT } }
+				meta_effect = { 
+					text = {
+						check_variable = { SWRW_intel_[country] > 25 }
+					}
+					country = "[Antarctica_Decision_GUI_Tab_Scope]"
+				}
+			}
+			Antarctica_Situation_Overview_GUI_Bar_2_Cover_visible = {
+				NOT = { check_variable = { Antarctica_Decision_GUI_Tab_Scope = ROOT } }
+				meta_effect = { 
+					text = {
+						check_variable = { SWRW_intel_[country] > 25 }
+					}
+					country = "[Antarctica_Decision_GUI_Tab_Scope]"
+				}
+			}
+			Antarctica_Situation_Overview_GUI_Bar_3_Cover_visible = {
+				NOT = { check_variable = { Antarctica_Decision_GUI_Tab_Scope = ROOT } }
+				meta_effect = { 
+					text = {
+						check_variable = { SWRW_intel_[country] > 25 }
+					}
+					country = "[Antarctica_Decision_GUI_Tab_Scope]"
+				}
+			}
+		}
+		
+		properties = {
+			Antarctica_Situation_Overview_GUI_bg = {
+				frame = Antarctica_Decision_GUI_Tab_Id
+			}
+		
+			Antarctica_Situation_Overview_GUI_Flag_1 = {
+				image = "[WRS.GetFlag]"
+			}
+			Antarctica_Situation_Overview_GUI_Flag_2 = {
+				image = "[YGR.GetFlag]"
+			}
+			Antarctica_Situation_Overview_GUI_Flag_3 = {
+				image = "[KMC.GetFlag]"
+			}
+			Antarctica_Situation_Overview_GUI_Flag_4 = {
+				image = "[TOM.GetFlag]"
+			}
+			Antarctica_Situation_Overview_GUI_Flag_5 = {
+				image = "[OMS.GetFlag]"
+			}
+			Antarctica_Situation_Overview_GUI_Flag_6 = {
+				image = "[IRK.GetFlag]"
+			}
+			Antarctica_Situation_Overview_GUI_Flag_7 = {
+				image = "[POV.GetFlag]"
+			}
+			Antarctica_Situation_Overview_GUI_Flag_8 = {
+				image = "[FUK.GetFlag]"
+			}
+			
+			Antarctica_Situation_Overview_GUI_Bar_1 = {
+				frame = var:Antarctica_Decision_GUI_Tab_Scope:Antarctica_Legitimacy
+			}
+			Antarctica_Situation_Overview_GUI_Bar_2 = {
+				frame = var:Antarctica_Decision_GUI_Tab_Scope:Antarctica_Militarization
+			}
+			Antarctica_Situation_Overview_GUI_Bar_3 = {
+				frame = var:Antarctica_Decision_GUI_Tab_Scope:Antarctica_Equipment
+			}
+		}
+	}
+}
+
+

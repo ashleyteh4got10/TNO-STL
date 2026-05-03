@@ -1,0 +1,582 @@
+add_namespace = GGC_skeleton
+add_namespace = GGC_news
+##########################
+#       骨 架 事 件       #
+##########################
+country_event = { #产奉十周年大会
+	id = GGC_skeleton.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.1" }
+	title = GGC_skeleton.1.t
+	desc = GGC_skeleton.1.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.1.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = GGC_news.1
+		}
+		country_event = { id = GGC_skeleton.3 days = 515 }
+	}
+	option = {
+		name = GGC_skeleton.1.b
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = GGC_news.2
+		}
+		country_event = { id = GGC_skeleton.7 days = 515 }
+	}
+}
+country_event = { #后宫淳遇刺 - 全咸暴动
+	id = GGC_skeleton.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.2" }
+	title = GGC_skeleton.2.t
+	desc = GGC_skeleton.2.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.2.a
+		ai_chance = { factor = 10 }
+		kill_country_leader = yes
+		promote_character = GGC_Masaharu_Gotoda
+		remove_ideas = { GGC_Masaharu_Gotoda_hog }
+		every_country = { news_event = GGC_news.3 }
+		country_event = { id = GGC_skeleton.9 days = 626 }
+	}
+}
+
+country_event = { #产奉分裂
+	id = GGC_skeleton.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.3" }
+	title = GGC_skeleton.3.t
+	desc = GGC_skeleton.3.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.3.a #导向镇压路线
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.4 }
+		country_event = { id = GGC_skeleton.4 days = 216 }
+	}
+	option = {
+		name = GGC_skeleton.3.b #导向分化调和路线
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.4 }
+		country_event = { id = GGC_skeleton.5 days = 216 }
+	}
+}
+
+country_event = { #血洗黄海道
+	id = GGC_skeleton.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.4" }
+	title = GGC_skeleton.4.t
+	desc = GGC_skeleton.4.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.4.a
+		ai_chance = { factor = 10 }
+		add_stability = -0.15
+		1817 = { add_manpower = -50000 }
+		every_country = { news_event = GGC_news.6 }
+		country_event = { id = GGC_skeleton.11 days = 730 }
+	}
+}
+
+country_event = { #分化联评
+	id = GGC_skeleton.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.5" }
+	title = GGC_skeleton.5.t
+	desc = GGC_skeleton.5.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.5.a
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.10 }
+		country_event = { id = GGC_skeleton.6 days = 587 }
+	}
+}
+
+country_event = { #金钟泌上台
+	id = GGC_skeleton.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.6" }
+	title = GGC_skeleton.6.t
+	desc = GGC_skeleton.6.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.6.a
+		ai_chance = { factor = 10 }
+		retire_country_leader = yes
+		promote_character = GGC_Kim_Jong_Pil
+		set_popularities = {
+			despotism = 35
+			fascism = 25
+			paternalism_1 = 20
+			national_socialism = 18
+			communist = 2
+		}
+		set_party_name = {
+			ideology = communist
+			long_name = GGC_communist_party_KTA_long
+			name = GGC_communist_party_KTA
+		}
+		set_party_name = {
+			ideology = paternalism
+			long_name = GGC_despotism_party_long
+			name = GGC_despotism_party
+		}
+		set_party_name = {
+			ideology = paternalism_1
+			long_name = GGC_despotism_1_party_long
+			name = GGC_despotism_1_party
+		}
+		every_country = { news_event = GGC_news.12 }
+	}
+}
+
+country_event = { #产奉合并终止
+	id = GGC_skeleton.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.7" }
+	title = GGC_skeleton.7.t
+	desc = GGC_skeleton.7.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.7.a #通过法案
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.5 }
+		country_event = { id = GGC_skeleton.8 days = 216 }
+	}
+	option = {
+		name = GGC_skeleton.7.b #不通过法案
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.5 }
+		country_event = { id = GGC_skeleton.12 days = 216 }
+	}
+}
+
+country_event = { #通过法案
+	id = GGC_skeleton.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.8" }
+	title = GGC_skeleton.8.t
+	desc = GGC_skeleton.8.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.8.a
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.11 }
+		country_event = { id = GGC_skeleton.6 days = 587 }
+	}
+}
+
+country_event = { #全咸暴动
+	id = GGC_skeleton.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.9" }
+	title = GGC_skeleton.9.t
+	desc = GGC_skeleton.9.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.9.a
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.7 }
+		1820 = { 
+			remove_core_of = GGC
+			set_demilitarized_zone = yes
+		}
+		527 = { 
+			remove_core_of = GGC
+			set_demilitarized_zone = yes
+		}
+		655 = { 
+			remove_core_of = GGC
+			set_demilitarized_zone = yes
+		}
+		1818 = { 
+			remove_core_of = GGC
+			set_demilitarized_zone = yes
+		}
+		country_event = { id = GGC_skeleton.10 days = 200 }
+	}
+}
+
+country_event = { #将军已经↑↓了
+	id = GGC_skeleton.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.10" }
+	title = GGC_skeleton.10.t
+	desc = GGC_skeleton.10.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.10.a
+		ai_chance = { factor = 10 }
+		add_stability = -0.15
+		add_manpower = -207 #我们不会忘记光州的血
+		1820 = { 
+			add_core_of = GGC
+			set_demilitarized_zone = no
+		}
+		527 = { 
+			add_core_of = GGC
+			set_demilitarized_zone = no
+		}
+		655 = { 
+			add_core_of = GGC
+			set_demilitarized_zone = no
+		}
+		1818 = { 
+			add_core_of = GGC
+			set_demilitarized_zone = no
+		}
+		every_country = { news_event = GGC_news.8 }
+	}
+}
+
+country_event = { #天野良英上台
+	id = GGC_skeleton.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.11" }
+	title = GGC_skeleton.11.t
+	desc = GGC_skeleton.11.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.11.a
+		ai_chance = { factor = 10 }
+		retire_country_leader = yes
+		promote_character = GGC_Amano_Yoshifusa
+		set_politics = {
+			ruling_party = ultranationalism
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = GGC_ultranationalism_party_KTA_long
+			name = GGC_ultranationalism_party_KTA
+		}
+		set_party_name = {
+			ideology = communist
+			long_name = GGC_communist_party_KTA_long
+			name = GGC_communist_party_KTA
+		}
+		set_party_name = {
+			ideology = paternalism
+			long_name = GGC_paternalism_party_KTA_long
+			name = GGC_paternalism_party_KTA
+		}
+		set_popularities = {
+			ultranationalism = 50
+			national_socialism = 35
+			despotism_2 = 6
+			despotism_3 = 4
+			paternalism = 3
+			communist = 2
+		}
+		every_country = { news_event = GGC_news.9 }
+	}
+}
+
+country_event = { #外地国民代表权法案未通过
+	id = GGC_skeleton.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.12" }
+	title = GGC_skeleton.12.t
+	desc = GGC_skeleton.12.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.12.a
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.13 }
+		country_event = { id = GGC_skeleton.13 days = 365 }
+	}
+}
+
+country_event = { #通过中枢院职权改正法
+	id = GGC_skeleton.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.13" }
+	title = GGC_skeleton.13.t
+	desc = GGC_skeleton.13.d
+	is_triggered_only = yes
+
+	option = {
+		name = GGC_skeleton.13.a
+		ai_chance = { factor = 10 }
+		every_country = { news_event = GGC_news.14 }
+		country_event = { id = GGC_skeleton.14 days = 200 }
+	}
+}
+
+country_event = { #政务总监选举
+	id = GGC_skeleton.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_skeleton.14" }
+	title = GGC_skeleton.14.t
+	desc = GGC_skeleton.14.d
+	is_triggered_only = yes
+
+	option = { #产奉-民族大众派-金斗汉
+		name = GGC_skeleton.14.a
+		ai_chance = { factor = 10 }
+		add_ideas = GGC_Kim_Du_han_hog
+		set_country_leader_ideology = paternalism_left_wing_corporatism_subtype
+		set_popularities = {
+			paternalism = 25
+			despotism = 25
+			fascism = 10
+			paternalism_1 = 20
+			national_socialism = 17
+			communist = 3
+		}
+		set_party_name = {
+			ideology = communist
+			long_name = GGC_communist_party_KTA_long
+			name = GGC_communist_party_KTA
+		}
+		set_party_name = {
+			ideology = paternalism
+			long_name = GGC_despotism_party_long
+			name = GGC_despotism_party
+		}
+		set_party_name = {
+			ideology = paternalism_1
+			long_name = GGC_despotism_1_party_long
+			name = GGC_despotism_1_party
+		}
+	}
+	option = { #辅翼同友会-民族自由派-柳珍山
+		name = GGC_skeleton.14.b
+		ai_chance = { factor = 10 }
+		add_ideas = GGC_Yu_Chin_san_hog
+		set_popularities = {
+			paternalism = 10
+			despotism = 35
+			fascism = 15
+			paternalism_1 = 20
+			national_socialism = 18
+			communist = 2
+		}
+		set_party_name = {
+			ideology = communist
+			long_name = GGC_communist_party_KTA_long
+			name = GGC_communist_party_KTA
+		}
+		set_party_name = {
+			ideology = paternalism
+			long_name = GGC_despotism_party_long
+			name = GGC_despotism_party
+		}
+		set_party_name = {
+			ideology = paternalism_1
+			long_name = GGC_despotism_1_party_long
+			name = GGC_despotism_1_party
+		}
+	}
+	option = { #爱国朝鲜联合会-亲日派-后宫虎郎
+		name = GGC_skeleton.14.c
+		ai_chance = { factor = 10 }
+		remove_ideas = GGC_Ushiroku_Torao_for
+		add_ideas = GGC_Ushiroku_Torao_hog
+		set_popularities = {
+			despotism = 45
+			fascism = 15
+			paternalism_1 = 20
+			national_socialism = 18
+			communist = 2
+		}
+		set_party_name = {
+			ideology = communist
+			long_name = GGC_communist_party_KTA_long
+			name = GGC_communist_party_KTA
+		}
+		set_party_name = {
+			ideology = paternalism_1
+			long_name = GGC_despotism_1_party_long
+			name = GGC_despotism_1_party
+		}
+	}
+}
+
+##########################
+#       世 界 新 闻       #
+##########################
+news_event = {
+	id = GGC_news.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.1" }
+	title = GGC_news.1.t
+	desc = GGC_news.1.desc
+	picture = GFX_GGC_news_1
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.1.a
+	}
+}
+
+news_event = {
+	id = GGC_news.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.2" }
+	title = GGC_news.2.t
+	desc = GGC_news.2.desc
+	picture = GFX_GGC_news_2
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.2.a
+	}
+}
+
+news_event = {
+	id = GGC_news.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.3" }
+	title = GGC_news.3.t
+	desc = GGC_news.3.desc
+	picture = GFX_GGC_news_3
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.3.a
+	}
+}
+
+news_event = {
+	id = GGC_news.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.4" }
+	title = GGC_news.4.t
+	desc = GGC_news.4.desc
+	picture = GFX_GGC_news_4
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.4.a
+	}
+}
+
+news_event = {
+	id = GGC_news.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.5" }
+	title = GGC_news.5.t
+	desc = GGC_news.5.desc
+	picture = GFX_GGC_news_5
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.5.a
+	}
+}
+
+news_event = {
+	id = GGC_news.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.6" }
+	title = GGC_news.6.t
+	desc = GGC_news.6.desc
+	picture = GFX_GGC_news_6
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.6.a
+	}
+}
+
+news_event = {
+	id = GGC_news.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.7" }
+	title = GGC_news.7.t
+	desc = GGC_news.7.desc
+	picture = GFX_GGC_news_7
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.7.a
+	}
+}
+
+news_event = {
+	id = GGC_news.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.8" }
+	title = GGC_news.8.t
+	desc = GGC_news.8.desc
+	picture = GFX_GGC_news_8
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.8.a
+	}
+}
+
+news_event = {
+	id = GGC_news.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.9" }
+	title = GGC_news.9.t
+	desc = GGC_news.9.desc
+	picture = GFX_GGC_news_9
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.9.a
+	}
+}
+
+news_event = {
+	id = GGC_news.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.10" }
+	title = GGC_news.10.t
+	desc = GGC_news.10.desc
+	picture = GFX_GGC_news_10
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.10.a
+	}
+}
+
+news_event = {
+	id = GGC_news.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.11" }
+	title = GGC_news.11.t
+	desc = GGC_news.11.desc
+	picture = GFX_GGC_news_11
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.11.a
+	}
+}
+
+news_event = {
+	id = GGC_news.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.12" }
+	title = GGC_news.12.t
+	desc = GGC_news.12.desc
+	picture = GFX_GGC_news_12
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.12.a
+	}
+}
+
+news_event = {
+	id = GGC_news.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.13" }
+	title = GGC_news.13.t
+	desc = GGC_news.13.desc
+	picture = GFX_GGC_news_11
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.13.a
+	}
+}
+
+news_event = {
+	id = GGC_news.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event GGC_news.14" }
+	title = GGC_news.14.t
+	desc = GGC_news.14.desc
+	picture = GFX_GGC_news_14
+	is_triggered_only = yes
+	
+	option = { #
+		name = GGC_news.14.a
+	}
+}

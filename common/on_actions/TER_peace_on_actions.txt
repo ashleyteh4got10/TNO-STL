@@ -1,0 +1,1253 @@
+on_actions = {
+	on_capitulation = {
+		effect = {
+			###FROM为赢家，ROOT为输家
+			###马家军叛乱
+			if = {
+				limit = {
+					#CPC胜利
+					FROM = {
+						original_tag = CPC
+					}
+					ROOT = {
+						original_tag = QIN
+					}
+				}
+				CPC = {
+					annex_country = {
+						target = QIN
+						transfer_troops = no
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					#QIN胜利
+					FROM = {
+						original_tag = QIN
+					}
+					ROOT = {
+						original_tag = CPC
+					}
+				}
+				QIN = {
+					annex_country = {
+						target = CPC
+						transfer_troops = no
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			###新疆内战
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = HTC
+							original_tag = XIN
+							original_tag = ROS
+						}
+					}
+					ROOT = {
+						original_tag = ETR
+					}
+				}
+				FROM = {
+					every_state = {
+						limit = {
+							is_core_of = ROOT
+						}
+						add_claim_by = FROM
+					}
+					white_peace = ROOT
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					}
+				}
+				CPC = {
+					country_event = {
+						id = CPC_main_story_events.13
+						days = 5
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = HTC
+							original_tag = ROS
+							original_tag = CPC
+						}
+					}
+					ROOT = {
+						original_tag = XIN
+					}
+				}
+				HTC = {
+					white_peace = ROOT
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					}
+				}
+				CPC = {
+					country_event = { id = CPC_main_story_events.120 days = 5 }
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = ETR
+							original_tag = XIN
+						}
+					}
+					ROOT = {
+						original_tag = ROS
+					}
+				}
+				FROM = {
+					every_state = {
+						limit = {
+							is_core_of = ROOT
+						}
+						add_claim_by = FROM
+					}
+					white_peace = ROOT
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = XIN
+							original_tag = ETR
+						}
+					}
+					ROOT = {
+						original_tag = HTC
+					}
+				}
+				FROM = {
+					every_state = {
+						limit = {
+							is_core_of = ROOT
+						}
+						add_claim_by = FROM
+					}
+					white_peace = ROOT
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			###四川战争
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = XIK
+							original_tag = CPC
+						}
+					}
+					ROOT = {
+						original_tag = SIC
+					}
+				}
+				CPC = {
+					set_variable = { SWB_region_state^1 = 1 }
+					country_event = {
+						id = CPC_main_story_events.149
+						days = 10
+					}
+					USA = {
+						country_event = {
+							id = CPC_main_story_events.149
+							days = 10
+						}
+					}
+				}
+				XIK = {
+					set_cosmetic_tag = XIK_UNIFIED
+					annex_country = { target = SIC }
+					mark_focus_tree_layout_dirty = yes
+					every_state = {
+						limit = { is_core_of = SIC }
+						add_core_of = XIK
+						remove_core_of = SIC
+					}
+					every_country = {
+						news_event = { id = WORLD_TER.32 days = 2 }
+					}
+					give_resource_rights = { receiver = CPC state = 964 }
+					give_resource_rights = { receiver = CPC state = 905 }
+					give_resource_rights = { receiver = CPC state = 605 }
+					give_resource_rights = { receiver = CPC state = 1537 }
+					give_resource_rights = { receiver = CPC state = 1538 }
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = XIK
+							original_tag = CPC
+						}
+					}
+					ROOT = {
+						original_tag = CHQ
+					}
+				}
+				CPC = {
+					country_event = {
+						id = CPC_main_story_events.107
+						days = 30
+					}
+					set_variable = { SWB_region_state^2 = 1 }
+					set_variable = { SWB_region_state^3 = 1 }
+					remove_opinion_modifier = { target = SIC modifier = CPC_broken_unify }
+					remove_opinion_modifier = { target = XIK modifier = CPC_broken_unify }
+					SWB_we_got_the_SIC = yes
+					add_to_variable = { NCCPC_party_pop_monthly_upper_limit = 3 }
+					subtract_from_variable = { NCCPC_party_pop_monthly_lower_limit = 0.5 }
+					mark_focus_tree_layout_dirty = yes
+					country_event = {
+						id = TER_RGOC_black_ops_prelude.1
+						days = 25
+					}
+				}
+				XIK = {
+					set_cosmetic_tag = XIK_UNIFIED
+					annex_country = { target = CHQ }
+					every_state = {
+						limit = { is_core_of = CHQ }
+						add_core_of = XIK
+						remove_core_of = CHQ
+					}
+					clear_variable = 1538.TNO_admin_title
+				}
+				CHI = {
+					swap_ideas = {
+						remove_idea = CHI_small_army
+						add_idea = CHI_small_army_TER_1
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = CHQ
+							original_tag = SIC
+						}
+					}
+					ROOT = {
+						original_tag = XIK
+					}
+				}
+				CPC = { 
+					country_event = { 
+						id = CPC_main_story_events.105
+						days = 5
+				 	}
+				}
+				set_global_flag = skip_default_capitulation
+				FROM = { white_peace = ROOT }
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = CHQ
+					}
+					ROOT = {
+						original_tag = SIC
+					}
+				}
+				CPC = {
+					set_variable = { SWB_region_state^1 = 3 }
+				}
+				FROM = { 
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					} 
+				}
+				
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = SIC
+					}
+					ROOT = {
+						original_tag = CHQ
+					}
+				}
+				CPC = {
+					set_variable = { SWB_region_state^2 = 2 }
+					set_variable = { SWB_region_state^3 = 2 }
+				}
+				FROM = { 
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					} 
+				}
+				
+				set_global_flag = skip_default_capitulation
+			}
+			###青藏战争、康藏战争
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = XGZ
+					}
+					ROOT = {
+						original_tag = TIB
+					}
+				}
+				FROM = { white_peace = ROOT }
+				FROM = {
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					}
+					set_capital = { state = 765 }
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = CPC
+					}
+					ROOT = {
+						original_tag = TIB
+					}
+				}
+				FROM = { white_peace = ROOT }
+				XGZ = {
+					annex_country = {
+						target = TIB
+						transfer_troops = no
+					}
+					set_capital = { state = 765 }
+				}
+				CPC = {
+					CPC_XGZ_unify = yes
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			###泰柬战争
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = CRC		  
+					}
+					ROOT = {
+						original_tag = CAM
+					}
+				}
+				CRC = { white_peace = CAM }
+				CRC = { 
+					annex_country = {
+							target = CAM
+							transfer_troops = yes
+					} 
+					set_temp_variable = { CPC.target = CRC }
+					CPC = { TNO_clear_num_volunteers = yes }
+				}
+				CPC = {
+					country_event = {
+						id = CPC_main_story_events.78
+						days = 35
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = CRC		  
+					}
+					ROOT = {
+						original_tag = THA
+					}
+				}
+				KPA = { white_peace = THA }
+				CRC = { white_peace = THA }
+				VIC = { white_peace = THA }
+				CRC = {
+					set_politics = {
+						ruling_party = communist
+					}
+					set_party_name = {
+						ideology = communist
+						long_name = CRC_normal_communist_party_long
+						name = CRC_normal_communist_party
+					}
+					set_popularities = {
+						communist = 90
+						paternalism = 10
+					}
+					swap_ideas = {
+						remove_idea = CRC_avengers_from_the_past
+						add_idea = CRC_avengers_from_the_future
+					}
+					swap_ideas = {
+						remove_idea = CRC_secret_garden
+						add_idea = CRC_secret_garden_get_fucked
+					}
+					transfer_state = 841
+					transfer_state = 876
+					transfer_state = 1535
+					transfer_state = 741
+					transfer_state = 2229
+					transfer_state = 2230
+					transfer_state = 2247
+					transfer_state = 2248
+					transfer_state = 2249
+					transfer_state = 2250
+					transfer_state = 2251
+					transfer_state = 2252
+					set_capital = { state = 1535 }
+				}
+				VIC = {
+					add_to_faction = CRC
+				}
+				every_country = {
+					news_event = SEA_news.10
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = KPA		  
+					}
+					ROOT = {
+						original_tag = THA
+					}
+				}
+				KPA = { white_peace = THA }
+				CRC = { white_peace = THA }
+				VIC = { white_peace = THA }
+				CRC = {
+					set_politics = {
+						ruling_party = communist
+					}
+					set_party_name = {
+						ideology = communist
+						long_name = CRC_normal_communist_party_long
+						name = CRC_normal_communist_party
+					}
+					set_popularities = {
+						communist = 90
+						paternalism = 10
+					}
+					transfer_state = 841
+					transfer_state = 876
+					transfer_state = 1535
+					transfer_state = 741
+					transfer_state = 2229
+					transfer_state = 2230
+					transfer_state = 2247
+					transfer_state = 2248
+					transfer_state = 2249
+					transfer_state = 2250
+					transfer_state = 2251
+					transfer_state = 2252
+					set_capital = { state = 1535 }
+				}
+				VIC = {
+					add_to_faction = CRC
+				}
+				every_country = {
+					news_event = SEA_news.10
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = VIC		  
+					}
+					ROOT = {
+						original_tag = THA
+					}
+				}
+				KPA = { white_peace = THA }
+				CRC = { white_peace = THA }
+				QYC = { white_peace = THA }
+				VIC = { white_peace = THA }
+				CRC = {
+					set_politics = {
+						ruling_party = communist
+					}
+					set_party_name = {
+						ideology = communist
+						long_name = CRC_normal_communist_party_long
+						name = CRC_normal_communist_party
+					}
+					set_popularities = {
+						communist = 90
+						paternalism = 10
+					}
+					transfer_state = 841
+					transfer_state = 876
+					transfer_state = 1535
+					transfer_state = 741
+					transfer_state = 2229
+					transfer_state = 2230
+					transfer_state = 2247
+					transfer_state = 2248
+					transfer_state = 2249
+					transfer_state = 2250
+					transfer_state = 2251
+					transfer_state = 2252
+					set_capital = { state = 1535 }
+				}
+				VIC = {
+					add_to_faction = CRC
+				}
+				every_country = {
+					news_event = SEA_news.10
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = THA
+					}
+					ROOT = {
+						original_tag = KPA
+					}
+					CPC = { exists = yes }
+				}
+				FROM = { white_peace = ROOT }
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = THA
+					}
+					ROOT = {
+						original_tag = VIC
+					}
+				}
+				FROM = { white_peace = ROOT }
+				set_global_flag = skip_default_capitulation
+			}
+			###西南战争
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = KIS
+					}
+					ROOT = {
+						original_tag = GUX
+					}
+				}
+				every_state = {
+					limit = { is_core_of = GUX }
+					KIS = {
+						add_state_core = PREV
+					}
+				}
+				FROM = { white_peace = ROOT }
+				FROM = {
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					}
+					set_capital = { state = 599 }
+				}
+				GNG = {
+					transfer_state = 1464
+					add_state_core = 1464
+				}
+				JAP = {
+					add_to_faction = KIS
+				}
+				every_country = {
+					news_event = { id = WORLD_TER.10 }
+				}
+				FROM = {
+					country_event = {
+						id = TER_support_backend_events.13
+						days = 60
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					FROM = { original_tag = LOY }
+					ROOT = { original_tag = GUZ }
+				}
+				LOY = {
+					white_peace = GUZ
+					set_cosmetic_tag = LOY_UG
+					CHI = {
+						set_autonomy = {
+							target = LOY
+							autonomy_state = autonomy_china_warlord_regime
+						}
+					}
+					set_portraits = {
+						character = LOY_lu_han
+						civilian = { large = "gfx/leaders/LOY/Portrait_Yunnan_Lu_Han_post_SWC.png" }
+					}
+					set_popularities = {
+						communist = 0
+						socialist = 0
+						progressivism = 3
+						liberalism = 5
+						despotism = 65
+						conservatism = 0
+						paternalism = 20
+						fascism = 7
+						national_socialism = 0
+						ultranationalism = 0
+					}					
+					annex_country = {
+						target = GUZ
+						transfer_troops = no
+					}
+					every_state = {
+						limit = { is_core_of = GUZ }
+						LOY = {
+							add_state_core = PREV
+						}
+					}
+					JAP = {
+						add_to_faction = LOY
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					FROM = { original_tag = GUZ }
+					ROOT = { original_tag = LOY }
+				}
+				LOY = {
+					white_peace = GUZ
+					JAP = {
+						add_to_faction = LOY
+					}
+				}
+			}
+			###平唐战争
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = MAN
+							original_tag = CHI
+						}
+					}
+					ROOT = {
+						original_tag = BJC
+					}
+					CPC = { exists = yes }
+				}
+				FROM = { white_peace = ROOT }
+				JAP = { add_to_faction = MAN }
+				BJC = {
+					set_cosmetic_tag = BJC_JIN
+					set_variable = { ECON_SPHERE_LEADER = JAP }
+					set_politics = {	
+						ruling_party = despotism
+						elections_allowed = no
+					}
+					add_ideas = {
+						Sphere_special_administrative_region
+					}
+					set_party_name = {
+						ideology = despotism
+						long_name = BJC_JIN_despotism_party_long
+						name = BJC_JIN_despotism_party
+					}
+					set_party_name = {
+						ideology = paternalism
+						long_name = BJC_JIN_paternalism_party_long
+						name = BJC_JIN_paternalism_party
+					}
+					retire_country_leader = yes
+					create_country_leader = {
+						name = BJC_Tianjin_KMT
+						ideology = despotism_civilian_dictatorship_subtype
+						picture = "gfx/leaders/BJC/BJC_YEAH_WE_ARE_TIANJINESE.png"
+						traits = { }
+						expire = "1999.1.1.1"
+					}
+					set_capital = { state = 2325 remember_old_capital = no }
+					CHI = {
+						set_autonomy = {
+							target = BJC
+							autonomy_state = autonomy_china_special_administrative_region
+						}
+					}
+					set_popularities = {
+						communist = 0
+   						ultranationalism = 0
+   						national_socialism = 0
+   						socialist = 0
+   						progressivism = 0
+   						liberalism = 0
+   						conservatism = 0
+   						paternalism = 22
+   						despotism = 78
+   						fascism = 0
+					}
+				}
+			}
+			###蒙古大起义
+			else_if = {
+				limit = {
+					FROM = { 
+						OR = {
+							is_in_faction_with = JAP
+							original_tag = JAP 
+							original_tag = MEN 
+						}
+					}
+					ROOT = { original_tag = MON }
+				}
+				MEN = {
+					annex_country = {
+						target = MON
+						transfer_troops = no
+					}
+					annex_country = {
+						target = MFN
+						transfer_troops = no
+					}
+					set_capital = { state = 330 remember_old_capital = no }
+				}
+				if = {
+					limit = { ZXB = { exists = yes } }
+					every_state = {
+						limit = { is_controlled_by = ZXB }
+						set_demilitarized_zone = yes
+						every_neighbor_state = {
+							set_demilitarized_zone = yes
+						}
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { original_tag = CPC }
+					ROOT = { original_tag = MON }
+				}
+				MON = { 
+					white_peace = CPC 
+					remove_ideas = { MON_Daryzavyn_Losol_hog MON_Sereenen_Givaapil_sec MON_Sonombaljiryn_Buyannemekh_eco MON_Sonomyn_Avardzed_for }
+					remove_ideas = { MON_bloody_field MON_we_are_still_friend MON_hidden_sick }
+				}
+				CPC = {
+					set_autonomy = {
+						target = MON
+						autonomy_state = autonomy_Liberated_area
+					}
+					MON = {
+						set_cosmetic_tag = MON_MRC_1
+					}
+				}
+				MON = {
+					set_party_name = {
+						ideology = communist
+						long_name = "MON_MRC_communist_party_1_long"
+						name = "MON_MRC_communist_party_1"
+					}
+					retire_country_leader = yes
+					create_country_leader = {
+						name = MON_Li_Liguo
+						ideology = communist_liu_shaoqi_thought_subtype
+						picture = "gfx/leaders/MON/MON_Li_Liguo.png"
+						traits = { }
+						expire = "1999.1.1.1"
+					}
+					set_popularities = {
+						communist = 75
+						despotism = 25
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			###滇越战争
+			else_if = {
+				limit = {
+					NOT = { CPC = { has_war_with = LOY } }
+					FROM = { original_tag = VIC }
+					ROOT = { original_tag = LOY }
+				}
+				JAP = {
+					add_to_faction = LOY
+					add_to_faction = KIS
+				}
+				VIC = {
+					white_peace = LOY
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { original_tag = LOY }
+					ROOT = { original_tag = VIC }
+				}
+				JAP = {
+					add_to_faction = LOY
+					add_to_faction = KIS
+				}
+				LOY = {
+					white_peace = VIC
+				}
+				every_country = {
+					news_event = SEA_news.6
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			###越南战争
+			else_if = {
+				limit = {
+					FROM = { original_tag = VIC }
+					ROOT = { original_tag = VIN }
+				}
+				FROM = {
+					white_peace = ROOT
+				}
+				VIC = {
+					set_cosmetic_tag = VIC_final
+					annex_country = {
+						target = VIN
+						transfer_troops = no
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			###缅甸内战
+			else_if = {
+				limit = {
+					FROM = { original_tag = KPA }
+					ROOT = { original_tag = BUR }
+				}
+				FROM = {
+					white_peace = ROOT
+				}
+				KPA = {
+					set_cosmetic_tag = KPA_BUR
+					annex_country = {
+						target = BUR
+						transfer_troops = no
+					}
+					set_capital = { state = 288 }
+				}
+				CPC = {
+					country_event = {
+						id = CPC_main_story_events.151
+						days = 10
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			#############################
+			#		亚洲人民解放战争	  #
+			#############################
+			else_if = {
+				limit = {
+					#NOT = { has_game_rule = { rule = TER_Zombie_mode option = TER_Zombie_mode_activated } }
+					FROM = { OR = { original_tag = CPC
+									is_in_faction_with = CPC } }
+					ROOT = { original_tag = CHI }
+				}
+				FROM = {
+					white_peace = ROOT
+				}
+				CPC = {
+					annex_country = { target = CHI }
+					annex_country = { target = LOY }
+					annex_country = { target = KIS }
+					annex_country = { target = SHX }
+					country_event = { 
+						id = CPC_TRCW.17
+						days = 3
+					}
+					country_event = {
+						id = CPC_main_story_events.143
+						days = 8
+					}
+					econ_raise_max_credit_rating = yes
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			#别了，硅晶之梦。
+			else_if = {
+				limit = {
+					#NOT = { has_game_rule = { rule = TER_Zombie_mode option = TER_Zombie_mode_activated }  }
+					FROM = { OR = { original_tag = CPC
+									is_in_faction_with = CPC } }
+					ROOT = { original_tag = GNG }
+				}
+				CPC = {
+					annex_country = { target = GNG }
+					country_event = { 
+						id = CPC_TRCW_GNG.7
+						days = 10
+					}
+				}
+				if = {
+					limit = { has_country_flag = CPC_TRCW_SONY }
+					country_event = { 
+						id = CPC_TRCW_GNG.15
+						days = 25
+					}
+				}
+				else_if = {
+					limit = { has_country_flag = CPC_TRCW_Matsushita }
+					country_event = { 
+						id = CPC_TRCW_GNG.24
+						days = 25
+					}
+				}
+				else_if = {
+					limit = { has_country_flag = CPC_TRCW_Fujitsu }
+					country_event = { 
+						id = CPC_TRCW_GNG.34
+						days = 25
+					}
+				}
+				else_if = {
+					limit = { has_country_flag = CPC_TRCW_Hitachi }
+					country_event = { 
+						id = CPC_TRCW_GNG.44
+						days = 25
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			#别开生面的飙车大赛
+			else_if = {
+				limit = {
+					FROM = { OR = { is_in_faction_with = CHI
+									original_tag = CHI } }
+					ROOT = { original_tag = BJC }
+					date > 1970.1.1
+				}
+				CHI = { 
+					annex_country = {
+						target = BJC
+						transfer_troops = no 
+					}
+				}
+				CPC = {
+					subtract_from_variable = { TER_dem_riot_live_num = 1 }
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { OR = { is_in_faction_with = CHI
+									original_tag = CHI } }
+					ROOT = { original_tag = WHC }
+				}
+				CHI = { 
+					annex_country = {
+							target = WHC
+							transfer_troops = no 
+						}
+					}
+				CPC = {
+					subtract_from_variable = { TER_dem_riot_live_num = 1 }
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { OR = { is_in_faction_with = CHI
+									original_tag = CHI } }
+					ROOT = { original_tag = LZD }
+				}
+				KIS = { 
+					annex_country = {
+							target = LZD
+							transfer_troops = no 
+						}
+					}
+				CPC = {
+					subtract_from_variable = { TER_dem_riot_live_num = 1 }
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			#我们将在另一条世界线再会。
+			else_if = {
+				limit = {
+					ROOT = { OR = { original_tag = CPC } }
+					FROM = { 
+						OR = { 
+							original_tag = CHI
+							is_in_faction_with = CHI 
+						} 
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+				}
+				CPC = {
+					CPC_TRCW_Long_and_Arduous_Road = yes
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					ROOT = { OR = { original_tag = CPC } }
+					FROM = { 
+						OR = { 
+							original_tag = JAP
+							is_in_faction_with = JAP 
+						}
+					}
+				}
+				FROM = {
+					white_peace = ROOT
+				}
+				CPC = {
+					CPC_TRCW_China_motherland_collapse = yes
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { is_in_faction_with = JAP }
+					ROOT = { original_tag = MON }
+					has_global_flag = CPC_LOSES_TRCW
+				}
+				MEN = {
+					annex_country = {
+						target = MON
+						transfer_troops = no
+					}
+				}
+				ZXB = {
+					every_state = {
+						limit = { is_controlled_by = ZXB }
+						set_demilitarized_zone = yes
+						every_neighbor_state = {
+							set_demilitarized_zone = yes
+						}
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { is_in_faction_with = JAP }
+					ROOT = { original_tag = XGZ }
+					CPC = { exists = no }
+				}
+				TIB = {
+					annex_country = {
+						target = XGZ
+						transfer_troops = no
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { is_in_faction_with = JAP }
+					ROOT = { original_tag = HTC }
+					CPC = { exists = no }
+				}
+				GAN = {
+					annex_country = {
+						target = HTC
+						transfer_troops = no
+					} 
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { is_in_faction_with = CHI }
+					ROOT = { 
+						OR = {
+							original_tag = LZD
+							original_tag = QYC
+						} 
+					}
+				}
+				KIS = {
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					}
+					every_state = {
+						limit = { is_core_of = ROOT }
+						add_core_of = KIS
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = { is_in_faction_with = CHI }
+					ROOT = { 
+						OR = {
+							original_tag = BJC
+							original_tag = WHC
+						}
+					}
+				}
+				CHI = {
+					annex_country = {
+						target = ROOT
+						transfer_troops = no
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			## Japanese Invasion of Indochina ##
+			else_if = { 
+				limit = {
+					FROM = { is_in_faction_with = JAP }
+					ROOT = { original_tag = CRC }
+				}
+				JAP = { 
+					white_peace = CRC
+					CAM = { annex_country = { target = CRC } }
+					set_autonomy = {
+						target = CAM
+						autonomy_state = autonomy_satellite
+					}
+				}
+				CAM = {
+					drop_cosmetic_tag = yes
+					set_politics = {
+						ruling_party = despotism
+					}
+					promote_character = { character = CAM_Sim_Var ideology = despotism_managerial_state_subtype } 
+					remove_ideas = {
+						CAM_A_Confused_Revolution
+						CAM_The_Squabbling_Brothers
+						Sphere_Economic_Dependent
+					}
+					add_ideas = {
+						CAM_Jewel_Of_The_Republic
+						CAM_The_Unloving_Father
+						CAM_The_North_South_Axis
+						CAM_The_Managerial_State
+						Sphere_Fully_Dependent
+					}
+					set_party_name = {
+						ideology = despotism
+						name = CAM_despotism_party_sim_var
+						long_name = CAM_despotism_party_sim_var_long
+					}
+					set_popularities = {
+						communist = 0
+						socialist = 0
+						paternalism = 7
+						paternalism_1 = 15
+						despotism = 78
+						fascism = 0
+						national_socialism = 0
+						ultranationalism = 0
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+					econ_join_sphere_JAP = yes
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = { 
+				limit = {
+					FROM = { is_in_faction_with = JAP }
+					ROOT = { original_tag = VIC }
+				}
+				JAP = { white_peace = VIC }
+				VIN = {
+					annex_country = {
+						target = VIC
+						transfer_troops = no
+					}
+				}
+				JAP = { 
+					set_autonomy = {
+						target = VIN
+						autonomy_state = autonomy_satellite
+					}
+				}
+				VIN = {
+					promote_character = VIN_Hoang_Minh_Giam
+					set_politics = {
+						ruling_party = despotism
+					}
+					set_party_name = {
+						ideology = despotism
+						name = VIN_hoang_despotism_party
+						long_name = VIN_hoang_despotism_party_long
+					}
+					set_popularities = {
+						communist = 0
+						socialist = 16
+						paternalism = 5
+						despotism = 69
+						fascism = 10
+						national_socialism = 0
+						ultranationalism = 0
+					}
+					remove_ideas = {
+						VIN_idea_viet_minh
+						VIN_idea_imagined_independence
+						VIN_idea_the_faltering_establishment
+						VIN_idea_a_new_phase
+					}
+					set_cosmetic_tag = VIN_republic
+				}
+				every_country = {
+					limit = { is_in_faction_with = JAP }
+					remove_ideas = YUN_SEA_NOT_YOUR_BUSINESS_STOP
+				}
+				THA = { remove_ideas = YUN_JAPAN_OH_GOD_OH_FUCK }
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = { 
+				limit = {
+					FROM = { is_in_faction_with = JAP }
+					ROOT = { original_tag = KPA }
+				}
+				FROM = { white_peace = KPA }
+				every_state = { 
+					limit = { is_core_of = BUR }
+					transfer_state_to = BUR
+				}
+				BUR = {
+					annex_country = {
+						target = KPA
+						transfer_troops = no
+					}
+				}
+				JAP = { add_to_faction = BUR }
+				set_global_flag = skip_default_capitulation
+			}
+		}
+	}
+}

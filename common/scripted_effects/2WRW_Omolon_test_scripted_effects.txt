@@ -1,0 +1,557 @@
+# Omolon #
+RUS_omolon_set_laws_econ = {
+	load_focus_tree = ZZZ_blank_focus
+	TNO_startup_nation = yes
+	remove_all_ideas = yes
+	remove_all_ministers = yes
+	fill_empty_minister = yes	
+	set_politics = {
+		ruling_party = socialist
+	}
+	add_ideas = {
+		### Political ###
+		tno_political_parties_nonpartisan_system
+		tno_religious_rights_pluralism
+		tno_trade_unions_nonsocialist_allowed
+		tno_immigration_open_immigration
+		tno_slavery_outlawed
+		tno_public_meetings_allowed
+		tno_press_rights_free_press
+		tno_vote_franchise_no_voting
+
+		### Military Laws ###
+		tno_conscription_broadened_conscription
+		tno_military_supervision_rules_of_engagement
+		tno_training_minimal_training
+		tno_draft_exemptions_none
+
+		### Social Laws ###
+		tno_health_care_low_income_protections
+		tno_education_public_education
+		tno_penal_system_incarceration
+		tno_gender_rights_women_in_the_workplace
+		tno_security_crime_prevention
+
+		### Economic Laws ###
+		tno_trade_laws_limited_exports
+		tno_income_taxation_flat_taxes
+		tno_minimum_wage_low_minimum_wage
+		tno_max_workhours_12_hour_work_day
+		tno_pensions_low_pensions
+		tno_unemployment_no_subsidies
+		tno_regulations_token_regulations
+
+		### Misc Laws
+		tno_pollution_no_controls
+		tno_safety_minimal_regulations
+		tno_child_labor_illegal
+		tno_refugees_open
+		tno_racial_integration_integrated_military
+		tno_women_noncombat_only
+		tno_minorities_equal_rights
+		tno_lgbt_rights_lgbt_allowed
+	}
+	set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+	set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Christian_Anarchism }
+	econ_type_change = yes
+	econ_subtype_change = yes
+	econ_join_sphere_RUS = yes
+
+	set_variable = { national_debt = 0 }
+	calculate_display_variables = yes
+	TNO_improve_poverty_high = yes
+	TNO_improve_poverty_high = yes
+	meta_effect = {
+		text = {
+			set_party_name = {
+				ideology = socialist
+				long_name = [THIS_TAG]_omolon_cosmtag_socialist_long
+				name = [THIS_TAG]_omolon_cosmtag_socialist
+			}
+		}
+		THIS_TAG = "[THIS.GetTag]"
+	}
+}
+RUS_omolon_moskowien_occupation = {
+	custom_effect_tooltip = RUS_generic_moskowien_occupation_tt
+	hidden_effect = {
+		XXX = {
+			RDC_Sergey_Izvekov = { set_nationality = ORL }
+		}
+		MCW = {
+			every_owned_state = {
+				add_core_of = ORL
+			}
+		}
+		OMO = {
+			set_autonomy = {
+				target = ORL
+				autonomy_state = autonomy_military_district
+			}
+		}
+		RUS_peace_out = yes
+		RUS_remove_wargoals = yes
+		RUS_end_SWRW_effects = yes
+		RUS_take_finnish_land_post_Swrw = yes
+		ORL = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = RDC_omolon
+			transfer_state = 1442
+			transfer_state = 219
+			transfer_state = 247
+			transfer_state = 246
+			transfer_state = 238
+			transfer_state = 1443
+			transfer_state = 401
+			transfer_state = 242
+			transfer_state = 241
+			transfer_state = 264
+			transfer_state = 257
+			transfer_state = 209
+			transfer_state = 1434
+			transfer_state = 1421
+			transfer_state = 222
+			transfer_state = 1435
+			transfer_state = 210
+			transfer_state = 1441
+			transfer_state = 1436
+			transfer_state = 263
+			transfer_state = 260
+			transfer_state = 245
+			transfer_state = 239
+			transfer_state = 217
+			transfer_state = 224
+			transfer_state = 243
+			transfer_state = 237
+			transfer_state = 244
+			
+			remove_state_core = 195
+			set_capital = { state = 1442 }
+							
+			RDC_Sergey_Izvekov = {
+				promote_character = socialist
+			}
+				
+			set_popularities = {
+				socialist = 72
+				national_socialism = 28 # Probably should be changed to NatSoc
+			}
+			set_party_name = { 
+				ideology = national_socialism
+				long_name = postwar_omolon_cosmtag_natsoc_long
+				name = postwar_omolon_cosmtag_natsoc
+ 
+			}
+		}
+		MCW = {
+			every_core_state = {
+				remove_core_of = MCW
+			}
+		}
+		
+		every_country = { limit = { is_ai = no } news_event = { id = WORLD.40108 days = 1 } }
+	}
+}
+
+RUS_omolon_petrograd_occupation = {
+	custom_effect_tooltip = RUS_generic_petrograd_occupation_tt
+	hidden_effect = {
+		XXX = {
+			OKB_Nikodim_Rotov = { set_nationality = OKB }
+		}
+		OMO = {
+			set_autonomy = {
+				target = OKB
+				autonomy_state = autonomy_military_district
+			}
+		}
+		OKB = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = OKB_omolon
+			
+			transfer_state = 195
+			every_owned_state = {
+				add_core_of = OKB
+			}
+			
+			OKB_Nikodim_Rotov = {
+				promote_character = socialist
+			}
+			set_popularities = {
+				socialist = 67
+				national_socialism = 15
+				fascism = 18
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = postwar_omolon_cosmtag_natsoc_long
+				name = postwar_omolon_cosmtag_natsoc
+			}
+			set_party_name = {
+				ideology = national_socialism
+				long_name = postwar_omolon_cosmtag_natsoc_long
+				name = postwar_omolon_cosmtag_natsoc
+			}
+		}
+	}
+}
+
+RUS_omolon_baltic_occupation = {
+	custom_effect_tooltip = RUS_generic_baltic_occupation_tt
+	hidden_effect = {
+		XXX = {
+			OST_Aleksei_Ridiger = { set_nationality = UPO }
+		}
+		OMO = {
+			set_autonomy = {
+				target = UPO
+				autonomy_state = autonomy_military_district
+			}
+			country_event = { id = OMO.49 days = 30 }
+		}
+		UPO = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = OST_omolon
+
+			transfer_state = 13
+			transfer_state = 1440
+			transfer_state = 191
+			transfer_state = 1395
+			transfer_state = 1396
+			transfer_state = 12
+			transfer_state = 1402
+			transfer_state = 943
+			transfer_state = 1397
+			transfer_state = 190
+			transfer_state = 1399
+			transfer_state = 1400
+			transfer_state = 11
+			transfer_state = 1401
+			transfer_state = 189
+			transfer_state = 1398
+			transfer_state = 96
+			every_owned_state = {
+				add_core_of = UPO
+			}
+			set_capital = { state = 1397 remember_old_capital = no }
+			
+			OST_Aleksei_Ridiger = {
+				promote_character = socialist
+			}
+			set_popularities = {
+				socialist = 54
+				national_socialism = 24
+				fascism = 22
+			}
+			set_country_flag = OST_LIBERATED
+			
+		}
+	}
+}
+
+RUS_omolon_caucasian_occupation = {
+	custom_effect_tooltip = RUS_generic_caucasian_occupation_tt
+	hidden_effect = {
+		XXX = {
+			CAU_Irakli_Ghudushauri = { set_nationality = ADY }
+		}
+		OMO = {
+			set_autonomy = {
+				target = ADY
+				autonomy_state = autonomy_military_district
+			}
+		}
+		ADY = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = CAU_omolon
+			
+			transfer_state = 234
+			transfer_state = 235
+			transfer_state = 1558
+			transfer_state = 1559
+			transfer_state = 1560
+			transfer_state = 1561
+			transfer_state = 232
+			transfer_state = 1564
+			transfer_state = 231
+			transfer_state = 1556
+			transfer_state = 1554
+			transfer_state = 229
+			transfer_state = 1552
+			every_owned_state = {
+				add_core_of = ADY
+			}
+			set_capital = {state = 231 remember_old_capital = no}
+	
+			CAU_Irakli_Ghudushauri = {
+				promote_character = socialist
+			}
+			set_popularities = {
+				socialist = 52
+				conservatism = 15
+				national_socialism = 11
+				national_socialism_2 = 22
+			}
+			set_country_flag = CAU_LIBERATED
+		}
+	}
+}
+
+RUS_omolon_ukraine_occupation = {
+	custom_effect_tooltip = RUS_generic_ukraine_occupation_tt
+	hidden_effect = {
+		XXX = {
+			UKR_Filaret_Denysenko = { set_nationality = FUK }
+			CRI_Antony_Khotovitsky = { set_nationality = UKS }
+		}
+		OMO = {
+			set_autonomy = {
+				target = FUK
+				autonomy_state = autonomy_military_district
+			}
+			set_autonomy = {
+				target = UKS
+				autonomy_state = autonomy_military_district
+			}
+		}
+		FUK = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = UKR_omolon
+			
+			transfer_state = 228
+			transfer_state = 227
+			transfer_state = 221
+			transfer_state = 1426
+			transfer_state = 226
+			transfer_state = 259
+			transfer_state = 225
+			transfer_state = 197
+			transfer_state = 1427
+			transfer_state = 202
+			transfer_state = 1428
+			transfer_state = 201
+			transfer_state = 1430
+			transfer_state = 773
+			transfer_state = 199
+			transfer_state = 93
+			transfer_state = 200
+			transfer_state = 1429
+			transfer_state = 1431
+			transfer_state = 218			
+			if = {
+				limit = {
+					TNS = { has_government = national_socialism }
+				}
+				every_state = {
+					limit = {
+						is_owned_by = TNS
+					}
+					remove_core_of = TNS
+					add_core_of = FUK
+					transfer_state_to = FUK
+				}
+			}
+			if = {
+				limit = { ROM = { is_in_faction_with = GER } }
+				FUK = {
+					transfer_state = 192
+					transfer_state = 198
+					transfer_state = 1282
+					transfer_state = 1285
+					transfer_state = 1965
+					transfer_state = 1966
+					transfer_state = 78
+					transfer_state = 1286
+				}
+			}
+			every_owned_state = {
+				add_core_of = FUK
+			}
+			if = {
+				limit = { NOT = { has_global_flag = Kyiv_Nuked } }
+				set_capital = {state = 1428 remember_old_capital = no}
+			}
+			else = {
+				set_capital = {state = 228 remember_old_capital = no}
+			}
+			
+			UKR_Filaret_Denysenko = {
+				promote_character = socialist
+			}
+			set_popularities = {
+				socialist = 52
+				conservatism = 15
+				national_socialism = 11
+				national_socialism_2 = 22
+			}
+		}
+		UKS = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = CRI_omolon
+		
+			transfer_state = 137
+			transfer_state = 196
+			transfer_state = 1532
+			set_capital = { state = 1532 remember_old_capital = no }
+			every_owned_state = {
+				add_core_of = FUK
+				remove_core_of = CRI
+				remove_core_of = GER
+				add_claim_by = GER
+			}
+			CRI_Antony_Khotovitsky = { promote_character = socialist }
+			set_popularities = {
+				socialist = 42
+				conservatism = 10
+				national_socialism = 35
+				fascism = 13
+			}
+		}
+	}
+}
+
+RUS_omolon_belarus_occupation = {
+	custom_effect_tooltip = RUS_generic_belarus_occupation_tt
+	hidden_effect = {
+		XXX = {
+			BLR_Philaret_Vakhromeyev = { set_nationality = BLR }
+		}
+		OMO = {
+			set_autonomy = {
+				target = BLR
+				autonomy_state = autonomy_military_district
+			}
+		}
+		BLR = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = BLR_omolon			
+			transfer_state = 1404
+			transfer_state = 1405
+			transfer_state = 1403
+			transfer_state = 194
+			transfer_state = 204
+			transfer_state = 206
+			transfer_state = 207
+			transfer_state = 1403
+			transfer_state = 95
+			transfer_state = 1406
+			transfer_state = 1407
+			transfer_state = 206
+			every_owned_state = {
+				add_core_of = BLR
+			}
+			BLR_Philaret_Vakhromeyev = {
+				promote_character = socialist
+			}
+			set_popularities = {
+				socialist = 49
+				national_socialism = 21
+				fascism = 30
+			}
+			
+		}
+	}
+}
+
+RUS_omolon_baltic_dissolution = {
+	custom_effect_tooltip = RUS_omolon_baltic_dissolution_tt
+	hidden_effect = {
+		XXX = {
+			EST_Vjatseslav_Jakobs = { set_nationality = EST }
+			LAT_Leonid_Polyakov = { set_nationality = LAT }
+			LIT_Georgijus_Martiskin = { set_nationality = LIT }
+		}
+		OMO = {
+			set_autonomy = {
+				target = EST
+				autonomy_state = autonomy_military_district
+			}
+			set_autonomy = {
+				target = LIT
+				autonomy_state = autonomy_military_district
+			}
+			set_autonomy = {
+				target = LAT
+				autonomy_state = autonomy_military_district
+			}
+		}
+		UPO = {
+			every_owned_state = {
+				remove_core_of = UPO
+			}
+		}
+		EST = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = EST_omolon	
+			transfer_state = 1440
+			transfer_state = 13
+			transfer_state = 191
+			transfer_state = 1395
+			transfer_state = 1396
+			transfer_state = 2450
+			every_owned_state = {
+				EST = {
+					add_state_core = PREV
+				}
+			}
+			set_capital = { state = 13 remember_old_capital = no }
+			EST_Vjatseslav_Jakobs = {
+				promote_character = socialist
+			}
+			set_popularities = {
+				socialist = 49
+				national_socialism = 21
+				fascism = 30
+			}
+		}
+		LAT = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = LAT_omolon	
+			transfer_state = 12
+			transfer_state = 1402
+			transfer_state = 943
+			transfer_state = 1398
+			transfer_state = 190
+			transfer_state = 1397
+			transfer_state = 1399
+			every_owned_state = {
+				LAT = {
+					add_state_core = PREV
+				}
+			}
+			set_capital = { state = 1397 remember_old_capital = no }
+			LAT_Leonid_Polyakov = {
+				promote_character = socialist
+			}
+			set_popularities = {
+				socialist = 49
+				national_socialism = 21
+				fascism = 30
+			}
+		}
+		LIT = {
+			RUS_omolon_set_laws_econ = yes
+			set_cosmetic_tag = LIT_omolon
+			transfer_state = 96
+			transfer_state = 1400
+			transfer_state = 189
+			transfer_state = 1401
+			transfer_state = 11
+			transfer_state = 2451
+			every_owned_state = {
+				LIT = {
+					add_state_core = PREV
+				}
+			}
+			set_capital = { state = 96 remember_old_capital = no }
+			LIT_Georgijus_Martiskin = {
+				promote_character = socialist
+			}
+			set_popularities = {
+				socialist = 49
+				national_socialism = 21
+				fascism = 30
+			}			
+		}
+	}
+}

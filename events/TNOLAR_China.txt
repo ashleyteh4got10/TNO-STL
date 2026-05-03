@@ -1,0 +1,7000 @@
+###############################
+###   TNOLAR China Events   ###
+###############################
+
+add_namespace = tnolar_chi
+add_namespace = tnolar_chi_flavor
+
+add_namespace = tnolar_chi_renli
+
+
+# tnolar_chi ids:	<国策事件与重要的衔接事件>
+# 1-9 - After The Conference Events | 大会后衔接事件
+# 10-49 - Taipei Summit Event Chain | 台北峰会事件链
+# 100-199 - Military Modernization Events | 军事现代化事件
+# 200-299 - Reunification Events | 主权统一事件
+# 300-399 - Oil Crisis Event Chain | 石油危机事件
+# 400-499 - Northwest War Event | 西北战争事件
+# 4000-4010/591-599 - Nanjing Summit Event Chain | 南京峰会事件链
+# 500-590 - GAW Warm Up Event | GAW预热事件
+# 600-699 - GAW Event | GAW事件
+# 700-799 - After GAW Event | GAW后事件
+# 800-899 - Post War Transition Tree | 战后衔接国策事件
+
+# 1100-1149 - 外交GUI驱动事件
+# 1150-1199 - 坎通尼亚的结局
+# 1200-1249 - 外交GUI AI事件
+
+# tnolar_chi_flavor ids: 	<不属于以上事件的杂项事件>
+# 1-9 - Military Modernization Events | 国防部与军事现代化事件
+# 10-19 - Korean Lao-Li Events | 韩人老李事件
+# 20-29 - MND Military Exercise Events | 国防部系统军演事件
+
+# 500 - 1976 Tangshan earthquake | 唐山大地震事件
+# 600-610 - GAW flavor events | GAW风味事件
+# 1100-1199 Diplomatic GUI flavor events | 外交GUI进行风味事件
+
+#现代中国梦-军事现代化点完后触发
+country_event = { #TNOLAR Start
+	id = tnolar_chi.1
+	title = tnolar_chi.1.t
+	desc = tnolar_chi.1.d
+	picture = GFX_TNOLAR_report_event_Flag_of_the_Republic_of_China_stamp
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1.a
+		country_event = {
+    		id = tnolar_chi.2
+			days = 1
+			random_hours = 6
+		}
+		hidden_effect = {
+			CHI_gao_zongwu = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/CHI/Portrait_China_Gao_Zongwu_70s.dds" }
+				}
+			}
+		}
+	}
+}
+
+#世上事仍未了
+country_event = { #主权统一开始
+	id = tnolar_chi.2
+	title = tnolar_chi.2.t
+	desc = tnolar_chi.2.d
+	picture = GFX_report_event_CHI_nanjing2
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.2.a
+		country_event = {
+    		id = tnolar_chi.3
+			days = 2
+			random_hours = 6
+		}
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.10
+				days = 3
+				random_hours = 12
+			}
+		}
+	}
+}
+
+#假话真说
+country_event = {
+	id = tnolar_chi.3
+	title = tnolar_chi.3.t
+	desc = tnolar_chi.3.d
+	picture = GFX_report_event_CHI_education4
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.3.a
+	}
+}
+
+#裂痕
+country_event = { #Taipei Summit Event Chain Start
+	id = tnolar_chi.10
+	title = tnolar_chi.10.t
+	desc = tnolar_chi.10.d
+	picture = GFX_TNOLAR_report_event_Letter_from_Guangxi
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.10.a
+		custom_effect_tooltip = tnolar_chi.10.tt
+		set_country_flag = CHI_The_Conference_Taipei
+	}
+}
+
+#搭手
+country_event = {
+	id = tnolar_chi.11
+	title = tnolar_chi.11.t
+	desc = tnolar_chi.11.d
+	picture = GFX_TNOLAR_report_event_taoxisheng_and_gaozongwu
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.11.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.12
+				days = 2
+			}
+		}
+	}
+}
+
+#再回首
+country_event = {
+	id = tnolar_chi.12
+	title = tnolar_chi.12.t
+	desc = tnolar_chi.12.d
+	picture = GFX_TNOLAR_report_event_patriotic_student
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.12.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.13
+				days = 1
+			}
+		}
+	}
+}
+
+#自污
+country_event = {
+	id = tnolar_chi.13
+	title = tnolar_chi.13.t
+	desc = tnolar_chi.13.d
+	picture = GFX_TNOLAR_report_event_photo_of_the_puppet_government
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.13.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.14
+				days = 1
+			}
+		}
+	}
+}
+
+#真假参半
+country_event = {
+	id = tnolar_chi.14
+	title = tnolar_chi.14.t
+	desc = tnolar_chi.14.d
+	picture = GFX_TNOLAR_report_event_student_representatives_in_nanjing
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.14.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.15
+				days = 2
+			}
+		}
+	}
+}
+
+#登机
+country_event = {
+	id = tnolar_chi.15
+	title = tnolar_chi.15.t
+	desc = tnolar_chi.15.d
+	picture = GFX_TNOLAR_report_event_Looking_out_from_airplane
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.15.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.16
+				days = 1
+			}
+		}
+	}
+}
+
+#再低一次头
+country_event = {
+	id = tnolar_chi.16
+	title = tnolar_chi.16.t
+	desc = tnolar_chi.16.d
+	picture = GFX_TNOLAR_report_event_Reporters_at_the_Taipei_Summit
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.16.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.17
+				hours = 6
+			}
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.1
+				}
+			}
+		}
+	}
+}
+
+#第一轮
+country_event = {
+	id = tnolar_chi.17
+	title = tnolar_chi.17.t
+	desc = tnolar_chi.17.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.17.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.18
+				hours = 6
+			}
+		}
+	}
+}
+
+#第二轮
+country_event = {
+	id = tnolar_chi.18
+	title = tnolar_chi.18.t
+	desc = tnolar_chi.18.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.18.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.19
+				days = 1
+			}
+		}
+	}
+}
+
+#第三轮
+country_event = {
+	id = tnolar_chi.19
+	title = tnolar_chi.19.t
+	desc = tnolar_chi.19.d
+	picture = GFX_TNOLAR_report_event_scene_from_the_Taipei_summit
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.19.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.20
+				days = 1
+			}
+		}
+	}
+}
+
+#斡旋
+country_event = {
+	id = tnolar_chi.20
+	title = tnolar_chi.20.t
+	desc = tnolar_chi.20.d
+	picture = GFX_TNOLAR_report_event_protest_against_Japan_in_Nanjing
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.20.a
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.21
+				days = 1
+			}
+		}
+	}
+}
+
+#落定
+country_event = {
+	id = tnolar_chi.21
+	title = tnolar_chi.21.t
+	desc = tnolar_chi.21.d
+	picture = GFX_TNOLAR_report_event_Flag_of_the_Republic_of_China_stamp
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.21.a
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 10 }
+		CHI_MND_faction_influences_change = yes
+
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.22
+				days = 2
+			}
+		}
+	}
+}
+
+#爆发
+country_event = {
+	id = tnolar_chi.22
+	title = tnolar_chi.22.t
+	desc = tnolar_chi.22.d
+	picture = GFX_TNOLAR_report_event_scene_from_the_Taipei_summit
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.22.a
+		if = {
+			limit = {
+				has_completed_focus = CHI_The_Conference
+			}
+			#do nothing
+		}
+		else = {
+			complete_national_focus = CHI_The_Conference
+		}
+
+		custom_effect_tooltip = tnolar_chi.22.tt
+
+		hidden_effect = {
+			set_country_flag = CHI_Sovereignty_Reunification
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+}
+
+#军事现代化
+country_event = {
+	id = tnolar_chi.100
+	title = tnolar_chi.100.t
+	desc = tnolar_chi.100.d
+	picture = GFX_TNOLAR_report_event_Remilitarization
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.100.a
+		remove_ideas = {
+			CHI_small_army
+			#CHI_LAR_limit_navy_and_airforce_idea
+		}
+		add_dynamic_modifier = {
+			modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+		}
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_air_ace_generation_chance_factor = 0 }#王牌飞行员
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_air = 0 }#空军经验
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_naval_speed_factor = 0 }#海军速度
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_navy_org_factor = 0 }#海军组织度
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_navy_screen_attack_factor = 0 }#屏卫舰攻击
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_navy_screen_defence_factor = 0 }#屏卫舰防御
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_navy = 0 }#海军经验
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_conscription_factor = -0.3 }#人力修正
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_attack_factor = -0.1 }#陆军进攻
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_org_factor = -0.1 }#组织度
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_defence_factor = -0.1 }#陆军防御
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_army_factor = -0.2 }#陆军经验获取修正
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_war_support_factor = 0 }#战争支持度
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_surrender_limit = 0 }#投降倾向
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_max_command_power = 0 }#最大指挥点
+		set_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_minimum_training_level = 0 }#训练程度下限
+	}
+}
+
+country_event = {
+	id = tnolar_chi.101
+	title = tnolar_chi.101.t
+	desc = tnolar_chi.101.d
+	picture = GFX_TNOLAR_report_event_Steel_factory_production_workshop
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.101.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.102
+	title = tnolar_chi.102.t
+	desc = tnolar_chi.102.d
+	picture = GFX_TNOLAR_report_event_Staff_Headquarters_Cadet
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.102.a
+		
+		hidden_effect = {
+			add_to_variable = { CHI_MND_GUI_JapanAlert_level = -5 }
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.103
+	title = tnolar_chi.103.t
+	desc = tnolar_chi.103.d
+	picture = GFX_TNOLAR_report_event_Mitsubishi
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.103.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.104
+	title = tnolar_chi.104.t
+	desc = tnolar_chi.104.d
+	picture = GFX_TNOLAR_report_event_Nanjing_Central_Army_Military_Academy
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.104.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.105
+	title = tnolar_chi.105.t
+	desc = tnolar_chi.105.d
+	picture = GFX_TNOLAR_report_event_Staff_Headquarters_Cadet
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.105.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.106
+	title = tnolar_chi.106.t
+	desc = tnolar_chi.106.d
+	picture = GFX_TNOLAR_report_event_Qingdao_Bay
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.106.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.107
+	title = tnolar_chi.107.t
+	desc = tnolar_chi.107.d
+	picture = GFX_TNOLAR_report_event_DoD_meetingroom
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.107.a
+		set_country_flag = CHI_LAR_Accept_New_theory
+		custom_effect_tooltip = tnolar_chi.107.a.tt
+	}
+	option = {
+		name = tnolar_chi.107.b
+		set_country_flag = CHI_LAR_Accept_traditional_thinking
+		custom_effect_tooltip = tnolar_chi.107.b.tt
+	}
+}
+
+country_event = {
+	id = tnolar_chi.108
+	title = tnolar_chi.108.t
+	desc = tnolar_chi.108.d
+	picture = GFX_TNOLAR_report_event_A2AD
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.108.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.109
+	title = tnolar_chi.109.t
+	desc = tnolar_chi.109.d
+	picture = GFX_TNOLAR_report_event_Chinese_collaborators_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.109.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.110
+	title = tnolar_chi.110.t
+	desc = tnolar_chi.110.d
+	picture = GFX_TNOLAR_report_event_Staff_Headquarters_Cadet
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.110.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.111
+	title = tnolar_chi.111.t
+	desc = tnolar_chi.111.d
+	picture = GFX_TNOLAR_report_event_DoD_meetingroom
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.111.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.112
+	title = tnolar_chi.112.t
+	desc = tnolar_chi.112.d
+	picture = GFX_TNOLAR_report_event_DoD_meetingroom
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.112.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.113
+	title = tnolar_chi.113.t
+	desc = tnolar_chi.113.d
+	picture = GFX_TNOLAR_report_event_Improve_military_discipline
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.113.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.114
+	title = tnolar_chi.114.t
+	desc = tnolar_chi.114.d
+	picture = GFX_TNOLAR_report_event_Staff_Headquarters_Cadet
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.114.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.115
+	title = tnolar_chi.115.t
+	desc = tnolar_chi.115.d
+	picture = GFX_TNOLAR_report_event_Nanjing_Central_Army_Military_Academy
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.115.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.116
+	title = tnolar_chi.116.t
+	desc = tnolar_chi.116.d
+	picture = GFX_TNOLAR_report_event_DoD_meetingroom
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.116.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.117
+	title = tnolar_chi.117.t
+	desc = tnolar_chi.117.d
+	picture = GFX_report_event_CHI_nanjing2
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.117.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.118
+	title = tnolar_chi.118.t
+	desc = tnolar_chi.118.d
+	picture = GFX_report_event_CHI_nanjing_summit_start
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.118.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.119
+	title = tnolar_chi.119.t
+	desc = tnolar_chi.119.d
+	picture = GFX_TNOLAR_report_event_Staff_Headquarters_Cadet
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.119.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.120
+	title = tnolar_chi.120.t
+	desc = tnolar_chi.120.d
+	picture = GFX_TNOLAR_report_event_A2AD
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.120.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.121
+	title = tnolar_chi.121.t
+	desc = tnolar_chi.121.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.121.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.122
+	title = tnolar_chi.122.t
+	desc = tnolar_chi.122.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.122.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.123
+	title = tnolar_chi.123.t
+	desc = tnolar_chi.123.d
+	picture = GFX_TNOLAR_report_event_photo_of_the_puppet_government
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.123.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.124
+	title = tnolar_chi.124.t
+	desc = tnolar_chi.124.d
+	picture = GFX_TNOLAR_report_event_Flag_of_the_Republic_of_China_stamp
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.124.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.125
+	title = tnolar_chi.125.t
+	desc = tnolar_chi.125.d
+	picture = GFX_TNOLAR_report_event_Flag_of_the_Republic_of_China_stamp
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.125.a
+	}
+}
+
+#军事现代化结束
+country_event = {
+	id = tnolar_chi.200
+	title = tnolar_chi.200.t
+	desc = tnolar_chi.200.d
+	picture = GFX_TNOLAR_report_event_Reunification
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.200.a
+	}
+}
+
+#刘文辉
+country_event = {
+	id = tnolar_chi.201
+	title = tnolar_chi.201.t
+	desc = tnolar_chi.201.d
+	picture = GFX_TNOLAR_report_event_night_car
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.201.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.202
+	title = tnolar_chi.202.t
+	desc = tnolar_chi.202.d
+	picture = GFX_TNOLAR_report_event_night_car
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.202.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.203
+	title = tnolar_chi.203.t
+	desc = tnolar_chi.203.d
+	picture = GFX_TNOLAR_report_event_sunset
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.203.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.204
+	title = tnolar_chi.204.t
+	desc = tnolar_chi.204.d
+	picture = GFX_TNOLAR_report_event_sunset
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.204.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.205
+	title = tnolar_chi.205.t
+	desc = tnolar_chi.205.d
+	picture = GFX_TNOLAR_report_event_mother_and_child
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.205.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.206
+	title = tnolar_chi.206.t
+	desc = tnolar_chi.206.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_win
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.206.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.207
+	title = tnolar_chi.207.t
+	desc = tnolar_chi.207.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_win
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.207.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.208
+	title = tnolar_chi.208.t
+	desc = tnolar_chi.208.d
+	picture = GFX_
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.208.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.209
+	title = tnolar_chi.209.t
+	desc = tnolar_chi.209.d
+	picture = GFX_
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.209.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.210
+	title = tnolar_chi.210.t
+	desc = tnolar_chi.210.d
+	picture = GFX_
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.210.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.211
+	title = tnolar_chi.211.t
+	desc = tnolar_chi.211.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.211.a
+	}
+}
+
+#傅作义
+country_event = { 
+	id = tnolar_chi.220
+	title = tnolar_chi.220.t
+	desc = tnolar_chi.220.d
+	picture = GFX_TNOLAR_report_event_Fu_zuoyi
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.220.a
+		country_event = {
+    		id = tnolar_chi.221
+    		days = 7
+		}
+	}
+}
+country_event = { 
+	id = tnolar_chi.221
+	title = tnolar_chi.221.t
+	desc = tnolar_chi.221.d
+	picture = GFX_TNOLAR_report_event_Fu_zuoyi
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.221.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.222
+	title = tnolar_chi.222.t
+	desc = tnolar_chi.222.d
+	picture = GFX_TNOLAR_report_event_DoD_meetingroom
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.222.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.223
+	title = tnolar_chi.223.t
+	desc = tnolar_chi.223.d
+	picture = GFX_TNOLAR_report_event_Locomotive_coaling
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.223.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.224
+	title = tnolar_chi.224.t
+	desc = tnolar_chi.224.d
+	picture = GFX_TNOLAR_report_event_DoD_meetingroom
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.224.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.225
+	title = tnolar_chi.225.t
+	desc = tnolar_chi.225.d
+	picture = GFX_TNOLAR_report_event_the_red_army
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.225.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.226
+	title = tnolar_chi.226.t
+	desc = tnolar_chi.226.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.226.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.227
+	title = tnolar_chi.227.t
+	desc = tnolar_chi.227.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.227.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.228
+	title = tnolar_chi.228.t
+	desc = tnolar_chi.228.d
+	picture = GFX_TNOLAR_report_event_protest_against_Japan_in_Nanjing
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.228.a
+	}
+}
+
+#夏威
+country_event = { 
+	id = tnolar_chi.240
+	title = tnolar_chi.240.t
+	desc = tnolar_chi.240.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.240.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.241
+	title = tnolar_chi.241.t
+	desc = tnolar_chi.241.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.241.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.242
+	title = tnolar_chi.242.t
+	desc = tnolar_chi.242.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.242.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.243
+	title = tnolar_chi.243.t
+	desc = tnolar_chi.243.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.243.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.244
+	title = tnolar_chi.244.t
+	desc = tnolar_chi.244.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.244.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.245
+	title = tnolar_chi.245.t
+	desc = tnolar_chi.245.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.245.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.246
+	title = tnolar_chi.246.t
+	desc = tnolar_chi.246.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.246.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.247
+	title = tnolar_chi.247.t
+	desc = tnolar_chi.247.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.247.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.248
+	title = tnolar_chi.248.t
+	desc = tnolar_chi.248.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.248.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.249
+	title = tnolar_chi.249.t
+	desc = tnolar_chi.249.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.249.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.250
+	title = tnolar_chi.250.t
+	desc = tnolar_chi.250.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.250.a
+	}
+}
+
+#新疆
+country_event = { 
+	id = tnolar_chi.270
+	title = tnolar_chi.270.t
+	desc = tnolar_chi.270.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.270.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.271
+	title = tnolar_chi.271.t
+	desc = tnolar_chi.271.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.271.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.272
+	title = tnolar_chi.272.t
+	desc = tnolar_chi.272.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.272.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.273
+	title = tnolar_chi.273.t
+	desc = tnolar_chi.273.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.273.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.274
+	title = tnolar_chi.274.t
+	desc = tnolar_chi.274.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.274.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.275
+	title = tnolar_chi.275.t
+	desc = tnolar_chi.275.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.275.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.276
+	title = tnolar_chi.276.t
+	desc = tnolar_chi.276.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.276.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.277
+	title = tnolar_chi.277.t
+	desc = tnolar_chi.277.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.277.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.278
+	title = tnolar_chi.278.t
+	desc = tnolar_chi.278.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.278.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.480
+	title = tnolar_chi.480.t
+	desc = tnolar_chi.480.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.480.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.481
+	title = tnolar_chi.481.t
+	desc = tnolar_chi.481.d
+	picture = GFX_TNOLAR_report_event_Improve_military_discipline
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.481.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.482
+	title = tnolar_chi.482.t
+	desc = tnolar_chi.482.d
+	picture = GFX_TNOLAR_report_event_Remilitarization
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.482.a
+	}
+}
+
+
+#西藏
+country_event = { 
+	id = tnolar_chi.290
+	title = tnolar_chi.290.t
+	desc = tnolar_chi.290.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.290.a
+		declare_war_on = {
+			target = TIB
+			type = annex_everything
+		}
+	}
+}
+
+
+
+
+
+
+country_event = {
+	id = tnolar_chi.400
+	title = tnolar_chi.400.t
+	desc = tnolar_chi.400.d
+	picture = GFX_TNOLAR_report_event_Northwest_War
+	immediate = {
+		GAN = {
+			declare_war_on = {
+				target = QIN
+				type = annex_everything
+			}
+		}
+		country_event = {
+    		id = tnolar_chi.401
+    		hours = 2
+		}
+		if = {
+			limit = {
+				has_country_flag = CHI_enable_easier_northwestwar_GUI
+			}
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 65 }
+			clamp_variable = {
+				var = CHI_Northwest_War_GUI_progressbar_var
+				min = 0
+				max = 100
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_enable_harder_northwestwar_GUI
+			}
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = -25 }
+			clamp_variable = {
+				var = CHI_Northwest_War_GUI_progressbar_var
+				min = 0
+				max = 100
+			}
+		}
+		country_event = {
+    		id = tnolar_chi.451
+			days = 1
+		}
+
+		country_event = {
+    		id = tnolar_chi.457
+			days = 1
+		}
+		country_event = {
+    		id = tnolar_chi.458
+			days = 8
+		}
+		country_event = {
+    		id = tnolar_chi.459
+			days = 15
+		}
+		country_event = {
+    		id = tnolar_chi.460
+			days = 22
+		}
+		country_event = {
+    		id = tnolar_chi.461
+			days = 29
+		}
+		country_event = {
+    		id = tnolar_chi.462
+			days = 36
+		}
+		country_event = {
+    		id = tnolar_chi.463
+			days = 43
+		}
+	}
+	hidden = yes
+	
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.400.a
+	}
+}
+
+country_event = { #Northwest War
+	id = tnolar_chi.401
+	title = tnolar_chi.401.t
+	desc = tnolar_chi.401.d
+	picture = GFX_TNOLAR_report_event_Northwest_War
+	
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.401.a
+		custom_effect_tooltip = tnolar_chi.401.a.tt
+		complete_national_focus = CHI_LAR_Support_Ma_Jiyuan
+	}
+}
+
+country_event = {
+	id = tnolar_chi.402
+	title = tnolar_chi.402.t
+	desc = tnolar_chi.402.d
+	picture = GFX_TNOLAR_report_event_NRA_Enters_Northwest
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.402.a
+	}
+}
+
+
+
+country_event = { 
+	id = tnolar_chi.451
+	title = tnolar_chi.451.t
+	desc = tnolar_chi.451.d
+	picture = GFX_
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.451.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.452
+	title = tnolar_chi.452.t
+	desc = tnolar_chi.452.d
+	picture = GFX_TNOLAR_report_event_Northwest_War
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.452.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.453
+	title = tnolar_chi.453.t
+	desc = tnolar_chi.453.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao2
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.453.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.454
+	title = tnolar_chi.454.t
+	desc = tnolar_chi.454.d
+	picture = GFX_TNOLAR_report_event_NRA_Enters_Northwest
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.454.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.455
+	title = tnolar_chi.455.t
+	desc = tnolar_chi.455.d
+	picture = GFX_TNOLAR_report_event_sunset
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.455.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.456
+	title = tnolar_chi.456.t
+	desc = tnolar_chi.456.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_win
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.456.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.457
+	title = tnolar_chi.457.t
+	desc = tnolar_chi.457.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_lose
+	is_triggered_only = yes
+	trigger = {
+        GAN = {
+			has_war_with = QIN
+		}
+	}
+	option = {
+		name = tnolar_chi.457.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.458
+	title = tnolar_chi.458.t
+	desc = tnolar_chi.458.d
+	picture = GFX_TNOLAR_report_event_newsstand
+	is_triggered_only = yes
+	trigger = {
+        GAN = {
+			has_war_with = QIN
+		}
+	}
+	option = {
+		name = tnolar_chi.458.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.459
+	title = tnolar_chi.459.t
+	desc = tnolar_chi.459.d
+	picture = GFX_TNOLAR_report_event_Broken_Great_Wall
+	is_triggered_only = yes
+	trigger = {
+        GAN = {
+			has_war_with = QIN
+		}
+	}
+	option = {
+		name = tnolar_chi.459.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.460
+	title = tnolar_chi.460.t
+	desc = tnolar_chi.460.d
+	picture = GFX_TNOLAR_report_event_Letter_from_Guangxi
+	is_triggered_only = yes
+	trigger = {
+        GAN = {
+			has_war_with = QIN
+		}
+	}
+	option = {
+		name = tnolar_chi.460.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.461
+	title = tnolar_chi.461.t
+	desc = tnolar_chi.461.d
+	picture = GFX_
+	is_triggered_only = yes
+	trigger = {
+        GAN = {
+			has_war_with = QIN
+		}
+	}
+	option = {
+		name = tnolar_chi.461.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.462
+	title = tnolar_chi.462.t
+	desc = tnolar_chi.462.d
+	picture = GFX_TNOLAR_report_event_69G_Tank
+	is_triggered_only = yes
+	trigger = {
+        GAN = {
+			has_war_with = QIN
+		}
+	}
+	option = {
+		name = tnolar_chi.462.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.463
+	title = tnolar_chi.463.t
+	desc = tnolar_chi.463.d
+	picture = GFX_TNOLAR_report_event_69G_Tank
+	is_triggered_only = yes
+	trigger = {
+        GAN = {
+			has_war_with = QIN
+		}
+	}
+	option = {
+		name = tnolar_chi.463.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.464
+	title = tnolar_chi.464.t
+	desc = tnolar_chi.464.d
+	picture = GFX_TNOLAR_report_event_Ship_is_on_fire
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.464.a
+	}
+}
+country_event = { 
+	id = tnolar_chi.465
+	title = tnolar_chi.465.t
+	desc = tnolar_chi.465.d
+	picture = GFX_TNOLAR_report_event_Broken_Great_Wall
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.465.a
+		custom_effect_tooltip = tnolar_chi.465.a.tt
+		country_event = tnolar_chi.498
+
+		country_event = {
+    		id = tnolar_chi.482
+    		days = 3
+		}
+	}
+}
+country_event = { 
+	id = tnolar_chi.466
+	title = tnolar_chi.466.t
+	desc = tnolar_chi.466.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_lose
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.466.a
+		custom_effect_tooltip = tnolar_chi.466.a.tt
+		country_event = tnolar_chi.499
+
+		country_event = {
+    		id = tnolar_chi.482
+    		days = 3
+		}
+	}
+}
+country_event = { 
+	id = tnolar_chi.467
+	title = tnolar_chi.467.t
+	desc = tnolar_chi.467.d
+	picture = GFX_TNOLAR_report_event_Japanese_invade_Shanghai
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.467.a
+		country_event = {
+    		id = tnolar_chi.468
+    		days = 1
+		}
+	}
+}
+country_event = { 
+	id = tnolar_chi.468
+	title = tnolar_chi.468.t
+	desc = tnolar_chi.468.d
+	picture = GFX_TNOLAR_report_event_Broken_Great_Wall
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.468.a
+		add_manpower = -1
+		custom_effect_tooltip = tnolar_chi.468.a.tt
+
+		country_event = tnolar_chi.497
+	}
+}
+country_event = { 
+	id = tnolar_chi.469
+	title = tnolar_chi.469.t
+	desc = tnolar_chi.469.d
+	picture = GFX_TNOLAR_report_event_Letter_from_Guangxi
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.469.a
+	}
+}
+
+
+
+country_event = {
+	id = tnolar_chi.497
+	title = tnolar_chi.497.t
+	desc = tnolar_chi.497.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_lose
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.497.a
+		clear_variable = CHI_Northwest_War_GUI_progressbar_var
+		clear_variable = Northwest_War_timeleft
+		clear_variable = CHI_current_number_volunteers
+		clear_variable = CHI_NWW_EQ_firearms
+		clear_variable = CHI_NWW_EQ_artillery
+		clear_variable = CHI_NWW_EQ_armor
+		clr_country_flag = CHI_Northwest_War
+		clr_country_flag = CHI_sharpen_the_weapon_decisions
+		clr_country_flag = CHI_lend_helping_hand_decisions
+		clr_country_flag = CHI_diplomatic_mediation_decisions
+		set_country_flag = CHI_northwestwar_has_resolved
+	}
+}
+
+country_event = {
+	id = tnolar_chi.498
+	title = tnolar_chi.498.t
+	desc = tnolar_chi.498.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_win
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.498.a
+		clear_variable = CHI_Northwest_War_GUI_progressbar_var
+		clear_variable = Northwest_War_timeleft
+		clear_variable = CHI_current_number_volunteers
+		clear_variable = CHI_NWW_EQ_firearms
+		clear_variable = CHI_NWW_EQ_artillery
+		clear_variable = CHI_NWW_EQ_armor
+		clr_country_flag = CHI_Northwest_War
+		clr_country_flag = CHI_sharpen_the_weapon_decisions
+		clr_country_flag = CHI_lend_helping_hand_decisions
+		clr_country_flag = CHI_diplomatic_mediation_decisions
+		set_country_flag = CHI_northwestwar_has_resolved
+
+		country_event = {
+			id = tnolar_chi.469
+			hours = 4
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.499
+	title = tnolar_chi.499.t
+	desc = tnolar_chi.499.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_draw
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.499.a
+		clear_variable = CHI_Northwest_War_GUI_progressbar_var
+		clear_variable = Northwest_War_timeleft
+		clear_variable = CHI_current_number_volunteers
+		clear_variable = CHI_NWW_EQ_firearms
+		clear_variable = CHI_NWW_EQ_artillery
+		clear_variable = CHI_NWW_EQ_armor
+		clr_country_flag = CHI_Northwest_War
+		clr_country_flag = CHI_sharpen_the_weapon_decisions
+		clr_country_flag = CHI_lend_helping_hand_decisions
+		clr_country_flag = CHI_diplomatic_mediation_decisions
+		set_country_flag = CHI_northwestwar_has_resolved
+
+		country_event = {
+			id = tnolar_chi.469
+			hours = 4
+		}
+	}
+}
+
+
+country_event = {
+	id = tnolar_chi.4000
+	title = tnolar_chi.4000.t
+	desc = tnolar_chi.4000.d
+	picture = GFX_TNOLAR_report_event_Looking_out_from_airplane
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.4000.a
+		country_event = {
+			id = tnolar_chi.4001
+			days = 1
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.5
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.4001
+	title = tnolar_chi.4001.t
+	desc = tnolar_chi.4001.d
+	picture = GFX_TNOLAR_report_event_Reporters_at_the_Taipei_Summit
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.4001.a
+		country_event = {
+			id = tnolar_chi.4002
+			days = 1
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.4002
+	title = tnolar_chi.4002.t
+	desc = tnolar_chi.4002.d
+	picture = GFX_TNOLAR_report_event_sunset
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.4002.a
+		country_event = {
+			id = tnolar_chi.4003
+			days = 1
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.4003
+	title = tnolar_chi.4003.t
+	desc = tnolar_chi.4003.d
+	picture = GFX_TNOLAR_report_event_scene_from_the_Taipei_summit
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.4003.a
+		country_event = {
+			id = tnolar_chi.4004
+			days = 1
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.4004
+	title = tnolar_chi.4004.t
+	desc = tnolar_chi.4004.d
+	picture = GFX_TNOLAR_report_event_Japanese_invade_Shanghai
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.4004.a
+		country_event = {
+			id = tnolar_chi.591
+			days = 1
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.591
+	title = tnolar_chi.591.t
+	desc = tnolar_chi.591.d
+	picture = GFX_TNOLAR_report_event_Flag_of_the_Republic_of_China_stamp
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.591.a
+
+		hidden_effect = {
+			end_puppet = MEN
+
+			set_temp_variable = { temp_law = token:CHI_LAR_japchi_relations_agreement_law }
+			TNO_remove_assorted_law = yes
+			set_temp_variable = { temp_law = token:CHI_LAR_GNG_Autonomy_Agreement_law }
+			TNO_remove_assorted_law = yes
+			set_temp_variable = { v = 4 }			
+			#离开经济圈（已测试可用）
+			econ_leave_sphere = yes
+			econ_recompile_all_spheres = yes
+			recalculate_world_trade_influence = yes
+
+			leave_faction = yes
+			create_faction = TNOLAR_Pan_Asian_Liberation_Alliance
+			remove_ideas = Sphere_Core_Member
+			add_ideas = TNOLAR_PALA_Leader
+
+			drop_cosmetic_tag = yes
+			set_cosmetic_tag = CHI_ROC
+
+			load_focus_tree = TNOLAR_china_war_prepare_tree
+			set_country_flag = CHI_war_prepare
+			set_global_flag = TNOLAR_GAW_diplomatic_games
+			clr_country_flag = CHI_Sovereignty_Reunification
+			clr_country_flag = CHI_Modernization
+			clr_global_flag = CHI_Western_Insurrection_Crisis
+			clr_country_flag = CHI_show_western_tree_hidden_middle
+			clr_country_flag = CHI_show_western_tree_hidden_japan
+			clr_country_flag = CHI_Nanjing_Crisis
+			clr_country_flag = CHI_war_with_japan
+
+			clr_country_flag = CHI_secret_army_unlocked
+			
+			remove_ideas = {
+				CHI_japans_breadbasket_0
+				CHI_japans_breadbasket_1
+				CHI_japans_breadbasket_2
+				CHI_slave_of_the_samurai_0
+				CHI_slave_of_the_samurai_1
+				CHI_slave_of_the_samurai_2
+				CHI_slave_of_the_samurai_3
+				CHI_slave_of_the_samurai_4
+				CHI_small_army
+				CHI_surrounded_by_enemies
+			}
+			remove_ideas = {
+				TNO_foreign_advisors
+			}
+			country_lock_all_division_template = no
+			remove_ideas = CHI_LAR_remilitarization_modernized_army_idea
+			add_ideas = CHI_LAR_Real_remilitarization_modernized_army_idea
+
+			JAP = {
+				remove_resource_rights = 608	#北京
+				remove_resource_rights = 614	#保定
+				remove_resource_rights = 1020	#济南
+				remove_resource_rights = 1021	#潍坊
+				remove_resource_rights = 1022	#烟台
+				remove_resource_rights = 813	#上海
+				remove_resource_rights = 600	#吉安
+			}
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.6
+				}
+			}
+			country_event = {
+				id = tnolar_chi.592
+				days = 5
+			}
+		}
+		
+		custom_effect_tooltip = tnolar_chi.591.a.tt
+		complete_national_focus = CHI_LAR_The_Of_Summit
+	}
+}
+
+#触发经济封锁新闻隐藏事件
+country_event = {
+	id = tnolar_chi.592
+	title = tnolar_chi.592.t
+	desc = tnolar_chi.592.d
+	picture = GFX_
+
+	hidden = yes
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.592.a
+		every_country = {
+			limit = { is_ai = no }
+			country_event = {
+				id = TNOLAR_WORLD.100
+			}
+		}
+	}
+}
+
+
+
+
+
+country_event = {
+	id = tnolar_chi.500
+	title = tnolar_chi.500.t
+	desc = tnolar_chi.500.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao2
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.500.a
+		country_event = {
+			id = tnolar_chi.501
+			days = 7
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.501
+	title = tnolar_chi.501.t
+	desc = tnolar_chi.501.d
+	picture = GFX_TNOLAR_report_event_sunset
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.501.a
+		country_event = {
+			id = tnolar_chi.502
+			days = 7
+		}
+		add_manpower = -1
+		add_popularity = {
+    		ideology = fascism
+    		popularity = -0.1
+		}
+		hidden_effect = {
+			retire_character = CHI_Zhang_Lanfeng
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.502
+	title = tnolar_chi.502.t
+	desc = tnolar_chi.502.d
+	picture = GFX_TNOLAR_report_event_timebomb
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.502.a
+		
+		add_manpower = -1
+		hidden_effect = {
+			retire_character = CHI_Wang_Fenggang
+			retire_character = CHI_Rong_Ziheng
+		}
+
+		country_event = {
+			id = tnolar_chi.503
+			days = 7
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.503
+	title = tnolar_chi.503.t
+	desc = tnolar_chi.503.d
+	picture = GFX_TNOLAR_report_event_Completion_Ceremony_of_the_Japanese_Railway
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.503.a
+
+		country_event = {
+			id = tnolar_chi.504
+			days = 1
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.504
+	title = tnolar_chi.504.t
+	desc = tnolar_chi.504.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.504.a
+		add_manpower = -1
+
+		remove_ideas = {
+			CHI_Zhang_Renli_eco
+		}
+		retire_character = CHI_zhang_renli
+
+		add_ideas = {
+			CHI_Sun_Yaodong_eco
+		}
+
+		#法西斯饼图消到0
+		add_popularity = {
+			ideology = fascism
+			popularity = -1
+		}
+	}
+}
+
+country_event = { #剑拔弩张
+	id = tnolar_chi.505
+	title = tnolar_chi.505.t
+	desc = tnolar_chi.505.d
+	picture = GFX_TNOLAR_report_event_Aircraft_carrier_and_fighter
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.505.a
+	}
+}
+
+country_event = { #排艰阻难……
+	id = tnolar_chi.510
+	title = tnolar_chi.510.t
+	desc = tnolar_chi.510.d
+	picture = GFX_TNOLAR_report_event_Qingdao_Bay
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.510.a
+	}
+}
+country_event = { #在深邃的大海上
+	id = tnolar_chi.511
+	title = tnolar_chi.511.t
+	desc = tnolar_chi.511.d
+	picture = GFX_TNOLAR_report_event_Aircraft_carrier_and_fighter
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.511.a
+	}
+}
+country_event = { #居外未敢忘忧国
+	id = tnolar_chi.512
+	title = tnolar_chi.512.t
+	desc = tnolar_chi.512.d
+	picture = GFX_TNOLAR_report_event_A2AD
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.512.a
+	}
+}
+country_event = { #兵工厂和热干面
+	id = tnolar_chi.513
+	title = tnolar_chi.513.t
+	desc = tnolar_chi.513.d
+	picture = GFX_TNOLAR_report_event_secret_warehouse1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.513.a
+	}
+}
+country_event = { #雨夜兼程
+	id = tnolar_chi.514
+	title = tnolar_chi.514.t
+	desc = tnolar_chi.514.d
+	picture = GFX_TNOLAR_report_event_night_car
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.514.a
+	}
+}
+country_event = { #上层的余裕
+	id = tnolar_chi.515
+	title = tnolar_chi.515.t
+	desc = tnolar_chi.515.d
+	picture = GFX_TNOLAR_report_event_photo_of_the_puppet_government
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.515.a
+	}
+}
+country_event = { #老人的担忧
+	id = tnolar_chi.516
+	title = tnolar_chi.516.t
+	desc = tnolar_chi.516.d
+	picture = GFX_TNOLAR_report_event_Locomotive_coaling
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.516.a
+	}
+}
+country_event = { #青年的狂热
+	id = tnolar_chi.517
+	title = tnolar_chi.517.t
+	desc = tnolar_chi.517.d
+	picture = GFX_TNOLAR_report_event_patriotic_student
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.517.a
+	}
+}
+country_event = { #报纸和电波里的战争
+	id = tnolar_chi.518
+	title = tnolar_chi.518.t
+	desc = tnolar_chi.518.d
+	picture = GFX_TNOLAR_report_event_newsstand
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.518.a
+	}
+}
+country_event = { #日企离华
+	id = tnolar_chi.519
+	title = tnolar_chi.519.t
+	desc = tnolar_chi.519.d
+	picture = GFX_TNOLAR_report_event_Mitsubishi
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.519.a
+		country_event = {
+			id = tnolar_chi.520
+			days = 21
+		}
+
+		set_temp_variable = { gdp_growth_temp = -2 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 1 }
+		econ_inflation_change = yes
+	}
+}
+country_event = { #股市 “厮杀”
+	id = tnolar_chi.520
+	title = tnolar_chi.520.t
+	desc = tnolar_chi.520.d
+	picture = GFX_TNOLAR_report_event_gambling_table2
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.520.a
+		country_event = {
+			id = tnolar_chi.521
+			days = 21
+		}
+	}
+}
+country_event = { #汇率变动
+	id = tnolar_chi.521
+	title = tnolar_chi.521.t
+	desc = tnolar_chi.521.d
+	picture = GFX_TNOLAR_report_event_stock_market3
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.521.a
+		country_event = {
+			id = tnolar_chi.522
+			days = 21
+		}
+	}
+}
+country_event = { #失业浪潮
+	id = tnolar_chi.522
+	title = tnolar_chi.522.t
+	desc = tnolar_chi.522.d
+	picture = GFX_TNOLAR_report_event_Steel_factory_production_workshop
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.522.a
+
+		set_temp_variable = { gdp_growth_temp = -2 }
+		econ_gdp_growth_change = yes
+	}
+}
+country_event = { #《财经新闻·一》
+	id = tnolar_chi.523
+	title = tnolar_chi.523.t
+	desc = tnolar_chi.523.d
+	picture = GFX_TNOLAR_report_event_stock_market2
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.523.a
+
+		set_temp_variable = { inflation_temp = 1 }
+		econ_inflation_change = yes
+	}
+}
+country_event = { #《财经新闻·二》
+	id = tnolar_chi.524
+	title = tnolar_chi.524.t
+	desc = tnolar_chi.524.d
+	picture = GFX_TNOLAR_report_event_stock_market1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.524.a
+
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 1 }
+		econ_inflation_change = yes
+	}
+}
+country_event = { #技术投资
+	id = tnolar_chi.525
+	title = tnolar_chi.525.t
+	desc = tnolar_chi.525.d
+	picture = GFX_TNOLAR_report_event_Staff_Headquarters_Cadet
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.525.a
+		country_event = {
+			id = tnolar_chi.526
+			days = 7
+		}
+	}
+}
+country_event = { #降息政策
+	id = tnolar_chi.526
+	title = tnolar_chi.526.t
+	desc = tnolar_chi.526.d
+	picture = GFX_TNOLAR_report_event_stock_market4
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.526.a
+		country_event = {
+			id = tnolar_chi.527
+			days = 7
+		}
+
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 1 }
+		econ_inflation_change = yes
+	}
+}
+country_event = { #国货运动
+	id = tnolar_chi.527
+	title = tnolar_chi.527.t
+	desc = tnolar_chi.527.d
+	picture = GFX_TNOLAR_report_event_protest_against_Japan_in_Nanjing
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.527.a
+	}
+}
+country_event = { #《财经新闻·三》
+	id = tnolar_chi.528
+	title = tnolar_chi.528.t
+	desc = tnolar_chi.528.d
+	picture = GFX_TNOLAR_report_event_stock_market1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.528.a
+		set_temp_variable = { gdp_growth_temp = 1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = -1 }
+		econ_inflation_change = yes
+	}
+}
+country_event = { #产业升级
+	id = tnolar_chi.529
+	title = tnolar_chi.529.t
+	desc = tnolar_chi.529.d
+	picture = GFX_TNOLAR_report_event_Reporters_at_the_Taipei_Summit
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.529.a
+		country_event = {
+			id = tnolar_chi.530
+			days = 7
+		}
+	}
+}
+country_event = { #军备扩张
+	id = tnolar_chi.530
+	title = tnolar_chi.530.t
+	desc = tnolar_chi.530.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.530.a
+	}
+}
+country_event = { #山雨欲来
+	id = tnolar_chi.531
+	title = tnolar_chi.531.t
+	desc = tnolar_chi.531.d
+	picture = GFX_TNOLAR_report_event_sunset
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.531.a
+	}
+}
+country_event = { #利益交换
+	id = tnolar_chi.532
+	title = tnolar_chi.532.t
+	desc = tnolar_chi.532.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao3
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.532.a
+		country_event = {
+			id = tnolar_chi.535
+			days = 7
+		}
+	}
+}
+country_event = { #意外的访客
+	id = tnolar_chi.533
+	title = tnolar_chi.533.t
+	desc = tnolar_chi.533.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao
+
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.533.a
+	}
+}
+country_event = { #意外的访客
+	id = tnolar_chi.534
+	title = tnolar_chi.534.t
+	desc = tnolar_chi.534.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao
+
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.534.a
+	}
+}
+country_event = { #有代价的援助
+	id = tnolar_chi.535
+	title = tnolar_chi.535.t
+	desc = tnolar_chi.535.d
+	picture = GFX_TNOLAR_report_event_secret_warehouse2
+
+	is_triggered_only = yes
+	option = {
+		name = tnolar_chi.535.a
+	}
+}
+country_event = { #飞跃屋脊
+	id = tnolar_chi.536
+	title = tnolar_chi.536.t
+	desc = tnolar_chi.536.d
+	picture = GFX_TNOLAR_report_event_the_hump_route
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.536.a
+	}
+}
+country_event = { #骨断筋连（1）
+	id = tnolar_chi.537
+	title = tnolar_chi.537.t
+	desc = tnolar_chi.537.d
+	picture = GFX_TNOLAR_report_event_Burnt_Manchukuo_posters
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.537.a
+	}
+}
+country_event = { #骨断筋连（2）
+	id = tnolar_chi.538
+	title = tnolar_chi.538.t
+	desc = tnolar_chi.538.d
+	picture = GFX_TNOLAR_report_event_Broken_Great_Wall
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.538.a
+	}
+}
+country_event = { #暴风雨的前夜
+	id = tnolar_chi.539
+	title = tnolar_chi.539.t
+	desc = tnolar_chi.539.d
+	picture = GFX_TNOLAR_report_event_Northwest_War_win
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.539.a
+	}
+}
+country_event = { #国耻未雪男儿志
+	id = tnolar_chi.540
+	title = tnolar_chi.540.t
+	desc = tnolar_chi.540.d
+	picture = GFX_TNOLAR_report_event_fireworks_burnt
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.540.a
+		country_event = {
+    		id = tnolar_chi.600
+		}
+	}
+}
+
+country_event = { #大东亚战争
+	id = tnolar_chi.600
+	immediate = {log = "[GetDateText]: [Root.GetName]: event chi.10"}
+	title = tnolar_chi.600.t
+	desc = tnolar_chi.600.d
+	picture = GFX_report_event_CHI_soldiers_jungle
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.600.a
+		custom_effect_tooltip = tnolar_chi.600.a.tt
+		hidden_effect = {
+			CHI = {
+				AZH = {	#自由印度退出共荣圈，再也不回来了
+					leave_faction = yes
+
+					#移除经济圈
+					econ_leave_sphere = yes
+					econ_recompile_all_spheres = yes
+					recalculate_world_trade_influence = yes
+
+					#移除成员国精神
+					remove_faction_status = yes
+				}
+
+				declare_war_on = {
+					target = MAN
+					type = annex_everything
+				}
+				every_country = {
+					limit = {
+						is_in_faction_with = JAP
+					}
+					declare_war_on = {
+						target = PREV
+						type = annex_everything
+					}
+				}
+				
+				load_focus_tree = TNOLAR_china_war_tree
+				set_country_flag = CHI_war_with_japan
+				clr_country_flag = CHI_war_prepare
+				clr_country_flag = CHI_Sovereignty_Reunification
+				clr_country_flag = CHI_Modernization
+				clr_global_flag = CHI_Western_Insurrection_Crisis
+				clr_country_flag = CHI_show_western_tree_hidden_middle
+				clr_country_flag = CHI_show_western_tree_hidden_japan
+				clr_country_flag = CHI_Nanjing_Crisis
+				
+				complete_national_focus = CHI_LAR_War
+			}
+			set_global_flag = TNOLAR_GAW_in_progress
+			
+			set_temp_variable = { TNO_temp_super_event = token:SE_GREAT_ASIAN_WAR_RGOC }
+			TNO_fire_super_event = yes
+
+			every_country = {
+				limit = { is_ai = no }
+				#有了大东亚战争的新闻之后再替换成新闻吧
+				set_temp_variable = { TNO_temp_super_event = token:SE_GREAT_ASIAN_WAR_RGOC }
+				TNO_fire_super_event = yes
+			}
+
+			#关闭外交GUI
+			clr_global_flag = TNOLAR_GAW_diplomatic_games
+			clr_country_flag = TNOLAR_country_has_gui
+			clr_country_flag = gui_alert_visible
+			#clr_country_flag = gui_alert_visible_2
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_points_add
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_round_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var
+
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_cn_progressbar_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_jp_progressbar_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var
+
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6
+
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_1_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_2_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_3_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_4_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_5_var
+
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_1_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_2_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_3_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_4_var
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_5_var
+
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_selected_quantity
+
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points
+
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points
+			clear_variable = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points
+
+			clear_array = global.Table_GUI_faction_member_CHI
+			clear_array = global.Table_GUI_faction_member_JAP
+
+			#检查自定义提醒
+			CHI_TMCAT_dipogame_check = yes
+			CHI_TMCAT_diposelect_check = yes
+
+			#启动GAWGUI
+			set_country_flag = gui_alert_visible	#政治界面显示提示
+			set_country_flag = gui_alert_visible_2
+
+			set_country_flag = TNOLAR_country_has_gui	#右下角与政治界面显示
+
+			### GAW GUI General ###
+
+			### GAW map GUI ###
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var = 1 }					#各地块的占领状态
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var = 1 }	#1敌方 2争夺中 3己方
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var = 1 }
+
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Korean_var = 1 }						#各地块的计划状态
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Southern_OuterNortheast_var = 1 }		#1没有 2进攻 3防御 4轰炸
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Northern_OuterNortheast_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilin_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Heilongjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Rehe_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Liaoning_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilu_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jinshan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Suwanzhe_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Yuxiange_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sichuan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Ganmin_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Taiwan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Dianqiangui_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Guangdong_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xibei_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xizang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xinjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Eastern_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Vietnam_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Laos_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Cambodian_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Thailand_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Burma_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Malaya_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sumatra_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sunda_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Borneo_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sulawesi_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_New_Guinea_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Philippine_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Japan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Pacific_var = 1 }
+
+			CHI_initialization_Great_Asian_map = yes				#初始化地图检测
+			CHI_Update_Great_Asian_War_map_GUI_whole_map = yes		#首次地图检测
+
+			set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Suwanzhe_clear	#开局设定南京地区有计划
+			
+			if = {
+				limit = {
+					NOT = {
+						has_country_flag = CHI_enable_easier_GAW_GUI
+					}
+					is_ai = no
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Korean
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Northern_OuterNortheast
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Jilin
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Heilongjiang
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Rehe
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Liaoning
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Jilu
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Jinshan
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				#for_each_scope_loop = {
+				#	array = CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe
+				#	add_dynamic_modifier = {
+				#		modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				#	}
+				#}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Yuxiange
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Sichuan
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Ganmin
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Taiwan
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Guangdong
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Xibei
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Xizang
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Xinjiang
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Vietnam
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Laos
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Cambodian
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Thailand
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Burma
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Malaya
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Sumatra
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Sunda
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Borneo
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Sulawesi
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_New_Guinea
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Philippine
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Japan
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+					}
+				}
+			}
+			else = {
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Korean_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Southern_OuterNortheast_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Northern_OuterNortheast_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jilin_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Heilongjiang_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Rehe_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Liaoning_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jilu_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jinshan_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Suwanzhe_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Yuxiange_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sichuan_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Ganmin_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Taiwan_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Dianqiangui_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Guangdong_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xibei_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xizang_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xinjiang_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Eastern_Mongolia_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Western_Mongolia_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Vietnam_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Laos_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Cambodian_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Thailand_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Burma_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Malaya_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sumatra_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sunda_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Borneo_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sulawesi_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_New_Guinea_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Philippine_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Japan_clear
+				set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Western_Pacific_clear
+			}
+
+
+			if = {
+				limit = {
+					has_country_flag = CHI_enable_harder_GAW_GUI
+				}
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_hard_mode_2_dynamic_modifier
+				}
+			}
+
+
+			### GAW wargoal GUI ###
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 1 }	#各地区战争目标是否达成
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 1 }	#1未达成 2已达成
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 1 }
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 1 }
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 1 }
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 1 }
+			CHI_Update_Great_Asian_War_wargoal_GUI = yes
+
+			### GAW warplan GUI ###
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 1 }	#三个计划槽位状态
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }	#1空计划 2计划 3轰炸 4进攻 5防御
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 1 }
+
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 1 }		#三个计划槽位的背景
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 1 }		#1没有计划 2计划进行中
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 1 }
+
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = 60 }		#三个计划槽位的倒计时
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = 60 }		#从60开始
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = 60 }
+
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var			#清除三个计划槽的时间以避免它们出现
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+
+
+			### GAW stateinfo GUI ###
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Korean_var = 3 }						#各地块的补给生产
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Southern_OuterNortheast_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Northern_OuterNortheast_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilin_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Heilongjiang_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Rehe_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Liaoning_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilu_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jinshan_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Suwanzhe_var = 4 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Yuxiange_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sichuan_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Ganmin_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Taiwan_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Dianqiangui_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Guangdong_var = 4 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xibei_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xizang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xinjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Eastern_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Vietnam_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Laos_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Cambodian_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Thailand_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Burma_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Malaya_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sumatra_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sunda_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Borneo_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sulawesi_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_New_Guinea_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Philippine_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Japan_var = 6 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Pacific_var = 1 }
+
+			### GAW stateaction GUI ###
+
+			### GAW warconfidence GUI ###
+			set_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 150 }	#中国补给 0-300
+			set_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = 150 }	#日本补给 0-300
+
+			set_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var = 50 }	#中国战争信心 0-100
+			set_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var = 50 }	#日本战争信心 0-100
+
+			CHI_calc_Great_Asian_War_GUI_cn_confidencesupply = yes	#计算物资变化/影响
+			CHI_calc_Great_Asian_War_GUI_jp_confidencesupply = yes
+
+			CHI = {
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_cn_confidence_dynamic_modifier
+				}
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_cn_supply_dynamic_modifier
+				}
+			}
+
+			JAP = {
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_jp_confidence_dynamic_modifier
+				}
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_jp_supply_dynamic_modifier
+				}
+			}
+
+
+
+			
+			JAP = {
+				remove_ideas = {
+					JAP_showa_emperor
+					JAP_showa_emperor_yasuda
+					JAP_showa_emperor_ikeda
+					JAP_showa_emperor_takagi
+					JAP_showa_emperor_kaya
+					JAP_showa_emperor_ikeda_2
+					JAP_showa_emperor_takagi_2
+					JAP_showa_emperor_ikeda_3
+					JAP_showa_emperor_takagi_3
+					JAP_showa_emperor_HEA_passed
+					JAP_showa_emperor_HEA_failed
+					JAP_showa_emperor_HEA_sabotaged
+					JAP_showa_emperor_hardliner
+					JAP_showa_emperor_moderate
+					JAP_showa_emperor_ikeda_4
+					JAP_showa_emperor_takagi_4
+					JAP_showa_emperor_shiina
+					JAP_showa_emperor_fukuda
+					JAP_showa_emperor_muto
+					JAP_showa_emperor_hop
+					JAP_showa_emperor_gaw
+				}
+
+				add_ideas = JAP_LAR_showa_emperor_GAW_idea
+			}
+
+
+
+
+			### GAW boot GUI ###
+			set_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 0 }		#启动界面启动阶段，共四个，0为等待输入
+
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 2 }	#启动界面四个解锁按钮状态，1解锁 2锁定
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 2 }
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 2 }
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 2 }
+
+			### GAW frame GUI ###
+		}
+	}
+}
+
+
+
+country_event = {	#终战之日
+	id = tnolar_chi.700
+	title = tnolar_chi.700.t
+	desc = tnolar_chi.700.d
+	picture = GFX_TNOLAR_report_event_Japanese_flag_lowered
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.700.a
+
+		hidden_effect = {
+			if = {
+				limit = {
+					casualties_inflicted_by = {
+						opponent = JAP
+						thousands < 1000
+					}
+				}
+				set_country_flag = LAR_CHI_ACHIEVE_GAW_DIVINE_ASSISTANCE
+			}
+
+			remove_ideas = {
+				CHI_LAR_guangxi_arsenal_idea
+				CHI_LAR_Camouflage_Volunteers_idea
+				CHI_LAR_war_zone_plan_idea
+				CHI_LAR_Transfer_Officer_idea
+				CHI_LAR_Autonomous_Tibet_idea
+			}
+
+			remove_dynamic_modifier = {
+				modifier = CHI_legislative_yuan_faction_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_secret_army
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier
+			}
+
+			MAN = {
+				every_core_state = {
+					remove_core_of = MAN
+				}
+			}
+			MEN = {
+				every_core_state = {
+					remove_core_of = MEN
+				}
+			}
+			GAN = {
+				every_core_state = {
+					remove_core_of = GAN
+				}
+			}
+			
+			TNOLAR_GAW_win = yes
+			
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.103
+				}
+			}
+			country_event = {
+				id = tnolar_chi.701
+				days = 2
+    			random_hours = 24
+			}
+			country_event = {
+				id = tnolar_chi.702
+				days = 3
+    			random_hours = 12
+			}
+			country_event = {
+				id = tnolar_chi.703
+				days = 4
+    			random_hours = 12
+			}
+			clr_global_flag = TNOLAR_GAW_in_progress
+			clr_global_flag = TNOLAR_GAW_Tsushima_Tunnel_blocked
+
+
+			#关闭GAWGUI
+			clr_country_flag = gui_alert_visible	#政治界面显示提示
+			clr_country_flag = gui_alert_visible_2
+
+			clr_country_flag = TNOLAR_country_has_gui	#右下角与政治界面显示
+
+			### GAW GUI General ###
+
+			### GAW map GUI ###
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var					#各地块的占领状态
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var	#1敌方 2争夺中 3己方
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Korean_var						#各地块的计划状态
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Southern_OuterNortheast_var		#1没有 2进攻 3防御 4轰炸
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Northern_OuterNortheast_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilin_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Heilongjiang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Rehe_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Liaoning_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilu_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jinshan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Suwanzhe_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Yuxiange_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sichuan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Ganmin_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Taiwan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Dianqiangui_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Guangdong_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xibei_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xizang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xinjiang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Eastern_Mongolia_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Mongolia_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Vietnam_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Laos_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Cambodian_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Thailand_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Burma_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Malaya_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sumatra_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sunda_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Borneo_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sulawesi_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_New_Guinea_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Philippine_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Japan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Pacific_var
+
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Korean
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Northern_OuterNortheast
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Jilin
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Heilongjiang
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Rehe
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Liaoning
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Jilu
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Jinshan
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Yuxiange
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Sichuan
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Ganmin
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Taiwan
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Guangdong
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Xibei
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Xizang
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Xinjiang
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Vietnam
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Laos
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Cambodian
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Thailand
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Burma
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Malaya
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Sumatra
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Sunda
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Borneo
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Sulawesi
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_New_Guinea
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Philippine
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Japan
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+				}
+			}
+
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Korean_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Southern_OuterNortheast_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Northern_OuterNortheast_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jilin_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Heilongjiang_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Rehe_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Liaoning_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jilu_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jinshan_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Suwanzhe_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Yuxiange_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sichuan_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Ganmin_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Taiwan_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Dianqiangui_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Guangdong_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xibei_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xizang_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xinjiang_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Eastern_Mongolia_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Western_Mongolia_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Vietnam_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Laos_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Cambodian_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Thailand_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Burma_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Malaya_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sumatra_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sunda_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Borneo_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sulawesi_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_New_Guinea_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Philippine_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Japan_clear
+			clr_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Western_Pacific_clear
+
+
+			### GAW wargoal GUI ###
+			clear_variable = CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var	#各地区战争目标是否达成
+			clear_variable = CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var	#1未达成 2已达成
+			clear_variable = CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var
+			clear_variable = CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var
+			clear_variable = CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var
+			clear_variable = CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var
+
+			### GAW warplan GUI ###
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_status_var	#三个计划槽位状态
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_status_var	#1空计划 2计划 3轰炸 4进攻 5防御
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_status_var
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var		#三个计划槽位的背景
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var		#1没有计划 2计划进行中
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var
+
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var		#三个计划槽位的倒计时
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var		#从60开始
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+
+			clr_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD			#清除战争计划cd
+			clr_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+			clr_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+
+
+			### GAW stateinfo GUI ###
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Korean_var						#各地块的补给生产
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Southern_OuterNortheast_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Northern_OuterNortheast_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilin_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Heilongjiang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Rehe_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Liaoning_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilu_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jinshan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Suwanzhe_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Yuxiange_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sichuan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Ganmin_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Taiwan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Dianqiangui_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Guangdong_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xibei_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xizang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xinjiang_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Eastern_Mongolia_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Mongolia_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Vietnam_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Laos_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Cambodian_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Thailand_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Burma_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Malaya_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sumatra_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sunda_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Borneo_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sulawesi_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_New_Guinea_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Philippine_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Japan_var
+			clear_variable = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Pacific_var
+
+			### GAW stateaction GUI ###
+
+			### GAW warconfidence GUI ###
+			clear_variable = CHI_Great_Asian_War_GUI_cn_supply_var	#中国补给 0-300
+			clear_variable = CHI_Great_Asian_War_GUI_jp_supply_var	#日本补给 0-300
+
+			clear_variable = CHI_Great_Asian_War_GUI_cn_confidence_var	#中国战争信心 0-100
+			clear_variable = CHI_Great_Asian_War_GUI_jp_confidence_var	#日本战争信心 0-100
+
+			CHI = {
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_cn_confidence_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_cn_supply_dynamic_modifier
+				}
+			}
+
+			JAP = {
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_jp_confidence_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_jp_supply_dynamic_modifier
+				}
+			}
+
+			JAP = {
+				swap_ideas = {
+					remove_idea = JAP_LAR_showa_emperor_GAW_idea
+					add_idea = JAP_LAR_showa_emperor_postwar_idea
+				}
+			}
+
+			every_country = {
+				limit = {
+					OR = {
+						tag = CHI
+						is_in_faction_with = CHI
+					}
+				}
+				remove_ideas = {
+					CHI_LAR_GAW_Liberation_Alliance_1_idea
+					CHI_LAR_GAW_Liberation_Alliance_2_idea
+					CHI_LAR_GAW_Liberation_Alliance_3_idea
+					CHI_LAR_GAW_Liberation_Alliance_4_idea
+				}
+			}
+
+			remove_ideas = {
+				CHI_LAR_GAW_Operation_sun_set_base_idea
+				CHI_LAR_GAW_Operation_sun_set_1_idea
+				CHI_LAR_GAW_Operation_sun_set_2_idea
+				CHI_LAR_GAW_Operation_sun_set_3_idea
+			}
+
+
+
+
+
+
+			### GAW boot GUI ###
+			clr_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			clear_variable = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var		#启动界面启动阶段，共四个，0为等待输入
+
+			clear_variable = CHI_Great_Asian_War_boot_GUI_unlock_1_var	#启动界面四个解锁按钮状态，1解锁 2锁定
+			clear_variable = CHI_Great_Asian_War_boot_GUI_unlock_2_var
+			clear_variable = CHI_Great_Asian_War_boot_GUI_unlock_2_var
+			clear_variable = CHI_Great_Asian_War_boot_GUI_unlock_2_var
+
+			### GAW frame GUI ###
+
+			#关闭自定义提醒
+			set_temp_variable = { alert_id = token:LAR_Alert_CHI_Stockpilefull }
+			remove_TNO_alert = yes
+
+
+
+			#GAW结束，限制社会发展等级
+			## 研究设施 ##
+			if = {
+				limit = {
+					has_idea = tno_research_facilities_cutting_edge
+				}
+				tno_worsen_research_facilities = yes
+				tno_worsen_research_facilities = yes
+			}
+			else_if = {
+				limit = {
+					has_idea = tno_research_facilities_advanced
+				}
+				tno_worsen_research_facilities = yes
+			}
+
+			## 医保 ##
+			if = {
+				limit = {
+					has_idea = tno_healthcare_world_class
+				}
+				tno_worsen_healthcare = yes
+				tno_worsen_healthcare = yes
+				tno_worsen_healthcare = yes
+				tno_worsen_healthcare = yes
+			}
+			else_if = {
+				limit = {
+					has_idea = tno_healthcare_advanced
+				}
+				tno_worsen_healthcare = yes
+				tno_worsen_healthcare = yes
+				tno_worsen_healthcare = yes
+			}
+			else_if = {
+				limit = {
+					has_idea = tno_healthcare_developed
+				}
+				tno_worsen_healthcare = yes
+				tno_worsen_healthcare = yes
+			}
+			else_if = {
+				limit = {
+					has_idea = tno_healthcare_nascent
+				}
+				tno_worsen_healthcare = yes
+			}
+
+			## 行政效率 ##
+			if = {
+				limit = {
+					has_idea = tno_admin_efficiency_well_oiled_machine
+				}
+				tno_worsen_admin_efficiency = yes
+				tno_worsen_admin_efficiency = yes
+				tno_worsen_admin_efficiency = yes
+			}
+			else_if = {
+				limit = {
+					has_idea = tno_admin_efficiency_streamlined_bureaucracy
+				}
+				tno_worsen_admin_efficiency = yes
+				tno_worsen_admin_efficiency = yes
+			}
+			else_if = {
+				limit = {
+					has_idea = tno_admin_efficiency_functional_administrative_systems
+				}
+				tno_worsen_admin_efficiency = yes
+			}
+
+			## 军事监督 ##
+			if = {
+				limit = {
+					has_idea = tno_military_supervision_total_supervision
+				}
+				tno_military_supervision_worsen = yes
+				tno_military_supervision_worsen = yes
+			}
+			else_if = {
+				limit = {
+					has_idea = tno_military_supervision_watchdog_groups
+				}
+				tno_worsen_admin_efficiency = yes
+			}
+
+			## 如果玩家没有换内阁，那就帮他们换 ##
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = CHI_LAR_National_Defense_Council
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_legislative_yuan_faction_modifier
+				}
+
+				#重组战前内阁
+				remove_ideas = {
+					CHI_Zhou_Fohai_hog
+
+					CHI_Tao_Xisheng_for
+				}
+				retire_character = CHI_zhou_fohai
+
+				add_ideas = {
+					CHI_Tao_Xisheng_hog
+					CHI_Shen_Changhuan_for
+				}
+
+				#国民党保守派新政党领导人
+				promote_character = {
+					character = CHI_Luo_Junqiang
+					ideology = despotism_1_subtype
+				}
+				
+
+				#法西斯饼图消到0
+				add_popularity = {
+					ideology = fascism
+					popularity = -1
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_completed_focus = CHI_LAR_Wartime_General_Staff
+					}
+				}
+				remove_ideas = {
+					# 移除战前军官团
+					CHI_Bao_Wenyue_army_chief
+					CHI_Ye_Peng_high_command
+					CHI_Sun_Dianying_high_command
+					CHI_Pang_Bingxun_high_command
+				}
+
+				add_ideas = {
+					# 添加战后顾问团
+					CHI_Hao_Baicun_army_chief
+					CHI_Jiang_Zhongling_high_command
+					CHI_Luo_Benli_high_command
+				}
+
+
+				add_corps_commander_role = {
+					Character = CHI_Hao_Baicun
+					traits = { brilliant_strategist thorough_planner }
+					skill = 4
+					attack_skill = 4
+					defense_skill = 4
+					planning_skill = 3
+					logistics_skill = 3
+				}
+				add_corps_commander_role = {
+					Character = CHI_Jiang_Zhongling
+					traits = { armor_officer combined_arms_expert }
+					skill = 4
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 4
+					logistics_skill = 3
+				}
+				add_corps_commander_role = {
+					Character = CHI_Luo_Benli
+					traits = { media_personality }
+					skill = 4
+					attack_skill = 3
+					defense_skill = 3
+					planning_skill = 5
+					logistics_skill = 3
+				}
+			}
+			
+			#添加战后军官团
+			add_corps_commander_role = {
+				Character = CHI_Tong_Zhaoyang
+				traits = { organizer }
+				skill = 3
+				attack_skill = 2
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 4
+			}
+			add_corps_commander_role = {
+				Character = CHI_Chen_Zhenxiang
+				traits = { career_officer }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 3
+			}
+			add_corps_commander_role = {
+				Character = CHI_Xie_Jiandong
+				traits = { armor_officer }
+				skill = 3
+				attack_skill = 3
+				defense_skill = 3
+				planning_skill = 3
+				logistics_skill = 4
+			}
+
+			#设定中国信用等级上限
+			set_temp_variable = { temp_credit_rating_max = 10 }
+			econ_set_max_credit_rating = yes
+			
+
+			#日本成立紧急内阁，扣一堆冷战分
+			JAP = {
+				country_event = {
+					id = tnolar_jap.1
+					days = 15
+				}
+
+				#降GDP增长率
+				set_temp_variable = { gdp_growth_temp = -4.0 }
+				econ_gdp_growth_change = yes
+				#升高通货膨胀
+				set_temp_variable = { inflation_temp = 4.0 }
+				econ_inflation_change = yes
+
+				add_stability = -1
+				add_war_support = -0.5
+
+				#降低信用等级上限
+				set_temp_variable = { temp_credit_rating = 6 }
+				set_temp_variable = { temp_credit_rating_min = 2 }
+				set_temp_variable = { temp_credit_rating_max = 7 }
+				econ_set_credit_rating = yes
+				econ_set_min_credit_rating = yes
+				econ_set_max_credit_rating = yes
+
+				#日本扣冷战分
+				set_temp_variable = { Victory_ID = 1001 }
+				set_temp_variable = { Victory_Outcome = 1 }
+				set_temp_variable = { Victory_Points = -2000 }
+				Cold_War_GUI_ManipulateVictory = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.701
+	title = tnolar_chi.701.t
+	desc = tnolar_chi.701.d
+	picture = GFX_TNOLAR_report_event_Japanese_flag_lowered
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.701.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.702
+	title = tnolar_chi.702.t
+	desc = tnolar_chi.702.d
+	picture = GFX_TNOLAR_report_event_Chinese_youth_celebrate
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.702.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.703
+	title = tnolar_chi.703.t
+	desc = tnolar_chi.703.d
+	picture = GFX_TNOLAR_report_event_Chinese_youth_celebrate
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.703.a
+		
+		country_event = {
+			id = tnolar_chi.704
+			days = 2
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.704
+	title = tnolar_chi.704.t
+	desc = tnolar_chi.704.d
+	picture = GFX_TNOLAR_report_event_Japanese_flag_lowered
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.704.a
+	
+		country_event = {
+			id = tnolar_chi.705
+			days = 5
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.705
+	title = tnolar_chi.705.t
+	desc = tnolar_chi.705.d
+	picture = GFX_TNOLAR_report_event_protest_against_Japan_in_Nanjing
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.705.a
+		country_event = {
+			id = tnolar_chi.706
+			hours = 8
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.706
+	title = tnolar_chi.706.t
+	desc = tnolar_chi.706.d
+	picture = GFX_TNOLAR_report_event_Reporters_at_the_Taipei_Summit
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.706.a
+		country_event = {
+			id = tnolar_chi.707
+			hours = 4
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.707
+	title = tnolar_chi.707.t
+	desc = tnolar_chi.707.d
+	picture = GFX_TNOLAR_report_event_Defeated_Japanese_Government
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.707.a
+		country_event = {
+			id = tnolar_chi.708
+			hours = 2
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.708
+	title = tnolar_chi.708.t
+	desc = tnolar_chi.708.d
+	picture = GFX_report_event_CHI_nanjingmemories
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.708.a
+		custom_effect_tooltip = tnolar_chi.708.tt
+
+		hidden_effect = {
+			load_focus_tree = TNOLAR_china_post_war_Transition_tree
+			clr_country_flag = CHI_war_with_japan
+			clr_country_flag = CHI_war_prepare
+			clr_country_flag = CHI_Sovereignty_Reunification
+			clr_country_flag = CHI_Modernization
+			clr_global_flag = CHI_Western_Insurrection_Crisis
+			clr_country_flag = CHI_show_western_tree_hidden_middle
+			clr_country_flag = CHI_show_western_tree_hidden_japan
+			clr_country_flag = CHI_Nanjing_Crisis
+
+			mark_focus_tree_layout_dirty = yes
+
+			hidden_effect = {
+				every_country = {
+					limit = { is_ai = no }
+					country_event = {
+						id = TNOLAR_WORLD.12
+					}
+				}
+			}
+		}
+	}
+}
+
+### 战后衔接国策事件 ###
+country_event = {
+	id = tnolar_chi.800
+	title = tnolar_chi.800.t
+	desc = tnolar_chi.800.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao2
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.800.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.801
+	title = tnolar_chi.801.t
+	desc = tnolar_chi.801.d
+	picture = GFX_TNOLAR_report_event_office_of_the_president_gao3
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.801.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.802
+	title = tnolar_chi.802.t
+	desc = tnolar_chi.802.d
+	picture = GFX_TNOLAR_report_event_Broken_Great_Wall
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.802.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.803
+	title = tnolar_chi.803.t
+	desc = tnolar_chi.803.d
+	picture = GFX_TNOLAR_report_event_Burnt_Manchukuo_posters
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.803.a
+
+		add_manpower = -1
+	}
+}
+
+country_event = {
+	id = tnolar_chi.804
+	title = tnolar_chi.804.t
+	desc = tnolar_chi.804.d
+	picture = GFX_TNOLAR_report_event_Steel_factory_production_workshop
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.804.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.805
+	title = tnolar_chi.805.t
+	desc = tnolar_chi.805.d
+	picture = GFX_TNOLAR_report_event_ruins_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.805.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.806
+	title = tnolar_chi.806.t
+	desc = tnolar_chi.806.d
+	picture = GFX_TNOLAR_report_event_Sun_Yat_sen_Statue
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.806.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.807
+	title = tnolar_chi.807.t
+	desc = tnolar_chi.807.d
+	picture = GFX_TNOLAR_report_event_The_red_flag
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.807.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.808
+	title = tnolar_chi.808.t
+	desc = tnolar_chi.808.d
+	picture = GFX_TNOLAR_report_event_Chinese_youth_celebrate
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.808.a
+
+		country_event = {
+			id = tnolar_chi.809
+			hours = 5
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.809
+	title = tnolar_chi.809.t
+	desc = tnolar_chi.809.d
+	picture = GFX_TNOLAR_report_event_newsstand
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.809.a
+
+		country_event = {
+			id = tnolar_chi.810
+			hours = 2
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.810
+	title = tnolar_chi.810.t
+	desc = tnolar_chi.810.d
+	picture = GFX_TNOLAR_report_event_Republican_Handwriting_of_Sun_Yatsen
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.810.a
+
+		custom_effect_tooltip = tnolar_chi.810.tt
+
+		hidden_effect = {
+			set_popularities = {
+				communist = 5				#中国共产党
+				socialist = 5               #民主进步联合会 - 民主进步劳工总会
+				progressivism = 5			#民主进步联合会 - 中国农工民主党
+				liberalism = 5				#民主进步联合会 - 中国民主同盟
+				liberal_conservatism = 2	#中国国家社会党
+				conservatism = 10			#中国国民党 - 民主派
+				paternalism_2 = 3			#中国青年党
+				paternalism = 15			#中国国民党 - 维新派
+				despotism = 35				#中国国民党 - 高派
+				despotism_1 = 15			#中国国民党 - 保守派
+				fascism = 0
+				national_socialism = 0
+				ultranationalism = 0
+			}
+
+			set_party_name = {
+				ideology = paternalism_2
+				long_name = CHI_paternalism_YCP_party_long
+				name = CHI_paternalism_YCP_party
+			}
+			set_party_name = {
+				ideology = conservatism
+				long_name = CHI_conservatism_KMT_Democratic_party_long
+				name = CHI_conservatism_KMT_Democratic_party
+			}
+			set_party_name = {
+				ideology = liberal_conservatism
+				long_name = CHI_liberal_conservatism_CNSP_party_long
+				name = CHI_liberal_conservatism_CNSP_party
+			}
+			set_party_name = {
+				ideology = liberalism
+				long_name = CHI_liberalism_CDL_party_long
+				name = CHI_liberalism_CDL_party
+			}
+			set_party_name = {
+				ideology = progressivism
+				long_name = CHI_progressivism_CPWDP_party_long
+				name = CHI_progressivism_CPWDP_party
+			}
+			set_party_name = {
+				ideology = communist
+				long_name = CHI_communist_DPLU_party_long
+				name = CHI_communist_DPLU_party
+			}
+			set_party_name = {
+				ideology = socialist
+				long_name = CHI_socialist_DPLU_party_long
+				name = CHI_socialist_DPLU_party
+			}			
+
+			retire_character = CHI_dissidents
+
+			promote_character = {
+				character = CHI_CPC_unknown
+				ideology = communist_mao_zedong_thought_subtype
+			}
+			promote_character = {
+				character = CHI_Ji_Fang
+				ideology = progressivism_reformist_socialism_subtype
+			}
+			promote_character = {
+				character = CHI_Fei_Xiaotong
+				ideology = liberalism_national_liberal_subtype
+			}
+			promote_character = {
+				character = CHI_Jiang_Yuntian
+				ideology = liberal_conservatism_subtype
+			}
+			promote_character = {
+				character = CHI_Wu_Guozhen
+				ideology = conservatism_paternalistic_conservatism_subtype
+			}
+			promote_character = {
+				character = CHI_Li_Huang
+				ideology = paternalism_national_conservatism_subtype
+			}
+			promote_character = {
+				character = CHI_DPLU
+				ideology = socialist_revolutionary_frontism_subtype
+			}			
+
+
+			#此处往下为终局效果，将来移动至终局事件
+			set_country_leader_description = {
+				ideology = despotism
+				desc = POLITICS_GAO_ZONGWU_POSTWAR_DESC
+			}
+
+			set_country_flag = CHI_gaw_success_ending
+			TNOLAR_Country_Closing_Screen_Show = yes
+		}
+	}
+}
+
+#country_event = { #Ministry Chinese Affairs GUI start
+#	id = tnolar_chi.1100
+#	title = tnolar_chi.1100.t
+#	desc = tnolar_chi.1100.d
+#	picture = GFX_
+#
+#	is_triggered_only = yes
+#
+#	option = {
+#		name = tnolar_chi.1100.a
+#	}
+#}
+
+country_event = { #通用开始事件-平等成员
+	id = tnolar_chi.1101
+	title = tnolar_chi.1101.t
+	desc = tnolar_chi.1101.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1101.a
+	}
+}
+
+country_event = { #通用开始事件-经济依附
+	id = tnolar_chi.1102
+	title = tnolar_chi.1102.t
+	desc = tnolar_chi.1102.d
+	picture = GFX_TNOLAR_report_event_Mitsubishi
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1102.a
+	}
+}
+
+country_event = { #通用开始事件-政治傀儡
+	id = tnolar_chi.1103
+	title = tnolar_chi.1103.t
+	desc = tnolar_chi.1103.d
+	picture = GFX_TNOLAR_report_event_photo_of_the_puppet_government
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1103.a
+	}
+}
+
+country_event = { #通用开始事件-军事占领
+	id = tnolar_chi.1104
+	title = tnolar_chi.1104.t
+	desc = tnolar_chi.1104.d
+	picture = GFX_TNOLAR_report_event_Japanese_invade_Shanghai
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1104.a
+	}
+}
+
+country_event = { #开始事件-广东国
+	id = tnolar_chi.1105
+	title = tnolar_chi.1105.t
+	desc = tnolar_chi.1105.d
+	picture = GFX_TNOLAR_report_event_cargo_list
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1105.a
+		hidden_effect = {
+			country_event = {
+				id = tnolar_chi_flavor.1100
+				days = 5
+			}
+		}
+	}
+}
+
+country_event = { #开始事件-蒙疆
+	id = tnolar_chi.1106
+	title = tnolar_chi.1106.t
+	desc = tnolar_chi.1106.d
+	picture = GFX_TNOLAR_report_event_Broken_Great_Wall
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1106.a
+	}
+}
+
+country_event = { #开始事件-满洲
+	id = tnolar_chi.1107
+	title = tnolar_chi.1107.t
+	desc = tnolar_chi.1107.d
+	picture = GFX_TNOLAR_report_event_Burnt_Manchukuo_posters
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1107.a
+	}
+}
+
+country_event = { #进行事件-通用-回合开始
+	id = tnolar_chi.1120
+	title = tnolar_chi.1120.t
+	desc = tnolar_chi.1120.d
+	picture = GFX_TNOLAR_report_event_gambling_table2
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1120.a
+	}
+}
+
+country_event = { #进行事件-通用-地区争夺-胜利
+	id = tnolar_chi.1121
+	title = tnolar_chi.1121.t
+	desc = tnolar_chi.1121.d
+	picture = GFX_TNOLAR_report_event_gambling_table1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1121.a
+	}
+}
+
+country_event = { #进行事件-通用-地区争夺-失败
+	id = tnolar_chi.1122
+	title = tnolar_chi.1122.t
+	desc = tnolar_chi.1122.d
+	picture = GFX_TNOLAR_report_event_gambling_table1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1122.a
+	}
+}
+
+country_event = { #进行事件-通用-地区争夺-平局
+	id = tnolar_chi.1123
+	title = tnolar_chi.1123.t
+	desc = tnolar_chi.1123.d
+	picture = GFX_TNOLAR_report_event_gambling_table1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1123.a
+	}
+}
+
+#坎通尼亚的结局
+country_event = {
+	id = tnolar_chi.1150
+	title = tnolar_chi.1150.t
+	desc = tnolar_chi.1150.d
+	picture = GFX_report_event_GNG_sony_logo_generic
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1150.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.1151
+	title = tnolar_chi.1151.t
+	desc = tnolar_chi.1151.d
+	picture = GFX_report_event_GNG_matsushita
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1151.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.1152
+	title = tnolar_chi.1152.t
+	desc = tnolar_chi.1152.d
+	picture = GFX_report_event_GNG_fireworks
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1152.a
+		GNG = {
+			set_politics = { ruling_party = fascism }
+			add_country_leader_role = {
+				character = GNG_no_authority
+				promote_leader = yes
+				country_leader = {
+					desc = ""
+					expire = "1999.1.1"
+					ideology = fascism_reform_bureaucracy_subtype
+					traits = {
+
+					}
+				}
+			}
+			remove_all_ministers = yes
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.1153
+	title = tnolar_chi.1153.t
+	desc = tnolar_chi.1153.d
+	picture = GFX_report_event_GNG_ibuka_generic
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1153.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi.1154
+	title = tnolar_chi.1154.t
+	desc = tnolar_chi.1154.d
+	picture = GFX_report_event_GNG_IJA_fujitsu
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1154.a
+		GNG = {
+			set_politics = { ruling_party = fascism }
+			add_country_leader_role = {
+				character = GNG_no_authority
+				promote_leader = yes
+				country_leader = {
+					desc = ""
+					expire = "1999.1.1"
+					ideology = fascism_reform_bureaucracy_subtype
+					traits = {
+
+					}
+				}
+			}
+			remove_all_ministers = yes
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.1155
+	title = tnolar_chi.1155.t
+	desc = tnolar_chi.1155.d
+	picture = GFX_report_event_GNG_IJA_dead_end
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1155.a
+		add_manpower = -1
+		GNG = {
+			set_politics = { ruling_party = fascism }
+			add_country_leader_role = {
+				character = GNG_no_authority
+				promote_leader = yes
+				country_leader = {
+					desc = ""
+					expire = "1999.1.1"
+					ideology = fascism_reform_bureaucracy_subtype
+					traits = {
+
+					}
+				}
+			}
+			remove_all_ministers = yes
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi.1156
+	title = tnolar_chi.1156.t
+	desc = tnolar_chi.1156.d
+	picture = GFX_report_event_GNG_IJA_dead_end
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi.1156.a
+		add_manpower = -1
+		GNG = {
+			add_country_leader_role = {
+				character = GNG_no_authority
+				promote_leader = yes
+				country_leader = {
+					desc = "POLITICS_NO_AUTHORITY_DESC"
+					expire = "1999.1.1"
+					ideology = fascism_reform_bureaucracy_subtype
+					traits = {
+
+					}
+				}
+			}
+			set_politics = { ruling_party = fascism }
+			remove_all_ministers = yes
+		}
+	}
+}
+
+
+
+country_event = { #AI博弈事件 - 广东
+	id = tnolar_chi.1200
+	title = tnolar_chi.1200.t
+	desc = tnolar_chi.1200.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1200.a
+		ai_chance = {
+			base = 40
+			modifier = {
+				add = -40
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_GNG option = LAR_DIPLOGAME_PATH_GNG_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 40
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_GNG option = LAR_DIPLOGAME_PATH_GNG_JOIN_IN_CPS }
+			}
+			modifier = {
+				add = 100
+				OR = {
+					GNG = {
+						has_country_leader = {
+							character = GNG_nagano_shigeto
+							ruling_only = yes
+						}
+					}
+					GNG = {
+						has_country_leader = {
+							character = GNG_ibuka_masaru
+							ruling_only = yes
+						}
+						has_country_flag = Fujitsu_PersistenceEnding
+					}
+					GNG = {
+						has_country_leader = {
+							character = GNG_komai_kenichiro
+							ruling_only = yes
+						}
+					}
+				}
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.1201
+			days = 60
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1200.b
+		ai_chance = {
+			base = 60
+			modifier = {
+				add = 60
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_GNG option = LAR_DIPLOGAME_PATH_GNG_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -60
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_GNG option = LAR_DIPLOGAME_PATH_GNG_JOIN_IN_CPS }
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					GNG = {
+						has_country_leader = {
+							character = GNG_nagano_shigeto
+							ruling_only = yes
+						}
+					}
+					GNG = {
+						has_country_leader = {
+							character = GNG_ibuka_masaru
+							ruling_only = yes
+						}
+						has_country_flag = Fujitsu_PersistenceEnding
+					}
+					GNG = {
+						has_country_leader = {
+							character = GNG_komai_kenichiro
+							ruling_only = yes
+						}
+					}
+				}
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GNG
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 2 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+
+
+
+		country_event = {
+			id = tnolar_chi.1201
+			days = 60
+		}
+	}
+}
+
+country_event = { #AI博弈事件 - 越南
+	id = tnolar_chi.1201
+	title = tnolar_chi.1201.t
+	desc = tnolar_chi.1201.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1201.a
+		ai_chance = { 
+			base = 50
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_VIN option = LAR_DIPLOGAME_PATH_VIN_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_VIN option = LAR_DIPLOGAME_PATH_VIN_JOIN_IN_CPS }
+			}
+			modifier = {
+				add = 100
+				VIN = {
+					OR = {
+						NOT = {
+							has_full_control_of_state = 1738
+						}
+						NOT = {
+							is_in_faction_with = JAP
+						}
+					}
+				}
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.1202
+			days = 60
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1201.b
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_VIN option = LAR_DIPLOGAME_PATH_VIN_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_VIN option = LAR_DIPLOGAME_PATH_VIN_JOIN_IN_CPS }
+			}
+			modifier = {
+				factor = 0
+				VIN = {
+					OR = {
+						NOT = {
+							has_full_control_of_state = 1738
+						}
+						NOT = {
+							is_in_faction_with = JAP
+						}
+					}
+				}
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_VIN
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 3 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 3 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 3 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 3 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 3 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 3 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+
+
+
+		country_event = {
+			id = tnolar_chi.1202
+			days = 60
+		}
+	}
+}
+
+country_event = { #AI博弈事件 - 老挝
+	id = tnolar_chi.1202
+	title = tnolar_chi.1202.t
+	desc = tnolar_chi.1202.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1202.a
+		ai_chance = { 
+			base = 50
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_LAO option = LAR_DIPLOGAME_PATH_LAO_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_LAO option = LAR_DIPLOGAME_PATH_LAO_JOIN_IN_CPS }
+			}
+			modifier = {
+				add = 100
+				LAO = {
+					NOT = {
+						is_in_faction_with = JAP
+					}
+				}
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.1203
+			days = 60
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1202.b
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_LAO option = LAR_DIPLOGAME_PATH_LAO_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_LAO option = LAR_DIPLOGAME_PATH_LAO_JOIN_IN_CPS }
+			}
+			modifier = {
+				factor = 0
+				LAO = {
+					NOT = {
+						is_in_faction_with = JAP
+					}
+				}
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_LAO
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 4 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 4 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 4 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 4 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 4 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 4 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+
+
+
+		country_event = {
+			id = tnolar_chi.1203
+			days = 60
+		}
+	}
+}
+
+country_event = { #AI博弈事件 - 柬埔寨
+	id = tnolar_chi.1203
+	title = tnolar_chi.1203.t
+	desc = tnolar_chi.1203.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1203.a
+		ai_chance = { 
+			base = 50
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_CAM option = LAR_DIPLOGAME_PATH_CAM_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_CAM option = LAR_DIPLOGAME_PATH_CAM_JOIN_IN_CPS }
+			}
+			modifier = {
+				add = 100
+				CAM = {
+					NOT = {
+						is_in_faction_with = JAP
+					}
+				}
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.1204
+			days = 60
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1203.b
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_CAM option = LAR_DIPLOGAME_PATH_CAM_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_CAM option = LAR_DIPLOGAME_PATH_CAM_JOIN_IN_CPS }
+			}
+			modifier = {
+				factor = 0
+				CAM = {
+					NOT = {
+						is_in_faction_with = JAP
+					}
+				}
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_CAM
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 5 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 5 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 5 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 5 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 5 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 5 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+
+
+
+		country_event = {
+			id = tnolar_chi.1204
+			days = 60
+		}
+	}
+}
+
+country_event = { #AI博弈事件 - 泰国
+	id = tnolar_chi.1204
+	title = tnolar_chi.1204.t
+	desc = tnolar_chi.1204.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1204.a
+		ai_chance = { 
+			base = 50
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_THA option = LAR_DIPLOGAME_PATH_THA_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_THA option = LAR_DIPLOGAME_PATH_THA_JOIN_IN_CPS }
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.1205
+			days = 60
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1204.b
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_THA option = LAR_DIPLOGAME_PATH_THA_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_THA option = LAR_DIPLOGAME_PATH_THA_JOIN_IN_CPS }
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_THA
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 6 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 6 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 6 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 6 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 6 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 6 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+
+
+
+		country_event = {
+			id = tnolar_chi.1205
+			days = 60
+		}
+	}
+}
+
+country_event = { #AI博弈事件 - 缅甸
+	id = tnolar_chi.1205
+	title = tnolar_chi.1205.t
+	desc = tnolar_chi.1205.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1205.a
+		ai_chance = { 
+			base = 50
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_BUR option = LAR_DIPLOGAME_PATH_BUR_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_BUR option = LAR_DIPLOGAME_PATH_BUR_JOIN_IN_CPS }
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.1206
+			days = 60
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1205.b
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_BUR option = LAR_DIPLOGAME_PATH_BUR_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_BUR option = LAR_DIPLOGAME_PATH_BUR_JOIN_IN_CPS }
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_BUR
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 7 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 7 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 7 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 7 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 7 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 7 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+
+
+
+		country_event = {
+			id = tnolar_chi.1206
+			days = 60
+		}
+	}
+}
+
+country_event = { #AI博弈事件 - 马来亚
+	id = tnolar_chi.1206
+	title = tnolar_chi.1206.t
+	desc = tnolar_chi.1206.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1206.a
+		ai_chance = { 
+			base = 50
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_SHO option = LAR_DIPLOGAME_PATH_SHO_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_SHO option = LAR_DIPLOGAME_PATH_SHO_JOIN_IN_CPS }
+			}
+			modifier = {
+				add = 100
+				SHO = {
+					OR = {
+						NOT = {
+							has_full_control_of_state = 1452
+						}
+						NOT = {
+							is_in_faction_with = JAP
+						}
+					}
+				}
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.1207
+			days = 60
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1206.b
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_SHO option = LAR_DIPLOGAME_PATH_SHO_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_SHO option = LAR_DIPLOGAME_PATH_SHO_JOIN_IN_CPS }
+			}
+			modifier = {
+				factor = 0
+				SHO = {
+					OR = {
+						NOT = {
+							has_full_control_of_state = 1452
+						}
+						NOT = {
+							is_in_faction_with = JAP
+						}
+					}
+				}
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_SHO
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 9 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 9 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 9 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 9 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 9 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 9 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+
+
+
+		country_event = {
+			id = tnolar_chi.1207
+			days = 60
+		}
+	}
+}
+
+country_event = { #AI博弈事件 - 印尼
+	id = tnolar_chi.1207
+	title = tnolar_chi.1207.t
+	desc = tnolar_chi.1207.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1207.a
+		ai_chance = { 
+			base = 50
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_INS option = LAR_DIPLOGAME_PATH_INS_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_INS option = LAR_DIPLOGAME_PATH_INS_JOIN_IN_CPS }
+			}
+			modifier = {
+				add = 100
+				INS = {
+					NOT = {
+						is_in_faction_with = JAP
+					}
+				}
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.1208
+			days = 60
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1207.b
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_INS option = LAR_DIPLOGAME_PATH_INS_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_INS option = LAR_DIPLOGAME_PATH_INS_JOIN_IN_CPS }
+			}
+			modifier = {
+				factor = 0
+				INS = {
+					NOT = {
+						is_in_faction_with = JAP
+					}
+				}
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_INS
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 12 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 12 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 12 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 12 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 12 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 12 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+
+
+
+		country_event = {
+			id = tnolar_chi.1208
+			days = 60
+		}
+	}
+}
+
+country_event = { #AI博弈事件 - 菲律宾
+	id = tnolar_chi.1208
+	title = tnolar_chi.1208.t
+	desc = tnolar_chi.1208.d
+	picture = GFX_TNOLAR_report_event_Minutes_to_Gao_Zongwu
+
+	is_triggered_only = yes
+
+	option = {	#失败
+		name = tnolar_chi.1208.a
+		ai_chance = { 
+			base = 50
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_PHI option = LAR_DIPLOGAME_PATH_PHI_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_PHI option = LAR_DIPLOGAME_PATH_PHI_JOIN_IN_CPS }
+			}
+			modifier = {
+				add = 100
+				NOT = {
+					country_exists = PHI
+				}
+			}
+		}
+	}
+
+	option = {	#成功
+		name = tnolar_chi.1208.b
+		ai_chance = {
+			base = 50
+			modifier = {
+				add = 50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_PHI option = LAR_DIPLOGAME_PATH_PHI_JOIN_IN_PALA }
+			}
+			modifier = {
+				add = -50
+				has_game_rule = { rule = LAR_DIPLOGAME_PATH_PHI option = LAR_DIPLOGAME_PATH_PHI_JOIN_IN_CPS }
+			}
+			modifier = {
+				factor = 0
+				NOT = {
+					country_exists = PHI
+				}
+			}
+		}
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_PHI
+
+		set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 4 }
+		set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 11 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 11 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 11 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 11 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 > 0 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 11 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 11 }
+		}
+
+		if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+		}
+		else_if = {
+			limit = {
+				check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			}
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+		}
+		else = {
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+		}
+	}
+}
+
+
+#Renli(Gongbo) Focus Tree Events
+#fuck they changed Gongbo to Renli
+
+country_event = {#impeachment of Gao Zongwu - Jap
+	id = tnolar_chi_renli.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tnolar_chi_renli.1"}
+	title = tnolar_chi_renli.1.t
+	desc = tnolar_chi_renli.1.d
+	picture = GFX_report_event_CHI_dontbelievehislies
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_chi_renli.1.a
+		country_event = {
+			id = tnolar_chi_renli.2
+			days = 4
+		}
+	}
+}
+
+country_event = {#rise of president renli
+	id = tnolar_chi_renli.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tnolar_chi_renli.2"}
+	title = tnolar_chi_renli.2.t
+	desc = tnolar_chi_renli.2.d
+	picture = GFX_report_event_CHI_dontbelievehislies
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_chi_renli.2.a
+		custom_effect_tooltip = CHI_Renli_Tree_tt
+		hidden_effect = {
+			load_focus_tree = { tree = TNOLAR_china_renli }
+			set_country_flag = CHI_The_New_Modernization
+		}
+		set_politics = {
+			ruling_party = fascism
+			last_election = "1960.11.11"
+			election_frequency = 36
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = fascism
+    		popularity = 0.2
+		}
+		set_party_name = {
+			ideology = despotism
+			long_name = CHI_despotism_zhou_party_long
+			name = CHI_despotism_zhou_party
+		}
+		CHI_zhou_fohai = {
+			add_country_leader_role = {
+				country_leader = {
+					ideology = despotism_aristocratic_conservatism_subtype
+					traits = { }
+					expire = "1999.1.1.1"
+					id = -1
+				}
+			}
+		}
+		country_event = {
+			id = tnolar_chi_renli.3
+			days = 2
+		}
+	}
+}
+
+country_event = {#morning walk redux
+	id = tnolar_chi_renli.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tnolar_chi_renli.3"}
+	title = tnolar_chi_renli.3.t
+	desc = tnolar_chi_renli.3.d
+	picture = GFX_report_event_CHI_nanjing2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = {
+		name = tnolar_chi_renli.3.a
+		set_country_flag = CHI_modernization_failure_ending
+		TNOLAR_Country_Closing_Screen_Show = yes
+	}
+}
+
+country_event = {#Gongbo Tree - New Order
+	id = tnolar_chi_renli.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tnolar_chi_renli.4"}
+	title = tnolar_chi_renli.4.t
+	desc = tnolar_chi_renli.4.d
+	picture = GFX_report_event_novel
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_renli.4.a
+	}
+}
+
+country_event = {#Gongbo Tree - Heal the Nation
+	id = tnolar_chi_renli.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tnolar_chi_renli.5"}
+	title = tnolar_chi_renli.5.t
+	desc = tnolar_chi_renli.5.d
+	picture = GFX_report_event_novel
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_renli.5.a
+	}
+}
+
+country_event = {#Gongbo Tree - Re-Educate the Nation
+	id = tnolar_chi_renli.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tnolar_chi_renli.6"}
+	title = tnolar_chi_renli.6.t
+	desc = tnolar_chi_renli.6.d
+	picture = GFX_report_event_novel
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_renli.6.a
+		hidden_effect = {
+			#country_event = {
+			#	id = tnolar_chi_renli.503
+			#	days = 2
+			#}
+		}
+	}
+}
+
+
+
+
+
+
+
+#国防部相关风味事件
+country_event = {
+	id = tnolar_chi_flavor.1
+	title = tnolar_chi_flavor.1.t
+	desc = tnolar_chi_flavor.1.d
+	picture = GFX_TNOLAR_report_event_Japanese_invade_Shanghai
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.1.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.2
+	title = tnolar_chi_flavor.2.t
+	desc = tnolar_chi_flavor.2.d
+	picture = GFX_TNOLAR_report_event_Nanjing_Central_Army_Military_Academy
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.2.a
+		country_event = {
+			id = tnolar_chi_flavor.3
+			days = 4
+			random_days = 2
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.3
+	title = tnolar_chi_flavor.3.t
+	desc = tnolar_chi_flavor.3.d
+	picture = GFX_TNOLAR_report_event_Chinese_collaborators_army
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.3.a
+		country_event = {
+			id = tnolar_chi_flavor.4
+			days = 6
+			random_days = 2
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.4
+	title = tnolar_chi_flavor.4.t
+	desc = tnolar_chi_flavor.4.d
+	picture = GFX_report_event_CHI_university
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.4.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.10
+	title = tnolar_chi_flavor.10.t
+	desc = tnolar_chi_flavor.10.d
+	picture = GFX_report_event_CHI_Shanghai_Streets
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.10.a
+		country_event = {
+			id = tnolar_chi_flavor.11
+			days = 6
+			random_days = 2
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.11
+	title = tnolar_chi_flavor.11.t
+	desc = tnolar_chi_flavor.11.d
+	picture = GFX_TNOLAR_report_event_Old_Korean_flag
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.11.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.19
+	title = tnolar_chi_flavor.19.t
+	desc = tnolar_chi_flavor.19.d
+	picture = GFX_TNOLAR_report_event_Hangang
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.19.a
+		hidden_effect = {
+			random_list = {
+				34= {
+					country_event = { id = TNOLAR_WORLD.201 days = 60 }
+				}
+
+				33= {
+					country_event = { id = TNOLAR_WORLD.202 days = 60 }
+				}
+
+				33 = {
+					country_event = { id = TNOLAR_WORLD.204 days = 60 }
+				}
+			}
+		}		
+	}
+}
+
+#国防部内部演习-民族派胜利
+country_event = {
+	id = tnolar_chi_flavor.20
+	title = tnolar_chi_flavor.20.t
+	desc = tnolar_chi_flavor.20.d
+	picture = GFX_TNOLAR_report_event_Improve_military_discipline
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.20.a
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 5 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+
+		army_experience = 10
+	}
+}
+#国防部内部演习-中央派胜利
+country_event = {
+	id = tnolar_chi_flavor.21
+	title = tnolar_chi_flavor.21.t
+	desc = tnolar_chi_flavor.21.d
+	picture = GFX_TNOLAR_report_event_Improve_military_discipline
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.21.a
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 5 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+
+		army_experience = 10
+	}
+}
+#国防部内部演习-华北派胜利
+country_event = {
+	id = tnolar_chi_flavor.22
+	title = tnolar_chi_flavor.22.t
+	desc = tnolar_chi_flavor.22.d
+	picture = GFX_TNOLAR_report_event_Improve_military_discipline
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.22.a
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 5 }
+		CHI_MND_faction_influences_change = yes
+
+		army_experience = 10
+	}
+}
+#国防部内部演习-陷入僵局
+country_event = {
+	id = tnolar_chi_flavor.23
+	title = tnolar_chi_flavor.23.t
+	desc = tnolar_chi_flavor.23.d
+	picture = GFX_TNOLAR_report_event_Improve_military_discipline
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.23.a
+
+		army_experience = 10
+	}
+}
+
+#共荣圈演习-中国胜利
+country_event = {
+	id = tnolar_chi_flavor.24
+	title = tnolar_chi_flavor.24.t
+	desc = tnolar_chi_flavor.24.d
+	picture = GFX_TNOLAR_report_event_DoD_meetingroom
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.24.a
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 10 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+
+		army_experience = 15
+	}
+}
+#共荣圈演习-日本胜利
+country_event = {
+	id = tnolar_chi_flavor.25
+	title = tnolar_chi_flavor.25.t
+	desc = tnolar_chi_flavor.25.d
+	picture = GFX_TNOLAR_report_event_DoD_meetingroom
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.25.a
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 5 }
+		CHI_MND_faction_influences_change = yes
+
+		army_experience = 10
+	}
+}
+
+#唐山大地震
+country_event = {
+	id = tnolar_chi_flavor.500
+	title = tnolar_chi_flavor.500.t
+	desc = tnolar_chi_flavor.500.d
+	picture = GFX_TNOLAR_report_event_ruins_1
+
+	trigger = {
+		date > 1976.07.27
+		tag = CHI
+    }
+
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event tnolar_chi_flavor.500"
+	}
+
+	fire_only_once = yes
+	timeout_days = 7
+
+	option = {
+		name = tnolar_chi_flavor.500.a
+		609 = {
+			damage_building = {
+				type = infrastructure
+				damage = 5
+			}
+			set_temp_variable = { state_value_multiplier_temp = 0.75 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.15
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.600
+	title = tnolar_chi_flavor.600.t
+	desc = tnolar_chi_flavor.600.d
+	picture = GFX_TNOLAR_report_event_Broken_Great_Wall
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.600.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.601
+	title = tnolar_chi_flavor.601.t
+	desc = tnolar_chi_flavor.601.d
+	picture = GFX_TNOLAR_report_event_fireworks_burnt
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.601.a
+	}
+}
+
+country_event = {
+	id = tnolar_chi_flavor.602
+	title = tnolar_chi_flavor.602.t
+	desc = tnolar_chi_flavor.602.d
+	picture = GFX_TNOLAR_report_event_69G_Tank
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.602.a
+	}
+}
+
+#外交系统进行风味事件
+##广东国1
+country_event = {
+	id = tnolar_chi_flavor.1100
+	title = tnolar_chi_flavor.1100.t
+	desc = tnolar_chi_flavor.1100.d
+	picture = GFX_TNOLAR_report_event_cargo_list
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_chi_flavor.1100.a
+		custom_effect_tooltip = tnolar_chi_flavor.1100.a.tt
+	}
+}

@@ -1,0 +1,1425 @@
+RUS_SWRW_category = {
+	
+	#Victory Events Decisions
+
+	RUS_move_captial = { # Generic
+		
+		icon = decision_generic_political_action
+		
+		allowed = {
+			is_russian_unifier = yes
+		}
+			
+		visible = {
+			1442 = { is_owned_by = RUS }
+			NOT = {
+				original_tag = NOV
+				has_global_flag = RUS_shukshin_unification
+			}
+		}
+		
+		available = {
+			195 = { is_core_of = RUS }
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: The Russians Have Won!"
+			country_event = RUS_decisions.1
+		}
+	}
+
+
+	
+	CHT_Move_Imperial_Capital = { # Generic
+		
+		icon = decision_generic_political_action
+		
+		allowed = {
+			is_russian_unifier = yes
+		}
+			
+		visible = {
+			AND = {
+				original_tag = CHT
+				has_global_flag = RUS_national_unification
+			}
+		}
+		
+		available = {
+		}
+		
+		ai_will_do = {
+			factor = 5
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: The Russians Have Won!"
+			country_event = RUS_decisions.2
+		}
+	}
+}
+
+
+RUS_five_year_plans = {
+	RUS_encourage_international_volunteers = {
+		icon = GFX_decision_generic_civil_support
+		available = {
+
+		}
+		visible = {
+
+		}
+		cost = 35
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_encourage_international_volunteers"
+			set_variable = { RUS_econ_weekly_manpower = 200 }
+			add_dynamic_modifier = { modifier = RUS_international_volunteers }
+			force_update_dynamic_modifier = yes
+			set_temp_variable = { temp_econ_spending_amount = 0.35 }
+			econ_spend_money_once_effect_raw_money = yes
+			TNO_improve_training_policy_effectiveness_low = yes
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	RUS_begin_the_ninth_five_year_plan = {
+		icon = GFX_decision_generic_document_socialism
+		available = {
+
+		}
+		visible = {
+
+		}
+		cost = 15
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_begin_the_ninth_five_year_plan"
+			set_variable = { RUS_plan_number = 9 }
+			set_variable = { RUS_econ_construction_speed = 0.05 }
+			add_dynamic_modifier = { modifier = RUS_eighth_five_year_plan }
+			set_variable = { RUS_five_year_plans_phase = 1 }
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	RUS_repair_the_highway = {
+		icon = GFX_decision_generic_workers
+		available = {
+
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 0 }
+			check_variable = { RUS_the_highway_t < 16 }
+		}
+		cost = 35
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 90
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_repair_the_highway"
+			set_temp_variable = { temp_econ_spending_amount = 0.3 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_repair_the_highway"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.25 } }
+			}
+			add_to_variable = { RUS_phase_1_count = 1 }
+			add_to_variable = { RUS_the_highway_t = 1 }
+		}
+		ai_will_do = {
+			factor = 50
+		}
+	}
+
+	RUS_finish_the_highway = {
+		icon = GFX_decision_generic_workers
+		available = {
+
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 0 }
+			check_variable = { RUS_the_highway_t < 16 }
+		}
+		cost = 35
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 90
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_finish_the_highway"
+			random_owned_controlled_state = {
+				add_manpower = -3500
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.4 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_finish_the_highway"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+			}
+			set_country_flag = RUS_highway_finished
+			add_to_variable = { RUS_phase_1_count = 1 }
+			add_to_variable = { RUS_the_highway_t = 1 }
+		}
+		ai_will_do = {
+			factor = 30
+		}
+	}
+
+
+
+	RUS_complete_the_magadan_connection = {
+		icon = GFX_decision_generic_infrastructure
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 0 }
+		}
+		cost = 25
+		fire_only_once = yes
+		days_remove = 60
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_complete_the_magadan_connection"
+			random_owned_controlled_state = {
+				limit = { state = 562 }
+				add_manpower = -3500
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.2 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_complete_the_magadan_connection"
+			random_owned_controlled_state = {
+				limit = { state = 574 }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { temp_state_value_addition = 0.025 }
+				econ_state_value_change_addition = yes
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 562 }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { temp_state_value_addition = 0.04 }
+				econ_state_value_change_addition = yes
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+			}
+			add_to_variable = { RUS_phase_1_count = 1 }
+		}
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	RUS_restoration_of_rkutsk_hps = {
+		icon = GFX_decision_generic_dam
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 0 }
+		}
+		cost = 50
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_restoration_of_rkutsk_hps"
+			set_temp_variable = { temp_econ_spending_amount = 0.2 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_restoration_of_rkutsk_hps"
+			set_temp_variable = { gdp_growth_temp = 0.1 }
+			econ_gdp_growth_change = yes
+			random_owned_controlled_state = {
+				limit = { state = 566 }
+				add_resource = {
+					type = power
+					amount = 6
+				}
+				set_temp_variable = { temp_state_value_addition = 0.1 }
+				econ_state_value_change_addition = yes
+			}
+			add_to_variable = { RUS_phase_1_count = 1 }
+			
+		}
+		ai_will_do = {
+			factor = 60
+		}
+	}
+
+	RUS_revive_agricultural_sector = {
+		icon = GFX_decision_generic_industrial_farm
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 0 }
+			check_variable = { RUS_revive_agricultural_sector_t < 6 }
+		}
+		cost = 60
+		fire_only_once = no
+		days_remove = 90
+		days_re_enable = 90
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_revive_agricultural_sector"
+			set_temp_variable = { temp_econ_spending_amount = 0.3 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_revive_agricultural_sector"
+			TNO_improve_agriculture_med = yes
+			TNO_improve_poverty_med = yes
+			if = {
+				NOT = {
+					has_country_flag = RUS_revive_agricultural_sector_OVER
+				}
+				set_temp_variable = { N = 0.05 }
+				RUS_econ_population_growth_add_N = yes
+				set_country_flag = RUS_revive_agricultural_sector_OVER
+			}
+			random_owned_controlled_state = {
+				set_temp_variable = { temp_state_value_addition = 0.06 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.2 } }
+			}
+			random_owned_controlled_state = {
+				set_temp_variable = { temp_state_value_addition = 0.04 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.2 } }
+			}
+			add_to_variable = { RUS_phase_1_count = 1 }
+			add_to_variable = { RUS_revive_agricultural_sector_t = 1 }
+		}
+		ai_will_do = {
+			factor = 35
+		}
+	}
+
+	RUS_expand_the_port = {
+		icon = GFX_decision_generic_shipyard
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { RUS_phase_1_count > 4 }
+				tooltip = RUS_phase_1_finished_decisions_tt
+			}
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 0 }
+			check_variable = { RUS_expand_the_port_t < 6 }
+		}
+		cost = 50
+		fire_only_once = no
+		days_remove = 70
+		days_re_enable = 90
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_expand_the_port_of_magadan"
+			set_temp_variable = { temp_econ_spending_amount = 0.1 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_expand_the_port_of_magadan"
+			random_owned_controlled_state = {
+				limit = { is_coastal = yes }
+				set_temp_variable = { temp_state_value_addition = 0.08 }
+				econ_state_value_change_addition = yes
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 1 } }
+			}
+			if = {
+				limit = {
+					check_variable = { RUS_five_year_plans_phase = 1 }
+				}
+				RUS_advance_plan_phase = yes
+			}
+			add_to_variable = { RUS_expand_the_port_t = 1 }
+		}
+		ai_will_do = {
+			factor = 70
+		}
+	}
+
+
+
+	RUS_rapid_factory_modernization = {
+		icon = GFX_decision_generic_factory_blue
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 1 }
+		}
+		cost = 80
+		fire_only_once = yes
+		days_remove = 90
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_rapid_factory_modernization"
+			set_temp_variable = { temp_econ_spending_amount = 0.18 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_rapid_factory_modernization"
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_factory_output_add_N = yes
+			RUS_econ_dockyard_output_add_N = yes
+			random_owned_controlled_state = {
+				limit = { state = 562 }
+				set_temp_variable = { temp_state_value_addition = 0.03 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 637 }
+				set_temp_variable = { temp_state_value_addition = 0.03 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 563 }
+				set_temp_variable = { temp_state_value_addition = 0.045 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 1364 }
+				set_temp_variable = { temp_state_value_addition = 0.045 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 564 }
+				set_temp_variable = { temp_state_value_addition = 0.05 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+			}
+			add_to_variable = { RUS_phase_2_count = 1 }
+		}
+		ai_will_do = {
+			factor = 50
+		}
+	}
+
+	RUS_revive_the_mining_industry = {
+		icon = GFX_decision_generic_mining
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 1 }
+		}
+		cost = 80
+		fire_only_once = yes
+		days_remove = 80
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_revive_the_mining_industry"
+			set_temp_variable = { temp_econ_spending_amount = 0.18 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_revive_the_mining_industry"
+			set_temp_variable = { N = 0.1 }
+			RUS_econ_resource_gain_add_N = yes
+			set_temp_variable = { N = 0.075 }
+			RUS_econ_5yp_misc_econ_add_N = yes
+			random_owned_controlled_state = {
+				limit = { state = 574 }
+				set_temp_variable = { temp_state_value_addition = 0.035 }
+				econ_state_value_change_addition = yes
+				add_resource = { type = power amount = 4 }
+				add_resource = { type = steel amount = 6 }
+				add_resource = { type = tungsten amount = 2 }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 561 }
+				set_temp_variable = { temp_state_value_addition = 0.035 }
+				econ_state_value_change_addition = yes
+				add_resource = { type = steel amount = 4 }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+			}
+			add_to_variable = { RUS_phase_2_count = 1 }
+		}
+		ai_will_do = {
+			factor = 45
+		}
+	}
+
+	RUS_trade_with_the_developing_world = {
+		icon = GFX_decision_generic_supply
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 1 }
+		}
+		cost = 50
+		fire_only_once = yes
+		days_remove = 100
+		modifier = { free_production_units_modifier = -2 }
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_trade_with_the_developing_world"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_trade_with_the_developing_world"
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_5yp_misc_econ_add_N = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.02 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { gdp_growth_temp = 0.2 }
+			econ_gdp_growth_change = yes
+			add_to_variable = { RUS_phase_2_count = 1 }
+		}
+		ai_will_do = {
+			factor = 30
+		}
+	}
+
+	RUS_modernizing_the_rkutsk_hps = {
+		icon = GFX_decision_generic_power
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 1 }
+		}
+		cost = 85
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_modernizing_the_RUSutsk_hps"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_modernizing_the_RUSutsk_hps"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.04 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { gdp_growth_temp = 0.2 }
+			econ_gdp_growth_change = yes
+			random_owned_controlled_state = {
+				limit = { state = 566 }
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 2
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			add_to_variable = { RUS_phase_2_count = 1 }
+		}
+		ai_will_do = {
+			factor = 80
+		}
+	}
+
+	RUS_the_economic_heart_of_siberia = {
+		icon = GFX_decision_generic_heavy_industry
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 1 }
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 85
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_economic_heart_of_siberia"
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_economic_heart_of_siberia"
+			random_owned_controlled_state = {
+				limit = { state = 566 }
+				set_temp_variable = { temp_state_value_addition = 0.1 }
+				econ_state_value_change_addition = yes
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.5 } }
+			}
+			TNO_improve_admin_efficiency_med = yes
+			add_to_variable = { RUS_phase_2_count = 1 }
+		}
+		ai_will_do = {
+			factor = 70
+		}
+	}
+
+
+	RUS_expand_brigade_recruitment = {
+		icon = GFX_decision_generic_military_parade
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_international_volunteers }
+		}
+		cost = 50
+		fire_only_once = yes
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_expand_brigade_recruitment"
+			set_temp_variable = { temp_econ_spending_amount = 0.065 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_expand_brigade_recruitment"
+			set_temp_variable = { N = 400 }
+			RUS_econ_weekly_manpower_add_N = yes
+		}
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	RUS_the_second_industrialization_wave = {
+		icon = GFX_decision_generic_factory_red
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 90
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_second_industrialization_wave"
+			set_temp_variable = { temp_econ_spending_amount = 0.24 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_second_industrialization_wave"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.025 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { N = 2 }
+			RUS_add_production_units_fyp = yes
+			TNO_improve_industrial_equipment_med = yes
+			TNO_improve_industrial_expertise_med = yes
+			TNO_worsen_regulations_policy_effectiveness_med = yes
+			if = {
+				limit = {
+						has_dynamic_modifier = { modifier = RUS_open_and_reformed_economy }
+					}
+				add_to_variable = { RUS_phase_3_yag_count = 1 }
+			}
+			if = {
+				limit = {
+						has_dynamic_modifier = { modifier = RUS_building_up_socialism }
+					}
+				add_to_variable = { RUS_phase_3_party_count = 1 }
+				set_country_flag = RUS_second_industrialization_wave_finished
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	RUS_special_economic_sector = {
+		icon = GFX_decision_generic_building
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_open_and_reformed_economy }
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 90
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_special_economic_sector"
+			set_temp_variable = { temp_econ_spending_amount = 0.2 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_special_economic_sector"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+			econ_GDP_boost_once_percentage = yes
+			TNO_improve_admin_efficiency_med = yes
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_open_misc_econ_add_N = yes
+			random_owned_controlled_state = {
+				limit = { state = 566 }
+				set_temp_variable = { temp_state_value_addition = 0.15 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 2.5 } }
+			}
+			add_to_variable = { RUS_phase_3_yag_count = 1 }
+		}
+		ai_will_do = {
+			factor = 65
+		}
+	}
+
+	RUS_yakutia_special_economic_province = {
+		icon = GFX_decision_generic_building
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_open_and_reformed_economy }
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 90
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_yakutia_special_economic_province"
+			set_temp_variable = { temp_econ_spending_amount = 0.2 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_yakutia_special_economic_province"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+			econ_GDP_boost_once_percentage = yes
+			TNO_improve_industrial_expertise_med = yes
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_open_misc_econ_add_N = yes
+			random_owned_controlled_state = {
+				limit = { state = 574 }
+				set_temp_variable = { temp_state_value_addition = 0.125 }
+				econ_state_value_change_addition = yes
+				add_resource = { type = steel amount = 4 }
+				add_resource = { type = tungsten amount = 2 }
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 2.5 } }
+			}
+			add_to_variable = { RUS_phase_3_yag_count = 1 }
+		}
+		ai_will_do = {
+			factor = 75
+		}
+	}
+
+	RUS_petropavlovsk_kamchatsky_open_coastal_city = {
+		icon = GFX_decision_generic_shipyard
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_open_and_reformed_economy }
+			NOT = {  }
+		}
+		cost = 80
+		fire_only_once = yes
+		days_remove = 90
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_petropavlovsk_kamchatsky_open_coastal_city"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_petropavlovsk_kamchatsky_open_coastal_city"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.01 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_open_misc_econ_add_N = yes
+			TNO_improve_research_facilities_med = yes
+			add_tech_bonus = {
+				name = electronics
+				bonus = 1
+				uses = 2
+				category = electronics
+			}
+			random_owned_controlled_state = {
+				limit = { state = 637 }
+				set_temp_variable = { temp_state_value_addition = 0.125 }
+				econ_state_value_change_addition = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 4 } }
+			}
+			add_to_variable = { RUS_phase_3_yag_count = 1 }
+		}
+		ai_will_do = {
+			factor = 35
+		}
+	}
+
+	#special
+
+	RUS_the_open_coastal_city_of_vladiostok = {
+		icon = GFX_decision_generic_shipyard
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { RUS_phase_2_count > 4 }
+				tooltip = RUS_phase_2_finished_decisions_tt
+			}
+			
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 1 }
+		}
+		cost = 50
+		fire_only_once = yes
+		days_remove = 70
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_open_coastal_city_of_magadan"
+			set_temp_variable = { temp_econ_spending_amount = 0.34 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_open_coastal_city_of_magadan"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.02 }
+			econ_GDP_boost_once_percentage = yes
+			add_dynamic_modifier = { modifier = RUS_open_and_reformed_economy }
+			set_temp_variable = { N = 0.1 }
+			RUS_econ_open_misc_econ_add_N = yes
+			set_temp_variable = { N = 1 }
+			RUS_econ_credit_rating_progress_add_N = yes
+			809 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 957
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 3 } }
+			}
+			RUS_advance_plan_phase = yes
+		}
+		ai_will_do = {
+			factor = 90
+		}
+	}
+
+	RUS_the_industrial_harbor_of_vladiostok = {
+		icon = GFX_decision_generic_shipyard
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { RUS_phase_2_count > 4 }
+				tooltip = RUS_phase_2_finished_decisions_tt
+			}
+			
+		}
+		visible = {
+			NOT = {  }
+			check_variable = { RUS_five_year_plans_phase > 1 }
+		}
+		cost = 50
+		fire_only_once = yes
+		days_remove = 70
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_industrial_harbor_of_magadan"
+			set_temp_variable = { temp_econ_spending_amount = 0.12 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_industrial_harbor_of_magadan"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.025 }
+			econ_GDP_boost_once_percentage = yes
+			add_dynamic_modifier = { modifier = RUS_building_up_socialism }
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_building_socialism_misc_income_add_N = yes
+			set_temp_variable = { N = 0.025 }
+			RUS_econ_building_socialism_factory_output_add_N = yes
+			809 = {
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					instant_build = yes
+					province = 957
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 65
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	RUS_the_tenth_five_year_plan_state = {
+		icon = GFX_decision_generic_document_socialism
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { RUS_phase_3_yag_count > 3 }
+				tooltip = RUS_phase_3_yagoda_finished_decisions_tt
+			}
+			has_country_flag = RUS_superregional_stage
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_open_and_reformed_economy }
+		}
+		cost = 40
+		fire_only_once = yes
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_ninth_five_year_plan_state"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_ninth_five_year_plan_state"
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_construction_speed_add_N = yes
+			TNO_improve_poverty_med = yes
+			RUS_advance_plan_year = yes
+			RUS_advance_plan_phase = yes
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	RUS_third_industrialization_wave = {
+		icon = GFX_decision_generic_factory_blue
+		available = {
+			has_country_flag = RUS_second_industrialization_wave_finished
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_building_up_socialism }
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 120
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_third_industrialization_wave"
+			set_temp_variable = { temp_econ_spending_amount = 0.28 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_third_industrialization_wave"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.03 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { N = 2 }
+			RUS_add_production_units_fyp = yes
+			TNO_improve_industrial_equipment_med = yes
+			TNO_improve_industrial_expertise_med = yes
+			TNO_worsen_regulations_policy_effectiveness_med = yes
+			add_to_variable = { RUS_phase_3_party_count = 1 }
+			clr_country_flag = RUS_second_industrialization_wave_finished
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+
+	RUS_coal_mining_boom = {
+		icon = GFX_decision_generic_mining
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_building_up_socialism }
+		}
+		cost = 75
+		fire_only_once = yes
+		days_remove = 100
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_coal_mining_boom"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_coal_mining_boom"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.02 }
+			random_owned_controlled_state = {
+				limit = { state = 574 }
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 1.5 } }
+			}
+			add_to_variable = { RUS_phase_3_party_count = 1 }
+		}
+		ai_will_do = {
+			factor = 55
+		}
+	}
+
+	RUS_increase_production_quotas = {
+		icon = GFX_decision_generic_political_action
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_building_up_socialism }
+		}
+		cost = 65
+		fire_only_once = yes
+		days_remove = 50
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_production_quotas"
+			set_temp_variable = { temp_econ_spending_amount = 0.1 }
+			econ_spend_money_once_effect_raw_money = yes
+			add_stability = -0.05
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_production_quotas"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.015 }
+			TNO_improve_max_workhours_policy_effectiveness_med = yes
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_building_socialism_dockyard_output_add_N = yes
+			RUS_econ_building_socialism_factory_output_add_N = yes
+			add_to_variable = { RUS_phase_3_party_count = 1 }
+		}
+		ai_will_do = {
+			factor = 30
+		}
+	}
+
+	RUS_increase_industrial_trade = {
+		icon = GFX_decision_generic_supply
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_building_up_socialism }
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 90
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_industrial_trade"
+			set_temp_variable = { temp_econ_spending_amount = 0.075 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_increase_industrial_trade"
+			set_temp_variable = { N = 0.075 }
+			RUS_econ_building_socialism_misc_income_add_N = yes
+			set_temp_variable = { gdp_growth_temp = 0.4 }
+			econ_gdp_growth_change = yes
+			add_to_variable = { RUS_phase_3_party_count = 1 }
+		}
+		ai_will_do = {
+			factor = 85
+		}
+	}
+
+	RUS_the_tenth_five_year_plan_party = {
+		icon = GFX_decision_generic_document_socialism
+		available = {
+			custom_trigger_tooltip = {
+				check_variable = { RUS_phase_3_party_count > 4 }
+				tooltip = RUS_phase_3_party_finished_decisions_tt
+			}
+			has_country_flag = RUS_superregional_stage
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 2 }
+			has_dynamic_modifier = { modifier = RUS_building_up_socialism }
+		}
+		cost = 40
+		fire_only_once = yes
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_ninth_five_year_plan_party"
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_ninth_five_year_plan_party"
+			set_temp_variable = { N = 0.05 }
+			RUS_econ_efficiency_cap_add_N = yes
+			RUS_econ_efficiency_retention_add_N = yes
+			RUS_advance_plan_year = yes
+			RUS_advance_plan_phase = yes
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+
+	RUS_the_great_siberian_highway_project = {
+		icon = GFX_decision_generic_infrastructure
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 3 }
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 140
+		complete_effect ={
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_great_siberian_highway_project"
+			set_temp_variable = { temp_econ_spending_amount = 0.4 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_the_great_siberian_highway_project"
+			random_owned_controlled_state = {
+				limit = { state = 567 }
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.25 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 568 }
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.25 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 757 }
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.25 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 569 }
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.25 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 578 }
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.25 } }
+			}
+			random_owned_controlled_state = {
+				limit = { state = 570 }
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.25 } }
+			}
+		}
+		ai_will_do = {
+			factor = 55
+		}
+	}
+
+	RUS_novosibirsk_special_economic_sector = {
+		icon = GFX_decision_generic_building
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 3 }
+			has_dynamic_modifier = { modifier = RUS_open_and_reformed_economy }
+		}
+		cost = 125
+		fire_only_once = yes
+		days_remove = 90
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_novosibirsk_special_economic_sector"
+			set_temp_variable = { temp_econ_spending_amount = 0.4 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_novosibirsk_special_economic_sector"
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+			add_tech_bonus = {
+				name = air_equipment
+				bonus = 1
+				uses = 2
+				category = air_equipment
+			}
+			set_temp_variable = { N = 0.1 }
+			RUS_econ_open_misc_econ_add_N = yes
+			random_owned_controlled_state = {
+				limit = { state = 570 }
+				set_temp_variable = { temp_state_value_addition = 0.2 }
+				econ_state_value_change_addition = yes
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 4 } }
+			}
+		}
+		ai_will_do = {
+			factor = 65
+		}
+	}
+
+	RUS_kemerovos_palaces_of_industry = {
+		icon = GFX_decision_generic_heavy_industry
+		available = {
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 3 }
+			has_dynamic_modifier = { modifier = RUS_building_up_socialism }
+		}
+		cost = 125
+		fire_only_once = yes
+		days_remove = 100
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_kemerovos_palaces_of_industry"
+			set_temp_variable = { temp_econ_spending_amount = 0.4 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_kemerovos_palaces_of_industry"
+			TNO_improve_industrial_equipment_med = yes
+			TNO_improve_industrial_expertise_med = yes
+			set_temp_variable = { N = 2 }
+			RUS_add_production_units_fyp = yes
+			TNO_worsen_regulations_policy_effectiveness_med = yes
+			random_owned_controlled_state = {
+				limit = { state = 569 }
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 1.5 } }
+			}
+		}
+		ai_will_do = {
+			factor = 75
+		}
+	}
+
+	RUS_western_companies_in_tomsk = {
+		icon = GFX_decision_generic_shake_hands
+		available = {
+			
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 3 }
+			NOT = { }
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_western_companies_in_tomsk"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_western_companies_in_tomsk"
+			TNO_improve_research_facilities_low = yes
+			add_tech_bonus = {
+				name = hospital_tech
+				bonus = 1
+				uses = 1
+				category = hospital_tech
+			}
+			random_owned_controlled_state = {
+				limit = { state = 578 }
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 1.5 } }
+			}
+		}
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	RUS_zaibatsu_in_krasnoyarsk = {
+		icon = GFX_decision_generic_shake_hands
+		available = {
+			
+		}
+		visible = {
+			check_variable = { RUS_five_year_plans_phase > 3 }
+			NOT = {  }
+		}
+		cost = 100
+		fire_only_once = yes
+		days_remove = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_kemerovos_palaces_of_industry"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_kemerovos_palaces_of_industry"
+			add_tech_bonus = {
+				name = motorized_equipment
+				bonus = 2
+				uses = 1
+				category = motorized_equipment
+			}
+			random_owned_controlled_state = {
+				limit = { state = 757 }
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+				add_state_modifier = { modifier = { state_GDP_growth_modifier = 1.5 } }
+			}
+		}
+		ai_will_do = {
+			factor = 65
+		}
+	}
+}

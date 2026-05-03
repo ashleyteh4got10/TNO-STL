@@ -1,0 +1,325 @@
+CHI_dem_riot_gui = {
+    CPC_dem_riot_change_weekly = {
+		allowed = { tag = CHI }
+		icon = GFX_decision_revolt
+		activation = {
+			CPC = { has_country_flag = CPC_admit_dem_riot }
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { CPC = { has_country_flag = CPC_admit_dem_riot } }
+			}
+		}
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = { CPC = { has_country_flag = CPC_admit_dem_riot } }
+			}
+		}
+		is_good = no
+		days_mission_timeout = 5
+		timeout_effect = {
+            custom_effect_tooltip = {
+			if = {
+				limit = { is_ai = yes }
+				if = { 
+					limit = { check_variable = { CHI_dem_riot_selected^0 = 2 } }
+					set_variable = { CHI_dem_riot_selected^0 = 1 }
+					set_variable = { CHI_dem_riot_selected^1 = 2 }
+				}
+				else_if = { 
+					limit = { check_variable = { CHI_dem_riot_selected^1 = 2 } }
+					set_variable = { CHI_dem_riot_selected^1 = 1 }
+					set_variable = { CHI_dem_riot_selected^2 = 2 }
+				}
+				else_if = { 
+					limit = { check_variable = { CHI_dem_riot_selected^2 = 2 } }
+					set_variable = { CHI_dem_riot_selected^2 = 1 }
+					set_variable = { CHI_dem_riot_selected^0 = 2 }
+				}
+			}
+			set_temp_variable = { TER_dem_power_tmp = -2 }
+			set_temp_variable = { TER_dem_radical_tmp = 3 }
+			if = {
+				limit = { BJC = { exists = yes } }
+				set_temp_variable = { target = BJC }
+				CHI_dem_riot_power_change = yes
+				CHI_dem_riot_radical_change = yes
+			}
+			if = {
+				limit = { WHC = { exists = yes } }
+				set_temp_variable = { target = WHC }
+				CHI_dem_riot_power_change = yes
+				CHI_dem_riot_radical_change = yes
+			}
+			if = {
+				limit = { LZD = { exists = yes } }
+				set_temp_variable = { target = LZD }
+				CHI_dem_riot_power_change = yes
+				CHI_dem_riot_radical_change = yes
+			}
+			CHI_dem_riot_weekly_effect = yes
+		}
+        activate_mission = CHI_dem_riot_change_weekly
+        }
+        
+  	}
+
+	CHI_dem_riot_congress_mission = {
+		allowed = { tag = CHI }
+		icon = GFX_decision_revolt
+		activation = {
+			CPC = { has_country_flag = CPC_admit_dem_riot }
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { CPC = { has_country_flag = CPC_admit_dem_riot } }
+			}
+		}
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = { CPC = { has_country_flag = CPC_admit_dem_riot } }
+			}
+		}
+		is_good = yes
+		days_mission_timeout = 150
+		timeout_effect = {
+			custom_effect_tooltip = "CHI_dem_riot_congress_mission_tt"
+		}
+  	}
+	CHI_dem_riot_BJC_1 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 5
+		visible = { check_variable = { CHI_dem_riot_selected^0 = 2 }
+					BJC = { exists = yes } }
+		remove_effect = {
+            
+			set_temp_variable = { target = BJC }
+			set_temp_variable = { TER_dem_power_tmp = -2.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -1.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_BJC_2 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 7
+		visible = { check_variable = { CHI_dem_riot_selected^0 = 2 }
+					BJC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = BJC }
+			set_temp_variable = { TER_dem_power_tmp = -6.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -2 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_BJC_3 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 10
+		visible = { check_variable = { CHI_dem_riot_selected^0 = 2 }
+					BJC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = BJC }
+			set_temp_variable = { TER_dem_power_tmp = -0.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -2.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_BJC_4 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 175
+		fire_only_once = no
+		days_remove = 15
+		visible = { check_variable = { CHI_dem_riot_selected^0 = 2 }
+					BJC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { target = BJC }
+			set_temp_variable = { TER_dem_power_tmp = -7.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -6.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+
+	CHI_dem_riot_WHC_1 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 5
+		visible = { check_variable = { CHI_dem_riot_selected^1 = 2 }
+					WHC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = WHC }
+			set_temp_variable = { TER_dem_power_tmp = -2.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -1.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_WHC_2 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 7
+		visible = { check_variable = { CHI_dem_riot_selected^1 = 2 }
+					WHC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = WHC }
+			set_temp_variable = { TER_dem_power_tmp = -6.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -2 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_WHC_3 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 10
+		visible = { check_variable = { CHI_dem_riot_selected^1 = 2 }
+					WHC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = WHC }
+			set_temp_variable = { TER_dem_power_tmp = -0.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -2.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_WHC_4 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 175
+		fire_only_once = no
+		days_remove = 15
+		visible = { check_variable = { CHI_dem_riot_selected^1 = 2 }
+					WHC = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { target = WHC }
+			set_temp_variable = { TER_dem_power_tmp = -7.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -6.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_LZD_1 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 5
+		visible = { check_variable = { CHI_dem_riot_selected^2 = 2 }
+					LZD = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = LZD }
+			set_temp_variable = { TER_dem_power_tmp = -2.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = 1.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_LZD_2 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 7
+		visible = { check_variable = { CHI_dem_riot_selected^2 = 2 }
+					LZD = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = LZD }
+			set_temp_variable = { TER_dem_power_tmp = -6.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = 2 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_LZD_3 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		fire_only_once = no
+		days_remove = 10
+		visible = { check_variable = { CHI_dem_riot_selected^2 = 2 }
+					LZD = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { target = LZD }
+			set_temp_variable = { TER_dem_power_tmp = -0.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -2.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+	CHI_dem_riot_LZD_4 = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = CHI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 175
+		fire_only_once = no
+		days_remove = 15
+		visible = { check_variable = { CHI_dem_riot_selected^2 = 2 }
+					LZD = { exists = yes } }
+		remove_effect = {
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { target = LZD }
+			set_temp_variable = { TER_dem_power_tmp = -7.5 }
+			CHI_dem_riot_power_change = yes
+			set_temp_variable = { TER_dem_radical_tmp = -6.5 }
+			CHI_dem_riot_radical_change = yes
+		}
+	}
+}

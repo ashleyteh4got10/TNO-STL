@@ -1,0 +1,105 @@
+scripted_gui = {
+	KMC_smug_decisions_gui = {
+		context_type = decision_category
+		window_name = KMC_smug_decisions_gui
+
+		effects = {
+			infeq_buy_button_click = {
+				add_to_variable = { bm_guns = 100 }
+				subtract_from_variable = { KMC_supplies = KMC_price_current_infeq_buy }
+				subtract_from_variable = { black_market_trades_av = 1 }
+			}
+			supeq_buy_button_click = {
+				add_to_variable = { bm_sup = 50 }
+				subtract_from_variable = { KMC_supplies = KMC_price_current_supeq_buy }
+				subtract_from_variable = { black_market_trades_av = 1 }
+			}
+			ateq_buy_button_click = {
+				add_to_variable = { bm_at = 100 }
+				subtract_from_variable = { KMC_supplies = KMC_price_current_ateq_buy }
+				subtract_from_variable = { black_market_trades_av = 1 }
+			}
+			fuel_buy_button_click = {
+				add_to_variable = { bm_fuel = 1 }
+				subtract_from_variable = { KMC_supplies = KMC_price_current_fuelship_buy }
+				subtract_from_variable = { black_market_trades_av = 1 }
+			}
+			infeq_sell_button_click = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -100
+				}
+				add_to_variable = { bm_supplies = KMC_price_current_infeq_sell }
+				subtract_from_variable = { black_market_trades_av = 1 }
+			}
+			supeq_sell_button_click = {
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = -50
+				}
+				add_to_variable = { bm_supplies = KMC_price_current_supeq_sell }
+				subtract_from_variable = { black_market_trades_av = 1 }
+			}
+			ateq_sell_button_click = {
+				add_equipment_to_stockpile = {
+					type = anti_tank_equipment
+					amount = -100
+				}
+				add_to_variable = { bm_supplies = KMC_price_current_ateq_sell }
+				subtract_from_variable = { black_market_trades_av = 1 }
+			}
+			fuel_sell_button_click = {
+				subtract_from_variable = { KMC_fuel_stored = 1 }
+				add_to_variable = { bm_supplies = KMC_price_current_fuelship_sell }
+				subtract_from_variable = { black_market_trades_av = 1 }
+			}
+		}
+
+		triggers = {
+			infeq_buy_button_visible = {
+				OR = {
+					check_variable = { KMC_supplies = KMC_price_current_infeq_buy }
+					check_variable = { KMC_supplies > KMC_price_current_infeq_buy }
+				}
+				check_variable = { black_market_trades_av > 0 }
+			}
+			supeq_buy_button_visible = {
+				OR = {
+					check_variable = { KMC_supplies = KMC_price_current_supeq_buy }
+					check_variable = { KMC_supplies > KMC_price_current_supeq_buy }
+				}
+				check_variable = { black_market_trades_av > 0 }
+			}
+			ateq_buy_button_visible = {
+				OR = {
+					check_variable = { KMC_supplies = KMC_price_current_ateq_buy }
+					check_variable = { KMC_supplies > KMC_price_current_ateq_buy }
+				}
+				check_variable = { black_market_trades_av > 0 }
+			}
+			fuel_buy_button_visible = {
+				OR = {
+					check_variable = { KMC_supplies = KMC_price_current_fuelship_buy }
+					check_variable = { KMC_supplies > KMC_price_current_fuelship_buy }
+				}
+				check_variable = { black_market_trades_av > 0 }
+			}
+			infeq_sell_button_visible = {
+				has_equipment =  { infantry_equipment > 99 }
+				check_variable = { black_market_trades_av > 0 }
+			}
+			supeq_sell_button_visible = {
+				has_equipment =  { support_equipment > 49 }
+				check_variable = { black_market_trades_av > 0 }
+			}
+			ateq_sell_button_visible = {
+				has_equipment =  { anti_tank_equipment > 99 }
+				check_variable = { black_market_trades_av > 0 }
+			}
+			fuel_sell_button_visible = {
+				check_variable = { KMC_fuel_stored > 0 }
+				check_variable = { black_market_trades_av > 0 }
+			}
+		}
+	}
+}

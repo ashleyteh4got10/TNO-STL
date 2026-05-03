@@ -1,0 +1,403 @@
+add_namespace = TER_RGOC_black_ops_prelude
+add_namespace = TER_RGOC_black_ops
+
+country_event = {
+	id = TER_RGOC_black_ops_prelude.1
+	title = TER_RGOC_black_ops_prelude.1.t
+	desc = TER_RGOC_black_ops_prelude.1.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops_prelude.1.o
+		ai_chance = { factor = 50 }
+		country_event = {
+			id = TER_RGOC_black_ops_prelude.2
+			days = 7
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops_prelude.2
+	title = TER_RGOC_black_ops_prelude.2.t
+	desc = TER_RGOC_black_ops_prelude.2.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops_prelude.2.o
+		ai_chance = { factor = 50 }
+		country_event = {
+			id = TER_RGOC_black_ops_prelude.3
+			days = 7
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops_prelude.3
+	title = TER_RGOC_black_ops_prelude.3.t
+	desc = TER_RGOC_black_ops_prelude.3.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops_prelude.3.o
+		ai_chance = { factor = 50 }
+		country_event = {
+			id = TER_RGOC_black_ops_prelude.4
+			days = 7
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops_prelude.4
+	title = TER_RGOC_black_ops_prelude.4.t
+	desc = TER_RGOC_black_ops_prelude.4.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops_prelude.4.o
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = "TER_RGOC_black_ops_begin"
+		hidden_effect = {
+			add_ideas = CPC_Black_Ops
+			set_variable = { CPC_Black_Ops_rate = 9 }
+		}
+	}
+}
+
+
+
+country_event = {
+	id = TER_RGOC_black_ops.1
+	title = TER_RGOC_black_ops.1.t
+	desc = TER_RGOC_black_ops.1.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.1.o
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = "TER_RGOC_black_ops_flag_1"
+		set_country_flag = TER_RGOC_black_ops_flag_1
+		random_list = {
+			30 = {
+				set_temp_variable = { SWB_temp_pct_changes_c_m = -1 }
+				SWB_random_region_change_phase_2 = yes
+				set_temp_variable = { SWB_temp_pct_changes_c_m = 0 }
+				add_manpower = -20
+			}
+			30 = {
+				set_temp_variable = { SWB_temp_pct_changes_m_m = -1 }
+				SWB_random_region_change_phase_2 = yes
+				set_temp_variable = { SWB_temp_pct_changes_m_m = 0 }
+				add_manpower = -20
+			}
+			40 = {
+				add_manpower = -20
+				CHI = { add_manpower = -20 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.11
+	title = TER_RGOC_black_ops.11.t
+	desc = TER_RGOC_black_ops.11.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.11.o
+		ai_chance = { factor = 50 }
+		add_manpower = -20
+		CHI = { add_manpower = -20 }
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.12
+	title = TER_RGOC_black_ops.12.t
+	desc = TER_RGOC_black_ops.12.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.12.o
+		ai_chance = { factor = 50 }
+		random_list = {
+			20 = {
+				set_temp_variable = { SWB_temp_pct_changes_c_m = -1 }
+				SWB_random_region_change_phase_2 = yes
+				set_temp_variable = { SWB_temp_pct_changes_c_m = 0 }
+				add_manpower = -20
+			}
+			20 = {
+				set_temp_variable = { SWB_temp_pct_changes_m_m = -1 }
+				SWB_random_region_change_phase_2 = yes
+				set_temp_variable = { SWB_temp_pct_changes_m_m = 0 }
+				add_manpower = -20
+			}
+			60 = {
+				add_war_support = -0.01
+				add_manpower = -20
+			}
+		}
+		
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.2
+	title = TER_RGOC_black_ops.2.t
+	desc = TER_RGOC_black_ops.2.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.2.o
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = "TER_RGOC_black_ops_flag_2"
+		set_country_flag = TER_RGOC_black_ops_flag_2
+		random_controlled_state = {
+			limit = { any_neighbor_state = { is_controlled_by = SHX } }
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
+			}
+		}
+		SHX = {
+			random_controlled_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 0.3
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.21
+	title = TER_RGOC_black_ops.21.t
+	desc = TER_RGOC_black_ops.21.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.21.o
+		ai_chance = { factor = 50 }
+		random_controlled_state = {
+			limit = { any_neighbor_state = { is_controlled_by = SHX } }
+			damage_building = {
+				type = infrastructure
+				damage = 0.25
+			}
+			add_manpower = -30
+		}
+		SHX = {
+			random_controlled_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 0.15
+				}
+			}
+			add_manpower = -30
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.22
+	title = TER_RGOC_black_ops.22.t
+	desc = TER_RGOC_black_ops.22.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.22.o
+		ai_chance = { factor = 50 }
+		random_controlled_state = {
+			limit = { any_neighbor_state = { is_controlled_by = SHX } }
+			damage_building = {
+				type = infrastructure
+				damage = 0.35
+			}
+			add_manpower = -70
+			random_list = {
+				5 = {
+					TNO_worsen_industrial_equipment_low = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.3
+	title = TER_RGOC_black_ops.3.t
+	desc = TER_RGOC_black_ops.3.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.3.o
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = "TER_RGOC_black_ops_flag_3"
+		set_country_flag = TER_RGOC_black_ops_flag_3
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 10
+			producer = CHI
+		}
+		add_stability = -0.01
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.31
+	title = TER_RGOC_black_ops.31.t
+	desc = TER_RGOC_black_ops.31.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.31.o
+		ai_chance = { factor = 50 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 10
+			producer = CHI
+		}
+		add_stability = -0.01
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.4
+	title = TER_RGOC_black_ops.4.t
+	desc = TER_RGOC_black_ops.4.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.4.o
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = "TER_RGOC_black_ops_flag_4"
+		set_country_flag = TER_RGOC_black_ops_flag_4
+		add_manpower = -150
+		add_stability = -0.01
+		add_war_support = -0.01
+		hidden_effect = {
+			random_list = {
+				50 = {
+					set_temp_variable = { SWB_temp_pct_changes_c_d = -2.5 }
+					SWB_random_region_change_phase_2 = yes
+				}
+				30 = {
+					set_temp_variable = { SWB_temp_pct_changes_c_d = -4.5 }
+					SWB_random_region_change_phase_2 = yes
+				}
+				20 = {
+					set_temp_variable = { SWB_temp_pct_changes_c_d = -4.5 }
+					SWB_random_region_change_phase_2 = yes
+					set_temp_variable = { SWB_temp_pct_changes_c_m = -4.5 }
+					SWB_random_region_change_phase_2 = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.41
+	title = TER_RGOC_black_ops.41.t
+	desc = TER_RGOC_black_ops.41.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.41.o
+		ai_chance = { factor = 50 }
+		add_manpower = -150
+		add_stability = -0.01
+		add_war_support = -0.01
+		random_list = {
+			50 = {
+				set_temp_variable = { SWB_temp_pct_changes_c_d = -2.5 }
+				SWB_random_region_change_phase_2 = yes
+			}
+			30 = {
+				set_temp_variable = { SWB_temp_pct_changes_c_d = -4.5 }
+				SWB_random_region_change_phase_2 = yes
+			}
+			20 = {
+				set_temp_variable = { SWB_temp_pct_changes_c_d = -4.5 }
+				SWB_random_region_change_phase_2 = yes
+				set_temp_variable = { SWB_temp_pct_changes_c_m = -4.5 }
+				SWB_random_region_change_phase_2 = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.5
+	title = TER_RGOC_black_ops.5.t
+	desc = TER_RGOC_black_ops.5.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.5.o
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = "TER_RGOC_black_ops_flag_5"
+		set_country_flag = TER_RGOC_black_ops_flag_5
+		hidden_effect = {
+			random_list = {
+				70 = {
+					set_temp_variable = { SWB_temp_pct_changes_c_d = -1.5 }
+					SWB_random_region_change_phase_2 = yes
+					set_temp_variable = { SWB_temp_pct_changes_m_d = -1.5 }
+					SWB_random_region_change_phase_2 = yes
+				}
+				25 = {
+					set_temp_variable = { SWB_temp_pct_changes_c_d = -3 }
+					SWB_random_region_change_phase_2 = yes
+					set_temp_variable = { SWB_temp_pct_changes_m_d = -3 }
+					SWB_random_region_change_phase_2 = yes
+				}
+				5 = {
+					set_temp_variable = { SWB_temp_pct_changes_c_d = -3 }
+					SWB_random_region_change_phase_2 = yes
+					set_temp_variable = { SWB_temp_pct_changes_m_d = -3 }
+					SWB_random_region_change_phase_2 = yes
+					TNO_worsen_agriculture_low = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_RGOC_black_ops.51
+	title = TER_RGOC_black_ops.51.t
+	desc = TER_RGOC_black_ops.51.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = TER_RGOC_black_ops.51.o
+		ai_chance = { factor = 50 }
+		random_list = {
+			70 = {
+				set_temp_variable = { SWB_temp_pct_changes_c_d = -1.5 }
+				SWB_random_region_change_phase_2 = yes
+				set_temp_variable = { SWB_temp_pct_changes_m_d = -1.5 }
+				SWB_random_region_change_phase_2 = yes
+			}
+			25 = {
+				set_temp_variable = { SWB_temp_pct_changes_c_d = -3 }
+				SWB_random_region_change_phase_2 = yes
+				set_temp_variable = { SWB_temp_pct_changes_m_d = -3 }
+				SWB_random_region_change_phase_2 = yes
+			}
+			5 = {
+				set_temp_variable = { SWB_temp_pct_changes_c_d = -3 }
+				SWB_random_region_change_phase_2 = yes
+				set_temp_variable = { SWB_temp_pct_changes_m_d = -3 }
+				SWB_random_region_change_phase_2 = yes
+				TNO_worsen_agriculture_low = yes
+			}
+		}
+	}
+}

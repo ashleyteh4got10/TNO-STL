@@ -1,0 +1,1251 @@
+TER_PLA_CMC_initialization = {
+	set_variable = { NADT_ongoing_proj_num = token:NADT_proj_e } #空
+	set_variable = { PLA_CMC_ongoing_proj_num = token:PLA_CMC_p_empty } #空
+	set_variable = { NADT_nuclear_proj_phase = 0 } #未开核计划
+	set_variable = { NADT_sp_tech_proj_phase = 1 }
+	
+	set_variable = { CPC_PLA_political_power_gain = -0.2 }
+	set_variable = { CPC_PLA_army_org_regain = -0.1 }
+	set_variable = { CPC_PLA_army_professionalism_monthly_rate = -0.5 }
+	set_variable = { CPC_PLA_max_planning_factor = -0.05 }
+
+	set_variable = { CPC_PLA_command_power_gain = 0 }
+	set_variable = { CPC_PLA_max_command_power = 0 }
+	set_variable = { CPC_PLA_experience_gain_army_unit_factor = -0.25 }
+	set_variable = { CPC_PLA_experience_loss_factor = 0.05 }
+	set_variable = { CPC_PLA_combat_width_factor = 0 }
+	set_variable = { CPC_PLA_land_reinforce_rate = -0.1 }
+	set_variable = { CPC_PLA_inf_equip_dummy_num = 0 }
+
+	set_variable = { CPC_PLA_army_ad_factor = -0.05 }
+	set_variable = { CPC_PLA_army_speed_factor = 0 }
+	set_variable = { CPC_PLA_supply_factor = 0 }
+	set_variable = { CPC_PLA_breakthrough_factor = 0 }
+	set_variable = { CPC_PLAAF_dummy_num = 0.4 }
+
+	set_variable = { CPC_NADT_research_speed_factor = 0.05 }
+	add_dynamic_modifier = { modifier = CPC_PLA_modifier }
+	add_dynamic_modifier = { modifier = CPC_NADT_modifier }
+}
+
+PLC_CMC_MR_test = {
+	set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_equip_2 }
+	TER_PLA_CMC_reform_begins = yes
+}
+
+PLC_CMC_MR_test_2 = {
+	set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_pol_1 }
+	TER_PLA_CMC_reform_task_without_options_begins = yes
+}
+
+TER_PLA_CMC_reform_begins = {
+	set_country_flag = CMC_reform_pre_flag #前10天选择方案的任务
+	set_variable = { PLA_CMC_ongoing_proj_num = CMC_ongoing_proj_tmp }
+	set_variable = { PLA_CMC_proj_slct_num_1 = 2 }
+	set_variable = { PLA_CMC_proj_slct_num_2 = 1 }
+
+	hidden_effect = {
+		if = {
+		limit = { is_ai = yes }
+			random_list = {
+				50 = { 
+					set_variable = { PLA_CMC_proj_slct_num_1 = 2 }
+					set_variable = { PLA_CMC_proj_slct_num_2 = 1 }
+				}
+				50 = {
+					set_variable = { PLA_CMC_proj_slct_num_1 = 1 }
+					set_variable = { PLA_CMC_proj_slct_num_2 = 2 }
+				}
+			}
+		}
+		activate_mission = PLA_CMC_MR_pre_discussion
+	}
+	CMC_reform_fire_alert = yes
+	custom_effect_tooltip = "PLA_CMC_prop_begins_tt"
+}
+
+TER_PLA_CMC_reform_task_begins = {
+	clr_country_flag = CMC_reform_pre_flag
+	set_country_flag = CMC_reform_task_flag
+	hidden_effect = {
+		activate_mission = PLA_CMC_MR_executing
+	}
+	CMC_reform_remove_alert = yes
+	custom_effect_tooltip = "PLA_CMC_prop_begin_executing_tt"
+}
+
+TER_PLA_CMC_reform_task_without_options_begins = {
+	set_variable = { PLA_CMC_ongoing_proj_num = CMC_ongoing_proj_tmp }
+	set_variable = { PLA_CMC_proj_slct_num_1 = 2 }
+	set_variable = { PLA_CMC_proj_slct_num_2 = 1 }
+	set_country_flag = CMC_reform_task_flag
+	set_country_flag = CMC_this_task_is_not_controversial
+	hidden_effect = {
+		activate_mission = PLA_CMC_MR_executing
+	}
+	custom_effect_tooltip = "PLA_CMC_prop_begins_without_options_tt"
+}
+
+TER_PLA_CMC_reform_proj_complete_effect = {
+	#完成标识
+	clr_country_flag = CMC_reform_task_flag
+	clr_country_flag = CMC_this_task_is_not_controversial
+	set_temp_variable = { PLA_CMC_ongoing_proj_num_tmp = PLA_CMC_ongoing_proj_num }
+
+	if = {
+		limit = { check_variable = { PLA_CMC_proj_slct_num_1_tmp = 2 } }
+		if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_pol_1 } }
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { CMC_pp_gain_tmp = 0.15 }
+			set_temp_variable = { CMC_army_org_regain_tmp = 0.025 }
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_pol_2 } }
+			set_temp_variable = { CMC_army_org_regain_tmp = 0.1 }
+			set_temp_variable = { CMC_ap_monthly_rate_tmp = 0.3 }
+			set_temp_variable = { CMC_pp_gain_tmp = 0.1 }
+			set_temp_variable = { CMC_max_planning_tmp = 0.05 }
+			set_temp_variable = { money_reserves_temp = -0.1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_pol_3 } }
+			set_temp_variable = { CMC_pp_gain_tmp = 0.1 }
+			set_temp_variable = { CMC_ap_monthly_rate_tmp = 1 }
+			set_temp_variable = { money_reserves_temp = -0.12 }
+			econ_money_reserves_change_raw_money = yes
+			complete_national_focus = CPC_back_door_deal
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_pol_4 } }
+			set_temp_variable = { CMC_max_planning_tmp = 0.05 }
+			set_temp_variable = { CMC_cp_gain_tmp = 0.2 }
+			set_temp_variable = { money_reserves_temp = -0.1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_mil_1 } }
+			set_temp_variable = { CMC_lrr_tmp = 0.15 }
+			set_temp_variable = { CMC_army_ad_tmp = 0.075 }
+			TNO_improve_training_policy_effectiveness_med = yes
+			TNO_improve_army_professionalism_med = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_mil_2 } }
+			TNO_improve_training_policy_effectiveness_med = yes
+			set_temp_variable = { CMC_max_planning_tmp = 0.075 }
+			set_temp_variable = { CMC_army_s_tmp = 0.05 }
+			set_temp_variable = { CMC_xp_gain_tmp = 0.1 }
+			set_temp_variable = { CMC_cmf_tmp = -0.1 }
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_mil_3 } }
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 1
+				category = computing_tech 
+			}
+			set_temp_variable = { CMC_cp_gain_tmp = 0.1 }
+			set_temp_variable = { CMC_mcp_tmp = 20 }
+			set_temp_variable = { CMC_xp_gain_tmp = 0.1 }
+			set_temp_variable = { money_reserves_temp = -0.1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_mil_4 } }
+			set_temp_variable = { CMC_xp_gain_tmp = 0.05 }
+			set_temp_variable = { CMC_xp_loss_tmp = -0.1 }
+			set_temp_variable = { CMC_lrr_tmp = 0.1 }
+			set_temp_variable = { CMC_sf_tmp = 0.05 }
+			set_temp_variable = { money_reserves_temp = -0.5 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_equip_1 } }
+			TER_PLA_CMC_equip_o1 = yes
+			set_temp_variable = { CMC_army_ad_tmp = 0.075 }
+			set_temp_variable = { money_reserves_temp = -0.125 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_equip_2 } }
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = motorized_equipment 
+			}
+			set_temp_variable = { CMC_army_s_tmp = 0.15 }
+			set_temp_variable = { CMC_sf_tmp = 0.05 }
+			set_temp_variable = { money_reserves_temp = -0.1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_equip_3 } }
+			add_tech_bonus = {
+				bonus = 2
+				uses = 1
+				category = motorized_equipment 
+			}
+			set_temp_variable = { CMC_army_ad_tmp = 0.05 }
+			set_temp_variable = { CMC_sf_tmp = 0.05 }
+			set_temp_variable = { money_reserves_temp = -0.1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_equip_4 } }
+			add_tech_bonus = {
+				bonus = 3
+				uses = 1
+				category = MBT 
+			}
+			set_temp_variable = { CMC_army_s_tmp = 0.05 }
+			set_temp_variable = { CMC_army_org_regain_tmp = 0.1 }
+			set_temp_variable = { money_reserves_temp = -0.3 }
+			econ_money_reserves_change_raw_money = yes
+		}
+	}
+	else_if = {
+		limit = { check_variable = { PLA_CMC_proj_slct_num_2_tmp = 2 } }
+		if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_pol_2 } }
+			set_temp_variable = { CMC_army_org_regain_tmp = 0.05 }
+			set_temp_variable = { CMC_ap_monthly_rate_tmp = 0.3 }
+			set_temp_variable = { CMC_pp_gain_tmp = 0.15 }
+			set_temp_variable = { CMC_max_planning_tmp = 0.05 }
+			set_temp_variable = { money_reserves_temp = -0.1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_pol_3 } }
+			set_temp_variable = { CMC_pp_gain_tmp = 0.15 }
+			set_temp_variable = { CMC_ap_monthly_rate_tmp = 1.5 }
+			set_temp_variable = { money_reserves_temp = -0.15 }
+			econ_money_reserves_change_raw_money = yes
+			complete_national_focus = CPC_not_to_be_made_a_precedent
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_pol_4 } }
+			set_temp_variable = { CMC_max_planning_tmp = 0.1 }
+			set_temp_variable = { CMC_cp_gain_tmp = 0.1 }
+			set_temp_variable = { money_reserves_temp = -0.1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_mil_2 } }
+			TNO_improve_training_policy_effectiveness_med = yes
+			set_temp_variable = { CMC_max_planning_tmp = 0.1 }
+			set_temp_variable = { CMC_army_s_tmp = 0.15 }
+			set_temp_variable = { CMC_xp_gain_tmp = 0.15 }
+			set_temp_variable = { CMC_cmf_tmp = -0.15 }
+			set_temp_variable = { money_reserves_temp = -1.5 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_mil_3 } }
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = computing_tech 
+			}
+			set_temp_variable = { CMC_cp_gain_tmp = 0.25 }
+			set_temp_variable = { CMC_mcp_tmp = 50 }
+			set_temp_variable = { CMC_xp_gain_tmp = 0.15 }
+			set_temp_variable = { money_reserves_temp = -1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_equip_1 } }
+			TER_PLA_CMC_equip_o2 = yes
+			set_temp_variable = { CMC_army_ad_tmp = 0.025 }
+			set_temp_variable = { money_reserves_temp = -0.05 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_equip_2 } }
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = APC 
+			}
+			set_temp_variable = { CMC_army_s_tmp = 0.05 }
+			set_temp_variable = { CMC_sf_tmp = 0.1 }
+			set_temp_variable = { money_reserves_temp = -0.5 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_equip_3 } }
+			add_tech_bonus = {
+				bonus = 3
+				uses = 1
+				category = MBT_art 
+			}
+			add_tech_bonus = {
+				bonus = 1
+				uses = 1
+				category = APC_art 
+			}
+			set_temp_variable = { CMC_army_ad_tmp = 0.075 }
+			set_temp_variable = { CMC_sf_tmp = 0.025 }
+			set_temp_variable = { money_reserves_temp = -0.2 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		else_if = { 
+			limit = { check_variable = { PLA_CMC_ongoing_proj_num_tmp = token:PLA_CMC_p_equip_4 } }
+			add_tech_bonus = {
+				bonus = 3
+				uses = 1
+				category = helicopter 
+			}
+			set_temp_variable = { CMC_army_s_tmp = 0.05 }
+			set_temp_variable = { CMC_breakthrough_tmp = 0.05 }
+			set_temp_variable = { CMC_training_time_tmp = -0.1 }
+			set_temp_variable = { money_reserves_temp = -1 }
+			econ_money_reserves_change_raw_money = yes
+		}
+	}
+	TER_PLA_CMC_add_modifier_effect = yes
+	set_variable = { PLA_CMC_ongoing_proj_num = token:PLA_CMC_p_empty }
+	clear_variable = PLA_CMC_proj_slct_num_1
+	clear_variable = PLA_CMC_proj_slct_num_2
+	force_update_dynamic_modifier = yes
+}
+
+TER_PLA_CMC_add_modifier_effect = {
+	if = { 
+		limit = { NOT = { check_variable = { CMC_pp_gain_tmp = 0 } } } 
+		add_to_variable = { CPC_PLA_political_power_gain = CMC_pp_gain_tmp }
+		custom_effect_tooltip = "TER_CMC_add_pp_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_army_org_regain_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_army_org_regain = CMC_army_org_regain_tmp }
+		custom_effect_tooltip = "TER_CMC_add_ao_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_ap_monthly_rate_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_army_professionalism_monthly_rate = CMC_ap_monthly_rate_tmp }
+		custom_effect_tooltip = "TER_CMC_add_ap_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_max_planning_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_max_planning_factor = CMC_max_planning_tmp }
+		custom_effect_tooltip = "TER_CMC_add_amf_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_cp_gain_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_command_power_gain = CMC_cp_gain_tmp }
+		custom_effect_tooltip = "TER_CMC_add_cp_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_mcp_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_max_command_power = CMC_mcp_tmp }
+		custom_effect_tooltip = "TER_CMC_mcp_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_xp_gain_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_experience_gain_army_unit_factor = CMC_xp_gain_tmp }
+		custom_effect_tooltip = "TER_CMC_xp_gain_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_xp_loss_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_experience_loss_factor = CMC_xp_loss_tmp }
+		custom_effect_tooltip = "TER_CMC_xp_loss_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_cmf_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_combat_width_factor = CMC_cmf_tmp }
+		custom_effect_tooltip = "TER_CMC_cmf_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_lrr_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_land_reinforce_rate = CMC_lrr_tmp }
+		custom_effect_tooltip = "TER_CMC_lrr_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_army_ad_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_army_ad_factor = CMC_army_ad_tmp }
+		custom_effect_tooltip = "TER_CMC_army_ad_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_army_s_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_army_speed_factor = CMC_army_s_tmp }
+		custom_effect_tooltip = "TER_CMC_army_s_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_sf_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_supply_factor = CMC_sf_tmp }
+		custom_effect_tooltip = "TER_CMC_sf_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_breakthrough_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_breakthrough_factor = CMC_breakthrough_tmp }
+		custom_effect_tooltip = "TER_CMC_breakthrough_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { CMC_training_time_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_training_time_factor = CMC_training_time_tmp }
+		custom_effect_tooltip = "TER_CMC_training_time_tt"
+	}
+	if = { 
+		limit = { NOT = { check_variable = { NADT_research_speed_factor_tmp = 0 } } }
+		add_to_variable = { CPC_NADT_research_speed_factor = NADT_research_speed_factor_tmp }
+		custom_effect_tooltip = "TER_NADT_RSF_tt"
+	}
+	force_update_dynamic_modifier = yes
+}
+
+TER_PLA_CMC_equip_o1 = {
+	add_to_variable = { CPC_PLA_inf_equip_dummy_num = 0.1 }
+	hidden_effect = {
+		add_ideas = { CPC_PLA_inf_equip_dummy_1 }
+	}
+	custom_effect_tooltip = "TER_PLA_CMC_equip_o1_tt"
+}
+
+TER_PLA_CMC_equip_o2 = {
+	add_to_variable = { CPC_PLA_inf_equip_dummy_num = -0.1 }
+	hidden_effect = {
+		add_ideas = { CPC_PLA_inf_equip_dummy_2 }
+	}
+	custom_effect_tooltip = "TER_PLA_CMC_equip_o2_tt"
+}
+
+CPC_PLAAF_dummy_swap = {
+	if = { 
+		limit = { has_idea = CPC_non_exsistent_air_force } 
+		set_variable = { CPC_PLAAF_dummy_num = 0.1 }
+		hidden_effect = {
+			swap_ideas = {
+				remove_idea = CPC_non_exsistent_air_force
+				add_idea = CPC_non_exsistent_air_force_2
+			}
+		}
+		custom_effect_tooltip = "CPC_PLAAF_dummy_swap_tt"
+	}
+	hidden_effect = {
+		swap_ideas = {
+			remove_idea = CPC_PLA_issue_1
+			add_idea = CPC_PLA_issue_2
+		}
+	}
+}
+
+TER_NADT_begin_sp_tech_proj = {
+	set_country_flag = CPC_NADT_executing_sp_tech_proj
+	set_variable = { NADT_proj_time_consume = time_tmp } #设定天数
+	set_variable = { NADT_ongoing_proj_num = proj_name_tmp } #设定项目
+	set_variable = { CPC_NADT_modifier_misc_costs_modifier = money_tmp } #设定花费，单位为B
+	CMC_NADT_new_proj_fire_alert = yes
+	hidden_effect = {
+		activate_mission = CPC_NADT_executing_sp_tech_proj
+	}
+	custom_effect_tooltip = "TER_NADT_begin_sp_tech_proj_tt"
+	effect_tooltip = {
+		TER_NADT_complete_sp_tech_proj = yes
+	}
+}
+
+TER_NADT_complete_sp_tech_proj = {
+	CMC_NADT_new_proj_remove_alert = yes
+	if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_1 } }
+		CPC_RBM_level_up = yes
+		set_temp_variable = { RBM_10_tmp = 2.5 }
+		CPC_RBM_modifier_change = yes
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.1
+					days = 50
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_2 } }
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_med = yes
+		set_variable = { NADT_sp_tech_left = 3 }
+		set_variable = { NADT_sp_tech_right = 3 }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_3_left } }
+		add_to_variable = { NADT_sp_tech_left = 1 }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = helicopter_engines } } 
+				set_technology = { helicopter_engines = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = helicopter 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = very_early_helicopter } } 
+				set_technology = { very_early_helicopter = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = helicopter 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = early_helicopter } } 
+				set_technology = { early_helicopter = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = helicopter 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = transport_helicopter_1960 } } 
+				set_technology = { transport_helicopter_1960 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = helicopter 
+				}
+			}
+		}
+		custom_effect_tooltip = "NADT_proj_3_left_tt"
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_4_left } }
+		add_to_variable = { NADT_sp_tech_left = 1 }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = early_fighter } } 
+				set_technology = { early_fighter = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = fighter_1945 } } 
+				set_technology = { fighter_1945 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = interceptor_1945 } } 
+				set_technology = { interceptor_1945 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = CAS_1945 } } 
+				set_technology = { CAS_1945 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = CAS_1945 } } 
+				set_technology = { CAS_1945 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = strategic_bomber1 } } 
+				set_technology = { strategic_bomber1 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = heavy_air_1945 } } 
+				set_technology = { heavy_air_1945 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = tac_bomber1 } } 
+				set_technology = { tac_bomber1 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = tac_air_1945 } } 
+				set_technology = { tac_air_1945 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = transport_air1 } } 
+				set_technology = { transport_air1 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = transport_air_1945 } } 
+				set_technology = { transport_air_1945 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+			if = { 
+				limit = { NOT = { has_tech = scout_plane_1945 } } 
+				set_technology = { scout_plane_1945 = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 2
+					uses = 1
+					category = light_air 
+				}
+			}
+		}
+		custom_effect_tooltip = "NADT_proj_4_left_tt"
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_5_left } }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+		}
+		add_to_variable = { NADT_sp_tech_left = 1 }
+		set_temp_variable = { CMC_army_ad_tmp = 0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		TNO_improve_industrial_expertise_med = yes
+		TNO_improve_industrial_equipment_med = yes
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_6_left } }
+		set_technology = { ter_air_assault_tech = 1 }
+		set_temp_variable = { CMC_training_time_tmp = -0.1 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_3_mid } }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+		}
+		TNO_improve_agriculture_med = yes
+		TNO_improve_healthcare_med = yes
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_4_mid } }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+		}
+		TNO_improve_agriculture_high = yes
+		add_tech_bonus = {
+			bonus = 1
+			uses = 2
+			category = industry 
+		}
+		CPC_RBM_level_up = yes
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_5_mid } }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+		}
+		TNO_improve_research_facilities_med = yes
+		if = { 
+			limit = { NOT = { has_tech = computing_machine_1960 } }
+			set_technology = { computing_machine_1960 = 1 }
+		}
+		else = {
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = computing_tech 
+			}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_6_mid } }
+		TNO_improve_industrial_equipment_high = yes
+		TNO_improve_industrial_expertise_med = yes
+		add_tech_bonus = {
+			bonus = 2
+			uses = 3
+			category = industry 
+		}
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_3_right } }
+		add_to_variable = { NADT_sp_tech_right = 1 }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+		}
+		TNO_improve_army_professionalism_med = yes
+		if = { 
+			limit = { NOT = { has_tech = command_and_control1 } }
+			set_technology = { command_and_control1 = 1 }
+		}
+		if = { 
+			limit = { NOT = { has_tech = command_and_control2 } }
+			set_technology = { command_and_control2 = 1 }
+		}
+		if = { 
+			limit = { NOT = { has_tech = command_and_control3 } }
+			set_technology = { command_and_control3 = 1 }
+		}
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_4_right } }
+		add_to_variable = { NADT_sp_tech_right = 1 }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+		}
+		TNO_improve_army_professionalism_med = yes
+		if = { 
+			limit = { NOT = { has_tech = military_infrastructure1 } }
+			set_technology = { military_infrastructure1 = 1 }
+		}
+		if = { 
+			limit = { NOT = { has_tech = military_infrastructure2 } }
+			set_technology = { military_infrastructure2 = 1 }
+		}
+		if = { 
+			limit = { NOT = { has_tech = military_infrastructure3 } }
+			set_technology = { military_infrastructure3 = 1 }
+		}
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_5_right } }
+		add_to_variable = { NADT_sp_tech_right = 1 }
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = TER_debug_phase_2_test } }
+				country_event = {
+					id = CPC_NADT_event.2
+					days = 50
+				}
+			}
+		}
+		set_temp_variable = { CMC_sf_tmp = 0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 1000
+		}
+		add_equipment_to_stockpile = {
+			type = APC_equipment
+			amount = 500
+		}
+	}
+	else_if = {
+		limit = { check_variable = { proj_name_tmp = token:NADT_proj_6_right } }
+		set_temp_variable = { CMC_lrr_tmp = 0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+		hidden_effect = {
+			set_technology = { 
+				tech_engineers3 = 1
+				tech_engineers4 = 1
+				tech_recon3 = 1
+				tech_recon4 = 1
+				tech_military_police3 = 1
+				tech_military_police4 = 1
+				tech_maintenance_company3 = 1
+				tech_maintenance_company4 = 1
+				tech_field_hospital2 = 1
+				tech_field_hospital3 = 1
+				tech_field_hospital4 = 1
+				tech_logistics_company = 1
+				tech_logistics_company2 = 1
+				tech_logistics_company3 = 1
+				tech_logistics_company4 = 1
+				tech_logistics_company = 1
+				tech_logistics_company2 = 1
+				tech_logistics_company3 = 1
+				tech_logistics_company4 = 1
+			}
+		}
+		custom_effect_tooltip = "NADT_proj_6_right_tt"
+	}
+	add_to_variable = { NADT_sp_tech_proj_phase = 1 }
+	
+	clr_country_flag = CPC_NADT_executing_sp_tech_proj
+	set_variable = { NADT_proj_time_consume = 0 }
+	set_variable = { NADT_completed_proj_num = NADT_ongoing_proj_num }
+	set_variable = { NADT_ongoing_proj_num = token:NADT_proj_e }
+	set_variable = { CPC_NADT_modifier_misc_costs_modifier = 0 }
+}
+
+NADT_test_proj = {
+	set_temp_variable = { time_tmp = 300 }
+	set_temp_variable = { proj_name_tmp = token:NADT_proj_1 }
+	set_temp_variable = { money_tmp = 0.2 }
+
+	TER_NADT_begin_sp_tech_proj = yes
+}
+
+NADT_nuclear_program_initialize = {
+	add_to_array = { NADT_NP_progress = 0 }
+	add_to_array = { NADT_NP_progress = 5 }
+	add_to_array = { NADT_NP_progress = 0 }
+	add_to_array = { NADT_NP_progress = 0 }
+	add_to_array = { NADT_NP_progress = 0 }
+	add_to_array = { NADT_NP_progress = 0 }
+	
+	set_variable = { NADT_nuclear_proj_phase = 1 }
+	set_variable = { TER_NADT_NP_SP_proj_num = 1 }
+    set_variable = { NADT_NP_monthly_speed_original = 0.5 }
+	set_variable = { CPC_NADT_NP_misc_costs_modifier = 0.1 }
+	hidden_effect = {
+		add_dynamic_modifier = { modifier = CPC_NADT_NP_modifier }
+		add_ideas = CPC_NADT_NP_modifier_dummy
+	}
+	NADT_NP_monthly_speed_calc = yes
+	custom_effect_tooltip = "NADT_NP_initialize"
+}
+
+NADT_NP_change_monthly_speed = {
+	add_to_variable = { NADT_NP_monthly_speed_original = NP_speed_tmp }
+	hidden_effect = {
+		NADT_NP_monthly_speed_calc = yes
+		NADT_NP_check_update = yes
+	}
+	custom_effect_tooltip = "NADT_NP_change_monthly_speed"
+}
+
+NADT_NP_instantly_change_progress = {
+	add_to_variable = { NADT_NP_progress^NADT_nuclear_proj_phase = NP_prog_tmp }
+	hidden_effect = {
+		NADT_NP_check_update = yes
+	}
+	custom_effect_tooltip = "NADT_NP_instantly_change_progress"
+}
+
+NADT_NP_monthly_speed_calc = { 
+	set_temp_variable = { NADT_NP_monthly_speed_tmp_1 = CPC_NADT_NP_PP_cost } #1 - 1%
+
+	set_temp_variable = { NADT_NP_monthly_speed_tmp_2 = CPC_NADT_NP_research_extra_cost_print } #1(100%) - 3.5%
+	multiply_temp_variable = { NADT_NP_monthly_speed_tmp_2 = 3.5 }
+
+	set_temp_variable = { NADT_NP_monthly_speed_tmp_3 = CPC_NADT_NP_misc_costs_modifier } #1B - 1.5%
+	multiply_temp_variable = { NADT_NP_monthly_speed_tmp_3 = 1.5 }
+
+	set_variable = { NADT_NP_monthly_speed = NADT_NP_monthly_speed_original }
+	add_to_variable = { NADT_NP_monthly_speed = NADT_NP_monthly_speed_tmp_1	}
+	add_to_variable = { NADT_NP_monthly_speed = NADT_NP_monthly_speed_tmp_2	}
+	add_to_variable = { NADT_NP_monthly_speed = NADT_NP_monthly_speed_tmp_3	}
+}
+
+NADT_NP_modifier_change_money = {
+	add_to_variable = { CPC_NADT_NP_misc_costs_modifier = NP_money_tmp }
+	clamp_variable = {
+		var = CPC_NADT_NP_misc_costs_modifier
+		min = 0
+		max = 2
+	}
+	NADT_NP_monthly_speed_calc = yes
+	custom_effect_tooltip = "NADT_NP_modifier_change_money"
+}
+
+NADT_NP_modifier_change_res = {
+	add_to_variable = { CPC_NADT_NP_research_extra_cost_print = NP_res_tmp }
+	subtract_from_variable = { CPC_NADT_NP_research_extra_cost_true = NP_res_tmp }
+	clamp_variable = {
+		var = CPC_NADT_NP_research_extra_cost_print
+		min = 0
+		max = 0.2
+	}
+	clamp_variable = {
+		var = CPC_NADT_NP_research_extra_cost_true
+		max = 0
+		min = -0.2
+	}
+	NADT_NP_monthly_speed_calc = yes
+	custom_effect_tooltip = "NADT_NP_modifier_change_res"
+}
+
+NADT_NP_modifier_change_pp = {
+	add_to_variable = { CPC_NADT_NP_PP_cost = NP_PP_tmp }
+	clamp_variable = {
+		var = CPC_NADT_NP_PP_cost
+		min = 0
+		max = 2
+	}
+	NADT_NP_monthly_speed_calc = yes
+	custom_effect_tooltip = "NADT_NP_modifier_change_pp"
+}
+
+NADT_NP_monthly_update = { 
+	NADT_NP_monthly_speed_calc = yes
+	add_to_variable = { NADT_NP_progress^NADT_nuclear_proj_phase = NADT_NP_monthly_speed }
+	NADT_NP_check_update = yes
+}
+
+NADT_NP_check_update = {
+	clamp_variable = {
+		var = NADT_NP_progress^NADT_nuclear_proj_phase
+		min = 0
+		max = 100
+	}
+	if = {
+		limit = { 
+			check_variable = { NADT_NP_progress^NADT_nuclear_proj_phase = 100 }
+			check_variable = { NADT_nuclear_proj_phase = 1 } 
+		}
+		country_event = CPC_NUKE.3
+		subtract_from_variable = { NADT_NP_monthly_speed_original = 1 }
+	}
+	else_if = {
+		limit = { 
+			check_variable = { NADT_NP_progress^NADT_nuclear_proj_phase = 100 }
+			check_variable = { NADT_nuclear_proj_phase = 2 } 
+			check_variable = { NADT_NP_progress^3 = 100 }
+		}
+		set_variable = { NADT_nuclear_proj_phase = 4 }
+		NADT_NP_update_modifier = yes
+		subtract_from_variable = { NADT_NP_monthly_speed_original = 1 }
+	}
+	else_if = {
+		limit = { 
+			check_variable = { NADT_NP_progress^NADT_nuclear_proj_phase = 100 }
+			check_variable = { NADT_nuclear_proj_phase = 3 } 
+			check_variable = { NADT_NP_progress^2 = 100 }
+		}
+		set_variable = { NADT_nuclear_proj_phase = 4 }
+		NADT_NP_update_modifier = yes
+		subtract_from_variable = { NADT_NP_monthly_speed_original = 1 }
+	}
+	else_if = {
+		limit = { 
+			check_variable = { NADT_NP_progress^NADT_nuclear_proj_phase = 100 }
+			check_variable = { NADT_nuclear_proj_phase = 2 } 
+			check_variable = { NADT_NP_progress^3 < 100 }
+		}
+		set_variable = { NADT_nuclear_proj_phase = 3 }
+		NADT_NP_update_modifier = yes
+		subtract_from_variable = { NADT_NP_monthly_speed_original = 1 }
+	}
+	else_if = {
+		limit = { 
+			check_variable = { NADT_NP_progress^NADT_nuclear_proj_phase = 100 }
+			check_variable = { NADT_nuclear_proj_phase = 3 } 
+			check_variable = { NADT_NP_progress^2 < 100 }
+		}
+		set_variable = { NADT_nuclear_proj_phase = 2 }
+		NADT_NP_update_modifier = yes
+		subtract_from_variable = { NADT_NP_monthly_speed_original = 1 }
+	}
+	else_if = { 
+		limit = { 
+			check_variable = { NADT_NP_progress^NADT_nuclear_proj_phase = 100 }
+		}
+		add_to_variable = { NADT_nuclear_proj_phase = 1 } 
+		NADT_NP_update_modifier = yes
+		subtract_from_variable = { NADT_NP_monthly_speed_original = 1 }
+	}
+	if = { 
+		limit = { check_variable = { NADT_nuclear_proj_phase = 6 } }
+		TERNuclearProgramCompletion = yes
+	}
+}
+
+NADT_NP_update_modifier = {
+	set_variable = { CPC_NADT_NP_research_facilities_monthly_rate = 0 }
+	set_variable = { CPC_NADT_NP_academic_base_monthly_rate = 0 }
+	set_variable = { CPC_NADT_NP_industrial_expertise_monthly_rate = 0 }
+	set_variable = { CPC_NADT_NP_industrial_equipment_monthly_rate = 0 }
+	set_variable = { CPC_NADT_NP_regulations_policy_monthly_rate = 0 }
+	set_variable = { CPC_NADT_NP_local_resources_factor = 0 }
+	set_variable = { CPC_NADT_NP_encryption = 0 }
+
+	if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 1 } }
+		set_variable = { CPC_NADT_NP_research_facilities_monthly_rate = 1.5 }
+		set_variable = { CPC_NADT_NP_academic_base_monthly_rate = 2 }
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 2 } }
+		set_variable = { CPC_NADT_NP_industrial_expertise_monthly_rate = 2 }
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 3 } }
+		set_variable = { CPC_NADT_NP_industrial_equipment_monthly_rate = 2 }
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 4 } }
+		set_variable = { CPC_NADT_NP_regulations_policy_monthly_rate = 0.02 }
+		set_variable = { CPC_NADT_NP_local_resources_factor = 0.1 }
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 5 } }
+		set_variable = { CPC_NADT_NP_academic_base_monthly_rate = 2 }
+		set_variable = { CPC_NADT_NP_encryption = 0.05 }
+	}
+}
+NADT_NP_sp_mission_begins = { 
+	set_variable = { TER_NADT_NP_SP_proj_num = 2 }
+	if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 1 } }
+		set_temp_variable = { money_tmp = -1 }
+		set_temp_variable = { time_tmp = 150 }
+	}
+	else_if = {
+		limit = { 
+			OR = {
+				check_variable = { NADT_nuclear_proj_phase = 2 } 
+				check_variable = { NADT_nuclear_proj_phase = 3 } 
+			} 
+		}
+		set_temp_variable = { money_tmp = -1.5 }
+		set_temp_variable = { time_tmp = 200 }
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 4 } }
+		set_temp_variable = { money_tmp = -2 }
+		set_temp_variable = { time_tmp = 200 }
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 5 } }
+		set_temp_variable = { money_tmp = -2.5 }
+		set_temp_variable = { time_tmp = 300 }
+	}
+	set_variable = { NADT_NP_sp_mission_time = time_tmp }
+	set_variable = { NADT_NP_sp_mission_money = money_tmp }
+	set_country_flag = CPC_NADT_NP_sp_mission
+	hidden_effect = { activate_mission = CPC_NADT_NP_sp_mission }
+}
+
+NADT_NP_sp_mission_done = {
+	set_variable = { TER_NADT_NP_SP_proj_num = 1 }
+	clr_country_flag = CPC_NADT_NP_sp_mission
+	if = { 
+		limit = { check_variable = { NADT_nuclear_proj_phase = 1 } }
+		TNO_improve_research_facilities_med = yes
+		TNO_improve_academic_base_low = yes
+		set_temp_variable = { NP_prog_tmp = 5 }
+		NADT_NP_instantly_change_progress = yes
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 2 } }
+		random_core_state = {
+			add_resource = {
+				type = uranium
+				amount = 2
+			}
+		}
+		TNO_improve_industrial_expertise_low = yes
+		set_temp_variable = { NP_prog_tmp = 5 }
+		NADT_NP_instantly_change_progress = yes
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 3 } }
+		random_core_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+			}
+		}
+		TNO_improve_industrial_equipment_low = yes
+		set_temp_variable = { NP_prog_tmp = 5 }
+		NADT_NP_instantly_change_progress = yes
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 4 } }
+		random_core_state = {
+			add_resource = {
+				type = uranium
+				amount = 2
+			}
+		}
+		TNO_improve_regulations_policy_effectiveness_med = yes
+		TNO_improve_industrial_equipment_low = yes
+		TNO_improve_industrial_expertise_low = yes
+		set_temp_variable = { NP_prog_tmp = 7.5 }
+		NADT_NP_instantly_change_progress = yes
+	}
+	else_if = {
+		limit = { check_variable = { NADT_nuclear_proj_phase = 5 } }
+		TNO_improve_research_facilities_high = yes
+		TNO_improve_academic_base_med = yes
+		set_temp_variable = { NP_prog_tmp = 10 }
+		NADT_NP_instantly_change_progress = yes
+	}
+	hidden_effect = {
+		set_temp_variable = { money_reserves_temp = NADT_NP_sp_mission_money }
+		econ_money_reserves_change_raw_money = yes
+	}
+	clear_variable = NADT_NP_sp_mission_time
+	clear_variable = NADT_NP_sp_mission_money
+}
+TERNuclearProgramCompletion = {
+	#add_to_array = { global.TNO_Superpowers = ROOT }
+	hidden_effect = {
+		country_event = CPC_NUKE.1
+	}
+	set_variable = { CPC_NADT_NP_PP_cost = 0 }
+	set_variable = { CPC_NADT_NP_research_extra_cost_print = 0 }
+	set_variable = { CPC_NADT_NP_misc_costs_modifier = 0 }
+	NADT_NP_monthly_speed_calc = yes
+	remove_dynamic_modifier = {
+		modifier = CPC_NADT_NP_modifier
+	}
+	remove_ideas = CPC_NADT_NP_modifier_dummy
+	
+	set_variable = { nuclear_stockpile = 1 }
+	set_variable = { nuclear_stockpile_k = nuclear_stockpile }
+	divide_variable = { nuclear_stockpile_k = 1000 }
+	set_variable = { nuclear_global_coverage = 0.1 }
+	calculate_strike_capability = yes
+	
+	set_technology = { ICBM = 1 }
+	set_technology = { MRBM = 1 }
+	set_technology = { SRBM = 1 }
+	
+	set_technology = { nuclear_reactors = 1 }
+	set_technology = { nuclear_weapons = 1 }
+}
+
+TER_nuke_YEEEEEEEEES = {
+	goto_province = 10614
+	create_entity = { 
+		entity = nuke_entity
+		id = 18931226
+		province = 10614
+		min_zoom = -1
+	}
+	set_entity_animation = {
+		id = 18931226
+		animation = "attack"
+	}
+}
+
+CMC_reform_fire_alert = {
+	set_temp_variable = { alert_id = token:Alert_CMC_reform }
+	add_TNO_alert_unless_exists = yes
+}
+
+CMC_NADT_new_proj_fire_alert = {
+	set_temp_variable = { alert_id = token:Alert_NADT_new_proj }
+	add_TNO_alert_unless_exists = yes
+}
+
+CMC_reform_remove_alert = {
+	set_temp_variable = { alert_id = token:Alert_CMC_reform }
+	remove_TNO_alert = yes
+}
+
+CMC_NADT_new_proj_remove_alert = {
+	set_temp_variable = { alert_id = token:Alert_NADT_new_proj }
+	remove_TNO_alert = yes
+}

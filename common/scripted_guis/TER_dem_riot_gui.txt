@@ -1,0 +1,48 @@
+scripted_gui = {
+	TER_dem_riot_gui = {
+		context_type = decision_category
+		window_name = "TER_dem_riot_gui"
+		visible = {
+			always = yes
+		}
+
+		properties = {
+			BJC_power_prog = { frame = BJC.TER_dem_power }
+			WHC_power_prog = { frame = WHC.TER_dem_power }
+			LZD_power_prog = { frame = LZD.TER_dem_power }
+			BJC_radical_prog = { frame = BJC.TER_dem_radical }
+			WHC_radical_prog = { frame = WHC.TER_dem_radical }
+			LZD_radical_prog = { frame = LZD.TER_dem_radical }
+			BJC_name = { frame = CPC_dem_riot_selected^0 }
+			WHC_name = { frame = CPC_dem_riot_selected^1 }
+			LZD_name = { frame = CPC_dem_riot_selected^2 }
+		}
+
+		triggers = {
+			BJC_power_prog_visible = { BJC = { exists = yes } }
+			WHC_power_prog_visible = { WHC = { exists = yes } }
+			LZD_power_prog_visible = { LZD = { exists = yes } }
+			BJC_radical_prog_visible = { BJC = { exists = yes } }
+			WHC_radical_prog_visible = { WHC = { exists = yes } }
+			LZD_radical_prog_visible = { LZD = { exists = yes } }
+			BJC_collapse_visible = { BJC = { exists = no } }
+			WHC_collapse_visible = { WHC = { exists = no } }
+			LZD_collapse_visible = { LZD = { exists = no } }
+			BJC_name_click_enabled = { BJC = { exists = yes } }
+			WHC_name_click_enabled = { WHC = { exists = yes } }
+			LZD_name_click_enabled = { LZD = { exists = yes } }
+		}
+
+		effects = {
+			BJC_name_click = { set_variable = { CPC_dem_riot_selected^0 = 2 }
+							   set_variable = { CPC_dem_riot_selected^1 = 1 }
+							   set_variable = { CPC_dem_riot_selected^2 = 1 } }
+			WHC_name_click = { set_variable = { CPC_dem_riot_selected^0 = 1 }
+							   set_variable = { CPC_dem_riot_selected^1 = 2 }
+							   set_variable = { CPC_dem_riot_selected^2 = 1 } }
+			LZD_name_click = { set_variable = { CPC_dem_riot_selected^0 = 1 }
+							   set_variable = { CPC_dem_riot_selected^1 = 1 }
+							   set_variable = { CPC_dem_riot_selected^2 = 2 } }
+		}
+	}
+}

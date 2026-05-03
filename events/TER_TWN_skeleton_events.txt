@@ -1,0 +1,619 @@
+add_namespace = TWN_skeleton
+add_namespace = TWN_news
+
+##########################
+#       骨 架 事 件       #
+##########################
+
+country_event = { #台湾地方法在国会通过
+	id = TWN_skeleton.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.1" }
+	title = TWN_skeleton.1.t
+	desc = TWN_skeleton.1.d
+	is_triggered_only = yes
+
+	option = {
+		name = TWN_skeleton.1.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.0
+		}
+		country_event = {
+			id = TWN_skeleton.2
+			days = 327
+		}
+	}
+}
+
+country_event = { #总督府宣布第五届台督选举日期
+	id = TWN_skeleton.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.2" }
+	title = TWN_skeleton.2.t
+	desc = TWN_skeleton.2.d
+	is_triggered_only = yes
+
+	option = {
+		name = TWN_skeleton.2.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.1 #日裔游行
+		}
+		country_event = {
+			id = TWN_skeleton.3
+			days = 157
+		}
+	}
+}
+
+country_event = { #台督镇压与否的抉择
+	id = TWN_skeleton.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.2" }
+	title = TWN_skeleton.3.t
+	desc = TWN_skeleton.3.d
+	is_triggered_only = yes
+
+	option = {
+		name = TWN_skeleton.3.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.2 
+		}
+		country_event = {
+			id = TWN_skeleton.4
+			days = 72
+		}
+		retire_country_leader = yes
+		promote_character = TWN_Okuno_Seisuke
+		set_politics = {
+			ruling_party = fascism
+		}
+		set_popularities = {
+			despotism = 30
+			fascism = 45
+			fascism_1 = 10
+			ultranationalism = 5
+			conservatism = 5
+			socialist = 3
+			communist = 2
+		}
+	}
+	option = {
+		name = TWN_skeleton.3.b
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.4 
+		}
+		country_event = {
+			id = TWN_skeleton.5
+			days = 72
+		}
+	}
+}
+
+country_event = { #总督换届-柏村信雄
+	id = TWN_skeleton.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.4" }
+	title = TWN_skeleton.4.t
+	desc = TWN_skeleton.4.d
+	is_triggered_only = yes
+
+	option = {
+		name = TWN_skeleton.4.a
+		ai_chance = { factor = 10 }
+		retire_country_leader = yes
+		promote_character = TWN_Kashiwamura_Nobuo
+		set_politics = {
+			ruling_party = fascism
+		}
+		set_popularities = {
+			despotism = 33
+			fascism = 37
+			fascism_1 = 13
+			ultranationalism = 5
+			conservatism = 5
+			socialist = 3
+			communist = 4
+		}
+		country_event = {
+			id = TWN_skeleton.6
+			days = 140
+		}
+	}
+}
+
+country_event = { #总督换届-新井裕
+	id = TWN_skeleton.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.5" }
+	title = TWN_skeleton.5.t
+	desc = TWN_skeleton.5.d
+	is_triggered_only = yes
+
+	option = {
+		name = TWN_skeleton.5.a
+		ai_chance = { factor = 10 }
+		country_event = {
+			id = TWN_skeleton.6
+			days = 140
+		}
+		retire_country_leader = yes
+		promote_character = TWN_Hiroshi_Arai
+		set_politics = {
+			ruling_party = despotism
+		}
+		set_popularities = {
+			despotism = 41
+			fascism = 34
+			fascism_1 = 13
+			ultranationalism = 5
+			conservatism = 4
+			socialist = 1
+			communist = 2
+		}
+	}
+}
+
+country_event = { #台博会准备
+	id = TWN_skeleton.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.6" }
+	title = TWN_skeleton.6.t
+	desc = TWN_skeleton.6.d
+	is_triggered_only = yes
+
+	option = {
+		name = TWN_skeleton.6.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.4
+		}
+		set_country_flag = TWN_we_choose_GNG
+		country_event = {
+			id = TWN_skeleton.7
+			days = 477
+		}
+	}
+	option = {
+		name = TWN_skeleton.6.b
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.5
+		}
+		set_country_flag = TWN_we_choose_MAN
+		country_event = {
+			id = TWN_skeleton.7
+			days = 477
+		}
+	}
+}
+
+country_event = { #台博会不祥事
+	id = TWN_skeleton.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.7" }
+	title = TWN_skeleton.7.t
+	desc = TWN_skeleton.7.d
+	is_triggered_only = yes
+
+	option = {
+		name = TWN_skeleton.7.a #电子平成天皇梦到赛博炸弹
+		ai_chance = { factor = 10 }
+		if = {
+			limit = { has_country_flag = TWN_we_choose_GNG }
+			random_list = {
+				50 = {
+					every_country = {
+						news_event = TWN_news.8
+					}
+					TWN = { country_event = { id = TWN_skeleton.8 days = 5 } } 
+					TWN = { country_event = { id = TWN_skeleton.10 days = 100 } } 
+				}
+				30 = {
+					every_country = {
+						news_event = TWN_news.7
+					}
+					TWN = { country_event = { id = TWN_skeleton.10 days = 100 } } 
+				}
+				20 = {
+					every_country = {
+						news_event = TWN_news.6
+					}
+					TWN = { country_event = { id = TWN_skeleton.9 days = 5 } } 
+					TWN = { country_event = { id = TWN_skeleton.10 days = 100 } } 
+				}
+			}	
+		}
+		else_if = {
+			limit = { has_country_flag = TWN_we_choose_MAN }
+			random_list = {
+				65 = {
+					every_country = {
+						news_event = TWN_news.6
+					}
+					TWN = { country_event = { id = TWN_skeleton.8 days = 5 } } 
+					TWN = { country_event = { id = TWN_skeleton.10 days = 100 } } 
+				}
+				20 = {
+					every_country = {
+						news_event = TWN_news.7
+					}
+					TWN = { country_event = { id = TWN_skeleton.9 days = 5 } } 
+					TWN = { country_event = { id = TWN_skeleton.10 days = 100 } } 
+				}
+				15 = {
+					every_country = {
+						news_event = TWN_news.8
+					}
+					TWN = { country_event = { id = TWN_skeleton.10 days = 100 } } 
+				}
+			}
+		}
+		
+	}
+}
+
+country_event = { #台博会爆炸 - 闲院宫春仁王接任第10方面军总司令，出任台湾总督
+	id = TWN_skeleton.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.8" }
+	title = TWN_skeleton.8.t
+	desc = TWN_skeleton.8.d
+	is_triggered_only = yes
+	option = {
+		name = TWN_skeleton.8.a
+		ai_chance = { factor = 10 }
+		retire_country_leader = yes
+		promote_character = TWN_Kanin_no_Miya_Haruhito
+		set_politics = {
+			ruling_party = ultranationalism
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = "TWN_ultranationalism_IJA_1_long"
+			name = "TWN_ultranationalism_IJA_1"
+		}
+		set_popularities = {
+			despotism = 5
+			fascism = 5
+			fascism_1 = 4
+			ultranationalism = 75
+			conservatism = 5
+			socialist = 3
+			communist = 3
+		}
+	}
+}
+
+country_event = { #台博会爆炸 - 石冈实出任台湾总督
+	id = TWN_skeleton.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.9" }
+	title = TWN_skeleton.9.t
+	desc = TWN_skeleton.9.d
+	is_triggered_only = yes
+	option = {
+		name = TWN_skeleton.9.a
+		ai_chance = { factor = 10 }
+		retire_country_leader = yes
+		promote_character = TWN_Minoru_Ishioka
+		set_politics = {
+			ruling_party = despotism
+		}
+		set_popularities = {
+			despotism = 19
+			fascism = 61
+			fascism_1 = 4
+			ultranationalism = 8
+			conservatism = 3
+			socialist = 3
+			communist = 2
+		}
+	}
+}
+
+country_event = { #台湾大审判
+	id = TWN_skeleton.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.9" }
+	title = TWN_skeleton.10.t
+	desc = TWN_skeleton.10.d
+	is_triggered_only = yes
+	option = {
+		name = TWN_skeleton.10.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.9
+		}
+		country_event = { id = TWN_skeleton.11 days = 160 }
+	}
+}
+
+country_event = { #台府公布第六届地方选举日期
+	id = TWN_skeleton.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.11" }
+	title = TWN_skeleton.11.t
+	desc = TWN_skeleton.11.d
+	is_triggered_only = yes
+	option = {
+		name = TWN_skeleton.11.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.10
+		}
+		country_event = { id = TWN_skeleton.12 days = 180 }
+	}
+}
+
+country_event = { #台湾暴动
+	id = TWN_skeleton.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.12" }
+	title = TWN_skeleton.12.t
+	desc = TWN_skeleton.12.d
+	is_triggered_only = yes
+	option = {
+		name = TWN_skeleton.12.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.11
+		}
+		every_country = {
+			news_event = { id = TWN_news.12 days = 65 }
+		}
+	}
+	option = {
+		name = TWN_skeleton.12.b
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.11
+		}
+		country_event = { id = TWN_skeleton.13 days = 65 }
+	}
+}
+
+country_event = { #东京震怒 - 上村健太郎履职
+	id = TWN_skeleton.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.13" }
+	title = TWN_skeleton.13.t
+	desc = TWN_skeleton.13.d
+	is_triggered_only = yes
+	option = {
+		name = TWN_skeleton.13.a
+		ai_chance = { factor = 10 }
+		every_country = {
+			news_event = TWN_news.13
+		}
+		retire_country_leader = yes
+		promote_character = TWN_Kentaro_Uemura
+		set_politics = {
+			ruling_party = fascism
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = "TWN_ultranationalism_party_long"
+			name = "TWN_ultranationalism_party"
+		}
+		set_popularities = {
+			despotism = 6
+			fascism = 73
+			fascism_1 = 4
+			ultranationalism = 10
+			conservatism = 2
+			socialist = 3
+			communist = 2
+		}
+	}
+}
+
+country_event = { #中日战争后 - 源田实履职
+	id = TWN_skeleton.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_skeleton.14" }
+	title = TWN_skeleton.14.t
+	desc = TWN_skeleton.14.d
+	is_triggered_only = yes
+	option = {
+		name = TWN_skeleton.14.a
+		ai_chance = { factor = 10 }
+		if = {
+			limit = { 
+				has_character = TWN_kanin_no_miya_haruhito
+			}
+			retire_character = TWN_kanin_no_miya_haruhito
+		}
+		promote_character = TWN_Kentaro_Uemura
+		set_politics = {
+			ruling_party = ultranationalism
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = "TWN_ultranationalism_IJA_2_long"
+			name = "TWN_ultranationalism_IJA_2"
+		}
+		set_popularities = {
+			fascism_1 = 1
+			ultranationalism = 78
+			national_socialism = 15
+			conservatism = 1
+			socialist = 3
+			communist = 2
+		}
+	}
+}
+
+##########################
+#       世 界 新 闻       #
+##########################
+news_event = {
+	id = TWN_news.0
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.0" }
+	title = TWN_news.0.t
+	desc = TWN_news.0.desc
+	picture = GFX_TWN_news_0
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.0.a
+	}
+}
+
+news_event = {
+	id = TWN_news.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.1" }
+	title = TWN_news.1.t
+	desc = TWN_news.1.desc
+	picture = GFX_TWN_news_1
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.1.a
+	}
+}
+
+news_event = {
+	id = TWN_news.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.2" }
+	title = TWN_news.2.t
+	desc = TWN_news.2.desc
+	picture = GFX_TWN_news_2
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.2.a
+	}
+}
+
+news_event = {
+	id = TWN_news.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.3" }
+	title = TWN_news.3.t
+	desc = TWN_news.3.desc
+	picture = GFX_TWN_news_3
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.3.a
+	}
+}
+
+news_event = {
+	id = TWN_news.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.4" }
+	title = TWN_news.4.t
+	desc = TWN_news.4.desc
+	picture = GFX_TWN_news_4
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.4.a
+	}
+}
+
+news_event = {
+	id = TWN_news.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.5" }
+	title = TWN_news.5.t
+	desc = TWN_news.5.desc
+	picture = GFX_TWN_news_5
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.5.a
+	}
+}
+
+news_event = {
+	id = TWN_news.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.6" }
+	title = TWN_news.6.t
+	desc = TWN_news.6.desc
+	picture = GFX_TWN_news_6
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.6.a
+	}
+}
+
+news_event = {
+	id = TWN_news.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.7" }
+	title = TWN_news.7.t
+	desc = TWN_news.7.desc
+	picture = GFX_TWN_news_7
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.7.a
+	}
+}
+
+news_event = {
+	id = TWN_news.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.8" }
+	title = TWN_news.8.t
+	desc = TWN_news.8.desc
+	picture = GFX_TWN_news_8
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.8.a
+	}
+}
+
+news_event = {
+	id = TWN_news.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.9" }
+	title = TWN_news.9.t
+	desc = TWN_news.9.desc
+	picture = GFX_TWN_news_9
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.9.a
+	}
+}
+
+news_event = {
+	id = TWN_news.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.10" }
+	title = TWN_news.10.t
+	desc = TWN_news.10.desc
+	picture = GFX_TWN_news_10
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.10.a
+	}
+}
+
+news_event = {
+	id = TWN_news.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.11" }
+	title = TWN_news.11.t
+	desc = TWN_news.11.desc
+	picture = GFX_TWN_news_11
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.11.a
+	}
+}
+
+news_event = {
+	id = TWN_news.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.12" }
+	title = TWN_news.12.t
+	desc = TWN_news.12.desc
+	picture = GFX_TWN_news_12
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.12.a
+	}
+}
+
+news_event = {
+	id = TWN_news.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event TWN_news.13" }
+	title = TWN_news.13.t
+	desc = TWN_news.13.desc
+	picture = GFX_TWN_news_13
+	is_triggered_only = yes
+	
+	option = { #
+		name = TWN_news.13.a
+	}
+}

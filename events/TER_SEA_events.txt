@@ -1,0 +1,563 @@
+add_namespace = SEA_support
+add_namespace = TER_SEA_Huanan_Bureau
+add_namespace = CPC_ANRL_events
+#东南亚事件，support为不需文本的辅助事件。
+
+country_event = { #吴廷琰上台辅助事件
+	id = SEA_support.1
+	title = SEA_support.1.t
+	desc = SEA_support.1.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = SEA_support.1.o
+		ai_chance = {
+			factor = 50
+		}
+		every_country = {
+			news_event = { id = SEA_news.2 days = 70 }
+			news_event = { id = SEA_news.1 days = 130 }
+		}
+		VIN = {
+			if = {
+				limit = { NOT  = { has_government = fascism } }
+				set_politics = {
+					ruling_party = fascism
+				}
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.55
+				}
+				every_country = {
+					news_event = SEA_news.7
+				}
+			}
+			else = {
+				every_country = {
+					news_event = SEA_news.13
+				}
+			}
+		}
+	}
+} 
+
+country_event = { #卢汉重伤辅助事件
+	id = SEA_support.2
+	title = SEA_support.2.t
+	desc = SEA_support.2.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = SEA_support.2.o
+		ai_chance = { factor = 50 }
+		LOY = {
+			white_peace = VIC
+		}
+		JAP = {
+			add_to_faction = LOY
+			add_to_faction = KIS
+		}
+		every_country = {
+			news_event = SEA_news.6
+		}
+	}
+}
+
+country_event = { #泰柬战争辅助事件
+	id = SEA_support.3
+	title = SEA_support.3.t
+	desc = SEA_support.3.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = SEA_support.3.o
+		ai_chance = { factor = 50 }
+		THA = {
+			leave_faction = yes 
+			declare_war_on = {
+				target = CRC
+				type = annex_everything
+			}
+		}
+		CRC = {
+			delete_unit_template_and_units = {
+				division_template = "Infantry 2nd Division"
+				disband = yes
+			}
+		}
+		CPC = {
+			country_event = {
+				id = CPC_ANRL_events.1
+				days = 5
+			}
+		}
+		every_country = {
+			news_event = SEA_news.8
+		}
+		country_event = {
+			id = SEA_support.4
+			days = 35
+		}
+	}
+}
+
+country_event = { #最后的印支战争
+	id = SEA_support.4
+	title = SEA_support.4.t
+	desc = SEA_support.4.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = SEA_support.4.o
+		ai_chance = { factor = 50 }
+		country_event = {
+			id = SEA_support.5
+			days = 54
+		}
+		VIC = {
+			declare_war_on = {
+				target = THA
+				type = annex_everything
+			}
+		}
+		KPA = {
+			declare_war_on = {
+				target = THA
+				type = annex_everything
+			}
+		}
+		if = { 
+			limit = { LAO = { has_country_leader_ideology = communist_national_communism_subtype } } 
+			LAO = {
+				declare_war_on = {
+					target = THA
+					type = annex_everything
+				}
+			}
+		}
+
+		every_country = {
+			news_event = {
+				id = SEA_news.9
+				days = 1
+			}
+		}
+	}
+}
+
+country_event = { #两个月后战争结果
+	id = SEA_support.5
+	title = SEA_support.5.t
+	desc = SEA_support.5.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = SEA_support.4.o
+		ai_chance = { factor = 50 }
+		if = {
+			limit = { THA = { has_war = yes } }
+			KPA = { white_peace = THA }
+			CRC = { white_peace = THA }
+			QYC = { white_peace = THA }
+			VIC = { white_peace = THA }
+			if = {
+				limit = { LAO = { has_country_leader_ideology = communist_national_communism_subtype } }
+				LAO = { white_peace = THA }
+			}
+			CRC = {
+				transfer_state = 841
+				transfer_state = 876
+				transfer_state = 1535
+				transfer_state = 741
+				transfer_state = 2229
+				transfer_state = 2230
+				transfer_state = 2247
+				transfer_state = 2248
+				transfer_state = 2249
+				transfer_state = 2250
+				transfer_state = 2251
+				swap_ideas = {
+					remove_idea = CRC_avengers_from_the_past
+					add_idea = CRC_avengers_from_the_future
+				}
+				swap_ideas = {
+					remove_idea = CRC_secret_garden
+					add_idea = CRC_secret_garden_get_fucked
+				}
+				country_lock_all_division_template = no
+				set_capital = { state = 1535 }
+				set_politics = {
+					ruling_party = communist
+				}
+				set_party_name = {
+					ideology = communist
+					long_name = CRC_normal_communist_party_long
+					name = CRC_normal_communist_party
+				}
+				set_popularities = {
+					communist = 90
+					paternalism = 10
+				}
+			}
+			QYC = {
+				add_to_faction = CRC
+			}
+			every_country = {
+				news_event = SEA_news.10
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.1
+	title = TER_SEA_Huanan_Bureau.1.t
+	desc = TER_SEA_Huanan_Bureau.1.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.1.o
+		ai_chance = {
+			factor = 50
+		}
+		set_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.2
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.2
+	title = TER_SEA_Huanan_Bureau.2.t
+	desc = TER_SEA_Huanan_Bureau.2.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.2.o
+		ai_chance = {
+			factor = 50
+		}
+		add_to_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.3
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.3
+	title = TER_SEA_Huanan_Bureau.3.t
+	desc = TER_SEA_Huanan_Bureau.3.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.3.o
+		ai_chance = {
+			factor = 50
+		}
+		add_to_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.4
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.4
+	title = TER_SEA_Huanan_Bureau.4.t
+	desc = TER_SEA_Huanan_Bureau.4.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.4.o
+		ai_chance = {
+			factor = 50
+		}
+		add_to_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.5
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.5
+	title = TER_SEA_Huanan_Bureau.5.t
+	desc = TER_SEA_Huanan_Bureau.5.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.5.o
+		ai_chance = {
+			factor = 50
+		}
+		add_to_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.6
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.6
+	title = TER_SEA_Huanan_Bureau.6.t
+	desc = TER_SEA_Huanan_Bureau.6.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.6.o
+		ai_chance = {
+			factor = 50
+		}
+		add_to_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.7
+				days = 30
+			}
+		}
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.7
+	title = TER_SEA_Huanan_Bureau.7.t
+	desc = TER_SEA_Huanan_Bureau.7.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.7.o
+		ai_chance = {
+			factor = 50
+		}
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.8
+				days = 30
+			}
+		}
+		add_to_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.8
+	title = TER_SEA_Huanan_Bureau.8.t
+	desc = TER_SEA_Huanan_Bureau.8.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.8.o
+		hidden_effect = {
+			country_event = {
+				id = TER_SEA_Huanan_Bureau.9
+				days = 30
+			}
+		}
+		ai_chance = {
+			factor = 50
+		}
+		add_to_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+	}
+}
+
+country_event = {
+	id = TER_SEA_Huanan_Bureau.9
+	title = TER_SEA_Huanan_Bureau.9.t
+	desc = TER_SEA_Huanan_Bureau.9.d
+	picture = GFX_Huanan
+	is_triggered_only = yes
+	option = {
+		name = TER_SEA_Huanan_Bureau.9.o
+		ai_chance = {
+			factor = 50
+		}
+		add_to_variable = { TER_Huanan_Bureau_text_cap = 1 }
+		custom_effect_tooltip = "TER_SEA_Huanan_page_up_tt"
+	}
+}
+
+country_event = {
+	id = CPC_ANRL_events.1
+	title = CPC_ANRL_events.1.t
+	desc = CPC_ANRL_events.1.d
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.1.o
+		country_event = {
+			id = CPC_ANRL_events.2
+			days = 10
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+country_event = {
+	id = CPC_ANRL_events.2
+	title = CPC_ANRL_events.2.t
+	desc = CPC_ANRL_events.2.d
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.2.o
+		country_event = {
+			id = CPC_ANRL_events.3
+			days = 10
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = CPC_ANRL_events.3
+	title = CPC_ANRL_events.3.t
+	desc = CPC_ANRL_events.3.d
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.3.o
+		country_event = {
+			id = CPC_ANRL_events.4
+			days = 80
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = CPC_ANRL_events.4
+	title = CPC_ANRL_events.4.t
+	desc = CPC_ANRL_events.4.d
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.4.o
+		country_event = {
+			id = CPC_ANRL_events.5
+			days = 10
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = CPC_ANRL_events.5
+	title = CPC_ANRL_events.5.t
+	desc = CPC_ANRL_events.5.d
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.5.o
+		country_event = {
+			id = CPC_ANRL_events.6
+			days = 20
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = CPC_ANRL_events.6
+	title = CPC_ANRL_events.6.t
+	desc = CPC_ANRL_events.6.d
+	picture = GFX_event_ANRL_FUCK_YEEEAAAAHH
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.6.o
+		country_event = {
+			id = CPC_ANRL_events.7
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = CPC_ANRL_events.7
+	title = CPC_ANRL_events.7.t
+	desc = CPC_ANRL_events.7.d
+	picture = GFX_event_ANRL_FUCK_YEEEAAAAHH
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.7.o
+		ANRL_foundation = yes
+		set_temp_variable = { temp_law = token:CPC_ANRL_basic_law }
+		TNO_add_assorted_law = yes
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+news_event = {
+	id = CPC_ANRL_events.8
+	title = CPC_ANRL_events.8.t
+	desc = CPC_ANRL_events.8.d
+	picture = GFX_news_event_ANRL_foundation
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.8.o
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+news_event = {
+	id = CPC_ANRL_events.9
+	title = CPC_ANRL_events.9.t
+	desc = CPC_ANRL_events.9.d
+	picture = GFX_news_event_EAACP_foundation
+	is_triggered_only = yes
+	option = {
+		name = CPC_ANRL_events.9.o 
+		hidden_effect = {
+			if = { limit = { original_tag = CPC }
+				   EAACP_foundation = yes
+			}
+			if = {
+				limit = {
+						NOT = {
+							LAO = {has_cosmetic_tag = LAO_LPDR }
+						}
+				}
+							LAO = {
+						leave_faction = yes
+					}
+			}
+		}
+		ai_chance = {
+			factor = 50
+		}
+	}
+}

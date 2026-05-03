@@ -1,0 +1,441 @@
+scripted_gui = {
+	TER_SCB_main_GUI = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_SCB_main_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^4 = 2 }
+		}
+
+		properties = {
+			TER_SCB_hosting_service_btn = { frame = CPC_hosting_service_SCB_var }
+		}
+		
+		triggers = {
+			SCB_map_Burma_visible = { NOT = { check_variable = { SCB_target_country = KPA } } }
+			SCB_map_Thailand_visible = { NOT = { check_variable = { SCB_target_country = THA } } }
+			SCB_map_Laos_visible = { NOT = { check_variable = { SCB_target_country = LAO } } }
+			SCB_map_Cambodia_visible = { NOT = { check_variable = { SCB_target_country = CRC } } }
+			SCB_map_Vietnam_visible = { NOT = { check_variable = { SCB_target_country = VIC } } }
+			SCB_map_Southern_China_visible = { NOT = { check_variable = { SCB_target_country = QYC } } }
+			SCB_map_Taiwan_visible = { NOT = { check_variable = { SCB_target_country = CHI } } }
+			SCB_map_Philippines_visible = { NOT = { check_variable = { SCB_target_country = PHI } } }
+			SCB_map_Malaya_visible = { NOT = { check_variable = { SCB_target_country = MLY } } }
+			SCB_map_Indonesia_visible = { NOT = { check_variable = { SCB_target_country = INS } } }
+			SCB_rev_banned_visible = { NOT = { check_variable = { SCB_target_country = CRC }
+											   check_variable = { SCB_target_country = VIC }
+											   check_variable = { SCB_target_country = KPA }
+											   check_variable = { SCB_target_country = QYC } } }
+			SCB_trade_banned_visible = { check_variable = { SCB_target_country = LAO } }
+			SCB_rev_done_visible = {
+				OR = { check_variable = { SCB_target_country = CRC }
+					   check_variable = { SCB_target_country = VIC }
+					   check_variable = { SCB_target_country = KPA } }
+				meta_trigger = {
+					text = { [SCB_target_country] = { has_country_flag = TER_SCB_rev_start } } 
+							  SCB_target_country = "[?SCB_target_country.GetTag]"
+					} 
+			}
+			SCB_map_Burma_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+			SCB_map_Thailand_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+			SCB_map_Laos_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+			SCB_map_Cambodia_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+			SCB_map_Vietnam_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+			SCB_map_Taiwan_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+			SCB_map_Philippines_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+			SCB_map_Malaya_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+			SCB_map_Indonesia_click_enabled = {
+				QYC = { NOT = { has_idea = SEA_stop_operation } }
+			}
+		}
+
+		effects = {
+			TER_SCB_hosting_service_btn_click = {
+				CPC_hosting_service_SCB = yes
+			}
+			SCB_map_Burma_click = { set_variable = { SCB_target_country = KPA }
+									set_variable = { SCB_pinned_country = KPA }
+									TER_SCB_visual_update = yes }
+			SCB_map_Thailand_click = { set_variable = { SCB_target_country = THA }
+									   set_variable = { SCB_pinned_country = THA }
+									   TER_SCB_visual_update = yes }
+			SCB_map_Laos_click = { set_variable = { SCB_target_country = LAO }
+								   set_variable = { SCB_pinned_country = LAO } }
+			SCB_map_Cambodia_click = { set_variable = { SCB_target_country = CRC }
+									   set_variable = { SCB_pinned_country = CRC }
+									   TER_SCB_visual_update = yes }
+			SCB_map_Vietnam_click = { set_variable = { SCB_target_country = VIC }
+									set_variable = { SCB_pinned_country = VIC }
+									TER_SCB_visual_update = yes }
+			SCB_map_Southern_China_click = { set_variable = { SCB_target_country = QYC }
+											 set_variable = { SCB_pinned_country = QYC } }
+			SCB_map_Taiwan_click = { set_variable = { SCB_target_country = CHI }
+									 set_variable = { SCB_pinned_country = CHI }
+									 TER_SCB_visual_update = yes }
+			SCB_map_Philippines_click = { set_variable = { SCB_target_country = PHI }
+										  set_variable = { SCB_pinned_country = PHI }
+										  TER_SCB_visual_update = yes }
+			SCB_map_Malaya_click = { set_variable = { SCB_target_country = MLY }
+									 set_variable = { SCB_pinned_country = MLY }
+									 TER_SCB_visual_update = yes }
+			SCB_map_Indonesia_click = { set_variable = { SCB_target_country = INS }
+										set_variable = { SCB_pinned_country = INS }
+										TER_SCB_visual_update = yes }
+		}
+	}
+
+	TER_SCB_trade_GUI = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_SCB_trade_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^4 = 2 }
+			NOT = { check_variable = { SCB_target_country = LAO }
+					check_variable = { SCB_target_country = QYC } }
+		}
+
+		properties = {
+			SCB_begin_trade_btn = { frame = SCB_trade_state }
+			SCB_stop_trade_btn = { frame = stop_SCB_trade_state }
+			SCB_consumer_pie = { frame = SCB_consumer_pct_printed }
+			SCB_industry_pie = { frame = SCB_industry_pct_printed }
+			SCB_weapon_pie = { frame = SCB_weapon_pct_printed }
+			SCB_trade_will_bar = { frame = SCB_trade_will_value }
+			SCB_JP_alert_bar = { frame = SCB_JP_alert_value }
+			TER_SCB_trade_pics = { image = "[TER_SCB_trade_pics]" }
+		}
+
+		triggers = {
+			SCB_begin_trade_btn_visible = {
+				check_variable = { SCB_trade_state = 1 }
+			}
+			SCB_begin_trade_btn_chosen_visible = {
+				check_variable = { SCB_trade_state = 2 }
+			}
+			SCB_begin_trade_btn_click_enabled = {
+				meta_trigger = {
+					text = { [SCB_target_country] = { NOT = { has_country_flag = TER_SCB_trade_GUI_clicked_1 } } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				set_temp_variable = { SCB_burden_now = 100 }
+				subtract_from_temp_variable = { SCB_burden_now = SCB_trade_burden_value }
+				divide_temp_variable = { SCB_burden_now = 5 }
+				meta_trigger = {
+					text = { OR = { check_variable = { SCB_burden_now > [SCB_target_country].SCB_level }
+									check_variable = { SCB_burden_now = [SCB_target_country].SCB_level } } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+			}
+			SCB_stop_trade_btn_click_enabled = {
+				meta_trigger = {
+					text = { [SCB_target_country] = { NOT = { has_country_flag = TER_SCB_trade_GUI_clicked_1 } } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+			}
+			SCB_stop_trade_btn_visible = {
+				check_variable = { SCB_trade_state = 2 }
+			}
+			SCB_stop_trade_btn_chosen_visible = {
+				check_variable = { SCB_trade_state = 1 }
+			}
+			SCB_ease_tension_btn_click_enabled = {
+				check_variable = { SCB_JP_alert_value > 0 }
+				check_variable = { SCB_JP_alert_value < 50 }
+				meta_trigger = {
+					text = { [SCB_target_country] = { NOT = { has_country_flag = TER_SCB_trade_GUI_clicked_2 }
+													  check_variable = { SCB_trade_state = 2 } } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+			}
+			SCB_friendship_btn_click_enabled = {
+				meta_trigger = {
+					text = { [SCB_target_country] = { NOT = { has_country_flag = TER_SCB_trade_GUI_clicked_2 }
+															  check_variable = { SCB_trade_state = 2 } } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+			}
+		}
+
+		effects = {
+			SCB_begin_trade_btn_click = {
+				TER_SCB_trade_click = yes
+				set_country_flag = TER_SCB_trade_GUI_clicked_1
+				meta_effect = {
+					text = { [SCB_target_country] = { set_country_flag = TER_SCB_trade_GUI_clicked_1 } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				TER_SCB_weapon_distribution_effect = yes
+				TER_SCB_visual_update = yes
+			}
+			SCB_stop_trade_btn_click = {
+				TER_SCB_stop_trade_click = yes
+				set_country_flag = TER_SCB_trade_GUI_clicked_1
+				meta_effect = {
+					text = { [SCB_target_country] = { set_country_flag = TER_SCB_trade_GUI_clicked_1 } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				TER_SCB_weapon_distribution_effect = yes
+				TER_SCB_visual_update = yes
+			}
+			SCB_ease_tension_btn_click = {
+				subtract_from_variable = { SCB_JP_alert_value = 2.5 }
+				meta_effect = {
+					text = { [SCB_target_country] = { set_country_flag = TER_SCB_trade_GUI_clicked_2 } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				TER_SCB_weapon_distribution_effect = yes
+				TER_SCB_visual_update = yes
+			}
+			SCB_friendship_btn_click = {
+				meta_effect = {
+					text = { [SCB_target_country] = { set_country_flag = TER_SCB_trade_GUI_clicked_2
+													  add_to_variable = { SCB_trade_will_value = 15 } } }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				TER_SCB_weapon_distribution_effect = yes
+				TER_SCB_visual_update = yes
+			}
+		}
+	}
+
+	TER_SCB_revolution_GUI = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_SCB_revolution_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_frames^4 = 2 }
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			OR = { check_variable = { SCB_target_country = CRC }
+				   check_variable = { SCB_target_country = VIC }
+				   check_variable = { SCB_target_country = KPA } }
+			meta_trigger = {
+				text = { [SCB_target_country] = { NOT = { has_country_flag = TER_SCB_rev_start } } }
+				SCB_target_country = "[?SCB_target_country.GetTag]"
+			}
+		}
+
+		properties = {
+			TER_SCB_rev_map = { image = "[TER_SCB_rev_map]" }
+			TER_SCB_rev_level_unify_state = { image = "[TER_SCB_rev_level_unify_state]" }
+			TER_SCB_rev_level_equip_state = { image = "[TER_SCB_rev_level_equip_state]" }
+			TER_SCB_rev_level_org_state = { image = "[TER_SCB_rev_level_org_state]" }
+		}
+
+		triggers = {
+			TER_SCB_rev_level_btn_unify_click_enabled = {
+				meta_trigger = {
+					text = { [SCB_target_country] = { NOT = { has_country_flag = TER_SCB_rev_GUI_clicked }
+													  check_variable = { TER_SCB_rev_level_unify < 5 }	} }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				check_variable = { political_power > 49.99 }
+			}
+			TER_SCB_rev_level_btn_equip_click_enabled = {
+				meta_trigger = {
+					text = { [SCB_target_country] = { NOT = { has_country_flag = TER_SCB_rev_GUI_clicked }
+													  check_variable = { TER_SCB_rev_level_equip < 5 }	} }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				QYC = {
+					check_variable = { num_equipment@infantry_equipment > 99 }
+					check_variable = { num_equipment@support_equipment  > 99 }
+					check_variable = { num_equipment@artillery_equipment > 19 }
+				}
+			}
+			TER_SCB_rev_level_btn_org_click_enabled = {
+				meta_trigger = {
+					text = { [SCB_target_country] = { NOT = { has_country_flag = TER_SCB_rev_GUI_clicked }
+													  check_variable = { TER_SCB_rev_level_org < 5 }	} }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				check_variable = { command_power > 49.99 }
+			}
+			TER_SCB_start_the_storm_click_enabled = {
+				meta_trigger = {
+					text = { [SCB_target_country] = { check_variable = { TER_SCB_rev_level_org > 2 }
+													  check_variable = { TER_SCB_rev_level_equip > 2 }
+													  check_variable = { TER_SCB_rev_level_unify > 2 } }
+					}
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+			}
+		}
+
+		effects = {
+			TER_SCB_rev_level_btn_unify_click = {
+				add_political_power = -50
+				meta_effect = {
+					text = { [SCB_target_country] = { set_country_flag = TER_SCB_rev_GUI_clicked 
+													  add_to_variable = { TER_SCB_rev_level_unify = 1 }	} }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				TER_SCB_visual_update = yes
+			}
+			TER_SCB_rev_level_btn_equip_click = {
+				QYC = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = -100
+					}
+					add_equipment_to_stockpile = {
+						type = support_equipment
+						amount = -100
+					}
+					add_equipment_to_stockpile = {
+						type = artillery_equipment
+						amount = -20
+					}
+				}
+				meta_effect = {
+					text = { [SCB_target_country] = { set_country_flag = TER_SCB_rev_GUI_clicked 
+													  add_to_variable = { TER_SCB_rev_level_equip = 1 }	} }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				TER_SCB_visual_update = yes
+			}
+			TER_SCB_rev_level_btn_org_click = {
+				add_command_power = -50
+				meta_effect = {
+					text = { [SCB_target_country] = { set_country_flag = TER_SCB_rev_GUI_clicked 
+													  add_to_variable = { TER_SCB_rev_level_org = 1 }	} }
+					SCB_target_country = "[?SCB_target_country.GetTag]"
+				}
+				TER_SCB_visual_update = yes
+			}
+			TER_SCB_start_the_storm_click = {
+				TER_SCB_lets_start_the_STORM = yes
+				TER_SCB_visual_update = yes
+			}
+		}
+	}
+
+	TER_SCB_info_main_GUI = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_SCB_info_main_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_frames^4 = 2 }
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { SCB_target_country = QYC }
+		}
+
+		triggers = {
+			SCB_page_minus_click_enabled = { check_variable = { Huanan_page_num > 1 } }
+			SCB_page_add_click_enabled = { check_variable = { Huanan_page_num < TER_Huanan_Bureau_text_cap } }
+			SCB_trade_btn_admit_click_enabled = {
+				OR = { AND = { check_variable = { SCB_trade_num_i < 4 }
+							   check_variable = { QYC.SCB_QYC_light_amount > 0 } }
+					   AND = { check_variable = { SCB_trade_num_i > 3 }
+					  		   check_variable = { QYC.SCB_QYC_heavy_amount > 0 } } }
+			}
+			TER_SCB_btn_sp_trade_chosen_visible = {
+				check_variable = { TER_SCB_btn_sp_trade_state = 2 }
+			}
+			TER_SCB_btn_sp_trade_click_enabled = {
+				check_variable = { SCB_trade_burden_value > 89.99 }
+				check_variable = { SCB_trade_burden_value < 100 }
+			}
+		}
+
+		dynamic_lists = {
+			SCB_trade_list = {
+				array = SCB_trade_num
+				index = SCB_trade_num_i
+				entry_container = SCB_trade_list_ctn
+			}
+		}
+
+		properties = {
+			SCB_Huanan_memorandum_bg_portrait_left = { image = "[SCB_Huanan_memorandum_bg_portrait_left]" }
+			SCB_Huanan_memorandum_bg_portrait_right = { image = "[SCB_Huanan_memorandum_bg_portrait_right]" }
+			SCB_trade_btn_admit = { frame = SCB_trade_num^SCB_trade_num_i }
+			TER_SCB_btn_sp_trade = { frame = TER_SCB_btn_sp_trade_state }
+		}
+
+		effects = {
+			SCB_page_minus_click = { 
+				subtract_from_variable = { Huanan_page_num = 1 }
+				TER_SCB_visual_update = yes
+			}
+			SCB_page_add_click = { 
+				add_to_variable = { Huanan_page_num = 1 }
+				TER_SCB_visual_update = yes
+			}
+			SCB_trade_btn_admit_click = { 
+				if = { 
+					limit = { check_variable = { SCB_trade_num^SCB_trade_num_i = 1 } }
+					set_variable = { SCB_trade_num^SCB_trade_num_i = 2 }
+					if = {
+						limit = { check_variable = { SCB_trade_num_i < 4 } }
+						add_to_variable = { SCB_admit_amount_l = 1 }
+					}
+					else = {
+						add_to_variable = { SCB_admit_amount_h = 1 }
+					}
+				}
+				else = { 
+					set_variable = { SCB_trade_num^SCB_trade_num_i = 1 }
+					if = {
+						limit = { check_variable = { SCB_trade_num_i < 4 } }
+						subtract_from_variable = { SCB_admit_amount_l = 1 }
+					}
+					else = {
+						subtract_from_variable = { SCB_admit_amount_h = 1 }
+					} 
+				}
+				TER_SCB_weapon_distribution_effect = yes
+				TER_SCB_visual_update = yes
+			}
+			TER_SCB_btn_sp_trade_click = {
+				if = {
+					limit = { check_variable = { TER_SCB_btn_sp_trade_state = 1 } }
+					set_variable = { TER_SCB_btn_sp_trade_state = 2 }
+					set_variable = { SCB_trade_sp_burden = 100 }
+					subtract_from_variable = { SCB_trade_sp_burden = SCB_trade_burden_value }
+					set_variable = { SCB_trade_burden_value = 100 }
+					QYC = {
+						add_to_variable = { SCB_QYC_monthly_population = 0.02 }
+						add_to_variable = { SCB_QYC_stability_factor = 0.02 }
+						add_to_variable = { SCB_QYC_production_factory_efficiency_gain_factor = 0.02 }
+						add_to_variable = { SCB_QYC_industrial_capacity_factory = 0.02 }
+						add_to_variable = { SCB_QYC_production_factory_start_efficiency_factor = 0.02 }
+						force_update_dynamic_modifier = yes
+					}
+					set_variable = { SCB_CPC_production_factory_efficiency_gain_factor = QYC.SCB_QYC_production_factory_efficiency_gain_factor }
+					set_variable = { SCB_CPC_industrial_capacity_factory = QYC.SCB_QYC_industrial_capacity_factory }
+					set_variable = { SCB_CPC_production_factory_start_efficiency_factor = QYC.SCB_QYC_production_factory_start_efficiency_factor }
+					multiply_variable = { SCB_CPC_production_factory_efficiency_gain_factor = 0.2 }
+					multiply_variable = { SCB_CPC_industrial_capacity_factory = 0.2 }
+					multiply_variable = { SCB_CPC_production_factory_start_efficiency_factor = 0.2 }
+					force_update_dynamic_modifier = yes
+				}
+				else = {
+					set_variable = { TER_SCB_btn_sp_trade_state = 2 }
+				}
+				TER_SCB_visual_update = yes
+			}
+		}
+	}
+}

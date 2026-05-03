@@ -1,0 +1,74 @@
+OMS_2WRW_debug_category = {
+	icon = GFX_decision_category_debug
+	picture = GFX_decision_image_OMS_flag
+	
+	priority = 99999
+
+	allowed = {
+	}
+	visible = {
+		original_tag = OMS
+		is_debug = yes
+		is_ai = no
+	}
+	visible_when_empty = yes
+}
+
+OMS_2WRW_readiness_category = {
+	priority = 1500
+	scripted_gui = OMS_readiness_GUI
+	allowed = {
+		tag = OMS
+	}
+	visible = {
+		has_country_flag = OMS_readiness_gui_enabled
+	}
+	visible_when_empty = yes
+}
+
+OMS_2WRW_great_trial_category = {  
+    icon = GFX_nukeincoming_animated
+
+    priority = 1000
+
+    allowed = {
+        tag = OMS
+    }
+    visible = {
+        has_country_flag = OMS_great_trial_GUI_enabled
+		NOT = {
+			has_global_flag = PostApocTime
+		}
+    }
+    scripted_gui = OMS_great_trial_GUI
+    visible_when_empty = yes
+}
+
+OMS_2WRWCE_PostApoc_category = {
+	icon = GFX_AM_Television
+	#picture = GFX_OMS_great_trial_top
+	scripted_gui = OMS_crisade
+	priority = 10000
+	visible_when_empty = yes
+	allowed = {
+		tag = OMS
+	}
+	visible = {
+		has_global_flag = SWRWCE_PostApoc_decision_enable
+	}
+}
+
+OMS_2WRW_great_trial_PT_category = {  
+    icon = GFX_nukeincoming_animated
+
+    priority = 1000
+
+    allowed = {
+        tag = OMS
+    }
+    visible = {
+        has_country_flag = OMS_great_trial_GUI_enabled_postnuke
+    }
+    scripted_gui = OMS_great_trial_GUI_postnuke
+    visible_when_empty = yes
+}

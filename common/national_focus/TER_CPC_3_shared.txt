@@ -1,0 +1,2629 @@
+shared_focus = {
+	id = CPC_bookmarks_fake_1
+	icon = GFX_goals_CPC_bookmarks_fake_1
+	allow_branch = {
+		always = no
+	}
+	cost = 1
+	x = 0
+	y = 0
+	completion_reward = { }
+}
+
+shared_focus = {
+	id = CPC_bookmarks_fake_2
+	icon = GFX_goals_CPC_bookmarks_fake_2
+	allow_branch = {
+		always = no
+	}
+	cost = 1
+	x = 0
+	y = 0
+	completion_reward = { }
+}
+
+shared_focus = {
+	id = CPC_have_an_anchor_to_windward
+	icon = GFX_goals_CPC_have_an_anchor_to_windward
+	cost = 2
+	x = 2	
+	y = 0
+	allow_branch = {
+		NOT = { has_country_flag = CPC_TRCW_begins_flag }
+		NOT = { has_global_flag = CPC_WINS_TRCW }
+	}
+	completion_reward = {
+		country_event = {
+			id = CPC_Yang_Yingcai_stories.1
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_visit_the_patient
+	icon = GFX_goals_CPC_visit_the_patient
+	cost = 2
+	prerequisite = {
+		focus = CPC_have_an_anchor_to_windward
+	}
+	relative_position_id = CPC_have_an_anchor_to_windward
+	x = 0
+	y = 1
+	completion_reward = {
+		add_stability = -0.02
+		country_event = {
+			id = CPC_main_story_events.87
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_large_scale_retirement
+	icon = GFX_goals_CPC_large_scale_retirement
+	cost = 6
+	prerequisite = {
+		focus = CPC_visit_the_patient
+	}
+	relative_position_id = CPC_visit_the_patient
+	x = 0
+	y = 1
+	select_effect = {
+		country_event = {
+			id = CPC_main_story_events.88
+			days = 1
+		}
+		country_event = {
+			id = CPC_main_story_events.89
+			days = 4
+		}
+		country_event = {
+			id = CPC_main_story_events.96
+			days = 7
+		}
+		country_event = {
+			id = CPC_main_story_events.97
+			days = 10
+		}
+		country_event = {
+			id = CPC_main_story_events.99
+			days = 15
+		}
+		country_event = {
+			id = CPC_main_story_events.128
+			days = 20
+		}
+		country_event = {
+			id = CPC_main_story_events.129
+			days = 25
+		}
+		country_event = {
+			id = CPC_main_story_events.130
+			days = 30
+		}
+	}
+	completion_reward = {
+		country_event = CPC_main_story_events.90
+	}
+}
+
+shared_focus = {
+	id = CPC_empty_monarch_in_the_party
+	icon = GFX_goals_CPC_empty_monarch_in_the_party
+	cost = 3
+	prerequisite = {
+		focus = CPC_large_scale_retirement
+	}
+	relative_position_id = CPC_large_scale_retirement
+	x = -1
+	y = 1
+	completion_reward = {
+		if = {
+			limit = { has_country_leader = { character = CPC_Mao_Zedong } }
+			country_event = {
+				id = CPC_main_story_events.91
+				days = 2
+			}
+		}
+		else = {
+			country_event = {
+				id = CPC_main_story_events.92
+				days = 2
+			}
+		}
+		TNO_improve_admin_efficiency_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_the_abler_the_busier
+	icon = GFX_goals_CPC_the_abler_the_busier
+	cost = 3
+	prerequisite = {
+		focus = CPC_empty_monarch_in_the_party
+	}
+	relative_position_id = CPC_empty_monarch_in_the_party
+	x = -1
+	y = 1
+	completion_reward = {
+		TNO_improve_admin_efficiency_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_veteran_retirement
+	icon = GFX_goals_CPC_veteran_retirement
+	cost = 3
+	prerequisite = {
+		focus = CPC_large_scale_retirement
+	}
+	relative_position_id = CPC_large_scale_retirement
+	x = 2
+	y = 1
+	completion_reward = {
+		TNO_worsen_army_professionalism_low = yes
+		country_event = CPC_main_story_events.93
+	}
+}
+
+shared_focus = {
+	id = CPC_not_to_be_made_a_precedent
+	icon = GFX_goals_CPC_not_to_be_made_a_precedent
+	cost = 3
+	prerequisite = {
+		focus = CPC_veteran_retirement
+	}
+	available = {
+		hidden_trigger = {
+			always = no
+		}
+	}
+	mutually_exclusive = {
+		focus = CPC_back_door_deal
+	}
+	relative_position_id = CPC_veteran_retirement
+	x = -1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = "CPC_not_to_be_made_a_precedent_tt"
+		set_country_flag = CPC_not_to_be_made_a_precedent
+		add_to_variable = { CPC_MA_army_org_regain = 0.1 }
+		add_to_variable = { CPC_MA_army_org_factor = 0.05 }
+		force_update_dynamic_modifier = yes
+		hidden_effect = {
+			retire_character = CPC_Peng_Dehuai
+			retire_character = CPC_Liu_Bocheng
+			retire_character = CPC_He_Long
+			retire_character = CPC_Xu_Guangda
+			retire_character = CPC_Xu_Haidong
+			retire_character = CPC_Zhang_Aiping
+			retire_character = CPC_Huang_Kecheng
+			retire_character = CPC_Nie_RongZhen
+			retire_character = CPC_Zhang_Kexia
+			retire_character = CPC_Tan_Zheng
+			create_corps_commander = {
+				name = CPC_Yang_Chengwu
+				portrait_path = "gfx/leaders/CPC/CPC_Yang_Chengwu.png"
+				traits = { infantry_leader }
+        		skill= 3
+	    	    attack_skill = 2
+	    	    defense_skill = 3
+	    	    planning_skill = 2
+	    	    logistics_skill = 3
+			}
+			create_corps_commander = {
+				name = CPC_Han_Xianchu
+				portrait_path = "gfx/leaders/CPC/CPC_Han_Xianchu.png"
+				traits = {infantry_leader}
+        		skill= 4
+	    		attack_skill = 3
+	    		defense_skill = 2
+	    		planning_skill = 2
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Qiu_Huizuo
+				portrait_path = "gfx/leaders/CPC/CPC_Qiu_Huizuo.png"
+				traits = {infantry_leader}
+        		skill= 2
+	    		attack_skill = 1
+	    		defense_skill = 2
+	    		planning_skill = 1
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Qin_Jiwei
+				portrait_path = "gfx/leaders/CPC/CPC_Qin_Jiwei.png"
+				traits = {infantry_leader}
+        		skill= 2
+	    		attack_skill = 2
+	    		defense_skill = 2
+	    		planning_skill = 2
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_He_Jinnian
+				portrait_path = "gfx/leaders/CPC/CPC_He_Jinnian.png"
+				traits = { armor_officer }
+        		skill= 2
+	    		attack_skill = 2
+	    		defense_skill = 2
+	    		planning_skill = 2
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Wu_Faxian
+				portrait_path = "gfx/leaders/CPC/CPC_Wu_Faxian.png"
+				traits = {infantry_leader}
+        		skill= 2
+	    		attack_skill = 2
+	    		defense_skill = 2
+	    		planning_skill = 1
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Tan_Xilin
+				portrait_path = "gfx/leaders/CPC/CPC_Tan_Xilin.png"
+				traits = {trait_engineer}
+        		skill= 2
+	        	attack_skill = 2
+	        	defense_skill = 2
+	        	planning_skill = 3
+	        	logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = CPC_Tao_Yong
+				portrait_path = "gfx/leaders/CPC/CPC_Tao_Yong.png"
+				traits = {commando trait_reckless}
+        		skill= 2
+	    	    attack_skill = 2
+	    	    defense_skill = 2
+	    	    planning_skill = 2
+	    	    logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Ding_Sheng
+				portrait_path = "gfx/leaders/CPC/CPC_Ding_Sheng.png"
+				traits = {winter_expert politically_connected}
+        		skill= 2
+	        	attack_skill = 2
+	        	defense_skill = 2
+	        	planning_skill = 2
+	        	logistics_skill = 3
+			}
+			create_corps_commander = {
+				name = CPC_Chen_Zhengxiang
+				portrait_path = "gfx/leaders/CPC/CPC_Chen_Zhengxiang.png"
+				traits = {infantry_leader trait_mountaineer}
+        		skill= 2
+	        	attack_skill = 2
+	        	defense_skill = 3
+	        	planning_skill = 2
+	        	logistics_skill = 2
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_back_door_deal
+	icon = GFX_goals_CPC_back_door_deal
+	cost = 3
+	prerequisite = {
+		focus = CPC_veteran_retirement
+	}
+	available = {
+		hidden_trigger = {
+			always = no
+		}
+	}
+	relative_position_id = CPC_veteran_retirement
+	mutually_exclusive = {
+		focus = CPC_not_to_be_made_a_precedent
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = "CPC_back_door_deal_tt"
+		set_country_flag = CPC_back_door_deal
+		hidden_effect = {
+			retire_character = CPC_Peng_Dehuai
+			retire_character = CPC_Liu_Bocheng
+			retire_character = CPC_He_Long
+			retire_character = CPC_Xu_Haidong
+			retire_character = CPC_Huang_Kecheng
+			retire_character = CPC_Nie_RongZhen
+			retire_character = CPC_Zhang_Kexia
+			retire_character = CPC_Tan_Zheng
+			create_corps_commander = {
+				name = CPC_Yang_Chengwu
+				portrait_path = "gfx/leaders/CPC/CPC_Yang_Chengwu.png"
+				traits = { infantry_leader }
+        		skill= 3
+	    	    attack_skill = 2
+	    	    defense_skill = 3
+	    	    planning_skill = 2
+	    	    logistics_skill = 3
+			}
+			create_corps_commander = {
+				name = CPC_Han_Xianchu
+				portrait_path = "gfx/leaders/CPC/CPC_Han_Xianchu.png"
+				traits = {infantry_leader}
+        		skill= 4
+	    		attack_skill = 3
+	    		defense_skill = 2
+	    		planning_skill = 2
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Qiu_Huizuo
+				portrait_path = "gfx/leaders/CPC/CPC_Qiu_Huizuo.png"
+				traits = {infantry_leader}
+        		skill= 2
+	    		attack_skill = 1
+	    		defense_skill = 2
+	    		planning_skill = 1
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Qin_Jiwei
+				portrait_path = "gfx/leaders/CPC/CPC_Qin_Jiwei.png"
+				traits = {infantry_leader}
+        		skill= 2
+	    		attack_skill = 2
+	    		defense_skill = 2
+	    		planning_skill = 2
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_He_Jinnian
+				portrait_path = "gfx/leaders/CPC/CPC_He_Jinnian.png"
+				traits = { armor_officer }
+        		skill= 2
+	    		attack_skill = 2
+	    		defense_skill = 2
+	    		planning_skill = 2
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Wu_Faxian
+				portrait_path = "gfx/leaders/CPC/CPC_Wu_Faxian.png"
+				traits = {infantry_leader}
+        		skill= 2
+	    		attack_skill = 2
+	    		defense_skill = 2
+	    		planning_skill = 1
+	    		logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Tan_Xilin
+				portrait_path = "gfx/leaders/CPC/CPC_Tan_Xilin.png"
+				traits = {trait_engineer}
+        		skill= 2
+	        	attack_skill = 2
+	        	defense_skill = 2
+	        	planning_skill = 3
+	        	logistics_skill = 1
+			}
+			create_corps_commander = {
+				name = CPC_Tao_Yong
+				portrait_path = "gfx/leaders/CPC/CPC_Tao_Yong.png"
+				traits = {commando trait_reckless}
+        		skill= 2
+	    	    attack_skill = 2
+	    	    defense_skill = 2
+	    	    planning_skill = 2
+	    	    logistics_skill = 2
+			}
+			create_corps_commander = {
+				name = CPC_Ding_Sheng
+				portrait_path = "gfx/leaders/CPC/CPC_Ding_Sheng.png"
+				traits = {winter_expert politically_connected}
+        		skill= 2
+	        	attack_skill = 2
+	        	defense_skill = 2
+	        	planning_skill = 2
+	        	logistics_skill = 3
+			}
+			create_corps_commander = {
+				name = CPC_Chen_Zhengxiang
+				portrait_path = "gfx/leaders/CPC/CPC_Chen_Zhengxiang.png"
+				traits = {infantry_leader trait_mountaineer}
+        		skill= 2
+	        	attack_skill = 2
+	        	defense_skill = 3
+	        	planning_skill = 2
+	        	logistics_skill = 2
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_new_blood
+	icon = GFX_goals_CPC_new_blood
+	cost = 3
+	prerequisite = {
+		focus = CPC_back_door_deal
+		focus = CPC_not_to_be_made_a_precedent
+		focus = CPC_the_abler_the_busier
+	}
+	relative_position_id = CPC_large_scale_retirement
+	x = 0
+	y = 3
+	completion_reward = {
+		TNO_improve_admin_efficiency_low = yes
+		country_event = CPC_main_story_events.103
+	}
+}
+
+shared_focus = {
+	id = CPC_expand_party_school
+	icon = GFX_goals_CPC_expand_party_school
+	cost = 3
+	prerequisite = {
+		focus = CPC_new_blood
+	}
+	relative_position_id = CPC_new_blood
+	x = 0
+	y = 1
+	completion_reward = {
+		TNO_improve_admin_efficiency_med = yes
+		956 = {
+			add_building_construction = {
+				type = schools
+				level = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_choose_a_principal
+	icon = GFX_goals_CPC_choose_a_principal
+	cost = 3
+	prerequisite = {
+		focus = CPC_expand_party_school
+	}
+	relative_position_id = CPC_expand_party_school
+	x = 0
+	y = 1
+	completion_reward = {
+		country_event = {
+			id = CPC_main_story_events.94
+			days = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_where_to_go
+	icon = GFX_goals_CPC_where_to_go
+	cost = 3
+	prerequisite = {
+		focus = CPC_choose_a_principal
+	}
+	relative_position_id = CPC_choose_a_principal
+	x = 0
+	y = 1
+	completion_reward = {
+		set_temp_variable = { temp_law = token:CPC_old_aged_leaders_retire_law }
+		TNO_add_assorted_law = yes
+		country_event = {
+			id = CPC_main_story_events.95
+			days = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_rural_democracy
+	icon = GFX_goals_CPC_rural_democracy
+	cost = 3
+	x = 11
+	y = 0
+	available = {
+		has_completed_focus = CPC_where_to_go
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+		NOT = { has_country_flag = CMC_reform_task_flag }
+	}
+	allow_branch = {
+		NOT = { has_country_flag = CPC_TRCW_begins_flag }
+		NOT = { has_global_flag = CPC_WINS_TRCW }
+	}
+	completion_reward = {
+		#议案主题
+		set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_rural_democracy }
+		set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+
+		#议案选项
+		add_to_array = { CPGAC_prop_option = 1 }
+		add_to_array = { CPGAC_prop_option_in_party = 0 }
+		add_to_array = { CPGAC_prop_option = 1 }
+		add_to_array = { CPGAC_prop_option_in_party = 1 }
+
+		#初始态度 - 党内
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 70 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 40 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 50 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 60 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 20 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 55 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 45 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 30 }
+		
+		#初始态度 - 党外
+		set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 90 }
+		set_temp_variable = { CPGAC_no_attitude_tmp^0 = 0 }
+
+		set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 90 }
+		set_temp_variable = { CPGAC_no_attitude_tmp^1 = 0 }
+		
+		#启动议案
+		TER_CPGAC_begin_a_proposal = yes
+		custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_pol_4 }
+		TER_PLA_CMC_reform_begins = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_Zhang_plan
+	icon = GFX_goals_CPC_Zhang_plan
+	cost = 3
+	x = -4
+	y = 1
+	available = {
+		has_country_flag = CPGAC_admit_rural_dem_zhang
+	}
+	mutually_exclusive = {
+		focus = CPC_Han_plan
+	}
+	prerequisite = {
+		focus = CPC_rural_democracy
+	}
+	relative_position_id = CPC_rural_democracy
+	completion_reward = {
+		TNO_improve_public_meetings_policy_effectiveness_low = yes
+		TNO_improve_agriculture_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_liberate_poor_people
+	icon = GFX_goals_CPC_liberate_poor_people
+	cost = 3
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = CPC_Zhang_plan
+	}
+	relative_position_id = CPC_Zhang_plan
+	completion_reward = {
+		country_event = CPC_rural_dem.101
+	}
+}
+
+shared_focus = {
+	id = CPC_disclosure_conference
+	icon = GFX_goals_CPC_disclosure_conference
+	cost = 3
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = CPC_Zhang_plan
+	}
+	relative_position_id = CPC_Zhang_plan
+	completion_reward = {
+		country_event = CPC_rural_dem.102
+	}
+}
+
+shared_focus = {
+	id = CPC_able_to_act
+	icon = GFX_goals_CPC_able_to_act
+	cost = 3
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = CPC_liberate_poor_people
+	}
+	prerequisite = {
+		focus = CPC_disclosure_conference
+	}
+	relative_position_id = CPC_liberate_poor_people
+	completion_reward = {
+		country_event = CPC_rural_dem.103
+		TNO_improve_vote_franchise_policy_effectiveness_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_Han_plan
+	icon = GFX_goals_CPC_Han_plan
+	cost = 3
+	x = 0
+	y = 1
+	available = {
+		has_country_flag = CPGAC_admit_rural_dem_han
+	}
+	prerequisite = {
+		focus = CPC_rural_democracy
+	}
+	mutually_exclusive = {
+		focus = CPC_Zhang_plan
+	}
+	relative_position_id = CPC_rural_democracy
+	completion_reward = {
+		TNO_improve_vote_franchise_policy_effectiveness_low = yes
+		TNO_improve_admin_efficiency_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_clean_the_grass_roots
+	icon = GFX_goals_CPC_clean_the_grass_roots
+	cost = 3
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = CPC_Han_plan
+	}
+	relative_position_id = CPC_Han_plan
+	completion_reward = {
+		country_event = CPC_rural_dem.201
+	}
+}
+
+shared_focus = {
+	id = CPC_audience_and_guidance
+	icon = GFX_goals_CPC_audience_and_guidance
+	cost = 3
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = CPC_Han_plan
+	}
+	relative_position_id = CPC_Han_plan
+	completion_reward = {
+		country_event = CPC_rural_dem.202
+	}
+}
+
+shared_focus = {
+	id = CPC_high_quality_decisions
+	icon = GFX_goals_CPC_high_quality_decisions
+	cost = 3
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = CPC_audience_and_guidance
+	}
+	prerequisite = {
+		focus = CPC_clean_the_grass_roots
+	}
+	relative_position_id = CPC_audience_and_guidance
+	completion_reward = {
+		country_event = CPC_rural_dem.203
+		TNO_improve_admin_efficiency_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_master_of_balance
+	icon = GFX_goals_CPC_master_of_balance
+	cost = 3
+	x = 4
+	y = 1
+	prerequisite = {
+		focus = CPC_rural_democracy
+	}
+	relative_position_id = CPC_rural_democracy
+	completion_reward = {
+		TNO_improve_vote_franchise_policy_effectiveness_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_principal_of_democracy
+	icon = GFX_goals_CPC_principal_of_democracy
+	cost = 3
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = CPC_master_of_balance
+	}
+	relative_position_id = CPC_master_of_balance
+	completion_reward = {
+		country_event = CPC_rural_dem.302
+	}
+}
+
+shared_focus = {
+	id = CPC_principal_of_organization
+	icon = GFX_goals_CPC_principal_of_organization
+	cost = 3
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = CPC_master_of_balance
+	}
+	relative_position_id = CPC_master_of_balance
+	completion_reward = {
+		country_event = CPC_rural_dem.301
+	}
+}
+
+shared_focus = {
+	id = CPC_more_important_thing
+	icon = GFX_goals_CPC_more_important_thing
+	cost = 3
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = CPC_principal_of_democracy
+	}
+	prerequisite = {
+		focus = CPC_principal_of_organization
+	}
+	relative_position_id = CPC_principal_of_organization
+	completion_reward = {
+		country_event = CPC_rural_dem.303
+		TNO_improve_vote_franchise_policy_effectiveness_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_all_honor_to_you
+	icon = GFX_goals_CPC_all_honor_to_you
+	cost = 3
+	x = 2
+	y = 1
+	mutually_exclusive = {
+		focus = CPC_all_honor_to_us
+	}
+	prerequisite = {
+		focus = CPC_able_to_act
+		focus = CPC_high_quality_decisions
+	}
+	prerequisite = {
+		focus = CPC_more_important_thing
+	}
+	relative_position_id = CPC_able_to_act
+	completion_reward = {
+		custom_effect_tooltip = "CPC_rural_dem_end"
+		if = {
+			limit = { OR = { NOT = { has_completed_focus = CPC_able_to_act }
+					 		 NOT = { has_completed_focus = CPC_high_quality_decisions } }
+							 NOT = { has_completed_focus = CPC_more_important_thing } }
+			custom_effect_tooltip = "CPC_rural_dem_not_ended_yet"
+		}
+		else_if = {
+			limit = { has_country_flag = CPGAC_admit_rural_dem_zhang
+					  check_variable = { CPC_final_hidden_score_reform > 36 } }
+			if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical = CPC_rural_dem_num_conservate } }
+				custom_effect_tooltip = "CPC_rural_dem_complete_success"
+				country_event = CPC_rural_dem.1
+			}
+			else_if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical > CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.2
+				custom_effect_tooltip = "CPC_rural_dem_partial_success"
+				hidden_effect = {
+					CPC_RBM_level_up = yes
+					tno_vote_franchise_improve = yes
+					TNO_improve_vote_franchise_policy_effectiveness_med = yes
+					set_country_flag = CPC_rural_dem_succeed
+					set_temp_variable = { temp_law = token:CPC_rural_democracy_law }
+					TNO_add_assorted_law = yes
+				}
+			}
+			else_if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical < CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.3
+				custom_effect_tooltip = "CPC_rural_dem_partial_success"
+				hidden_effect = {
+					CPC_RBM_level_up = yes
+					tno_vote_franchise_improve = yes
+					TNO_improve_vote_franchise_policy_effectiveness_med = yes
+					set_country_flag = CPC_rural_dem_succeed
+					set_temp_variable = { temp_law = token:CPC_rural_democracy_law }
+					TNO_add_assorted_law = yes
+				}
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = CPGAC_admit_rural_dem_zhang
+					  check_variable = { CPC_final_hidden_score_reform < 36.01 } }
+			custom_effect_tooltip = "CPC_rural_dem_fail"
+			random_list = {
+				50 = { country_event = CPC_rural_dem.2 }
+				50 = { country_event = CPC_rural_dem.3 }
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = CPGAC_admit_rural_dem_han
+					  check_variable = { CPC_final_hidden_score_reform > 36 } }
+			if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical = CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.4
+				custom_effect_tooltip = "CPC_rural_dem_complete_success"
+			}
+			else_if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical > CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.5
+				custom_effect_tooltip = "CPC_rural_dem_partial_success"
+				hidden_effect = {
+					CPC_RBM_level_up = yes
+					tno_vote_franchise_improve = yes
+					TNO_improve_vote_franchise_policy_effectiveness_med = yes
+					set_country_flag = CPC_rural_dem_succeed
+					set_temp_variable = { temp_law = token:CPC_rural_democracy_law }
+					TNO_add_assorted_law = yes
+				}
+			}
+			else_if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical < CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.6
+				custom_effect_tooltip = "CPC_rural_dem_partial_success"
+				hidden_effect = {
+					CPC_RBM_level_up = yes
+					tno_vote_franchise_improve = yes
+					TNO_improve_vote_franchise_policy_effectiveness_med = yes
+					set_country_flag = CPC_rural_dem_succeed
+					set_temp_variable = { temp_law = token:CPC_rural_democracy_law }
+					TNO_add_assorted_law = yes
+				}
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = CPGAC_admit_rural_dem_han
+					  check_variable = { CPC_final_hidden_score_reform < 36.01 } }
+			custom_effect_tooltip = "CPC_rural_dem_fail"
+			random_list = {
+				50 = { country_event = CPC_rural_dem.5 }
+				50 = { country_event = CPC_rural_dem.6 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_all_honor_to_us
+	icon = GFX_goals_CPC_all_honor_to_us
+	cost = 3
+	x = 6
+	y = 1
+	mutually_exclusive = {
+		focus = CPC_all_honor_to_you
+	}
+	prerequisite = {
+		focus = CPC_able_to_act
+		focus = CPC_high_quality_decisions
+	}
+	prerequisite = {
+		focus = CPC_more_important_thing
+	}
+	relative_position_id = CPC_able_to_act
+	completion_reward = {
+		custom_effect_tooltip = "CPC_rural_dem_end"
+		if = {
+			limit = { OR = { NOT = { has_completed_focus = CPC_able_to_act }
+					 		 NOT = { has_completed_focus = CPC_high_quality_decisions } }
+							 NOT = { has_completed_focus = CPC_more_important_thing } }
+			custom_effect_tooltip = "CPC_rural_dem_not_ended_yet"
+		}
+		else_if = {
+			limit = { has_country_flag = CPGAC_admit_rural_dem_zhang
+					  check_variable = { CPC_final_hidden_score_reform > 31 } }
+			if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical = CPC_rural_dem_num_conservate } }
+				custom_effect_tooltip = "CPC_rural_dem_complete_success"
+				country_event = CPC_rural_dem.1
+			}
+			else_if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical > CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.2
+				custom_effect_tooltip = "CPC_rural_dem_partial_success"
+				hidden_effect = {
+					CPC_RBM_level_up = yes
+					tno_vote_franchise_improve = yes
+					TNO_improve_vote_franchise_policy_effectiveness_med = yes
+					set_country_flag = CPC_rural_dem_succeed
+					set_temp_variable = { temp_law = token:CPC_rural_democracy_law }
+					TNO_add_assorted_law = yes
+				}
+			}
+			else_if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical < CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.3
+				custom_effect_tooltip = "CPC_rural_dem_partial_success"
+				hidden_effect = {
+					CPC_RBM_level_up = yes
+					tno_vote_franchise_improve = yes
+					TNO_improve_vote_franchise_policy_effectiveness_med = yes
+					set_country_flag = CPC_rural_dem_succeed
+					set_temp_variable = { temp_law = token:CPC_rural_democracy_law }
+					TNO_add_assorted_law = yes
+				}
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = CPGAC_admit_rural_dem_zhang
+					  check_variable = { CPC_final_hidden_score_reform < 31.01 } }
+			custom_effect_tooltip = "CPC_rural_dem_fail"
+			random_list = {
+				50 = { country_event = CPC_rural_dem.2 }
+				50 = { country_event = CPC_rural_dem.3 }
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = CPGAC_admit_rural_dem_han
+					  check_variable = { CPC_final_hidden_score_reform > 31 } }
+			if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical = CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.4
+				custom_effect_tooltip = "CPC_rural_dem_complete_success"
+			}
+			else_if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical > CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.5
+				custom_effect_tooltip = "CPC_rural_dem_partial_success"
+				hidden_effect = {
+					CPC_RBM_level_up = yes
+					tno_vote_franchise_improve = yes
+					TNO_improve_vote_franchise_policy_effectiveness_med = yes
+					set_country_flag = CPC_rural_dem_succeed
+					set_temp_variable = { temp_law = token:CPC_rural_democracy_law }
+					TNO_add_assorted_law = yes
+				}
+			}
+			else_if = {
+				limit = { check_variable = { CPC_rural_dem_num_radical < CPC_rural_dem_num_conservate } }
+				country_event = CPC_rural_dem.6
+				custom_effect_tooltip = "CPC_rural_dem_partial_success"
+				hidden_effect = {
+					CPC_RBM_level_up = yes
+					tno_vote_franchise_improve = yes
+					TNO_improve_vote_franchise_policy_effectiveness_med = yes
+					set_country_flag = CPC_rural_dem_succeed
+					set_temp_variable = { temp_law = token:CPC_rural_democracy_law }
+					TNO_add_assorted_law = yes
+				}
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = CPGAC_admit_rural_dem_han
+					  check_variable = { CPC_final_hidden_score_reform < 31.01 } }
+			custom_effect_tooltip = "CPC_rural_dem_fail"
+			random_list = {
+				50 = { country_event = CPC_rural_dem.5 }
+				50 = { country_event = CPC_rural_dem.6 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_shanxi_liberate_plan
+	icon = GFX_goals_CPC_shanxi_liberate_plan
+	cost = 1
+	available = {
+		date > 1970.7.1
+		OR = {
+			has_completed_focus = CPC_all_honor_to_you
+			has_completed_focus = CPC_all_honor_to_us
+		}
+		NOT = { has_country_flag = CMC_reform_pre_flag }
+		NOT = { has_country_flag = CMC_reform_task_flag }
+	}
+	allow_branch = {
+		NOT = { has_country_flag = CPC_TRCW_begins_flag }
+		NOT = { has_global_flag = CPC_WINS_TRCW }
+	}
+	x = 20
+	y = 0
+	completion_reward = {
+		add_command_power = 50
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_equip_4 }
+		TER_PLA_CMC_reform_begins = yes
+		set_temp_variable = { begin_ut_temp = token:CPGAC_u_Force_to_go_through_the_Yellow_river }
+		set_temp_variable = { days_temp = 150 }
+		TER_CPGAC_begin_an_urgent_task = yes
+		country_event = {
+			id = CPC_TRCW.1
+			days = 14
+		}
+		country_event = {
+			id = CPC_Yang_Yingcai_stories.101
+			days = 40
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_covert_contact
+	icon = GFX_goals_CPC_covert_contact
+	cost = 3
+	prerequisite = {
+		focus = CPC_shanxi_liberate_plan
+	}
+	relative_position_id = CPC_shanxi_liberate_plan
+	x = 0
+	y = 1
+	completion_reward = {
+		add_manpower = 10000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 500
+		}
+		country_event = {
+			id = CPC_TRCW.3
+			days = 14
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_new_special_force
+	icon = GFX_goals_CPC_new_special_force
+	cost = 3
+	prerequisite = {
+		focus = CPC_covert_contact
+	}
+	relative_position_id = CPC_covert_contact
+	x = 0
+	y = 1
+	completion_reward = {
+		add_tech_bonus = {
+			name = special_forces_tech
+			bonus = 2.0
+			uses = 3
+			category = marine_tech
+			category = air_assault_tech
+			category = mountaineers_tech
+		}
+		TNO_improve_army_professionalism_low = yes
+		hidden_effect = {
+			country_event = {
+				id = CPC_TRCW.4
+				days = 4
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_Yellow_river_army
+	icon = GFX_goals_CPC_Yellow_river_army
+	cost = 3
+	prerequisite = {
+		focus = CPC_new_special_force
+	}
+	relative_position_id = CPC_new_special_force
+	x = -2
+	y = 1
+	completion_reward = {
+		set_temp_variable = { CMC_breakthrough_tmp = 0.075 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_increase_conscription
+	icon = GFX_goals_CPC_increase_conscription
+	cost = 3
+	prerequisite = {
+		focus = CPC_new_special_force
+	}
+	relative_position_id = CPC_new_special_force
+	x = 0
+	y = 1
+	completion_reward = {
+		set_temp_variable = { CMC_training_time_tmp = -0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_mountain_special_army
+	icon = GFX_goals_CPC_mountain_special_army
+	cost = 3
+	prerequisite = {
+		focus = CPC_new_special_force
+	}
+	relative_position_id = CPC_new_special_force
+	x = 2
+	y = 1
+	completion_reward = {
+		set_temp_variable = { CMC_breakthrough_tmp = 0.075 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_force_to_go_through_the_Yellow_river
+	icon = GFX_goals_CPC_force_to_go_through_the_Yellow_river
+	cost = 3
+	prerequisite = {
+		focus = CPC_Yellow_river_army
+	}
+	prerequisite = {
+		focus = CPC_increase_conscription
+	}
+	prerequisite = {
+		focus = CPC_mountain_special_army
+	}
+	available = {
+		CPC_the_time_has_come = yes
+	}
+	relative_position_id = CPC_increase_conscription
+	x = 0
+	y = 1
+	completion_reward = {
+		add_command_power = 40
+		custom_effect_tooltip = "CPC_force_to_go_through_the_Yellow_river_tt"
+	}
+}
+
+shared_focus = {
+	id = CPC_Yu_Gong_move_the_mountain
+	icon = GFX_goals_CPC_Yu_Gong_move_the_mountain
+	cost = 3
+	prerequisite = {
+		focus = CPC_force_to_go_through_the_Yellow_river
+	}
+	available = {
+		CPC_the_time_has_come = yes
+	}
+	relative_position_id = CPC_force_to_go_through_the_Yellow_river
+	x = 0
+	y = 1
+	completion_reward = {
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = CPC_fragile_silicon_dream
+	icon = GFX_goals_CPC_fragile_silicon_dream
+	cost = 1
+	allow_branch = {
+		check_variable = { GNG_selected_riot_group > 0 }
+	}
+	available = {
+		is_neighbor_of = GNG
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	x = 22
+	y = 0
+	completion_reward = {
+		add_political_power = -20
+		GNG = {
+			add_stability = -0.1
+			add_war_support = -0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_press_the_button
+	icon = GFX_goals_CPC_press_the_button
+	cost = 1
+	relative_position_id = CPC_fragile_silicon_dream
+	prerequisite = {
+		focus = CPC_fragile_silicon_dream
+	}
+	x = 0
+	y = 1
+	available = {
+		GNG = { has_war = no }
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	completion_reward = {
+		add_political_power = -30
+		effect_tooltip = {
+			set_temp_variable = { GNG_Riots_GFT_Strength_Temp = 1.5 }
+			GNG_Riots_GFT_Strength_Change = yes
+			set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = 1.5 }
+			GNG_Riots_GFT_Radicalism_Change = yes
+			set_temp_variable = { GNG_Riots_CCL_Strength_Temp = 1.5 }
+			GNG_Riots_CCL_Strength_Change = yes
+			set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = 1.5 }
+			GNG_Riots_CCL_Radicalism_Change = yes
+			set_temp_variable = { GNG_Riots_Despair_Temp = 3 }
+			GNG_Despair_Change = yes
+		}
+		hidden_effect = {
+			GNG = {
+				set_temp_variable = { GNG_Riots_GFT_Strength_Temp = 1.5 }
+				GNG_Riots_GFT_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_GFT_Radicalism_Temp = 1.5 }
+				GNG_Riots_GFT_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_CCL_Strength_Temp = 1.5 }
+				GNG_Riots_CCL_Strength_Change = yes
+				set_temp_variable = { GNG_Riots_CCL_Radicalism_Temp = 1.5 }
+				GNG_Riots_CCL_Radicalism_Change = yes
+				set_temp_variable = { GNG_Riots_Despair_Temp = 3 }
+				GNG_Despair_Change = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_go_fuck_GNG
+	icon = GFX_goals_CPC_go_fuck_GNG
+	cost = 1
+	relative_position_id = CPC_press_the_button
+	available = {
+		NOT = { has_war_with = GNG }
+		GNG = {
+			OR = {
+				has_country_leader = { character = GNG_ibuka_masaru }
+				has_country_leader = { character = GNG_komai_kenichiro }
+			}
+		}
+		GNG = { has_war = no }
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	prerequisite = {
+		focus = CPC_press_the_button
+	}
+	mutually_exclusive = {
+		focus = CPC_talk_with_GNG
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = "CPC_go_fuck_GNG_tt"
+		set_country_flag = CPC_go_fuck_GNG
+		hidden_effect = {
+			GNG = { leave_faction = yes }
+			1017 = { set_demilitarized_zone = yes }
+			1438 = { set_demilitarized_zone = yes }
+			1439 = { set_demilitarized_zone = yes }
+			593 = { set_demilitarized_zone = yes }
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_talk_with_GNG
+	icon = GFX_goals_CPC_talk_with_GNG
+	cost = 1
+	relative_position_id = CPC_press_the_button
+	available = {
+		NOT = { has_war_with = GNG }
+		GNG = {
+			OR = {
+				has_country_leader = { character = GNG_morita_akio } 
+				has_country_leader = { character = GNG_matsushita_masaharu } 
+			}
+		}
+		GNG = { has_war = no }
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	prerequisite = {
+		focus = CPC_press_the_button
+	}
+	mutually_exclusive = {
+		focus = CPC_go_fuck_GNG
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = "CPC_talk_with_GNG_tt"
+		set_country_flag = CPC_talk_with_GNG
+		add_days_mission_timeout = {
+			mission = CPC_JAP_fuck_GNG_date_left
+			days = 20
+		}
+		hidden_effect = {
+			GNG = { leave_faction = yes }
+			1017 = { set_demilitarized_zone = yes }
+			1438 = { set_demilitarized_zone = yes }
+			1439 = { set_demilitarized_zone = yes }
+			593 = { set_demilitarized_zone = yes }
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_SONY_our_dream
+	icon = GFX_goals_CPC_SONY_our_dream
+	relative_position_id = CPC_talk_with_GNG
+	cost = 3
+	prerequisite = {
+		focus = CPC_talk_with_GNG
+	}
+	available = {
+		NOT = { has_war_with = GNG }
+		GNG = {
+			has_country_leader = { character = GNG_morita_akio }
+		}
+		GNG = { has_war = no }
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	cancel_if_invalid = yes
+	mutually_exclusive = {
+		focus = CPC_Matsushita_folly_to_be_wise
+	}
+	x = -2
+	y = 1
+	completion_reward = {
+		add_days_mission_timeout = {
+			mission = CPC_JAP_fuck_GNG_date_left
+			days = 10
+		}
+		country_event = {
+			id = CPC_TRCW_GNG.1
+		}
+		hidden_effect = {
+			country_event = {
+				id = CPC_TRCW_GNG.11
+				days = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_Matsushita_folly_to_be_wise
+	icon = GFX_goals_CPC_Matsushita_folly_to_be_wise
+	relative_position_id = CPC_talk_with_GNG
+	cost = 3
+	prerequisite = {
+		focus = CPC_talk_with_GNG
+	}
+	available = {
+		NOT = { has_war_with = GNG }
+		GNG = {
+			has_country_leader = { character = GNG_matsushita_masaharu }
+		}
+		GNG = { has_war = no }
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	cancel_if_invalid = yes
+	mutually_exclusive = {
+		focus = CPC_SONY_our_dream
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		add_days_mission_timeout = {
+			mission = CPC_JAP_fuck_GNG_date_left
+			days = 10
+		}
+		country_event = {
+			id = CPC_TRCW_GNG.2
+		}
+		hidden_effect = {
+			country_event = {
+				id = CPC_TRCW_GNG.21
+				days = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_Fujitsu_world_of_glass
+	icon = GFX_goals_CPC_Fujitsu_world_of_glass
+	relative_position_id = CPC_go_fuck_GNG
+	cost = 3
+	prerequisite = {
+		focus = CPC_go_fuck_GNG
+	}
+	mutually_exclusive = {
+		focus = CPC_Hitachi_forest_of_steel
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	available = {
+		NOT = { has_war_with = GNG }
+		GNG = {
+			has_country_leader = { character = GNG_ibuka_masaru }
+		}
+		GNG = { has_war = no }
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		add_days_mission_timeout = {
+			mission = CPC_JAP_fuck_GNG_date_right
+			days = 10
+		}
+		country_event = {
+			id = CPC_TRCW_GNG.3
+		}
+		hidden_effect = {
+			country_event = {
+				id = CPC_TRCW_GNG.31
+				days = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_Hitachi_forest_of_steel
+	icon = GFX_goals_CPC_Hitachi_forest_of_steel
+	relative_position_id = CPC_go_fuck_GNG
+	cost = 3
+	prerequisite = {
+		focus = CPC_go_fuck_GNG
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	mutually_exclusive = {
+		focus = CPC_Fujitsu_world_of_glass
+	}
+	x = 2
+	y = 1
+	available = {
+		NOT = { has_war_with = GNG }
+		GNG = {
+			has_country_leader = { character = GNG_komai_kenichiro }
+		}
+		GNG = { has_war = no }
+	}
+	completion_reward = {
+		add_days_mission_timeout = {
+			mission = CPC_JAP_fuck_GNG_date_right
+			days = 10
+		}
+		country_event = {
+			id = CPC_TRCW_GNG.4
+		}
+		hidden_effect = {
+			country_event = {
+				id = CPC_TRCW_GNG.41
+				days = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_make_a_fuss_in_LegCo
+	icon = GFX_goals_CPC_make_a_fuss_in_LegCo
+	relative_position_id = CPC_SONY_our_dream
+	cost = 3
+	available = {
+		OR = {
+			has_country_flag = CPC_TRCW_SONY
+			has_country_flag = CPC_TRCW_Matsushita
+		}
+		GNG = { has_war = no }
+	}
+	prerequisite = {
+		focus = CPC_SONY_our_dream
+		focus = CPC_Matsushita_folly_to_be_wise
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		add_days_mission_timeout = {
+			mission = CPC_JAP_fuck_GNG_date_left
+			days = 5
+		}
+		country_event = {
+			id = CPC_TRCW_GNG.5
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_turn_hostility_into_friendship
+	icon = GFX_goals_CPC_turn_hostility_into_friendship
+	relative_position_id = CPC_make_a_fuss_in_LegCo
+	cost = 3
+	prerequisite = {
+		focus = CPC_make_a_fuss_in_LegCo
+	}
+	available = {
+		GNG = { has_war = no }
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		GNG = { 
+			delete_unit_template_and_units = {
+				division_template = "Police Response Brigade"
+			}
+		 }
+		1017 = { set_demilitarized_zone = no
+				 transfer_state_to = CPC }
+		1438 = { set_demilitarized_zone = no
+				 transfer_state_to = CPC }
+		1439 = { set_demilitarized_zone = no
+				 transfer_state_to = CPC }
+		593 = { set_demilitarized_zone = no
+				 transfer_state_to = CPC }
+		declare_war_on = {
+			target = GNG
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_life_is_not_satisfactory
+	icon = GFX_goals_CPC_life_is_not_satisfactory
+	relative_position_id = CPC_Fujitsu_world_of_glass
+	cost = 3
+	prerequisite = {
+		focus = CPC_Fujitsu_world_of_glass
+		focus = CPC_Hitachi_forest_of_steel
+	}
+	available = {
+		OR = {
+			has_country_flag = CPC_TRCW_Fujitsu
+			has_country_flag = CPC_TRCW_Hitachi
+		}
+		GNG = { has_war = no }
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		add_days_mission_timeout = {
+			mission = CPC_JAP_fuck_GNG_date_right
+			days = 5
+		}
+		country_event = {
+			id = CPC_TRCW_GNG.6
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_good_bye_silicon_dream
+	icon = GFX_goals_CPC_good_bye_silicon_dream
+	relative_position_id = CPC_life_is_not_satisfactory
+	cost = 3
+	prerequisite = {
+		focus = CPC_life_is_not_satisfactory
+	}
+	available = {
+		GNG = { has_war = no }
+	}
+	bypass = {
+		has_war_with = GNG
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		declare_war_on = {
+			target = GNG
+			type = annex_everything
+		}
+		hidden_effect = {
+			GNG = {
+				load_oob = GNG_TRCW_weak
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_1
+	icon = GFX_goals_CPC_TRCW_phase_1
+	available = {
+		has_country_flag = CPC_TRCW_begins_flag
+	}
+	allow_branch = {
+		OR = {
+			has_global_flag = CPC_WINS_TRCW
+			has_country_flag = CPC_TRCW_begins_flag
+		}
+	}
+	cost = 3
+	x = 6
+	y = 0
+	completion_reward = {
+		add_war_support = 0.25
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_1_1
+	icon = GFX_goals_CPC_TRCW_phase_1_1
+	prerequisite = { focus = CPC_TRCW_phase_1 }
+	relative_position_id = CPC_TRCW_phase_1
+	
+	cost = 1
+	x = 0
+	y = 1
+	completion_reward = {
+		add_stability = 0.05
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_1_left
+	icon = GFX_goals_CPC_TRCW_phase_1_left
+	prerequisite = { focus = CPC_TRCW_phase_1_1 }
+	relative_position_id = CPC_TRCW_phase_1_1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_left
+		}
+	}
+	cost = 1
+	x = -4
+	y = 1
+	completion_reward = {
+		set_temp_variable = { temp_econ_GDP_boost_flat = -0.05 }
+		econ_GDP_boost_once_flat = yes
+		set_temp_variable = { money_reserves_temp = 0.2 }
+		econ_money_reserves_change_raw_money = yes
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_1_left_1
+	icon = GFX_goals_SIC_rebuild_Sichuan_arsenal
+	prerequisite = { focus = CPC_TRCW_phase_1_left }
+	relative_position_id = CPC_TRCW_phase_1_left
+	mutually_exclusive = { focus = CPC_TRCW_phase_1_left_2 }
+	cost = 1
+	x = -1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_left_1
+		}
+	}
+	completion_reward = {
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_1_left_2
+	icon = GFX_goals_SIC_granary_of_revolution
+	prerequisite = { focus = CPC_TRCW_phase_1_left }
+	relative_position_id = CPC_TRCW_phase_1_left
+	mutually_exclusive = { focus = CPC_TRCW_phase_1_left_1 }
+	cost = 1
+	x = 1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_left_2
+		}
+	}
+	completion_reward = {
+		TNO_improve_agriculture_low = yes
+		#set_temp_variable = { CPC_TRCW_state_speed_change_temp = -5 }
+		#CPC_TRCW_normal_prog_full_change = yes
+		add_to_variable = { CPC_final_hidden_score_war = 10 }
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_1_medium
+	icon = GFX_goals_CPC_TRCW_phase_1_medium
+	prerequisite = { focus = CPC_TRCW_phase_1_1 }
+	relative_position_id = CPC_TRCW_phase_1_1
+	cost = 1
+	x = 0
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_medium
+		}
+	}
+	completion_reward = {
+		add_manpower = 10000
+		add_war_support = 0.3
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_1_medium_1
+	icon = GFX_goals_CPC_TRCW_phase_1_medium_1
+	prerequisite = { focus = CPC_TRCW_phase_1_medium }
+	relative_position_id = CPC_TRCW_phase_1_medium
+	mutually_exclusive = { focus = CPC_TRCW_phase_1_medium_2 }
+	cost = 1
+	x = -1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_medium_1
+		}
+	}
+	completion_reward = {
+		TNO_improve_conscription_policy_effectiveness_med = yes
+		#set_temp_variable = { CPC_TRCW_state_speed_change_temp = 1.5 }
+		#CPC_TRCW_random_normal_prog_change = yes	
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_1_medium_2
+	icon = GFX_goals_CPC_TRCW_phase_1_medium_2
+	prerequisite = { focus = CPC_TRCW_phase_1_medium }
+	relative_position_id = CPC_TRCW_phase_1_medium
+	mutually_exclusive = { focus = CPC_TRCW_phase_1_medium_1 }
+	cost = 1
+	x = 1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_medium_2
+		}
+	}
+	completion_reward = {
+		TNO_worsen_conscription_policy_effectiveness_low = yes
+		#set_temp_variable = { CPC_TRCW_state_speed_change_temp = -1.5 }
+		#CPC_TRCW_random_normal_prog_change = yes
+		CPC_Lin_Biao_dissatisfaction_up_without_event = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_1_right
+	icon = GFX_goals_CPC_TRCW_phase_1_right
+	prerequisite = { focus = CPC_TRCW_phase_1_1 }
+	relative_position_id = CPC_TRCW_phase_1_1
+	bypass = {
+		VIC = { has_war_with = CHI }
+	}
+	cost = 1
+	x = 4
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_right
+		}
+	}
+	completion_reward = {
+		every_country = {
+			limit = { is_in_faction_with = CPC }
+			add_to_war = {
+				targeted_alliance = CPC
+				enemy = CHI
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_1_right_1
+	icon = GFX_goals_CPC_TRCW_phase_1_right_1
+	prerequisite = { focus = CPC_TRCW_phase_1_right }
+	relative_position_id = CPC_TRCW_phase_1_right
+	mutually_exclusive = { focus = CPC_TRCW_phase_1_right_2 }
+	cost = 1
+	x = -1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_right_1
+		}
+	}
+	completion_reward = {
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+		VIC = { 
+			set_temp_variable = { pus_temp = -1 }
+			econ_pus_change = yes
+		}
+		KPA = {
+			set_temp_variable = { pus_temp = -1 }
+			econ_pus_change = yes
+		}
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_1_right_2
+	icon = GFX_goals_CPC_TRCW_phase_1_right_2
+	prerequisite = { focus = CPC_TRCW_phase_1_right }
+	relative_position_id = CPC_TRCW_phase_1_right
+	mutually_exclusive = { focus = CPC_TRCW_phase_1_right_1 }
+	cost = 1
+	x = 1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_1_right_2
+		}
+	}
+	completion_reward = {
+		TNO_improve_trade_laws_policy_effectiveness_med = yes
+		#set_temp_variable = { CPC_TRCW_state_speed_change_temp = -2.5 }
+		#CPC_TRCW_normal_prog_full_change = yes
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_2
+	icon = GFX_goals_CPC_TRCW_phase_2
+	prerequisite = { focus = CPC_TRCW_phase_1_right_1
+					 focus = CPC_TRCW_phase_1_right_2 }
+	prerequisite = { focus = CPC_TRCW_phase_1_medium_1
+					 focus = CPC_TRCW_phase_1_medium_2 }
+	prerequisite = { focus = CPC_TRCW_phase_1_left_1
+					 focus = CPC_TRCW_phase_1_left_2 }
+	relative_position_id = CPC_TRCW_phase_1_medium
+	available = {
+		CHI = { surrender_progress > 0.2 }
+	}
+	cost = 3
+	x = 0
+	y = 2
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2
+		}
+	}
+	completion_reward = {
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.25 }
+		CPC_TRCW_bomb_speed_full_change = yes
+		CPC_TRCW_bio_speed_full_change = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_2_left
+	icon = GFX_goals_CPC_TRCW_phase_2_left
+	prerequisite = { focus = CPC_TRCW_phase_2 }
+	relative_position_id = CPC_TRCW_phase_2
+	cost = 1
+	x = -4
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_left
+		}
+	}
+	completion_reward = {
+		add_command_power = 50
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_2_left_1
+	icon = GFX_goals_CPC_1968_central_ministries
+	prerequisite = { focus = CPC_TRCW_phase_2_left }
+	relative_position_id = CPC_TRCW_phase_2_left
+	mutually_exclusive = { focus = CPC_TRCW_phase_2_left_2 }
+	cost = 1
+	x = -1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_left_1
+		}
+	}
+	completion_reward = {
+		set_temp_variable = { CMC_army_org_regain_tmp = 0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_2_left_2
+	icon = GFX_goals_CPC_MRC_issue_3
+	prerequisite = { focus = CPC_TRCW_phase_2_left }
+	relative_position_id = CPC_TRCW_phase_2_left
+	mutually_exclusive = { focus = CPC_TRCW_phase_2_left_1 }
+	cost = 1
+	x = 1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_left_2
+		}
+	}
+	completion_reward = {
+		set_temp_variable = { CMC_am_factor_tmp = 0.05 }
+		TER_PLA_CMC_add_modifier_effect = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_2_medium
+	icon = GFX_goals_CPC_TRCW_phase_2_medium
+	prerequisite = { focus = CPC_TRCW_phase_2 }
+	relative_position_id = CPC_TRCW_phase_2
+	cost = 1
+	x = 0
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_medium
+		}
+	}
+	completion_reward = {
+		add_stability = -0.05
+		add_war_support = -0.025
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_2_medium_1
+	icon = GFX_focus_generic_prison_camp
+	prerequisite = { focus = CPC_TRCW_phase_2_medium }
+	relative_position_id = CPC_TRCW_phase_2_medium
+	mutually_exclusive = { focus = CPC_TRCW_phase_2_medium_2 }
+	cost = 1
+	x = -1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_medium_1
+		}
+	}
+	completion_reward = {
+		TNO_improve_industrial_expertise_low = yes
+		TNO_worsen_poverty_low = yes
+		CPC_Lin_Biao_dissatisfaction_up_without_event = yes
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_2_medium_2
+	icon = GFX_goals_CPC_TRCW_phase_2_medium_2
+	prerequisite = { focus = CPC_TRCW_phase_2_medium }
+	relative_position_id = CPC_TRCW_phase_2_medium
+	mutually_exclusive = { focus = CPC_TRCW_phase_2_medium_1 }
+	cost = 1
+	x = 1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_medium_2
+		}
+	}
+	completion_reward = {
+		add_manpower = 10000
+		TNO_improve_army_professionalism_low = yes
+		TNO_worsen_training_policy_effectiveness_low = yes
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_2_right
+	icon = GFX_goals_CPC_TRCW_phase_2_right
+	prerequisite = { focus = CPC_TRCW_phase_2 }
+	relative_position_id = CPC_TRCW_phase_2
+	cost = 1
+	x = 4
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_right
+		}
+	}
+	completion_reward = {
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = 1 }
+		CPC_TRCW_random_bio_speed_change = yes
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_2_right_1
+	icon = GFX_goals_CPC_TRCW_phase_2_right_1
+	prerequisite = { focus = CPC_TRCW_phase_2_right }
+	relative_position_id = CPC_TRCW_phase_2_right
+	mutually_exclusive = { focus = CPC_TRCW_phase_2_right_2 }
+	cost = 1
+	x = -1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_right_1
+		}
+	}
+	completion_reward = {
+		#set_temp_variable = { CPC_TRCW_state_speed_change_temp = 5 }
+		#CPC_TRCW_normal_prog_full_change = yes
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -1 }
+		CPC_TRCW_bio_speed_full_change = yes
+		add_to_variable = { CPC_final_hidden_score_war = 10 }
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_2_right_2
+	icon = GFX_goals_CPC_TRCW_phase_2_right_2
+	prerequisite = { focus = CPC_TRCW_phase_2_right }
+	relative_position_id = CPC_TRCW_phase_2_right
+	mutually_exclusive = { focus = CPC_TRCW_phase_2_right_1 }
+	cost = 1
+	x = 1
+	y = 1
+	select_effect = {
+		if = { 
+			limit = { CHI = { exists = no } }
+			complete_national_focus = CPC_TRCW_phase_2_right_2
+		}
+	}
+	completion_reward = {
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.5 }
+		CPC_TRCW_bomb_speed_full_change = yes
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.5 }
+		CPC_TRCW_bio_speed_full_change = yes
+		add_to_variable = { CPC_final_hidden_score_war = 5 }
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_3
+	icon = GFX_goals_CPC_TRCW_phase_3
+	available = {
+		CHI = { exists = no }
+	}
+	bypass = {
+		hidden_trigger = {
+			has_global_flag = CPC_WINS_TRCW
+		}
+	}
+	prerequisite = { focus = CPC_TRCW_phase_2_right_1
+					 focus = CPC_TRCW_phase_2_right_2 }
+	prerequisite = { focus = CPC_TRCW_phase_2_medium_1
+					 focus = CPC_TRCW_phase_2_medium_2 }
+	prerequisite = { focus = CPC_TRCW_phase_2_left_1
+					 focus = CPC_TRCW_phase_2_left_2 }
+	relative_position_id = CPC_TRCW_phase_2_medium
+	cost = 3
+	x = 0
+	y = 2
+	select_effect = {
+		if = { 
+			limit = { has_global_flag = CPC_WINS_TRCW }
+			complete_national_focus = CPC_TRCW_phase_3
+		}
+	}
+	completion_reward = {
+		custom_effect_tooltip = "CPC_TRCW_phase_3_tt"
+	}
+}
+
+### 战后 - 林 ###
+shared_focus = {
+	id = CPC_Lin_TRCW_FINAL
+	icon = GFX_goals_CPC_Lin_TRCW_FINAL
+	relative_position_id = CPC_TRCW_phase_3
+	allow_branch = {
+		has_global_flag = CPC_WINS_TRCW
+		CPC_ending_bad_trigger = yes
+		MAN = { exists = no }
+	}
+	select_effect = {
+		hidden_effect = {
+			country_event = { id = CPC_TRCW_end.7 days = 3 }
+		}
+	}
+	cost = 2
+	x = 0
+	y = 2
+	completion_reward = {
+		add_political_power = -100
+		hidden_effect = {
+			country_event = {
+				id = CPC_TRCW_end.1
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_Lin_TRCW_I_dominate
+	icon = GFX_goals_CPC_Lin_TRCW_I_dominate
+	relative_position_id = CPC_Lin_TRCW_FINAL
+	prerequisite = { focus = CPC_Lin_TRCW_FINAL}
+	cost = 2
+	x = 0
+	y = 1
+	completion_reward = {
+		country_event = { 
+			id = CPC_Lin_Coup.1
+			days = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_Lin_TRCW_Revolution_Court
+	icon = GFX_goals_CPC_Lin_TRCW_Revolution_Court
+	relative_position_id = CPC_Lin_TRCW_I_dominate
+	prerequisite = { focus = CPC_Lin_TRCW_I_dominate}
+	cost = 1
+	x = -1
+	y = 1
+	completion_reward = {
+		country_event = {
+			id = CPC_Lin_Coup.2
+			days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_Lin_TRCW_committee
+	icon = GFX_goals_CPC_Lin_TRCW_committee
+	relative_position_id = CPC_Lin_TRCW_I_dominate
+	prerequisite = { focus = CPC_Lin_TRCW_I_dominate}
+	cost = 1
+	x = 1
+	y = 1
+	completion_reward = {
+		country_event = { 
+			id = CPC_Lin_Coup.3
+			days = 2
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_Lin_TRCW_FUCK_THOSE_MANCHURIAN_AND_KANTONESE
+	icon = GFX_goals_CPC_Lin_TRCW_FUCK_THOSE_MANCHURIAN_AND_KANTONESE
+	relative_position_id = CPC_Lin_TRCW_Revolution_Court
+	prerequisite = { focus = CPC_Lin_TRCW_Revolution_Court}
+	prerequisite = { focus = CPC_Lin_TRCW_committee}
+	cost = 1
+	x = -1
+	y = 1
+	completion_reward = {
+		add_stability = -0.3
+		add_manpower = -30000
+		set_temp_variable = { money_reserves_temp = 10 }
+		econ_money_reserves_change_raw_money = yes
+		328 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -10 } } }
+		1265 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -10 } } }
+		801 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -10 } } }
+
+		592 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -10 } } }
+		326 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -10 } } }
+		729 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -10 } } }
+	}
+}
+shared_focus = {
+	id = CPC_Lin_TRCW_FUCK_THOSE_TRAITORS
+	icon = GFX_goals_CPC_Lin_TRCW_FUCK_THOSE_TRAITORS
+	relative_position_id = CPC_Lin_TRCW_Revolution_Court
+	prerequisite = { focus = CPC_Lin_TRCW_Revolution_Court}
+	prerequisite = { focus = CPC_Lin_TRCW_committee}
+	cost = 1
+	x = 1
+	y = 1
+	completion_reward = {
+		add_stability = -0.1
+		add_manpower = -30000
+		country_event = { 
+			id = CPC_Lin_Coup.4
+			days = 2
+		}
+		hidden_effect = {
+			country_event = { id = CPC_TRCW_end.4 days = 7 }
+			every_state = {
+				limit = { is_core_of = TWN }
+				add_core_of = CPC
+			}
+			country_event = { id = CPC_TRCW_end.3 days = 13 }
+		}
+	}
+}
+shared_focus = {
+	id = CPC_Lin_TRCW_FUCK_THOSE_ENEMIES
+	icon = GFX_goals_CPC_Lin_TRCW_FUCK_THOSE_ENEMIES
+	relative_position_id = CPC_Lin_TRCW_Revolution_Court
+	prerequisite = { focus = CPC_Lin_TRCW_Revolution_Court}
+	prerequisite = { focus = CPC_Lin_TRCW_committee}
+	cost = 1
+	x = 3
+	y = 1
+	completion_reward = {
+		add_stability = -0.1
+		add_manpower = -30000
+		if = {
+			limit = { has_country_leader_ideology = despotism_civilian_dictatorship_subtype }
+			add_country_leader_trait = CPC_FUCK_JAPANESE_trait
+		}
+		custom_effect_tooltip = "CPC_TRCW_Border_Strategy_tt"
+		hidden_effect = {
+			add_state_core = 2488
+			add_state_core = 2489
+			if = {
+				limit = { has_country_flag = CPC_Lei_Feng_alive }
+				country_event = { id = CPC_main_story_events.140 days = 5 }
+			}
+			swap_ideas = {
+				remove_idea = CPC_PLA_issue_2
+				add_idea = CPC_PLA_issue_3
+			}
+			set_variable = { CPC_PLA_political_power_gain = 0.3 }
+			set_variable = { CPC_PLA_army_org_regain = 0.1 }
+			set_variable = { CPC_PLA_army_professionalism_monthly_rate = 1 }
+			set_variable = { CPC_PLA_army_morale_factor = 0.1 }
+			set_variable = { CPC_PLA_command_power_gain = 1 }
+			set_variable = { CPC_PLA_max_command_power = 100 }
+			set_variable = { CPC_PLA_experience_gain_army_unit_factor = 0.1 }
+			set_variable = { CPC_PLA_experience_loss_factor = -0.1 }
+			set_variable = { CPC_PLA_combat_width_factor = -0.15 }
+			set_variable = { CPC_PLA_land_reinforce_rate = 0.1 }
+			set_variable = { CPC_PLA_army_ad_factor = 0.1 }
+			set_variable = { CPC_PLA_army_speed_factor = 0.1 }
+			set_variable = { CPC_PLA_supply_factor = 0.1 }
+			set_variable = { CPC_PLA_breakthrough_factor = 0.1 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+}
+shared_focus = {
+	id = CPC_Lin_TRCW_FUCK_THOSE_JAPANESE
+	icon = GFX_goals_CPC_Lin_TRCW_FUCK_THOSE_JAPANESE
+	relative_position_id = CPC_Lin_TRCW_FUCK_THOSE_TRAITORS
+	prerequisite = { focus = CPC_Lin_TRCW_FUCK_THOSE_ENEMIES}
+	prerequisite = { focus = CPC_Lin_TRCW_FUCK_THOSE_TRAITORS}
+	prerequisite = { focus = CPC_Lin_TRCW_FUCK_THOSE_MANCHURIAN_AND_KANTONESE}
+	cost = 1
+	x = 0
+	y = 1
+	completion_reward = {
+		country_event = { 
+			id = CPC_Lin_Coup.5
+			days = 2
+		}
+	}
+}
+shared_focus = {
+	id = BACK_TO_ETERNAL
+	icon = GFX_goals_BACK_TO_ETERNAL
+	relative_position_id = CPC_Lin_TRCW_FUCK_THOSE_JAPANESE
+	prerequisite = { focus = CPC_Lin_TRCW_FUCK_THOSE_JAPANESE}
+	cost = 1
+	x = 0
+	y = 1
+	completion_reward = {
+		country_event = { 
+			id = CPC_TRCW_end.401
+			days = 5
+		}
+	}
+}
+
+### 战后 - 正常 ###
+shared_focus = {
+	id = CPC_TRCW_FINAL
+	icon = GFX_goals_CPC_TRCW_FINAL
+	relative_position_id = CPC_TRCW_phase_3
+	allow_branch = {
+		has_global_flag = CPC_WINS_TRCW
+		CPC_ending_bad_trigger = no
+		MAN = { exists = no }
+	}
+	cost = 1
+	x = 0
+	y = 2
+	completion_reward = {
+		country_event = {
+			id = CPC_TRCW_end.1
+			days = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_3_left
+	icon = GFX_goals_CPC_TRCW_phase_3_left
+	prerequisite = { focus = CPC_TRCW_FINAL}
+	relative_position_id = CPC_TRCW_FINAL
+	cost = 1
+	x = -2
+	y = 1
+	completion_reward = {
+		add_political_power = 50
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_3_left_1
+	icon = GFX_goals_CPC_MRC_end
+	prerequisite = { focus = CPC_TRCW_phase_3_left }
+	relative_position_id = CPC_TRCW_phase_3_left
+	mutually_exclusive = { focus = CPC_TRCW_phase_3_left_2 }
+	available = {
+		NOT = { has_idea = CPC_dem_riot_failure }
+	}
+	cost = 1
+	x = -1
+	y = 1
+	completion_reward = {
+		add_stability = 0.05
+		add_war_support = -0.05
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_3_left_2
+	icon = GFX_goals_CPC_all_honor_to_you
+	prerequisite = { focus = CPC_TRCW_phase_3_left }
+	relative_position_id = CPC_TRCW_phase_3_left
+	mutually_exclusive = { focus = CPC_TRCW_phase_3_left_1 }
+	cost = 1
+	x = 1
+	y = 1
+	completion_reward = {
+		add_country_leader_trait = CPC_party_superpower
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_3_medium
+	icon = GFX_goals_CPC_TRCW_phase_3_medium
+	prerequisite = { focus = CPC_TRCW_FINAL}
+	relative_position_id = CPC_TRCW_FINAL
+	cost = 1
+	x = 2
+	y = 1
+	completion_reward = {
+		set_temp_variable = { gdp_growth_temp = 2.5 }
+		econ_gdp_growth_change = yes
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_3_medium_1
+	icon = GFX_goals_CPC_TRCW_phase_3_medium_1
+	prerequisite = { focus = CPC_TRCW_phase_3_medium }
+	relative_position_id = CPC_TRCW_phase_3_medium
+	cost = 1
+	x = -1
+	y = 1
+	completion_reward = {
+		TNO_improve_poverty_high = yes
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_3_right
+	icon = GFX_goals_CPC_TRCW_phase_3_right
+	prerequisite = { focus = CPC_TRCW_phase_3_left_1
+					 focus = CPC_TRCW_phase_3_left_2 }
+	relative_position_id = CPC_TRCW_phase_3_left_1
+	cost = 1
+	x = 1
+	y = 1
+	completion_reward = {
+		add_stability = -0.05
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_3_right_1
+	icon = GFX_goals_CPC_TRCW_phase_3_right_1
+	prerequisite = { focus = CPC_TRCW_phase_3_right }
+	relative_position_id = CPC_TRCW_phase_3_right
+	mutually_exclusive = { focus = CPC_TRCW_phase_3_right_2 }
+	cost = 1
+	x = -1
+	y = 1
+	completion_reward = {
+		add_political_power = 50
+		add_stability = 0.05
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_phase_3_right_2
+	icon = GFX_focus_RUS_by_root_and_stem
+	prerequisite = { focus = CPC_TRCW_phase_3_right }
+	relative_position_id = CPC_TRCW_phase_3_right
+	mutually_exclusive = { focus = CPC_TRCW_phase_3_right_1 }
+	
+	cost = 1
+	x = 1
+	y = 1
+	completion_reward = {
+		set_temp_variable = { money_reserves_temp = 0.6 }
+		econ_money_reserves_change_raw_money = yes
+		add_war_support = 0.05
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_phase_3_medium_2
+	icon = GFX_goals_CPC_TRCW_phase_3_medium_2
+	prerequisite = { focus = CPC_TRCW_phase_3_medium }
+	relative_position_id = CPC_TRCW_phase_3_medium
+	
+	cost = 1
+	x = 1
+	y = 1
+	
+	completion_reward = {
+		add_stability = -0.05
+		set_temp_variable = { money_reserves_temp = 2.5 }
+		econ_money_reserves_change_raw_money = yes
+		328 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -5 } } }
+		1265 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -3.5 } } }
+		801 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -3 } } }
+
+		592 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -4 } } }
+		326 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -3 } } }
+		729 = { add_state_modifier = { modifier = { state_GDP_growth_modifier = -2 } } }
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_Border_Strategy
+	icon = GFX_goals_CPC_TRCW_Border_Strategy
+	prerequisite = { focus = CPC_TRCW_phase_3_medium_2 }
+	prerequisite = { focus = CPC_TRCW_phase_3_medium_1 }
+	relative_position_id = CPC_TRCW_phase_3_medium_2
+	cost = 1
+	x = -1
+	y = 1
+	
+	completion_reward = {
+		custom_effect_tooltip = "CPC_TRCW_Border_Strategy_tt"
+		hidden_effect = {
+			add_state_core = 2488
+			add_state_core = 2489
+			if = {
+				limit = { has_country_flag = CPC_Lei_Feng_alive }
+				country_event = { id = CPC_main_story_events.140 days = 5 }
+			}
+			swap_ideas = {
+				remove_idea = CPC_PLA_issue_2
+				add_idea = CPC_PLA_issue_3
+			}
+			set_variable = { CPC_PLA_political_power_gain = 0.1 }
+			set_variable = { CPC_PLA_army_org_regain = 0.1 }
+			set_variable = { CPC_PLA_army_professionalism_monthly_rate = 1 }
+			set_variable = { CPC_PLA_army_morale_factor = 0.1 }
+			set_variable = { CPC_PLA_command_power_gain = 1 }
+			set_variable = { CPC_PLA_max_command_power = 100 }
+			set_variable = { CPC_PLA_experience_gain_army_unit_factor = 0.1 }
+			set_variable = { CPC_PLA_experience_loss_factor = -0.1 }
+			set_variable = { CPC_PLA_combat_width_factor = -0.15 }
+			set_variable = { CPC_PLA_land_reinforce_rate = 0.1 }
+			set_variable = { CPC_PLA_army_ad_factor = 0.1 }
+			set_variable = { CPC_PLA_army_speed_factor = 0.1 }
+			set_variable = { CPC_PLA_supply_factor = 0.1 }
+			set_variable = { CPC_PLA_breakthrough_factor = 0.1 }
+			force_update_dynamic_modifier = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_TRCW_Border_Taiwan
+	icon = GFX_goals_CPC_TRCW_Border_Taiwan
+	prerequisite = { focus = CPC_TRCW_Border_Strategy }
+	relative_position_id = CPC_TRCW_Border_Strategy
+	
+	cost = 1
+	x = -1
+	y = 1
+	
+	completion_reward = {
+		every_state = {
+			limit = { is_core_of = TWN }
+			add_core_of = CPC
+		}
+		country_event = { id = CPC_TRCW_end.3 days = 2 }
+	}
+}
+shared_focus = {
+	id = CPC_TRCW_Border_Chosen
+	icon = GFX_goals_CPC_TRCW_Border_Chosen
+	prerequisite = { focus = CPC_TRCW_Border_Strategy }
+	relative_position_id = CPC_TRCW_Border_Strategy
+	
+	cost = 1
+	x = 1
+	y = 1
+	
+	completion_reward = {
+		country_event = { id = CPC_TRCW_end.4 days = 2 }
+		hidden_effect = { country_event = { id = CPC_TRCW_end.7 days = 10 } }
+	}
+}
+
+shared_focus = {
+	id = CPC_10th_congress_preparation
+	icon = GFX_goals_CPC_10th_congress_preparation
+	prerequisite = { focus = CPC_TRCW_phase_3_right_1
+					 focus = CPC_TRCW_phase_3_right_2 }
+	relative_position_id = CPC_TRCW_phase_3_right_1
+	
+	cost = 1
+	x = 1
+	y = 1
+	
+	completion_reward = {
+		country_event = { id = CPC_TRCW_end.5 days = 2 }
+	}
+}
+
+shared_focus = {
+	id = CPC_Central_People_Government_reform
+	icon = GFX_goals_CPC_Central_People_Government_reform
+	prerequisite = { focus = CPC_TRCW_Border_Chosen }
+	prerequisite = { focus = CPC_TRCW_Border_Taiwan }
+	relative_position_id = CPC_TRCW_Border_Taiwan
+	
+	cost = 1
+	x = 1
+	y = 1
+	
+	completion_reward = {
+		country_event = { id = CPC_TRCW_end.6 days = 2 }
+	}
+}
+
+shared_focus = {
+	id = THE_EAST_IS_RED
+	icon = GFX_goals_THE_EAST_IS_RED
+	prerequisite = { focus = CPC_Central_People_Government_reform }
+	prerequisite = { focus = CPC_10th_congress_preparation }
+	relative_position_id = CPC_10th_congress_preparation
+	
+	cost = 3
+	x = 2
+	y = 1
+	
+	completion_reward = {
+		country_event = { id = CPC_TRCW_end.8 days = 1 }
+		if = {
+			limit = { has_country_flag = TER_good_ending }
+			country_event = { 
+				id = CPC_TRCW_end.102
+				days = 7
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = TER_normal_ending
+					  has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype }
+			country_event = { 
+				id = CPC_TRCW_end.202
+				days = 7
+			}
+		}
+		else_if = {
+			limit = { has_country_flag = TER_normal_ending
+					  has_country_leader_ideology = communist_liu_shaoqi_thought_subtype }
+			country_event = { 
+				id = CPC_TRCW_end.302
+				days = 7
+			}
+		}
+	}
+}
+

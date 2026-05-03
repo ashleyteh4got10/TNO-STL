@@ -1,0 +1,492 @@
+scripted_gui = {
+	CPC_NCCPC_button = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "CPC_NCCPC_entry_bg"
+		visible = {
+			original_tag = CPC
+			NOT = { has_country_flag = CPC_NCCPC_canceled_final }
+		}
+		effects = {
+			CPC_NCCPC_button_click = {
+				clr_country_flag = gui_alert_visible
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open
+					TER_NWB_calc_party_members = yes 
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+		}
+
+		triggers = {
+			gui_alert_visible = {
+				has_country_flag = gui_alert_visible
+			}
+		}
+	}
+
+	CPC_main_GUI = {
+		context_type = player_context
+		window_name = "CPC_main_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+		}
+		properties = {
+			tab_party_issue = {
+				frame = CPC_GUI_tab_issue^0
+			}
+			tab_government_issue = {
+				frame = CPC_GUI_tab_issue^1
+			}
+			tab_military_issue = {
+				frame = CPC_GUI_tab_issue^2
+			}
+			tab_0 = {
+				frame = CPC_GUI_tab_frames^0
+			}
+			tab_1 = {
+				frame = CPC_GUI_tab_frames^1
+			}
+			tab_2 = {
+				frame = CPC_GUI_tab_frames^2
+			}
+			tab_3 = {
+				frame = CPC_GUI_tab_frames^3
+			}
+			tab_4 = {
+				frame = CPC_GUI_tab_frames^4
+			}
+		}
+		triggers = {
+			icon_0_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			}
+			icon_1_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				has_country_flag = CPC_unlock_NWB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+			icon_2_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				has_country_flag = CPC_unlock_SWB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+			icon_3_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				has_country_flag = CPC_unlock_XJB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+			icon_4_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				has_country_flag = CPC_unlock_SCB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+				QYC = {
+					NOT = { has_idea = SEA_stop_operation }
+				}
+			}
+			tab_0_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			}
+			tab_1_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				has_country_flag = CPC_unlock_NWB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+			tab_2_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				has_country_flag = CPC_unlock_SWB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+			tab_3_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				has_country_flag = CPC_unlock_XJB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+			}
+			tab_3_click_enabled = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				NOT = { has_country_flag = CPC_XJ_mess_up }
+			}
+			tab_4_visible = {
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+				has_country_flag = CPC_unlock_SCB
+				NOT = { has_country_flag = CPC_TRCW_begins_flag }
+				NOT = { has_global_flag = CPC_WINS_TRCW }
+				QYC = {
+					NOT = { has_idea = SEA_stop_operation }
+				}
+			}
+			icon_CPC_visible = { NOT = { has_country_flag = CPC_NCCPC_canceled_final } }
+			tab_party_issue_visible = { NOT = { has_country_flag = CPC_NCCPC_canceled_final } }
+			title_party_issue_visible = { NOT = { has_country_flag = CPC_NCCPC_canceled_final } }
+
+			icon_CPGAC_visible = { NOT = { has_country_flag = CPC_GAC_canceled_final } }
+			tab_government_issue_visible = { NOT = { has_country_flag = CPC_GAC_canceled_final } }
+			title_government_issue_visible = { NOT = { has_country_flag = CPC_GAC_canceled_final } }
+		}
+		effects = {
+			tab_party_issue_click = { 
+				set_variable = { CPC_GUI_tab_issue^0 = 2 }
+				set_variable = { CPC_GUI_tab_issue^1 = 1 }
+				set_variable = { CPC_GUI_tab_issue^2 = 1 }
+			}
+			tab_government_issue_click = { 
+				set_variable = { CPC_GUI_tab_issue^0 = 1 }
+				set_variable = { CPC_GUI_tab_issue^1 = 2 }
+				set_variable = { CPC_GUI_tab_issue^2 = 1 }
+				TER_CPGAC_update_bar = yes
+			}
+			tab_military_issue_click = { 
+				set_variable = { CPC_GUI_tab_issue^0 = 1 }
+				set_variable = { CPC_GUI_tab_issue^1 = 1 }
+				set_variable = { CPC_GUI_tab_issue^2 = 2 }
+			}
+			tab_0_click = {
+				set_variable = { CPC_GUI_tab_frames^0 = 2 }
+				set_variable = { CPC_GUI_tab_frames^1 = 1 }
+				set_variable = { CPC_GUI_tab_frames^2 = 1 }
+				set_variable = { CPC_GUI_tab_frames^3 = 1 }
+				set_variable = { CPC_GUI_tab_frames^4 = 1 }
+			}
+			tab_1_click = {
+				set_variable = { CPC_GUI_tab_frames^0 = 1 }
+				set_variable = { CPC_GUI_tab_frames^1 = 2 }
+				set_variable = { CPC_GUI_tab_frames^2 = 1 }
+				set_variable = { CPC_GUI_tab_frames^3 = 1 }
+				set_variable = { CPC_GUI_tab_frames^4 = 1 }
+				TER_NWB_calc_party_members = yes
+			}
+			tab_2_click = {
+				set_variable = { CPC_GUI_tab_frames^0 = 1 }
+				set_variable = { CPC_GUI_tab_frames^1 = 1 }
+				set_variable = { CPC_GUI_tab_frames^2 = 2 }
+				set_variable = { CPC_GUI_tab_frames^3 = 1 }
+				set_variable = { CPC_GUI_tab_frames^4 = 1 }
+			}
+			tab_3_click = {
+				set_variable = { CPC_GUI_tab_frames^0 = 1 }
+				set_variable = { CPC_GUI_tab_frames^1 = 1 }
+				set_variable = { CPC_GUI_tab_frames^2 = 1 }
+				set_variable = { CPC_GUI_tab_frames^3 = 2 }
+				set_variable = { CPC_GUI_tab_frames^4 = 1 }
+			}
+			tab_4_click = {
+				set_variable = { CPC_GUI_tab_frames^0 = 1 }
+				set_variable = { CPC_GUI_tab_frames^1 = 1 }
+				set_variable = { CPC_GUI_tab_frames^2 = 1 }
+				set_variable = { CPC_GUI_tab_frames^3 = 1 }
+				set_variable = { CPC_GUI_tab_frames^4 = 2 }
+			}
+			close_button_click = {
+				clr_country_flag = CPC_main_GUI_open
+			}
+		}
+	}
+
+	CPC_NCCPC_main_GUI = {
+		context_type = player_context
+		window_name = "CPC_NCCPC_Main_GUI"
+		parent_window_name = "CPC_main_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open 
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^0 = 2 }
+		}
+		dynamic_lists = { 
+			NCCPC_line_segments = {
+				array = NCCPC_Line_graph_offsets 
+				change_scope = no
+				entry_container = NCCPC_line_graph_line_segment
+				index = segment_idx
+			}  
+			vbars = {
+				array = NCCPC_Line_graph_vbars
+				change_scope = no
+				entry_container = NCCPC_line_graph_vbar
+				index = vbar_idx
+			}
+		}
+		properties = {
+			TER_NCCPC_hosting_service_btn = { frame = CPC_hosting_service_NCCPC_var }
+			Mao_entry = {
+				image = "[CPC_pie_0_portrait]"
+			}
+			Liu_entry = {
+				image = "[CPC_pie_1_portrait]"
+			}
+			Li_entry = {
+				image = "[CPC_pie_2_portrait]"
+			}
+			Deng_entry = {
+				image = "[CPC_pie_3_portrait]"
+			}
+			mao_pie = {
+				frame = TER_PS_printed_percent^0
+			}
+			liu_pie = {
+				frame = TER_PS_printed_percent^1
+			}
+			li_pie = {
+				frame = TER_PS_printed_percent^2
+			}
+			deng_pie = {
+				frame = TER_PS_printed_percent^3
+			}
+			NCCPC_graph_mode_left_btn = {
+				frame = NCCPC_graph_mode_left_num
+			}
+			NCCPC_graph_mode_right_btn = {
+				frame = NCCPC_graph_mode_right_num
+			}
+			NCCPC_Portraits_left = {
+				image = "[TER_NCCPC_portraits_left]"
+			}
+			NCCPC_Portraits_right = {
+				image = "[TER_NCCPC_portraits_right]"
+			}
+			segment = {
+				frame = NCCPC_Line_graph_deltas^segment_idx
+				y = NCCPC_Line_graph_offsets^segment_idx
+			}
+			horizontal_bar = {
+				y = NCCPC_Line_graph_vbar_offsets^vbar_idx
+			}
+			horizontal_bar_red = {
+				y = NCCPC_Line_graph_vbar_offsets^vbar_idx
+			}
+			horizontal_bar_label = {
+				y = NCCPC_Line_graph_vbar_offsets^vbar_idx
+			}
+		}
+		triggers = {
+			horizontal_bar_red_visible = {
+				check_variable = { NCCPC_Line_graph_vbars^vbar_idx = 0 }     
+			}
+			NCCPC_budget_up_btn_click_enabled = {
+				NOT = { has_country_flag = NCCPC_buget_confirmed }
+			}
+			NCCPC_budget_dn_btn_click_enabled = {
+				NOT = { has_country_flag = NCCPC_buget_confirmed }
+				hidden_trigger = { check_variable = { NCCPC_next_party_budget > 0 } }
+			}
+			NCCPC_budget_confirm_btn_click_enabled = {
+				NOT = { has_country_flag = NCCPC_buget_confirmed }
+			}
+			NCCPC_btn_blue_click_enabled = {
+				NOT = {
+					has_country_flag = special_care_selected
+					has_country_flag = praise_selected
+					has_country_flag = criticize_button_selected
+				}
+				OR = {
+					AND = {
+						check_variable = { CPC_NCCPC_choose_num = 0 }
+						check_variable = { TER_pol_str_real_percent^1 > 3 }
+						check_variable = { TER_pol_str_real_percent^2 > 3 }
+						check_variable = { TER_pol_str_real_percent^3 > 3 }
+					}
+					AND = {
+						check_variable = { CPC_NCCPC_choose_num = 1 }
+						check_variable = { TER_pol_str_real_percent^0 > 3 }
+						check_variable = { TER_pol_str_real_percent^2 > 3 }
+						check_variable = { TER_pol_str_real_percent^3 > 3 }
+					}
+					AND = {
+						check_variable = { CPC_NCCPC_choose_num = 2 }
+						check_variable = { TER_pol_str_real_percent^1 > 3 }
+						check_variable = { TER_pol_str_real_percent^0 > 3 }
+						check_variable = { TER_pol_str_real_percent^2 < 10 }
+						check_variable = { TER_pol_str_real_percent^3 > 3 }
+					}
+					AND = {
+						check_variable = { CPC_NCCPC_choose_num = 3 }
+						check_variable = { TER_pol_str_real_percent^1 > 3 }
+						check_variable = { TER_pol_str_real_percent^2 > 3 }
+						check_variable = { TER_pol_str_real_percent^3 < 10 }
+						check_variable = { TER_pol_str_real_percent^0 > 3 }
+					}
+				}	
+			}
+			NCCPC_btn_green_click_enabled = {
+				NOT = {
+					has_country_flag = special_care_selected
+					has_country_flag = praise_selected
+					has_country_flag = criticize_button_selected
+				}
+				OR = {
+					AND = {
+						check_variable = { CPC_NCCPC_choose_num = 0 }
+						check_variable = { TER_pol_str_real_percent^1 > 3 }
+						check_variable = { TER_pol_str_real_percent^2 > 3 }
+						check_variable = { TER_pol_str_real_percent^3 > 3 }
+					}
+					AND = {
+						check_variable = { CPC_NCCPC_choose_num = 1 }
+						check_variable = { TER_pol_str_real_percent^0 > 3 }
+						check_variable = { TER_pol_str_real_percent^2 > 3 }
+						check_variable = { TER_pol_str_real_percent^3 > 3 }
+					}
+					AND = {
+						check_variable = { CPC_NCCPC_choose_num = 2 }
+						check_variable = { TER_pol_str_real_percent^1 > 3 }
+						check_variable = { TER_pol_str_real_percent^0 > 3 }
+						check_variable = { TER_pol_str_real_percent^2 < 10 }
+						check_variable = { TER_pol_str_real_percent^3 > 3 }
+					}
+					AND = {
+						check_variable = { CPC_NCCPC_choose_num = 3 }
+						check_variable = { TER_pol_str_real_percent^1 > 3 }
+						check_variable = { TER_pol_str_real_percent^2 > 3 }
+						check_variable = { TER_pol_str_real_percent^3 < 10 }
+						check_variable = { TER_pol_str_real_percent^0 > 3 }
+					}
+				}
+			}
+			NCCPC_btn_yellow_click_enabled = {
+				NOT = {
+					has_country_flag = special_care_selected
+					has_country_flag = praise_selected
+					has_country_flag = criticize_button_selected
+				}
+				check_variable = { TER_pol_str_real_percent^CPC_NCCPC_choose_num > 3 }
+				NOT = {
+					AND = { 
+						check_variable = { CPC_NCCPC_choose_num = 0 }
+						OR = {
+							check_variable = { TER_pol_str_real_percent^2 > 10 }
+							check_variable = { TER_pol_str_real_percent^3 > 10 }
+						}
+					}
+					AND = { 
+						check_variable = { CPC_NCCPC_choose_num = 1 }
+						OR = {
+							check_variable = { TER_pol_str_real_percent^2 > 10 }
+							check_variable = { TER_pol_str_real_percent^3 > 10 }
+						}
+					}
+					AND = { 
+						check_variable = { CPC_NCCPC_choose_num = 2 }
+						check_variable = { TER_pol_str_real_percent^3 > 10 }
+					}
+					AND = { 
+						check_variable = { CPC_NCCPC_choose_num = 3 }
+						check_variable = { TER_pol_str_real_percent^2 > 10 }
+					}
+				}
+			}
+			NCCPC_btn_red_click_enabled = {
+				NOT = {
+					has_idea = CPC_punish_mao
+					has_idea = CPC_punish_li
+					has_idea = CPC_punish_liu
+					has_idea = CPC_punish_deng
+					has_country_flag = special_care_selected
+					has_country_flag = praise_selected
+					has_country_flag = criticize_button_selected
+				}
+				check_variable = { TER_pol_str_real_percent^CPC_NCCPC_choose_num > 3 }
+				NOT = {
+					AND = { 
+						check_variable = { CPC_NCCPC_choose_num = 0 }
+						OR = {
+							check_variable = { TER_pol_str_real_percent^2 > 10 }
+							check_variable = { TER_pol_str_real_percent^3 > 10 }
+						}
+					}
+					AND = { 
+						check_variable = { CPC_NCCPC_choose_num = 1 }
+						OR = {
+							check_variable = { TER_pol_str_real_percent^2 > 10 }
+							check_variable = { TER_pol_str_real_percent^3 > 10 }
+						}
+					}
+					AND = { 
+						check_variable = { CPC_NCCPC_choose_num = 2 }
+						check_variable = { TER_pol_str_real_percent^3 > 10 }
+					}
+					AND = { 
+						check_variable = { CPC_NCCPC_choose_num = 3 }
+						check_variable = { TER_pol_str_real_percent^2 > 10 }
+					}
+				}
+			}
+		}
+		effects = {
+			TER_NCCPC_hosting_service_btn_click = {
+				CPC_hosting_service_NCCPC = yes
+			}
+			Mao_entry_click = {
+				set_variable = { CPC_NCCPC_choose_num = 0 }
+			}
+			Liu_entry_click = {
+				set_variable = { CPC_NCCPC_choose_num = 1 }
+			}
+			Li_entry_click = {
+				set_variable = { CPC_NCCPC_choose_num = 2 }
+			}
+			Deng_entry_click = {
+				set_variable = { CPC_NCCPC_choose_num = 3 }
+			}
+			NCCPC_btn_blue_click = {
+				NCCPC_btn_blue_click_effect = yes
+			}
+			NCCPC_btn_green_click = {
+				NCCPC_btn_green_click_effect = yes
+			}
+			NCCPC_btn_yellow_click = {
+				NCCPC_btn_yellow_click_effect = yes
+			}
+			NCCPC_btn_red_click = {
+				NCCPC_btn_red_click_effect = yes
+			}
+			NCCPC_budget_up_btn_click = {
+				add_to_variable = { NCCPC_next_party_budget = 1 }
+			}
+			NCCPC_budget_up_btn_control_click = {
+				add_to_variable = { NCCPC_next_party_budget = 0.5 }
+			}
+			NCCPC_budget_up_btn_shift_click = {
+				add_to_variable = { NCCPC_next_party_budget = 5 }
+			}
+			NCCPC_budget_dn_btn_click = {
+				subtract_from_variable = { NCCPC_next_party_budget = 1 }
+			}
+			NCCPC_budget_dn_btn_control_click = {
+				subtract_from_variable = { NCCPC_next_party_budget = 0.5 }
+			}
+			NCCPC_budget_dn_btn_shift_click = {
+				subtract_from_variable = { NCCPC_next_party_budget = 5 }
+			}
+			NCCPC_budget_confirm_btn_click = {
+				set_country_flag = NCCPC_buget_confirmed
+				TER_NCCPC_budget_remove_alerts = yes
+			}
+			NCCPC_graph_mode_left_btn_click = {
+				set_variable = { NCCPC_graph_mode_left_num = 2 }
+				set_variable = { NCCPC_graph_mode_right_num = 1 }
+				NCCPC_draw_the_graph = yes
+			}
+			NCCPC_graph_mode_right_btn_click = {
+				set_variable = { NCCPC_graph_mode_left_num = 1 }
+				set_variable = { NCCPC_graph_mode_right_num = 2 }
+				NCCPC_draw_the_graph = yes
+			}
+		}
+	}
+}

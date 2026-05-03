@@ -1,0 +1,509 @@
+focus_tree = {
+	id = RUS_diplo
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = RUS
+		}
+	}
+	default = no
+	shared_focus = RUS_our_situation_in_world
+}
+
+shared_focus = {
+	id = RUS_our_situation_in_world
+	icon = GFX_focus_generic_international_diplomacy
+	cost = 3
+	ai_will_do = { factor = 1 }
+	x = 20
+	y = -2
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_our_situation_in_world_tt
+		econ_raise_max_credit_rating = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_international_trade
+	icon = GFX_focus_generic_diplomacy_trade
+	cost = 1
+	ai_will_do = { factor = 1 }
+	x = 20
+	y = -2
+	relative_position_id = RUS_our_situation_in_world
+	x = 0
+	y = 1
+	prerequisite = { 
+		focus = RUS_our_situation_in_world
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_international_trade_tt
+		add_political_power = 25
+		tno_trade_laws_improve = yes
+	}
+	
+}
+
+shared_focus = {
+	id = RUS_africa_diplo
+	icon = GFX_focus_generic_communist_diplomacy_africa
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 20
+	y = -2
+	relative_position_id = RUS_international_trade
+	x = 4
+	y = 1
+	prerequisite = { 
+		focus = RUS_international_trade
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_africa_diplo_tt
+		set_temp_variable = { temp_econ_spending_amount = 0.5 }
+		econ_spend_money_once_effect_raw_money = yes
+		hidden_effect = {
+			every_country = {
+				limit = {
+					capital_scope = { is_on_continent = africa }
+					NOT = {
+						OR = {
+							is_in_faction_with = GER
+							tag = GER
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = RUS
+					modifier = large_increase
+				}
+				RUS = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = large_increase
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_america_diplo
+	icon = GFX_focus_generic_communist_diplomacy_north_america
+	cost = 2
+	ai_will_do = { factor = 1 }
+
+	relative_position_id = RUS_international_trade
+	x = 2
+	y = 1
+	prerequisite = { 
+		focus = RUS_international_trade
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_america_diplo_tt
+		hidden_effect = {
+			every_country = {
+				limit = {
+					capital_scope = { is_on_continent = north_america }
+					NOT = {
+						OR = {
+							is_in_faction_with = GER
+							tag = GER
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = RUS
+					modifier = large_increase
+				}
+				RUS = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = large_increase
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_OFN_training
+	icon = GFX_focus_USA_kirk_where_the_sun_shines
+	cost = 2
+	ai_will_do = { factor = 1 }
+
+	relative_position_id = RUS_america_diplo
+	x = 2
+	y = 1
+	prerequisite = { 
+		focus = RUS_america_diplo
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_OFN_training_tt
+		add_ideas = RUS_OFN_TRAINING_IDEA
+	}
+}
+shared_focus = {
+	id = RUS_connection_with_OFN
+	icon = GFX_focus_generic_praise_the_ofn
+	cost = 2
+	ai_will_do = { factor = 1 }
+
+	relative_position_id = RUS_america_diplo
+	x = 0
+	y = 1
+	prerequisite = { 
+		focus = RUS_america_diplo
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_connection_with_OFN_tt
+		TNO_improve_trade_laws_policy_effectiveness_med = yes
+		add_opinion_modifier = {
+			target = USA
+			modifier = TNO_opened_diplomatic_relations
+		}
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+		hidden_effect = {
+			USA = {
+				country_event = { id = magreg.18 days = 1 }
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_OFN_supports
+	icon = GFX_focus_USA_kirk_fires_of_liberty
+	cost = 2
+	ai_will_do = { factor = 1 }
+
+	relative_position_id = RUS_connection_with_OFN
+	x = 0
+	y = 1
+	prerequisite = { 
+		focus = RUS_connection_with_OFN
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_OFN_supports_tt
+		add_manpower = 500000
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 1500
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = anti_air_shoulder_equipment
+			amount = 1500
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 3000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 9000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = MBT_equipment
+			amount = 1000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = IFV_equipment
+			amount = 9000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 12000
+			producer = USA
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 3000
+			producer = USA
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_europe_diplo
+	icon = GFX_focus_generic_communist_diplomacy_europe
+	cost = 2
+	ai_will_do = { factor = 1 }
+
+	relative_position_id = RUS_international_trade
+	x = 0
+	y = 1
+	prerequisite = { 
+		focus = RUS_international_trade
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_europe_diplo_tt
+		hidden_effect = {
+			every_country = {
+				limit = {
+					capital_scope = { is_on_continent = europe }
+					NOT = {
+						OR = {
+							is_in_faction_with = GER
+							tag = GER
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = RUS
+					modifier = large_increase
+				}
+				RUS = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = large_increase
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_russia_vs_germany
+	icon = GFX_focus_USA_goldwater_the_right_choice
+	cost = 2
+	ai_will_do = { factor = 1 }
+
+	relative_position_id = RUS_europe_diplo
+	x = 0
+	y = 1
+	prerequisite = { 
+		focus = RUS_europe_diplo
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_russia_vs_germany_tt
+		hidden_effect = {
+			BRG = { set_embargo_PREV = yes }
+			GER = { set_embargo_PREV = yes }
+			GGN = { set_embargo_PREV = yes }
+			UKR = { set_embargo_PREV = yes }
+			MCW = { set_embargo_PREV = yes }
+			OST = { set_embargo_PREV = yes }
+			CAU = { set_embargo_PREV = yes }
+		}
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id = RUS_asia_diplo
+	icon = GFX_focus_generic_communist_diplomacy_asia
+	cost = 2
+	ai_will_do = { factor = 1 }
+
+	relative_position_id = RUS_international_trade
+	x = -2
+	y = 1
+	prerequisite = { 
+		focus = RUS_international_trade
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_asia_diplo_tt
+		hidden_effect = {
+			every_country = {
+				limit = {
+					capital_scope = { is_on_continent = asia }
+					NOT = {
+						OR = {
+							is_in_faction_with = GER
+							tag = GER
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = RUS
+					modifier = large_increase
+				}
+				RUS = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = large_increase
+					}
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = RUS_far_eastern_accords
+	icon = GFX_focus_USA_america_defeats_japan
+	cost = 1
+	ai_will_do = { factor = 0 }
+
+	relative_position_id = RUS_asia_diplo
+	x = 0
+	y = 1
+	available = {
+		CPC = {
+			exists = no
+		}
+	}
+	prerequisite = { 
+		focus = RUS_asia_diplo
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_far_eastern_accords_tt
+		custom_effect_tooltip = RUS_not_avaliable_in_this_version_tt
+		country_event = RUS_Vladivostok.4
+	}
+}
+
+shared_focus = {
+	id = RUS_have_a_talk_with_cpc
+	icon = GFX_focus_generic_communist_diplomacy_asia
+	cost = 1
+	ai_will_do = {factor = 1}
+	
+	relative_position_id = RUS_asia_diplo
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_asia_diplo
+	}
+	available = {
+			CHI = { exists = no }
+			MAN = { exists = no }
+			CPC = { exists = yes }
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+		NOT = {
+			has_government = socialist
+			has_government = communist
+		}
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_have_a_talk_with_cpc_tt
+		CPC = { country_event = CPC_RUS.3 }
+	}
+}
+	
+
+shared_focus = {
+	id = RUS_cpc_supports
+	icon = GFX_focus_SOV_to_beijing
+	cost = 1
+	ai_will_do = {factor = 1}
+	
+	relative_position_id = RUS_asia_diplo
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_asia_diplo
+	}
+	available = {
+			CHI = { exists = no }
+			MAN = { exists = no }
+			CPC = { exists = yes }
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+		has_global_flag = RUS_generic_communist_unifier
+	}
+	completion_reward = {
+		SOV = { country_event = CPC_RUS.1 }
+		CPC = { country_event = CPC_RUS.2 }
+		add_opinion_modifier = {
+			target = CPC
+			modifier = RUS_CPC_treaty_of_friendly
+		}
+		add_opinion_modifier = {
+			target = SOV
+			modifier = RUS_CPC_treaty_of_friendly
+		}
+	}
+
+}
+
+shared_focus = {
+	id = RUS_south_america_diplo
+	icon = GFX_focus_generic_communist_diplomacy_south_america
+	cost = 2
+	ai_will_do = { factor = 1 }
+
+	relative_position_id = RUS_international_trade
+	x = -4
+	y = 1
+	prerequisite = { 
+		focus = RUS_international_trade
+	}
+	allow_branch = {
+		has_country_flag = RUS_show_focus_tree_main
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_south_america_diplo_tt
+		set_temp_variable = { temp_econ_spending_amount = 0.5 }
+		econ_spend_money_once_effect_raw_money = yes
+		hidden_effect = {
+			every_country = {
+				limit = {
+					capital_scope = { is_on_continent = south_america }
+					NOT = {
+						OR = {
+							is_in_faction_with = GER
+							tag = GER
+						}
+					}
+				}
+				add_opinion_modifier = {
+					target = RUS
+					modifier = large_increase
+				}
+				RUS = {
+					add_opinion_modifier = {
+						target = PREV
+						modifier = large_increase
+					}
+				}
+			}
+		}
+	}
+}

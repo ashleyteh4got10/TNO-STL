@@ -1,0 +1,171 @@
+OMS_War_Check = { 
+	if = {
+		limit = { NOT = { OMS = { has_country_flag = OMS_disable_war_check } } }
+		log = "OMS_War_Check start."
+		OMS = {
+			set_temp_variable = { OMS_readiness_change_var = -3 } #Nerfed from -3 to -2, note that the average player isn't going to build meta templates and steamroll the Germans. Having some leniency is key.
+			OMS_readiness_change = yes
+		}
+		if = {
+			limit = {
+				check_variable = { OMS_readiness < 50.00 }
+				NOT = { has_country_flag = OMS_great_stall_active }
+			}
+			log = "OMS_War_Check done. Readiness below 50 - Great Stall"
+			OMS = {
+				set_country_flag = OMS_great_stall_active
+				country_event = { id = OMS_great_stall.1 days = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { OMS_readiness = 0.00 }
+				NOT = { has_country_flag = OMS_total_defeat_active }
+			}
+			log = "OMS_War_Check done. Readiness is 0."
+			set_country_flag = OMS_disable_war_check
+			SWRW_mistrial_beginning = yes
+		}
+		else_if = {
+			limit = {
+				AND = {
+					OMS = {
+						NOT = {
+							controls_state = 846
+						}
+					}
+					NOT = { has_country_flag = OMS_failstate_active }
+					has_war = yes
+					NOT = { 846 = { is_controlled_by = ZZZ } }
+				}
+			}
+			log = "OMS_War_Check done. Germany controls Orsk."
+			OMS = {
+				set_country_flag = OMS_failstate_inaction
+				add_ideas = OMS_failstate_idea 
+				set_country_flag = OMS_disable_war_check
+				country_event = { id = OMS_failstate.1 days = 10 }
+			}
+
+			# germany win
+		}
+		else = {
+			log = "OMS_War_Check done. Repeating in 7 days."
+			country_event = { id = OMS_checks.1 days = 7 }
+		}
+	}
+}
+
+
+## set_variable = { OMS_readiness_change_var = 0 }
+OMS_readiness_change = {
+	add_to_variable = { OMS_readiness = OMS_readiness_change_var }
+	if = {
+		limit = {
+			check_variable = { OMS_readiness_change_var > 0 }
+		}
+		custom_effect_tooltip = OMS_readiness_increase_tt
+	}
+	else_if = {
+		limit = {
+			check_variable = { OMS_readiness_change_var < 0 }
+		}
+		custom_effect_tooltip = OMS_readiness_decrease_tt
+	}
+	clamp_variable = {
+		var = OMS_readiness
+		min = 0
+		max = 100
+	}
+	clear_variable = OMS_readiness_change_var
+	OMS_readiness_deccat_title_update = yes
+}
+
+OMS_readiness_deccat_title_update = { # FORMULA: time = 100 - 99/100 * x ; x = OMS_readiness
+	set_temp_variable = { OMS_hundred = 100 }
+	set_temp_variable = { OMS_seconds_till_midnight_t = 0.99 }
+	multiply_temp_variable = { OMS_seconds_till_midnight_t = OMS_readiness }
+	round_temp_variable = OMS_seconds_till_midnight_t
+	subtract_from_temp_variable = { OMS_hundred = OMS_seconds_till_midnight_t }
+	set_variable = { OMS_seconds_till_midnight = OMS_hundred }
+}
+
+OMS_CPS_OFN_invasion = { #I'm not sure why this had to be a scripted effect, considering it'll likely only ever be used once. It's just more tabs to look through. -knife
+	set_global_flag = OMS_CPS_OFN_war
+	#release_puppet = MEN #This is really silly to not have Mongolia not be in the war.
+	#MEN = {
+	#	add_ideas = RUS_not_our_war
+	#	every_owned_state = {
+	#		set_demilitarized_zone = yes
+	#	} 
+	#}
+	INS = {
+		add_ideas = RUS_not_our_war
+	}
+	AZH = {
+		add_ideas = RUS_not_our_war
+	}
+	THA = {
+		add_ideas = RUS_not_our_war
+	}
+	VIN = {
+		add_ideas = RUS_not_our_war
+	}
+	BUR = {
+		add_ideas = RUS_not_our_war
+	}
+	LAO = {
+		add_ideas = RUS_not_our_war
+	}
+	CAM = {
+		add_ideas = RUS_not_our_war
+	}
+
+
+	JAP = {
+		declare_war_on = {
+			target = OMS
+			type = annex_everything
+		}
+		load_oob = JAP_GAW_army
+
+	}
+	MAN = {
+		declare_war_on = {
+			target = OMS
+			type = annex_everything
+		}
+		load_oob = JAP_GAW_army_2
+	}
+	USA = {
+		set_country_flag = may_send_volunteers
+		set_temp_variable = { target = MAN }
+		set_temp_variable = { number = 3 }
+		TNO_set_num_volunteers = yes
+		set_temp_variable = { target = JAP }
+		TNO_set_num_volunteers = yes
+		custom_effect_tooltip = "TNO_increase_volunteers_MAN_3"
+		set_country_flag = USA_WW3_Is_On
+		add_to_variable = { USA_crisis_counter = 1 }
+		USA_reload_presidential_tree = yes
+		country_event = { id = USA.WW3.1 }
+		set_global_flag = TNO_world_tension_WW3
+
+	}
+	every_country = {
+		set_temp_variable = { TNO_temp_super_event = token:SE_WW3 }
+		TNO_fire_super_event = yes
+		set_global_flag = TNO_world_tension_WW3
+	}
+}
+
+
+
+
+
+
+
+
+###############################
+### THE END OF ALL !!! #####
+##############################

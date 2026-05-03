@@ -1,0 +1,223 @@
+CPC_phase_2_done_most_focuses = {
+	custom_trigger_tooltip = {
+		tooltip = CPC_phase_2_done_most_focuses
+		OR = {
+			AND = {
+				has_completed_focus = CPC_rural_new_economy
+				has_completed_focus = CPC_tempered_into_a_steel
+				has_completed_focus = CPC_labor_protection_compensation_Liu
+				OR = {
+					has_completed_focus = CPC_PLA_FOR_THE_FINAL_TRIUMPH
+					has_completed_focus = CPC_PLA_FOR_THE_NATIONAL_LIBERATION
+				}
+			}
+			AND = { 
+				has_completed_focus = CPC_socialist_agriculture
+				has_completed_focus = CPC_eliminate_three_major_differences
+				has_completed_focus = CPC_labor_protection_compensation_Mao
+				OR = {
+					has_completed_focus = CPC_PLA_FOR_THE_FINAL_TRIUMPH
+					has_completed_focus = CPC_PLA_FOR_THE_NATIONAL_LIBERATION
+				}
+			}
+		}
+	}
+}
+
+CPC_we_have_UT_4_clean = {
+	custom_trigger_tooltip = {
+		tooltip = CPC_we_have_UT_4_clean
+		has_country_flag = CPC_we_have_an_urgent_task
+		check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_the_four_clean_ups_movement }
+	}
+}
+
+CPC_we_have_UT_Su_Fan = {
+	custom_trigger_tooltip = {
+		tooltip = CPC_we_have_UT_Su_Fan
+		has_country_flag = CPC_we_have_an_urgent_task
+		check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_Su_Fan_movement }
+	}
+}
+
+CPC_we_have_UT_NAJUA = {
+	custom_trigger_tooltip = {
+		tooltip = CPC_we_have_UT_NAJUA
+		has_country_flag = CPC_we_have_an_urgent_task
+		check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_recontact_NAJUA }
+	}
+}
+
+CPC_everything_is_settled_down_in_INDIA = {
+	custom_trigger_tooltip = {
+		tooltip = CPC_everything_is_settled_down_in_INDIA
+		OR = {
+			AND = {
+				AZH = { exists = no }
+				NOT = { IND = { has_cosmetic_tag = IND_UNIFIED } }
+			}
+			AND = {
+				AZH = { exists = no }
+				IND = { has_cosmetic_tag = IND_UNIFIED }
+			}
+			IND = { exists = no }
+		}
+	}
+}
+
+
+CPC_the_time_has_come = {
+	custom_trigger_tooltip = {
+		tooltip = CPC_the_time_has_come
+	}
+	hidden_trigger = {
+		always = no
+	}
+}
+
+CPC_begin_TRCW_good_trigger = {
+	OR = {
+		AND = {
+			has_game_rule = {
+				rule = CPC_ending_path
+				option = CPC_ending_lin_coup
+			}
+			CPC = { is_ai = yes }
+		}
+		AND = {
+			#民政标准
+			check_variable = { CPC_RBM_level > 9 }
+			#教育
+			OR = { 
+				has_idea = tno_academic_base_secondary_schooling
+				has_idea = tno_academic_base_tertiary_schooling
+				has_idea = tno_academic_base_golden_age
+			}
+			#农业
+			OR = {
+				has_idea = tno_agriculture_mass_mechanized
+				has_idea = tno_agriculture_modern
+			}
+			#行政效率
+			OR = {
+				has_idea = tno_admin_efficiency_functional_administrative_systems
+				has_idea = tno_admin_efficiency_streamlined_bureaucracy
+				has_idea = tno_admin_efficiency_well_oiled_machine
+			}
+			#医保
+			OR = {
+				has_idea = tno_healthcare_rudimentary
+				has_idea = tno_healthcare_nascent
+				has_idea = tno_healthcare_developed
+				has_idea = tno_healthcare_advanced
+				has_idea = tno_healthcare_world_class
+			}
+			#工业设备
+			OR = {
+				has_idea = tno_industrial_equipment_factory_complexes
+				has_idea = tno_industrial_equipment_modern
+				has_idea = tno_industrial_equipment_cutting_edge
+			}
+			#工业专业知识
+			OR = {
+				has_idea = tno_industrial_expertise_experienced
+				has_idea = tno_industrial_expertise_innovative
+			}
+			#军事职业度
+			OR = {
+				has_idea = tno_army_professionalism_political_interference
+				has_idea = tno_army_professionalism_professional
+				has_idea = tno_army_professionalism_spartan_discipline
+			}
+			#新疆民意
+			check_variable = { XJ_popular_will > 79.99 }
+			#彪哥不满
+			check_variable = { CPC_Lin_Biao_dissatisfaction < 1 }
+		}
+	}
+}
+
+CPC_begin_TRCW_bad_trigger = {
+	OR = {
+		AND = {
+			has_game_rule = {
+				rule = CPC_ending_path
+				option = CPC_ending_path_people_dem
+			}
+			CPC = { is_ai = yes }
+		}
+		AND = {
+			OR = {
+				has_idea = tno_army_professionalism_untrained
+				has_idea = tno_army_professionalism_reluctant_conscripts
+				has_idea = tno_army_professionalism_disgruntled_veterans
+				has_idea = tno_army_professionalism_cronyism
+				has_idea = tno_army_professionalism_political_interference
+			}
+			check_variable = { CPC_Lin_Biao_dissatisfaction > 0 }
+		}
+		AND = {
+			has_idea = tno_army_professionalism_professional
+			check_variable = { CPC_Lin_Biao_dissatisfaction > 1 }
+		}
+	}
+}
+
+CPC_begin_TRCW_normal_trigger = {
+	CPC_begin_TRCW_bad_trigger = no
+	CPC_begin_TRCW_good_trigger = no
+}
+
+CPC_ending_good_trigger = {
+	OR = {
+		AND = {
+			has_game_rule = {
+				rule = CPC_ending_path
+				option = CPC_ending_path_people_dem
+			}
+			CPC = { is_ai = yes }
+		}
+		AND = { 
+			CPC_begin_TRCW_good_trigger = yes
+			check_variable = { CPC_final_hidden_score > 79 }
+		}
+		AND = { 
+			check_variable = { CPC_Lin_Biao_dissatisfaction = 0 }
+			check_variable = { CPC_final_hidden_score > 94 }
+		}
+		check_variable = { CPC_final_hidden_score > 99 }
+	}
+}
+
+CPC_ending_normal_trigger = {
+	OR = {
+		AND = {
+			has_game_rule = {
+				rule = CPC_ending_path
+				option = CPC_ending_path_party
+			}
+			CPC = { is_ai = yes }
+		}
+		AND = {
+			CPC_ending_good_trigger = no
+			CPC_ending_bad_trigger = no
+		}
+	}
+}
+
+CPC_ending_bad_trigger = {
+	OR = {
+		AND = {
+			has_game_rule = {
+				rule = CPC_ending_path
+				option = CPC_ending_lin_coup
+			}
+			CPC = { is_ai = yes }
+		}
+		AND = {
+			CPC_begin_TRCW_bad_trigger = yes
+			check_variable = { CPC_final_hidden_score < 70 }
+		}
+		check_variable = { CPC_final_hidden_score < 40 }
+	}
+}

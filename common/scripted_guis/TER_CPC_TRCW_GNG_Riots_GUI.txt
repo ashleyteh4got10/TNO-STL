@@ -1,0 +1,83 @@
+scripted_gui = {
+	CPC_TRCW_GNG_Riots_GUI = {
+		context_type = decision_category
+		window_name = "CPC_TRCW_GNG_Riots_GUI"
+
+		properties = {
+			GNG_Strength_Progbar = { frame = GNG.GNG_Riots_Strength_Total }
+			GNG_Anger_Progbar = { frame = GNG.GNG_Riots_Radicalism_Total }
+			GNG_Despair_Progbar = { frame = GNG.GNG_Riots_Despair }
+			GNG_GFT_STR_Progbar = { frame = GNG.GNG_Riots_GFT_Strength }
+			GNG_GFT_ANG_Progbar = { frame = GNG.GNG_Riots_GFT_Radicalism }
+			GNG_CCL_STR_Progbar = { frame = GNG.GNG_Riots_CCL_Strength }
+			GNG_CCL_ANG_Progbar = { frame = GNG.GNG_Riots_CCL_Radicalism }
+		}
+
+		triggers = {
+			GFT_button_visible = {
+				check_variable = { GNG_selected_riot_group = 2 }
+				NOT = { GNG = { has_country_flag = GNG_Dismantlement_GFT_OVER } }
+			}
+			GFT_selected_visible = {
+				check_variable = { GNG_selected_riot_group = 1 }
+				NOT = { GNG = { has_country_flag = GNG_Dismantlement_GFT_OVER } }
+			}
+			GFT_Negotiated_visible = {
+				GNG = { has_country_flag = GFT_Dismantled_Negotiation }
+			}
+			GFT_Dismantled_visible = {
+				GNG = { has_country_flag = GFT_Dismantled_Force }
+			}
+			GFT_STR_Border_Green_visible = {
+				GNG = { has_country_flag = GFT_Dismantled_Negotiation }
+			}
+			GFT_STR_Border_Red_visible = {
+				GNG = { has_country_flag = GFT_Dismantled_Force }
+			}
+			GFT_ANG_Border_Green_visible = {
+				GNG = { has_country_flag = GFT_Dismantled_Negotiation }
+			}
+			GFT_ANG_Border_Red_visible = {
+				GNG = { has_country_flag = GFT_Dismantled_Force }
+			}
+			CCL_button_visible = {
+				check_variable = { GNG_selected_riot_group = 1 }
+				NOT = { GNG = { has_country_flag = GNG_Dismantlement_CCL_OVER } }
+			}
+			CCL_selected_visible = {
+				check_variable = { GNG_selected_riot_group = 2 }
+				NOT = { GNG = { has_country_flag = GNG_Dismantlement_CCL_OVER } }
+			}
+			CCL_Negotiated_visible = {
+				GNG = { has_country_flag = CCL_Dismantled_Negotiation }
+			}
+			CCL_Dismantled_visible = {
+				GNG = { has_country_flag = CCL_Dismantled_Force }
+			}
+			CCL_STR_Border_Green_visible = {
+				GNG = { has_country_flag = CCL_Dismantled_Negotiation }
+			}
+			CCL_STR_Border_Red_visible = {
+				GNG = { has_country_flag = CCL_Dismantled_Force }
+			}
+			CCL_ANG_Border_Green_visible = {
+				GNG = { has_country_flag = CCL_Dismantled_Negotiation }
+			}
+			CCL_ANG_Border_Red_visible = {
+				GNG = { has_country_flag = CCL_Dismantled_Force }
+			}
+			GNG_Riots_IJA_Animation_visible = {
+				GNG = { has_country_flag = GNG_disable_all_mechanics_IJA }
+			}
+		}
+
+		effects = {
+			GFT_button_click = {
+				set_variable = { GNG_selected_riot_group = 1 }
+			}
+			CCL_button_click = {
+				set_variable = { GNG_selected_riot_group = 2 }
+			}
+		}
+	}
+}

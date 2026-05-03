@@ -1,0 +1,2486 @@
+# Second West Russian War
+
+SWRW_BoP_AddTab = {
+	# If this is the first time a tab is added to th GUI (that is, the interface has been enabled for a tag), activate the relevant tag's BoP
+	if = {
+		limit = { check_variable = { TNO_BoP_Tabs^num = 0 } }
+		hidden_effect = {
+			set_power_balance = { id = BoP_Decisions_RUS }
+		}
+	}
+	set_country_flag = Bop_Tab_selected
+	custom_effect_tooltip = TNO_BoP_AddTab_tt
+	add_to_array = { TNO_BoP_Tabs = TabName }
+	resize_array = { TNO_BoP_Tabs_Frames = TNO_BoP_Tabs^num }
+
+	# If it's the only tab in the GUI at all, select it and enable its decisions
+	if = {
+		limit = { check_variable = { TNO_BoP_Tabs^num = 1 } }
+		set_variable = { TNO_BoP_Tabs_Frames^0 = 2 }
+		set_variable = { TNO_BoP_SelectedTab = TNO_BoP_Tabs^0 }
+	}
+}
+
+
+RUS_claim_moskowien_cores = {
+	MCW = {
+		every_owned_state = {
+			add_claim_by = RUS
+		}
+	}
+	195 = {add_claim_by = RUS}
+}
+
+RUS_remove_moskowien_cores = {
+	MCW = {
+		every_core_state = {
+			remove_core_of = MCW
+		}
+	}
+}
+
+SWRW_select_generic_focus_tree = {
+	if = {
+		limit = {
+			OR = {
+				has_country_leader = {
+					character = KOM_Sergei_Taboritsky
+					ruling_only = yes
+				}
+				tag = OMS
+			}
+		}
+		log = "Nothing happens"
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				original_tag = TOM
+				has_country_leader = {
+					character = MAG_Mikhail_Matkovsky
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = KOM_Svetlana_Stalina
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = MAG_Nikolay_Petlin
+					ruling_only = yes
+				}
+			}
+			OR = {
+				has_government = despotism
+				has_government = paternalism
+			}
+		}
+		set_global_flag = RUS_generic_authoritarian_unifier
+		load_focus_tree = RUS_Democratic
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_government = communist
+				AND = {
+					has_government = socialist
+					NOT = { original_tag = SBA }
+				}
+				has_country_leader = {
+					character = KOM_Ivan_Serov
+					ruling_only = yes
+				}
+			}
+		}
+		set_global_flag = RUS_generic_communist_unifier
+		load_focus_tree = RUS_Commie
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_country_leader = {
+					character = NOV_Vasily_Shukshin
+					ruling_only = yes
+				}
+			}
+			OR = {
+				has_government = progressivism
+				has_government = liberalism
+				has_government = liberal_conservatism
+				has_government = conservatism
+				original_tag = TOM
+				AND = {
+					original_tag = SBA
+					has_government = socialist
+				}
+				has_country_leader = {
+					character = MAG_Nikolay_Petlin
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = KOM_Svetlana_Stalina
+					ruling_only = yes
+				}
+			}
+		}
+		set_global_flag = RUS_generic_democratic_unifier
+		load_focus_tree = RUS_Democratic
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_country_leader = {
+					character = KOM_Ivan_Serov
+					ruling_only = yes
+				}
+			}
+			OR = {
+				has_government = national_socialism
+				has_government = ultranationalism
+				has_government = fascism
+				has_country_leader = {
+					character = MAG_Mikhail_Matkovsky
+					ruling_only = yes
+				}
+			}
+		}
+		set_global_flag = RUS_generic_fascist_unifier
+		load_focus_tree = RUS_fascism
+	}
+}
+
+SWRW_democratic_partisan_uprising = {
+	# idk why i'm bothering to prevent division exploits but here we are
+	hidden_effect = {
+		delete_unit_template_and_units = {
+			division_template = "Russian Partisan Brigade"
+			disband = yes
+		}
+	}
+	division_template = {
+		name = "Russian Partisan Brigade"
+		priority = 0
+		template_counter = 5
+		regiments = {
+			light_infantry = { x = 0 y = 0 }
+			light_infantry = { x = 0 y = 1 }
+			light_infantry = { x = 0 y = 2 }
+			light_infantry = { x = 1 y = 0 }
+			light_infantry = { x = 1 y = 1 }
+			light_infantry = { x = 1 y = 2 }
+		}
+		is_locked = yes
+	}
+	set_temp_variable = {
+		temp_partisan_units_index = 0
+	}
+	while_loop_effect = {
+		limit = {
+			check_variable = {
+				temp_partisan_units_index < 2
+			}
+		}
+		random_state = {
+			prioritize = {
+				13 #Reval
+				96 #Wilna
+				1397 #Riga
+				1404 #Minsk-Stadt
+			}
+			limit = {
+				NOT = {
+					has_state_flag = RUS_partisans_flag #ONLY ONE UPRISING PER STATE
+				}
+			}
+			create_unit = {
+				division = "name = \"Partizanskaya\" division_template = \"Russian Partisan Brigade\" start_experience_factor = 0.02 start_equipment_factor = 0.4"
+				owner = ROOT
+				allow_spawning_on_enemy_provs = yes
+				count = 2
+			}
+			set_state_flag = RUS_partisans_flag
+		}
+		random_state = {
+			prioritize = {
+				200 #Saporoshje
+				218 #Rostow
+				221 #Charkow
+				226 #Reichenaustadt
+				227 #Hughesdorf
+				228 #Vossenitz
+				259 #Poltawa
+				1428 #Kiew-Stadt
+				1431 #Brest_Litowsk
+			}
+			limit = {
+				NOT = {
+					has_state_flag = RUS_partisans_flag #ONLY ONE UPRISING PER STATE
+				}
+			}
+			create_unit = {
+				division = "name = \"Partizanskaya\" division_template = \"Russian Partisan Brigade\" start_experience_factor = 0.02 start_equipment_factor = 0.4"
+				owner = ROOT
+				allow_spawning_on_enemy_provs = yes
+				count = 2
+			}
+			set_state_flag = RUS_partisans_flag
+		}
+		random_state = {
+			prioritize = {
+				200 #Saporoshje
+				218 #Rostow
+				221 #Charkow
+				226 #Reichenaustadt
+				227 #Hughesdorf
+				228 #Vossenitz
+				259 #Poltawa
+				1428 #Kiew-Stadt
+				1431 #Brest_Litowsk
+			}
+			limit = {
+				NOT = {
+					has_state_flag = RUS_partisans_flag #ONLY ONE UPRISING PER STATE
+				}
+			}
+			create_unit = {
+				division = "name = \"Partizanskaya\" division_template = \"Russian Partisan Brigade\" start_experience_factor = 0.02 start_equipment_factor = 0.4"
+				owner = ROOT
+				allow_spawning_on_enemy_provs = yes
+				count = 2
+			}
+			add_to_temp_variable = {
+				temp_partisan_units_index = 1
+			}
+			set_state_flag = RUS_partisans_flag
+		}
+	}
+}
+
+SWRW_launch_war_declaration_events = {
+	# West Russia
+	if = {
+		limit = { has_country_leader = { character = WRS_Georgy_Zhukov ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.1 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = WRS_Mikhail_Tukhachevsky ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.2 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = KOM has_government = progressivism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.3 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = KOM has_government = liberalism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.4 days = 1 } }
+	}
+	else_if = {
+		limit = {
+			has_government = despotism
+			has_country_leader = { character = KOM_Svetlana_Stalina ruling_only = yes }
+		}
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.5 days = 1 } }
+	}
+	else_if = {
+		limit = {
+			has_government = liberal_conservatism
+			has_country_leader = { character = KOM_Svetlana_Stalina ruling_only = yes }
+		}
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.6 days = 1 } }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_country_leader = { character = KOM_Vladimir_Chelomai ruling_only = yes }
+				has_country_leader = { character = KOM_Nikolai_Kardashev ruling_only = yes }
+			}
+		}
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.7 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = KOM_Svetlana_Bukharina ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.8 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = KOM_Mikhail_Suslov ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.9 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = KOM_Lev_Gumilyov ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.10 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character =  KOM_Igor_Shafarevich ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.11 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = KOM_Ivan_Serov ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.12 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = VYT has_government = liberalism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.13 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = VYT has_government = conservatism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.14 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = VYT has_government = paternalism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.15 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = PRM_Gutrum_Vagner ruling_only = yes} }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.16 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = PRM_Velimir ruling_only = yes} }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.17 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = SAM_Miletiy_Zykov ruling_only = yes} }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.18 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = SAM_Sergey_Bunyachenko ruling_only = yes} }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.19 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = SAM_Mikhail_Oktan ruling_only = yes} }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.20 days = 1 } }
+	}
+	
+	# West Siberia
+	
+	else_if = {
+		limit = { has_country_leader = { character = SVR_Pavel_Batov ruling_only = yes} }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.21 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = SVR_Boris_Yeltsin ruling_only = yes} }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.22 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = TYM_Lazar_Kaganovich ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.23 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = TYM_Nikita_Khrushchev ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.24 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = OMS }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.25 days = 1 } }
+	}
+	
+	# Central Siberia
+	
+	else_if = {
+		limit = { has_country_leader = { character = NOV_Alexander_Pokryshkin ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.27 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = KEM_Rurik_III ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.28 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = KEM_Ronegda_I ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.29 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = SBA }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.30 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = TOM has_government = liberalism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.32 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = TOM has_government = conservatism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.33 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = TOM has_government = progressivism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.34 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = TOM has_government = paternalism }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.35 days = 1 } }
+	}
+
+	else_if = {
+		limit = { original_tag = PRC }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.1000 days = 1 } }
+	}
+	
+	# Far East
+	
+	else_if = {
+		limit = { has_country_leader = { character = IRK_Genrikh_Yagoda ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.36 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = IRK_Sergey_Bessonov ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.45 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_flag = BRY_sablin_bukharinist }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.37 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_flag = BRY_sablin_leninist }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.38 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = CHT_Mikhail_II ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.39 days = 1 } }
+	}
+	else_if = { #oh my god what the fuck
+		limit = { has_country_leader = { character = CHT_Boris_Shepunov ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.46 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = AMR }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.40 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = MAG_Mikhail_Matkovsky ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.41 days = 1 } }
+	}
+	else_if = {
+		limit = { has_country_leader = { character = MAG_Nikolay_Petlin ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.42 days = 1 } }
+	}
+
+	else_if = {
+		limit = { has_country_leader = { character = MAG_Mitchell_Werbell ruling_only = yes } }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.43 days = 1 } }
+	}
+	else_if = {
+		limit = { original_tag = OMO }
+		every_country = { limit = { is_ai = no } news_event = { id = War_Declaration.44 days = 1 } }
+	}
+	else = { every_country = { limit = { is_ai = no } news_event = { id = WORLD.40003 days = 1 } } }
+}
+
+SWRW_Add_RUS_To_Cold_War_GUI = {
+	custom_effect_tooltip = SWRW_Add_Russia_To_Cold_War_GUI_tt
+	hidden_effect = {
+		RUS = {
+			set_superpower = yes 
+
+			add_to_array = { CW_SeaZone_Status = 0 } # 0; East Pacific
+			add_to_array = { CW_SeaZone_Status = 1 } # 1; West Pacific
+			add_to_array = { CW_SeaZone_Status = 0 } # 2; South Atlantic
+			add_to_array = { CW_SeaZone_Status = 0 } # 3; North Atlantic
+			add_to_array = { CW_SeaZone_Status = 0 } # 4; North Sea
+			add_to_array = { CW_SeaZone_Status = 0 } # 5; Mediterranean
+			add_to_array = { CW_SeaZone_Status = 0 } # 6; Indian Ocean
+			Cold_War_GUI_PowerProjection_CalculateBonuses = yes
+			
+			# This only exists because scripted loc is a fuck
+			add_to_array = { global.PowerProjection_Tags = THIS.id }
+			add_to_array = { global.PowerProjection_X = 310 }
+			add_to_array = { global.PowerProjection_Y = 8 }
+		}
+	}
+}
+SWRW_Add_german_target_To_Cold_War_GUI = {
+	# custom_effect_tooltip = SWRW_Add_Russia_To_Cold_War_GUI_tt
+	hidden_effect = {
+		var:target = {
+			set_superpower = yes
+			if = {
+				limit = { NOT = { original_tag = GER } }
+				set_variable = { nuclear_stockpile = GER.nuclear_stockpile }
+				set_variable = { nuclear_stockpile_k = nuclear_stockpile }
+				divide_variable = { nuclear_stockpile_k = 1000 }
+				set_variable = { nuclear_global_coverage = GER.nuclear_global_coverage }
+				calculate_strike_capability = yes
+				#All of them have WMDs researched
+			}
+		}
+		var:target = {
+			add_to_array = { CW_SeaZone_Status = 0 } # 0; East Pacific
+			add_to_array = { CW_SeaZone_Status = 0 } # 1; West Pacific
+			add_to_array = { CW_SeaZone_Status = 0 } # 2; South Atlantic
+			add_to_array = { CW_SeaZone_Status = 0 } # 3; North Atlantic
+			add_to_array = { CW_SeaZone_Status = 1 } # 4; North Sea
+			add_to_array = { CW_SeaZone_Status = 0 } # 5; Mediterranean
+			add_to_array = { CW_SeaZone_Status = 0 } # 6; Indian Ocean
+			Cold_War_GUI_PowerProjection_CalculateBonuses = yes
+			
+			# This only exists because scripted loc is a fuck
+			add_to_array = { global.PowerProjection_Tags = THIS.id } #If someone wants to do a dedcicated one be my guest
+			add_to_array = { global.PowerProjection_X = 277 }
+			add_to_array = { global.PowerProjection_Y = 47 }
+		}
+	}
+}
+
+SWRW_unite_russia_without_firing_unnecessary_bullshit = {
+	if = {
+		limit = {
+			ROOT = { is_central_russian_nation = no }
+		}
+		random_country = {
+			limit = {
+				is_central_russian_nation = yes
+				is_russian_unifier = yes
+			}
+			every_other_country = {
+				limit = {
+					is_central_russian_nation = yes
+					NOT = {
+						tag = ONG
+					}
+				}
+				PREV = {
+					annex_country = {
+						target = PREV
+						transfer_troops = yes
+					}
+				}
+			}
+			set_global_flag = RUS_West_Russian_unification
+			save_global_event_target_as = RUS_western_unifier
+		}
+	}
+	else = {
+		every_other_country = {
+			limit = {
+				is_central_russian_nation = yes
+				NOT = {
+					tag = ONG
+				}
+			}
+			PREV = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		set_global_flag = RUS_West_Russian_unification
+		save_global_event_target_as = RUS_western_unifier
+	}
+	if = {
+		limit = {
+			ROOT = { is_west_siberian_nation = no }
+		}
+		random_country = {
+			limit = {
+				is_west_siberian_nation = yes
+				is_russian_unifier = yes
+			}
+			every_other_country = {
+				limit = {
+					is_west_siberian_nation = yes
+				}
+				PREV = {
+					annex_country = {
+						target = PREV
+						transfer_troops = yes
+					}
+				}
+			}
+			set_global_flag = RUS_West_Siberian_unification
+			save_global_event_target_as = RUS_west_siberia_unifier
+		}
+	}
+	else = {
+		every_other_country = {
+			limit = {
+				is_west_siberian_nation = yes
+			}
+			PREV = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		set_global_flag = RUS_West_Siberian_unification
+		save_global_event_target_as = RUS_west_siberia_unifier
+	}
+	if = {
+		limit = {
+			ROOT = { is_central_siberian_nation = no }
+		}
+		random_country = {
+			limit = {
+				is_central_siberian_nation = yes
+				is_russian_unifier = yes
+			}
+			every_other_country = {
+				limit = {
+					is_central_siberian_nation = yes
+				}
+				PREV = {
+					annex_country = {
+						target = PREV
+						transfer_troops = yes
+					}
+				}
+			}
+			set_global_flag = RUS_Central_Siberian_unification
+			save_global_event_target_as = RUS_central_siberia_unifier
+		}
+	}
+	else = {
+		every_other_country = {
+			limit = {
+				is_central_siberian_nation = yes
+			}
+			PREV = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		set_global_flag = RUS_Central_Siberian_unification
+		save_global_event_target_as = RUS_central_siberia_unifier
+	}
+	if = {
+		limit = {
+			ROOT = { is_far_eastern_nation = no }
+		}
+		random_country = {
+			limit = {
+				is_far_eastern_nation = yes
+				is_russian_unifier = yes
+			}
+			every_other_country = {
+				limit = {
+					OR = {
+						is_far_eastern_nation = yes
+						is_wasteland = yes
+					}
+				}
+				PREV = {
+					annex_country = {
+						target = PREV
+						transfer_troops = yes
+					}
+				}
+			}
+			set_global_flag = RUS_Far_East_unification
+			save_global_event_target_as = RUS_far_east_unifier
+		}
+	}
+	else = {
+		every_other_country = {
+			limit = {
+				OR = {
+					is_far_eastern_nation = yes
+					is_wasteland = yes
+				}
+			}
+			PREV = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		set_global_flag = RUS_Far_East_unification
+		save_global_event_target_as = RUS_far_east_unifier
+	}
+	if = {
+		limit = {
+			ROOT = {
+				is_central_russian_nation = no
+				is_west_siberian_nation = no
+			}
+		}
+		random_country = {
+			limit = {
+				OR = {
+					is_central_russian_nation = yes
+					is_west_siberian_nation = yes
+				}
+				is_russian_unifier = yes
+			}
+			every_other_country = {
+				limit = {
+					OR = {
+						is_central_russian_nation = yes
+						is_west_siberian_nation = yes
+						is_southern_urals_nation = yes
+					}
+				}
+				PREV = {
+					annex_country = {
+						target = PREV
+						transfer_troops = yes
+					}
+				}
+			}
+			set_global_flag = RUS_Russia_unification
+			set_country_flag = RUS_superregional_stage
+			save_global_event_target_as = RUS_russian_unifier
+			set_country_flag = RUS_RUSSIA_UNIFIED
+		}
+	}
+	else = {
+		every_other_country = {
+			limit = {
+				OR = {
+					is_central_russian_nation = yes
+					is_west_siberian_nation = yes
+					is_southern_urals_nation = yes
+				}
+			}
+			PREV = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		set_global_flag = RUS_Russia_unification
+		set_country_flag = RUS_superregional_stage
+		save_global_event_target_as = RUS_russian_unifier
+		set_country_flag = RUS_RUSSIA_UNIFIED
+	}
+	if = {
+		limit = {
+			ROOT = {
+				is_central_siberian_nation = no
+				is_far_eastern_nation = no
+			}
+		}
+		random_country = {
+			limit = {
+				OR = {
+					is_central_siberian_nation = yes
+					is_far_eastern_nation = yes
+				}
+				is_russian_unifier = yes
+			}
+			every_other_country = {
+				limit = {
+					OR = {
+						is_central_siberian_nation = yes
+						is_far_eastern_nation = yes
+						is_wasteland = yes
+					}
+				}
+				PREV = {
+					annex_country = {
+						target = PREV
+						transfer_troops = yes
+					}
+				}
+			}
+			set_global_flag = RUS_Siberia_unification
+			set_country_flag = RUS_superregional_stage
+			save_global_event_target_as = RUS_siberian_unifier
+			set_country_flag = RUS_SIBERIA_UNIFIED
+		}
+	}
+	else = {
+		every_other_country = {
+			limit = {
+				OR = {
+					is_central_siberian_nation = yes
+					is_far_eastern_nation = yes
+					is_wasteland = yes
+				}
+			}
+			PREV = {
+				annex_country = {
+					target = PREV
+					transfer_troops = yes
+				}
+			}
+		}
+		set_global_flag = RUS_Siberia_unification
+		set_country_flag = RUS_superregional_stage
+		save_global_event_target_as = RUS_siberian_unifier
+		set_country_flag = RUS_SIBERIA_UNIFIED
+	}
+	every_other_country = {
+		limit = {
+			is_russian_nation = yes
+			NOT = {
+				is_kazakh_nation = yes
+			}
+		}
+		PREV = {
+			annex_country = {
+				target = PREV
+				transfer_troops = yes
+			}
+		}
+	}
+	activate_decision = russian_total_reunification
+}
+
+WRW_RUS_add_forpo_tab_and_army_size_modifier = {
+	RUS = {
+		if = {
+			limit = {
+				NOT = {
+					has_country_leader = {
+						character = KOM_Sergey_Taboritsky
+						ruling_only = yes
+					}
+				}
+			}
+			hidden_effect = {
+				SWRW_add_army_size_modifier = yes	#normal hoi4 army sizes
+				#adding fopo tab
+				if = {
+					limit = {
+						NOT = {
+							tag = PRC
+						}
+					}
+				set_temp_variable = { TabName = token:BoP_Tab_GlobalConflicts }
+				SWRW_BoP_AddTab = yes
+				}
+			}
+		}
+	}
+}
+
+WRW_RUS_get_superregional_flavor_events = {
+	if = {
+		limit = {
+			original_tag = NOV
+		}
+		hidden_effect = {
+			country_event = {
+				id = NOV_flavor.1
+				days = 180
+			}
+		}
+	}
+}
+
+RUS_get_real = {
+	if = {
+		limit = {
+			NOT = {
+				has_global_flag = RUS_national_unification
+			}
+		}
+		SWRW_unite_russia_without_firing_unnecessary_bullshit = yes
+		SWRW_Add_RUS_To_Cold_War_GUI = yes
+	}
+	RUS = {
+		RUS_generic_moskowien_occupation = yes
+		RUS_generic_petrograd_occupation = yes
+		RUS_generic_caucasian_occupation = yes
+		RUS_generic_ukraine_occupation = yes
+		RUS_generic_baltic_occupation = yes
+		RUS_generic_belarus_occupation =  yes
+	}
+}
+
+SOV_get_set_party_name = {
+	if = {
+		limit = {
+			country_exists = KOM
+			OR = {
+				KOM = { has_government = communist }
+				KOM = { has_government = socialist }
+			}
+		}
+		set_party_name = {
+			ideology = communist 
+			long_name = RUS_communist_cosmtag_communist_kom_long
+			name = RUS_communist_cosmtag_communist_kom
+		}
+	}
+	else = {
+		set_party_name = {
+			ideology = communist 
+			long_name = RUS_communist_cosmtag_communist_long
+			name = RUS_communist_cosmtag_communist
+		}
+	}
+}
+
+RUS_advance_plan_year = {
+	add_to_variable = { RUS_plan_number = 1 }
+	custom_effect_tooltip = RUS_advance_plan_year_tt
+	hidden_effect = {
+		remove_dynamic_modifier = { modifier = RUS_eighth_five_year_plan }
+		add_dynamic_modifier = { modifier = RUS_ninth_five_year_plan }
+	}
+}
+
+RUS_advance_plan_phase = {
+	add_to_variable = { RUS_five_year_plans_phase = 1 }
+	custom_effect_tooltip = RUS_advance_plan_phase_tt
+}
+
+RUS_econ_population_growth_add_N = {
+	custom_effect_tooltip = RUS_econ_population_growth_add_N_tt
+	add_to_variable = { RUS_econ_population_growth = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_construction_speed_add_N = {
+	custom_effect_tooltip = RUS_econ_construction_speed_add_N_tt
+	add_to_variable = { RUS_econ_construction_speed = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_weekly_manpower_add_N = {
+	custom_effect_tooltip = RUS_econ_weekly_manpower_add_N_tt
+	add_to_variable = { RUS_econ_weekly_manpower = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_factory_output_add_N = {
+	custom_effect_tooltip = RUS_econ_factory_output_add_N_tt
+	add_to_variable = { RUS_econ_factory_output = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_dockyard_output_add_N = {
+	custom_effect_tooltip = RUS_econ_dockyard_output_add_N_tt
+	add_to_variable = { RUS_econ_dockyard_output = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_resource_gain_add_N = {
+	custom_effect_tooltip = RUS_econ_resource_gain_add_N_tt
+	add_to_variable = { RUS_econ_resource_gain = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_efficiency_cap_add_N = {
+	custom_effect_tooltip = RUS_econ_efficiency_cap_add_N_tt
+	add_to_variable = { RUS_econ_efficiency_cap = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_efficiency_retention_add_N = {
+	custom_effect_tooltip = RUS_econ_efficiency_retention_add_N_tt
+	add_to_variable = { RUS_econ_efficiency_retention = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_5yp_misc_econ_add_N = {
+	custom_effect_tooltip = RUS_econ_5yp_misc_econ_add_N_tt
+	add_to_variable = { RUS_econ_5yp_misc_income = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_open_misc_econ_add_N = {
+	custom_effect_tooltip = RUS_econ_open_misc_econ_add_N_tt
+	add_to_variable = { RUS_econ_open_misc_income = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_credit_rating_progress_add_N = {
+	custom_effect_tooltip = RUS_econ_credit_rating_progress_add_N_tt
+	add_to_variable = { RUS_econ_open_credit_rating = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_building_socialism_misc_income_add_N = {
+	custom_effect_tooltip = RUS_econ_building_socialism_misc_income_add_N_tt
+	add_to_variable = { RUS_econ_building_socialism_misc_income = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_building_socialism_factory_output_add_N = {
+	custom_effect_tooltip = RUS_econ_building_socialism_factory_output_add_N_tt
+	add_to_variable = { RUS_econ_building_socialism_factory_output = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_econ_building_socialism_dockyard_output_add_N = {
+	custom_effect_tooltip = RUS_econ_building_socialism_dockyard_output_add_N_tt
+	add_to_variable = { RUS_econ_building_socialism_dockyard_output = N }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_add_production_units_fyp = {
+	add_to_variable = { RUS_econ_production_units = N }
+	effect_tooltip = {
+		set_temp_variable = { pus_temp = N }
+		econ_pus_change = yes
+	}
+}
+
+SWRW_RUS_add_tariff_tax_rate_025 = {
+	custom_effect_tooltip = SWRW_RUS_add_tariff_tax_rate_tt
+	add_to_variable = { SWRW_tariff_tax_rate_modifier_generic = 0.025 }
+}
+
+SWRW_RUS_subtract_tariff_tax_rate_025 = {
+	custom_effect_tooltip = SWRW_RUS_subtract_tariff_tax_rate_tt
+	add_to_variable = { SWRW_tariff_tax_rate_modifier_generic = -0.025 }
+}
+
+SWRW_RUS_add_sales_tax_rate_050 = {
+	custom_effect_tooltip = SWRW_RUS_add_sales_tax_rate_tt
+	add_to_variable = { SWRW_sales_tax_rate_modifier_generic = 0.05 }
+}
+
+SWRW_RUS_subtract_sales_tax_rate_050 = {
+	custom_effect_tooltip = SWRW_RUS_subtract_sales_tax_rate_tt
+	add_to_variable = { SWRW_sales_tax_rate_modifier_generic = -0.05 }
+}
+
+SWRW_RUS_subtract_income_tax_rate_050 = {
+	custom_effect_tooltip = SWRW_RUS_subtract_income_tax_rate_tt
+	add_to_variable = { SWRW_income_tax_rate_modifier_generic = -0.05 }
+}
+
+SWRW_RUS_subtract_business_tax_rate_050 = {
+	custom_effect_tooltip = SWRW_RUS_subtract_business_tax_rate_tt
+	add_to_variable = { SWRW_business_tax_rate_modifier_generic = -0.05 }
+}
+
+SWRW_RUS_add_income_tax_rate_050 = {
+	custom_effect_tooltip = SWRW_RUS_add_income_tax_rate_tt
+	add_to_variable = { SWRW_income_tax_rate_modifier_generic = 0.05 }
+}
+
+SWRW_RUS_add_business_tax_rate_050 = {
+	custom_effect_tooltip = SWRW_RUS_add_business_tax_rate_tt
+	add_to_variable = { SWRW_business_tax_rate_modifier_generic = 0.05 }
+}
+
+
+SWRW_RUS_MOSCOW_add_rebuild_stab_once = {
+	custom_effect_tooltip = SWRW_RUS_MOSCOW_add_rebuild_stab_once_tt
+	add_to_variable = { ORL.rc_stability_display = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_MOSCOW_add_rebuild_stab_weekly = {
+	custom_effect_tooltip = SWRW_RUS_MOSCOW_add_rebuild_stab_weekly_tt
+	add_to_variable = { ORL.rc_stability_hold = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_UKRAINE_add_rebuild_stab_once = {
+	custom_effect_tooltip = SWRW_RUS_UKRAINE_add_rebuild_stab_once_tt
+	add_to_variable = { UKS.rc_stability_display = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_UKRAINE_add_rebuild_stab_weekly = {
+	custom_effect_tooltip = SWRW_RUS_UKRAINE_add_rebuild_stab_weekly_tt
+	add_to_variable = { UKS.rc_stability_hold = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_BLR_add_rebuild_stab_once = {
+	custom_effect_tooltip = SWRW_RUS_BLR_add_rebuild_stab_once_tt
+	add_to_variable = { BLR.rc_stability_display = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_BLR_add_rebuild_stab_weekly = {
+	custom_effect_tooltip = SWRW_RUS_BLR_add_rebuild_stab_weekly_tt
+	add_to_variable = { BLR.rc_stability_hold = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_CAU_add_rebuild_stab_once = {
+	custom_effect_tooltip = SWRW_RUS_CAU_add_rebuild_stab_once_tt
+	add_to_variable = { ADY.rc_stability_display = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_CAU_add_rebuild_stab_weekly = {
+	custom_effect_tooltip = SWRW_RUS_CAU_add_rebuild_stab_weekly_tt
+	add_to_variable = { ADY.rc_stability_hold = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_OST_add_rebuild_stab_once = {
+	custom_effect_tooltip = SWRW_RUS_OST_add_rebuild_stab_once_tt
+	add_to_variable = { UPO.rc_stability_display = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_OST_add_rebuild_stab_weekly = {
+	custom_effect_tooltip = SWRW_RUS_OST_add_rebuild_stab_weekly_tt
+	add_to_variable = { UPO.rc_stability_hold = RUS_add_rebuild_var }
+}
+
+
+
+
+
+SWRW_RUS_MOSCOW_add_rebuild_econ = {
+	custom_effect_tooltip = SWRW_RUS_MOSCOW_add_rebuild_econ_tt
+	add_to_variable = { ORL.rc_econ_display = RUS_add_rebuild_var }
+}
+
+
+SWRW_RUS_UKRAINE_add_rebuild_econ = {
+	custom_effect_tooltip = SWRW_RUS_UKRAINE_add_rebuild_econ_tt
+	add_to_variable = { UKS.rc_econ_display = RUS_add_rebuild_var }
+}
+
+
+SWRW_RUS_BLR_add_rebuild_econ = {
+	custom_effect_tooltip = SWRW_RUS_BLR_add_rebuild_econ_tt
+	add_to_variable = { BLR.rc_econ_display = RUS_add_rebuild_var }
+}
+
+
+SWRW_RUS_CAU_add_rebuild_econ = {
+	custom_effect_tooltip = SWRW_RUS_CAU_add_rebuild_econ_tt
+	add_to_variable = { ADY.rc_econ_display = RUS_add_rebuild_var }
+}
+
+SWRW_RUS_OST_add_rebuild_econ = {
+	custom_effect_tooltip = SWRW_RUS_OST_add_rebuild_econ_tt
+	add_to_variable = { UPO.rc_econ_display = RUS_add_rebuild_var }
+}
+
+SWRW_take_moscow_to_home = {
+	every_state = {
+		limit = {
+			OR ={
+				is_owned_by = ORL
+				is_owned_by = OKB
+			}
+		}
+		add_core_of = RUS
+	}
+	RUS = {
+		annex_country = {
+			target = ORL
+			transfer_troops = yes
+		}
+		annex_country = {
+			target = OKB
+			transfer_troops = yes
+		}
+	}
+
+}
+
+SWRW_take_ukr_to_home = {
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = independent_ssr
+			}
+		}
+		every_state = {
+			limit = {
+				OR ={
+					is_owned_by = FUK
+					is_owned_by = UKS
+				}
+			}
+			add_core_of = RUS
+		}
+		RUS = {
+			annex_country = {
+				target = FUK
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = UKS
+				transfer_troops = yes
+			}
+		}
+	}
+	else = {
+		RUS = { 
+			end_puppet = UKS
+			end_puppet = FUK
+			annex_country = {
+				target = FUK
+				transfer_troops = yes
+			}
+			add_state_core = 137
+			add_state_core = 1532
+			add_state_core = 218
+		}
+		UKS = {
+			add_ideas = CSTO_member
+			add_state_core = 196
+			transfer_state = 196
+			econ_join_sphere_RUS = yes
+			if = {
+				limit = {
+					OR = {
+						has_government = communist
+						has_government = socialist
+					}
+
+				}
+				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+				econ_type_change = yes
+				
+			}
+			else_if = {
+				limit = {
+					OR = {
+						has_government = fascism
+						has_government = national_socialism
+					}
+				}
+				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+				econ_type_change = yes
+			}
+			else = {
+				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+				econ_type_change = yes
+			}
+		}
+	}
+
+}
+
+SWRW_take_cau_to_home = {
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = independent_ssr
+			}
+		}
+		custom_effect_tooltip = SWRW_take_cau_to_home_unindepend_tt
+		every_state = {
+			limit = {
+				OR ={
+					is_owned_by = ADY
+				}
+			}
+			add_core_of = RUS
+		}
+		RUS = {
+			annex_country = {
+				target = ADY
+				transfer_troops = yes
+			}
+		}
+	}
+	else = {
+		custom_effect_tooltip = SWRW_take_cau_to_home_independ_tt
+		hidden_effect = {
+			RUS = { 
+				end_puppet = ADY
+				end_puppet = FUK
+				transfer_state = 237
+				transfer_state = 234
+				transfer_state = 235
+				transfer_state = 1560
+				transfer_state = 1561
+				transfer_state = 232
+				transfer_state = 1559
+				transfer_state = 1564
+	
+				add_state_core = 237
+				add_state_core = 234
+				add_state_core = 235
+				add_state_core = 1560
+				add_state_core = 1561
+				add_state_core = 232
+				add_state_core = 1559
+				add_state_core = 1564
+			}
+			ADY = {
+				
+				econ_join_sphere_RUS = yes
+				if = {
+					limit = {
+						OR = {
+							has_government = communist
+							has_government = socialist
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = communist
+					}
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_government = fascism
+							has_government = national_socialism
+						}
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+				}
+				else = {
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+					econ_type_change = yes
+				}
+			}
+	
+			GEO = {
+				set_temp_variable = { sales_tax_temp = 0.2 }
+				econ_sales_tax_rate_change = yes
+				transfer_state = 1558
+				transfer_state = 1293
+				transfer_state = 1556
+				transfer_state = 231
+				if = {
+					limit = {
+						1565 = {
+							NOT = {
+								is_owned_by = TUR
+							}
+						}
+					}
+					transfer_state = 1565
+				}
+				add_state_core = 1558
+				add_state_core = 1293
+				add_state_core = 1556
+				add_state_core = 231
+				add_state_core = 1565
+	
+				econ_join_sphere_RUS = yes
+				RUS = { add_to_faction = GEO }
+				add_ideas = CSTO_member
+	
+				add_to_variable = { gdp_growth = 10 }
+	
+				if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = communist
+								has_government = socialist
+							}
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = socialist
+					}
+					set_cosmetic_tag = GEO_ssr
+				}
+				else_if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = fascism
+								has_government = national_socialism
+							}
+						}
+
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+				}
+				else = {
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+					econ_type_change = yes
+				}
+			}
+	
+			ARM = {
+				set_temp_variable = { sales_tax_temp = 0.2 }
+				econ_sales_tax_rate_change = yes
+				econ_join_sphere_RUS = yes
+				RUS = { add_to_faction = ARM }
+				add_ideas = CSTO_member
+	
+				transfer_state = 230
+				transfer_state = 1568
+	
+				if = {
+					limit = {
+						1567 = {
+							NOT = {
+								is_owned_by = TUR
+							}
+						}
+					}
+					transfer_state = 1567
+				}
+	
+				add_state_core = 230
+				add_state_core = 1568
+				add_state_core = 1567
+				add_to_variable = { gdp_growth = 10 }
+	
+				if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = communist
+								has_government = socialist
+							}
+						}
+
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = communist
+					}
+					set_cosmetic_tag = AZR_ssr
+				}
+				else_if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = fascism
+								has_government = national_socialism
+							}
+						}
+
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+				}
+				else = {
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+					econ_type_change = yes
+				}
+			}
+	
+			AZR = {
+				set_temp_variable = { sales_tax_temp = 0.2 }
+				econ_sales_tax_rate_change = yes
+				XXX = { AZR_Caucasian_Council = { set_nationality = AZR } }
+				transfer_state = 1552
+				transfer_state = 229
+				transfer_state = 244
+				transfer_state = 1730
+				transfer_state = 2131
+				transfer_state = 1554
+	
+				add_state_core = 1552
+				add_state_core = 229
+				add_state_core = 244
+				add_state_core = 1730
+				add_state_core = 2131
+				add_state_core = 1554
+	
+				econ_join_sphere_RUS = yes
+				RUS = { add_to_faction = AZR }
+				add_ideas = CSTO_member
+				add_to_variable = { gdp_growth = 10 }
+				set_politics = {
+					ruling_party = conservatism
+				}
+				if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = communist
+								has_government = socialist
+							}
+						}
+
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+					econ_type_change = yes
+					promote_character = AZR_Caucasian_Council
+					set_politics = {
+						ruling_party = socialist
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 1
+					}
+					set_cosmetic_tag = AZR_ssr
+				}
+				else_if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = fascism
+								has_government = national_socialism
+							}
+						}
+
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = conservatism
+					}
+				}
+				else = {
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = conservatism
+					}
+				}
+			}	
+		}
+	}
+
+}
+
+SWRW_take_blr_to_home = {
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = independent_ssr
+			}
+		}
+		every_state = {
+			limit = {
+				OR ={
+					is_owned_by = BLR 
+				}
+			}
+			add_core_of = RUS
+		}
+		RUS = {
+			annex_country = {
+				target = BLR
+				transfer_troops = yes
+			}
+		}
+	}
+	else = {
+		RUS = { 
+			end_puppet = BLR
+		}
+		BLR = {
+			add_ideas = CSTO_member
+			econ_join_sphere_RUS = yes
+			if = {
+				limit = {
+					OR = {
+						has_government = communist
+						has_government = socialist
+					}
+
+				}
+				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+				econ_type_change = yes
+				
+			}
+			else_if = {
+				limit = {
+					OR = {
+						has_government = fascism
+						has_government = national_socialism
+					}
+				}
+				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+				econ_type_change = yes
+			}
+			else = {
+				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+				econ_type_change = yes
+			}
+		}
+	}
+
+}
+
+SWRW_take_ost_to_home = {
+	if = {
+		limit = {
+			NOT = {
+				has_country_flag = independent_ssr
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_owned_by = UPO
+				}
+			}
+			add_core_of = RUS
+		}
+		RUS = {
+			annex_country = {
+				target = UPO
+				transfer_troops = yes
+			}
+		}
+	}
+	else = {
+		hidden_effect = {
+			RUS = { 
+				end_puppet = UPO
+				transfer_state = 1402
+				add_state_core = 1402
+			}
+			UPO = {
+				add_ideas = CSTO_member
+				econ_join_sphere_RUS = yes
+				if = {
+					limit = {
+						OR = {
+							has_government = communist
+							has_government = socialist
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+					econ_type_change = yes
+					
+				}
+				else_if = {
+					limit = {
+						OR = {
+							has_government = fascism
+							has_government = national_socialism
+						}
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+				}
+				else = {
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+					econ_type_change = yes
+				}
+			}
+			LAT = {
+				set_temp_variable = { sales_tax_temp = 0.2 }
+				econ_sales_tax_rate_change = yes
+				add_to_variable = { gdp_growth = 10 }
+				XXX = { LAT_Baltic_Council_soc = { set_nationality = LAT } }
+				XXX = { LAT_Baltic_Council = { set_nationality = LAT } }
+				XXX = { LAT_Valdis_Birkavs = { set_nationality = LAT } }
+				econ_join_sphere_RUS = yes
+				
+				add_ideas = CSTO_member
+				if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = communist
+								has_government = socialist
+							}
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = socialist
+					}
+					promote_character = LAT_Baltic_Council_soc
+					set_cosmetic_tag = LAT_ssr
+				}
+				else_if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = fascism
+								has_government = national_socialism
+							}
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = liberalism
+					}
+					promote_character = LAT_Baltic_Council
+				}
+				else = {
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = liberalism
+					}
+					promote_character = LAT_Valdis_Birkavs
+				}
+	
+				transfer_state = 1399
+				transfer_state = 190
+				transfer_state = 943
+				transfer_state = 12
+				transfer_state = 1397
+				transfer_state = 1398
+	
+				add_state_core = 1399
+				add_state_core = 190
+				add_state_core = 943
+				add_state_core = 12
+				add_state_core = 1397
+				add_state_core = 1398
+				RUS = { add_to_faction = LAT }
+			}
+			EST = {
+				set_temp_variable = { sales_tax_temp = 0.2 }
+				econ_sales_tax_rate_change = yes
+				add_to_variable = { gdp_growth = 10 }
+				XXX = { EST_Vajno_Valjas = { set_nationality = EST } }
+				XXX = { EST_Vajno_Valjas_soc = { set_nationality = EST } }
+				econ_join_sphere_RUS = yes
+				
+				add_ideas = CSTO_member
+				if = {
+					limit = {
+						RUS  ={ 
+							OR = {
+								has_government = communist
+								has_government = socialist
+							}
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = socialist
+					}
+					promote_character = EST_Vajno_Valjas_soc
+					set_cosmetic_tag = EST_ssr
+				}
+				else_if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = fascism
+								has_government = national_socialism
+							}
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = progressivism
+					}
+					promote_character = EST_Vajno_Valjas
+				}
+				else = {
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = progressivism
+					}
+					promote_character = EST_Vajno_Valjas
+				}
+	
+				transfer_state = 1440
+				transfer_state = 2450
+				transfer_state = 1396
+				transfer_state = 191
+				transfer_state = 13
+				transfer_state = 1395
+	
+				add_state_core = 1440
+				add_state_core = 2450
+				add_state_core = 1396
+				add_state_core = 191
+				add_state_core = 13
+				add_state_core = 1395
+				RUS = { add_to_faction = EST }
+			}
+			LIT = {
+				set_temp_variable = { sales_tax_temp = 0.2 }
+				econ_sales_tax_rate_change = yes
+				add_to_variable = { gdp_growth = 10 }
+				XXX = { LIT_Vytautas_Landsbergis = { set_nationality = LIT } }
+				XXX = { LIT_Vytautas_Landsbergis_pro = { set_nationality = LIT } }
+				econ_join_sphere_RUS = yes
+				
+				add_ideas = CSTO_member
+				if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = communist
+								has_government = socialist
+							}
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = progressivism
+					}
+					promote_character = LIT_Vytautas_Landsbergis_pro
+					set_cosmetic_tag = LIT_ssr
+				}
+				else_if = {
+					limit = {
+						RUS = {
+							OR = {
+								has_government = fascism
+								has_government = national_socialism
+							}
+						}
+	
+					}
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = liberalism
+					}
+					promote_character = LIT_Vytautas_Landsbergis
+				}
+				else = {
+					set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Capitalism }
+					econ_type_change = yes
+					set_politics = {
+						ruling_party = liberalism
+					}
+					promote_character = LIT_Vytautas_Landsbergis
+				}
+	
+				transfer_state = 189
+				transfer_state = 1401
+				transfer_state = 2451
+				transfer_state = 11
+				transfer_state = 79
+				transfer_state = 96
+				transfer_state = 1400
+	
+				add_state_core = 189
+				add_state_core = 1401
+				add_state_core = 2451
+				add_state_core = 11
+				add_state_core = 79
+				add_state_core = 96
+				add_state_core = 1400
+				RUS = { add_to_faction = LIT }
+			}
+		}
+
+	}
+
+}
+
+SWRW_forward_russia = {
+	if = {
+		limit = {
+			has_country_leader = {
+				character = KOM_Sergei_Taboritsky
+				ruling_only = yes
+			}
+		}
+		log = "Nothing happens"
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				original_tag = TOM
+				has_country_leader = {
+					character = MAG_Mikhail_Matkovsky
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = KOM_Svetlana_Stalina
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = MAG_Nikolay_Petlin
+					ruling_only = yes
+				}
+			}
+			OR = {
+				has_government = despotism
+				has_government = paternalism
+			}
+		}
+		set_global_flag = RUS_generic_authoritarian_unifier
+		load_focus_tree = RUS_reconstruction_democratic_tree
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_government = communist
+				AND = {
+					has_government = socialist
+					NOT = { original_tag = SBA }
+				}
+				has_country_leader = {
+					character = KOM_Ivan_Serov
+					ruling_only = yes
+				}
+			}
+		}
+		set_global_flag = RUS_generic_communist_unifier
+		load_focus_tree = RUS_reconstruction_commie_tree
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_country_leader = {
+					character = NOV_Vasily_Shukshin
+					ruling_only = yes
+				}
+			}
+			OR = {
+				has_government = progressivism
+				has_government = liberalism
+				has_government = liberal_conservatism
+				has_government = conservatism
+				original_tag = TOM
+				AND = {
+					original_tag = SBA
+					has_government = socialist
+				}
+				has_country_leader = {
+					character = MAG_Nikolay_Petlin
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = KOM_Svetlana_Stalina
+					ruling_only = yes
+				}
+			}
+		}
+		set_global_flag = RUS_generic_democratic_unifier
+		load_focus_tree = RUS_reconstruction_democratic_tree
+	}
+	else_if = {
+		limit = {
+			NOT = {
+				has_country_leader = {
+					character = KOM_Ivan_Serov
+					ruling_only = yes
+				}
+			}
+			OR = {
+				has_government = national_socialism
+				has_government = ultranationalism
+				has_government = fascism
+				has_country_leader = {
+					character = MAG_Mikhail_Matkovsky
+					ruling_only = yes
+				}
+			}
+		}
+		set_global_flag = RUS_generic_fascist_unifier
+		load_focus_tree = RUS_commie_reconstruction
+	}
+}
+
+RUS_goc_gdp_growth_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_gdp_growth_modifier_add_N_tt
+	add_to_variable = { RUS_goc_gdp_growth_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_inflation_rate_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_inflation_rate_modifier_add_N_tt
+	add_to_variable = { RUS_goc_inflation_rate_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_misc_costs_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_misc_costs_modifier_add_N_tt
+	add_to_variable = { RUS_goc_misc_costs_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_misc_costs_percent_of_GDP_modifier_add_N_tt
+	add_to_variable = { RUS_goc_misc_costs_percent_of_GDP_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_misc_income_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_misc_income_modifier_add_N_tt
+	add_to_variable = { RUS_goc_misc_income_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_misc_income_percent_of_GDP_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_misc_income_percent_of_GDP_modifier_add_N_tt
+	add_to_variable = { RUS_goc_misc_income_percent_of_GDP_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_civilian_expenditures_factor_add_N = {
+	custom_effect_tooltip = RUS_goc_civilian_expenditures_factor_add_N_tt
+	add_to_variable = { RUS_goc_civilian_expenditures_factor = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_academic_base_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_academic_base_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_academic_base_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_admin_efficiency_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_admin_efficiency_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_admin_efficiency_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_research_facilities_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_research_facilities_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_research_facilities_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_agriculture_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_agriculture_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_agriculture_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_healthcare_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_healthcare_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_healthcare_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_industrial_equipment_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_industrial_equipment_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_industrial_equipment_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_industrial_expertise_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_industrial_expertise_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_industrial_expertise_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_army_professionalism_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_army_professionalism_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_army_professionalism_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_income_taxation_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_income_taxation_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_income_taxation_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_minimum_wage_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_minimum_wage_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_minimum_wage_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_max_workhours_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_max_workhours_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_max_workhours_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_pensions_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_pensions_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_pensions_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_unemployment_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_unemployment_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_unemployment_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_regulations_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_regulations_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_regulations_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_health_care_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_health_care_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_health_care_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_education_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_education_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_education_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_penal_system_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_penal_system_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_penal_system_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_gender_rights_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_gender_rights_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_gender_rights_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_security_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_security_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_security_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_poverty_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_goc_poverty_monthly_rate_add_N_tt
+	add_to_variable = { RUS_goc_poverty_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_schools_coverage_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_schools_coverage_modifier_add_N_tt
+	add_to_variable = { RUS_goc_schools_coverage_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_hospitals_coverage_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_hospitals_coverage_modifier_add_N_tt
+	add_to_variable = { RUS_goc_hospitals_coverage_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_prisons_coverage_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_prisons_coverage_modifier_add_N_tt
+	add_to_variable = { RUS_goc_prisons_coverage_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_barracks_coverage_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_barracks_coverage_modifier_add_N_tt
+	add_to_variable = { RUS_goc_barracks_coverage_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_goc_offices_coverage_modifier_add_N = {
+	custom_effect_tooltip = RUS_goc_offices_coverage_modifier_add_N_tt
+	add_to_variable = { RUS_goc_offices_coverage_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_trade_laws_policy_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_mec_trade_laws_policy_monthly_rate_add_N_tt
+	add_to_variable = { RUS_mec_trade_laws_policy_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_industrial_equipment_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_mec_industrial_equipment_monthly_rate_add_N_tt
+	add_to_variable = { RUS_mec_industrial_equipment_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_industrial_expertise_monthly_rate_add_N = {
+	custom_effect_tooltip = RUS_mec_industrial_expertise_monthly_rate_add_N_tt
+	add_to_variable = { RUS_mec_industrial_expertise_monthly_rate = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_socdev_points_add_N = {
+	custom_effect_tooltip = RUS_mec_socdev_points_add_N_tt
+	add_to_variable = { RUS_mec_socdev_points = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_annual_gdp_growth_factor_add_N = {
+	custom_effect_tooltip = RUS_mec_annual_gdp_growth_factor_add_N_tt
+	add_to_variable = { RUS_mec_annual_gdp_growth_factor = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_gdp_growth_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_gdp_growth_modifier_add_N_tt
+	add_to_variable = { RUS_mec_gdp_growth_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_production_units_to_GDP_ratio_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_production_units_to_GDP_ratio_modifier_add_N_tt
+	add_to_variable = { RUS_mec_production_units_to_GDP_ratio_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_free_production_units_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_free_production_units_modifier_add_N_tt
+	add_to_variable = { RUS_mec_free_production_units_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_consumer_goods_production_factor_add_N = {
+	custom_effect_tooltip = RUS_mec_consumer_goods_production_factor_add_N_tt
+	add_to_variable = { RUS_mec_consumer_goods_production_factor = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_inflation_rate_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_inflation_rate_modifier_add_N_tt
+	add_to_variable = { RUS_mec_inflation_rate_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_interest_rate_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_interest_rate_modifier_add_N_tt
+	add_to_variable = { RUS_mec_interest_rate_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_interest_rate_factor_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_interest_rate_factor_modifier_add_N_tt
+	add_to_variable = { RUS_mec_interest_rate_factor_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_deficit_GDP_growth_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_deficit_GDP_growth_modifier_add_N_tt
+	add_to_variable = { RUS_mec_deficit_GDP_growth_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_deficit_pp_cost_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_deficit_pp_cost_modifier_add_N_tt
+	add_to_variable = { RUS_mec_deficit_pp_cost_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_misc_costs_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_misc_costs_modifier_add_N_tt
+	add_to_variable = { RUS_mec_misc_costs_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_misc_costs_percent_of_GDP_modifier_add_N_tt
+	add_to_variable = { RUS_mec_misc_costs_percent_of_GDP_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_misc_income_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_misc_income_modifier_add_N_tt
+	add_to_variable = { RUS_mec_misc_income_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_misc_income_percent_of_GDP_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_misc_income_percent_of_GDP_modifier_add_N_tt
+	add_to_variable = { RUS_mec_misc_income_percent_of_GDP_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_taxable_population_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_taxable_population_modifier_add_N_tt
+	add_to_variable = { RUS_mec_taxable_population_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_poverty_taxation_rate_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_poverty_taxation_rate_modifier_add_N_tt
+	add_to_variable = { RUS_mec_poverty_taxation_rate_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_consumer_goods_use_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_consumer_goods_use_modifier_add_N_tt
+	add_to_variable = { RUS_mec_consumer_goods_use_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_schools_PE_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_schools_PE_modifier_add_N_tt
+	add_to_variable = { RUS_mec_schools_PE_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_hospitals_PE_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_hospitals_PE_modifier_add_N_tt
+	add_to_variable = { RUS_mec_hospitals_PE_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_prisons_PE_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_prisons_PE_modifier_add_N_tt
+	add_to_variable = { RUS_mec_prisons_PE_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_barracks_PE_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_barracks_PE_modifier_add_N_tt
+	add_to_variable = { RUS_mec_barracks_PE_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_mec_offices_PE_modifier_add_N = {
+	custom_effect_tooltip = RUS_mec_offices_PE_modifier_add_N_tt
+	add_to_variable = { RUS_mec_offices_PE_modifier = RUS_add_rebuild_var }
+	force_update_dynamic_modifier = yes
+}
+
+RUS_kill_kazakhstan = {
+	hidden_effect = {
+		RUS = { end_puppet = KAZ }
+		RUS = { end_puppet = KZR }
+		declare_war_on = {
+			target = KAZ
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = KZR
+			type = annex_everything
+		}
+	}
+}
+
+RUS_kill_central_asia = {
+	hidden_effect = {
+		if = {
+			limit = {
+				KYR = {
+					is_subject_of = AFG
+				}
+				TAJ = {
+					is_subject_of = AFG
+				}
+				UTL = {
+					is_subject_of = AFG
+				}
+			}
+			AFG = {
+				end_puppet = KYR
+				end_puppet = TAJ
+				end_puppet = UTL
+			}
+		}
+		if = {
+			limit = {
+				has_global_flag = TNO_rip_turkmenistan
+			}
+			RUS = {
+				transfer_state = 750
+				transfer_state = 585
+				transfer_state = 584
+			}
+			KRK = {
+				leave_faction = yes
+			}
+			KYR = {
+				leave_faction = yes
+			}
+			TAJ = {
+				leave_faction = yes
+			}
+			TRK = {
+				leave_faction = yes
+			}
+			UTL = {
+				leave_faction = yes
+			}
+			UZB = {
+				leave_faction = yes
+			}
+			declare_war_on = {
+				target = KRK
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = KYR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = TAJ
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = TRK
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = UTL
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = UZB
+				type = annex_everything
+			}
+		}
+		else = {
+			KRK = {
+				leave_faction = yes
+			}
+			KYR = {
+				leave_faction = yes
+			}
+			TAJ = {
+				leave_faction = yes
+			}
+			TRK = {
+				leave_faction = yes
+			}
+			UTL = {
+				leave_faction = yes
+			}
+			UZB = {
+				leave_faction = yes
+			}
+			declare_war_on = {
+				target = KRK
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = KYR
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = TAJ
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = TRK
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = UTL
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = UZB
+				type = annex_everything
+			}
+		}
+		AFG = {
+			diplomatic_relation = {
+				country = KYR
+				relation = guarantee
+				active = no
+			}
+			diplomatic_relation = {
+				country = TAJ
+				relation = guarantee
+				active = no
+			}
+			diplomatic_relation = {
+				country = UTL
+				relation = guarantee
+				active = no
+			}
+			diplomatic_relation = {
+				country = KRK
+				relation = guarantee
+				active = no
+			}
+			diplomatic_relation = {
+				country = TRK
+				relation = guarantee
+				active = no
+			}
+			diplomatic_relation = {
+				country = UZB
+				relation = guarantee
+				active = no
+			}
+		}
+		KRK = {
+			econ_leave_sphere = yes
+		}
+		KYR = {
+			econ_leave_sphere = yes
+		}
+		TAJ = {
+			econ_leave_sphere = yes
+		}
+		TRK = {
+			econ_leave_sphere = yes
+		}
+		UTL = {
+			econ_leave_sphere = yes
+		}
+		UZB = {
+			econ_leave_sphere = yes
+		}
+	}
+}

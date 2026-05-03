@@ -1,0 +1,73 @@
+# possible - filters out achivements on game start so we dont have to check everything all the
+#time
+## happened - checks if achivement happened
+unique_id = 102_TER_achievements_LEMO
+##### CPC #####
+TER_LEMO_1_good_bureaucrat = {
+	possible = {
+		has_start_date < 1962.01.02
+		tag = CPC
+	}
+	happened = {
+		custom_trigger_tooltip = {
+			check_variable = { CPC_RBM_level > 10 }
+			NOT = { has_country_flag = CPC_baby_bus_flag }
+			tooltip = TER_good_bureaucrat_achievement
+		}
+	}
+}
+
+TER_LEMO_2_helicopter = {
+	possible = {
+		has_start_date < 1962.01.02
+		tag = CPC
+	}
+	happened = {
+		custom_trigger_tooltip = {
+			has_tech = ter_air_assault_tech
+			tooltip = TER_helicopter_achievement
+		}
+	}
+}
+
+TER_LEMO_3_SKYNET = {
+	possible = {
+		has_start_date < 1962.01.02
+		tag = CPC
+	}
+	happened = {
+		custom_trigger_tooltip = {
+			has_country_flag = TER_good_ending
+			has_country_flag = TER_SKYNET_achievement
+			tooltip = TER_SKYNET_achievement
+		}
+	}
+}
+
+TER_LEMO_4_Holmes = {
+	possible = {
+		has_start_date < 1962.01.02
+		tag = CPC
+	}
+	happened = {
+		custom_trigger_tooltip = {
+			has_country_flag = CPC_we_exactly_know_what_Ma_Hushan_will_do
+			tooltip = TER_Holmes_achievement
+		}
+	}
+}
+
+TER_LEMO_5_archie_atom = {
+	possible = {
+		has_start_date < 1962.01.02
+		tag = CPC
+	}
+	happened = {
+		custom_trigger_tooltip = {
+			has_tech = nuclear_weapons
+			NOT = { has_country_flag = CPC_ArcadeMode_Nuke }
+			date < 1972.01.01
+			tooltip = TER_archie_atom_achievement
+		}
+	}
+}

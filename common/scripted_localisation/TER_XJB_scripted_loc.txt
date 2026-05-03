@@ -1,0 +1,537 @@
+defined_text = {
+	name = TER_XJB_region_scene
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 1 }
+		}
+		localization_key = GFX_TER_pic_XJB_Hetian
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 2 }
+		}
+		localization_key = GFX_TER_pic_XJB_Dzungaria
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 3 }
+		}
+		localization_key = GFX_TER_pic_XJB_Dihua
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 4 }
+		}
+		localization_key = GFX_TER_pic_XJB_Hami
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 5 }
+		}
+		localization_key = GFX_TER_pic_XJB_North_Kunlun
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 6 }
+		}
+		localization_key = GFX_TER_pic_XJB_Aksaichin
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 7 }
+		}
+		localization_key = GFX_TER_pic_XJB_Tabargatay
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 8 }
+		}
+		localization_key = GFX_TER_pic_XJB_Ili
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 9 }
+		}
+		localization_key = GFX_TER_pic_XJB_Korla
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 10 }
+		}
+		localization_key = GFX_TER_pic_XJB_Aksu
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 11 }
+		}
+		localization_key = GFX_TER_pic_XJB_Turpan
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 12 }
+		}
+		localization_key = GFX_TER_pic_XJB_Qinggil
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 13 }
+		}
+		localization_key = GFX_TER_pic_XJB_Shache
+	}
+	text = {
+		trigger = {
+			check_variable = { XJ_id = 14 }
+		}
+		localization_key = GFX_TER_pic_XJB_Atushi
+	}
+}
+
+defined_text = {
+	name = XJB_vice_focus_name
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 0 } }
+		localization_key = "XJB_vice_focus_0"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 1 } }
+		localization_key = "XJB_vice_focus_1"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 2 } }
+		localization_key = "XJB_vice_focus_2"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 3 } }
+		localization_key = "XJB_vice_focus_3"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 4 } }
+		localization_key = "XJB_vice_focus_4"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 5 } }
+		localization_key = "XJB_vice_focus_5"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 6 } }
+		localization_key = "XJB_vice_focus_6"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 7 } }
+		localization_key = "XJB_vice_focus_7"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 8 } }
+		localization_key = "XJB_vice_focus_8"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 9 } }
+		localization_key = "XJB_vice_focus_9"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 10 } }
+		localization_key = "XJB_vice_focus_10"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 11 } }
+		localization_key = "XJB_vice_focus_11"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 12 } }
+		localization_key = "XJB_vice_focus_12"
+	}
+	text = {
+		trigger = { check_variable = { XJB_vice_focus_index = 13 } }
+		localization_key = "XJB_vice_focus_13"
+	}
+}
+
+defined_text = {
+	name = TER_XJB_popular_will_predict
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					check_variable = { XJB_real_pct_M > 10 }
+					set_temp_variable = { popular_will_change = XJB_real_pct_M }
+					divide_temp_variable = { popular_will_change = -50 }
+					OR = {
+						AND = {
+							check_variable = { popular_will_change < 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+						AND = {
+							check_variable = { popular_will_change = 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+						AND = {
+							check_variable = { popular_will_change > 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+					}
+				}
+				AND = {
+					OR = {
+						check_variable = { XJB_real_pct_M = 10 }
+						check_variable = { XJB_real_pct_M < 10 }
+					}
+					set_temp_variable = { popular_will_change = XJB_real_pct_C }
+					divide_temp_variable = { popular_will_change = 80 }
+					OR = {
+						AND = {
+							check_variable = { popular_will_change < 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+						AND = {
+							check_variable = { popular_will_change = 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+						AND = {
+							check_variable = { popular_will_change > 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+					}
+				}
+			}
+		}
+		localization_key = "CPC_XJ_popular_will_change_tt"
+	}
+}
+
+defined_text = {
+	name = TER_XJB_popular_will_idea
+	text = {
+		trigger = {
+			OR = {
+				AND = {
+					check_variable = { XJB_real_pct_M > 10 }
+					set_temp_variable = { popular_will_change = XJB_real_pct_M }
+					divide_temp_variable = { popular_will_change = -50 }
+					OR = {
+						AND = {
+							check_variable = { popular_will_change < 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+						AND = {
+							check_variable = { popular_will_change = 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+						AND = {
+							check_variable = { popular_will_change > 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+					}
+				}
+				AND = {
+					OR = {
+						check_variable = { XJB_real_pct_M = 10 }
+						check_variable = { XJB_real_pct_M < 10 }
+					}
+					set_temp_variable = { popular_will_change = XJB_real_pct_C }
+					divide_temp_variable = { popular_will_change = 80 }
+					OR = {
+						AND = {
+							check_variable = { popular_will_change < 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+						AND = {
+							check_variable = { popular_will_change = 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+						AND = {
+							check_variable = { popular_will_change > 0 }
+							divide_temp_variable = { popular_will_change = TER_XJB_PTMB_num_pct }
+						}
+					}
+				}
+			}
+		}
+		localization_key = "CPC_XJ_popular_will_change_idea_tt"
+	}
+}
+
+
+defined_text = {
+	name = TER_XJ_emoji_face
+
+	text = {
+		trigger = { check_variable = { XJ_popular_will < 25 } }
+		localization_key = GFX_TER_XJB_level_1
+	}
+	text = {
+		trigger = { check_variable = { XJ_popular_will > 24.99 }
+					check_variable = { XJ_popular_will < 50 } }
+		localization_key = GFX_TER_XJB_level_2
+	}
+	text = {
+		trigger = { check_variable = { XJ_popular_will > 49.99 }
+					check_variable = { XJ_popular_will < 75 } }
+		localization_key = GFX_TER_XJB_level_3
+	}
+	text = {
+		trigger = { check_variable = { XJ_popular_will > 74.99 } }
+		localization_key = GFX_TER_XJB_level_4
+	}
+}
+
+defined_text = {
+	name = TER_XJ_popular_will_tt
+
+	text = {
+		trigger = { check_variable = { XJ_popular_will < 25 } }
+		localization_key = "TER_XJ_popular_will_tt_1"
+	}
+	text = {
+		trigger = { check_variable = { XJ_popular_will > 24.99 }
+					check_variable = { XJ_popular_will < 50 } }
+		localization_key = "TER_XJ_popular_will_tt_2"
+	}
+	text = {
+		trigger = { check_variable = { XJ_popular_will > 49.99 }
+					check_variable = { XJ_popular_will < 75 } }
+		localization_key = "TER_XJ_popular_will_tt_3"
+	}
+	text = {
+		trigger = { check_variable = { XJ_popular_will > 74.99 } }
+		localization_key = "TER_XJ_popular_will_tt_4"
+	}
+}
+
+defined_text = {
+	name = CPC_1968_deputies_from_XIN_desc
+
+	text = {
+		trigger = { HTC = { is_puppet_of = CPC } }
+		localization_key = "CPC_1968_deputies_from_XIN_desc_1"
+	}
+	text = {
+		trigger = { NOT = { HTC = { is_puppet_of = CPC } } }
+		localization_key = "CPC_1968_deputies_from_XIN_desc_2"
+	}
+}
+
+defined_text = {
+	name = XJB_period_tooltips
+	text = {
+		trigger = { HTC = { has_country_flag = XJB_phase_BW } }
+		localization_key = CPC_XJB_before_war_tt
+	}
+	text = {
+		trigger = { HTC = { has_country_flag = XJB_phase_SP } }
+		localization_key = CPC_XJB_special_action_tt
+	}
+	text = {
+		trigger = { HTC = { has_country_flag = XJB_phase_IW } }
+		localization_key = CPC_XJB_in_war_tt
+	}
+	text = {
+		trigger = { HTC = { has_country_flag = XJB_phase_PW } }
+		localization_key = CPC_XJB_post_war_tt
+	}
+}
+
+defined_text = {
+	name = XJB_Leader_Portraits
+	text = {
+		trigger = { 
+			HTC = { has_country_flag = XJB_display_region } 
+			NOT = { has_country_flag = CPC_we_exactly_know_what_Ma_Hushan_will_do }
+		}
+		localization_key = GFX_TER_XJB_leader_1
+	}
+	text = {
+		trigger = { 
+			HTC = { has_country_flag = XJB_display_region } 
+			has_country_flag = CPC_we_exactly_know_what_Ma_Hushan_will_do
+		}
+		localization_key = GFX_TER_XJB_leader_1_win
+	}
+	text = {
+		trigger = { ROS = { has_country_flag = XJB_display_region } }
+		localization_key = GFX_TER_XJB_leader_2
+	}
+	text = {
+		trigger = { XIN = { has_country_flag = XJB_display_region } }
+		localization_key = GFX_TER_XJB_leader_3
+	}
+	text = {
+		trigger = { ETR = { has_country_flag = XJB_display_region } }
+		localization_key = GFX_TER_XJB_leader_4
+	}
+}
+
+defined_text = {
+	name = get_XJB_controller_display
+	text = {
+		trigger = { HTC = { has_country_flag = XJB_display_region } }
+		localization_key = "CPC_XJB_controller_display_HTC"
+	}
+	text = {
+		trigger = { ROS = { has_country_flag = XJB_display_region } }
+		localization_key = "CPC_XJB_controller_display_ROS"
+	}
+	text = {
+		trigger = { XIN = { has_country_flag = XJB_display_region } }
+		localization_key = "CPC_XJB_controller_display_XIN"
+	}
+	text = {
+		trigger = { ETR = { has_country_flag = XJB_display_region } }
+		localization_key = "CPC_XJB_controller_display_ETR"
+	}
+}
+
+defined_text = {
+	name = Get_XJB_focus_names
+	text = {
+		trigger = { check_variable = { XJB_selected_card = 0 } }
+		localization_key = "XJB_no_focus_card_selected"
+	}
+	text = {
+		trigger = { check_variable = { XJB_selected_card = 1 } }
+		localization_key = "XJB_focus_name_1"
+	}
+	text = {
+		trigger = { check_variable = { XJB_selected_card = 2 } }
+		localization_key = "XJB_focus_name_2"
+	}
+	text = {
+		trigger = { check_variable = { XJB_selected_card = 3 } }
+		localization_key = "XJB_focus_name_3"
+	}
+	text = {
+		trigger = { check_variable = { XJB_selected_card = 4 } }
+		localization_key = "XJB_focus_name_4"
+	}
+	text = {
+		trigger = { check_variable = { XJB_selected_card = 5 } }
+		localization_key = "XJB_focus_name_5"
+	}
+	text = {
+		trigger = { check_variable = { XJB_selected_card = 6 } }
+		localization_key = "XJB_focus_name_6"
+	}
+}
+
+defined_text = {
+	name = XJB_state_info
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 0 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_0"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 1 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_1"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 2 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_2"
+	}
+	text = {
+		trigger = {
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 3 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_3"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 4 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_4"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 5 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_5"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 6 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_6"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 7 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_7"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 8 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_8"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 9 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_9"
+	}
+	text = {
+		trigger = {
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 10 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_10"
+	}
+	text = {
+		trigger = {
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 11 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_11"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 12 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_12"
+	}
+	text = {
+		trigger = {
+			var:XJ_state_active = { 
+				check_variable = { CPC_XJ_option_num = 13 } 		
+				has_state_flag = CPC_XJ_working }
+			}
+		localization_key = "XJB_vice_focus_13"
+	}
+	text = {
+		trigger = { 
+			var:XJ_state_active = {	
+				NOT = { has_state_flag = CPC_XJ_working }
+			}
+		}
+		localization_key = "XJB_no_vice_focus"
+	}
+}

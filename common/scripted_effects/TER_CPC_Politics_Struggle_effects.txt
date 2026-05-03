@@ -1,0 +1,1132 @@
+# Designed By Crys7aL_L1nE.
+TER_CPC_NCCPC_modifier_change_effect = {
+	custom_effect_tooltip = "CPC_NCCPC_modifier_change_0"
+	if = {
+		limit = { NOT = { check_variable = { NCCPC_1_tmp = 0 } } }
+		add_to_variable = { CPC_NCCPC_political_power_gain = NCCPC_1_tmp }
+		custom_effect_tooltip = "CPC_NCCPC_modifier_change_1"
+	}
+	if = {
+		limit = { NOT = { check_variable = { NCCPC_2_tmp = 0 } } }
+		add_to_variable = { CPC_NCCPC_stability_factor = NCCPC_2_tmp }
+		custom_effect_tooltip = "CPC_NCCPC_modifier_change_2"
+	}
+	if = {
+		limit = { NOT = { check_variable = { NCCPC_3_tmp = 0 } } }
+		add_to_variable = { CPC_NCCPC_war_support_factor = NCCPC_3_tmp }
+		custom_effect_tooltip = "CPC_NCCPC_modifier_change_3"
+	}
+	if = {
+		limit = { NOT = { check_variable = { NCCPC_4_tmp = 0 } } }
+		add_to_variable = { CPC_NCCPC_production_factory_max_efficiency_factor = NCCPC_4_tmp }
+		custom_effect_tooltip = "CPC_NCCPC_modifier_change_4"
+	}
+	if = {
+		limit = { NOT = { check_variable = { NCCPC_5_tmp = 0 } } }
+		add_to_variable = { CPC_NCCPC_production_factory_efficiency_gain_factor = NCCPC_5_tmp }
+		custom_effect_tooltip = "CPC_NCCPC_modifier_change_5"
+	}
+	if = {
+		limit = { NOT = { check_variable = { NCCPC_6_tmp = 0 } } }
+		add_to_variable = { CPC_NCCPC_line_change_production_efficiency_factor = NCCPC_6_tmp }
+		custom_effect_tooltip = "CPC_NCCPC_modifier_change_6"
+	}
+	if = {
+		limit = { NOT = { check_variable = { NCCPC_7_tmp = 0 } } }
+		add_to_variable = { CPC_NCCPC_production_speed_buildings_factor = NCCPC_7_tmp }
+		custom_effect_tooltip = "CPC_NCCPC_modifier_change_7"
+	}
+	if = {
+		limit = { NOT = { check_variable = { NCCPC_8_tmp = 0 } } }
+		add_to_variable = { CPC_NCCPC_add_to_GDP_growth = NCCPC_8_tmp }
+		custom_effect_tooltip = "CPC_NCCPC_modifier_change_8"
+	}
+	hidden_effect = {
+		TER_CPC_update_ptmb_pct_dynmod = yes
+	}
+}
+
+calc_politics_startup_powers_in_CPC = {
+	#开局权重置入百分比计算系统
+	add_to_array = { TER_pol_str_real_percent = TER_PS_original_percent^0 }
+	add_to_array = { TER_pol_str_real_percent = TER_PS_original_percent^1 }
+	add_to_array = { TER_pol_str_real_percent = TER_PS_original_percent^2 }
+	add_to_array = { TER_pol_str_real_percent = TER_PS_original_percent^3 }
+	calc_politics_powers_in_CPC = yes
+}
+
+calc_politics_powers_in_CPC = {
+	if = {
+		limit = { check_variable = { NCCPC_temp_pct_change_chosen = 0 } }
+		calc_pies_in_CPC = yes
+	}
+	else_if = {
+		limit = { check_variable = { NCCPC_temp_pct_change_chosen > 0 } }
+		set_temp_variable = { NCCPC_temp_pct_change = 100 }
+		subtract_from_temp_variable = { NCCPC_temp_pct_change = TER_pol_str_real_percent^CPC_NCCPC_choose_num }
+		divide_temp_variable = { NCCPC_temp_pct_change = NCCPC_temp_pct_change_chosen }
+		add_to_variable = { TER_pol_str_real_percent^CPC_NCCPC_choose_num = NCCPC_temp_pct_change }
+		calc_pies_in_CPC = yes
+	}
+	else_if = {
+		limit = { check_variable = { NCCPC_temp_pct_change_chosen < 0 } }
+		set_temp_variable = { NCCPC_temp_pct_change = TER_pol_str_real_percent^CPC_NCCPC_choose_num }
+		divide_temp_variable = { NCCPC_temp_pct_change = NCCPC_temp_pct_change_chosen }
+		add_to_variable = { TER_pol_str_real_percent^CPC_NCCPC_choose_num = NCCPC_temp_pct_change }
+		calc_pies_in_CPC = yes
+	}
+}
+
+calc_pies_in_CPC = {
+	#按照剩余饼图占比分配扣除额
+	if = { limit = { check_variable = { CPC_NCCPC_choose_num = 0 } }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+
+		set_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^1 }
+		add_to_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^2 }
+		add_to_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^3 }
+		set_temp_variable = { NCCPC_rest_pct^1 = TER_pol_str_real_percent^1 }
+		divide_temp_variable = { NCCPC_rest_pct^1 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^1 = NCCPC_rest_pct^1 }
+		set_temp_variable = { NCCPC_rest_pct^2 = TER_pol_str_real_percent^2 }
+		divide_temp_variable = { NCCPC_rest_pct^2 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^2 = NCCPC_rest_pct^2 }
+		set_temp_variable = { NCCPC_rest_pct^3 = TER_pol_str_real_percent^3 }
+		divide_temp_variable = { NCCPC_rest_pct^3 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^3 = NCCPC_rest_pct^3 }
+		
+		subtract_from_variable = { TER_pol_str_real_percent^1 = NCCPC_temp_pct_change_d^1 }
+		subtract_from_variable = { TER_pol_str_real_percent^2 = NCCPC_temp_pct_change_d^2 }
+		subtract_from_variable = { TER_pol_str_real_percent^3 = NCCPC_temp_pct_change_d^3 }
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 1 } }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+
+		set_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^0 }
+		add_to_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^2 }
+		add_to_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^3 }
+		set_temp_variable = { NCCPC_rest_pct^0 = TER_pol_str_real_percent^0 }
+		divide_temp_variable = { NCCPC_rest_pct^0 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^0 = NCCPC_rest_pct^0 }
+		set_temp_variable = { NCCPC_rest_pct^2 = TER_pol_str_real_percent^2 }
+		divide_temp_variable = { NCCPC_rest_pct^2 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^2 = NCCPC_rest_pct^2 }
+		set_temp_variable = { NCCPC_rest_pct^3 = TER_pol_str_real_percent^3 }
+		divide_temp_variable = { NCCPC_rest_pct^3 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^3 = NCCPC_rest_pct^3 }
+		
+		subtract_from_variable = { TER_pol_str_real_percent^0 = NCCPC_temp_pct_change_d^0 }
+		subtract_from_variable = { TER_pol_str_real_percent^2 = NCCPC_temp_pct_change_d^2 }
+		subtract_from_variable = { TER_pol_str_real_percent^3 = NCCPC_temp_pct_change_d^3 }
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 2 } }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+
+		set_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^0 }
+		add_to_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^1 }
+		add_to_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^3 }
+		set_temp_variable = { NCCPC_rest_pct^0 = TER_pol_str_real_percent^0 }
+		divide_temp_variable = { NCCPC_rest_pct^0 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^0 = NCCPC_rest_pct^0 }
+		set_temp_variable = { NCCPC_rest_pct^1 = TER_pol_str_real_percent^1 }
+		divide_temp_variable = { NCCPC_rest_pct^1 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^1 = NCCPC_rest_pct^1 }
+		set_temp_variable = { NCCPC_rest_pct^3 = TER_pol_str_real_percent^3 }
+		divide_temp_variable = { NCCPC_rest_pct^3 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^3 = NCCPC_rest_pct^3 }
+		
+		subtract_from_variable = { TER_pol_str_real_percent^0 = NCCPC_temp_pct_change_d^0 }
+		subtract_from_variable = { TER_pol_str_real_percent^1 = NCCPC_temp_pct_change_d^1 }
+		subtract_from_variable = { TER_pol_str_real_percent^3 = NCCPC_temp_pct_change_d^3 }
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 3 } }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+		add_to_temp_array = { NCCPC_temp_pct_change_d = NCCPC_temp_pct_change }
+
+		set_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^0 }
+		add_to_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^1 }
+		add_to_temp_variable = { NCCPC_rest_temp = TER_pol_str_real_percent^2 }
+		set_temp_variable = { NCCPC_rest_pct^0 = TER_pol_str_real_percent^0 }
+		divide_temp_variable = { NCCPC_rest_pct^0 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^0 = NCCPC_rest_pct^0 }
+		set_temp_variable = { NCCPC_rest_pct^1 = TER_pol_str_real_percent^1 }
+		divide_temp_variable = { NCCPC_rest_pct^1 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^1 = NCCPC_rest_pct^1 }
+		set_temp_variable = { NCCPC_rest_pct^2 = TER_pol_str_real_percent^2 }
+		divide_temp_variable = { NCCPC_rest_pct^2 = NCCPC_rest_temp }
+		multiply_temp_variable = { NCCPC_temp_pct_change_d^2 = NCCPC_rest_pct^2 }
+		
+		subtract_from_variable = { TER_pol_str_real_percent^0 = NCCPC_temp_pct_change_d^0 }
+		subtract_from_variable = { TER_pol_str_real_percent^1 = NCCPC_temp_pct_change_d^1 }
+		subtract_from_variable = { TER_pol_str_real_percent^2 = NCCPC_temp_pct_change_d^2 }
+	}
+	#打印饼图
+	set_temp_variable = { NCCPC_st_0 = 0 }
+	set_temp_variable = { NCCPC_end_0 = TER_pol_str_real_percent^0 }
+	set_variable = { TER_PS_printed_percent^0 = NCCPC_st_0 } 
+	round_variable = TER_PS_printed_percent^0
+	multiply_variable = { TER_PS_printed_percent^0 = 1000 }
+	add_to_variable = { TER_PS_printed_percent^0 = NCCPC_end_0 }
+
+	set_temp_variable = { NCCPC_st_1 = NCCPC_end_0 }
+	set_temp_variable = { NCCPC_end_1 = NCCPC_st_1 }
+	add_to_temp_variable = { NCCPC_end_1 = TER_pol_str_real_percent^1 }
+	set_variable = { TER_PS_printed_percent^1 = NCCPC_st_1 } 
+	round_variable = TER_PS_printed_percent^1 
+	multiply_variable = { TER_PS_printed_percent^1 = 1000 }
+	add_to_variable = { TER_PS_printed_percent^1 = NCCPC_end_1 }
+
+	set_temp_variable = { NCCPC_st_2 = NCCPC_end_1 }
+	set_temp_variable = { NCCPC_end_2 = NCCPC_st_2 }
+	add_to_temp_variable = { NCCPC_end_2 = TER_pol_str_real_percent^2 }
+	set_variable = { TER_PS_printed_percent^2 = NCCPC_st_2 } 
+	round_variable = TER_PS_printed_percent^2 
+	multiply_variable = { TER_PS_printed_percent^2 = 1000 }
+	add_to_variable = { TER_PS_printed_percent^2 = NCCPC_end_2 }
+
+	set_temp_variable = { NCCPC_st_3 = NCCPC_end_2 }
+	set_temp_variable = { NCCPC_end_3 = NCCPC_st_3 }
+	add_to_temp_variable = { NCCPC_end_3 = TER_pol_str_real_percent^3 }
+	set_variable = { TER_PS_printed_percent^3 = NCCPC_st_3 } 
+	round_variable = TER_PS_printed_percent^3 
+	multiply_variable = { TER_PS_printed_percent^3 = 1000 }
+	add_to_variable = { TER_PS_printed_percent^3 = NCCPC_end_3 }
+	compare_inner_party_powers = yes
+}
+
+compare_inner_party_powers = {
+	set_variable = { CPC_maos_power = 0	}
+	set_variable = { CPC_lius_power = 0 }
+	add_to_variable = { CPC_maos_power = TER_pol_str_real_percent^0 }
+	add_to_variable = { CPC_maos_power = TER_pol_str_real_percent^3 }
+	add_to_variable = { CPC_lius_power = TER_pol_str_real_percent^1 }
+	add_to_variable = { CPC_lius_power = TER_pol_str_real_percent^2 }
+}
+#Mao
+special_care_for_mao = {
+	set_country_flag = special_care_selected
+	set_temp_variable = { NCCPC_1_tmp = 0.02 }
+	set_temp_variable = { NCCPC_2_tmp = 0.01 }
+	set_temp_variable = { NCCPC_3_tmp = 0.01 }
+	set_temp_variable = { NCCPC_4_tmp = 0.02 }
+	set_temp_variable = { NCCPC_5_tmp = -0.01 }
+	set_temp_variable = { NCCPC_6_tmp = -0.01 }
+	set_temp_variable = { NCCPC_7_tmp = 0.02 }
+	set_temp_variable = { NCCPC_8_tmp = 0.015 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	subtract_from_variable = { NCCPC_current_party_budget = 1.5 }
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = 50 }
+	calc_politics_powers_in_CPC = yes
+}
+
+praise_for_mao = {
+	set_country_flag = praise_selected
+	set_temp_variable = { NCCPC_1_tmp = 0.01 }
+	set_temp_variable = { NCCPC_2_tmp = 0.005 }
+	set_temp_variable = { NCCPC_3_tmp = 0.005 }
+	set_temp_variable = { NCCPC_4_tmp = 0.01 }
+	set_temp_variable = { NCCPC_5_tmp = -0.005 }
+	set_temp_variable = { NCCPC_6_tmp = -0.005 }
+	set_temp_variable = { NCCPC_7_tmp = 0.01 }
+	set_temp_variable = { NCCPC_8_tmp = 0.01 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = 100 }
+	calc_politics_powers_in_CPC = yes
+}
+
+criticize_mao = {
+	set_country_flag = criticize_button_selected
+	set_temp_variable = { NCCPC_1_tmp = -0.01 }
+	set_temp_variable = { NCCPC_2_tmp = -0.001 }
+	set_temp_variable = { NCCPC_3_tmp = -0.001 }
+	set_temp_variable = { NCCPC_4_tmp = -0.005 }
+	set_temp_variable = { NCCPC_5_tmp = -0.01 }
+	set_temp_variable = { NCCPC_6_tmp = -0.01 }
+	set_temp_variable = { NCCPC_7_tmp = -0.005 }
+	set_temp_variable = { NCCPC_8_tmp = -0.005 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = -100 }
+	calc_politics_powers_in_CPC = yes
+}
+#Liu
+special_care_for_liu = {
+	set_country_flag = special_care_selected
+	set_temp_variable = { NCCPC_1_tmp = 0.02 }
+	set_temp_variable = { NCCPC_2_tmp = 0.01 }
+	set_temp_variable = { NCCPC_3_tmp = 0.01 }
+	set_temp_variable = { NCCPC_4_tmp = -0.01 }
+	set_temp_variable = { NCCPC_5_tmp = 0.02 }
+	set_temp_variable = { NCCPC_6_tmp = 0.02 }
+	set_temp_variable = { NCCPC_7_tmp = -0.01 }
+	set_temp_variable = { NCCPC_8_tmp = 0.03 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	subtract_from_variable = { NCCPC_current_party_budget = 1.5 }
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = 50 }
+	calc_politics_powers_in_CPC = yes
+}
+
+praise_for_liu = {
+	set_country_flag = praise_selected
+	set_temp_variable = { NCCPC_1_tmp = 0.01 }
+	set_temp_variable = { NCCPC_2_tmp = 0.005 }
+	set_temp_variable = { NCCPC_3_tmp = 0.005 }
+	set_temp_variable = { NCCPC_4_tmp = -0.005 }
+	set_temp_variable = { NCCPC_5_tmp = 0.01 }
+	set_temp_variable = { NCCPC_6_tmp = 0.01 }
+	set_temp_variable = { NCCPC_7_tmp = -0.005 }
+	set_temp_variable = { NCCPC_8_tmp = 0.02 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = 100 }
+	calc_politics_powers_in_CPC = yes
+}
+
+criticize_liu = {
+	set_country_flag = criticize_button_selected
+	set_temp_variable = { NCCPC_1_tmp = -0.01 }
+	set_temp_variable = { NCCPC_2_tmp = -0.005 }
+	set_temp_variable = { NCCPC_3_tmp = -0.005 }
+	set_temp_variable = { NCCPC_4_tmp = -0.005 }
+	set_temp_variable = { NCCPC_5_tmp = -0.01 }
+	set_temp_variable = { NCCPC_6_tmp = -0.01 }
+	set_temp_variable = { NCCPC_7_tmp = -0.005 }
+	set_temp_variable = { NCCPC_8_tmp = -0.005 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = -100 }
+	calc_politics_powers_in_CPC = yes
+}
+#Li
+special_care_for_li = {
+	set_country_flag = special_care_selected
+	set_temp_variable = { NCCPC_1_tmp = -0.005 }
+	set_temp_variable = { NCCPC_2_tmp = 0.005 }
+	set_temp_variable = { NCCPC_3_tmp = 0.005 }
+	set_temp_variable = { NCCPC_4_tmp = 0.005 }
+	set_temp_variable = { NCCPC_5_tmp = 0.01 }
+	set_temp_variable = { NCCPC_6_tmp = 0.01 }
+	set_temp_variable = { NCCPC_7_tmp = 0.005 }
+	set_temp_variable = { NCCPC_8_tmp = -0.025 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	subtract_from_variable = { NCCPC_current_party_budget = 1 }
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = 50 }
+	calc_politics_powers_in_CPC = yes
+}
+
+praise_for_li = {
+	set_country_flag = praise_selected
+	set_temp_variable = { NCCPC_4_tmp = 0.0025 }
+	set_temp_variable = { NCCPC_5_tmp = 0.005 }
+	set_temp_variable = { NCCPC_6_tmp = 0.005 }
+	set_temp_variable = { NCCPC_7_tmp = 0.0025 }
+	set_temp_variable = { NCCPC_8_tmp = -0.01 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = 100 }
+	calc_politics_powers_in_CPC = yes
+}
+
+criticize_li = {
+	set_country_flag = criticize_button_selected
+	set_temp_variable = { NCCPC_1_tmp = 0.005 }
+	set_temp_variable = { NCCPC_4_tmp = -0.005 }
+	set_temp_variable = { NCCPC_5_tmp = -0.01 }
+	set_temp_variable = { NCCPC_6_tmp = -0.01 }
+	set_temp_variable = { NCCPC_7_tmp = -0.005 }
+	set_temp_variable = { NCCPC_8_tmp = 0.025 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = -100 }
+	calc_politics_powers_in_CPC = yes
+}
+#Deng
+special_care_for_deng = {
+	set_country_flag = special_care_selected
+	set_temp_variable = { NCCPC_1_tmp = -0.005 }
+	set_temp_variable = { NCCPC_2_tmp = 0.005 }
+	set_temp_variable = { NCCPC_3_tmp = 0.005 }
+	set_temp_variable = { NCCPC_4_tmp = 0.01 }
+	set_temp_variable = { NCCPC_5_tmp = 0.005 }
+	set_temp_variable = { NCCPC_6_tmp = 0.005 }
+	set_temp_variable = { NCCPC_7_tmp = 0.01 }
+	set_temp_variable = { NCCPC_8_tmp = 0.015 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	subtract_from_variable = { NCCPC_current_party_budget = 1 }
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = 50 }
+	calc_politics_powers_in_CPC = yes
+}
+
+praise_for_deng = {
+	set_country_flag = praise_selected
+	set_temp_variable = { NCCPC_4_tmp = 0.0025 }
+	set_temp_variable = { NCCPC_5_tmp = 0.005 }
+	set_temp_variable = { NCCPC_6_tmp = 0.005 }
+	set_temp_variable = { NCCPC_7_tmp = 0.0025 }
+	set_temp_variable = { NCCPC_8_tmp = -0.01 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = 100 }
+	calc_politics_powers_in_CPC = yes
+}
+
+criticize_deng = {
+	set_country_flag = criticize_button_selected
+	set_temp_variable = { NCCPC_1_tmp = 0.005 }
+	set_temp_variable = { NCCPC_4_tmp = -0.01 }
+	set_temp_variable = { NCCPC_5_tmp = -0.005 }
+	set_temp_variable = { NCCPC_6_tmp = -0.005 }
+	set_temp_variable = { NCCPC_7_tmp = -0.01 }
+	TER_CPC_NCCPC_modifier_change_effect = yes
+	NCCPC_spirit_clamp = yes
+	set_temp_variable = { NCCPC_temp_pct_change_chosen = -100 }
+	calc_politics_powers_in_CPC = yes
+}
+#general
+NCCPC_btn_blue_click_effect = {
+	if = { limit = { check_variable = { CPC_NCCPC_choose_num = 0 } } 
+		   special_care_for_mao = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 1 } } 
+		   special_care_for_liu = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 2 } } 
+		   special_care_for_li = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 3 } } 
+		   special_care_for_deng = yes
+	}
+	TER_NCCPC_remove_alerts = yes
+}
+
+NCCPC_btn_green_click_effect = {
+	if = { limit = { check_variable = { CPC_NCCPC_choose_num = 0 } } 
+		   praise_for_mao = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 1 } } 
+		   praise_for_liu = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 2 } } 
+		   praise_for_li = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 3 } } 
+		   praise_for_deng = yes
+	}
+	TER_NCCPC_remove_alerts = yes
+}
+
+NCCPC_btn_yellow_click_effect = {
+	if = { limit = { check_variable = { CPC_NCCPC_choose_num = 0 } } 
+		   criticize_mao = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 1 } } 
+		   criticize_liu = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 2 } } 
+		   criticize_li = yes
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 3 } } 
+		   criticize_deng = yes
+	}
+	TER_NCCPC_remove_alerts = yes
+}
+
+NCCPC_btn_red_click_effect = {
+	if = { limit = { check_variable = { CPC_NCCPC_choose_num = 0 } } 
+		   criticize_mao = yes
+		   subtract_from_variable = { NCCPC_current_party_budget = 0.5 }
+		   add_timed_idea = {
+			idea = CPC_punish_mao
+			days = 180
+		}
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 1 } } 
+		   criticize_liu = yes
+		   subtract_from_variable = { NCCPC_current_party_budget = 0.5 }
+		   add_timed_idea = {
+			idea = CPC_punish_liu
+			days = 180
+		}
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 2 } } 
+		   criticize_li = yes
+		   subtract_from_variable = { NCCPC_current_party_budget = 0.5 }
+		   if = {
+				limit = { has_country_flag = CPC_9th_congress_leader_changed }
+				add_timed_idea = {
+					idea = CPC_punish_li_2
+					days = 180
+				}
+		   }
+		    else = {
+				add_timed_idea = {
+					idea = CPC_punish_li
+					days = 180
+				}
+			}
+	}
+	else_if = { limit = { check_variable = { CPC_NCCPC_choose_num = 3 } } 
+		   criticize_deng = yes
+		   subtract_from_variable = { NCCPC_current_party_budget = 0.5 }
+		    add_timed_idea = {
+				idea = CPC_punish_deng
+				days = 180
+			}
+	}
+	TER_NCCPC_remove_alerts = yes
+}
+
+raise_mao_and_liu = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = 0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^2 = -0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^3 = -0.3 }
+	add_to_variable = { TER_pol_str_real_percent^0 = 0.3 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = raise_mao_and_liu_tt
+}
+
+raise_mao_and_li = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = -0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^2 = 0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^3 = -0.3 }
+	add_to_variable = { TER_pol_str_real_percent^0 = 0.3 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = raise_mao_and_li_tt
+}
+
+raise_mao_and_deng = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = -0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^2 = -0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^3 = 0.3 }
+	add_to_variable = { TER_pol_str_real_percent^0 = 0.3 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = raise_mao_and_deng_tt
+}
+
+raise_liu_down_mao = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = 0.3 }
+	add_to_variable = { TER_pol_str_real_percent^0 = -0.3 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = raise_liu_down_mao_tt
+}
+
+raise_mao_down_liu = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = -0.3 }
+	add_to_variable = { TER_pol_str_real_percent^0 = 0.3 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = raise_mao_down_liu_tt
+}
+
+down_li_and_liu = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = -0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^2 = -0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^3 = -0.3 }
+	add_to_variable = { TER_pol_str_real_percent^0 = 0.3 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = down_li_and_liu_tt
+}
+
+raise_li_and_liu = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = 0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^2 = 0.3 }
+	add_to_variable = {	TER_pol_str_real_percent^3 = -0.3 }
+	add_to_variable = { TER_pol_str_real_percent^0 = -0.3 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = raise_li_and_liu_tt
+}
+
+raise_liu_med = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = 0.6 }
+	add_to_variable = {	TER_pol_str_real_percent^2 = -0.2 }
+	add_to_variable = {	TER_pol_str_real_percent^3 = -0.2 }
+	add_to_variable = { TER_pol_str_real_percent^0 = -0.2 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = raise_liu_med_tt
+}
+
+raise_mao_med = {
+	add_to_variable = {	TER_pol_str_real_percent^1 = -0.2 }
+	add_to_variable = {	TER_pol_str_real_percent^2 = -0.2 }
+	add_to_variable = {	TER_pol_str_real_percent^3 = -0.2 }
+	add_to_variable = { TER_pol_str_real_percent^0 = 0.6 }
+	calc_politics_powers_in_CPC = yes
+	custom_effect_tooltip = raise_mao_med_tt
+}
+
+NCCPC_spirit_clamp = {
+	clamp_variable = { var = CPC_NCCPC_political_power_gain max = 2 min = -2 }
+	clamp_variable = { var = CPC_NCCPC_stability_factor max = 0.2 min = -0.2 }
+	clamp_variable = { var = CPC_NCCPC_war_support_factor max = 0.2 min = -0.2 }
+	clamp_variable = { var = CPC_NCCPC_production_factory_max_efficiency_factor max = 0.2 min = -0.2 }
+	clamp_variable = { var = CPC_NCCPC_production_factory_efficiency_gain_factor max = 0.2 min = -0.2 }
+	clamp_variable = { var = CPC_NCCPC_line_change_production_efficiency_factor max = 0.2 min = -0.2 }
+	clamp_variable = { var = CPC_NCCPC_production_speed_buildings_factor max = 0.2 min = -0.2 }
+	clamp_variable = { var = CPC_NCCPC_add_to_GDP_growth max = 2 min = -2 }
+}
+
+###党务预算-党员统计系统###
+NCCPC_statistics_data = {
+	clear_array = NCCPC_party_budget_data_history
+	resize_array = {
+		NCCPC_party_budget_data_history = 16
+	}
+	set_variable = { NCCPC_party_budget_data_history^0 = 3 }
+	set_variable = { NCCPC_party_budget_data_history^1 = 2 }
+	set_variable = { NCCPC_party_budget_data_history^2 = 2 }  
+	set_variable = { NCCPC_party_budget_data_history^3 = 10 }
+	set_variable = { NCCPC_party_budget_data_history^4 = 9 }
+	set_variable = { NCCPC_party_budget_data_history^5 = 8 }
+	set_variable = { NCCPC_party_budget_data_history^6 = 6 }
+	set_variable = { NCCPC_party_budget_data_history^7 = 6 }
+	set_variable = { NCCPC_party_budget_data_history^8 = 6 }
+	set_variable = { NCCPC_party_budget_data_history^9 = 3 }
+	set_variable = { NCCPC_party_budget_data_history^10 = 3 } 
+	set_variable = { NCCPC_party_budget_data_history^11 = 2 }
+	set_variable = { NCCPC_party_budget_data_history^12 = 2 }
+	set_variable = { NCCPC_party_budget_data_history^13 = 1 }
+	set_variable = { NCCPC_party_budget_data_history^14 = 0 }
+	set_variable = { NCCPC_current_party_budget = 10 }
+	set_variable = { NCCPC_next_party_budget = 10 }
+	set_variable = { NCCPC_party_budget_limit = NCCPC_current_party_budget }
+	set_variable = { NCCPC_buff_factor_LY = -0.02 }
+	set_variable = { NCCPC_buff_factor = -0.02 }
+
+	set_temp_variable = { NCCPC_buff_calc_temp_factor_s = NCCPC_buff_factor }
+	set_temp_variable = { NCCPC_buff_calc_temp_factor_l = NCCPC_buff_factor }
+	multiply_temp_variable = { NCCPC_buff_calc_temp_factor_l = 10 }
+	divide_temp_variable = { NCCPC_buff_calc_temp_factor_s = 10 }
+	add_to_variable = {	CPC_NCCPC_political_power_gain = NCCPC_buff_calc_temp_factor_l }
+	add_to_variable = {	CPC_NCCPC_stability_factor = NCCPC_buff_calc_temp_factor_s }
+	add_to_variable = {	CPC_NCCPC_war_support_factor = NCCPC_buff_calc_temp_factor_s }
+	add_to_variable = {	CPC_NCCPC_production_factory_max_efficiency_factor = NCCPC_buff_factor }
+	add_to_variable = {	CPC_NCCPC_production_factory_efficiency_gain_factor = NCCPC_buff_factor }
+	add_to_variable = {	CPC_NCCPC_line_change_production_efficiency_factor = NCCPC_buff_factor }
+	add_to_variable = {	CPC_NCCPC_production_speed_buildings_factor = NCCPC_buff_factor }
+	add_to_variable = {	CPC_NCCPC_add_to_GDP_growth = NCCPC_buff_factor }
+
+	for_loop_effect = {
+		start = 0
+		end = 16
+		value = i 
+		multiply_variable = { NCCPC_party_budget_data_history^i = 1 }
+	} 
+
+	add_to_array = { NCCPC_graph_months = -2 } #1960.10
+	add_to_array = { NCCPC_graph_months = -1 } #11
+	add_to_array = { NCCPC_graph_months = 0 } #12
+	add_to_array = { NCCPC_graph_months = 1 } #1961.1
+	add_to_array = { NCCPC_graph_months = 2 }
+	add_to_array = { NCCPC_graph_months = 3 }
+	add_to_array = { NCCPC_graph_months = 4 }
+	add_to_array = { NCCPC_graph_months = 5 }
+	add_to_array = { NCCPC_graph_months = 6 } 
+	add_to_array = { NCCPC_graph_months = 7 }
+	add_to_array = { NCCPC_graph_months = 8 }
+	add_to_array = { NCCPC_graph_months = 9 }
+	add_to_array = { NCCPC_graph_months = 10 }
+	add_to_array = { NCCPC_graph_months = 11 }    
+	add_to_array = { NCCPC_graph_months = 12 }
+	add_to_array = { NCCPC_graph_months = 13 } #1962 
+	set_variable = { NCCPC_standard_year = 61}
+	NCCPC_draw_the_graph = yes
+	NCCPC_initialize_party_pop = yes
+	set_variable = { NCCPC_month_standred_1 = 1 }
+	set_variable = { NCCPC_month_standred_12 = 12 }
+}
+
+NCCPC_buff_yearly_calc = {
+	set_temp_variable = { NCCPC_buff_calc_temp_factor_s = NCCPC_buff_factor }
+	set_temp_variable = { NCCPC_buff_calc_temp_factor_l = NCCPC_buff_factor }
+	multiply_temp_variable = { NCCPC_buff_calc_temp_factor_l = 10 }
+	divide_temp_variable = { NCCPC_buff_calc_temp_factor_s = 5 }
+	set_temp_variable = { NCCPC_buff_calc_temp_factor_s_LY = NCCPC_buff_factor_LY }
+	set_temp_variable = { NCCPC_buff_calc_temp_factor_l_LY = NCCPC_buff_factor_LY }
+	multiply_temp_variable = { NCCPC_buff_calc_temp_factor_l_LY = 10 }
+	divide_temp_variable = { NCCPC_buff_calc_temp_factor_s_LY = 5 }
+
+	subtract_from_variable = { CPC_NCCPC_political_power_gain = NCCPC_buff_calc_temp_factor_l_LY }
+	subtract_from_variable = { CPC_NCCPC_stability_factor = NCCPC_buff_calc_temp_factor_s_LY }
+	subtract_from_variable = { CPC_NCCPC_war_support_factor = NCCPC_buff_calc_temp_factor_s_LY }
+	subtract_from_variable = { CPC_NCCPC_production_factory_max_efficiency_factor = NCCPC_buff_factor_LY }
+	subtract_from_variable = { CPC_NCCPC_production_factory_efficiency_gain_factor = NCCPC_buff_factor_LY }
+	subtract_from_variable = { CPC_NCCPC_line_change_production_efficiency_factor = NCCPC_buff_factor_LY }
+	subtract_from_variable = { CPC_NCCPC_production_speed_buildings_factor = NCCPC_buff_factor_LY }
+	subtract_from_variable = { CPC_NCCPC_add_to_GDP_growth = NCCPC_buff_factor_LY }
+
+	add_to_variable = {	CPC_NCCPC_political_power_gain = NCCPC_buff_calc_temp_factor_l }
+	add_to_variable = {	CPC_NCCPC_stability_factor = NCCPC_buff_calc_temp_factor_s }
+	add_to_variable = {	CPC_NCCPC_war_support_factor = NCCPC_buff_calc_temp_factor_s }
+	add_to_variable = {	CPC_NCCPC_production_factory_max_efficiency_factor = NCCPC_buff_factor }
+	add_to_variable = {	CPC_NCCPC_production_factory_efficiency_gain_factor = NCCPC_buff_factor }
+	add_to_variable = {	CPC_NCCPC_line_change_production_efficiency_factor = NCCPC_buff_factor }
+	add_to_variable = {	CPC_NCCPC_production_speed_buildings_factor = NCCPC_buff_factor }
+	add_to_variable = {	CPC_NCCPC_add_to_GDP_growth = NCCPC_buff_factor }
+
+	set_variable = { NCCPC_buff_factor_LY = NCCPC_buff_factor }
+	NCCPC_spirit_clamp = yes
+}
+
+NCCPC_initialize_party_pop = {
+	set_variable = { NCCPC_party_pop_monthly_upper_limit = 10 }
+	set_variable = { NCCPC_party_pop_monthly_lower_limit = -2 }
+	TER_NWB_calc_party_members = yes
+	resize_array = {
+		NCCPC_party_pop_data_history = 16
+	}
+	set_variable = { NCCPC_party_pop_data_history^0 = 1.17 }
+	set_variable = { NCCPC_party_pop_data_history^1 = 1.173 }
+	set_variable = { NCCPC_party_pop_data_history^2 = 1.174 }  
+	set_variable = { NCCPC_party_pop_data_history^3 = 1.179 }
+	set_variable = { NCCPC_party_pop_data_history^4 = 1.182 }
+	set_variable = { NCCPC_party_pop_data_history^5 = 1.184 }
+	set_variable = { NCCPC_party_pop_data_history^6 = 1.184 }
+	set_variable = { NCCPC_party_pop_data_history^7 = 1.191 }
+	set_variable = { NCCPC_party_pop_data_history^8 = 1.193 }
+	set_variable = { NCCPC_party_pop_data_history^9 = 1.196 }
+	set_variable = { NCCPC_party_pop_data_history^10 = 1.195 } 
+	set_variable = { NCCPC_party_pop_data_history^11 = 1.197 }
+	set_variable = { NCCPC_party_pop_data_history^12 = 0.987 }
+	set_variable = { NCCPC_party_pop_data_history^13 = 1.008 }
+	set_variable = { NCCPC_party_pop_data_history^14 = 1.022 }
+	set_variable = { NCCPC_party_pop_data_history^15 = NCCPC_current_printed_party_pop }
+}
+
+NCCPC_calc_party_budget_monthly = {
+	set_temp_variable = { NCCPC_monthly_budget_cost = NCCPC_current_printed_party_pop }
+	divide_temp_variable = { NCCPC_monthly_budget_cost = 2 }
+	subtract_from_variable = { NCCPC_current_party_budget = NCCPC_monthly_budget_cost }
+}
+
+NCCPC_Line_ready_graph = {
+	clear_array = NCCPC_Line_graph_values #实际打印值
+	if = {
+		limit = {
+			check_variable = { NCCPC_graph_mode_right_num = 2 }
+			check_variable = { NCCPC_graph_mode_left_num = 1 }
+		}
+		set_variable = { NCCPC_Line_graph_base_unit = 2 }
+		for_loop_effect = {
+			start = 0
+			end = 16
+			value = i
+
+			add_to_array = { NCCPC_Line_graph_values = NCCPC_party_pop_data_history^i } #将历史值填充入打印值中
+		}
+	}
+
+	else_if = {
+		limit = {
+			check_variable = { NCCPC_graph_mode_right_num = 1 }
+			check_variable = { NCCPC_graph_mode_left_num = 2 }
+		}
+
+		set_variable = { NCCPC_Line_graph_base_unit = 2 }
+		for_loop_effect = {
+			start = 0
+			end = 16
+			value = i
+
+			add_to_array = { NCCPC_Line_graph_values = NCCPC_party_budget_data_history^i } #将历史值填充入打印值中
+		}
+	}
+
+	clear_array = NCCPC_Line_graph_offsets
+	clear_array = NCCPC_Line_graph_deltas
+	clear_array = NCCPC_Line_graph_vbars
+	clear_array = NCCPC_Line_graph_vbar_offsets
+
+	#排序，确定上下界
+	set_temp_variable = { min = NCCPC_Line_graph_values^0 }
+	set_temp_variable = { max = NCCPC_Line_graph_values^0 }
+	for_loop_effect = {
+		end = 16
+		value = i
+
+		if = {
+			limit = {
+				check_variable = { NCCPC_Line_graph_values^i > max }
+			}
+			set_temp_variable = { max = NCCPC_Line_graph_values^i }
+		}
+		if = {
+			limit = {
+				check_variable = { NCCPC_Line_graph_values^i < min }
+			}
+			set_temp_variable = { min = NCCPC_Line_graph_values^i }
+		}
+	}
+	set_temp_variable = { range = max }
+	subtract_from_temp_variable = { range = min } #范围
+
+	## 划定Y轴分度值
+	set_temp_variable = { unit = 10000 }
+	if = {
+		limit = {
+			check_variable = { range < 1.5 }
+		}
+		set_temp_variable = { unit = 0.3 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 3 }
+		}
+		set_temp_variable = { unit = 0.5 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 6 }
+		}
+		set_temp_variable = { unit = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 12 }
+		}
+		set_temp_variable = { unit = 2 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 30 }
+		}
+		set_temp_variable = { unit = 5 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 60 }
+		}
+		set_temp_variable = { unit = 10 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 120 }
+		}
+		set_temp_variable = { unit = 20 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 300 }
+		}
+		set_temp_variable = { unit = 50 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 600 }
+		}
+		set_temp_variable = { unit = 100 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 1200 }
+		}
+		set_temp_variable = { unit = 200 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 3000 }
+		}
+		set_temp_variable = { unit = 500 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 6000 }
+		}
+		set_temp_variable = { unit = 1000 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 12022 }
+		}
+		set_temp_variable = { unit = 2000 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { range < 30000 }
+		}
+		set_temp_variable = { unit = 5000 }
+	}
+
+	divide_temp_variable = { min = unit }
+	divide_temp_variable = { max = unit }
+	subtract_from_temp_variable = { min = 0.6 }
+	add_to_temp_variable = { max = 0.6 }
+	round_temp_variable = min
+	round_temp_variable = max
+
+	multiply_temp_variable = { min = unit }
+	multiply_temp_variable = { max = unit }
+
+	set_temp_variable = { range = max }
+	subtract_from_temp_variable = { range = min }
+
+	# Find the unit we should display next to the y axis ticks (ie K, M, B etc)
+	set_variable = { NCCPC_Line_graph_display_unit = NCCPC_Line_graph_base_unit }
+	set_temp_variable = { divisor = 1000 }
+	while_loop_effect = {
+		limit = {
+			check_variable = { divisor < min }
+		}
+		multiply_temp_variable = { divisor = 1000 }
+		add_to_variable = { NCCPC_Line_graph_display_unit = 1 }
+	}
+	divide_temp_variable = { divisor = 1000 }
+
+	# Generate the y axis ticks for our graph
+	divide_temp_variable = { range = 100 }
+	set_temp_variable = { m2 = max }
+	add_to_temp_variable = { m2 = 0.25 }
+	set_temp_variable = { k = min }
+	while_loop_effect = {
+		limit = {
+			check_variable = { k < m2 }
+		}
+		set_temp_variable = { label = k}
+		divide_temp_variable = { label = divisor }
+		add_to_array = { NCCPC_Line_graph_vbars = label }
+
+		set_temp_variable = { offset = k }
+		subtract_from_temp_variable = { offset = min }
+		divide_temp_variable = { offset = range }
+		multiply_temp_variable = { offset = -1.5 }
+		add_to_array = { NCCPC_Line_graph_vbar_offsets = offset }
+
+		add_to_temp_variable = { k = unit }
+	}
+	for_loop_effect = {
+		end = 16
+		value = i
+		subtract_from_temp_variable = { NCCPC_Line_graph_vbars^i = divisor}
+	}
+	#实际生成图像部分
+	for_loop_effect = {
+		start = 0
+		end = 15
+		value = i
+
+		set_temp_variable = { j = i }
+		add_to_temp_variable = { j = 1 }
+
+		set_temp_variable = { vj = NCCPC_Line_graph_values^j }
+		set_temp_variable = { vi = NCCPC_Line_graph_values^i }
+		subtract_from_temp_variable = { vj = min }
+		subtract_from_temp_variable = { vi = min }
+		divide_temp_variable = { vj = range }
+		divide_temp_variable = { vi = range }
+
+		divide_temp_variable = { vj = 2 }
+		divide_temp_variable = { vi = 2 }
+		round_temp_variable = vi
+		round_temp_variable = vj
+		multiply_temp_variable = { vj = 2 }
+		multiply_temp_variable = { vi = 2 }
+
+		set_temp_variable = { delta = vj }
+		subtract_from_temp_variable = { delta = vi }
+		divide_temp_variable = { delta = 2 }
+		round_temp_variable = delta
+		add_to_temp_variable = { delta = 50 }
+
+		set_temp_variable = { offset = vi }
+		multiply_temp_variable = { offset = -1.5 }
+
+		add_to_array = { NCCPC_Line_graph_offsets = offset }
+		add_to_array = { NCCPC_Line_graph_deltas = delta }
+	}
+	
+}
+
+NCCPC_draw_the_graph = {
+	if = {
+		limit = { 
+			check_variable = { NCCPC_graph_mode_right_num = 1 }
+			check_variable = { NCCPC_graph_mode_left_num = 2 }
+		}
+		set_variable = { NCCPC_party_budget_data_history^15 = NCCPC_current_party_budget }
+	}
+	else_if = {
+		limit = { 
+			check_variable = { NCCPC_graph_mode_right_num = 2 }
+			check_variable = { NCCPC_graph_mode_left_num = 1 }
+		}
+		set_variable = { NCCPC_party_pop_data_history^15 = NCCPC_current_printed_party_pop }
+	}
+	set_variable = { NCCPC_TYBLY_year = -1}
+	set_variable = { NCCPC_NOW_year = 1}
+
+	add_to_variable = { NCCPC_TYBLY_year = NCCPC_standard_year}
+	add_to_variable = { NCCPC_NOW_year = NCCPC_standard_year}
+	
+	NCCPC_Line_ready_graph = yes
+	set_variable = { NCCPC_TYBLY_year = -1}
+	set_variable = { NCCPC_NOW_year = 1}
+
+	add_to_variable = { NCCPC_TYBLY_year = NCCPC_standard_year}
+	add_to_variable = { NCCPC_NOW_year = NCCPC_standard_year}
+}
+
+NCCPC_for_on_action_budget_history_update = {
+	NCCPC_draw_the_graph = yes
+	NCCPC_calc_party_budget_monthly = yes
+	TER_NWB_calc_party_members = yes
+	add_to_variable = { NCCPC_party_budget_data_current_num = 1 }
+	set_temp_variable = { NCCPC_party_budget_data_current_num_modulo_temp = NCCPC_party_budget_data_current_num }
+	modulo_temp_variable = { NCCPC_party_budget_data_current_num_modulo_temp = 12 }
+	if = {
+		limit = {
+				NOT = { check_variable = { NCCPC_party_budget_data_current_num = 0 } }
+				check_variable = { NCCPC_party_budget_data_current_num_modulo_temp = 0}
+		}
+		add_to_variable = { NCCPC_standard_year = 1 }
+		add_to_variable = { NCCPC_month_standred_1 = 12 }
+		add_to_variable = { NCCPC_month_standred_12 = 12 }
+		NCCPC_yearly_clear_the_budget = yes
+	}
+	add_to_variable = { NCCPC_graph_months^0 = 1}
+	for_loop_effect = {
+		start = 0
+		end = 16
+		value = i
+		add_to_variable = { NCCPC_graph_months^j = 1 }
+		set_temp_variable = { j = 15 }
+		subtract_from_temp_variable = { j = i }
+		set_variable = { NCCPC_temp_budget_now = NCCPC_party_budget_data_history^j }
+		set_variable = { NCCPC_party_budget_data_history^j = NCCPC_temp_budget_last }
+		set_variable = {  NCCPC_temp_budget_last =  NCCPC_temp_budget_now }
+	}
+	for_loop_effect = {
+		start = 0
+		end = 16
+		value = i
+		set_temp_variable = { j = 15 }
+		subtract_from_temp_variable = { j = i }
+		set_variable = { NCCPC_temp_pop_now = NCCPC_party_pop_data_history^j }
+		set_variable = { NCCPC_party_pop_data_history^j = NCCPC_temp_pop_last }
+		set_variable = {  NCCPC_temp_pop_last = NCCPC_temp_pop_now }
+	}
+	add_to_variable = { NCCPC_graph_months^15 = -1 }
+	set_variable = { NCCPC_party_budget_data_history^15 = NCCPC_current_party_budget }
+	set_variable = { NCCPC_party_pop_data_history^15 = NCCPC_current_printed_party_pop }
+	NCCPC_draw_the_graph = yes
+}
+
+NCCPC_yearly_clear_the_budget = {
+	set_variable = { NCCPC_yearly_factor_temp = NCCPC_current_party_budget }
+	divide_variable = { NCCPC_yearly_factor_temp = NCCPC_party_budget_limit }
+	if = {
+		limit = { check_variable = { NCCPC_yearly_factor_temp > 0.5 } }
+		set_variable = { NCCPC_buff_factor = -0.01 }
+		NCCPC_buff_yearly_calc = yes
+	}
+	else_if = {
+		limit = { OR = { check_variable = { NCCPC_yearly_factor_temp = 0.5 } 
+				  		 AND = { check_variable = { NCCPC_yearly_factor_temp < 0.5 }
+				  		 		 check_variable = { NCCPC_yearly_factor_temp > 0.1 } } } }
+		set_variable = { NCCPC_buff_factor = 0.05 }
+		NCCPC_buff_yearly_calc = yes
+	}
+	else_if = {
+		limit = { OR = { check_variable = { NCCPC_yearly_factor_temp < 0.1 }
+				  		 check_variable = { NCCPC_yearly_factor_temp = 0.1 } }
+				  OR = { check_variable = { NCCPC_yearly_factor_temp > 0 }
+				  		 check_variable = { NCCPC_yearly_factor_temp = 0 } } }
+		set_variable = { NCCPC_buff_factor = -0.02 }
+		NCCPC_buff_yearly_calc = yes
+	}
+	else_if = {
+		limit = { check_variable = { NCCPC_yearly_factor_temp < 0 } }
+		set_variable = { NCCPC_buff_factor = -0.07 }
+		NCCPC_buff_yearly_calc = yes
+	}
+	set_temp_variable = { NCCPC_next_party_budget_temp = NCCPC_next_party_budget }
+	divide_temp_variable = { NCCPC_next_party_budget_temp = 1000 } #转单位为M
+	set_temp_variable = { debt_temp = NCCPC_next_party_budget_temp }
+	econ_national_debt_change = yes
+	set_temp_variable = { NCCPC_current_party_budget_temp = NCCPC_next_party_budget }
+	divide_temp_variable = { NCCPC_current_party_budget_temp = 1000 } #转单位为M
+	set_temp_variable = { money_reserves_temp = NCCPC_current_party_budget_temp }
+	econ_money_reserves_change_raw_money = yes
+	set_variable = { NCCPC_current_party_budget = NCCPC_next_party_budget }
+	set_variable = { NCCPC_party_budget_limit = NCCPC_current_party_budget }
+	clr_country_flag = NCCPC_buget_confirmed
+	TER_NCCPC_budget_fire_alerts = yes
+}
+
+TER_CPC_update_ptmb_pct_dynmod = {
+	set_variable = { CPC_NCCPC_political_power_gain_true = CPC_NCCPC_political_power_gain }
+	set_variable = { CPC_NCCPC_stability_factor_true = CPC_NCCPC_stability_factor }
+	set_variable = { CPC_NCCPC_war_support_factor_true = CPC_NCCPC_war_support_factor }
+	set_variable = { CPC_NCCPC_line_change_production_efficiency_factor_true = CPC_NCCPC_line_change_production_efficiency_factor }
+	set_variable = { CPC_NCCPC_production_speed_buildings_factor_true = CPC_NCCPC_production_speed_buildings_factor }
+	set_variable = { CPC_NCCPC_production_factory_max_efficiency_factor_true = CPC_NCCPC_production_factory_max_efficiency_factor }
+	set_variable = { CPC_NCCPC_production_factory_efficiency_gain_factor_true = CPC_NCCPC_production_factory_efficiency_gain_factor }
+	set_variable = { CPC_NCCPC_add_to_GDP_growth_true = CPC_NCCPC_add_to_GDP_growth }
+	multiply_variable = { CPC_NCCPC_political_power_gain_true = TER_NCCPC_PTMB_num_pct }
+	multiply_variable = { CPC_NCCPC_stability_factor_true = TER_NCCPC_PTMB_num_pct }
+	multiply_variable = { CPC_NCCPC_war_support_factor_true = TER_NCCPC_PTMB_num_pct }
+	multiply_variable = { CPC_NCCPC_line_change_production_efficiency_factor_true = TER_NCCPC_PTMB_num_pct }
+	multiply_variable = { CPC_NCCPC_production_speed_buildings_factor_true = TER_NCCPC_PTMB_num_pct }
+	multiply_variable = { CPC_NCCPC_production_factory_max_efficiency_factor_true = TER_NCCPC_PTMB_num_pct }
+	multiply_variable = { CPC_NCCPC_production_factory_efficiency_gain_factor_true = TER_NCCPC_PTMB_num_pct }
+	multiply_variable = { CPC_NCCPC_add_to_GDP_growth_true = TER_NCCPC_PTMB_num_pct }
+
+	set_variable = { SWB_PUs_num_true = SWB_PUs_num }
+	set_variable = { SWB_gdp_growth_modifier_true = SWB_gdp_growth_modifier }
+	set_variable = { SWB_consumer_goods_production_factor_true = SWB_consumer_goods_production_factor }
+	set_variable = { SWB_industrial_expertise_monthly_rate_true = SWB_industrial_expertise_monthly_rate }
+	set_variable = { SWB_industrial_equipment_monthly_rate_true = SWB_industrial_equipment_monthly_rate }
+	set_variable = { SWB_healthcare_monthly_rate_true = SWB_healthcare_monthly_rate }
+	set_variable = { SWB_local_resources_factor_true = SWB_local_resources_factor }
+	multiply_variable = { SWB_PUs_num_true = TER_SWB_PTMB_num_pct }
+	multiply_variable = { SWB_gdp_growth_modifier_true = TER_SWB_PTMB_num_pct }
+	multiply_variable = { SWB_consumer_goods_production_factor_true = TER_SWB_PTMB_num_pct }
+	multiply_variable = { SWB_industrial_expertise_monthly_rate_true = TER_SWB_PTMB_num_pct }
+	multiply_variable = { SWB_industrial_equipment_monthly_rate_true = TER_SWB_PTMB_num_pct }
+	multiply_variable = { SWB_healthcare_monthly_rate_true = TER_SWB_PTMB_num_pct }
+	multiply_variable = { SWB_local_resources_factor_true = TER_SWB_PTMB_num_pct }
+	force_update_dynamic_modifier = yes
+}
+
+TER_NCCPC_budget_remove_alerts = {
+	set_temp_variable = { alert_id = token:Alert_NCCPC_budget }
+	remove_TNO_alert = yes
+}
+
+TER_NCCPC_remove_alerts = {
+	set_temp_variable = { alert_id = token:Alert_NCCPC_enable }
+	remove_TNO_alert = yes
+}
+
+TER_NCCPC_budget_fire_alerts = {
+	set_temp_variable = { alert_id = token:Alert_NCCPC_budget }
+	if = {
+		limit = { 
+			NOT = { has_country_flag = CPC_NCCPC_canceled_final }
+		}
+		add_TNO_alert_unless_exists = yes
+	}
+}
+
+TER_NCCPC_fire_alerts = {
+	set_temp_variable = { alert_id = token:Alert_NCCPC_enable }
+	if = {
+		limit = { 
+			NOT = { has_country_flag = CPC_NCCPC_canceled_final }
+		}
+		add_TNO_alert_unless_exists = yes
+	}
+}

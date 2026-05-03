@@ -1,0 +1,173 @@
+on_actions = {
+    on_startup = {
+        effect = {
+            BRY = {
+                apply_russian_war_buff_with_5_divisions = yes
+            }
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRWTER_APRIL_FOOLS_2026
+						option = SWRWTER_APRIL_FOOLS_ENABLED
+					}
+				}
+				every_country = {
+                limit = {
+                    is_ai = no
+                }
+                country_event = {
+                    id = STL_april_fools.1
+                    days = 14
+                }
+            }
+			}
+        }
+    }
+
+	on_yearly_MGI = {
+		effect = {
+			if = {
+				limit = {
+					OMS = { exists = no }
+					MGI = {
+						exists = yes
+						NOT = {
+							has_country_flag = MGI_TGWT_started
+						}
+					}
+				}
+				MGI = {
+					load_oob = MGI_radiosilence_RUS
+				}
+			}
+		}
+	}
+
+    on_monthly_MGI = { # Declare War Thingy
+		effect = {
+			if = {
+				limit = {
+					OMS = { exists = no }
+					MGI = {
+						exists = yes
+						NOT = {
+							has_country_flag = MGI_TGWT_started
+						}
+					}
+				}
+				MGI = {
+					country_event = {
+						id = STL_april_fools.2
+					}
+				}
+			}
+			if = {
+				limit = {
+					OMS = { exists = no }
+					MGI = { 
+						exists = yes
+						has_country_flag = MGI_TGWT_started
+					}
+
+				}
+				every_country = {
+					limit = {
+						is_neighbor_of = MGI
+						NOT = { has_war_with = MGI }
+					}
+					set_country_flag = TNO_nuke_disabled
+					MGI = {
+						declare_war_on = {
+							target = PREV
+							type = annex_everything
+						}
+					}
+				}
+
+				every_country = {
+					limit = {
+						has_war_with = MGI
+						NOT = {
+							has_idea = MGI_Magical_Factor
+						}
+					}
+					add_ideas = MGI_Magical_Factor
+				}
+
+				if = {
+					limit = {
+						USA = {
+							has_war_with = MGI
+						}
+					}
+					MGI = {
+						load_oob = MGI_radiosilence_USA
+					}
+				}
+				if = {
+					limit = {
+						ENG = {
+							has_war_with = MGI
+						}
+					}
+					MGI = {
+						load_oob = MGI_radiosilence_UK
+					}
+				}
+				if = {
+					limit = {
+						JAP = {
+							has_war_with = MGI
+						}
+					}
+					MGI = {
+						load_oob = MGI_radiosilence_JAP
+					}
+				}
+				if = {
+					limit = {
+						JAP = { exists = no }
+						CPC = { exists = no }
+						ENG = { exists = no }
+						GER = { exists = no }
+						ITA = { exists = no }
+						USA = { exists = no }
+						BRA = { exists = no }
+						OMS = { exists = no }
+					    MGI = { 
+						exists = yes
+						has_country_flag = MGI_TGWT_started
+					    }
+					}
+					every_country = {
+						limit = {
+							NOT = {
+								tag = MGI
+							}
+						}
+						MGI = {
+							annex_country = {
+								target = PREV
+							}
+					        clr_country_flag = MGI_TGWT_started
+					        country_event = {
+						        id = STL_april_fools.3
+					        }
+			
+						}
+					}
+				}
+			}
+			MGI = {
+				every_controlled_state = {
+					limit = { 
+						NOT = {
+							is_core_of = MGI
+						}
+					 }
+					MGI = { add_state_core = PREV }
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,440 @@
+guiTypes = {
+	extendedScrollbarType = {
+		name = "OMS_right_vertical_slider"
+		position = { x = 0 y = 0 }
+		size = { width = 18 height = 18 }
+		startValue = 20
+		orientation = upper_right
+		origo = upper_right
+		smooth_scrolling = 0.25
+
+		background = {
+			name = "Background"
+			quadTextureSprite = "GFX_scrollbar_vertical_bg"
+		}
+
+		slider = {
+			name = "Slider"
+			quadTextureSprite = "GFX_scroll_drager"
+			position = { x = -2 y = -2 }
+		}
+
+		track = {
+			name = "Track"
+			quadTextureSprite = "GFX_scroll_track"
+			position = { x = 3 y = 0 }
+			alwaystransparent = yes
+		}
+
+		decreaseButton = {
+			name = "Decrease"
+			quadTextureSprite = "GFX_scroll_up"
+			position = { x = 1 y = 3 }
+		}
+
+		increaseButton = {
+			name = "Increase"
+			quadTextureSprite = "GFX_scroll_down"
+			position = { x=-17 y = -19}
+		}
+	}
+
+	containerWindowType = {
+		name = "2WRW_Omsk_Chemical_Weapons_AccessButton"
+		size = { width = 68 height = 67 }
+		position = { x = 0 y = 289 }
+
+		buttonType = {
+			name = "2WRW_Omsk_Chemical_Weapons_OpenButton"
+			quadTextureSprite = "GFX_Omsk_Open_Chem_Weapons"
+			position = { x = 238 y = 36 }
+			pdx_tooltip = OMS_open_chemweapons_tt
+			clicksound = click_default
+			oversound = ui_menu_over
+		}
+
+		iconType = {
+			name = "gui_alert"
+			spriteType = "GFX_gui_alert"
+			position = { x = 189 y = -16 }
+		}
+	}	
+
+	containerWindowType = {
+		name = "2WRW_OMS_Chemical_Weapons_GUI"
+		size = { width = 950 height = 667 }
+		position = { x = 543 y = 79 }
+		#show_position = { x = 543 y = 79 }
+		clipping = no
+		moveable = yes
+		show_sound = open_sub_window
+		#show_animation_type = decelerated
+		#hide_animation_type = accelerated				why is this here? it just makes the gui ass to use
+		#animation_time = 500 
+
+		background = {
+			name = "Background"
+			quadTextureSprite = "GFX_tiled_window_1b_no_border"
+		}
+
+		iconType = {
+			name = "OMS_chemical_weapons_gui_borders"
+			spriteType = "GFX_OMS_chemical_weapons_gui_borders"
+			position = { x = 13 y = 17 }
+			alwaystransparent = yes
+		}
+
+		iconType = {
+			name = "chemical_weapons_gui_info_button"
+			position = { x = 16 y = 20 }
+			quadTextureSprite = "GFX_OMS_chemical_weapons_gui_info_button"
+			pdx_tooltip = "OMS_chemical_weapons_gui_info_tt"
+		}
+
+		instantTextBoxType = {
+			name = "chemical_weapons_gui_title_text"
+			position = { x = 66 y = 22 }
+			maxWidth = 1200
+			maxHeight = 20
+			format = left
+			font = "aldrich_36_outline"
+			text = OMS_our_arsenal_of_national_vengeance
+		}
+
+		buttonType = {
+			name = "chemical_weapons_gui_close_button"
+			position = { x = 894 y = 20 }
+			quadTextureSprite = "GFX_OMS_chemical_weapons_gui_close_button"
+			buttonFont = "Main_14_black"
+			shortcut = "ESCAPE"
+			Orientation = "UPPER_LEFT"
+			clicksound = click_close
+			pdx_tooltip = "CLOSE"
+		}
+
+		containerWindowType = {
+			name = "2WRW_OMS_Chemical_Weapons_GUI_Progress_Bar"
+			position = { x = 15 y = 62 }
+			size = { width = 232 height = 590 }
+			orientation = upper_left
+
+
+        	iconType = {
+        	    name = "OMS_chemical_weapons_gui_stockpiles_progress_bar"
+        	    position = { x = 0 y = 0 }
+        	    spriteType = "GFX_OMS_chemical_weapons_gui_stockpiles_progress_bar"
+        	    pdx_tooltip = OMS_current_stockpiles_loc
+        	}
+		}
+
+		containerWindowType = {
+			name = "2WRW_OMS_Chemical_Weapons_GUI_Middle_Container"
+			position = { x = 249 y = 260 }
+			size = { width = 341 height = 196 }
+			orientation = upper_left
+
+			instantTextBoxType = {
+				name = "chemical_weapons_gui_OMS_arsenal_stability_text"
+				position = { x = 0 y = 8 }
+				maxWidth = 341
+				maxHeight = 20
+				format = center
+				font = "aldrich_18_outline"
+				text = ONS_chemical_stability_loc
+			}
+
+			#instantTextBoxType = {
+			#	name = "chemical_weapons_gui_stockpile_growth_text"
+			#	position = { x = 8 y = 84 }
+			#	format = left
+			#	font = "aldrich_14_outline"
+			#	text = OMS_stockpile_growth_loc
+			#}
+#
+			#instantTextBoxType = {
+			#	name = "chemical_weapons_gui_stockpile_limit_text"
+			#	position = { x = 276 y = 84 }
+			#	format = left
+			#	font = "aldrich_14_outline"
+			#	text = OMS_stockpile_limit_loc
+			#}
+
+			instantTextBoxType = {
+				name = "chemical_weapons_gui_arsenal_efficacy_text"
+				position = { x = 0 y = 170 }
+				maxWidth = 341
+				maxHeight = 20
+				format = center
+				font = "aldrich_18_outline"
+				text = OMS_chemical_efficacy_loc
+			}
+
+
+			### BIOLOGICAL ###
+			instantTextBoxType = {
+				name = "chemical_weapons_gui_OMS_biologic_stability_text"
+				position = { x = 0 y = 208 }
+				format = center
+				maxWidth = 341
+				maxHeight = 20
+				font = "aldrich_18_outline"
+				text = ONS_biologic_stability_loc
+			}
+
+			instantTextBoxType = {
+				name = "chemical_weapons_gui_biologic_efficacy_text"
+				position = { x = 0 y = 370 }
+				format = center
+				maxWidth = 341
+				maxHeight = 20
+				font = "aldrich_18_outline"
+				text = OMS_biologic_efficacy_loc
+			}
+
+		}
+
+		containerWindowType = {
+			name = "2WRW_OMS_Chemical_Weapons_GUI_Stages_Container"
+			position = { x = 249 y = 458 }
+			size = { width = 341 height = 194 }
+			orientation = upper_left
+
+			#iconType = {
+			#	name = "chemical_weapons_gui_stage_one_alarm"
+			#	position = { x = 48 y = 72 }
+			#	quadTextureSprite = "GFX_OMS_chemical_weapons_gui_stage_one_alarm"
+			#}
+#
+			#iconType = {
+			#	name = "chemical_weapons_gui_stage_two_alarm"
+			#	position = { x = 148 y = 72 }
+			#	quadTextureSprite = "GFX_OMS_chemical_weapons_gui_stage_two_alarm"
+			#}
+#
+			#iconType = {
+			#	name = "chemical_weapons_gui_stage_three_alarm"
+			#	position = { x = 248 y = 72 }
+			#	quadTextureSprite = "GFX_OMS_chemical_weapons_gui_stage_three_alarm"
+			#}
+		}
+
+		containerWindowType = {
+			name = "2WRW_OMS_Chemical_Weapons_GUI_Buttons_Container"
+			position = { x = 592 y = 62 }
+			size = { width = 344 height = 340 }
+			orientation = upper_left
+			verticalScrollbar = "OMS_right_vertical_slider"
+			clipping = yes
+
+			background = {
+				name = "Background"
+				quadTextureSprite = "GFX_tiled_window_transparent"
+				alwaystransparent = yes
+			}
+
+			buttonType = {
+				name = "OMS_chemical_weapons_gui_effect_button_1"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 18 }
+				buttonFont = "aldrich_16_outline"
+				buttonText = "OMS_chemical_weapons_gui_effect_button_1_loc"
+				pdx_tooltip = "OMS_chemical_weapons_gui_effect_button_1_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_chemical_weapons_gui_effect_button_2"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 100 }
+				buttonFont = "aldrich_16_outline"
+				buttonText = "OMS_chemical_weapons_gui_effect_button_2_loc"
+				pdx_tooltip = "OMS_chemical_weapons_gui_effect_button_2_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_chemical_weapons_gui_effect_button_3"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 182 }
+				buttonFont = "aldrich_16_outline"
+				buttonText = "OMS_chemical_weapons_gui_effect_button_3_loc"
+				pdx_tooltip = "OMS_chemical_weapons_gui_effect_button_3_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_chemical_weapons_gui_effect_button_4"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 264 }
+				buttonFont = "aldrich_16_outline"
+				buttonText = "OMS_chemical_weapons_gui_effect_button_4_loc"
+				pdx_tooltip = "OMS_chemical_weapons_gui_effect_button_4_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_chemical_weapons_gui_effect_button_5"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 346 }
+				buttonFont = "aldrich_16_outline"
+				buttonText = "OMS_chemical_weapons_gui_effect_button_5_loc"
+				pdx_tooltip = "OMS_chemical_weapons_gui_effect_button_5_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_chemical_weapons_gui_effect_button_6"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 428 }
+				buttonFont = "aldrich_16_outline"
+				buttonText = "OMS_chemical_weapons_gui_effect_button_6_loc"
+				pdx_tooltip = "OMS_chemical_weapons_gui_effect_button_6_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_chemical_weapons_gui_effect_button_7"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 510 }
+				buttonFont = "aldrich_18_outline"
+				buttonText = "OMS_chemical_weapons_gui_effect_button_7_loc"
+				pdx_tooltip = "OMS_chemical_weapons_gui_effect_button_7_cost_tooltip"
+			}
+		}
+
+		containerWindowType = {
+			name = "2WRW_OMS_Stability_Chemical_Weapons_GUI_Buttons_Container"
+			position = { x = 592 y = 400 }
+			size = { width = 344 height = 250 }
+			orientation = upper_left
+			verticalScrollbar = "OMS_right_vertical_slider"
+			clipping = yes
+
+			background = {
+				name = "Background"
+				quadTextureSprite = "GFX_tiled_window_transparent"
+				alwaystransparent = yes
+			}
+
+			buttonType = {
+				name = "OMS_stability_chemical_weapons_gui_effect_button_1"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 18 }
+				buttonFont = "aldrich_14_outline"
+				buttonText = "OMS_stability_chemical_weapons_gui_effect_button_1_loc"
+				pdx_tooltip = "OMS_stability_chemical_weapons_gui_effect_button_1_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_stability_chemical_weapons_gui_effect_button_2"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 100 }
+				buttonFont = "aldrich_14_outline"
+				buttonText = "OMS_stability_chemical_weapons_gui_effect_button_2_loc"
+				pdx_tooltip = "OMS_stability_chemical_weapons_gui_effect_button_2_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_stability_chemical_weapons_gui_effect_button_3"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 182 }
+				buttonFont = "aldrich_14_outline"
+				buttonText = "OMS_stability_chemical_weapons_gui_effect_button_3_loc"
+				pdx_tooltip = "OMS_stability_chemical_weapons_gui_effect_button_3_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_stability_chemical_weapons_gui_effect_button_4"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 264 }
+				buttonFont = "aldrich_14_outline"
+				buttonText = "OMS_stability_chemical_weapons_gui_effect_button_4_loc"
+				pdx_tooltip = "OMS_stability_chemical_weapons_gui_effect_button_4_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_stability_chemical_weapons_gui_effect_button_5"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 346 }
+				buttonFont = "aldrich_14_outline"
+				buttonText = "OMS_stability_chemical_weapons_gui_effect_button_5_loc"
+				pdx_tooltip = "OMS_stability_chemical_weapons_gui_effect_button_5_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_stability_chemical_weapons_gui_effect_button_6"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 428 }
+				buttonFont = "aldrich_14_outline"
+				buttonText = "OMS_stability_chemical_weapons_gui_effect_button_6_loc"
+				pdx_tooltip = "OMS_stability_chemical_weapons_gui_effect_button_6_cost_tooltip"
+			}
+
+			buttonType = {
+				name = "OMS_stability_chemical_weapons_gui_effect_button_7"
+				spriteType = "GFX_OMS_chemical_weapons_gui_effect_button"
+				position = { x = 17 y = 510 }
+				buttonFont = "aldrich_14_outline"
+				buttonText = "OMS_stability_chemical_weapons_gui_effect_button_7_loc"
+				pdx_tooltip = "OMS_stability_chemical_weapons_gui_effect_button_7_cost_tooltip"
+			}
+		}
+
+		### DEBUG
+		buttonType = {
+			name = "debug_add_stockpile"
+			spriteType = "GFX_add_one"
+			position = { x = 220 y = 270 }
+			pdx_tooltip = "OMS_debug_add_stockpile_tt"
+		}
+
+		buttonType = {
+			name = "debug_sub_stockpile"
+			spriteType = "GFX_subtract_one"
+			position = { x = 220 y = 300 }
+			pdx_tooltip = "OMS_debug_sub_stockpile_tt"
+		}
+
+		buttonType = {
+			name = "debug_add_stockpile_limit"
+			spriteType = "GFX_add_one"
+			position = { x = 25 y = 270 }
+			pdx_tooltip = "OMS_debug_add_stockpile_limit_tt"
+		}
+
+		buttonType = {
+			name = "debug_sub_stockpile_limit"
+			spriteType = "GFX_subtract_one"
+			position = { x = 25 y = 300 }
+			pdx_tooltip = "OMS_debug_sub_stockpile_limit_tt"
+		}
+
+		buttonType = {
+            name = "debug_add_stability_chemical"
+            spriteType = "GFX_add_one"
+            position = { x = 500 y = 300 }
+            pdx_tooltip = "OMS_debug_add_stability_chemical_tt"
+        }
+        buttonType = {
+            name = "debug_sub_stability_chemical"
+            spriteType = "GFX_subtract_one"
+            position = { x = 500 y = 330 }
+            pdx_tooltip = "OMS_debug_sub_stability_chemical_tt"
+        }
+        buttonType = {
+            name = "debug_add_stability_biologic"
+            spriteType = "GFX_add_one"
+            position = { x = 500 y = 500 }
+            pdx_tooltip = "OMS_debug_add_stability_biologic_tt"
+        }
+        buttonType = {
+            name = "debug_sub_stability_biologic"
+            spriteType = "GFX_subtract_one"
+            position = { x = 500 y = 530 }
+            pdx_tooltip = "OMS_debug_sub_stability_biologic_tt"
+        }
+		buttonType = {
+			name = "debug_stage_change"
+			spriteType = "GFX_nudge_icon"
+			position = { x = 700 y = 15 }
+			pdx_tooltip = "OMS_debug_stage_change_tt"
+		}
+
+
+
+	}
+}

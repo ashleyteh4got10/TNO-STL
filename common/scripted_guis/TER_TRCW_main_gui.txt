@@ -1,0 +1,268 @@
+scripted_gui = {
+	CPC_TRCW_main_gui = {
+		context_type = player_context
+		window_name = "CPC_TRCW_main_gui"
+		dirty = CPC_TRCW_dirty
+		visible = {
+			tag = CPC
+			has_country_flag = CPC_TRCW_gui_open
+		}
+
+		dynamic_lists = {
+			TRCW_decision_btn_list = {
+				array = TRCW_dec_array
+				index = TRCW_dec_array_i
+				entry_container = TRCW_decision_list_ctn
+			}
+			TRCW_sub_area_list = {
+				array = TRCW_sa_array
+				index = TRCW_sa_array_i
+				entry_container = TRCW_sub_area_list_ctn
+			}
+			TRCW_greater_china_map = {
+				array = global.greater_china_provinces
+				index = idx
+				value = capital_city_id
+				entry_container = TRCW_greater_china_map_entry_container
+			}
+		}
+
+		triggers = {
+			TRCW_greater_china_map_btn_visible = { NOT = { check_variable = { china_acted_province = global.greater_china_provinces^idx } } }
+			CPC_TRCW_sa_L_btn_0_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 } }
+			CPC_TRCW_sa_L_btn_1_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 } }
+			CPC_TRCW_sa_L_btn_2_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 } }
+			CPC_TRCW_sa_W_btn_1_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 2 } }
+			CPC_TRCW_sa_W_btn_2_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 2 } }
+			CPC_TRCW_sa_L_btn_0_click_enabled = { 
+				check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 }
+				var:TRCW_sa_active_state = { is_core_of = CPC }
+			}
+			CPC_TRCW_sa_L_btn_1_click_enabled = { 
+				check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 }
+				var:TRCW_sa_active_state = { is_core_of = CPC }
+			}
+			CPC_TRCW_sa_L_btn_2_click_enabled = { 
+				check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 }
+				var:TRCW_sa_active_state = { is_core_of = CPC }
+			}
+			CPC_TRCW_sa_W_btn_1_click_enabled = { 
+				check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 2 } 
+				var:TRCW_sa_active_state = { NOT = { has_state_flag = CPC_TRCW_sa_W_btn_clicked } }
+				any_country = {
+					OR = { 
+						original_tag = CPC
+						is_in_faction_with = CPC
+					}
+					divisions_in_state = {
+						size > 0
+						state = var:TRCW_sa_active_state
+					}
+				}
+			}
+			CPC_TRCW_sa_W_btn_2_click_enabled = { 
+				check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 2 } 
+				var:TRCW_sa_active_state = { NOT = { has_state_flag = CPC_TRCW_sa_W_btn_clicked } }
+				any_enemy_country = {
+					divisions_in_state = {
+						size > 0
+						state = var:CPC.TRCW_sa_active_state
+					}
+				}
+			}
+			CPC_TRCW_warzone_btn_1_click_enabled = { 
+				check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 } 
+				command_power > 20
+				has_manpower > 4300
+				NOT = { var:china_acted_province = { has_state_flag = CPC_TRCW_warzone_btn_clicked } }
+			}
+			CPC_TRCW_warzone_btn_2_click_enabled = { 
+				check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 } 
+				has_political_power > 20
+				has_war_support > 0.005
+				NOT = { var:china_acted_province = { has_state_flag = CPC_TRCW_warzone_btn_clicked } }
+			}
+			TRCW_warzone_cover_visible = {
+				check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 2 }
+			}
+			TRCW_hostile_territory_cover_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 3 } }
+			CPC_TRCW_warzone_type_name_1_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 1 } }
+			CPC_TRCW_warzone_type_name_2_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 2 } }
+			CPC_TRCW_warzone_type_name_3_visible = { check_variable = { TRCW_controller_status^CPC_TRCW_map_select_num = 3 } }
+			TRCW_map_cover_Hailanpao_visible = { 657 = { controller = { is_russian_nation = yes } } }
+		}
+
+		properties = {
+			TRCW_greater_china_map_btn = {
+				image = "GFX_greater_china_state_btn_[?global.greater_china_provinces^idx]"
+				frame = capital_city_id:TRCW_controller_status
+				x = global.greater_china_provinces_X^idx
+				y = global.greater_china_provinces_Y^idx
+			}
+			TRCW_map_city_pic = {
+				image = [TRCW_map_city_pic]
+			}
+			TRCW_decision_btn = {
+				image = "GFX_CPC_TRCW_decision_btn_[?TRCW_controller_status_current_warzone]"
+				frame = TRCW_dec_array^TRCW_dec_array_i
+			}
+			TRCW_sa_btn = {
+				image = "GFX_CPC_TRCW_decision_btn_[?TRCW_controller_status_current_warzone]"
+				frame = TRCW_sa_array_status^TRCW_sa_array_i
+			}
+			TRCW_warzone_type = {
+				frame = TRCW_controller_status_current_warzone
+			}
+			TRCW_warzone_IZ_bg = {
+				frame = TRCW_controller_status_current_warzone
+			}
+			TRCW_region_info_right_side = {
+				image = "[CPC_TRCW_mapselect_btn]"
+			}
+			CPC_TRCW_score_bio_progress = {
+				frame = CPC_TRCW_total_bio_progress
+			}
+			CPC_TRCW_score_bomb_progress = {
+				frame = CPC_TRCW_total_bomb_progress
+			}
+			CPC_TRCW_mapselect_pics = {
+				image = "[CPC_TRCW_controller_status_pic]"
+			}
+		}
+
+		effects = {
+			TRCW_greater_china_map_btn_click = {
+				set_variable = { china_acted_province = capital_city_id }
+				set_variable = { CPC_TRCW_map_select_num = idx }
+				hidden_effect = {
+					meta_effect = {
+						text = {
+							set_variable = { TRCW_sa_active_state = [TARGET] }
+							set_variable = { TRCW_sa_array_status^0 = 2 }
+						}
+						TARGET = "[?capital_city_id.GetID]"
+					}
+				}
+				CPC_TRCW_GUI_force_update = yes
+			}
+			CPC_TRCW_sa_L_btn_0_click = {
+				var:TRCW_sa_active_state = { set_variable = { CPC_TRCW_sub_area_mode = 0 } }
+				CPC_TRCW_GUI_force_update = yes
+			}
+			CPC_TRCW_sa_L_btn_1_click = {
+				var:TRCW_sa_active_state = { set_variable = { CPC_TRCW_sub_area_mode = 1 } }
+				CPC_TRCW_GUI_force_update = yes
+			}
+			CPC_TRCW_sa_L_btn_2_click = {
+				var:TRCW_sa_active_state = { set_variable = { CPC_TRCW_sub_area_mode = 2 } }
+				CPC_TRCW_GUI_force_update = yes
+			}
+			CPC_TRCW_sa_W_btn_1_click = {
+				var:TRCW_sa_active_state = { set_state_flag = CPC_TRCW_sa_W_btn_clicked }
+				damage_units = {
+					state = var:TRCW_sa_active_state
+					limit = {
+						OR = {
+							original_tag = CPC 
+							is_in_faction_with = CPC
+						} 
+					}
+					org_damage = -0.3
+					ratio = yes
+					army = yes
+				}
+				CPC_TRCW_GUI_force_update = yes
+			}
+			CPC_TRCW_sa_W_btn_2_click = {
+				var:TRCW_sa_active_state = { set_state_flag = CPC_TRCW_sa_W_btn_clicked }
+				damage_units = {
+					state = var:TRCW_sa_active_state
+					limit = { has_war_with = CPC }
+					org_damage = 0.3
+					ratio = yes
+					army = yes
+				}
+				CPC_TRCW_GUI_force_update = yes
+			}
+			close_button_click = {
+				clr_country_flag = CPC_TRCW_gui_open
+				CPC_TRCW_GUI_force_update = yes
+			}
+			CPC_TRCW_warzone_btn_1_click = {
+				var:china_acted_province = { 
+					set_state_flag = CPC_TRCW_warzone_btn_clicked 
+					create_unit = {
+						division = "division_template = \"PLA Minbing Shi\" start_experience_factor = 0.2 start_equipment_factor = 1"
+						owner = CPC
+						count = 1
+					}
+				}
+				add_command_power = -20
+				add_manpower = -4300
+				CPC_TRCW_GUI_force_update = yes
+			}
+			CPC_TRCW_warzone_btn_2_click = {
+				var:china_acted_province = { set_state_flag = CPC_TRCW_warzone_btn_clicked }
+				add_political_power = -20
+				add_war_support = -0.005
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 300
+				}
+				add_equipment_to_stockpile = {
+					type = support_equipment
+					amount = 100
+				}
+				add_equipment_to_stockpile = {
+					type = artillery_equipment
+					amount = 75
+				}
+				CPC_TRCW_GUI_force_update = yes
+			}
+			TRCW_decision_btn_click = {
+				if = {
+					limit = { NOT = { has_country_flag = TRCW_doing_dec } }
+					TRCW_decision_btn_click_effect = yes
+				}
+				else = { effect_tooltip = { TRCW_decision_btn_click_effect = yes } }
+				CPC_TRCW_GUI_force_update = yes
+			}
+			TRCW_sa_btn_click = {
+				hidden_effect = {
+					meta_effect = {
+						text = {
+							set_variable = { TRCW_sa_active_state = [TARGET] }
+							set_variable = { TRCW_sa_array_status^TRCW_sa_array_i = 2 }
+						}
+						TARGET = "[?TRCW_sa_array^TRCW_sa_array_i.GetID]"
+					}
+					CPC_TRCW_GUI_force_update = yes
+				}
+			}
+			TRCW_mapmode_btn_0_click = {
+				clear_array = CPC_TRCW_mapmode
+				add_to_array = { CPC_TRCW_mapmode = 2 }
+				add_to_array = { CPC_TRCW_mapmode = 1 }
+				add_to_array = { CPC_TRCW_mapmode = 1 }
+				set_variable = { CPC_TRCW_mapmode_num = 1 }
+				CPC_TRCW_GUI_force_update = yes
+			}
+			TRCW_mapmode_btn_1_click = {
+				clear_array = CPC_TRCW_mapmode
+				add_to_array = { CPC_TRCW_mapmode = 1 }
+				add_to_array = { CPC_TRCW_mapmode = 2 }
+				add_to_array = { CPC_TRCW_mapmode = 1 }
+				set_variable = { CPC_TRCW_mapmode_num = 2 }
+				CPC_TRCW_GUI_force_update = yes
+			}
+			TRCW_mapmode_btn_2_click = {
+				clear_array = CPC_TRCW_mapmode
+				add_to_array = { CPC_TRCW_mapmode = 1 }
+				add_to_array = { CPC_TRCW_mapmode = 1 }
+				add_to_array = { CPC_TRCW_mapmode = 2 }
+				set_variable = { CPC_TRCW_mapmode_num = 3 }
+				CPC_TRCW_GUI_force_update = yes
+			}
+		}
+	}
+}

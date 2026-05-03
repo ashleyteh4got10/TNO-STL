@@ -1,0 +1,283 @@
+on_actions = {
+	on_weekly_ZZZ = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						ORL = {
+							exists = yes
+							is_in_faction_with = RUS
+						}
+						UKS = {
+							exists = yes
+							is_in_faction_with = RUS
+						}
+						BLR = {
+							exists = yes
+							is_in_faction_with = RUS
+						}
+						UPO = {
+							exists = yes
+							is_in_faction_with = RUS
+						}
+						CAU = {
+							exists = yes
+							is_in_faction_with = RUS
+						}
+					}
+					NOT = {
+						has_global_flag = RUS_shukshin_unification
+					}
+				}
+
+				ZZZ = {
+					add_to_variable = { RUS_reconstruction_handy_counter = 1 }
+					#log = "[GetDateText]: [Root.GetName]: African mandates handy counter"
+				}
+
+				if = {
+					limit = {
+						ZZZ = { check_variable = { RUS_reconstruction_handy_counter = 7 } }
+					}
+
+					ORL = {
+						if = {
+							limit = {
+								is_in_faction_with = RUS
+								NOT = { has_global_flag = take_moscow_to_home }
+							}
+							set_variable = { rc_stability_decay = rc_stability_hold }
+							add_to_variable = { rc_stability_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+							log = "ORLORLORLORL"
+							
+							clamp_variable = {
+								var = rc_stability_decay
+								min = -1
+								max = 1
+							}
+	
+							add_to_variable = { rc_stability_display = rc_stability_decay }
+							clamp_variable = {
+								var = rc_stability_display
+								max = 100
+								min = 0
+							}
+	
+							if = {
+								limit = {
+									check_variable = { rc_stability_display < 50 }
+									exists = yes
+									is_in_faction_with = RUS
+								}
+								add_to_variable = { rc_econ_display = -2 }
+								add_to_variable = { rc_unstable = 1 }
+								if = { 
+									limit = {
+										check_variable = { rc_unstable > 30 }
+									}
+									RUS = {
+										annex_country = {
+											target = ORL transfer_troops = no
+										}
+										SWRW_fopo_remove_rc_mos_tab = yes
+									}
+									set_variable = { rc_econ_display = 100 }
+									set_variable = { rc_stability_display = 100 }
+									
+								}
+							}
+						}
+					}
+
+					UPO = {
+						if = {
+							limit = {
+								is_in_faction_with = RUS
+								NOT = { has_global_flag = take_ost_to_home }
+							}
+							set_variable = { rc_stability_decay = rc_stability_hold }
+							add_to_variable = { rc_stability_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+							log = "UPOUPOUPOUPOUPOUPO"
+							
+							clamp_variable = {
+								var = rc_stability_decay
+								min = -1
+								max = 1
+							}
+	
+							add_to_variable = { rc_stability_display = rc_stability_decay }
+							clamp_variable = {
+								var = rc_stability_display
+								max = 100
+								min = 0
+							}
+	
+							if = {
+								limit = {
+									check_variable = { rc_stability_display < 50 }
+									exists = yes
+									is_in_faction_with = RUS
+								}
+								add_to_variable = { rc_econ_display = -2 }
+								add_to_variable = { rc_unstable = 1 }
+								if = { 
+									limit = {
+										check_variable = { rc_unstable > 30 }
+									}
+									RUS = {
+										annex_country = {
+											target = UPO transfer_troops = no
+										}
+										SWRW_fopo_remove_rc_ost_tab = yes
+									}
+								}
+							}
+						}
+					}
+
+					BLR = {
+						if = {
+							limit = {
+								is_in_faction_with = RUS
+								NOT = { has_global_flag = take_blr_to_home }
+							}
+							set_variable = { rc_stability_decay = rc_stability_hold }
+							add_to_variable = { rc_stability_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+	
+							
+							clamp_variable = {
+								var = rc_stability_decay
+								min = -1
+								max = 1
+							}
+	
+							add_to_variable = { rc_stability_display = rc_stability_decay }
+							clamp_variable = {
+								var = rc_stability_display
+								max = 100
+								min = 0
+							}
+	
+							if = {
+								limit = {
+									check_variable = { rc_stability_display < 50 }
+									exists = yes
+									is_in_faction_with = RUS
+								}
+								add_to_variable = { rc_econ_display = -2 }
+								add_to_variable = { rc_unstable = 1 }
+								if = { 
+									limit = {
+										check_variable = { rc_unstable > 30 }
+									}
+									RUS = {
+										annex_country = {
+											target = BLR transfer_troops = no
+										}
+										SWRW_fopo_remove_rc_blr_tab = yes
+									}
+								}
+							}
+						}
+					}
+
+					UKS = {
+						if = {
+							limit = {
+								is_in_faction_with = RUS
+								NOT = { has_global_flag = take_uks_to_home }
+							}
+							set_variable = { rc_stability_decay = rc_stability_hold }
+							add_to_variable = { rc_stability_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+	
+							
+							clamp_variable = {
+								var = rc_stability_decay
+								min = -1
+								max = 1
+							}
+	
+							add_to_variable = { rc_stability_display = rc_stability_decay }
+							clamp_variable = {
+								var = rc_stability_display
+								max = 100
+								min = 0
+							}
+	
+							if = {
+								limit = {
+									check_variable = { rc_stability_display < 50 }
+									exists = yes
+									is_in_faction_with = RUS
+								}
+								add_to_variable = { rc_econ_display = -2 }
+								add_to_variable = { rc_unstable = 1 }
+								if = { 
+									limit = {
+										check_variable = { rc_unstable > 30 }
+									}
+									RUS = {
+										annex_country = {
+											target = UKS transfer_troops = no
+										}
+										SWRW_fopo_remove_rc_ukr_tab = yes
+									}
+								}
+							}
+						}
+					}
+
+					ADY = {
+						if = {
+							limit = {
+								is_in_faction_with = RUS
+								NOT = { has_global_flag = take_cau_to_home }
+							}
+							set_variable = { rc_stability_decay = rc_stability_hold }
+							add_to_variable = { rc_stability_decay = -0.5 } # You need over 50% Administrative Hold to have a stable nation
+	
+							
+							clamp_variable = {
+								var = rc_stability_decay
+								min = -1
+								max = 1
+							}
+	
+							add_to_variable = { rc_stability_display = rc_stability_decay }
+							clamp_variable = {
+								var = rc_stability_display
+								max = 100
+								min = 0
+							}
+	
+							if = {
+								limit = {
+									check_variable = { rc_stability_display < 50 }
+									exists = yes
+									is_in_faction_with = RUS
+								}
+								add_to_variable = { rc_econ_display = -2 }
+								add_to_variable = { rc_unstable = 1 }
+								if = { 
+									limit = {
+										check_variable = { rc_unstable > 30 }
+									}
+									RUS = {
+										annex_country = {
+											target = ADY transfer_troops = no
+										}
+										SWRW_fopo_remove_rc_ost_tab = yes
+									}
+								}
+							}
+						}
+					}
+
+					ZZZ = {
+						set_variable = { RUS_reconstruction_handy_counter = 0 }
+					}
+				}
+			}
+		}
+	}
+}

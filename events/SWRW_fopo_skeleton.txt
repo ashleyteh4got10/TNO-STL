@@ -1,0 +1,238 @@
+add_namespace = SWRW_fopo
+
+country_event = { # 
+	id = SWRW_fopo.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SWRW_fopo.1"}
+	title = SWRW_fopo.1.t
+	desc = SWRW_fopo.1.desc
+	picture = GFX_report_event_RUS_russians
+	is_triggered_only = yes
+    fire_only_once = yes
+	immediate = {
+		every_country = {
+			limit = {
+				OR = {
+					tag = USA
+					tag = GER
+					tag = JAP
+					tag = RUS
+				}
+				country_event = { id = SWRW_AFG.1 days = 231 } #1976.12.25
+				country_event = { id = SWRW_AFG.2 days = 365 } #1977.5.8
+				country_event = { id = SWRW_AFG.3 days = 787 } #1978.7.4
+				country_event = { id = SWRW_AFG.4 days = 1228 } #1979.9.18
+				country_event = { id = SWRW_AFG.5 days = 1560 } #1980.5.8
+				country_event = { id = SWRW_AFG.6 days = 1789 } #1981.4.1
+				country_event = { id = SWRW_AFG.9 days = 2224 } #1982.6.10
+				country_event = { id = SWRW_AFG.7 days = 2422 } #1982.12.25
+				country_event = { id = SWRW_AFG.8 days = 2711 } #1983.10.10
+			}
+		}
+
+		RUS = {
+			end_puppet = TAJ
+			end_puppet = KYR
+		}
+		every_owned_state = {
+			add_province_modifier = {
+				static_modifiers = { AFG_war_in_sand }
+				province = { all_provinces = yes }
+			}
+		}
+		set_global_flag = {
+			flag = SWRW_AFG_war_360_Days_Passed
+			days = 360
+			value = 1
+		}
+		set_variable = { global.AFG_war_stage = 1 }
+		set_global_flag = AFG_WAR_ONGOING
+		set_variable = { global.afghanstan_war_escalate_factor = 270 }
+		AFG = {
+			declare_war_on = {
+				target = TAJ
+				type = annex_everything
+			}
+			load_oob = SWRW_AFG_WAR_AFG
+			add_dynamic_modifier = { modifier =  AFG_WAR_IN_AFG_AFG }
+			add_ideas = GER_AI_buff_idea
+		}
+		TAJ = { white_peace = GER }
+		TAJ = {
+			leave_faction = yes
+			every_owned_state = {
+				add_province_modifier = {
+					static_modifiers = { AFG_war_in_sand }
+					province = { all_provinces = yes }
+				}
+			}
+			add_ideas = GER_AI_buff_idea
+			add_dynamic_modifier = { modifier =  AFG_WAR_IN_AFG_TAJ }
+			load_oob = SWRW_AFG_WAR_TAJ
+		}
+		KRK = {
+			every_owned_state = {
+				add_province_modifier = {
+					static_modifiers = { AFG_war_in_sand }
+					province = { all_provinces = yes }
+				}
+			}	
+			add_ideas = GER_AI_buff_idea
+			add_dynamic_modifier = { modifier =  AFG_WAR_IN_AFG_TAJ }
+		}
+		USA = {
+			country_event = { id = AFG_war.1 }
+		}
+		if = {
+			limit = {
+				PER = {
+					is_in_faction_with = GER
+				}
+			}
+			GER = { 
+				country_event = { id = AFG_war.1 } 
+			}
+		}
+		if = {
+			limit = {
+				AZH = {
+					exists = yes 
+				}
+			}
+			JAP = { 
+				country_event = { id = AFG_war.1 }
+			}
+		}
+
+
+
+		##############fuckyou BOP
+		if = {
+			limit = {
+				has_global_flag = RUS_national_unification
+			}
+			RUS = {
+				activate_mission = RUS_AFG_WAR_next_stage
+				activate_mission = RUS_AFG_WAR_end_limit
+			}
+		}
+	}
+	option = {
+		name = SWRW_fopo.1.a
+	}
+}
+
+country_event = { # 
+	id = SWRW_fopo.0
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SWRW_fopo.0"}
+	title = SWRW_fopo.1.t
+	desc = SWRW_fopo.1.desc
+	picture = GFX_report_event_RUS_russians
+	is_triggered_only = yes
+    fire_only_once = yes
+
+	trigger = {
+		RUS = {
+			NOT = {
+				original_tag = OMS
+			}
+		}
+		country_exists = TAJ
+	}
+	immediate = {
+		RUS = { country_event = { id = AFG_war.0 }}
+	}
+	option = {
+		name = SWRW_fopo.1.a
+	}
+}
+
+country_event = { #guangdong - fujitsu - one
+	id = SWRW_fopo.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SWRW_fopo.2"}
+	title = SWRW_fopo.1.t
+	desc = SWRW_fopo.1.desc
+	is_triggered_only = yes
+    fire_only_once = yes
+	immediate = {
+		add_units_to_division_template = {
+			template_name = "Police Response Brigade" 
+			regiments = {
+				elite_infantry = 1
+				elite_infantry = 1
+				elite_infantry = 1
+				elite_infantry = 2
+				elite_infantry = 2
+				elite_infantry = 2
+				elite_infantry = 0
+				elite_infantry = 0
+				
+				MBT = 3
+				MBT = 3
+				MBT = 3
+				MBT = 3
+				MBT = 3
+				
+				MBT = 4
+				MBT = 4
+				MBT = 4
+				MBT = 4
+				MBT = 4
+			}
+			support = {
+				air_assault = 0
+			}
+		}
+		add_manpower = 500000
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"Police Response Brigade\" start_experience_factor = 1 start_equipment_factor = 1.0"
+				owner = ROOT
+				count = 17
+			}
+		}
+		every_country = { 
+			limit = { is_ai = no }
+			news_event = WORLD.114502
+		}
+	}
+	option = {
+		name = SWRW_fopo.1.a
+	}
+}
+
+country_event = { #
+	id = SWRW_fopo.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SWRW_fopo.2"}
+	title = SWRW_fopo.1.t
+	desc = SWRW_fopo.1.desc
+	is_triggered_only = yes
+    fire_only_once = yes
+	immediate = {
+		remove_units_to_division_template = {
+			template_name = "Police Response Brigade" 
+			regiments = {
+				light_infantry = 0
+			}
+		}
+	}
+	option = {
+		name = SWRW_fopo.1.a
+	}
+}
+
+country_event = { #
+	id = SWRW_fopo.10000
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SWRW_fopo.2"}
+	title = SWRW_fopo.1.t
+	desc = SWRW_fopo.1.desc
+	is_triggered_only = yes
+    fire_only_once = yes
+	hidden = yes
+
+	immediate = {
+		set_global_flag = SWRW_disable_diffculties_setting
+	}
+	option = {
+		name = SWRW_fopo.1.a
+	}
+}

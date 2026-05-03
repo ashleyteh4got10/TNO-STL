@@ -1,0 +1,144 @@
+on_actions = {
+	#托管
+	on_monthly_CPC = {
+		effect = {
+			if = { 
+				limit = { check_variable = { CPC_hosting_service_NCCPC_var = 2 } } 
+				country_event = TER_support_backend_events.5
+			}
+		}
+	}
+	#NCCPC
+	on_monthly_CPC = {
+		effect = {
+			if = {
+				limit = { has_country_flag = special_care_selected }
+				clr_country_flag = special_care_selected
+			}
+			if = {
+				limit = { has_country_flag = praise_selected }
+				clr_country_flag = praise_selected
+			}
+			if = {
+				limit = { has_country_flag = criticize_button_selected }
+				clr_country_flag = criticize_button_selected
+			}
+			if = {
+				limit = { NOT = { has_country_flag = CPC_TRCW_begins_flag }
+						  NOT = { has_global_flag = CPC_WINS_TRCW } }
+				TER_NCCPC_fire_alerts = yes
+			}
+			if = {
+				limit = { check_variable = { CPC_mode_array^7 = 1 } }
+				set_variable = { TER_pol_str_real_percent^1 = 100 }
+				set_variable = { TER_pol_str_real_percent^2 = 0 }
+				set_variable = { TER_pol_str_real_percent^3 = 0 }
+				set_variable = { TER_pol_str_real_percent^0 = 0 }
+				calc_politics_powers_in_CPC = yes
+			}
+			if = {
+				limit = { check_variable = { CPC_mode_array^6 = 1 } }
+				set_variable = { TER_pol_str_real_percent^1 = 0 }
+				set_variable = { TER_pol_str_real_percent^2 = 0 }
+				set_variable = { TER_pol_str_real_percent^3 = 0 }
+				set_variable = { TER_pol_str_real_percent^0 = 100 }
+				calc_politics_powers_in_CPC = yes
+			}
+			NCCPC_for_on_action_budget_history_update = yes
+		}
+	}
+	#CPGAC
+	on_monthly_CPC = {
+		effect = {
+			CPGAC_monthly_recover = yes
+		}
+	}
+	#NP
+	on_monthly_CPC = {
+		effect = {
+			if = {
+				limit = { 
+					check_variable = { NADT_nuclear_proj_phase > 0 } 
+					check_variable = { NADT_nuclear_proj_phase < 6 } 
+				}
+				NADT_NP_monthly_update = yes
+			}
+		}
+	}
+	#SCB
+	on_monthly ={
+		effect = {
+			every_country = {
+				limit = {  OR = { has_idea = SEA_equipment_support_from_QYC
+								  has_idea = SEA_equipment_support_from_QYC_2 } }
+				POWER_ENDLESS_POWER_WHOAAAAA = yes
+			}
+		}
+	}
+	on_monthly_CPC = {
+		effect = {
+			if = {
+				limit = { NOT = { has_country_flag = CPC_TRCW_begins_flag }
+						  NOT = { has_global_flag = CPC_WINS_TRCW } 
+						  has_country_flag = CPC_unlock_SCB }
+			    TER_SCB_monthly_update = yes
+			}
+			if = {
+				limit = { NOT = { has_country_flag = CPC_TRCW_begins_flag }
+						  NOT = { has_global_flag = CPC_WINS_TRCW } }
+					CPC_XJB_popular_will_change_monthly = yes
+					CPC_XJB_abilities_change_monthly = yes
+					clamp_variable = {
+						var = XJ_popular_will
+						min = 0
+						max = 100
+					}
+					if = {
+						limit = { has_country_flag = CPC_unlock_XJB
+								  check_variable = { XJ_popular_will < 1 } }
+						country_event = CPC_main_story_events.75
+						clr_country_flag = CPC_unlock_XJB
+					}
+					XJB_alert_check = yes
+			}
+			if = {
+				limit = { has_country_flag = CPC_custom_difficulties_dec_active }
+				clr_country_flag = CPC_custom_difficulties_dec_active
+			}
+		}
+	}
+	#XJB
+	on_daily_CPC = {
+		effect = {
+			subtract_from_variable = { XJ_display_days_counter = 1 }
+			clamp_variable = { 
+				var = XJ_display_days_counter
+				min = 0
+				max = 30
+			}
+			every_state = {
+				limit = { has_state_flag = CPC_XJ_working }
+				subtract_from_variable = { XJB_count_days = 1 }
+				clamp_variable = { 
+					var = XJB_count_days
+					min = 0
+					max = 30
+				}
+				if = {
+					limit = { check_variable = { XJB_count_days = 0 } }
+					CPC = { CPC_XJB_region_focus_selector = yes }
+				}
+			}
+		}
+	}
+	#SWB
+	on_monthly_CPC = {
+		effect = {
+			if = {
+				limit = { NOT = { has_country_flag = CPC_TRCW_begins_flag }
+						  NOT = { has_global_flag = CPC_WINS_TRCW } }
+				TER_SWB_for_on_action_graphic_history_update = yes
+			}
+		}
+	}
+}

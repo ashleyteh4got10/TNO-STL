@@ -1,0 +1,27 @@
+##USE SUPER_EVENT_MAKER_GUI IN USEFUL PYTHON PROGRAMS TO MAKE NEW SUPER EVENTS##
+scripted_gui = {
+	NASA_super_events = {
+		context_type = player_context
+		window_name = "NASA_SG_Super_Event"
+		dirty = NASA_super_event_Refresh
+
+		visible = {
+			is_ai = no
+			has_variable = NASA_super_event
+		}
+		triggers = {
+			underlay_visible = {
+				NOT = { has_global_flag = TNO_my_world_is_on_fire_how_about_yours }
+			}
+		}
+		properties = {
+			SE_image = { image = "[NASAGetSuperEventImage]" }
+		}
+		effects = {
+			SE_option_click = {
+				clear_variable = NASA_super_event
+				add_to_variable = { NASA_super_event_Refresh = 1 }
+			}
+		}
+	}
+}

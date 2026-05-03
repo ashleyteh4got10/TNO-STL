@@ -1,0 +1,131 @@
+ideas = {
+	country = {
+		GAZ_devastated = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea GAZ_devastated" }
+			allowed = {
+				has_global_flag = mozambican_cw_devastated
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			removal_cost = -1
+			picture = generic_dismal_infrastructure
+			modifier = {
+				gdp_growth_modifier = -3
+				inflation_rate_modifier = 6
+				poverty_monthly_rate = -0.1
+				academic_base_monthly_rate = -1
+				industrial_expertise_monthly_rate = -1
+			}
+		}
+
+		GAZ_rebirth_under_iron_fist = {
+            on_add = { log = "[GetDateText]: [Root.GetName]: add idea GAZ_rebirth_under_iron_fist" }
+
+            allowed = {
+                always = no
+            }
+            on_add = {
+                social_funding_minimal_increase_high = yes
+            }
+            on_remove = {
+                social_funding_minimal_decrease_high = yes
+            }
+
+            allowed_civil_war = {
+                always = no
+            }
+
+            picture = SAF_national_modernization_plan
+
+            removal_cost = -1
+
+            modifier = {
+				admin_efficiency_monthly_rate = 1
+				stability_weekly = 0.002
+                custom_modifier_tooltip = social_funding_minimal_increase_high_tt
+				political_power_factor = 0.15
+            }
+        }
+
+		GAZ_scorched_earth_broken_dreams = {
+            on_add = { log = "[GetDateText]: [Root.GetName]: add idea GAZ_scorched_earth_broken_dreams" }
+
+            allowed = {
+                always = no
+            }
+            on_add = {
+                TNO_improve_max_workhours_policy_effectiveness_med = yes
+				TNO_worsen_minimum_wage_policy_effectiveness_med = yes
+            }
+            on_remove = {
+				TNO_worsen_max_workhours_policy_effectiveness_med = yes
+                TNO_improve_minimum_wage_policy_effectiveness_med = yes
+            }
+
+            allowed_civil_war = {
+                always = no
+            }
+
+            picture = SAF_national_modernization_plan
+
+            removal_cost = -1
+
+            modifier = {
+				extra_trade_to_overlord_factor = 0.9
+				local_resources_factor = 0.2
+				production_speed_infrastructure_factor = 0.1
+                poverty_monthly_rate = -0.05
+				academic_base_monthly_rate = -1
+				custom_modifier_tooltip = TNO_improve_max_workhours_policy_effectiveness_med_tt
+				custom_modifier_tooltip = TNO_worsen_minimum_wage_policy_effectiveness_med_tt
+            }
+        }
+
+		GAZ_from_the_ground_up = {
+            on_add = { log = "[GetDateText]: [Root.GetName]: add idea GAZ_from_the_ground_up" }
+
+            allowed = {
+                always = no
+            }
+
+            allowed_civil_war = {
+                always = no
+            }
+
+            picture = GAZ_from_the_ground_up
+
+            removal_cost = -1
+
+            modifier = {
+				army_professionalism_monthly_rate = 0.3
+				army_org_factor = 0.05
+				attrition = -0.15
+                training_policy_monthly_rate = 1
+            }
+        }
+
+		GAZ_from_the_shadows = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea GAZ_from_the_shadows" }
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			removal_cost = -1
+
+			picture = GAZ_from_the_shadows
+
+			modifier = {
+				required_garrison_factor = 0.3
+				resistance_activity = 0.25
+				stability_factor = -0.2
+				monthly_population = -0.1
+				gdp_growth_modifier = -0.25
+			}
+		}
+	}
+}

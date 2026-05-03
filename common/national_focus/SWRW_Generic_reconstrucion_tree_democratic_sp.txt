@@ -1,0 +1,2137 @@
+focus_tree = {
+	id = RUS_reconstruction_democratic_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = RUS
+		}
+	}
+	default = no
+	shared_focus = RUS_commie_reconstruction
+	shared_focus = RUS_democratic_soul_and_heart
+}
+
+shared_focus = {
+	id = RUS_democratic_soul_and_heart
+	icon = GFX_focus_USA_hart_sundown
+	cost = 2
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = soul_and_heart_tt
+			has_country_flag = RUS_reconstruct_and_develop_started_commie
+		}
+	}
+	ai_will_do = { factor = 1 }
+	x = 50
+	y = 0
+	completion_reward = {
+		add_stability = 0.1
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_the_polic_problem
+	icon = GFX_focus_USA_hart_bits_and_pieces
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -15
+	y = 1
+	relative_position_id = RUS_democratic_soul_and_heart
+	prerequisite = {
+		focus = RUS_democratic_soul_and_heart
+	}
+	completion_reward = {
+		add_political_power = 150
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_open_government
+	icon = GFX_focus_JAP_strengthening_the_civilian_government
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_the_polic_problem
+	prerequisite = {
+		focus = RUS_democratic_the_polic_problem
+	}
+	completion_reward = {
+		TNO_improve_vote_franchise_policy_effectiveness_high = yes
+		TNO_improve_press_rights_policy_effectiveness_high =yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_meeting_with_people
+	icon = GFX_NOV_assure_the_nation
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_open_government
+	prerequisite = {
+		focus = RUS_democratic_open_government
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_stab_once = yes
+		add_political_power = 50
+	}
+}
+
+
+shared_focus = {
+	id = RUS_democratic_fair_election_law
+	icon = GFX_focus_USA_civil_rights_act_deluxe
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_open_government
+	prerequisite = {
+		focus = RUS_democratic_open_government
+	}
+	completion_reward = {
+		tno_political_parties_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_public_meetings_rights
+	icon = GFX_focus_USA_congressional_commission
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_fair_election_law
+	prerequisite = {
+		focus = RUS_democratic_fair_election_law
+	}
+	completion_reward = {
+		tno_public_meetings_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_we_want_to_make_people_happy
+	icon = GFX_focus_USA_hart_demons_in_the_cave
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_fair_election_law
+	prerequisite = {
+		focus = RUS_democratic_fair_election_law
+	}
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 10 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_so_make_some_meaning_less_law
+	icon = GFX_focus_USA_hart_a_fine_gesture
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_we_want_to_make_people_happy
+	prerequisite = {
+		focus = RUS_democratic_we_want_to_make_people_happy
+	}
+	completion_reward = {
+		TNO_improve_draft_exemptions_policy_effectiveness_monthly_high = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_med = yes
+		tno_lgbt_rights_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_minority_care_act
+	icon = GFX_focus_generic_lgbt_rights
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_democratic_so_make_some_meaning_less_law
+	prerequisite = {
+		focus = RUS_democratic_so_make_some_meaning_less_law
+	}
+	completion_reward = {
+		tno_child_labor_improve = yes
+		tno_women_improve = yes
+		tno_minorities_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_and_some_efficiency_policy
+	icon = GFX_focus_USA_hart_lampposts
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_we_want_to_make_people_happy
+	prerequisite = {
+		focus = RUS_democratic_we_want_to_make_people_happy
+	}
+	completion_reward = {
+		tno_unemployment_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_clean_water_act
+	icon = GFX_focus_USA_goldwater_chemicals_in_the_water
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_democratic_and_some_efficiency_policy
+	prerequisite = {
+		focus = RUS_democratic_and_some_efficiency_policy
+	}
+	completion_reward = {
+		tno_pollution_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_industry_clean_act
+	icon = GFX_focus_USA_hart_we_all_spend_green
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	relative_position_id = RUS_democratic_and_some_efficiency_policy
+	prerequisite = {
+		focus = RUS_democratic_and_some_efficiency_policy
+	}
+	completion_reward = {
+		tno_refugees_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_great_success_for_reform
+	icon = GFX_focus_generic_celebration
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_democratic_and_some_efficiency_policy
+	prerequisite = {
+		focus = RUS_democratic_industry_clean_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_clean_water_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_minority_care_act
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_democratic_fair_election }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_DEI }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_clean_water }
+		TNO_add_assorted_law = yes	
+		set_temp_variable = { temp_law = token:RUS_democratic_green_industry }
+		TNO_add_assorted_law = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_democratic_next_step
+	icon = GFX_focus_USA_hart_big_talk
+	cost = 3
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 3
+	relative_position_id = RUS_democratic_and_some_efficiency_policy
+	prerequisite = {
+		focus = RUS_democratic_great_success_for_reform
+	}
+	prerequisite = {
+		focus = RUS_democratic_charter
+	}
+	completion_reward = {
+		custom_effect_tooltip = SWRW_democratic_next_step_tt
+		set_country_flag = RUS_pol_ended
+	}
+}
+
+
+shared_focus = {
+	id = RUS_democratic_democracy_government
+	icon = GFX_NOV_guardians_of_the_next_generation
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_the_polic_problem
+	prerequisite = {
+		focus = RUS_democratic_the_polic_problem
+	}
+	completion_reward = {
+		TNO_slavery_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_undemocracy_democracy
+	icon = GFX_focus_generic_hands_off_the_vote
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 1
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_democracy_government
+	}
+	mutually_exclusive = {
+		focus = RUS_democratic_true_democracy
+	}
+	completion_reward = {
+		TNO_slavery_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_true_democracy
+	icon = GFX_focus_generic_vote_for_democracy
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_democracy_government
+	}
+	mutually_exclusive = {
+		focus = RUS_democratic_undemocracy_democracy
+	}
+	completion_reward = {
+		tno_slavery_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_religious_freedom
+	icon = GFX_focus_generic_change_law_religion
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_true_democracy
+		focus = RUS_democratic_undemocracy_democracy
+	}
+	completion_reward = {
+		tno_religious_rights_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_immigration_freedom
+	icon = GFX_focus_USA_immigration_and_nationality_act
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 4
+	y = 2
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_true_democracy
+		focus = RUS_democratic_undemocracy_democracy
+	}
+	completion_reward = {
+		tno_immigration_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_vote_question
+	icon = GFX_focus_generic_elections_1
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 2
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_true_democracy
+		focus = RUS_democratic_undemocracy_democracy
+	}
+	completion_reward = {
+		tno_vote_franchise_clear = yes
+		add_ideas = tno_vote_franchise_registered_voting
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_who_can_vote
+	icon = GFX_focus_generic_election
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 3
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_vote_question
+	}
+	completion_reward = {
+		TNO_improve_vote_franchise_policy_effectiveness_monthly_high = yes
+		tno_gender_rights_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_knowing_vote
+	icon = GFX_focus_generic_elections_rigged_2
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 3
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_vote_question
+	}
+	mutually_exclusive = {
+		focus = RUS_democratic_unknow_vote
+	}
+	completion_reward = {
+		tno_vote_franchise_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_unknow_vote
+	icon = GFX_focus_generic_elections_rigged_1
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 4
+	y = 3
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_vote_question
+	}
+	mutually_exclusive = {
+		focus = RUS_democratic_knowing_vote
+	}
+	completion_reward = {
+		tno_vote_franchise_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_voting_reform
+	icon = GFX_focus_generic_accessible_voting
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 4
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_vote_question
+	}
+	prerequisite = {
+		focus = RUS_democratic_knowing_vote
+		focus = RUS_democratic_unknow_vote
+	}
+	completion_reward = {
+		tno_press_rights_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_slavery_reform
+	icon = GFX_focus_generic_slavery_toppled
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 4
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_vote_question
+	}
+	prerequisite = {
+		focus = RUS_democratic_knowing_vote
+		focus = RUS_democratic_unknow_vote
+	}
+	completion_reward = {
+		TNO_slavery_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_charter
+	icon = GFX_focus_generic_chart_a_new_course
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 5
+	relative_position_id = RUS_democratic_democracy_government
+	prerequisite = {
+		focus = RUS_democratic_voting_reform
+	}
+	prerequisite = {
+		focus = RUS_democratic_slavery_reform
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_democratic_free_religious }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_immigration_freedom_act }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_fair_work }
+		TNO_add_assorted_law = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_democratic_the_great_social
+	icon = GFX_focus_USA_chep_the_dynasty
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_democratic_soul_and_heart
+	prerequisite = {
+		focus = RUS_democratic_soul_and_heart
+	}
+	available = {
+		has_completed_focus = RUS_democratic_next_step
+	}
+	completion_reward = {
+		add_dynamic_modifier = { modifier = RUS_great_society }
+	}
+}
+shared_focus = {
+	id = RUS_democratic_the_union_question
+	icon = GFX_focus_USA_bring_back_unions
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_democratic_the_great_social
+	prerequisite = {
+		focus = RUS_democratic_the_great_social
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		SWRW_RUS_BLR_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		SWRW_RUS_OST_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		SWRW_RUS_CAU_add_rebuild_stab_once = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_crackdown_unions
+	icon = GFX_focus_ITA_OLD_chain_the_unions
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_the_union_question
+	prerequisite = {
+		focus = RUS_democratic_the_union_question
+	}
+	mutually_exclusive = {
+		focus = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_country_flag = RUS_democratic_crackdown_unions
+		mark_focus_tree_layout_dirty = yes
+		custom_effect_tooltip = RUS_democratic_crackdown_unions_tt
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_corruption_in_trade_union
+	icon = GFX_focus_RUS_ironclad_union
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_crackdown_unions
+	prerequisite = {
+		focus = RUS_democratic_crackdown_unions
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = -0.2 }
+		RUS_goc_regulations_policy_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_their_organize_are_bad
+	icon = GFX_focus_generic_reform_the_youth_organization
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_crackdown_unions
+	prerequisite = {
+		focus = RUS_democratic_crackdown_unions
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = -0.05 }
+		RUS_mec_annual_gdp_growth_factor_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_the_biggest_bad
+	icon = GFX_focus_generic_question_reactionaries
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 1
+	relative_position_id = RUS_democratic_crackdown_unions
+	prerequisite = {
+		focus = RUS_democratic_crackdown_unions
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = -0.1 }
+		RUS_goc_gdp_growth_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_cut_their_money
+	icon = GFX_focus_generic_wealth_question
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_the_biggest_bad
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_income_modifier_add_N = yes
+
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_find_their_questions
+	icon = GFX_focus_generic_question_secret_services
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_the_biggest_bad
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_income_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_infill_the_union
+	icon = GFX_focus_RDC_gorbachev_question
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 2
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_the_biggest_bad
+	}
+	prerequisite = {
+		focus = RUS_democratic_their_organize_are_bad
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_income_modifier_add_N = yes
+		TNO_worsen_trade_laws_policy_effectiveness_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_national_anti_spy_act
+	icon = GFX_focus_generic_spying_target
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_the_biggest_bad
+	}
+	prerequisite = {
+		focus = RUS_democratic_their_organize_are_bad
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		tno_security_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_barracks_coverage_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_anti_spy }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_id_card_for_unions
+	icon = GFX_focus_URL_identifying_our_threats
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -4
+	y = 1
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_the_biggest_bad
+	}
+	prerequisite = {
+		focus = RUS_democratic_their_organize_are_bad
+	}
+	prerequisite = {
+		focus = RUS_democratic_corruption_in_trade_union
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_offices_coverage_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_we_are_better_choices
+	icon = GFX_focus_GNG_well_handle_it
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -6
+	y = 1
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_the_biggest_bad
+	}
+	prerequisite = {
+		focus = RUS_democratic_their_organize_are_bad
+	}
+	prerequisite = {
+		focus = RUS_democratic_corruption_in_trade_union
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_gdp_growth_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_special_healthcare_act
+	icon = GFX_focus_ENG_a_fair_hand
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -5
+	y = 2
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_we_are_better_choices
+	}
+	prerequisite = {
+		focus = RUS_democratic_id_card_for_unions
+	}
+	prerequisite = {
+		focus = RUS_democratic_national_anti_spy_act
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		tno_health_care_improve = yes
+		TNO_worsen_health_care_policy_effectiveness_high = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_sp_med }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_special_education_act
+	icon = GFX_focus_USA_begin_integration
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 2
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_we_are_better_choices
+	}
+	prerequisite = {
+		focus = RUS_democratic_id_card_for_unions
+	}
+	prerequisite = {
+		focus = RUS_democratic_national_anti_spy_act
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		tno_education_improve = yes
+		TNO_worsen_education_policy_effectiveness_high = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_sp_edu }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_anti_communist_act
+	icon = GFX_focus_generic_smash_communism
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 2
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_we_are_better_choices
+	}
+	prerequisite = {
+		focus = RUS_democratic_id_card_for_unions
+	}
+	prerequisite = {
+		focus = RUS_democratic_national_anti_spy_act
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		add_popularity = {
+			ideology = communist
+			popularity = -0.2
+		}
+		add_popularity = {
+			ideology = socialist
+			popularity = -0.2
+		}
+		set_temp_variable = { temp_law = token:RUS_democratic_anti_comm }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_special_meetings
+	icon = GFX_focus_ITA_OLD_a_meeting_in_palazzo_barberini
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 3
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_anti_communist_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_special_education_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_special_healthcare_act
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		TNO_worsen_trade_unions_policy_effectiveness_high = yes
+		tno_trade_unions_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_police_attack
+	icon = GFX_focus_GNG_the_public_order_and_police_law
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 3
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_anti_communist_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_special_education_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_special_healthcare_act
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		tno_penal_system_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_give_money_to_non_union
+	icon = GFX_focus_generic_money
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -4
+	y = 3
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_anti_communist_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_special_education_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_special_healthcare_act
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		TNO_worsen_trade_unions_policy_effectiveness_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_new_trade_union_act
+	icon = GFX_focus_USA_bring_back_unions
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 4
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_give_money_to_non_union
+	}
+	prerequisite = {
+		focus = RUS_democratic_police_attack
+	}
+	prerequisite = {
+		focus = RUS_democratic_special_meetings
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		tno_trade_unions_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_scale_up_anti_spy_act
+	icon = GFX_focus_generic_anti_socialism
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 4
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_give_money_to_non_union
+	}
+	prerequisite = {
+		focus = RUS_democratic_police_attack
+	}
+	prerequisite = {
+		focus = RUS_democratic_special_meetings
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.01 }
+		RUS_goc_misc_income_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_big_antispy }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_endday_of_union
+	icon = GFX_focus_generic_global_anti_communism
+	cost = 3
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 5
+	relative_position_id = RUS_democratic_the_biggest_bad
+	prerequisite = {
+		focus = RUS_democratic_new_trade_union_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_scale_up_anti_spy_act
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_crackdown_unions
+	}
+
+	completion_reward = {
+		set_country_flag = RUS_soc_ended
+		TNO_improve_trade_unions_policy_effectiveness_high = yes
+		hidden_effect = {
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+		}
+		set_temp_variable = { temp_law = token:RUS_democratic_new_union }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_encouraged_unions
+	icon = GFX_focus_USA_hart_lampposts
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_the_union_question
+	prerequisite = {
+		focus = RUS_democratic_the_union_question
+	}
+	mutually_exclusive = {
+		focus = RUS_democratic_crackdown_unions
+	}
+	completion_reward = {
+		set_country_flag = RUS_democratic_encouraged_unions
+		mark_focus_tree_layout_dirty = yes
+		custom_effect_tooltip = RUS_democratic_encouraged_unions_tt
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_government_hands
+	icon = GFX_focus_USA_hart_the_answer_to_everything
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_encouraged_unions
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.01 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_union_of_democracy
+	icon = GFX_focus_USA_hart_demons_in_the_cave
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 1
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_encouraged_unions
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.75 }
+		RUS_goc_industrial_equipment_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.75 }
+		RUS_goc_industrial_expertise_monthly_rate_add_N = yes
+
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_union_of_social
+	icon = GFX_focus_USA_hart_a_tighter_grip
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -5
+	y = 1
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_encouraged_unions
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.75 }
+		RUS_goc_admin_efficiency_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_offices_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.1 }
+		RUS_goc_civilian_expenditures_factor_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_union_autonomy
+	icon = GFX_focus_USA_hart_what_keeps_us_together
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_encouraged_unions
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		tno_unemployment_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		RUS_goc_unemployment_policy_monthly_rate_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_union_union }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_labor_rights
+	icon = GFX_focus_USA_romney_civil_rights_for_all
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 1
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_encouraged_unions
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		RUS_goc_security_policy_monthly_rate_add_N = yes
+		tno_safety_improve = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_worker_power }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_which_side_are_you_on
+	icon = GFX_focus_USA_civil_rights_act_deluxe
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 2
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_labor_rights
+	}
+	prerequisite = {
+		focus = RUS_democratic_union_of_social
+	}
+	prerequisite = {
+		focus = RUS_democratic_union_autonomy
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_education_policy_monthly_rate_add_N = yes
+		RUS_goc_health_care_policy_monthly_rate_add_N = yes
+		RUS_goc_unemployment_policy_monthly_rate_add_N = yes
+		RUS_goc_minimum_wage_policy_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_come_all_of_good_workers
+	icon = GFX_focus_KOM_communist_party
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_labor_rights
+	}
+	prerequisite = {
+		focus = RUS_democratic_union_of_social
+	}
+	prerequisite = {
+		focus = RUS_democratic_union_autonomy
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_income_taxation_policy_monthly_rate_add_N = yes
+		RUS_goc_gdp_growth_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_good_news_to_you_i_tell
+	icon = GFX_focus_generic_communist_offer_our_thanks
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 2
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_labor_rights
+	}
+	prerequisite = {
+		focus = RUS_democratic_union_of_social
+	}
+	prerequisite = {
+		focus = RUS_democratic_union_autonomy
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		tno_income_taxation_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_of_how_a_good_union
+	icon = GFX_focus_ITA_OLD_prepare_a_special_committee
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -4
+	y = 2
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_labor_rights
+	}
+	prerequisite = {
+		focus = RUS_democratic_union_of_social
+	}
+	prerequisite = {
+		focus = RUS_democratic_union_autonomy
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		TNO_improve_trade_unions_policy_effectiveness_high = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_has_coming_here_to_dwell
+	icon = GFX_focus_generic_socialist_handshake
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 3
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_which_side_are_you_on
+	}
+	prerequisite = {
+		focus = RUS_democratic_come_all_of_good_workers
+	}
+	prerequisite = {
+		focus = RUS_democratic_good_news_to_you_i_tell
+	}
+	prerequisite = {
+		focus = RUS_democratic_of_how_a_good_union
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_healthcare_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_oh_worker_can_you_stand_it
+	icon = GFX_focus_generic_social_democracy_1
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 3
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_which_side_are_you_on
+	}
+	prerequisite = {
+		focus = RUS_democratic_come_all_of_good_workers
+	}
+	prerequisite = {
+		focus = RUS_democratic_good_news_to_you_i_tell
+	}
+	prerequisite = {
+		focus = RUS_democratic_of_how_a_good_union
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		tno_pensions_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_oh_tell_me_how_you_can
+	icon = GFX_focus_generic_socialist_recruitment
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -5
+	y = 3
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_which_side_are_you_on
+	}
+	prerequisite = {
+		focus = RUS_democratic_come_all_of_good_workers
+	}
+	prerequisite = {
+		focus = RUS_democratic_good_news_to_you_i_tell
+	}
+	prerequisite = {
+		focus = RUS_democratic_of_how_a_good_union
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_healthcare_monthly_rate_add_N = yes
+		
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_us_poor_folks_have_no_chance
+	icon = GFX_focus_generic_socialist_movement
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 3
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_which_side_are_you_on
+	}
+	prerequisite = {
+		focus = RUS_democratic_come_all_of_good_workers
+	}
+	prerequisite = {
+		focus = RUS_democratic_good_news_to_you_i_tell
+	}
+	prerequisite = {
+		focus = RUS_democratic_of_how_a_good_union
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_hospitals_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_prisons_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_barracks_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_offices_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_schools_coverage_modifier_add_N = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_democratic_unless_we_organize
+	icon = GFX_focus_generic_a_socialist_society
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 4
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_us_poor_folks_have_no_chance
+	}
+	prerequisite = {
+		focus = RUS_democratic_oh_tell_me_how_you_can
+	}
+	prerequisite = {
+		focus = RUS_democratic_oh_worker_can_you_stand_it
+	}
+	prerequisite = {
+		focus = RUS_democratic_has_coming_here_to_dwell
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		tno_unemployment_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_working_environment_act
+	icon = GFX_focus_GNG_environmental_standards
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 4
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_us_poor_folks_have_no_chance
+	}
+	prerequisite = {
+		focus = RUS_democratic_oh_tell_me_how_you_can
+	}
+	prerequisite = {
+		focus = RUS_democratic_oh_worker_can_you_stand_it
+	}
+	prerequisite = {
+		focus = RUS_democratic_has_coming_here_to_dwell
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		tno_safety_improve = yes
+		tno_safety_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_inflation_rate_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.6 }
+		RUS_goc_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_improve_work_enviro }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_working_wage_act
+	icon = GFX_focus_generic_pay_wages
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -4
+	y = 4
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_us_poor_folks_have_no_chance
+	}
+	prerequisite = {
+		focus = RUS_democratic_oh_tell_me_how_you_can
+	}
+	prerequisite = {
+		focus = RUS_democratic_oh_worker_can_you_stand_it
+	}
+	prerequisite = {
+		focus = RUS_democratic_has_coming_here_to_dwell
+	}
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		tno_minimum_wage_clear = yes
+		effect_tooltip = {
+			add_ideas = tno_minimum_wage_collective_bargaining_dummy
+		}
+		hidden_effect = {
+			add_ideas = tno_minimum_wage_collective_bargaining
+		}
+		set_temp_variable = { temp_law = token:RUS_democratic_work_wage }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_working_hour_act
+	icon = GFX_focus_generic_reassign_workers
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 5
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_working_wage_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_working_environment_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_unless_we_organize
+	}
+
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		tno_max_workhours_improve = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_fair_work_re }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_night_watchman
+	icon = GFX_focus_generic_night_schools
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 5
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_working_wage_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_working_environment_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_unless_we_organize
+	}
+
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		tno_trade_unions_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_new_union
+	icon = GFX_focus_TYM_a_union_together
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 6
+	relative_position_id = RUS_democratic_encouraged_unions
+	prerequisite = {
+		focus = RUS_democratic_working_hour_act
+	}
+	prerequisite = {
+		focus = RUS_democratic_night_watchman
+	}
+
+	allow_branch = {
+		has_country_flag = RUS_democratic_encouraged_unions
+	}
+	completion_reward = {
+		set_country_flag = RUS_soc_ended
+		set_temp_variable = { RUS_add_rebuild_var = 0.6 }
+		RUS_goc_income_taxation_policy_monthly_rate_add_N = yes
+		RUS_goc_max_workhours_policy_monthly_rate_add_N = yes 
+		RUS_goc_pensions_policy_monthly_rate_add_N = yes 
+		RUS_goc_unemployment_policy_monthly_rate_add_N = yes 
+		RUS_goc_regulations_policy_monthly_rate_add_N = yes 
+		RUS_goc_health_care_policy_monthly_rate_add_N = yes 
+		RUS_goc_education_policy_monthly_rate_add_N = yes 
+		RUS_goc_penal_system_policy_monthly_rate_add_N = yes 
+		RUS_goc_gender_rights_policy_monthly_rate_add_N = yes 
+		RUS_goc_security_policy_monthly_rate_add_N = yes 
+		RUS_goc_poverty_monthly_rate_add_N = yes 
+		set_temp_variable = { temp_law = token:RUS_democratic_new_union_new }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_economic_of_russia
+	icon = GFX_Break_Out_The_Graphs
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 15
+	y = 1
+	relative_position_id = RUS_democratic_soul_and_heart
+	prerequisite = {
+		focus = RUS_democratic_soul_and_heart
+	}
+	available = {
+		has_completed_focus = RUS_democratic_next_step
+	}
+	completion_reward = {
+		add_dynamic_modifier = { modifier = RUS_modern_economy }
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_establish_city_and_rural
+	icon = GFX_focus_USA_hart_what_keeps_us_together
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_economic_of_russia
+	prerequisite = {
+		focus = RUS_democratic_economic_of_russia
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_schools_PE_modifier_add_N = yes
+		RUS_mec_hospitals_PE_modifier_add_N = yes
+		RUS_mec_prisons_PE_modifier_add_N = yes
+		RUS_mec_barracks_PE_modifier_add_N = yes
+		RUS_mec_offices_PE_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_establish_city_road_network
+	icon = GFX_focus_USA_hart_the_democracy_mobile
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_democratic_establish_city_and_rural
+	prerequisite = {
+		focus = RUS_democratic_establish_city_and_rural
+	}
+	completion_reward = {
+		every_core_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes
+			}
+		}
+		set_temp_variable = { temp_law = token:RUS_democratic_road_road }
+		TNO_add_assorted_law = yes
+	}
+}
+shared_focus = {
+	id = RUS_democratic_internet
+	icon = GFX_focus_generic_worldwide_networks
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_establish_city_road_network
+	prerequisite = {
+		focus = RUS_democratic_establish_city_road_network
+	}
+	completion_reward = {
+		add_ideas = RUS_internet
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_internet }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_railway_network_acrossing_russia
+	icon = GFX_focus_USA_hart_buttons_and_levers
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_internet
+	prerequisite = {
+		focus = RUS_democratic_internet
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.01 }
+		RUS_mec_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_mec_annual_gdp_growth_factor_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_computer_design
+	icon = GFX_focus_generic_adapt_computer_designs
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_internet
+	prerequisite = {
+		focus = RUS_democratic_internet
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_mec_industrial_equipment_monthly_rate_add_N = yes
+		RUS_mec_industrial_expertise_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_high_buildings
+	icon = GFX_focus_USA_hart_americanist_cities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_railway_network_acrossing_russia
+	prerequisite = {
+		focus = RUS_democratic_railway_network_acrossing_russia
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_annual_gdp_growth_factor_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_mec_inflation_rate_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_higher_skylines
+	icon = GFX_focus_USA_hart_shining_megalopolis_on_a_hill
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_railway_network_acrossing_russia
+	prerequisite = {
+		focus = RUS_democratic_railway_network_acrossing_russia
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		RUS_mec_taxable_population_modifier_add_N = yes
+		RUS_mec_poverty_taxation_rate_modifier_add_N = yes
+		RUS_mec_consumer_goods_use_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_acclerated_urbanization
+	icon = GFX_focus_USA_hart_full_steam_ahead
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_democratic_railway_network_acrossing_russia
+	prerequisite = {
+		focus = RUS_democratic_higher_skylines
+	}
+	prerequisite = {
+		focus = RUS_democratic_high_buildings
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_schools_PE_modifier_add_N = yes
+		RUS_mec_hospitals_PE_modifier_add_N = yes
+		RUS_mec_prisons_PE_modifier_add_N = yes
+		RUS_mec_barracks_PE_modifier_add_N = yes
+		RUS_mec_offices_PE_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_fast_urbaniztion }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_establish_industry_reform_plan
+	icon = GFX_focus_USA_hart_forever_mitus
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	relative_position_id = RUS_democratic_economic_of_russia
+	prerequisite = {
+		focus = RUS_democratic_economic_of_russia
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = -0.05 }
+		RUS_mec_interest_rate_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_industry_reform }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_medicine_factory
+	icon = GFX_focus_generic_workplace_healthcare
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 1
+	relative_position_id = RUS_democratic_establish_industry_reform_plan
+	prerequisite = {
+		focus = RUS_democratic_establish_industry_reform_plan
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		RUS_mec_consumer_goods_production_factor_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_global_trading
+	icon = GFX_focus_KOM_restore_international_trade
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_establish_industry_reform_plan
+	prerequisite = {
+		focus = RUS_democratic_establish_industry_reform_plan
+	}
+	completion_reward = {
+		tno_trade_laws_worsen = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		RUS_mec_trade_laws_policy_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_environment_check_project
+	icon = GFX_focus_USA_hart_open_up_a_world
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 2
+	relative_position_id = RUS_democratic_establish_industry_reform_plan
+	prerequisite = {
+		focus = RUS_democratic_establish_industry_reform_plan
+	}
+	completion_reward = {
+		tno_regulations_improve = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_green_industry_check }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_industry_community
+	icon = GFX_focus_USA_hart_combat_rural_flight
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 4
+	y = 2
+	relative_position_id = RUS_democratic_establish_industry_reform_plan
+	prerequisite = {
+		focus = RUS_democratic_establish_industry_reform_plan
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		RUS_mec_consumer_goods_production_factor_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.05 }
+		RUS_mec_consumer_goods_use_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_new_industry_community }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_from_point_to_line
+	icon = GFX_focus_USA_hart_high_gas_prices
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_industry_community
+	prerequisite = {
+		focus = RUS_democratic_industry_community
+	}
+	prerequisite = {
+		focus = RUS_democratic_medicine_factory
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_annual_gdp_growth_factor_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_from_old_to_new
+	icon = GFX_focus_USA_hart_alternative_movement
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 1
+	relative_position_id = RUS_democratic_industry_community
+	prerequisite = {
+		focus = RUS_democratic_global_trading
+	}
+	prerequisite = {
+		focus = RUS_democratic_environment_check_project
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_mec_misc_costs_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_high_technology_community
+	icon = GFX_focus_USA_hart_the_second_american_revolution
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_establish_industry_reform_plan
+	prerequisite = {
+		focus = RUS_democratic_establish_industry_reform_plan
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_new_technology_community }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_chips_dies
+	icon = GFX_focus_USA_hart_rules_and_regulation
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_democratic_high_technology_community
+	prerequisite = {
+		focus = RUS_democratic_high_technology_community
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.03 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.3 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 250 }
+		RUS_mec_socdev_points_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_global_factory
+	icon = GFX_focus_USA_hart_bricks_and_windows
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_democratic_high_technology_community
+	prerequisite = {
+		focus = RUS_democratic_high_technology_community
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.01 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_gender_working
+	icon = GFX_focus_USA_kirk_a_womans_true_place
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_democratic_high_technology_community
+	prerequisite = {
+		focus = RUS_democratic_global_factory
+	}
+	prerequisite = {
+		focus = RUS_democratic_chips_dies
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.01 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		tno_gender_rights_improve = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_liber_gender }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_megacompany
+	icon = GFX_focus_GNG_new_industrial_communities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 3
+	relative_position_id = RUS_democratic_high_technology_community
+	prerequisite = {
+		focus = RUS_democratic_gender_working
+	}
+	prerequisite = {
+		focus = RUS_democratic_from_old_to_new
+	}
+	prerequisite = {
+		focus = RUS_democratic_from_point_to_line
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.03 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+		add_stability = -0.5
+		set_temp_variable = { temp_law = token:RUS_democratic_global_megacompany }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_from_line_to_face
+	icon = GFX_focus_GNG_the_guangdong_efficiency_ordinance
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 3
+	relative_position_id = RUS_democratic_high_technology_community
+	prerequisite = {
+		focus = RUS_democratic_gender_working
+	}
+	prerequisite = {
+		focus = RUS_democratic_from_old_to_new
+	}
+	prerequisite = {
+		focus = RUS_democratic_from_point_to_line
+	}
+	completion_reward = {
+		set_temp_variable = { sales_tax_temp = 0.05 }
+		econ_sales_tax_rate_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_go_ahead
+	icon = GFX_focus_GNG_they_bark_they_bite_they_whine
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 5
+	y = 3
+	relative_position_id = RUS_democratic_high_technology_community
+	prerequisite = {
+		focus = RUS_democratic_gender_working
+	}
+	prerequisite = {
+		focus = RUS_democratic_from_old_to_new
+	}
+	prerequisite = {
+		focus = RUS_democratic_from_point_to_line
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.03 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+		econ_GDP_boost_once_percentage = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_super_city_network
+	icon = GFX_focus_GNG_gundam
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 4
+	relative_position_id = RUS_democratic_high_technology_community
+	prerequisite = {
+		focus = RUS_democratic_go_ahead
+	}
+	prerequisite = {
+		focus = RUS_democratic_from_line_to_face
+	}
+	prerequisite = {
+		focus = RUS_democratic_megacompany
+	}
+	completion_reward = {
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_democratic_cyberpunk_1977
+	icon = GFX_RUS_cyberpunk
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 4
+	relative_position_id = RUS_democratic_railway_network_acrossing_russia
+	prerequisite = {
+		focus = RUS_democratic_acclerated_urbanization
+	}
+	prerequisite = {
+		focus = RUS_democratic_super_city_network
+	}
+	completion_reward = {	
+		set_country_flag = RUS_eco_ended
+
+		set_temp_variable = { income_tax_temp = -0.2 }
+		set_temp_variable = { business_tax_temp = -0.2 }
+		set_temp_variable = { sales_tax_temp = 0.15 }
+		econ_sales_tax_rate_change = yes
+		econ_income_tax_rate_change = yes
+		econ_business_tax_rate_change = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_mec_taxable_population_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_democratic_cyberpunk }
+		TNO_add_assorted_law = yes
+	}
+}

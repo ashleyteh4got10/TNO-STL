@@ -1,0 +1,81 @@
+add_namespace = OMS_checks
+
+# Weekly check to see how the war goes, and decrease readiness. The player has a lucky 7 days to get his shit together before it all goes down.
+country_event = {
+	id = OMS_checks.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_checks.1" }
+	hidden = yes
+	is_triggered_only = yes
+
+	option = {
+		if = {
+			limit = {
+				has_war_with = GER
+			}
+		 	OMS_War_Check = yes
+		}
+	}
+}
+
+country_event = {
+	id = OMS_checks.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_checks.2" }
+	hidden = yes
+	is_triggered_only = yes
+
+	option = {
+		if = {
+			limit = {
+				NOT = {
+					check_variable = { OMS_biological_days = 0 }
+				}
+			}
+			add_to_variable = { OMS_biological_days = -1 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					check_variable = { OMS_chemical_days = 0 }
+				}
+			}
+			add_to_variable = { OMS_chemical_days = -1 }
+			country_event = { id = OMS_checks.2 days = 1 }
+		}
+	}
+}
+
+country_event = {
+	id = OMS_checks.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_checks.3" }
+	hidden = yes
+	is_triggered_only = yes
+
+	option = {
+		if = {
+			limit = { has_global_flag = SECOND_WRW_HAS_BEGUN }
+			OMS_CPS_OFN_invasion = yes
+			every_country = {
+				limit = { is_ai = no }
+				news_event = OMS_News.7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = OMS_checks.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_checks.4" }
+	hidden = yes
+	is_triggered_only = yes
+
+	option = {
+		add_to_variable = { OMS_readiness = -1 }
+		add_to_variable = { OMS_chemical_days = -1 }
+		add_to_variable = { OMS_biological_days = -1 }
+		OMS_readiness_change = yes
+		country_event = {
+			id = OMS_checks.4
+			hours = 1
+		}
+	}
+}

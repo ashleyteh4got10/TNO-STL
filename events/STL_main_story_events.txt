@@ -1,0 +1,622 @@
+add_namespace = STL_BRY_main_story
+add_namespace = STL_PRC_main_story
+add_namespace = STL_CPC_main_story
+add_namespace = STL_CHI_main_story
+add_namespace = STL_april_fools
+
+country_event = {
+	id = STL_april_fools.1
+
+	title = STL_april_fools.1.t
+	desc = STL_april_fools.1.desc
+	#picture = #CHIS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_april_fools.1.oa
+
+		MGI = {
+			annex_country = {
+				target = OMS
+				transfer_troops = yes
+			}
+			load_oob = OMS_1962
+			every_controlled_state = {
+				add_core_of = OMS
+			}
+			change_tag_from = ROOT
+			#inherit_technology = GER
+		}
+
+		custom_effect_tooltip = "STL_april_fools_tt"
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+
+	option = {
+		name = STL_april_fools.1.ob
+
+		MGI = {
+			annex_country = {
+				target = OMS
+				transfer_troops = yes
+			}
+			load_oob = OMS_1962
+			every_controlled_state = {
+				add_core_of = OMS
+			}
+			#inherit_technology = GER
+		}
+		
+		ai_chance = {
+			factor = 50
+		}		
+	}
+}
+
+country_event = {
+	id = STL_april_fools.2
+
+	title = STL_april_fools.2.t
+	desc = STL_april_fools.2.desc
+	#picture = #CHIS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_april_fools.2.o
+
+		every_country = {
+			limit = {
+				is_neighbor_of = MGI
+				NOT = { has_war_with = MGI }
+			}
+			MGI = {
+				declare_war_on = {
+					target = PREV
+					type = annex_everything
+				}
+			}
+		}
+
+		MGI = {
+							load_oob = MGI_radiosilence_RUS
+		}
+
+		every_country = {
+			limit = {
+				is_ai = no
+			}
+			news_event = {
+				id = WORLD_2WRWTER.114514
+			}
+		}
+		set_country_flag = MGI_TGWT_started
+		ai_chance = {
+			factor = 50
+		}
+	}
+  }
+
+country_event = {
+	id = STL_april_fools.3
+
+	title = STL_april_fools.3.t
+	desc = STL_april_fools.3.desc
+	#picture = #CHIS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_april_fools.3.o
+		TNO_Country_Closing_Screen_Show = yes
+		custom_effect_tooltip = MGI_the_end_tt
+
+		retire_character = MGI_Tsukishiro_Yuki
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+country_event = {
+	id = STL_CHI_main_story.1
+
+	title = STL_CHI_main_story.1.t
+	desc = STL_CHI_main_story.1.desc
+	#picture = #CHIS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CHI_main_story.1.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = STL_CHI_main_story.2
+
+	title = STL_CHI_main_story.2.t
+	desc = STL_CHI_main_story.2.desc
+	#picture = #CHIS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CHI_main_story.2.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = STL_CHI_main_story.3
+
+	title = STL_CHI_main_story.3.t
+	desc = STL_CHI_main_story.3.desc
+	#picture = #CHIS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CHI_main_story.3.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+country_event = {
+	id = STL_CHI_main_story.4
+
+	title = STL_CHI_main_story.4.t
+	desc = STL_CHI_main_story.4.desc
+	#picture = #CHIS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CHI_main_story.4.o
+
+		add_to_array = { CHI_dem_riot_selected = 2 }
+		add_to_array = { CHI_dem_riot_selected = 1 }
+		add_to_array = { CHI_dem_riot_selected = 1 }
+	
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#求援 - 革命星火后
+country_event = {
+	id = STL_BRY_main_story.1
+
+	title = STL_BRY_main_story.1.t
+	desc = STL_BRY_main_story.1.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_BRY_main_story.1.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#
+country_event = {
+	id = STL_PRC_main_story.1
+
+	title = STL_PRC_main_story.1.t
+	desc = STL_PRC_main_story.1.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_PRC_main_story.1.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#惊梦 - 明月后触发
+country_event = {
+	id = STL_CPC_main_story.1
+
+	title = STL_CPC_main_story.1.t
+	desc = STL_CPC_main_story.1.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.1.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#长路归乡
+country_event = {
+	id = STL_CPC_main_story.2
+
+	title = STL_CPC_main_story.2.t
+	desc = STL_CPC_main_story.2.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.2.o
+
+        country_event = {
+            id = STL_CPC_main_story.3
+            days = 7
+        }
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#长路归乡 (2)
+country_event = {
+	id = STL_CPC_main_story.3
+
+	title = STL_CPC_main_story.3.t
+	desc = STL_CPC_main_story.3.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.3.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#说真话 (1)
+country_event = {
+	id = STL_CPC_main_story.4
+
+	title = STL_CPC_main_story.4.t
+	desc = STL_CPC_main_story.4.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.4.o
+
+        country_event = {
+            id = STL_CPC_main_story.5
+        }
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#说真话 (2)
+country_event = {
+	id = STL_CPC_main_story.5
+
+	title = STL_CPC_main_story.5.t
+	desc = STL_CPC_main_story.5.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.5.o
+
+        country_event = {
+            id = STL_CPC_main_story.6
+        }
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#说真话 (3)
+country_event = {
+	id = STL_CPC_main_story.6
+
+	title = STL_CPC_main_story.6.t
+	desc = STL_CPC_main_story.6.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.6.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#客人 (尘埃落定后)
+country_event = {
+	id = STL_PRC_main_story.1
+
+	title = STL_PRC_main_story.1.t
+	desc = STL_PRC_main_story.1.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_PRC_main_story.1.o
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#转转 (1)
+country_event = {
+	id = STL_CPC_main_story.7
+
+	title = STL_CPC_main_story.7.t
+	desc = STL_CPC_main_story.7.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.7.o
+
+        country_event = {
+            id = STL_CPC_main_story.8
+        }
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#转转 (2)
+country_event = {
+	id = STL_CPC_main_story.8
+
+	title = STL_CPC_main_story.8.t
+	desc = STL_CPC_main_story.8.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.8.o
+
+        country_event = {
+            id = STL_CPC_main_story.9
+        }
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#转转 (3)
+country_event = {
+	id = STL_CPC_main_story.9
+
+	title = STL_CPC_main_story.9.t
+	desc = STL_CPC_main_story.9.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.9.o
+
+		
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#长路归乡 (3)
+country_event = {
+	id = STL_CPC_main_story.10
+
+	title = STL_CPC_main_story.10.t
+	desc = STL_CPC_main_story.10.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.10.o
+
+        country_event = {
+            id = STL_CPC_main_story.11
+            days = 7
+        }
+		set_temp_variable = { CPC.target = BRY }
+		set_temp_variable = { to_add = 3 }
+		TNO_add_num_volunteers = yes
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+
+#长路归乡 (4)
+country_event = {
+	id = STL_CPC_main_story.11
+
+	title = STL_CPC_main_story.11.t
+	desc = STL_CPC_main_story.11.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.11.o
+
+        country_event = {
+            id = STL_CPC_main_story.12
+            days = 7
+        }
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#长路归乡 (5)
+country_event = {
+	id = STL_CPC_main_story.12
+
+	title = STL_CPC_main_story.12.t
+	desc = STL_CPC_main_story.12.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.12.o
+
+        country_event = {
+            id = STL_CPC_main_story.13
+            days = 7
+        }
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#长路归乡 (终)
+country_event = {
+	id = STL_CPC_main_story.13
+
+	title = STL_CPC_main_story.13.t
+	desc = STL_CPC_main_story.13.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.13.o
+
+        country_event = {
+            id = STL_CPC_main_story.14
+            days = 3
+        }
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#老父亲的愁思
+country_event = {
+	id = STL_CPC_main_story.14
+
+	title = STL_CPC_main_story.14.t
+	desc = STL_CPC_main_story.14.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.14.o
+
+        country_event = {
+            id = STL_CPC_main_story.15
+            days = 3
+        }
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#相见
+country_event = {
+	id = STL_CPC_main_story.15
+
+	title = STL_CPC_main_story.15.t
+	desc = STL_CPC_main_story.15.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.15.o
+
+        country_event = {
+            id = STL_CPC_main_story.16
+        }
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+#喜剧
+country_event = {
+	id = STL_CPC_main_story.16
+
+	title = STL_CPC_main_story.16.t
+	desc = STL_CPC_main_story.16.desc
+	#picture = #CPCS9
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.16.o
+
+        custom_effect_tooltip = STL_AnYing_LFB_tt
+        hidden_effect = {
+        XXX = {
+            KAZ_Mao_Anying = {
+                set_nationality = CPC
+            }
+        }
+        }
+
+		ai_chance = {
+			factor = 50
+		}
+	}
+}
+
+
+
+

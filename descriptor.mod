@@ -1,0 +1,16 @@
+name="The New Order: Sperne Tuta Limina"
+version="1.2.0"
+dependencies={
+	"The New Order: Last Days of Europe"
+	"The New Order: Last Days of Europe(CN.Ver)"
+}
+picture="thumbnail.png"
+replace_path="common/national_focus/TNO_RUS.txt"
+replace_path="localisation/english/TNO_Country_Info_Screen_l_english.yml"
+replace_path="localisation/english/TNO_Kamchatka_l_english.yml"
+replace_path="localisation/simp_chinese/TNO_Country_Info_Screen_l_simp_chinese.yml"
+replace_path="localisation/simp_chinese/TNO_Kamchatka_l_simp_chinese.yml"
+replace_path="events/TNO_South_africa.txt"
+supported_version="1.18.*"
+path="D:/Documents/Paradox Interactive/Hearts of Iron IV/mod/2wrw_ter"
+remote_file_id="3532278099"

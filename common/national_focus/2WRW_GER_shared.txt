@@ -1,0 +1,1553 @@
+shared_focus = {
+	id = GER_Der_Letzte_Krieg
+	icon = GFX_GER_Der_Letzte_Krieg
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 10
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Der_Letzte_Krieg"
+		add_ideas = GER_Verteidige_das_Vaterland
+		hidden_effect = {
+			SWRW_add_army_size_modifier = yes #normal hoi4 army sizes
+			GER = { country_event = { id = swrw_misc.2 } } #skilled staffer modifier
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Die_Grenzwacht_Hielt_Im_Osten
+	icon = GFX_GER_Die_Grenzwacht_hielt_im_Osten
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Der_Letzte_Krieg
+	}
+	relative_position_id = GER_Der_Letzte_Krieg
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Die_Grenzwacht_Hielt_Im_Osten"
+		custom_effect_tooltip = GER_OKW_hissy_fit
+		if= {
+			limit = {
+				is_ai = yes
+			}
+			hidden_effect = {
+				SWRW_GER_Die_Grenzwacht_Hielt_Im_Osten_effect = yes	
+			}
+		}
+		else = {
+			SWRW_GER_Die_Grenzwacht_Hielt_Im_Osten_effect = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Invigorate_The_Reich
+	icon = GFX_GER_Invigorate_the_Reich
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Die_Grenzwacht_Hielt_Im_Osten
+	}
+	relative_position_id = GER_Die_Grenzwacht_Hielt_Im_Osten
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = -3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Invigorate_The_Reich"
+		add_manpower = 100000
+		add_war_support = 0.05
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = GER_Every_Last_Contract
+	icon = GFX_GER_Every_Last_Contract
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Die_Grenzwacht_Hielt_Im_Osten
+	}
+	relative_position_id = GER_Die_Grenzwacht_Hielt_Im_Osten
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Every_Last_Contract"
+		add_ideas = GER_The_Means_of_War_1
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1000
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 500
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 200
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Mobilize_The_Veterans
+	icon = GFX_GER_Mobilize_The_Veterans
+	cost = 3
+	available_if_capitulated = no
+	available = {
+		has_completed_focus = GER_Die_Wahrheit_ist_der_Feind
+	}
+	prerequisite = {
+		focus = GER_Die_Grenzwacht_Hielt_Im_Osten
+	}
+	relative_position_id = GER_Die_Grenzwacht_Hielt_Im_Osten
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Mobilize_The_Veterans"
+		swap_ideas = {
+			remove_idea = GER_The_Final_Line_1
+			add_idea = GER_The_Final_Line_2
+		}
+		add_stability = -0.05
+		add_manpower = 250000
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 1000
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Die_Ostlegion
+	icon = GFX_GER_Die_Ostlegion
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Mobilize_The_Veterans
+	}
+	relative_position_id = GER_Mobilize_The_Veterans
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = -1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Die_Ostlegion"
+		add_stability = -0.05
+		add_manpower = 12000
+		custom_effect_tooltip = GER_kylo_ren
+		hidden_effect = {
+			load_oob = "SWRW_GER_Ostlegion"
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Pressure_The_Corporations
+	icon = GFX_GER_Pressure_the_Corporations
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Every_Last_Contract
+	}
+	relative_position_id = GER_Every_Last_Contract
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Pressure_The_Corporations"
+		swap_ideas = {
+			remove_idea = GER_The_Means_of_War_1
+			add_idea = GER_The_Means_of_War_2
+		}
+		set_temp_variable = {
+			pus_temp = 2
+		}
+		econ_pus_change = yes
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 3500
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 1500
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 3500
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 1000
+		}
+		add_equipment_to_stockpile = {
+			type = MBT_equipment
+			amount = 500
+		}
+		add_equipment_to_stockpile = {
+			type = fighter_equipment
+			amount = 200
+		}
+		add_equipment_to_stockpile = {
+			type = CAS_equipment
+			amount = 200
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Die_Wahrheit_ist_der_Feind
+	icon = GFX_GER_Die_Wahrheit_ist_der_Feind
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Invigorate_The_Reich
+	}
+	relative_position_id = GER_Invigorate_The_Reich
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 1
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Die_Wahrheit_ist_der_Feind"
+		add_ideas = GER_The_Final_Line_1
+		add_war_support = 0.20
+		add_stability = -0.1
+	}
+}
+
+shared_focus = {
+	id = GER_Ein_Totaler_Krieg
+	icon = GFX_GER_Ein_Totaler_Krieg
+	cost = 3
+	available = {
+		MCW = { has_capitulated = yes }
+	}
+	prerequisite = {
+		focus = GER_Die_Ostlegion
+	}
+	prerequisite = {
+		focus = GER_Die_Wahrheit_ist_der_Feind
+	}
+	prerequisite = {
+		focus = GER_Pressure_The_Corporations
+	}
+	relative_position_id = GER_Pressure_The_Corporations
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 0
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = GER_funny_moment
+		if = {
+			limit = {
+				is_ai = yes
+			}
+			hidden_effect = {
+				GER_Ein_Totaler_Krieg_effect = yes	
+			}
+		}
+		else = {
+			GER_Ein_Totaler_Krieg_effect = yes	
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Unleash_The_Wolves
+	icon = GFX_GER_Unleash_the_Wolves
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Ein_Totaler_Krieg
+	}
+	relative_position_id = GER_Ein_Totaler_Krieg
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Unleash_The_Wolves"
+		add_ideas = GER_Wolves_of_the_Fatherland
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -1000
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = -500
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_More_Hands_In_The_Factories
+	icon = GFX_GER_More_Hands_in_the_Factories
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Unleash_The_Wolves
+	}
+	relative_position_id = GER_Unleash_The_Wolves
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_More_Hands_In_The_Factories"
+		swap_ideas = {
+			remove_idea = GER_The_Means_of_War_2
+			add_idea = GER_The_Means_of_War_3
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_End_The_Tiresome_Partisan
+	icon = GFX_GER_End_the_Tiresome_Partisan
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Unleash_The_Wolves
+	}
+	relative_position_id = GER_Unleash_The_Wolves
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_End_The_Tiresome_Partisan"
+		GER = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -2000
+				producer = GER
+			}
+		}
+		if = {
+			limit = {
+				country_exists = UKR
+			}
+			UKR = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+					producer = GER
+				}
+				add_stability = -0.1
+			}
+		}
+		if = {
+			limit = {
+				country_exists = BLR
+			}
+			BLR = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+					producer = GER
+				}
+				add_stability = -0.1
+			}
+		}
+		if = {
+			limit = {
+				country_exists = OST
+			}
+			OST = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+					producer = GER
+				}
+				add_stability = -0.1
+			}
+		}
+		RUS = {
+			add_manpower = -50000
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Declaw_The_Bear
+	icon = GFX_GER_Declaw_the_Bear
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_More_Hands_In_The_Factories
+	}
+	prerequisite = {
+		focus = GER_End_The_Tiresome_Partisan
+	}
+	relative_position_id = GER_Unleash_The_Wolves
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Declaw_The_Bear"
+		custom_effect_tooltip = GER_its_so_joever
+		swap_ideas = {
+			remove_idea = GER_The_Final_Line_2
+			add_idea = GER_The_Final_Line_3
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Uber_Alles
+	icon = GFX_GER_Uber_Alles
+	cost = 3
+	available = {
+		has_country_flag = GER_SWRW_Victory
+	}
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Declaw_The_Bear
+	}
+	relative_position_id = GER_Declaw_The_Bear
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Uber_Alles"
+		custom_effect_tooltip = GER_russia_is_now_fucked
+		add_ideas = SWRW_GER_Endsieg
+		TNO_Country_Closing_Screen_show = yes
+	}
+}
+
+shared_focus = {
+	id = GER_A_Spectre_Haunts_Germany
+	icon = GFX_GER_A_Spectre
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = { factor = 1 }
+	x = 10
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_A_Spectre_Haunts_Germany"
+		hidden_effect = {
+			SWRW_add_army_size_modifier = yes #normal hoi4 army sizes
+			GER = { country_event = { id = swrw_misc.2 } } #skilled staffer modifier
+		}
+		GER = {
+			add_dynamic_modifier = {
+				modifier = GER_GT_Army
+			}
+			add_war_support = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_The_Rapture
+	icon = GFX_GER_The_Rapture
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_A_Spectre_Haunts_Germany
+	}
+	relative_position_id = GER_A_Spectre_Haunts_Germany
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_The_Rapture"
+		GER = {
+			add_war_support = 0.05
+			add_to_variable = { GER_GT_Army_def_var = 0.05 }
+			add_to_variable = { GER_GT_Army_atk_var = 0.05 }
+			
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_Revitalizing_The_OKW
+	icon = GFX_GER_Revitalizing_The_OKW
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_The_Rapture
+	}
+	relative_position_id = GER_The_Rapture
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Revitalizing_The_OKW"
+		GER = {
+			add_to_variable = { GER_GT_Army_def_var = 0.05 }
+			add_to_variable = { GER_GT_Army_atk_var = 0.05 }
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_No_Town_Untouched
+	icon = GFX_GER_No_Town_Untouched
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Revitalizing_The_OKW
+	}
+	relative_position_id = GER_Revitalizing_The_OKW
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_No_Town_Untouched"
+		GER = {
+			add_to_variable = { GER_GT_Army_atk_var = 0.05 }
+			add_to_variable = { GER_GT_Army_sup_var = -0.10 }
+			add_stability = -0.05
+			add_war_support = -0.05
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_Fleecing_The_Corporations
+	icon = GFX_GER_Fleecing_The_Corporations
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Revitalizing_The_OKW
+	}
+	relative_position_id = GER_Revitalizing_The_OKW
+	x = -3
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Fleecing_The_Corporations"
+		GER = {
+			add_to_variable = { GER_GT_Army_nod_var = 0.10 }
+			set_temp_variable = { econ_centralization_temp = 25 }
+			econ_centralization_change = yes
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_Our_Past_Trials
+	icon = GFX_GER_Our_Past_Expertise
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Revitalizing_The_OKW
+	}
+	relative_position_id = GER_Revitalizing_The_OKW
+	x = 3
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Our_Past_Trials"
+		GER = {
+			add_to_variable = { GER_GT_Army_trn_var = -0.10 }
+			add_to_variable = { GER_GT_Army_skl_var = 0.10 }
+			add_command_power = 25
+			tno_improve_army_professionalism_high = yes
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_A_Wall_Of_Water_And_Mud
+	icon = GFX_GER_A_Wall_Of_Water_And_Mud
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_No_Town_Untouched
+	}
+	relative_position_id = GER_No_Town_Untouched
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_A_Wall_Of_Water_And_Mud"
+		GER = {
+			add_to_variable = { GER_GT_Army_rvr_var = -0.15 }
+			add_to_variable = { GER_GT_Army_def_var = 0.10 }
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+		RUS = {
+			set_temp_variable = {
+				temp_exhaustion = 5
+			}
+			WRW_add_war_exhaustion = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Render_Unto_Caesar
+	icon = GFX_GER_Render_Unto_Caesar
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Fleecing_The_Corporations
+	}
+	relative_position_id = GER_Fleecing_The_Corporations
+	x = 1
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Render_Unto_Caesar"
+		GER = {
+			add_to_variable = { GER_GT_Army_prd_var = 0.10 }
+			set_temp_variable = { money_reserves_temp = 2.00 }
+			econ_money_reserves_change_raw_money = yes
+		}
+		CAU = {
+			add_stability = -0.1
+		}
+		UKR = {
+			add_stability = -0.1
+		}
+		OST = {
+			add_stability = -0.1
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_Every_Inch_A_Battleground
+	icon = GFX_GER_Every_Inch_A_Battleground
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Our_Past_Trials
+	}
+	relative_position_id = GER_Our_Past_Trials
+	x = -1
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Every_Inch_A_Battleground"
+		GER = {
+			add_to_variable = { GER_GT_Army_dsp_var = 0.20 }
+			add_to_variable = { GER_GT_Army_dmx_var = 0.10 }
+			add_stability = 0.1
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_The_White_Horse
+	icon = GFX_GER_The_white_Horse
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Every_Inch_A_Battleground
+	}
+	prerequisite = {
+		focus = GER_Render_Unto_Caesar
+	}
+	prerequisite = {
+		focus = GER_A_Wall_Of_Water_And_Mud
+	}
+	relative_position_id = GER_A_Wall_Of_Water_And_Mud
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_The_White_Horse"
+		GER = {
+			add_to_variable = { GER_GT_Army_mrg_var = -0.20 }
+			add_to_variable = { GER_GT_Army_ocp_var = -0.20 }
+			add_to_variable = { GER_GT_Army_brk_var = 0.10 }
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_All_For_The_Reich
+	icon = GFX_GER_All_For_The_Reich
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_The_Rapture
+	}
+	relative_position_id = GER_The_Rapture
+	x = -9
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_All_For_The_Reich"
+		GER = {
+			add_dynamic_modifier = {
+				modifier = GER_GT_Econ
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_An_Engine_Ran_On_Blood
+	icon = GFX_GER_Nobility_In_Labor
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_All_For_The_Reich
+	}
+	relative_position_id = GER_All_For_The_Reich
+	x = -3
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_An_Engine_Ran_On_Blood"
+		GER = {
+			add_stability = 0.1
+			add_to_variable = { GER_GT_Econ_man_var = 0.01 }
+			add_to_variable = { GER_GT_Econ_brk_var = 0.10 }
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_The_National_Struggle
+	icon = GFX_GER_The_National_Struggle
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_All_For_The_Reich
+	}
+	relative_position_id = GER_All_For_The_Reich
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_The_National_Struggle"
+		GER = {
+			add_to_variable = { GER_GT_Econ_man_var = 0.10 }
+			add_war_support = 0.2
+			TNO_improve_press_rights_policy_effectiveness_high = yes
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_The_Many_Talons_Of_The_Eagle
+	icon = GFX_GER_Boons_Of_The_Einheitspakt
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_All_For_The_Reich
+	}
+	relative_position_id = GER_All_For_The_Reich
+	x = 3
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_The_Many_Talons_Of_The_Eagle"
+		add_to_variable = { GER_GT_Econ_man_var = 0.01 }
+		add_to_variable = { GER_GT_Econ_def_var = 0.10 }
+		CAU = {
+			add_stability = 0.1
+		}
+		UKR = {
+			add_stability = 0.1
+		}
+		OST = {
+			add_stability = 0.1
+		}
+		MCW = {
+			add_stability = 0.1
+		}
+		BRG = {
+			add_stability = 0.1
+			add_to_war = {
+    			targeted_alliance = GER
+    			enemy = RUS
+    			hostility_reason = asked_to_join
+			}
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+#shared_focus = {
+#	id = GER_Fan_The_Winds_Of_Desperation
+#	icon = GFX_GER_Fan_The_Winds_Of_Desperation
+#	cost = 3
+#	available_if_capitulated = no
+#	prerequisite = {
+#		focus = GER_The_Many_Talons_Of_The_Eagle
+#	}
+#	prerequisite = {
+#		focus = GER_The_National_Struggle
+#	}
+#	prerequisite = {
+#		focus = GER_An_Engine_Ran_On_Blood
+#	}
+#	relative_position_id = GER_The_National_Struggle
+#	x = 0
+#	y = 1
+#	ai_will_do = { factor = 1 }
+#	bypass = {
+#		GER = {
+#			has_war = no
+#		}
+#	}
+#	completion_reward = {
+#		log = "[GetDateText]: [Root.GetName]: GER_Fan_The_Winds_Of_Desperation"
+#		GER = {
+#			add_to_variable = { GER_GT_Econ_sur_var = 0.10 }
+#			add_to_variable = { GER_GT_Econ_sup_var = 0.10 }
+#		}
+#		custom_effect_tooltip = GRO_drums_empowered_tt
+#	}
+#}
+
+shared_focus = {
+	id = GER_There_Is_No_Want
+	icon = GFX_GER_There_Is_No_Want
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_The_Many_Talons_Of_The_Eagle
+	}
+	prerequisite = {
+		focus = GER_The_National_Struggle
+	}
+	prerequisite = {
+		focus = GER_An_Engine_Ran_On_Blood
+	}
+	relative_position_id = GER_The_National_Struggle
+	x = -2
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_There_Is_No_Want"
+		GER = {
+			add_to_variable = { GER_GT_Econ_res_var = 0.10 }
+			add_to_variable = { GER_GT_Econ_con_var = -0.10 }
+			TNO_worsen_poverty_high = yes
+			# Some GDP -> reserves effect idk
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_Only_What_Must_Be_Done
+	icon = GFX_GER_Only_What_Must_Be_Done
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_The_Many_Talons_Of_The_Eagle
+	}
+	prerequisite = {
+		focus = GER_The_National_Struggle
+	}
+	prerequisite = {
+		focus = GER_An_Engine_Ran_On_Blood
+	}
+	relative_position_id = GER_The_National_Struggle
+	x = 2
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Only_What_Must_Be_Done"
+		GER = {
+			add_to_variable = { GER_GT_Econ_sup_var = -0.10 }
+			add_to_variable = { GER_GT_Econ_nod_var = 0.20 }
+			TNO_worsen_poverty_high = yes
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_Black_Horse
+	icon = GFX_GER_On_A_Black_Horse_Sat_Famine
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Only_What_Must_Be_Done
+	}
+	prerequisite = {
+		focus = GER_There_Is_No_Want
+	}
+	relative_position_id = GER_Only_What_Must_Be_Done
+	x = -2
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Black_Horse"
+		GER = {
+			add_to_variable = { GER_GT_Econ_pop_var = -0.20 }
+			add_to_variable = { GER_GT_Econ_nod_var = 0.30 }
+			add_to_variable = { GER_GT_Econ_sup_var = -0.10 }
+			add_to_variable = { GER_GT_Econ_cvr_var = -0.40 }
+			add_to_variable = { GER_GT_Econ_man_var = 0.02 }
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+	}
+}
+
+shared_focus = {
+	id = GER_Vengeance_Incarnate
+	icon = GFX_GER_Vengeance_Incarnate
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_The_Rapture
+	}
+	relative_position_id = GER_The_Rapture
+	x = 9
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Fan_The_Winds_Of_Desperation"
+		GER = {
+			add_political_power = 150
+			add_war_support = 0.1
+			#add_dynamic_modifier = {
+			#	modifier = GER_GT_Forpol
+			#}
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_A_Meeting_Of_Necessity
+	icon = GFX_GER_A_Meeting_of_Necessity
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Vengeance_Incarnate
+	}
+	relative_position_id = GER_Vengeance_Incarnate
+	x = -2
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_A_Meeting_Of_Necessity"
+		every_country = {
+			limit = {
+				OR = {
+					is_in_faction_with = USA
+					is_in_faction_with = JAP
+				}
+			}
+			add_opinion_modifier = {
+				target = GER
+				modifier = huge_increase
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Old_Friends_In_Rome
+	icon = GFX_GER_Old_Friends_In_Rome
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Vengeance_Incarnate
+	}
+	relative_position_id = GER_Vengeance_Incarnate
+	x = 2
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Old_Friends_In_Rome"
+		GER = {
+			TNO_improve_industrial_expertise_high = yes
+		}
+		ITA = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = large_increase
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Sins_Of_The_Demons_Revealed
+	icon = GFX_GER_On_A_Red_Horse
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Vengeance_Incarnate
+	}
+	relative_position_id = GER_Vengeance_Incarnate
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Sins_Of_The_Demons_Revealed"
+		every_country = {
+			limit = {
+				OR = {
+					is_in_faction_with = USA
+					is_in_faction_with = JAP
+				}
+			}
+			add_opinion_modifier = {
+				target = OMS
+				modifier = large_decrease
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Comrades_In_The_Balkans
+	icon = GFX_GER_Comrades_In_The_Balkans
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Old_Friends_In_Rome
+	}
+	relative_position_id = GER_Old_Friends_In_Rome
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Comrades_In_The_Balkans"
+		set_global_flag = GT_balkan_comrades
+		TUR = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = large_increase
+			}
+		}
+		TUR = {
+			set_temp_variable = { target = GER }
+			set_temp_variable = { to_add = 6 }
+			TNO_add_num_volunteers = yes
+		}
+		ROM = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = large_increase
+			}
+		}
+		ROM = {
+			set_temp_variable = { target = GER }
+			set_temp_variable = { to_add = 3 }
+			TNO_add_num_volunteers = yes
+		}
+		BUL = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = large_increase
+			}
+		}
+		BUL = {
+			set_temp_variable = { target = GER }
+			set_temp_variable = { to_add = 3 }
+			TNO_add_num_volunteers = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = GER_Against_The_Maelstrom_Of_Hatred
+	icon = GFX_GER_Secure_Wehrmacht_Resources
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_A_Meeting_Of_Necessity
+	}
+	relative_position_id = GER_A_Meeting_Of_Necessity
+	x = 0
+	y = 1
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_Against_The_Maelstrom_Of_Hatred"
+		GER = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 25000
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = 2000
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = anti_air_shoulder_equipment
+				amount = 2000
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = mbt_equipment
+				amount = 500
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = fighter_equipment
+				amount = 250
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = interceptor_equipment
+				amount = 100
+				producer = USA
+			}
+			add_equipment_to_stockpile = {
+				type = tac_bomber_equipment
+				amount = 50
+				producer = USA
+			}
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+
+	}
+}
+
+shared_focus = {
+	id = GER_On_A_Red_Horse_Sat_War
+	icon = GFX_GER_On_A_Red_Horse_Sat_War
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_Against_The_Maelstrom_Of_Hatred
+	}
+	prerequisite = {
+		focus = GER_Comrades_In_The_Balkans
+	}
+	prerequisite = {
+		focus = GER_Sins_Of_The_Demons_Revealed
+	}
+	relative_position_id = GER_Sins_Of_The_Demons_Revealed
+	x = 0
+	y = 2
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_On_A_Red_Horse_Sat_War"
+		GER = {
+			add_to_variable = { GER_GT_Army_atk_var = 0.1 }
+		}
+		custom_effect_tooltip = GRO_drums_empowered_tt
+
+	}
+}
+
+shared_focus = {
+	id = GER_Riding_On_A_Pale_Horse_Came_Death
+	icon = GFX_GER_Riding_On_A_Pale_Horse_Came_Death
+	cost = 3
+	available_if_capitulated = no
+	prerequisite = {
+		focus = GER_On_A_Red_Horse_Sat_War
+	}
+	prerequisite = {
+		focus = GER_Black_Horse
+	}
+	prerequisite = {
+		focus = GER_The_White_Horse
+	}
+	relative_position_id = GER_The_White_Horse
+	x = 0
+	y = 2
+	ai_will_do = { factor = 1 }
+	bypass = {
+		GER = {
+			has_war = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: GER_On_A_Red_Horse_Sat_War"
+		GER = {
+			add_to_variable = { GER_GT_Army_atk_var = 0.1 }
+			add_to_variable = { GER_GT_Army_col_var = 0.25 }
+			add_to_variable = { GER_GT_Army_air_var = 0.2 }
+		}
+		custom_effect_tooltip = GER_GT_boom_boom_tt
+
+	}
+}
+
+
+#################################
+#     Bormann/Speer WW3 Tree    #
+#################################
+
+shared_focus = { # oh boy you've done it haven't you
+	id = GER_WW3_gotterdamerung_POSTNUKE
+	icon = GFX_focus_GER_swastika_in_front_of_sun
+	cost = 3
+	x = 8
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_gotterdamerung"
+		add_political_power = 150
+		tno_conscription_worsen = yes
+		set_variable = { GER_WW3_max_dig_in = 0 }
+		set_variable = { GER_WW3_conscription_factor = 0 }
+		set_variable = { GER_WW3_training_time_army_factor = 0 }
+		set_variable = { GER_WW3_industrial_capacity_factory = 0 }
+		set_variable = { GER_WW3_industrial_capacity_dockyard = 0 }
+		set_variable = { GER_WW3_amphibious_invasion = 0 }
+		set_variable = { GER_WW3_invasion_preparation = 0 }
+		set_variable = { GER_WW3_air_strategic_bomber_bombing_factor = 0 }
+		set_variable = { GER_WW3_air_range_factor = 0 }
+		set_variable = { GER_WW3_army_speed_factor = 0 }
+		set_variable = { GER_WW3_recon_factor = 0 }
+		add_dynamic_modifier = { modifier = GER_WW3_dynamic_modifier }
+	}
+}
+
+shared_focus = { # Get people to fight
+	id = GER_WW3_to_the_frontlines_POSTNUKE
+	icon = GFX_focus_COG_because_men_will_win_the_war
+	cost = 3
+	prerequisite = {
+		focus = GER_WW3_gotterdamerung_POSTNUKE
+	}
+	x = -1
+	y = 1
+	relative_position_id = GER_WW3_gotterdamerung_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_to_the_frontlines"
+		custom_effect_tooltip = GER_WW3_to_the_frontlines_tt
+		add_to_variable = { GER_WW3_max_dig_in = 2 }
+		add_to_variable = { GER_WW3_conscription_factor = 0.2 }
+		add_to_variable = { GER_WW3_training_time_army_factor = -0.2 }
+		TNO_improve_army_professionalism = yes
+	}
+}
+
+shared_focus = { # Get people to work
+	id = GER_WW3_to_the_factories_POSTNUKE
+	icon = GFX_focus_GER_factory_proliferation
+	cost = 3
+	prerequisite = {
+		focus = GER_WW3_to_the_frontlines_POSTNUKE
+	}
+	x = -1
+	y = 1
+	relative_position_id = GER_WW3_to_the_frontlines_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_to_the_factories"
+		custom_effect_tooltip = GER_WW3_to_the_factories_tt
+		add_to_variable = { GER_WW3_industrial_capacity_factory = 0.3 }
+		add_to_variable = { GER_WW3_industrial_capacity_dockyard = 0.3 }
+	}
+}
+
+shared_focus = { # WWII 2: Electric Boogaloo
+	id = GER_WW3_totaler_krieg_POSTNUKE
+	icon = GFX_focus_GER_war_memorials
+	cost = 3
+	prerequisite = {
+		focus = GER_WW3_to_the_factories_POSTNUKE
+	}
+	x = 0
+	y = 1
+	relative_position_id = GER_WW3_to_the_factories_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_totaler_krieg"
+		add_war_support = 0.05
+		set_temp_variable = {
+			pus_temp = 15
+		}
+		econ_pus_change = yes
+	}
+}
+
+shared_focus = { # Time to kill America
+	id = GER_WW3_finishing_the_job_POSTNUKE
+	icon = GFX_focus_GER_operation_hydra
+	cost = 3
+	prerequisite = {
+		focus = GER_WW3_gotterdamerung_POSTNUKE
+	}
+	x = 1
+	y = 1
+	relative_position_id = GER_WW3_gotterdamerung_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_finishing_the_job"
+		add_stability = 0.25
+		add_war_support = 0.25
+		TNO_improve_army_professionalism = yes
+	}
+}
+
+shared_focus = { # But first we're killing the anglos
+	id = GER_WW3_secure_the_isles_POSTNUKE
+	icon = GFX_focus_GER_the_eastern_pakt
+	cost = 3
+	prerequisite = {
+		focus = GER_WW3_finishing_the_job_POSTNUKE
+	}
+	x = 1
+	y = 1
+	relative_position_id = GER_WW3_finishing_the_job_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_secure_the_isles"
+		custom_effect_tooltip = GER_WW3_secure_the_isles_tt
+		add_to_variable = { GER_WW3_amphibious_invasion = 0.2 }
+		add_to_variable = { GER_WW3_invasion_preparation = -0.5 }
+	}
+}
+
+shared_focus = { # BOMB BOMB BOMB USA
+	id = GER_WW3_amerika_bomber_POSTNUKE
+	icon = GFX_focus_generic_bombing_raid
+	cost = 3
+	prerequisite = {
+		focus = GER_WW3_secure_the_isles_POSTNUKE
+	}
+	x = 0
+	y = 1
+	relative_position_id = GER_WW3_secure_the_isles_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_amerika_bomber"
+		add_equipment_to_stockpile = {
+			type = strat_bomber_equipment
+			amount = 400
+			producer = GER
+		}
+		custom_effect_tooltip = GER_WW3_amerika_bomber_tt
+		set_variable = { GER_WW3_air_strategic_bomber_bombing_factor = 0.1 }
+		set_variable = { GER_WW3_air_range_factor = 0.5 }
+	}
+}
+
+shared_focus = { # We're also killing the pastoids
+	id = GER_WW3_operation_alaric_POSTNUKE
+	icon = GFX_focus_GER_burn_the_peninsula
+	cost = 3
+	prerequisite = {
+		focus = GER_WW3_gotterdamerung_POSTNUKE
+	}
+	x = 0
+	y = 2
+	relative_position_id = GER_WW3_gotterdamerung_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_operation_alaric_POSTNUKE"
+		custom_effect_tooltip = GER_WW3_operation_alaric_tt
+		set_variable = { GER_WW3_army_speed_factor = 0.15 }
+		set_variable = { GER_WW3_recon_factor = 0.15 }
+	}
+}
+
+shared_focus = { # The swiss too
+	id = GER_WW3_over_the_alps_POSTNUKE
+	icon = GFX_focus_YUN_mountain_people
+	cost = 2
+	prerequisite = {
+		focus = GER_WW3_operation_alaric_POSTNUKE
+	}
+	x = 0
+	y = 1
+	relative_position_id = GER_WW3_operation_alaric_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_over_the_alps"
+		custom_effect_tooltip = GER_WW3_over_the_alps_tt
+		hidden_effect = { set_technology = { over_the_alps_tech = 1 } }
+	}
+}
+
+shared_focus = { # And now we're killing everybody on earth
+	id = GER_WW3_endsieg_POSTNUKE
+	icon = GFX_focus_generic_nuclear_apocalypse
+	cost = 2
+	prerequisite = {
+		focus = GER_WW3_totaler_krieg_POSTNUKE
+		focus = GER_WW3_amerika_bomber_POSTNUKE
+		focus = GER_WW3_over_the_alps_POSTNUKE
+	}
+	available = {
+	}
+	x = 0
+	y = 1
+	relative_position_id = GER_WW3_over_the_alps_POSTNUKE
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus GER_WW3_endsieg"
+		custom_effect_tooltip = GER_WW3_endsieg_tt
+		hidden_effect = {
+			add_to_variable = { GER_WW3_industrial_capacity_factory = 1 }
+		}
+	}
+}
+ 

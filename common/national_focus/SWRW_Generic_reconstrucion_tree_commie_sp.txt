@@ -1,0 +1,1750 @@
+focus_tree = {
+	id = RUS_reconstruction_commie_tree
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = RUS
+		}
+	}
+	default = no
+	shared_focus = RUS_commie_reconstruction
+	shared_focus = RUS_commie_soul_and_heart
+	#shared_focus = TOT_the_found_of_comintern
+}
+
+shared_focus = {
+	id = RUS_commie_soul_and_heart
+	icon = GFX_focus_USA_hart_sundown
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 50
+	y = 0
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = soul_and_heart_tt
+			has_country_flag = RUS_reconstruct_and_develop_started_commie
+		}
+	}
+	completion_reward = {
+		add_stability = 0.1
+		add_political_power = 50
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_the_great_social
+	icon = GFX_focus_USA_chep_the_dynasty
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_commie_soul_and_heart
+	prerequisite = {
+		focus = RUS_commie_soul_and_heart
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_commie_the_great_social_tt
+		add_dynamic_modifier = { modifier = RUS_great_society }
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_social_revolution
+	icon = GFX_focus_KOM_socialist_superculture
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_the_great_social
+	prerequisite = {
+		focus = RUS_commie_the_great_social
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.015 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_modern_social
+	icon = GFX_focus_KOM_march_to_utopia
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_the_great_social
+	prerequisite = {
+		focus = RUS_commie_the_great_social
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.015 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_commie_CAC }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_community_actions
+	icon = GFX_focus_USA_hart_duty_to_your_community
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 1
+	relative_position_id = RUS_commie_modern_social
+	prerequisite = {
+		focus = RUS_commie_modern_social
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_hospitals_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_prisons_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_barracks_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_offices_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_schools_coverage_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_crime_act
+	icon = GFX_focus_USA_hart_the_crime_bill
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_community_actions
+	prerequisite = {
+		focus = RUS_commie_community_actions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		RUS_goc_prisons_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		RUS_goc_barracks_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_penal_system_policy_monthly_rate_add_N = yes
+
+		tno_security_improve = yes
+
+		set_temp_variable = { temp_law = token:RUS_commie_anti_crime }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_community_no_hungry
+	icon = GFX_focus_USA_hart_no_stomach_left_behind
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 2
+	relative_position_id = RUS_commie_community_actions
+	prerequisite = {
+		focus = RUS_commie_community_actions
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.03 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1.5 }
+		RUS_goc_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1.5 }
+		RUS_goc_inflation_rate_modifier_add_N = yes
+
+		tno_unemployment_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_healthcare_for_everyone
+	icon = GFX_focus_GNG_rout_them_to_the_last_man
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_commie_community_actions
+	prerequisite = {
+		focus = RUS_commie_crime_act
+	}
+	prerequisite = {
+		focus = RUS_commie_future_is_come
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.005 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_health_care_policy_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_healthcare_monthly_rate_add_N = yes
+		tno_health_care_improve = yes
+		set_temp_variable = { temp_law = token:RUS_commie_health_care }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_education_state
+	icon = GFX_focus_USA_hart_the_best_weapon
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_future_is_come
+	prerequisite = {
+		focus = RUS_commie_future_is_come
+	}
+	prerequisite = {
+		focus = RUS_commie_russia_city
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.005 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.33 }
+		RUS_goc_academic_base_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.67 }
+		RUS_goc_education_policy_monthly_rate_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_commie_basic_edu }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_high_education_act
+	icon = GFX_focus_GNG_enact_education_quotas
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 2
+	relative_position_id = RUS_commie_russia_city
+	prerequisite = {
+		focus = RUS_commie_russia_city
+	}
+	prerequisite = {
+		focus = RUS_commie_future_is_come
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_goc_schools_coverage_modifier_add_N = yes
+		tno_education_improve = yes
+		set_temp_variable = { temp_law = token:RUS_commie_high_edu }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_city_runs_well
+	icon = GFX_focus_USA_hart_americanist_cities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 3
+	relative_position_id = RUS_commie_russia_city
+	prerequisite = {
+		focus = RUS_commie_education_state
+	}
+	prerequisite = {
+		focus = RUS_commie_high_education_act
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_hospitals_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_prisons_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_barracks_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_offices_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_schools_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_admin_efficiency_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_goc_misc_income_percent_of_GDP_modifier_add_N = yes
+
+		set_temp_variable = { RUS_add_rebuild_var = 0.25 }
+		RUS_goc_poverty_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_urbanization_accelerate
+	icon = GFX_focus_USA_hart_amtrak_is_in_business
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 3
+	relative_position_id = RUS_commie_russia_city
+	prerequisite = {
+		focus = RUS_commie_community_no_hungry
+	}
+	prerequisite = {
+		focus = RUS_commie_healthcare_for_everyone
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_industrial_equipment_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_industrial_expertise_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_pensions_policy_monthly_rate_add = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_unemployment_policy_monthly_rate_add = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_regulations_policy_monthly_rate_add = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_city_nights
+	icon = GFX_focus_GNG_dare_to_dream
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 3
+	relative_position_id = RUS_commie_russia_city
+	prerequisite = {
+		focus = RUS_commie_education_state
+	}
+	prerequisite = {
+		focus = RUS_commie_community_no_hungry
+	}
+	prerequisite = {
+		focus = RUS_commie_healthcare_for_everyone
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.01 }
+		RUS_goc_misc_income_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_goc_schools_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_goc_barracks_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_goc_prisons_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_goc_hospitals_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_goc_offices_coverage_modifier_add_N = yes
+
+		set_temp_variable = { temp_law = token:RUS_commie_city_eco }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_engine_stabled
+	icon = GFX_focus_USA_hart_cooking_on_the_engine
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 4
+	relative_position_id = RUS_commie_russia_city
+	prerequisite = {
+		focus = RUS_commie_city_nights
+	}
+	prerequisite = {
+		focus = RUS_commie_urbanization_accelerate
+	}
+	prerequisite = {
+		focus = RUS_commie_city_runs_well
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.03 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1.5 }
+		RUS_goc_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.5 }
+		RUS_goc_inflation_rate_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_engine_boosted
+	icon = GFX_focus_USA_hart_full_steam_ahead
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 4
+	relative_position_id = RUS_commie_russia_city
+	prerequisite = {
+		focus = RUS_commie_city_nights
+	}
+	prerequisite = {
+		focus = RUS_commie_urbanization_accelerate
+	}
+	prerequisite = {
+		focus = RUS_commie_city_runs_well
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		RUS_goc_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		RUS_goc_inflation_rate_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_nights_of_russia
+	icon = GFX_RUS_russia_night
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 8
+	relative_position_id = RUS_commie_the_great_social
+	prerequisite = {
+		focus = RUS_commie_great_social_law
+	}
+	prerequisite = {
+		focus = RUS_commie_engine_boosted
+	}
+
+	prerequisite = {
+		focus = RUS_commie_engine_stabled
+	}
+	completion_reward = {
+		set_country_flag = RUS_soc_ended
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_misc_income_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_admin_efficiency_monthly_rate_add_N = yes
+		RUS_goc_research_facilities_monthly_rate_add_N = yes
+		RUS_goc_agriculture_monthly_rate_add_N = yes
+		RUS_goc_healthcare_monthly_rate_add_N = yes
+		RUS_goc_industrial_equipment_monthly_rate_add_N = yes
+		RUS_goc_industrial_expertise_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.67 }
+		RUS_goc_minimum_wage_policy_monthly_rate_add_N = yes
+		RUS_goc_max_workhours_policy_monthly_rate_add_N = yes
+		RUS_goc_pensions_policy_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_gdp_growth_modifier_add_N = yes
+		tno_women_improve = yes
+		tno_gender_rights_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_future_is_come
+	icon = GFX_focus_KOM_poyekhali
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_community_actions
+	prerequisite = {
+		focus = RUS_commie_community_actions
+	}
+	prerequisite = {
+		focus = RUS_commie_russia_city
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.01 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		tno_education_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_research_facilities_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_russia_city
+	icon = GFX_focus_KOM_closed_cities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_modern_social
+	prerequisite = {
+		focus = RUS_commie_modern_social
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_hospitals_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_prisons_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_barracks_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_offices_coverage_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_goc_schools_coverage_modifier_add_N = yes
+
+		RUS_goc_admin_efficiency_monthly_rate_add_N = yes
+
+		set_temp_variable = { temp_law = token:RUS_commie_city_modern }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_sports_night
+	icon = GFX_focus_USA_hart_midnight_basketball
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_russia_city
+	prerequisite = {
+		focus = RUS_commie_russia_city
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		tno_lgbt_rights_improve = yes
+		tno_minorities_improve = yes
+	}
+}
+
+
+
+shared_focus = {
+	id = RUS_commie_what_keeps_us_together
+	icon = GFX_focus_USA_hart_what_keeps_us_together
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 1
+	relative_position_id = RUS_commie_social_revolution
+	prerequisite = {
+		focus = RUS_commie_social_revolution
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.55 }
+		RUS_goc_health_care_policy_monthly_rate_add_N = yes
+		RUS_goc_regulations_policy_monthly_rate_add_N = yes
+		RUS_goc_education_policy_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_fight_to_poverty
+	icon = GFX_focus_USA_hart_over_and_under
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_social_revolution
+	prerequisite = {
+		focus = RUS_commie_social_revolution
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.375 }
+		RUS_goc_poverty_monthly_rate_add_N = yes
+		TNO_improve_poverty_high = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_min_wage
+	icon = GFX_focus_GNG_slash_wages
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_fight_to_poverty
+	prerequisite = {
+		focus = RUS_commie_fight_to_poverty
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_minimum_wage_policy_monthly_rate_add_N = yes
+		tno_minimum_wage_improve = yes
+		set_temp_variable = { temp_law = token:RUS_commie_work_wage }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_work_hours
+	icon = GFX_focus_USA_bring_back_unions
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_fight_to_poverty
+	prerequisite = {
+		focus = RUS_commie_fight_to_poverty
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		RUS_goc_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_max_workhours_policy_monthly_rate_add_N = yes
+		tno_max_workhours_improve = yes
+		set_temp_variable = { temp_law = token:RUS_commie_work_time }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_social_revolution_act
+	icon = GFX_USA_Glenn_Our_Downtrodden
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 1
+	relative_position_id = RUS_commie_fight_to_poverty
+	prerequisite = {
+		focus = RUS_commie_fight_to_poverty
+	}
+	prerequisite = {
+		focus = RUS_commie_what_keeps_us_together
+	}
+	completion_reward = {
+		tno_child_labor_improve = yes
+		tno_safety_improve = yes
+		tno_racial_integration_improve = yes
+		tno_gender_rights_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_tech_reborn
+	icon = GFX_focus_USA_hart_the_second_american_revolution
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_social_revolution_act
+	prerequisite = {
+		focus = RUS_commie_social_revolution_act
+	}
+	prerequisite = {
+		focus = RUS_commie_work_hours
+	}
+	prerequisite = {
+		focus = RUS_commie_min_wage
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_max_workhours_policy_monthly_rate_add_N = yes
+		RUS_goc_research_facilities_monthly_rate_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_colorful_culture
+	icon = GFX_focus_KOM_the_seeds_of_superculture
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 1
+	relative_position_id = RUS_commie_social_revolution_act
+	prerequisite = {
+		focus = RUS_commie_social_revolution_act
+	}
+	prerequisite = {
+		focus = RUS_commie_work_hours
+	}
+	prerequisite = {
+		focus = RUS_commie_min_wage
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_gender_rights_policy_monthly_rate_add_N = yes
+		tno_women_improve = yes
+		tno_minorities_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_green_social
+	icon = GFX_focus_GNG_the_quagmires_of_tommorow
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -4
+	y = 2
+	relative_position_id = RUS_commie_social_revolution_act
+	prerequisite = {
+		focus = RUS_commie_social_revolution_act
+	}
+	prerequisite = {
+		focus = RUS_commie_work_hours
+	}
+	prerequisite = {
+		focus = RUS_commie_min_wage
+	}
+	completion_reward = {
+		tno_pollution_improve = yes
+		tno_regulations_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_goc_regulations_policy_monthly_rate_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_commie_eco_soc }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_equal_social
+	icon = GFX_focus_USA_hart_cutting_some_corners
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 2
+	relative_position_id = RUS_commie_social_revolution_act
+	prerequisite = {
+		focus = RUS_commie_social_revolution_act
+	}
+	prerequisite = {
+		focus = RUS_commie_work_hours
+	}
+	prerequisite = {
+		focus = RUS_commie_min_wage
+	}
+	completion_reward = {
+		tno_refugees_improve = yes
+		tno_racial_integration_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_goc_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_commie_fair_soc }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_open_social
+	icon = GFX_focus_USA_hart_pimp_my_ride
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_commie_social_revolution_act
+	prerequisite = {
+		focus = RUS_commie_social_revolution_act
+	}
+	prerequisite = {
+		focus = RUS_commie_work_hours
+	}
+	prerequisite = {
+		focus = RUS_commie_min_wage
+	}
+	completion_reward = {
+		tno_minorities_improve = yes
+		tno_racial_integration_improve = yes
+		tno_refugees_improve = yes
+		tno_child_labor_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		RUS_goc_gender_rights_policy_monthly_rate_add_N = yes
+		set_temp_variable = { temp_law = token:RUS_commie_open_soc }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_great_social_law
+	icon = GFX_focus_GNG_the_smoke_clears
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 3
+	relative_position_id = RUS_commie_social_revolution_act
+	prerequisite = {
+		focus = RUS_commie_open_social
+	}
+	prerequisite = {
+		focus = RUS_commie_equal_social
+	}
+	prerequisite = {
+		focus = RUS_commie_green_social
+	}
+	prerequisite = {
+		focus = RUS_commie_colorful_culture
+	}
+	prerequisite = {
+		focus = RUS_commie_tech_reborn
+	}
+	completion_reward = {
+		set_temp_variable = { gdp_growth_temp = 1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { temp_law = token:RUS_commie_soc_revo }
+		TNO_add_assorted_law = yes
+		tno_pensions_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_economic_of_ussr
+	icon = GFX_Break_Out_The_Graphs
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 15
+	y = 1
+	relative_position_id = RUS_commie_soul_and_heart
+	prerequisite = {
+		focus = RUS_commie_soul_and_heart
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_commie_eco_reform }
+		TNO_add_assorted_law = yes
+		add_dynamic_modifier = { modifier = RUS_modern_economy }
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_unity_economy
+	icon = NOV_federal_insurance_act
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	relative_position_id = RUS_commie_economic_of_ussr
+	prerequisite = {
+		focus = RUS_commie_economic_of_ussr
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_commie_eco_plus }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_mec_annual_gdp_growth_factor_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_new_city_program
+	icon = GFX_focus_KOM_urban_resettlement
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_unity_economy
+	prerequisite = {
+		focus = RUS_commie_unity_economy
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.25 }
+		RUS_mec_schools_PE_modifier_add_N = yes
+		RUS_mec_hospitals_PE_modifier_add_N = yes
+		RUS_mec_prisons_PE_modifier_add_N = yes
+		RUS_mec_barracks_PE_modifier_add_N = yes
+		RUS_mec_offices_PE_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_industrial_symphony
+	icon = GFX_focus_USA_hart_rules_and_regulation
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_unity_economy
+	prerequisite = {
+		focus = RUS_commie_unity_economy
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.5 }
+		RUS_mec_inflation_rate_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_buttons_and_levers
+	icon = GFX_focus_USA_hart_buttons_and_levers
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_industrial_symphony
+	prerequisite = {
+		focus = RUS_commie_industrial_symphony
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		RUS_mec_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.25 }
+		RUS_mec_consumer_goods_production_factor_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_production_units_to_GDP_ratio_modifier_add_N = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_roads_roads_roads
+	icon = GFX_focus_USA_hart_over_and_under
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_commie_buttons_and_levers
+	prerequisite = {
+		focus = RUS_commie_buttons_and_levers
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.03 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -15 }
+		RUS_mec_free_production_units_modifier_add_N = yes
+		every_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 2
+				instant_build = yes 
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_steam_and_steel
+	icon = GFX_focus_KOM_diversified_applications
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_new_city_program
+	prerequisite = {
+		focus = RUS_commie_new_city_program
+	}
+	prerequisite = {
+		focus = RUS_commie_industrial_symphony
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1.5 }
+		RUS_mec_industrial_equipment_monthly_rate_add_N = yes
+		RUS_mec_industrial_expertise_monthly_rate_add_N = yes
+		RUS_mec_gdp_growth_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_city_reform_project
+	icon = GFX_focus_USA_hart_the_adventure_road
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_commie_steam_and_steel
+	prerequisite = {
+		focus = RUS_commie_steam_and_steel
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		RUS_mec_taxable_population_modifier_add_N = yes
+		RUS_mec_poverty_taxation_rate_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.15 }
+		RUS_mec_consumer_goods_use_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_new_russia_city
+	icon = GFX_focus_KOM_glory_to_the_ones_who_look_forward
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_city_reform_project
+	prerequisite = {
+		focus = RUS_commie_city_reform_project
+	}
+	prerequisite = {
+		focus = RUS_commie_roads_roads_roads
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		RUS_mec_misc_costs_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_taxable_population_modifier_add_N = yes
+		RUS_mec_poverty_taxation_rate_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.05 }
+		RUS_mec_consumer_goods_use_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.5 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_shining_new_megapolis_on_the_northern
+	icon = GFX_focus_USA_hart_shining_megalopolis_on_a_hill
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 2
+	relative_position_id = RUS_commie_city_reform_project
+	prerequisite = {
+		focus = RUS_commie_new_russia_city
+	}
+	prerequisite = {
+		focus = RUS_commie_fairness_business_law
+	}
+	prerequisite = {
+		focus = RUS_commie_government_credit_law
+	}
+	prerequisite = {
+		focus = RUS_commie_base_interest_rates
+	}
+	completion_reward = {
+		set_country_flag = RUS_soc_ended
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+		RUS_mec_trade_laws_policy_monthly_rate_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -1 }
+		RUS_mec_inflation_rate_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		RUS_mec_misc_income_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		RUS_mec_misc_income_percent_of_GDP_modifier_add_N = yes
+		RUS_mec_schools_PE_modifier_add_N = yes
+		RUS_mec_hospitals_PE_modifier_add_N = yes
+		RUS_mec_prisons_PE_modifier_add_N = yes
+		RUS_mec_barracks_PE_modifier_add_N = yes
+		RUS_mec_offices_PE_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_new_laws
+	icon = GFX_focus_OMO_2022_a_beacon_in_the_north
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	relative_position_id = RUS_commie_economic_of_ussr
+	prerequisite = {
+		focus = RUS_commie_economic_of_ussr
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.67 }
+		RUS_mec_trade_laws_policy_monthly_rate_add_N = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_solvency
+	icon = GFX_focus_GNG_bottoming_out
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 1
+	relative_position_id = RUS_commie_new_laws
+	prerequisite = {
+		focus = RUS_commie_new_laws
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_mec_misc_income_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { sales_tax_temp = 0.1 }
+		econ_sales_tax_rate_change = yes
+		set_temp_variable = { RUS_add_rebuild_var = -1 }
+		RUS_mec_interest_rate_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_duty_to_people
+	icon = GFX_focus_USA_begin_integration
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_solvency
+	prerequisite = {
+		focus = RUS_commie_solvency
+	}
+	completion_reward = {
+		set_temp_variable = { income_tax_temp = 0.1 }
+		econ_income_tax_rate_change = yes
+		tno_income_taxation_improve = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.1 }
+		RUS_mec_interest_rate_factor_modifier_add_N = yes
+		set_country_flag = RUS_eco_ended
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_transparent_government
+	icon = GFX_focus_USA_clean_government
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_duty_to_people
+	prerequisite = {
+		focus = RUS_commie_duty_to_people
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.33 }
+		RUS_mec_deficit_GDP_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.5 }
+		RUS_mec_deficit_pp_cost_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_base_interest_rates
+	icon = GFX_focus_USA_money_wall
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 2
+	relative_position_id = RUS_commie_duty_to_people
+	prerequisite = {
+		focus = RUS_commie_duty_to_people
+	}
+	completion_reward = {
+		set_temp_variable = { interest_rates_temp = -0.1 }
+		econ_interest_rates_change = yes 
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_government_credit_law
+	icon = GFX_focus_KOM_vision_for_the_industry
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_commie_duty_to_people
+	prerequisite = {
+		focus = RUS_commie_duty_to_people
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_commie_government_credit }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.67 }
+		RUS_mec_deficit_GDP_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.3 }
+		RUS_mec_deficit_pp_cost_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_people_supervision
+	icon = GFX_focus_KOM_pcos
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_duty_to_people
+	prerequisite = {
+		focus = RUS_commie_duty_to_people
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_commie_pol_open }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.3 }
+		RUS_mec_consumer_goods_use_modifier_add_N = yes
+
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_unfreeze_business
+	icon = GFX_focus_KOM_optimized_resource_exploitation
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_new_laws
+	prerequisite = {
+		focus = RUS_commie_new_laws
+	}
+	completion_reward = {
+		set_temp_variable = { econ_centralization_temp = -10 }
+		econ_centralization_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_government_takes_hand_to_help
+	icon = GFX_focus_ENG_a_fair_hand
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_unfreeze_business
+	prerequisite = {
+		focus = RUS_commie_unfreeze_business
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		RUS_mec_annual_gdp_growth_factor_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_spring_of_micro_company
+	icon = GFX_focus_TYM_springtime_for_the_soviet_people
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_commie_government_takes_hand_to_help
+	prerequisite = {
+		focus = RUS_commie_government_takes_hand_to_help
+	}
+	completion_reward = {
+		set_temp_variable = { econ_centralization_temp = -20 }
+		econ_centralization_change = yes
+		set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+		econ_type_change = yes
+		custom_effect_tooltip = RUS_commie_spring_of_micro_company
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_government_credit_to_businessman
+	icon = GFX_focus_generic_business
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	relative_position_id = RUS_commie_government_takes_hand_to_help
+	prerequisite = {
+		focus = RUS_commie_government_takes_hand_to_help
+	}
+	completion_reward = {
+		set_temp_variable = { econ_centralization_temp = -30 }
+		econ_centralization_change = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.02 }
+		RUS_mec_misc_costs_percent_of_GDP_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_fairness_business_law
+	icon = GFX_focus_USA_fair_housing
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 2
+	relative_position_id = RUS_commie_government_takes_hand_to_help
+	prerequisite = {
+		focus = RUS_commie_government_takes_hand_to_help
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_commie_fair_business }
+		TNO_add_assorted_law = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		RUS_mec_gdp_growth_modifier_add_N = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.5 }
+		RUS_mec_inflation_rate_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_trading_and_trading
+	icon = GFX_focus_USA_open_up_trade
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_new_laws
+	prerequisite = {
+		focus = RUS_commie_new_laws
+	}
+	completion_reward = {
+		tno_trade_laws_worsen = yes
+		TNO_improve_trade_laws_policy_effectiveness_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_touch_the_world
+	icon = GFX_focus_USA_hart_the_truman_doctrine
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_trading_and_trading
+	prerequisite = {
+		focus = RUS_commie_trading_and_trading
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		RUS_mec_misc_income_percent_of_GDP_modifier_add_N = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_fairness_trade
+	icon = GFX_focus_GNG_at_the_foot_of_profit
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_trading_and_trading
+	prerequisite = {
+		focus = RUS_commie_trading_and_trading
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_commie_fair_trade }
+		TNO_add_assorted_law = yes
+		tno_trade_laws_worsen = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_the_polic_problem
+	icon = GFX_focus_USA_hart_bits_and_pieces
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -15
+	y = 1
+	relative_position_id = RUS_commie_soul_and_heart
+	prerequisite = {
+		focus = RUS_commie_soul_and_heart
+	}
+	completion_reward = {
+		tno_security_improve = yes
+		TNO_improve_admin_efficiency_low = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_law_and_order
+	icon = GFX_focus_USA_hart_intrastate_competition
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	relative_position_id = RUS_commie_the_polic_problem
+	prerequisite = {
+		focus = RUS_commie_the_polic_problem
+	}
+	completion_reward = {
+		tno_penal_system_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_constitution
+	icon = GFX_NOV_through_our_teachings
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_commie_the_polic_problem
+	prerequisite = {
+		focus = RUS_commie_the_polic_problem
+	}
+	completion_reward = {
+		set_temp_variable = { temp_law = token:RUS_commie_charter }
+		TNO_add_assorted_law = yes
+		if = {
+			limit = {
+				has_idea = tno_vote_franchise_no_voting
+			}
+			tno_vote_franchise_improve = yes
+			hidden_effect = {
+				tno_vote_franchise_improve = yes
+				tno_vote_franchise_improve = yes
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = tno_vote_franchise_elite_voting
+			}
+			tno_vote_franchise_improve = yes
+			hidden_effect = {
+				tno_vote_franchise_improve = yes
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = tno_vote_franchise_inequal_voting
+			}
+			tno_vote_franchise_improve = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_CSTO
+	icon = GFX_focus_KOM_open_the_government
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_constitution
+	prerequisite = {
+		focus = RUS_commie_constitution
+	}
+	completion_reward = {
+		every_country = {
+			limit = {
+				OR = {
+					is_in_faction_with = RUS
+					tag = RUS
+				}
+			}
+			add_ideas = CSTO_coop_member
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_slavery_huh
+	icon = GFX_focus_USA_uncle_sam_worker
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 1
+	relative_position_id = RUS_commie_constitution
+	prerequisite = {
+		focus = RUS_commie_constitution
+	}
+	completion_reward = {
+		TNO_slavery_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_special_action_committe
+	icon = NOV_develop_the_facilities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_slavery_huh
+	prerequisite = {
+		focus = RUS_commie_slavery_huh
+	}
+	completion_reward = {
+		add_ideas = RUS_SAC
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_civil_rights_act
+	icon = GFX_focus_USA_civil_rights_act_deluxe
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_slavery_huh
+	prerequisite = {
+		focus = RUS_commie_slavery_huh
+	}
+	completion_reward = {
+		tno_minorities_improve = yes
+		tno_women_improve = yes
+		add_political_power = 25
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_northern_beacon
+	icon = GFX_focus_USA_hart_the_adventure_road
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 1
+	relative_position_id = RUS_commie_civil_rights_act
+	prerequisite = {
+		focus = RUS_commie_civil_rights_act
+	}
+	completion_reward = {
+		add_political_power = 125
+		tno_immigration_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_land_of_beauty
+	icon = GFX_focus_USA_hart_the_never_ending_campaign
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_civil_rights_act
+	prerequisite = {
+		focus = RUS_commie_civil_rights_act
+	}
+	completion_reward = {
+		add_political_power = 125
+		tno_public_meetings_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_glory_of_country
+	icon = GFX_focus_RUS_past_wrongs
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_civil_rights_act
+	prerequisite = {
+		focus = RUS_commie_civil_rights_act
+	}
+	completion_reward = {
+		add_political_power = 125
+		tno_press_rights_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_home_of_socialism
+	icon = GFX_focus_RUS_red_siberia
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_commie_civil_rights_act
+	prerequisite = {
+		focus = RUS_commie_northern_beacon
+	}
+	prerequisite = {
+		focus = RUS_commie_glory_of_country
+	}
+	prerequisite = {
+		focus = RUS_commie_land_of_beauty
+	}
+	completion_reward = {
+		set_country_flag = RUS_pol_ended
+		set_temp_variable = { inflation_temp = -0.4 }
+		econ_inflation_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_land_of_braver
+	icon = GFX_focus_TYM_new_soviet_spirit
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 2
+	relative_position_id = RUS_commie_civil_rights_act
+	prerequisite = {
+		focus = RUS_commie_northern_beacon
+	}
+	prerequisite = {
+		focus = RUS_commie_glory_of_country
+	}
+	prerequisite = {
+		focus = RUS_commie_land_of_beauty
+	}
+	completion_reward = {
+		tno_immigration_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_party_politic
+	icon = GFX_focus_TYM_equal_in_all_regard
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	relative_position_id = RUS_commie_the_polic_problem
+	prerequisite = {
+		focus = RUS_commie_the_polic_problem
+	}
+	completion_reward = {
+		tno_political_parties_clear = yes
+		add_ideas = tno_political_parties_nonpartisan_system
+	}
+}
+shared_focus = {
+	id = RUS_commie_single_party_state
+	icon = GFX_focus_TYM_a_union_together
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_party_politic
+	prerequisite = {
+		focus = RUS_commie_party_politic
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_allow_other_party
+	}
+	completion_reward = {
+		tno_political_parties_improve = yes
+	}
+}
+shared_focus = {
+	id = RUS_commie_allow_other_party
+	icon = GFX_focus_NOV_sunrise_democracy_sunset_dictatorship
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_party_politic
+	prerequisite = {
+		focus = RUS_commie_party_politic
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_single_party_state
+	}
+	completion_reward = {
+		tno_political_parties_improve = yes
+		tno_political_parties_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_prepare_for_election
+	icon = GFX_focus_USA_get_in_loser_were_saving_america
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	relative_position_id = RUS_commie_allow_other_party
+	prerequisite = {
+		focus = RUS_commie_allow_other_party
+		focus = RUS_commie_single_party_state
+	}
+	completion_reward = {
+		tno_vote_franchise_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_meeting_freedom
+	icon = GFX_focus_USA_rfk_meet_with_civil_rights_leaders
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	relative_position_id = RUS_commie_allow_other_party
+	prerequisite = {
+		focus = RUS_commie_allow_other_party
+		focus = RUS_commie_single_party_state
+	}
+	completion_reward = {
+		tno_public_meetings_improve = yes
+		TNO_improve_public_meetings_policy_effectiveness_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_press_rights
+	icon = GFX_focus_USA_kirk_a_womans_true_place
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 1
+	relative_position_id = RUS_commie_allow_other_party
+	prerequisite = {
+		focus = RUS_commie_allow_other_party
+		focus = RUS_commie_single_party_state
+	}
+	completion_reward = {
+		tno_press_rights_improve = yes
+		TNO_improve_press_rights_policy_effectiveness_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_unions
+	icon = GFX_focus_generic_a_socialist_society
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	relative_position_id = RUS_commie_allow_other_party
+	prerequisite = {
+		focus = RUS_commie_allow_other_party
+		focus = RUS_commie_single_party_state
+	}
+	completion_reward = {
+		tno_trade_unions_improve = yes
+		TNO_improve_trade_unions_policy_effectiveness_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_religious_problem
+	icon = GFX_focus_POL_religious_processions
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 2
+	relative_position_id = RUS_commie_allow_other_party
+	prerequisite = {
+		focus = RUS_commie_allow_other_party
+		focus = RUS_commie_single_party_state
+	}
+	completion_reward = {
+		tno_religious_rights_clear = yes
+		add_ideas = tno_religious_rights_state_atheism
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_state_atheism
+	icon = GFX_focus_generic_religious_peace
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	relative_position_id = RUS_commie_religious_problem
+	prerequisite = {
+		focus = RUS_commie_religious_problem
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_laicism
+	}
+	completion_reward = {
+		TNO_worsen_religious_rights_policy_effectiveness_high = yes
+		add_stability = -0.05
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_laicism
+	icon = GFX_focus_generic_change_law_religion
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_commie_religious_problem
+	prerequisite = {
+		focus = RUS_commie_religious_problem
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_state_atheism
+	}
+	completion_reward = {
+		tno_religious_rights_worsen = yes
+		TNO_improve_religious_rights_policy_effectiveness_high = yes
+	}
+}

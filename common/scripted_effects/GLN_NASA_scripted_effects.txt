@@ -1,0 +1,882 @@
+GLN_fund_NASA_once_effect = {
+	set_temp_variable = { temp_econ_spending_amount_unmodified = temp_econ_spending_amount }
+	if = {
+		limit = {
+			check_variable = {
+				var = temp_econ_spending_amount
+				value = money_reserves
+				compare = less_than_or_equals
+			}
+		}
+		subtract_from_variable = { money_reserves = temp_econ_spending_amount }
+		add_to_variable = { USA_GLN_NASA_Funding = temp_econ_spending_amount }
+		custom_effect_tooltip = TNO_spend_money_tt
+		GLN_NASA_recalculate_budget_left = yes
+	}
+	else_if = {
+		limit = {
+			check_variable = { temp_econ_spending_amount_unmodified < 0 }
+		}
+		set_temp_variable = { money_reserves_temp = temp_econ_spending_amount_unmodified }
+		multiply_temp_variable = { money_reserves_temp = -1 }
+		econ_money_reserves_change_raw_money = yes
+		multiply_temp_variable = { money_reserves_temp = -1 }
+		add_to_variable = { USA_GLN_NASA_Funding = temp_econ_spending_amount}
+		GLN_NASA_recalculate_budget_left = yes
+		
+	}
+	else = {
+		subtract_from_temp_variable = { temp_econ_spending_amount = money_reserves }
+		set_variable = { money_reserves = 0 }
+		add_to_variable = { national_debt = temp_econ_spending_amount }
+		add_to_variable = { USA_GLN_NASA_Funding = temp_econ_spending_amount }
+		custom_effect_tooltip = TNO_spend_money_tt
+		GLN_NASA_recalculate_budget_left = yes
+	}
+	update_economy_tab = yes
+	
+}
+
+GLN_NASA_recalculate_budget_left = {
+	set_variable = { USA_GLN_NASA_Budget_Leftover = USA_GLN_NASA_Funding }
+	set_temp_variable = { budget_impact = USA_GLN_NASA_Mission_Investment }
+	#divide_temp_variable = { budget_impact = 1000 } #Funding is in millions and is directly used in a dynmod so we need to reduce it first
+	subtract_from_variable = { USA_GLN_NASA_Budget_Leftover = budget_impact }
+	set_variable = { USA_GLN_NASA_Funding_Display = USA_GLN_NASA_Funding }
+	multiply_variable = { USA_GLN_NASA_Funding_Display = 1000 }
+	set_variable = { USA_GLN_NASA_Funding_Annual_Display = USA_GLN_NASA_Funding_Annual }
+	multiply_variable = { USA_GLN_NASA_Funding_Annual_Display = 1000 }
+	if = {
+		limit = { check_variable = { USA_GLN_NASA_Budget_Leftover < 0 } }
+		log = "[GetDateText]: [USA.GetName]: Glenn Negative NASA Budget"
+		add_to_variable = { USA_GLN_NASA_Mission_Investment = USA_GLN_NASA_Budget_Leftover }
+		set_variable = { USA_GLN_NASA_Budget_Leftover = 0 }
+	}
+	set_variable = { USA_GLN_NASA_Mission_Investment_Display = USA_GLN_NASA_Mission_Investment }
+	multiply_variable = { USA_GLN_NASA_Mission_Investment_Display = 1000 }
+}
+
+GLN_NASA_Unmanned_Mission = {
+
+	if = { limit = { has_country_flag = USA_GLN_Orion_Program_Activated }
+		set_variable = { USA_GLN_NASA_Mission_Prep = 40 }
+		add_to_variable = { USA_GLN_NASA_Mission_Prep = USA_GLN_NASA_Unmanned_Mission_Boost }
+	}
+
+	if = { limit = { has_country_flag = USA_GLN_Eros_Program_Activated }
+		set_variable = { USA_GLN_NASA_Mission_Prep = 30 }
+		add_to_variable = { USA_GLN_NASA_Mission_Prep = USA_GLN_NASA_Unmanned_Mission_Boost }
+	}
+
+	if = { limit = { has_country_flag = USA_GLN_Minerva_Program_Activated }
+		set_variable = { USA_GLN_NASA_Mission_Prep = 35 }
+		add_to_variable = { USA_GLN_NASA_Mission_Prep = USA_GLN_NASA_Unmanned_Mission_Boost }
+	}
+}
+
+
+
+GLN_NASA_Manned_Mission = {
+
+	if = { limit = { has_country_flag = USA_GLN_Daedulus_Program_Activated }
+		set_variable = { USA_GLN_NASA_Mission_Prep = 30 }
+		add_to_variable = { USA_GLN_NASA_Mission_Prep = USA_GLN_NASA_Manned_Mission_Boost }
+	}
+
+	if = { limit = { has_country_flag = USA_GLN_Diana_Program_Activated }
+		set_variable = { USA_GLN_NASA_Mission_Prep = 20 }
+		add_to_variable = { USA_GLN_NASA_Mission_Prep = USA_GLN_NASA_Manned_Mission_Boost }
+	}
+
+	if = { limit = { has_country_flag = USA_GLN_Ares_Program_Activated }
+		set_variable = { USA_GLN_NASA_Mission_Prep = 10 }
+		add_to_variable = { USA_GLN_NASA_Mission_Prep = USA_GLN_NASA_Manned_Mission_Boost }
+	}
+}
+
+
+
+
+
+GLN_NASA_Mission_Outcome_Unmanned = {
+
+	##### UNMANNED
+
+	hidden_effect = {
+		if = { limit = {has_country_flag = USA_GLN_Doing_Unmanned_Mission }
+
+			set_temp_variable = { USA_GLN_Mission_Outcome_Total_Temp_Var = 100 }
+
+			set_temp_variable = { USA_GLN_Mission_Additive_Chance_Working = 0 }
+
+			if = {
+				limit = { check_variable = { USA_GLN_NASA_Mission_Prep < 90 } }
+
+				set_temp_variable = { USA_GLN_Mission_Additive_Chance_Working = 10 }
+			}
+
+			clamp_variable = {
+				var = USA_GLN_NASA_Mission_Prep
+				min = 0
+				max = 100
+			}
+
+			add_to_temp_variable = { USA_GLN_Mission_Additive_Chance_Working = USA_GLN_NASA_Mission_Prep }
+
+			subtract_from_temp_variable = { USA_GLN_Mission_Outcome_Total_Temp_Var = USA_GLN_Mission_Additive_Chance_Working }
+
+			meta_effect = {
+				text = {
+					random_list = {
+
+						[Get_Nasa_Mission_Prep] = {
+							country_event = { id = glenn.space.2 }
+						}
+
+						[Get_Nasa_Mission_Outcome] = {
+							country_event = { id = glenn.space.1 }
+						}
+
+					}
+				}
+				Get_Nasa_Mission_Prep = "[?USA_GLN_NASA_Mission_Prep]"
+				Get_Nasa_Mission_Outcome = "[?USA_GLN_Mission_Outcome_Total_Temp_Var]"
+			}
+		}
+	}
+}
+
+GLN_NASA_Mission_Outcome_Manned = {
+
+	######## MANNED
+
+	if = { limit = {has_country_flag = USA_GLN_Doing_Manned_Mission }
+
+		hidden_effect = {
+
+			set_temp_variable = { USA_GLN_Mission_Outcome_Total_Temp_Var = 100 }
+			subtract_from_temp_variable = { USA_GLN_Mission_Outcome_Total_Temp_Var = USA_GLN_NASA_Mission_Prep }
+			set_temp_variable = { USA_GLN_Mission_Outcome_Half_Two = 0 }
+			divide_temp_variable = { USA_GLN_Mission_Outcome_Total_Temp_Var = 2 }
+			add_to_temp_variable = { USA_GLN_Mission_Outcome_Half_Two = USA_GLN_Mission_Outcome_Total_Temp_Var }
+
+			meta_effect = {
+				text = {
+					random_list = {
+
+						[Get_Nasa_Mission_Prep] = {
+							country_event = { id = glenn.space.6 }
+						}
+
+						[Get_Nasa_Mission_Outcome] = {
+							country_event = { id = glenn.space.5 }
+						}
+
+						[Get_Nasa_Mission_Outcome_Two] = {
+							country_event = { id = glenn.space.4 }
+						}
+
+					}
+				}
+				Get_Nasa_Mission_Prep = "[?USA_GLN_NASA_Mission_Prep]"
+				Get_Nasa_Mission_Outcome = "[?USA_GLN_Mission_Outcome_Total_Temp_Var]"
+				Get_Nasa_Mission_Outcome_Two = "[?USA_GLN_Mission_Outcome_Half_Two]"
+			}
+		}
+	}
+}
+
+GLN_NASA_Mission_Rewards = {
+
+	###############################
+	######### ORION
+	##############################
+
+	if =  {
+		limit = { has_country_flag = USA_GLN_Orion_Program_Activated }
+
+
+		#### Science Points
+		random_list = {
+			33 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 15 }
+
+				set_temp_variable = { USA_GLN_Orion_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Orion_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Orion_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+			33 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 20 }
+
+				set_temp_variable = { USA_GLN_Orion_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Orion_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Orion_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+			34 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 25 }
+
+				set_temp_variable = { USA_GLN_Orion_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Orion_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Orion_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+		}
+
+		#### Public Support
+		random_list = {
+			33 = { set_variable = { USA_GLN_Mission_Public_Support_Reward = 3 } }
+			33 = { set_variable = { USA_GLN_Mission_Public_Support_Reward = 5 } }
+			34 = { set_variable = { USA_GLN_Mission_Public_Support_Reward = 7 } }
+		}
+	}
+
+	###############################
+	######### MINERVA
+	##############################
+
+	if =  {
+		limit = { has_country_flag = USA_GLN_Minerva_Program_Activated }
+
+
+		##### Science Points
+		random_list = {
+			33 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 5 }
+
+				set_temp_variable = { USA_GLN_Minerva_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Minerva_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Minerva_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost}
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+			33 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 10 }
+
+				set_temp_variable = { USA_GLN_Minerva_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Minerva_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Minerva_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost}
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+			34 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 20 }
+
+				set_temp_variable = { USA_GLN_Minerva_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Minerva_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Minerva_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost}
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+		}
+
+		##### Public Support
+		random_list = {
+			33 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 5 }
+				add_political_power = 25
+				add_to_variable = { misc_income = 5 }
+			}
+
+			33 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 7 }
+				add_political_power = 30
+				add_to_variable = { misc_income = 10 }
+			}
+
+			34 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 9 }
+				add_political_power = 30
+				add_to_variable = { misc_income = 15 }
+			}
+		}
+
+		##### Unique Reward - Decrypt/Encrypt stuff
+
+		if = { limit = { check_variable = { USA_GLN_Minerva_Counter = 1 }}
+			add_ideas = USA_Glenn_Minerva_Buff_1
+		}
+
+		if = { limit = { check_variable = { USA_GLN_Minerva_Counter = 2 }}
+			swap_ideas = {
+				remove_idea = USA_Glenn_Minerva_Buff_1
+				add_idea = USA_Glenn_Minerva_Buff_2
+			}
+		}
+
+		if = { limit = { check_variable = { USA_GLN_Minerva_Counter = 3 }}
+			swap_ideas = {
+				remove_idea = USA_Glenn_Minerva_Buff_2
+				add_idea = USA_Glenn_Minerva_Buff_3
+			}
+		}
+
+		if = { limit = { check_variable = { USA_GLN_Minerva_Counter = 4 }}
+			swap_ideas = {
+				remove_idea = USA_Glenn_Minerva_Buff_3
+				add_idea = USA_Glenn_Minerva_Buff_4
+			}
+		}
+
+		if = { limit = { check_variable = { USA_GLN_Minerva_Counter = 5 }}
+			swap_ideas = {
+				remove_idea = USA_Glenn_Minerva_Buff_4
+				add_idea = USA_Glenn_Minerva_Buff_5
+			}
+		}
+	}
+
+
+	###############################
+	######### EROS
+	##############################
+
+	if =  {
+		limit = { has_country_flag = USA_GLN_Eros_Program_Activated }
+
+		##### Science Points
+		random_list = {
+			33 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 5 }
+
+				set_temp_variable = { USA_GLN_Eros_Mission_Science_Rewards_Boost = 0.1 }
+				add_to_temp_variable = { USA_GLN_Eros_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Eros_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+
+			33 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 10 }
+
+				set_temp_variable = { USA_GLN_Eros_Mission_Science_Rewards_Boost = 0.1 }
+				add_to_temp_variable = { USA_GLN_Eros_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Eros_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+
+			34 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 15 }
+
+				set_temp_variable = { USA_GLN_Eros_Mission_Science_Rewards_Boost = 0.1 }
+				add_to_temp_variable = { USA_GLN_Eros_Mission_Science_Rewards_Boost = USA_GLN_NASA_Lower_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Eros_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Unmanned_Mission_Boost }
+
+				round_variable =  USA_GLN_Mission_Science_Points_Reward
+			}
+		}
+
+		##### Public Support
+		random_list = {
+			45 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 7 }
+				add_war_support = 0.005
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+
+			35 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 9 }
+				add_war_support = 0.01
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+
+			20 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 12 }
+				add_war_support = 0.015
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+		}
+
+		##### Unique Reward - Missile Base stuff
+
+		if = { limit = { check_variable = { USA_GLN_Eros_Counter = 1 }}
+			add_ideas = USA_GLN_Eros_Buff_1
+		}
+
+		if = { limit = { check_variable = { USA_GLN_Eros_Counter = 2 }}
+			swap_ideas = {
+				remove_idea = USA_GLN_Eros_Buff_1
+				add_idea = USA_GLN_Eros_Buff_2
+			}
+		}
+
+		if = { limit = { check_variable = { USA_GLN_Eros_Counter = 3 }}
+			swap_ideas = {
+				remove_idea = USA_GLN_Eros_Buff_2
+				add_idea = USA_GLN_Eros_Buff_3
+			}
+		}
+
+		if = { limit = { check_variable = { USA_GLN_Eros_Counter = 4 }}
+			swap_ideas = {
+				remove_idea = USA_GLN_Eros_Buff_3
+				add_idea = USA_GLN_Eros_Buff_4
+			}
+		}
+
+		if = { limit = { check_variable = { SA_UGLN_Eros_Counter = 5 }}
+			swap_ideas = {
+				remove_idea = USA_GLN_Eros_Buff_4
+				add_idea = USA_GLN_Eros_Buff_5
+			}
+		}
+	}
+
+
+	###################### MANNED
+
+	###############################
+	######### DAEDULUS
+	##############################
+	if =  {
+		limit = { has_country_flag = USA_GLN_Daedulus_Program_Activated }
+
+		##### Science Points
+		random_list = {
+			45 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 3 }
+
+				set_temp_variable = { USA_GLN_Daedulus_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Daedulus_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Daedulus_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+			35 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 5 }
+
+				set_temp_variable = { USA_GLN_Daedulus_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Daedulus_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Daedulus_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+			20 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 12 }
+
+				set_temp_variable = { USA_GLN_Daedulus_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Daedulus_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Daedulus_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+		}
+
+		##### Public Support
+		random_list = {
+			50 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 10 }
+				add_stability = 0.005
+				add_political_power = 25
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+
+			30 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 13 }
+				add_stability = 0.01
+				add_political_power = 40
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+
+			20 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 15 }
+				add_stability = 0.015
+				add_political_power = 50
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+		}
+
+		##### Unique Reward - Base Prep up
+
+
+		if = {
+			limit = {
+				check_variable = { USA_GLN_Daedulus_Counter > 0 }
+				check_variable = { USA_GLN_Daedulus_Counter < 7 }
+			}
+			add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 1 }
+			add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 1}
+		}
+	}
+
+
+	###############################
+	######### DIANA
+	##############################
+
+	if =  {
+		limit = { has_country_flag = USA_GLN_Diana_Program_Activated }
+
+		##### Science Points
+		random_list = {
+			45 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 15 }
+
+				set_temp_variable = { USA_GLN_Diana_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Diana_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Diana_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+
+			35 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 20 }
+
+				set_temp_variable = { USA_GLN_Diana_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Diana_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Diana_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable =  USA_GLN_Mission_Science_Points_Reward
+			}
+
+			20 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 25 }
+
+				set_temp_variable = { USA_GLN_Diana_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Diana_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Diana_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable =  USA_GLN_Mission_Science_Points_Reward
+			}
+		}
+
+		##### Public Support
+		random_list = {
+			50 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 15 }
+				add_stability = 0.01
+				add_political_power = 50
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+
+			30 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 18 }
+				add_stability = 0.01
+				add_political_power = 40
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+
+			20 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 24 }
+				add_stability = 0.015
+				add_political_power = 50
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+		}
+
+		##### Moon landing idea
+
+		if = {
+			limit = { check_variable = { USA_GLN_Succsefull_Diana_Missions = 3 } }
+			country_event = { id = glenn.space.9 days = 7 }
+		}
+	}
+
+	###############################
+	######### ARES
+	##############################
+
+	if =  {
+		limit = { has_country_flag = USA_GLN_Ares_Program_Activated }
+
+		##### Science Points
+		random_list = {
+			45 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 20 }
+
+				set_temp_variable = { USA_GLN_Ares_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Ares_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Ares_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+
+			35 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 30 }
+
+				set_temp_variable = { USA_GLN_Ares_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Ares_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Ares_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable = USA_GLN_Mission_Science_Points_Reward
+			}
+
+			20 = {
+				set_variable = { USA_GLN_Mission_Science_Points_Reward = 40 }
+
+				set_temp_variable = { USA_GLN_Ares_Mission_Science_Rewards_Boost = 0 }
+				add_to_temp_variable = { USA_GLN_Ares_Mission_Science_Rewards_Boost = USA_GLN_NASA_Manned_Missions_Rewards_Boost }
+				multiply_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_Ares_Mission_Science_Rewards_Boost }
+				add_to_variable = { USA_GLN_Mission_Science_Points_Reward = USA_GLN_NASA_Manned_Mission_Boost }
+
+				round_variable =  USA_GLN_Mission_Science_Points_Reward
+			}
+
+		}
+
+		##### Public Support
+		random_list = {
+			50 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 20 }
+				add_stability = 0.015
+				add_political_power = 40
+
+
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+
+			30 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 24 }
+				add_stability = 0.02
+				add_political_power = 50
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+
+			20 = {
+				set_variable = { USA_GLN_Mission_Public_Support_Reward = 27 }
+				add_stability = 0.025
+				add_political_power = 75
+
+				every_owned_state = { #National
+					limit = { can_have_elections_in_state = yes }
+
+					set_temp_variable = { popularity_bonus = 0.005 }
+					add_to_variable = { RD_R_bonus_popularity = popularity_bonus }
+					add_to_variable = { RD_popularity = popularity_bonus }
+					subtract_from_variable = { NPP_popularity = popularity_bonus }
+				}
+			}
+		}
+
+		##### Mars landing idea
+
+		if = {
+			limit = { check_variable = { USA_GLN_Succsefull_Ares_Missions = 4 } }
+			country_event = { id = glenn.space.10 days = 2 }
+		}
+	}
+}
+
+USA_gln_pension_reform_bill_setup = {
+	log = "[GetDateText]: [Root.GetName]: bill setup active"
+	set_variable = {bill_id = 40}
+	set_country_flag = RD_D_discussing
+	set_country_flag = C_NPP_discussing
+	set_country_flag = bill_enable_mission #Gives the President penalties if they drag their feet for too long doing this
+	set_country_flag = USA_BILL_EVENTLESS_NEGOTIATION
+	set_variable = { RD_D_flip_cost = 80}
+	set_variable = { C_NPP_flip_cost = 60}
+	set_variable = { USA_bill_mission_deadline = 120 } #Glenn gets penalties for every 120 days he goes without passing the bill
+
+
+	set_variable = {RD_D_flip_cost = 10}
+	set_variable = {C_NPP_flip_cost = 10}
+
+	set_variable = {USA_RD_R_bill_support = 0.6} #Some of the more pro bussiness membners fear this could have unexpected consequences. Still you should be able to corral them easily
+	set_variable = {USA_RD_D_bill_support = 1} #It's early in the term and old people are an important demographic. They are willing to cut you some slack
+	set_variable = {USA_C_NPP_bill_support = 0.8} #They would prefer a more extensive reform but in general they favor this
+	set_variable = {USA_L_NPP_bill_support = 0.5} #This is just pappering over the cracks, go further with this thing if you want their earnest support
+	set_variable = {USA_FR_NPP_bill_support = 0.3} #They aren't super into this but some of the more populistic members like it
+	set_variable = {USA_Y_NPP_bill_support = 0} #Fash hates you
+	set_variable = {average_boost_RD_R = 0.20}
+	set_variable = {average_boost_RD_D = 0.10}
+	set_variable = {average_boost_C_NPP = 0.15}
+	USA_bill_setup = yes
+	USA_setup_bill_support_clamper = yes
+	USA_clamp_flip_cost = yes
+}
+USA_gln_end_right_to_work_bill_setup = {
+	log = "[GetDateText]: [Root.GetName]: bill setup active"
+	set_variable = {bill_id = 41}
+	set_country_flag = RD_R_discussing
+	set_country_flag = RD_D_discussing
+	set_country_flag = C_NPP_discussing
+	set_country_flag = USA_BILL_EVENTLESS_NEGOTIATION
+	set_variable = {RD_R_flip_cost = 60}
+	set_variable = { RD_D_flip_cost = 80}
+	set_variable = { C_NPP_flip_cost = 60}
+
+	set_variable = {USA_RD_R_bill_support = 0.4} #Some of the more pro bussiness membners fear this could have unexpected consequences. Still you should be able to corral them easily
+	set_variable = {USA_RD_D_bill_support = 0.9} #They aren't too keen on it but they are open to persuassion.
+	set_variable = {USA_C_NPP_bill_support = 0.8} #They really like this, the stragglers are just wary of your motivations and won't be too hard to persuade
+	set_variable = {USA_L_NPP_bill_support = 1} #Fuck the rich
+	set_variable = {USA_FR_NPP_bill_support = 0.3} #Some southern populists like this but none of their other memebers are for it.
+	set_variable = {USA_Y_NPP_bill_support = 0} #Fash hates you
+	set_variable = {average_boost_RD_R = .20}
+	set_variable = {average_boost_RD_D = .10}
+	set_variable = {average_boost_C_NPP = .15}
+	USA_bill_setup = yes
+	USA_setup_bill_support_clamper = yes
+	USA_clamp_flip_cost = yes
+}
+USA_gln_social_security_bill_setup = {
+	log = "[GetDateText]: [Root.GetName]: bill setup active"
+	set_variable = {bill_id = 42}
+	set_country_flag = RD_R_discussing
+	set_country_flag = RD_D_discussing
+	set_country_flag = C_NPP_discussing
+	set_country_flag = bill_enable_mission #Gives the President penalties if they drag their feet for too long doing this
+	set_country_flag = USA_BILL_EVENTLESS_NEGOTIATION
+	set_variable = {RD_R_flip_cost = 60}
+	set_variable = { RD_D_flip_cost = 80}
+	set_variable = { C_NPP_flip_cost = 75}
+	set_variable = { USA_bill_mission_deadline = 150 } #Glenn gets penalties for every 150 days he goes without passing the bill
+
+	set_variable = {USA_RD_R_bill_support = 0.35} #They like that you have finally begun working on this but they are worred about how extensive this will be.
+	set_variable = {USA_RD_D_bill_support = 0.7} #Not super into it initially but the right choices should being them onboard.
+	set_variable = {USA_C_NPP_bill_support = 0.6} #A step in the right direction but the exact provisions of the bill will determine their overall level of support.
+	set_variable = {USA_L_NPP_bill_support = 0.5} #They aren't exactly inclined to support a half meassure.
+	set_variable = {USA_FR_NPP_bill_support = 0.1} #Some southern populists like this but none of their other memebers are for it.
+	set_variable = {USA_Y_NPP_bill_support = 0} #Fash hates you
+	set_variable = {average_boost_RD_R = 0.20}
+	set_variable = {average_boost_RD_D = 0.10}
+	set_variable = {average_boost_C_NPP = 0.15}
+	USA_bill_setup = yes
+	USA_setup_bill_support_clamper = yes
+	USA_clamp_flip_cost = yes
+}	
+USA_gln_additional_spending = {
+	log = "[GetDateText]: [Root.GetName]: bill setup active"
+	set_variable = {bill_id = 59}
+	set_country_flag = RD_R_discussing
+	set_country_flag = RD_D_discussing
+	set_country_flag = C_NPP_discussing
+	set_country_flag = FR_NPP_discussing
+	set_variable = { RD_R_flip_cost = 120} #Glenn do you know what the word financial literacy even mean?
+	set_variable = { RD_D_flip_cost = 130} #At some point you must stop wasting money
+	set_variable = { C_NPP_flip_cost = 150} #Only the prescence of jingos makes compromise possible
+	set_variable = { FR_NPP_flip_cost = 130} #Likewise
+
+	set_variable = {USA_RD_R_bill_support = 0.4} #This is a distraction from stuff that really matters
+	set_variable = {USA_RD_D_bill_support = 0.4} #The military is cool but they can get money through other means
+	set_variable = {USA_C_NPP_bill_support = 0.3} #Only the jingos like this and even then some of them are sitting it out
+	set_variable = {USA_L_NPP_bill_support = 0} #HAHAHAHAHAHAHA NO
+	set_variable = {USA_FR_NPP_bill_support = 0.35} #Same as for the NPP-C
+	set_variable = {USA_Y_NPP_bill_support = 0} #Fash hates you
+	set_variable = {average_boost_RD_R = .15}
+	set_variable = {average_boost_RD_D = .10}
+	set_variable = {average_boost_C_NPP = .10}
+	set_variable = {average_boost_FR_NPP = .15}
+	USA_bill_setup = yes
+	USA_setup_bill_support_clamper = yes
+	USA_clamp_flip_cost = yes
+}
+glenn_rfk_fuckup_cra = {
+	set_variable = {bill_id = 422 }
+	log = "[GetDateText]: [Root.GetName]: bill setup active"
+
+	set_country_flag = USA_BILL_EVENTLESS_NEGOTIATION
+	set_country_flag = RD_D_discussing
+
+	set_variable = {USA_RD_R_bill_support = 0.4 } #Its civil rights duh
+	set_variable = {USA_RD_D_bill_support = 1 } #They don't like this but are kinda resigned at this point
+	set_variable = {USA_C_NPP_bill_support = 1 } #Its civil rights duh
+	set_variable = {USA_L_NPP_bill_support = 1 } #Its civil rights duh
+	set_variable = {USA_FR_NPP_bill_support = 0.3 } #NOPE NOPE NOPE NOPE NOPE
+	set_variable = {USA_Y_NPP_bill_support = 0 }
+
+	set_variable = {average_boost_RD_D = 0.20}
+
+	USA_bill_setup = yes
+	USA_setup_bill_support_clamper = yes
+	USA_clamp_flip_cost = yes
+}

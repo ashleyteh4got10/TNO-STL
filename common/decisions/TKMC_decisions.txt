@@ -1,0 +1,1193 @@
+KMC_DEBUG_category = {
+
+	DEBUG_increase_KMC_professionalism = {
+		icon = decision_genreic_military_parade
+
+		visible = {
+			is_debug = yes
+			is_ai = no
+		}
+
+		complete_effect = {
+			add_to_variable = {
+				var = KMC_professionalism
+				value = 10
+			}
+			clamp_variable = {
+				var = KMC_professionalism
+				min = 0
+				max = 100
+			}
+			hidden_effect = {
+				KMC_set_professionalism_level = yes
+				KMC_professionalism_pp_calc = yes
+			}
+		}
+	}
+
+	DEBUG_reduce_KMC_professionalism = {
+		icon = decision_genreic_military_parade
+
+		visible = {
+			is_debug = yes
+			is_ai = no
+		}
+
+		complete_effect = {
+			subtract_from_variable = {
+				var = KMC_professionalism
+				value = 10
+			}
+			clamp_variable = {
+				var = KMC_professionalism
+				min = 0
+				max = 100
+			}
+			hidden_effect = {
+				KMC_set_professionalism_level = yes
+				KMC_professionalism_pp_calc = yes
+			}
+		}
+	}
+
+	DEBUG_ropm_activate = {
+
+		visible = {
+			is_debug = yes
+			is_ai = no
+		}
+
+		complete_effect = {
+			activate_mission = unsanctioned_piracy_mission
+		}
+	}
+
+
+	DEBUG_increase_american_concern = {
+		icon = decision_genreic_military_parade
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			add_to_variable = {
+				var = KMC_american_concern
+				value = 20
+			}
+			clamp_variable = {
+				var = KMC_american_concern
+				min = -20
+				max = 100
+			}
+		}
+	}
+
+	DEBUG_reduce_increase_american_concern = {
+		icon = decision_genreic_military_parade
+		ai_will_do = {
+			factor = 0
+		}
+
+		complete_effect = {
+			subtract_from_variable = {
+				var = KMC_american_concern
+				value = 20
+			}
+			clamp_variable = {
+				var = KMC_american_concern
+				min = -20
+				max = 100
+			}
+		}
+	}
+
+	DEBUG_show_gui = {
+		visible = {
+			NOT = {
+				has_country_flag = KMC_port_gui_open
+			}
+		}
+		complete_effect = {
+			set_country_flag = KMC_port_gui_open
+		}
+		
+	}
+
+	DEBUG_hide_gui = {
+		visible = {
+			has_country_flag = KMC_port_gui_open
+		}
+		complete_effect = {
+			clr_country_flag = KMC_port_gui_open
+			clr_country_flag = KMC_action_tab_open
+		}
+		
+	}
+
+	DEBUG_add_supplies = {
+		complete_effect = {
+			add_to_variable = { KMC_supplies = 100 }
+		}
+	}
+
+	DEBUG_add_fuel_shipments = {
+		complete_effect = {
+			add_to_variable = { KMC_fuel_stored = 2 }
+		}
+	}
+
+	DEBUG_start_smug_mission = {
+		complete_effect = {
+			hidden_effect = {
+				activate_mission = smuggling_profits_mission
+			}
+		}
+	}
+
+	DEBUG_start_marketplace_mission = {
+		complete_effect = {
+			hidden_effect = {
+				set_variable = { KMC_price_base_infeq = 100 }
+				set_variable = { KMC_price_base_supeq = 100 }
+				set_variable = { KMC_price_base_ateq = 150 }
+				set_variable = { KMC_price_base_fuelship = 100 }
+				set_price_all_buy = yes
+				set_price_all_sell = yes
+				activate_mission = black_market_prices
+			}
+		}
+	}
+
+	DEBUG_asign_flags = {
+		complete_effect = {
+			assign_ships_flags = yes
+		}
+	}
+
+	DEBUG_did_it_work = {
+		available = {
+			has_country_flag = KMC_fully_supplied_rykov
+		} 
+	}
+
+	DEBUG_transfer_units = {
+		complete_effect = {
+			transfer_units_fraction= {
+				target = WRS
+				size = 1
+				stockpile_ratio = 0.8
+				army_ratio = 1
+				navy_ratio = 0
+				air_ratio = 0
+				keep_unit_leaders_trigger = {
+					always = yes
+				}
+			}
+		}
+	}
+
+	DEBUG_start_final_prep= {
+		complete_effect = {
+			hidden_effect = {
+				activate_mission = kmc_final_preperations
+			}
+		}
+	}
+
+	DEBUG_destroy_ships_test ={
+		complete_effect = {
+			destroy_ships = {
+				type = ship_hull_heavy
+				count = all
+			}
+		}
+	}
+}
+
+
+
+KMC_professionalism_category = {
+
+	unsanctioned_piracy_mission = { #repeating mission,unsanctioned piracy, see notes
+		allowed = { 
+			always = no
+		}
+
+		visible = {
+			hidden_trigger = {
+				tag = KMC
+			}
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		cancel_if_not_visible = yes
+		days_mission_timeout = 30
+		is_good = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = unsanctioned_piracy_mission_tt
+			hidden_effect = {
+				activate_mission = unsanctioned_piracy_mission
+				KMC_set_professionalism_level = yes
+				KMC_professionalism_pp_calc = yes
+			}
+			
+			add_to_variable = { KMC_supplies = var:KMC_unsanctioned_tick }
+			subtract_from_variable = { KMC_professionalism = var:KMC_unsanctioned_tick }
+			clamp_variable = { 
+				var = KMC_professionalism
+				min = 0
+			}
+		}
+	}
+
+	increase_commissar_powers = { # need commissar focus
+		visible = {
+			has_completed_focus = KMC_reintroduce_naval_commissars 
+		}
+		cost = 25
+
+		ai_will_do = {
+			factor = 50
+		}
+
+		complete_effect = {
+			KMC_increase_professionalism_large = yes
+		}
+	}
+
+	remove_rougue_elements = { # need a certain level before you can do it
+		visible = {
+			has_completed_focus = KMC_deal_with_professionalism_crisis
+		}
+		cost = 25
+		fire_only_once = yes
+
+		ai_will_do = {
+			factor = 50
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = KMC_need_above_50_proff
+				check_variable = { KMC_professionalism > 49 }
+			}
+		}
+		complete_effect = {
+			KMC_increase_professionalism_large = yes
+			add_manpower = -300
+			country_event = kmcgp.16
+		}
+	}
+
+	widen_recruitment_criteria = { # trade professionalism for manpower
+		cost = 50
+		days_re_enable = 60
+
+		ai_will_do = {
+			factor = 0
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = KMC_need_above_10_proff
+				check_variable = { KMC_professionalism > 9 }
+			}
+		}
+
+		complete_effect = {
+			subtract_from_variable = { KMC_professionalism = 10 }
+			custom_effect_tooltip = KMC_professionalism_off_10_tt
+			clamp_variable = { 
+				var = KMC_professionalism
+				min = 0
+			}
+			add_manpower = 500
+		}
+	}
+
+	conduct_fleet_wide_naval_excersise = { # large increase to professionalism, can't raid
+		visible = {
+			has_completed_focus = KMC_deal_with_professionalism_crisis
+		}
+		cost = 75
+		days_re_enable = 44
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				check_variable = { KMC_unsanctioned_tick < 3 }
+				factor = 50
+			}
+		}
+		days_remove = 14
+		remove_effect = {
+			navy_experience = 10
+			KMC_increase_professionalism_large = yes
+		}
+	}
+
+	conduct_naval_infantry_excersise = {
+		visible = {
+			has_completed_focus = KMC_deal_with_professionalism_crisis
+		}
+		cost = 50
+		days_re_enable = 44
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				check_variable = { KMC_unsanctioned_tick < 3 }
+				factor = 30
+			}
+		}
+		days_remove =  14
+		remove_effect = {
+			navy_experience = 5
+			KMC_increase_professionalism_med = yes
+		}
+	}
+
+	restrict_leave = { # costs daily political power, reduces repeating UP ammount
+		visible = {
+			has_completed_focus = KMC_deal_with_professionalism_crisis
+			has_active_mission = unsanctioned_piracy_mission
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		cost = 100
+		fire_only_once = yes
+		complete_effect = {
+			KMC_decrease_unsanctioned_piracy_tick = yes
+			set_country_flag = KMC_leave_restricted
+			add_to_variable = { KMC_dealing_with_up_pp = 0.1 } 
+			custom_effect_tooltip = KMC_restrict_leave_add_pp_cost
+		}
+	}
+
+	codify_plunder_shares = {
+		visible = {
+			has_completed_focus = KMC_the_problem_of_plunder
+			has_active_mission = unsanctioned_piracy_mission
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		cost = 100
+		fire_only_once = yes
+
+		complete_effect = { 
+			KMC_decrease_unsanctioned_piracy_tick = yes
+			add_to_variable = { KMC_dealing_with_up_pp = 0.1 } 
+			custom_effect_tooltip = KMC_restrict_leave_add_pp_cost
+		}
+	}
+
+	quatermaster_oversight = {
+		visible = {
+			has_completed_focus = KMC_investigate_the_quatermasters
+			has_active_mission = unsanctioned_piracy_mission
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		cost = 100
+		fire_only_once = yes
+
+		complete_effect = { 
+			KMC_decrease_unsanctioned_piracy_tick = yes
+			add_to_variable = { KMC_dealing_with_up_pp = 0.1 } 
+			custom_effect_tooltip = KMC_restrict_leave_add_pp_cost 
+		}
+	}
+
+
+	stamp_out_unsanctioned_piracy = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = stamp_out_unsanctioned_piracy_tt
+				check_variable = { KMC_unsanctioned_tick < 2 }
+				has_completed_focus = KMC_make_our_move
+			}
+			custom_trigger_tooltip = {
+				tooltip = stamp_out_unsanctioned_piracy_prof_req_tt
+				check_variable = { KMC_professionalism > 89 }
+			}
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		fire_only_once = yes
+		days_remove = 7
+		complete_effect = {
+			country_event = kmcgp.29
+		}
+		remove_effect = {
+			remove_mission = unsanctioned_piracy_mission
+			country_event = kmcgp.30
+		}
+	}
+}
+
+
+KMC_piracy_category = {
+
+	send_out_raiding_fleet = {
+
+		icon = decision_genreic_military_parade
+
+		available = {
+			has_navy_experience > 10
+			#custom_trigger_tooltip = {
+			#	tooltip = KMC_not_already_targeting_shipping_tt
+			#	NOT = {
+			#		has_country_flag = KMC_on_a_raid
+			#	}
+			#}
+		}
+		ai_will_do = {
+			factor = 50
+		}
+		complete_effect = {
+			navy_experience = -10
+			#set_country_flag = KMC_on_a_raid
+		}
+		days_remove = 14
+		fixed_random_seed = no
+		remove_effect  = {
+			#clr_country_flag = KMC_on_a_raid
+			KMC_piracy_give_supplies_calc = yes
+			random_list = {
+				25 = { # oil tanker
+					country_event = kmcgp.3
+				}
+
+				25 = { # weapons shipment
+					country_event = kmcgp.4
+				}
+
+				25 = { # luxury goods
+					country_event = kmcgp.5
+				}
+				25 = { # failure
+					country_event = kmcgp.6
+					modifier = {
+						factor = 1
+						has_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier } 
+					}
+					modifier = {
+						factor = 0.8
+						has_dynamic_modifier = { modifier = KMC_professionalism_low_modifier } 
+					}
+					modifier = {
+						factor = 0.6
+						has_dynamic_modifier = { modifier = KMC_professionalism_med_modifier } 
+					}
+					modifier = {
+						factor = 0.3
+						has_dynamic_modifier = { modifier = KMC_professionalism_high_modifier } 
+					}
+					modifier = {
+						factor = 0.1
+						has_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier } 
+					}
+				}
+			}
+		}
+	}
+
+	target_american_shipping = {
+
+		icon = decision_genreic_military_parade
+
+		available = {
+			has_navy_experience > 10
+			#custom_trigger_tooltip = {
+			#	tooltip = KMC_not_already_targeting_shipping_tt
+			#	NOT = {
+			#		has_country_flag = KMC_on_a_raid
+			#	}
+			#}
+		}
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				check_variable = { KMC_american_concern < 20 }
+				factor = 10
+			}
+		}
+
+		visible = {
+			NOT = {
+				has_country_flag = ended_american_raids
+			}
+		}
+		complete_effect = {
+			navy_experience = -10
+			#set_country_flag = KMC_on_a_raid
+		}
+		days_remove = 21
+		fixed_random_seed = no
+		remove_effect = {
+			#clr_country_flag = KMC_on_a_raid
+			custom_effect_tooltip = KMC_this_will_anger_the_americans_tt
+			KMC_piracy_give_supplies_usa_calc = yes
+			add_to_variable = { KMC_american_concern = 15 }
+			clamp_variable = {
+				var = KMC_american_concern
+				max = 100
+			}
+			random_list = {
+				20 = {
+					country_event = kmcgp.7
+				}
+				20 = {
+					country_event = kmcgp.9
+				}
+				20 = {
+					country_event = kmcgp.10
+				}
+				25 = { # failure
+					country_event = kmcgp.6
+					modifier = {
+						factor = 1
+						has_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier } 
+					}
+					modifier = {
+						factor = 0.8
+						has_dynamic_modifier = { modifier = KMC_professionalism_low_modifier } 
+					}
+					modifier = {
+						factor = 0.6
+						has_dynamic_modifier = { modifier = KMC_professionalism_med_modifier } 
+					}
+					modifier = {
+						factor = 0.3
+						has_dynamic_modifier = { modifier = KMC_professionalism_high_modifier } 
+					}
+					modifier = {
+						factor = 0.1
+						has_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier } 
+					}
+					modifier = {
+						factor = 1
+						check_variable = { KMC_american_concern < 20 }
+					}
+					modifier = {
+						factor = 1.2
+						check_variable = { KMC_american_concern > 19 }
+					}
+					modifier = {
+						factor = 1.4
+						check_variable = { KMC_american_concern > 39 }
+					}
+					modifier = {
+						factor = 1.6
+						check_variable = { KMC_american_concern > 59 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { KMC_american_concern > 79 }
+					}
+					modifier = {
+						factor = 1.5
+						has_country_flag = ivanov_found
+					}
+				}
+			}
+		}
+	}
+
+	target_japanese_shipping = {
+
+		icon = decision_genreic_military_parade
+
+		available = {
+			has_navy_experience > 10
+			#custom_trigger_tooltip = {
+			#	tooltip = KMC_not_already_targeting_shipping_tt
+			#	NOT = {
+			#		has_country_flag = KMC_on_a_raid
+			#	}
+			#}
+		}
+		complete_effect = {
+			navy_experience = -10
+			#set_country_flag = KMC_on_a_raid
+		}
+		ai_will_do = {
+			factor = 50
+			modifier = {
+				has_completed_focus = KMC_poke_the_kraken
+				factor = 100
+			}
+		}
+
+		days_remove = 21
+		fixed_random_seed = no
+		remove_effect = {
+			#clr_country_flag = KMC_on_a_raid
+			custom_effect_tooltip = KMC_this_will_anger_the_japanese_tt
+			KMC_piracy_give_supplies_jap_calc = yes
+			add_to_variable = { KMC_japanese_concern = 15 }
+			clamp_variable = {
+				var = KMC_japanese_concern
+				max = 100
+			}
+			random_list = {
+				20 = {
+					country_event = kmcgp.11
+				}
+				20 = {
+					country_event = kmcgp.12
+				}
+				20 = {
+					country_event = kmcgp.13
+				}
+
+				25 = { # failure
+					country_event = kmcgp.6
+					modifier = {
+						factor = 1
+						has_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier } 
+					}
+					modifier = {
+						factor = 0.8
+						has_dynamic_modifier = { modifier = KMC_professionalism_low_modifier } 
+					}
+					modifier = {
+						factor = 0.6
+						has_dynamic_modifier = { modifier = KMC_professionalism_med_modifier } 
+					}
+					modifier = {
+						factor = 0.3
+						has_dynamic_modifier = { modifier = KMC_professionalism_high_modifier } 
+					}
+					modifier = {
+						factor = 0.1
+						has_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier } 
+					}
+					modifier = {
+						factor = 1
+						check_variable = { KMC_japanese_concern < 20 }
+					}
+					modifier = {
+						factor = 1.2
+						check_variable = { KMC_japanese_concern > 19 }
+					}
+					modifier = {
+						factor = 1.4
+						check_variable = { KMC_japanese_concern > 39 }
+					}
+					modifier = {
+						factor = 1.6
+						check_variable = { KMC_japanese_concern > 59 }
+					}
+					modifier = {
+						factor = 2
+						check_variable = { KMC_japanese_concern > 79 }
+					}
+					modifier = {
+						factor = 0.5
+						has_country_flag = poke_the_kraken
+					}
+				}
+			}
+		}
+	}
+
+	add_fuel_to_stockpile = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = add_fuel_to_stockpile_fuel_req_tt
+				check_variable = { KMC_fuel_stored > 0 }
+			}
+			NOT = {
+				custom_trigger_tooltip = {
+					tooltip = KMC_fuel_supplies_not_already_full_tt
+					check_variable = { KMC.fuel_ratio > 0.89 }
+				}
+			}
+		}
+		days_remove = 5
+		#days_re_enable = 5
+		complete_effect = {
+			custom_effect_tooltip = cost_fuelshipment_tt
+			custom_effect_tooltip = add_fuel_to_stockpile_tt
+			add_dynamic_modifier = {
+				modifier = KMC_transfering_fuel_to_stockpile
+				days = 5
+			}
+			hidden_effect = {
+				subtract_from_variable = { KMC_fuel_stored = 1 }
+			}
+		}
+	}
+
+	create_fuel_shipment = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = create_fuel_shipment_req_tt
+				check_variable = { KMC.fuel_ratio > 0.09 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 5
+		complete_effect = {
+			custom_effect_tooltip = KMC_transfering_fuel_from_stockpile_tt
+			add_dynamic_modifier = {
+					modifier = KMC_transfering_fuel_from_stockpile
+					days = 5
+				}
+		}
+		remove_effect = {
+			custom_effect_tooltip = gain_fuel_shipment_tt
+			hidden_effect = {
+				add_to_variable = { KMC_fuel_stored = 1 }
+			}
+		}
+	}
+}
+
+KMC_smuggling_category = {
+
+	smuggling_profits_mission = { 
+		allowed = { 
+			always = no
+		}
+
+		visible = {
+			hidden_trigger = {
+				tag = KMC
+			}
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		cancel_if_not_visible = yes
+		days_mission_timeout = var:KMC_smuggling_mission_length
+		is_good = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = smuggling_profits_mission_supplies_tt
+			add_to_variable = { KMC_supplies = KMC_smuggling_supplies }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = KMC_smuggling_weapons
+				producer = KMC
+			}
+			hidden_effect = {
+				activate_mission = smuggling_profits_mission
+			}
+		}
+	}
+
+	increase_network_efficiency = {
+
+		available = {
+			has_equipment = {
+				convoy > 0
+			}
+			has_manpower > 50
+			custom_trigger_tooltip = {
+				tooltip = increase_network_efficiency_tt
+				check_variable = { KMC_smuggling_mission_length > 20 }
+			}
+			#add in a check variable to make sure days don't go below a certain value
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 10
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy_1
+				amount = -1
+			}
+			add_manpower = -50
+			subtract_from_variable = { KMC_smuggling_mission_length = 5 }
+			add_days_mission_timeout = {
+				mission = smuggling_profits_mission
+				days = -5
+			}
+		}
+	}
+
+	increase_fuel_smuggling_network = {
+
+		available = {
+			has_equipment = {
+				convoy > 2
+			}
+			has_manpower > 150
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 10
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy_1
+				amount = -3
+			}
+			add_manpower = -150
+			custom_effect_tooltip = increase_fuel_smuggling_network_tt
+			add_to_variable = { KMC_smuggling_fuel = 7 }
+			add_to_variable = { general_smuggling_netowrk_size = 1 }
+			add_to_variable = { fuel_smuggling_network_size = 1 }
+			add_to_variable = { black_market_trades_av = 1 }
+			add_to_variable = { fuel_smuggling_network_size_convoys = 3 }
+			add_to_variable = { fuel_smuggling_network_size_manpower = 150 }
+		}
+	}
+
+
+	increase_weapons_smuggling_network = {
+
+		available = {
+			has_equipment = {
+				convoy > 1
+			}
+			has_manpower > 100
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 10
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy_1
+				amount = -2
+			}
+			add_manpower = -50
+			custom_effect_tooltip = increase_weapons_smuggling_network_tt
+			add_to_variable = { KMC_smuggling_weapons = 20 }
+			add_to_variable = { general_smuggling_netowrk_size = 1 }
+			add_to_variable = { weapons_smuggling_network_size = 1 }
+			add_to_variable = { black_market_trades_av = 1 }
+			add_to_variable = { weapons_smuggling_network_size_convoys = 2 }
+			add_to_variable = { weapons_smuggling_network_size_manpower = 100 }
+		}
+	}
+
+	increase_supplies_smuggling_network = {
+
+		available = {
+			has_equipment = {
+				convoy > 1
+			}
+			has_manpower > 50
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		cost = 10
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy_1
+				amount = -2
+			}
+			add_manpower = -50
+			custom_effect_tooltip = increase_supplies_smuggling_network_tt
+			add_to_variable = { KMC_smuggling_supplies = 10 }
+			add_to_variable = { general_smuggling_netowrk_size = 1 }
+			add_to_variable = { supplies_smuggling_network_size = 1 }
+			add_to_variable = { black_market_trades_av = 1 }
+			add_to_variable = { supplies_smuggling_network_size_convoys = 2 }
+			add_to_variable = { supplies_smuggling_network_size_manpower = 100 }
+		}
+	}
+
+	decrease_fuel_smuggling_network = {
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = must_have_invested_in_this_network
+				check_variable = { fuel_smuggling_network_size > 0 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 10
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 3
+				producer = KMC
+			}
+			add_manpower = 150
+			custom_effect_tooltip = decrease_fuel_smuggling_network_tt
+			subtract_from_variable = { KMC_smuggling_fuel = 7 }
+			subtract_from_variable = { general_smuggling_netowrk_size = 1 }
+			subtract_from_variable = { fuel_smuggling_network_size = 1 }
+			subtract_from_variable = { black_market_trades_av = 1 }
+			subtract_from_variable = { fuel_smuggling_network_size_convoys = 3 }
+			subtract_from_variable = { fuel_smuggling_network_size_manpower = 150 }
+		}
+	}
+	
+	decrease_weapons_smuggling_network = {
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = must_have_invested_in_this_network
+				check_variable = { weapons_smuggling_network_size > 0 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 10
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 2
+				producer = KMC
+			}
+			add_manpower = 50
+			custom_effect_tooltip = decrease_weapons_smuggling_network_tt
+			subtract_from_variable = { KMC_smuggling_weapons = 20 }
+			subtract_from_variable = { general_smuggling_netowrk_size = 1 }
+			subtract_from_variable = { weapons_smuggling_network_size = 1 }
+			subtract_from_variable = { black_market_trades_av = 1 }
+			subtract_from_variable = { weapons_smuggling_network_size_convoys = 2 }
+			subtract_from_variable = { weapons_smuggling_network_size_manpower = 100 }
+		}
+	}
+
+	decrease_supplies_smuggling_network = {
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = must_have_invested_in_this_network
+				check_variable = { supplies_smuggling_network_size > 0 }
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		cost = 10
+
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = convoy
+				amount = 2
+				producer = KMC
+			}
+			add_manpower = 50
+			custom_effect_tooltip = decrease_supplies_smuggling_network_tt
+			subtract_from_variable = { KMC_smuggling_supplies = 10 }
+			subtract_from_variable = { general_smuggling_netowrk_size = 1 }
+			subtract_from_variable = { supplies_smuggling_network_size = 1 }
+			subtract_from_variable = { black_market_trades_av = 1 }
+			subtract_from_variable = { supplies_smuggling_network_size_convoys = 2 }
+			subtract_from_variable = { supplies_smuggling_network_size_manpower = 100 }
+		}
+	}
+}
+
+KMC_marketplace_category = {
+	black_market_prices = { 
+		allowed = { 
+			always = no
+		}
+
+		visible = {
+			hidden_trigger = {
+				tag = KMC
+			}
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		cancel_if_not_visible = yes
+		days_mission_timeout = 30
+		is_good = yes
+
+		timeout_effect = {
+			custom_effect_tooltip = black_market_prices_tt
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = bm_guns
+				producer = KMC
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment_0
+				amount = bm_at
+				producer = KMC
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment_1
+				amount = bm_sup
+				producer = KMC
+			}
+			custom_effect_tooltip = black_market_bm_fuel_sup
+			add_to_variable = { KMC_fuel_stored = bm_fuel }
+			add_to_variable = { KMC_supplies = bm_supplies }
+
+			hidden_effect = {
+				set_price_all_buy = yes
+				set_price_all_sell = yes
+
+				set_variable = { bm_guns = 0 }
+				set_variable = { bm_sup = 0 }
+				set_variable = { bm_at = 0 }
+				set_variable = { bm_fuel = 0 }
+				set_variable = { bm_supplies = 0 }
+
+				set_variable = { black_market_trades_av = general_smuggling_netowrk_size }
+				activate_mission = black_market_prices
+			}
+		}
+	}
+}
+
+KMC_operation_ithaca = {
+	kmc_final_preperations = { 
+		allowed = { 
+			always = no
+		}
+
+		visible = {
+			hidden_trigger = {
+				tag = KMC
+			}
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		cancel_if_not_visible = yes
+		days_mission_timeout = 60
+		is_good = yes
+
+		timeout_effect = {
+			set_country_flag = preperations_complete
+			custom_effect_tooltip = no_more_changes
+			country_event = kmcgp.31
+		}
+	}
+
+	kmc_speed_up_preperations = {
+		visible = {
+			has_country_flag = emergancy_preperations
+		}
+
+		available = {
+			command_power > 19
+		}
+		days_re_enable = 10
+		cost = 25
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			add_days_mission_timeout = {
+				mission = kmc_final_preperations
+				days = -5
+			}
+			add_command_power = -20
+		}
+	}
+
+	free_up_personell = {
+		visible = {
+			has_country_flag = emergancy_preperations
+		}
+
+		available = {
+			command_power > 19
+			has_manpower > 200
+		}
+		days_re_enable = 10
+		cost = 15
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			add_days_mission_timeout = {
+				mission = kmc_final_preperations
+				days = -5
+			}
+			add_command_power = -20
+			add_manpower = -200
+		}
+	}
+
+	abandon_supplies = {
+		visible = {
+			has_country_flag = emergancy_preperations
+		}
+
+		available = {
+			command_power > 19
+			custom_trigger_tooltip = {
+				tooltip = has_enough_supplies_to_abandon
+				check_variable = { kmc_supplies > 199 }
+			}
+		}
+		days_re_enable = 10
+		cost = 15
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		complete_effect = {
+			add_days_mission_timeout = {
+				mission = kmc_final_preperations
+				days = -5
+			}
+			add_command_power = -20
+			custom_effect_tooltip = abandon_supplies_tt
+			subtract_from_variable = { kmc_supplies = 200 }
+		}
+	}
+
+	launch_operation_ithaca = {
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = preperations_complete_tt
+				has_country_flag = preperations_complete
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = no
+		complete_effect = {
+			country_event = kmcgp.32
+			TNO_Country_Closing_Screen_Show = yes
+		}
+	}
+}
+

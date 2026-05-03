@@ -1,0 +1,599 @@
+	shared_focus = {
+		id = CPC_new_land_reform
+		icon =  GFX_goals_CPC_new_land_reform
+		cost = 3
+		x = 5
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			TNO_improve_admin_efficiency_low = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_Cooperative
+		icon =  GFX_goals_CPC_cooperative
+		cost = 3
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				add = 100
+				has_game_rule = {
+					rule = CPC_path_status
+					option = CPC_path_liu
+				}
+			}
+		}
+		prerequisite = {
+			focus = CPC_new_land_reform
+		}
+		relative_position_id = CPC_new_land_reform
+		mutually_exclusive = {
+			focus = CPC_step_further
+		}
+		available = {
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			raise_liu_down_mao = yes
+			hidden_effect = { 
+				if = { 
+					limit =  {
+						has_game_rule = {
+							rule = CPC_path_status
+							option = CPC_path_mao
+						}
+					}
+					raise_liu_med = yes
+				}
+			}
+			#country_event = {
+			#	id = CPC_8th_congress.3
+			#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_anti_rash_advance
+		icon =  GFX_goals_CPC_anti_rash
+		cost = 3
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_Cooperative
+		}
+		relative_position_id = CPC_Cooperative
+		available = {
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			add_to_variable = {	TER_pol_str_real_percent^1 = 2 }
+			add_to_variable = {	TER_pol_str_real_percent^2 = 2 }
+			add_to_variable = {	TER_pol_str_real_percent^3 = 2 }
+			add_to_variable = { TER_pol_str_real_percent^0 = -6 }
+			calc_politics_powers_in_CPC = yes
+			custom_effect_tooltip = CPC_anti_rash_advance_effect_tt
+			hidden_effect = { 
+				#country_event = {
+				#	id = CPC_8th_congress.4
+				#}
+			}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_step_further
+		icon =  GFX_goals_CPC_Go_one_step_further
+		cost = 3
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				add = 100
+				has_game_rule = {
+					rule = CPC_path_status
+					option = CPC_path_mao
+				}
+			}
+		}
+		prerequisite = {
+			focus = CPC_new_land_reform
+		}
+		relative_position_id = CPC_new_land_reform
+		mutually_exclusive = {
+			focus = CPC_Cooperative
+		}
+		available = {
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			raise_mao_down_liu = yes
+			hidden_effect = { 
+				if = { 
+					limit =  {
+						has_game_rule = {
+							rule = CPC_path_status
+							option = CPC_path_mao
+						}
+					}
+					raise_mao_med = yes
+				}
+			}
+			#country_event = {
+			#	id = CPC_8th_congress.5
+			#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_cleaning_party
+		icon =  GFX_goals_CPC_Big_Four_Qing
+		cost = 3
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_step_further
+		}
+		relative_position_id = CPC_step_further
+		available = {
+		}
+		bypass = {
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			add_to_variable = {	TER_pol_str_real_percent^1 = -2 }
+			add_to_variable = {	TER_pol_str_real_percent^2 = -2 }
+			add_to_variable = {	TER_pol_str_real_percent^3 = -2 }
+			add_to_variable = { TER_pol_str_real_percent^0 = 6 }
+			calc_politics_powers_in_CPC = yes
+			custom_effect_tooltip = CPC_cleaning_party_effect_tt
+			hidden_effect = { 
+				country_event = {
+					id = CPC_8th_congress.6
+				}
+			}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_city_first
+		icon =  GFX_goals_CPC_town_first
+		cost = 3
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				add = 100
+				has_game_rule = {
+					rule = CPC_path_status
+					option = CPC_path_liu
+				}
+			}
+		}
+		prerequisite = {
+			focus = CPC_anti_rash_advance
+			focus = CPC_cleaning_party
+		}
+		mutually_exclusive = {
+			focus = CPC_country_equals_to_city
+		}
+		relative_position_id = CPC_anti_rash_advance
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			raise_li_and_liu = yes
+				#country_event = {
+				#	id = CPC_8th_congress.7
+				#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_strengthen_central_plan_committee
+		icon =  GFX_goals_CPC_Strengthen_the_Central_Planning_Commission
+		cost = 3
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_city_first
+		}
+		relative_position_id = CPC_city_first
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			raise_mao_and_liu = yes
+			TNO_improve_admin_efficiency_low = yes
+				#country_event = {
+				#	id = CPC_8th_congress.8
+				#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_country_equals_to_city
+		icon =  GFX_goals_CPC_Urban_and_rural_convergence
+		cost = 3
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				add = 100
+				has_game_rule = {
+					rule = CPC_path_status
+					option = CPC_path_mao
+				}
+			}
+		}
+		prerequisite = {
+			focus = CPC_anti_rash_advance
+			focus = CPC_cleaning_party
+		}
+		relative_position_id = CPC_anti_rash_advance
+		mutually_exclusive = {
+			focus = CPC_city_first
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			raise_mao_and_li = yes
+				#country_event = {
+				#	id = CPC_8th_congress.9
+				#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_take_full_responsibility
+		icon =  GFX_goals_CPC_self_financing
+		cost = 3
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_country_equals_to_city
+		}
+		relative_position_id = CPC_country_equals_to_city
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			raise_mao_and_deng = yes
+			TNO_improve_admin_efficiency_low = yes
+				#country_event = {
+				#	id = CPC_8th_congress.10
+				#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_make_money_first
+		icon =  GFX_goals_CPC_make_more_money
+		cost = 3
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				add = 100
+				has_game_rule = {
+					rule = CPC_path_status
+					option = CPC_path_liu
+				}
+			}
+		}
+		prerequisite = {
+			focus = CPC_cleaning_party
+			focus = CPC_anti_rash_advance
+		}
+		mutually_exclusive = {
+			focus = CPC_accumulate_first
+		}
+		relative_position_id = CPC_cleaning_party
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			raise_liu_med = yes
+			TNO_improve_admin_efficiency_low = yes
+				#country_event = {
+				#	id = CPC_8th_congress.11
+				#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_accumulate_first
+		icon =  GFX_goals_CPC_accumulate_more
+		cost = 3
+		x = 2
+		y = 2
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				add = 100
+				has_game_rule = {
+					rule = CPC_path_status
+					option = CPC_path_mao
+				}
+			}
+		}
+		prerequisite = {
+			focus = CPC_cleaning_party
+			focus = CPC_anti_rash_advance
+		}
+		relative_position_id = CPC_cleaning_party
+		mutually_exclusive = {
+			focus = CPC_make_money_first
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			raise_mao_med = yes
+			TNO_improve_admin_efficiency_low = yes
+				#country_event = {
+				#	id = CPC_8th_congress.12
+				#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_national_autonomy
+		icon =  GFX_goals_CPC_national_autonomy
+		cost = 3
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_strengthen_central_plan_committee
+			focus = CPC_take_full_responsibility
+		}
+		prerequisite = {
+			focus = CPC_make_money_first
+			focus = CPC_accumulate_first
+		}
+		relative_position_id = CPC_take_full_responsibility
+		mutually_exclusive = {
+			focus = CPC_culture_protection
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			if = {
+				limit = { has_idea = CPC_hug_strongly }
+				swap_ideas = {
+					remove_idea = CPC_hug_strongly
+					add_idea = CPC_peace_is_first
+				}
+			}
+
+			else_if = {
+				limit = { has_idea = CPC_Political_struggle }
+				swap_ideas = {
+					remove_idea = CPC_Political_struggle
+					add_idea = CPC_peace_is_first
+				}
+			}
+				#country_event = {
+				#	id = CPC_8th_congress.13
+				#}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_culture_protection
+		icon =  GFX_goals_CPC_cultural_preservation
+		cost = 3
+		x = 2
+		y = 0
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_strengthen_central_plan_committee
+			focus = CPC_take_full_responsibility
+		}
+		prerequisite = {
+			focus = CPC_make_money_first
+			focus = CPC_accumulate_first
+		}
+		mutually_exclusive = {
+			focus = CPC_national_autonomy
+		}
+		relative_position_id = CPC_national_autonomy
+		cancel = {
+			has_completed_focus = CPC_national_autonomy
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		select_effect = {
+			country_event = {
+				id = CPC_8th_congress.14
+				days = 7
+			}
+		}
+		completion_reward = {
+			add_political_power = -21
+		}
+	}
+
+	shared_focus = {
+		id = CPC_rebuild_red_army
+		icon =  GFX_goals_CPC_rebuild_the_army
+		cost = 3
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_national_autonomy
+			focus = CPC_culture_protection
+		}
+		relative_position_id = CPC_national_autonomy
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_mil_2 }
+			TER_PLA_CMC_reform_begins = yes
+			country_event = {
+				id = CPC_8th_congress.15
+			}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_lead_of_our_party
+		icon =  GFX_goals_CPC_party_leadership
+		cost = 3
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_national_autonomy
+			focus = CPC_culture_protection
+		}
+		relative_position_id = CPC_national_autonomy
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			country_event = {
+				id = CPC_8th_congress.16
+			}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_break_the_sphere_lock
+		icon =  GFX_goals_CPC_break_the_blockade
+		cost = 3
+		x = 3
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_national_autonomy
+			focus = CPC_culture_protection
+		}
+		relative_position_id = CPC_national_autonomy
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = -21
+			country_event = {
+				id = CPC_8th_congress.17
+			}
+		}
+	}
+
+	shared_focus = {
+		id = CPC_a_new_peak
+		icon =  GFX_goals_CPC_new_peak
+		cost = 3
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CPC_rebuild_red_army
+		}
+		prerequisite = {
+			focus = CPC_lead_of_our_party
+		}
+		prerequisite = {
+			focus = CPC_break_the_sphere_lock
+		}
+		relative_position_id = CPC_lead_of_our_party
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		completion_reward = {
+			add_political_power = 50
+			clr_country_flag = CPC_phase_1
+			set_country_flag = CPC_phase_2
+			TNO_improve_admin_efficiency_med = yes
+			country_event = {
+				id = CPC_8th_congress.18
+			}
+			hidden_effect = {
+				VIN = {
+					country_event = { 
+						id = SEA_support.1
+						days = 50 
+					}
+				}
+				CPC = {
+					country_event = {
+						id = CPC_main_story_events.66
+						days = 200
+					}
+				}
+			}
+		}
+	}

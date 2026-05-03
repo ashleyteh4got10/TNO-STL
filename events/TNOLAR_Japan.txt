@@ -1,0 +1,44 @@
+###############################
+###   TNOLAR Japan Events   ###
+###############################
+
+add_namespace = tnolar_jap
+
+#ids: 
+
+#日本成立紧急内阁
+country_event = {
+	id = tnolar_jap.1
+	title = tnolar_jap.1.t
+	desc = tnolar_jap.1.d
+	picture = GFX_
+
+	is_triggered_only = yes
+
+	option = {
+		name = tnolar_jap.1.a
+
+		promote_character = JAP_TNOLAR_The_Emergency_Cabinet
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+			long_name = JAP_despotism_party_Emergency_Cabinet_long
+			name = JAP_despotism_party_Emergency_Cabinet
+		}
+
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.3
+		}
+
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.104
+				}
+			}
+		}
+	}
+}
+

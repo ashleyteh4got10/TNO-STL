@@ -1,0 +1,144 @@
+on_actions = {
+    on_monthly_ZZZ = {
+        effect = {
+			SWRW_div_limiter_calculate_unit_cap = yes
+			if = {
+                limit = {
+                    date > 1970.1.1
+                }
+                every_country = { SWRW_next_ten_year_calc = yes }
+            }
+        }
+    }
+    on_monthly_ZZZ = { effect = { RUS = { Espionage_Budget_Update = yes } } }
+    on_startup = {
+        effect = {
+            ZZZ = { country_event = { id = SWRW_fopo.10000 days = 10 } }
+            PRC = {
+				country_event = { id = PRC_flavor.1 days = 1860 random_hours = 48 } #Distant Days
+				country_event = { id = PRC_flavor.2 days = 2920 random_hours = 48 } #In Old Ossetia
+				country_event = { id = PRC_flavor.3 days = 1580 random_hours = 50 } #Echoes of Khalkhin Gol
+				country_event = { id = PRC_flavor.4 days = 60 random_hours = 50 } #Path of Peace
+				country_event = { id = PRC_flavor.5 days = 90 random_hours = 50 } #For Glory Once More
+				add_timed_idea = { idea = CEN_SIB_the_flight_east days = 790 }
+			}
+            PRC = {
+				set_variable = { RUS_integration_cost_days = 60 }
+				set_variable = { RUS_admin_efficiency_debuff = 7 }
+				SIB_plan_setup = yes
+				set_variable = { SIB_worker_tension = 12 }
+				set_variable = { RUS_siberian_plan_construction_speed = 0 }
+				set_variable = { RUS_siberian_plan_max_efficiency = 0 }
+				set_variable = { RUS_siberian_plan_ic = 0 }
+				set_variable = { RUS_siberian_plan_resources = 0 }
+				set_variable = { RUS_siberian_plan_efficiency_gain = 0 }
+				SIB_gui_pulse_effect = yes
+
+				set_country_flag = PRC_political_path_decisions
+				set_variable = { PRC_Army_Power = 80 }
+				set_variable = { PRC_Army_Loyalty = 85 }
+				set_variable = { PRC_Civilian_Power = 30 }
+				set_variable = { PRC_Civilian_Loyalty = 60 }
+				add_ideas = PRC_savy_army
+				add_dynamic_modifier = { modifier = PRC_army_civilian_support }
+				PRC_clamp_regional_vars = yes
+				PRC_monthly_decay_estates = yes
+				814 = {
+					set_variable = { PRC_Owner = -1 }
+				}
+			}
+
+			MON = {
+				set_variable = { GDP = 0.261 } #in billions #already converted to billion
+				set_variable = { GDP_growth = 6 }
+				set_variable = { income_tax_rate = 0.1 }
+				set_variable = { business_tax_rate = 0.1 }
+				set_variable = { sales_tax_rate = 0.1 }
+				set_variable = { poverty_rate = 50 }
+				set_variable = { poverty_monthly_change = 0 }
+				set_variable = { money_reserves = 0 } #in billions #already converted to billion
+				set_variable = { national_debt = 0.05 }#billions #already converted to billion
+				set_variable = { misc_income = 0.00 }#already converted to billion
+				set_variable = { misc_costs = 0.00 } #already converted to billion
+				set_variable = { base_inflation_rate = 1.6 }
+				### Credit Rating
+				set_temp_variable = { temp_credit_rating = 3 }
+				set_temp_variable = { temp_credit_rating_min = 1 }
+				set_temp_variable = { temp_credit_rating_max = 4 }
+				set_variable = { economic_centralization = 70 }
+				econ_initialize_credit_rating_system = yes
+
+				initiate_display_vars = yes
+				load_oob = "MON_1962"
+			}
+			MEN = {
+				##Variable Initiation
+				set_variable = { GDP = 1.029 } #in billions
+				set_variable = { GDP_growth = 1.5 }
+				set_variable = { income_tax_rate = 0.125 }
+				set_variable = { business_tax_rate = 0.10 }
+				set_variable = { poverty_rate = 87 }
+				set_variable = { poverty_monthly_change = 0.1 }
+				set_variable = { money_reserves = 0.0 } #in billions
+				set_variable = { national_debt = 0.865 } #in billions
+				set_variable = { misc_income = 0.0 }
+				set_variable = { misc_costs = 0.0 }
+
+				initiate_display_vars = yes
+			}
+        }
+    }
+	on_monthly_PRC = {
+		effect = {
+            PRC = {
+                add_to_variable = { PRC_Army_Modernization = PRC_Army_Modernization_monthly_change }
+                PRC_monthly_decay_estates = yes
+            }
+			if = {
+				limit = { PRC = { is_ai = yes } }
+				every_owned_state = {
+					limit = {
+						PRC_can_assign_status = yes
+					}
+					if = {
+						limit = {
+							PRC = { has_country_flag = PRC_destroyed_citzenry }
+						}
+						PRC_add_mil_status_effect = yes
+					}
+					else_if = {
+						limit = {
+							PRC = { has_country_flag = PRC_destroyed_military }
+						}
+						PRC_add_civ_status_effect = yes
+					}
+					else = {
+						PRC = {
+							set_temp_variable = { PRC_total = 0 }
+							set_variable = { PRC_mil_chance = 1 }
+							set_variable = { PRC_civ_chance = 1 }
+							if = {
+								limit = { # More state controlled by military
+									check_variable = { PRC_total < 0 }
+								}
+								# Subtract a negative number is adding it's absolute value
+								subtract_from_variable = { PRC_civ_chance = PRC_total }
+							}
+							else = { # More state controlled by citzenry / balanced
+								add_to_variable = { PRC_mil_chance = PRC_total }
+							}
+						}
+						random_list = {
+							PRC.PRC_civ_chance = {
+								PRC_add_civ_status_effect = yes
+							}
+							PRC.PRC_mil_chance = {
+								PRC_add_mil_status_effect = yes
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

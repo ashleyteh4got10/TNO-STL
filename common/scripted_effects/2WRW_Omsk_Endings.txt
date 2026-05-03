@@ -1,0 +1,6158 @@
+#  /$$$$$$  /$$      /$$  /$$$$$$  /$$   /$$                                           
+# /$$__  $$| $$$    /$$$ /$$__  $$| $$  /$$/                                           
+#| $$  \ $$| $$$$  /$$$$| $$  \__/| $$ /$$/                                            
+#| $$  | $$| $$ $$/$$ $$|  $$$$$$ | $$$$$/                                             
+#| $$  | $$| $$  $$$| $$ \____  $$| $$  $$                                             
+#| $$  | $$| $$\  $ | $$ /$$  \ $$| $$\  $$                                            
+#|  $$$$$$/| $$ \/  | $$|  $$$$$$/| $$ \  $$                                           
+# \______/ |__/     |__/ \______/ |__/  \__/         
+# i am soooooo sorry for the messy code but we on a short time leash :pray:
+# idk who that was above me but i feel ya. - BlueBerry
+
+Debug_PostApoc_Omsk_Reincarnation = {
+	ZZZ = {
+		nuke_enclave = yes
+		nuke_megalopolis = yes
+		nuke_metropolis = yes
+		nuke_large_city = yes
+		nuke_city = yes
+		nuke_large_town = yes
+		nuke_town = yes
+		nuke_rural = yes
+		nuke_pastoral = yes
+		nuke_small_island = yes
+		nuke_tiny_island = yes
+		nuke_wasteland = yes
+		fire_nuclear_aftermath = yes
+		PostApoc_Omsk_Reincarnation = yes
+	}
+}
+
+
+SWRW_Cleanup_Tags = {
+	for_each_scope_loop = {
+		array = cleanuptags
+		if = {
+			limit = { is_subject = yes }
+			release = ROOT
+		}
+		every_enemy_country = {
+			white_peace = PREV
+		}
+		
+		dismantle_faction = yes
+		remove_all_ministers = yes
+		remove_all_high_command = yes
+		fill_empty_minister_nochecks = yes
+		remove_all_ideas = yes
+		TNO_Oil_Crisis_remove_modifier = yes
+		TNO_Alt_Oil_Crisis_remove_modifier = yes
+		remove_faction_status = yes
+		econ_leave_sphere = yes
+		remove_dynamic_modifier = { modifier = RUS_legacy_of_the_siberian_plan }
+		set_political_power = 0
+		add_command_power = -10000
+		set_variable = { free_production_units = 0 }
+		load_focus_tree = ZZZ_blank_focus
+	}
+}
+
+SWRW_obliterate_economies = {
+	for_each_scope_loop = {
+		array = cleanuptags
+		remove_dynamic_modifier = { modifier = TNO_deficit_effects_modifier }
+		remove_dynamic_modifier = { modifier = TNO_consumer_goods_production_dynamic_modifier }
+		remove_dynamic_modifier = { modifier = TNO_economy_type_planned_dynamic_modifier }
+		remove_dynamic_modifier = { modifier = Central_Bank_Dynamic_Modifier }
+		remove_dynamic_modifier = { modifier = TNO_inflation_dynamic_modifier }
+		remove_dynamic_modifier = { modifier = TNO_vol_troops_modifier }
+		remove_dynamic_modifier = { modifier = TNO_factory_multiplier }
+		remove_dynamic_modifier = { modifier = TNO_base_econ_shit_dynamic_modifier }
+		remove_ideas = TNO_looming_fiscal_crisis
+		set_country_flag = TNO_econ_help_arrows_dismissed
+		set_country_flag = SWRW_Econ_Off
+		set_country_flag = can_not_use_econ_system
+	}
+}
+
+SWRW_obliterate_ppcp_gain = {
+	for_each_scope_loop = {
+		array = cleanuptags
+		add_ideas = no_pp_no_cp_gain
+	}
+}
+
+SWRW_obliterate_armies = {
+	transfer_units_fraction = {
+		target = ZZZ
+		size = 0
+		stockpile_ratio = 1
+		army_ratio = 1
+		air_ratio = 1
+		navy_ratio = 1
+	}
+	add_manpower = -1000000
+			ZZZ = {
+				delete_unit = {}
+			}
+}
+
+######################################################################################
+######################################################################################
+
+PostApoc_Omsk_Reincarnation = {
+	SWRW_set_tech_postnuke = yes
+
+	RUS = {
+		remove_dynamic_modifier = { modifier = RUS_war_exhaustion	} 
+		remove_dynamic_modifier = { modifier = WRW_tension	} 
+	}
+	GER = {
+		remove_dynamic_modifier = { modifier = GER_war_exhaustion } 
+		remove_dynamic_modifier = { modifier = WRW_tension	} 
+	}
+
+	USA = {
+		remove_superpower = yes
+	}
+	JAP = {
+		remove_superpower = yes
+	}
+	GER = {
+		remove_superpower = yes
+	}
+
+	#	/$$$$$$$   /$$$$$$  /$$       /$$$$$$ /$$$$$$$$ /$$$$$$  /$$$$$$   /$$$$$$ 
+	#	| $$__  $$ /$$__  $$| $$      |_  $$_/|__  $$__/|_  $$_/ /$$__  $$ /$$__  $$
+	#	| $$  \ $$| $$  \ $$| $$        | $$     | $$     | $$  | $$  \__/| $$  \__/
+	#	| $$$$$$$/| $$  | $$| $$        | $$     | $$     | $$  | $$      |  $$$$$$ 
+	#	| $$____/ | $$  | $$| $$        | $$     | $$     | $$  | $$       \____  $$
+	#	| $$      | $$  | $$| $$        | $$     | $$     | $$  | $$    $$ /$$  \ $$
+	#	| $$      |  $$$$$$/| $$$$$$$$ /$$$$$$   | $$    /$$$$$$|  $$$$$$/|  $$$$$$/
+	#	|__/       \______/ |________/|______/   |__/   |______/ \______/  \______/
+	clear_array = global.state_with_lore
+	every_state = {
+		clear_array = lore_entries
+	}
+	1442 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1003 }
+	}
+	64 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1002 }
+	}
+	382 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1005 }
+	}
+	631 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1004 }
+	}
+	571 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1001 }
+	}
+
+	
+	613 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1006 }
+	}
+	2 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1006 }
+	}
+	786 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1006 }
+	}
+	1300 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1006 }
+	}
+	992 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1006 }
+	}
+	1482 = {
+        add_to_array = { global.state_with_lore = THIS.id }
+        add_to_array = { lore_entries = 1006 }
+	}
+	XXX = {
+		POSTNUKE_The_Fuhrer = { set_nationality = GER }
+		POSTNUKE_Dmitry_Yazov = { set_nationality = OMS }
+		POSTNUKE_Evgeny_Savintsev = { set_nationality = MCW }
+		POSTNUKE_Nikolai_Ogarkov = { set_nationality = WRS }
+		POSTNUKE_Fyodor_Pavlovsky = { set_nationality = YGR } 
+		POSTNUKE_Andrey_Matvienko = { set_nationality = KAZ }
+		POSTNUKE_Yuri_Drozdov = { set_nationality = SNP }
+		POSTNUKE_Council_of_the_Caucasus = { set_nationality = GEO }
+		POSTNUKE_Mikhail_Khronopulos = { set_nationality = CRI }
+		POSTNUKE_Vasyl_Halasa = { set_nationality = FUK }
+		POSTNUKE_Vyacheslav_Ivankov = { set_nationality = RFS }
+		POSTNUKE_NORAD = { set_nationality = USA }
+		POSTNUKE_Swiss_Council = { set_nationality = SWI }
+		POSTNUKE_Carl_XVI_Gustaf = { set_nationality = NOR }
+		POSTNUKE_Vladimir_Pikalov = { set_nationality = IRK }
+		POSTNUKE_Yuri_Orlov = { set_nationality = KMC }
+		POSTNUKE_Jaakko_Valtanen = { set_nationality = FIN }
+		POSTNUKE_Carl_Erich_Almgren = { set_nationality = EST }
+		POSTNUKE_Adolfas_Ramanauskas = { set_nationality = MST }
+		POSTNUKE_Pyotr_Yakir = { set_nationality = TOM }
+		POSTNUKE_Aleksandr_Sakharovsky = { set_nationality = KRS }
+		POSTNUKE_Jurgen_Echternach = { set_nationality = CRI }
+		POSTNUKE_Akihito = { set_nationality = JAP }
+		POSTNUKE_Lennart_Jedeur_Palmgren = { set_nationality = SWE }
+		POSTNUKE_Lazarenko = { set_nationality = MGN }
+		POSTNUKE_Sergey_Akhromeyev = { set_nationality = POV }
+		POSTNUKE_Kommer_Damen = { set_nationality = HOL }
+		POSTNUKE_Pablo_Escobar = { set_nationality = COL }
+		POSTNUKE_Vladimir_Chernavin = { set_nationality = OMO }
+		POSTNUKE_Constand_Viljoen = { set_nationality = SAF }
+	}
+		AAN = {
+			annex_country = {
+				target = AAA
+			}
+			annex_country = {
+				target = AAB
+			}
+			annex_country = {
+				target = AAC
+			}
+			annex_country = {
+				target = AAF
+			}
+			annex_country = {
+				target = AAG
+			}
+			annex_country = {
+				target = AAI
+			}
+			annex_country = {
+				target = AAO
+			}
+			annex_country = {
+				target = AAS
+			}
+			annex_country = {
+				target = AAV
+			}
+			annex_country = {
+				target = AAZ
+			}
+			annex_country = {
+				target = AAJ
+			}
+		}
+	every_state = {
+		limit = {
+			NOT = { 
+				is_owned_by = ZZZ 
+				is_owned_by = AAN
+			}
+		}
+		transfer_state_to = ZZZ
+	}
+	every_state = {
+		limit = {
+			dockyard > 0
+		}
+		remove_building = {
+			type = dockyard
+			level = 20
+		}
+	}
+	every_country = {
+		limit = {
+			always = yes
+		}
+		send_equipment_fraction = {
+			value = 1
+			target = ZZZ
+		}
+	}
+	
+	OMS = {
+		OMS_Alexander_Lazarenko = { set_nationality = XXX }
+		OMS_Yuriy_Drozdov = { set_nationality = XXX }
+		OMS_Andrey_Matvienko = { set_nationality = XXX }
+		OMS_Aleksandr_Sakharovsky = { set_nationality = XXX }
+		OMS_Evgeny_Savintsev = { set_nationality = XXX }
+
+		OMS_Boris_Steklyar = { set_nationality = XXX }
+		OMS_Konstantin_Pastanogov = { set_nationality = XXX }
+
+		OMS_Dmitry_Ustinov = { set_nationality = XXX }
+	}
+
+	add_to_array = { cleanuptags = OMS }
+	add_to_array = { cleanuptags = MCW }
+	add_to_array = { cleanuptags = MGN }
+	add_to_array = { cleanuptags = WRS }
+	add_to_array = { cleanuptags = RFS }
+	add_to_array = { cleanuptags = YGR }
+	add_to_array = { cleanuptags = KAZ }
+	add_to_array = { cleanuptags = SNP }
+	add_to_array = { cleanuptags = GEO }
+	add_to_array = { cleanuptags = CRI }
+	add_to_array = { cleanuptags = FUK }
+	add_to_array = { cleanuptags = HOL }
+	add_to_array = { cleanuptags = USA }
+	add_to_array = { cleanuptags = SWI }
+	add_to_array = { cleanuptags = NOR }
+	add_to_array = { cleanuptags = IRK }
+	add_to_array = { cleanuptags = KMC }
+	add_to_array = { cleanuptags = FIN }
+	add_to_array = { cleanuptags = EST }
+	add_to_array = { cleanuptags = MST }
+	add_to_array = { cleanuptags = TOM }
+	add_to_array = { cleanuptags = KRS }
+	add_to_array = { cleanuptags = JAP }
+	add_to_array = { cleanuptags = GER }
+	add_to_array = { cleanuptags = SWE }
+	add_to_array = { cleanuptags = POV }
+	add_to_array = { cleanuptags = SAF }
+	add_to_array = { cleanuptags = AST }
+
+	# quickly chopping out all possible leaders, factions, ministers, high command, ideas
+	SWRW_Cleanup_Tags = yes
+	SWRW_obliterate_economies = yes
+	SWRW_obliterate_ppcp_gain = yes
+	SWRW_obliterate_armies = yes
+	set_global_flag = SWRWCE_PostApoc_started
+
+	GER = {
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+		}
+		set_cosmetic_tag = POSTNUKE_theteutons
+		promote_character = POSTNUKE_The_Fuhrer
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+
+	#AST = {
+	#	set_politics = {
+	#		ruling_party = despotism
+	#		elections_allowed = no
+	#	}
+	#	set_cosmetic_tag = POSTNUKE_archdioceseperth
+	#	inherit_technology = ZZZ
+	#	country_lock_all_division_template = yes
+	#}
+
+	#SAF = {
+	#	set_politics = {
+	#		ruling_party = paternalism
+	#		elections_allowed = no
+	#	}
+	#	set_cosmetic_tag = POSTNUKE_oaskaap
+	#	inherit_technology = ZZZ
+	#	country_lock_all_division_template = yes
+	#}
+
+	HOL = {
+		set_politics = {
+			ruling_party = paternalism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Kommer_Damen
+		set_cosmetic_tag = POSTNUKE_Kommer
+		set_variable = { TNO_economy_type = token:Econ_Type_Capitalism }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Corporate_Oligopoly }
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+
+	SWE = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Lennart_Jedeur_Palmgren
+		set_cosmetic_tag = POSTNUKE_marinb
+		set_party_name = {
+			ideology = despotism
+			long_name = Marinbasen_party
+			name = Marinbasen_party
+		}
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Military_Directed }
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+
+	MCW = {
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = OMS_ultranationalism_yazov_party_long
+			name = OMS_ultranationalism_yazov_party
+		}
+		promote_character = POSTNUKE_Evgeny_Savintsev
+		set_cosmetic_tag = POSTNUKE_moscowauthority
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	JAP = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		remove_ideas = {
+			JAP_zaibatsu_question
+			JAP_legacy_guarded_pearl_exercises
+		}
+		JAP_remove_all_showa_ideas_INT = yes
+		JAP_remove_all_showa_ideas = yes
+		promote_character = POSTNUKE_Akihito
+		set_cosmetic_tag = POSTNUKE_imperialemergencyauthority
+		set_party_name = {
+			ideology = despotism
+			long_name = Japan_party
+			name = Japan_party
+		}
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	CRI = {
+		set_politics = {
+			ruling_party = conservatism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Jurgen_Echternach
+		set_cosmetic_tag = POSTNUKE_neueshamburg
+		set_variable = { TNO_economy_type = token:Econ_Type_Corporatism }
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	KRS = {
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Aleksandr_Sakharovsky
+		set_cosmetic_tag = POSTNUKE_krasnoyarskindustrialredoubt
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = Krasnoyarsk_party
+			name = Krasnoyarsk_party
+		}
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Military_Directed }
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	EST = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Carl_Erich_Almgren
+		set_cosmetic_tag = POSTNUKE_armyofsalvation
+		set_party_name = {
+			ideology = despotism
+			long_name = Holy_league_party
+			name = Holy_league_party
+		}
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	FIN = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Jaakko_Valtanen
+		set_cosmetic_tag = POSTNUKE_finnishnationalauthority
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Military_Directed }
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	IRK = {
+		set_politics = {
+			ruling_party = paternalism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = IRK_POSTNUKE_party_long
+			name = IRK_POSTNUKE_party
+		}
+		promote_character = POSTNUKE_Vladimir_Pikalov
+		set_cosmetic_tag = POSTNUKE_newirkutsk
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	NOR = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Carl_XVI_Gustaf
+		set_cosmetic_tag = POSTNUKE_ostersundunion
+		set_party_name = {
+			ideology = despotism
+			long_name = Bernadotte_party
+			name = Bernadotte_party
+		}
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	SWI = {
+		set_politics = {
+			ruling_party = paternalism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Swiss_Council
+		set_cosmetic_tag = POSTNUKE_swisscouncil
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	OMS = {
+		load_focus_tree = OMS_post_nuke_tree
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		add_ideas = OMS_warriors_without_purpose
+		add_ideas = OMS_the_omsk_redoubt
+		inherit_technology = ZZZ
+		#promote_character = {
+		#	character = POSTNUKE_Dmitry_Yazov
+		#	ideology = ultranationalism
+		#}
+		#promote_character = POSTNUKE_Dmitry_Yazov
+		OMS_Dmitry_Yazov = {
+			set_portraits = {
+				civilian = { large = "GFX_Portrait_Dmitry_Yazov_Animated" }
+				army = { large = "GFX_Portrait_Dmitry_Yazov_Animated" }
+			}
+		}
+		set_variable = { national_debt = 0 }
+		country_lock_all_division_template = yes
+		set_country_leader_description = {
+			ideology = ultranationalism
+			desc = POLITICS_POSTNUKE_DMITRY_YAZOV_DESC
+		}
+		set_cosmetic_tag = POSTNUKE_blackleaguecentralauthority
+		every_character = {
+			limit = {
+				NOT = {
+					is_character = OMS_Dmitry_Yazov
+					#is_character = POSTNUKE_Dmitry_Yazov
+				}
+			}
+			retire = yes
+		}
+		OMS_laws_setup = yes
+	}
+	set_province_name = {
+		id = 10588
+		name = "Cheyenne Mountain Complex"
+	}
+	382 = {
+		set_victory_points = {
+			province = 10588
+			value = 35
+		}
+	}
+	USA = {
+		remove_ideas = {
+			USA_last_bastion_of_liberty
+			USA_the_american_depression_1
+			USA_the_american_depression_2
+			USA_the_american_depression_3
+			USA_the_american_depression_4
+			USA_the_american_depression_5
+			USA_jim_crow
+			USA_OFN_Buffs_1
+			USA_OFN_Buffs_2
+			USA_OFN_Buffs_3
+			USA_OFN_Buffs_4
+			USA_OFN_Buffs_5
+			USA_OFN_Buffs_6
+			USA_OFN_Buffs_7
+			USA_OFN_Buffs_8
+			USA_OFN_Buffs_9
+			USA_OFN_Buffs_10
+		}
+		inherit_technology = ZZZ
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_NORAD
+		set_cosmetic_tag = POSTNUKE_norad
+		set_capital = { state = 382 }
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Military_Directed }
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = NORAD_party
+			name = NORAD_party
+		}
+		country_lock_all_division_template = yes
+	}
+	
+	
+	
+	MGN = {
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = OMS_ultranationalism_yazov_party_long
+			name = OMS_ultranationalism_yazov_party
+		}
+		promote_character = POSTNUKE_Lazarenko
+		set_cosmetic_tag = POSTNUKE_uralcommunity
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	WRS = {
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+		}
+	
+		promote_character = POSTNUKE_Nikolai_Ogarkov
+
+		create_country_leader = {
+			name = POSTNUKE_Nikolai_Ogarkov
+			picture = GFX_Portrait_Postnuke_Nikolai_Ogarkov_Animated
+			desc = "POLITICS_POSTNUKE_NIKOLAI_OGARKOV_DESC"
+			expire = "1999.1.23"
+			ideology = communist_stratocratic_communism_subtype
+		}
+
+		set_cosmetic_tag = POSTNUKE_westrussianreclamationfront
+		set_party_name = {
+			ideology = communist
+			long_name = ZRF_party
+			name = ZRF_party
+		}
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	RFS = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		inherit_technology = ZZZ
+		promote_character = POSTNUKE_Vyacheslav_Ivankov
+		set_cosmetic_tag = POSTNUKE_volgaroadwarriors
+		set_party_name = {
+			ideology = despotism
+			long_name = Roadwarior_party
+			name = Roadwarior_party
+		}
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Banditry }
+		country_lock_all_division_template = yes
+	}
+	
+	POV = {
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+		}
+		inherit_technology = ZZZ
+		promote_character = POSTNUKE_Sergey_Akhromeyev
+		set_cosmetic_tag = POSTNUKE_spgvultures
+		set_party_name = {
+			ideology = communist
+			long_name = Vultures_party
+			country_lock_all_division_template = yes
+			name = Vultures_party
+		}
+	}
+	
+	KAZ = {
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = OMS_ultranationalism_yazov_party_long
+			name = OMS_ultranationalism_yazov_party
+		}
+		country_lock_all_division_template = yes
+		inherit_technology = ZZZ
+		promote_character = POSTNUKE_Andrey_Matvienko
+		set_cosmetic_tag = POSTNUKE_blackleagueauthoritykazakhstan
+	}
+	
+	SNP = {
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = OMS_ultranationalism_yazov_party_long
+			name = OMS_ultranationalism_yazov_party
+		}
+		inherit_technology = ZZZ
+		promote_character = POSTNUKE_Yuri_Drozdov
+		set_cosmetic_tag = POSTNUKE_saintpetersburgpacificationauthority
+		country_lock_all_division_template = yes
+	}
+	
+	GEO = {
+		set_politics = {
+			ruling_party = paternalism
+			elections_allowed = no
+		}
+		promote_character = POSTNUKE_Council_of_the_Caucasus
+		set_cosmetic_tag = POSTNUKE_caucasianconfederation
+		set_party_name = {
+			ideology = paternalism
+			long_name = Caucasian_party
+			name = Caucasian_party
+		}
+		inherit_technology = ZZZ
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		country_lock_all_division_template = yes
+	}
+	
+	FUK = {
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = ultranationalism
+			long_name = UKR_salcom_party
+			name = UKR_salcom_party
+		}
+		inherit_technology = ZZZ
+		promote_character = POSTNUKE_Vasyl_Halasa
+		set_cosmetic_tag = POSTNUKE_ukrainiansalvationcommittee
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Military_Directed }
+		country_lock_all_division_template = yes
+	}
+	
+	#SAM = {
+	#	set_politics = {
+	#		ruling_party = progressivism
+	#		elections_allowed = no
+	#	}
+	#	inherit_technology = ZZZ
+	#	promote_character = POSTNUKE_Yuri_Orlov
+	#	set_cosmetic_tag = POSTNUKE_freecitiessamara
+	#	country_lock_all_division_template = yes
+	#}
+	
+	YGR = {
+		set_politics = {
+			ruling_party = communist
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = communist
+			long_name = Ural_workers_party
+			name = Ural_workers_party
+		}
+		inherit_technology = ZZZ
+		promote_character = POSTNUKE_Fyodor_Pavlovsky
+		set_cosmetic_tag = POSTNUKE_uralcommune
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_War_Communism }
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		country_lock_all_division_template = yes
+	}
+	
+	KMC = {
+		retire_character = KMC_Power_Vacuum
+		set_politics = {
+			ruling_party = progressivism
+			elections_allowed = yes
+		}
+		set_party_name = {
+			ideology = progressivism
+			long_name = Sanctuary_party
+			name = Sanctuary_party
+		}
+		KMC_remove_professionalism_level = yes
+		promote_character = POSTNUKE_Yuri_Orlov
+		set_cosmetic_tag = POSTNUKE_arkhanglesksanctuary
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Dirigisme }
+		remove_dynamic_modifier = { modifier = KMC_professionalism_very_low_modifier }
+		remove_dynamic_modifier = { modifier = KMC_professionalism_low_modifier }
+		remove_dynamic_modifier = { modifier = KMC_professionalism_med_modifier }
+		remove_dynamic_modifier = { modifier = KMC_professionalism_high_modifier }
+		remove_dynamic_modifier = { modifier = KMC_professionalism_very_high_modifier }
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	MST = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = despotism
+			long_name = Men_party
+			name = Men_party
+		}
+		promote_character = POSTNUKE_Adolfas_Ramanauskas
+		set_cosmetic_tag = POSTNUKE_menoflosthonor
+		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Banditry }
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	
+	TOM = {
+		set_politics = {
+			ruling_party = liberal_conservatism
+			elections_allowed = yes
+		}
+		set_party_name = {
+			ideology = liberal_conservatism
+			long_name = Tomsk_party
+			name = Tomsk_party
+		}
+		promote_character = POSTNUKE_Pyotr_Yakir
+		set_cosmetic_tag = POSTNUKE_tomskemergencycoalition
+		inherit_technology = ZZZ
+		country_lock_all_division_template = yes
+	}
+	set_global_flag = nukes_disabled
+
+
+	#	/$$$$$$  /$$$$$$$$ /$$$$$$  /$$$$$$$$ /$$$$$$$$  /$$$$$$ 
+	#	/$$__  $$|__  $$__//$$__  $$|__  $$__/| $$_____/ /$$__  $$
+	#  | $$  \__/   | $$  | $$  \ $$   | $$   | $$      | $$  \__/
+	#  |  $$$$$$    | $$  | $$$$$$$$   | $$   | $$$$$   |  $$$$$$ 
+	#	\____  $$   | $$  | $$__  $$   | $$   | $$__/    \____  $$
+	#	/$$  \ $$   | $$  | $$  | $$   | $$   | $$       /$$  \ $$
+	#  |  $$$$$$/   | $$  | $$  | $$   | $$   | $$$$$$$$|  $$$$$$/
+	#	\______/    |__/  |__/  |__/   |__/   |________/ \______/ 
+
+	SWE = {
+		transfer_state = 124
+		every_owned_state = {
+			add_core_of = PREV
+		}
+
+	}
+
+	EST = {
+		transfer_state = 13
+		transfer_state = 1440
+		transfer_state = 1395
+		transfer_state = 2450
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		13 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = EST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = EST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = EST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = EST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = EST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = EST
+			}
+		}
+	}
+
+	FIN = {
+		transfer_state = 1723
+		transfer_state = 1722
+		transfer_state = 1721
+		transfer_state = 1720
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		1723 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = FIN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = FIN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = FIN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FIN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FIN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FIN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = FIN
+			}
+		}
+	}
+
+	IRK = {
+		transfer_state = 566
+		transfer_state = 565
+		transfer_state = 564
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		set_technology = {
+			infantry_equipment_chemical_0 = 1
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		566 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = IRK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = IRK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = IRK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = IRK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = IRK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = IRK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = IRK
+			}
+		}
+	}
+
+	KRS = {
+		transfer_state = 757
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		757 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KRS
+			}
+		}
+	}
+	
+	HOL = {
+		transfer_state = 74
+		every_owned_state = {
+			add_core_of = PREV
+		}
+	}
+	
+	SWI = {
+		transfer_state = 1298
+		transfer_state = 3
+		transfer_state = 151
+		transfer_state = 1299
+		transfer_state = 2130
+		transfer_state = 2129
+		every_owned_state = {
+			add_core_of = PREV
+		}
+	}
+
+	NOR = {
+		transfer_state = 143
+		transfer_state = 144
+		transfer_state = 2141
+		transfer_state = 1801
+		every_owned_state = {
+			add_core_of = PREV
+		}
+	}
+
+	USA = {
+		transfer_state = 382
+		transfer_state = 686
+		transfer_state = 2506
+		every_owned_state = {
+			add_core_of = PREV
+		}
+	}
+
+	OMS = { #Odd, why isn't this triggering properly?
+		transfer_state = 571
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		571 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Chernaya Gvardiya\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = OMS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Chernaya Gvardiya\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = OMS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Chernaya Gvardiya\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = OMS
+			}
+		}
+	}
+	set_province_name = {
+		id = 10696
+		name = "Glavkoverkh Bunker"
+	}
+	YGR = {
+		transfer_state = 756
+		transfer_state = 581
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		756 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = YGR
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = YGR
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = YGR
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = YGR
+			}
+		}
+	}
+	MGN = {
+		transfer_state = 582
+		transfer_state = 846
+		transfer_state = 652
+		transfer_state = 847
+		transfer_state = 849
+		transfer_state = 848
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		582 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = MGN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = MGN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = MGN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = MGN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = MGN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = MGN
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = MGN
+			}
+		}
+	}
+	#SAM = {
+	#	transfer_state = 850
+	#	every_owned_state = {
+	#		add_core_of = PREV
+	#	}
+	#}
+	MCW = {
+		transfer_state = 219
+		transfer_state = 1442
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		1442 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = MCW
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = MCW
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = MCW
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = MCW
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = MCW
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = MCW
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = MCW
+			}
+		}
+	}
+	POV = {
+		transfer_state = 1429
+		transfer_state = 206
+		transfer_state = 194
+		transfer_state = 241
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		206 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = POV
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = POV
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+				owner = POV
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = POV
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Elite Infantry Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = POV
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = POV
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = POV
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = POV
+			}
+		}
+	}
+	RFS = {
+		transfer_state = 245
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		245 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = RFS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = RFS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = RFS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = RFS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 1 start_equipment_factor = 1"
+				owner = RFS
+			}
+		}
+	}
+	
+	JAP = {
+		transfer_state = 531
+		transfer_state = 1837
+		transfer_state = 1838
+		transfer_state = 630
+		transfer_state = 1835
+		transfer_state = 631
+		every_owned_state = {
+			add_core_of = PREV
+		}
+	}
+	FUK = {
+		transfer_state = 221
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		221 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = FUK
+			}
+		}
+	}
+	SNP = {
+		transfer_state = 195
+		FROM = {
+			every_owned_state = {
+				add_core_of = PREV
+			}
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		195 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = SNP
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SNP
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SNP
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SNP
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SNP
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SNP
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SNP
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = SNP
+			}
+		}
+	}
+	GEO = {
+		transfer_state = 1561
+		transfer_state = 232
+		transfer_state = 1559
+		transfer_state = 1560
+		every_owned_state = {
+			add_core_of = PREV
+		}
+	}
+	CRI = {
+		transfer_state = 137
+		transfer_state = 1532
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		137 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = CRI
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = CRI
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = CRI
+			}
+		}
+	}
+	#SAM = {
+	#	transfer_state = 251
+	#	transfer_state = 850
+	#	transfer_state = 250
+	#	FROM = {
+	#		every_owned_state = {
+	#			add_core_of = PREV
+	#		}
+	#	}
+	#}
+	WRS = {
+		transfer_state = 400
+		transfer_state = 752
+		transfer_state = 865
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		400 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = WRS
+			}
+		}
+	}
+	KMC = {
+		transfer_state = 214 
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		214 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = KMC
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KMC
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KMC
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = KMC
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KMC
+			}
+		}
+	}
+	MST = {
+		transfer_state = 1399
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		1399 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = MST
+			}
+		}
+	}
+	GER = {
+		transfer_state = 5
+		transfer_state = 85
+		transfer_state = 87
+		transfer_state = 10
+		transfer_state = 66
+		transfer_state = 67
+		transfer_state = 63
+		transfer_state = 776
+		transfer_state = 64
+		transfer_state = 61
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "Panther F"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "Panther II"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "Sd.KFz 251/20"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		5 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Armored Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = GER
+			}
+		}
+	}
+	set_province_name = {
+		id = 6521
+		name = "Fuhrer Bunker"
+	}
+	TOM = {
+		transfer_state = 578
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		578 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = TOM
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = TOM
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = TOM
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = TOM
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = TOM
+			}
+
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = TOM
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = TOM
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = TOM
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = TOM
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = TOM
+			}
+		}
+	}
+	KAZ = {
+		transfer_state = 583
+		transfer_state = 1808
+		transfer_state = 590
+		transfer_state = 1807
+		create_equipment_variant = {
+			name = "T-34-85"
+			type = MBT_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1945_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "T-44-85"
+			type = MBT_chassis_2
+			parent_version = 0
+			modules = {
+				main_armament_slot = MBT_cannon
+				turret_type_slot = MBT_three_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = secondary_turret_hmg
+			}
+			icon = GFX_WRS_MBT_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 6
+				tank_nsb_armor_upgrade = 6
+			}
+		}
+		create_equipment_variant = {
+			name = "PT-50"
+			type = IFV_chassis_1
+			parent_version = 0
+			modules = {
+				main_armament_slot = IFV_cannon
+				turret_type_slot = IFV_two_man_tank_turret
+				suspension_type_slot = tank_torsion_bar_suspension
+				armor_type_slot = tank_welded_armor
+				engine_type_slot = tank_diesel_engine
+				special_type_slot_1 = command_optics
+			}
+			icon = GFX_CSB_IFV_1950_medium
+			upgrades = {
+				tank_nsb_engine_upgrade = 3
+				tank_nsb_armor_upgrade = 2
+			}
+		}
+		division_template = {
+			name = "Infantry Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Light Infantry Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 0 y = 4 }
+			}
+		}
+		division_template = {
+			name = "Elite Infantry Division"
+			regiments = {
+				elite_infantry = { x = 0 y = 0 }
+				elite_infantry = { x = 0 y = 1 }
+				elite_infantry = { x = 0 y = 2 }
+				elite_infantry = { x = 0 y = 3 }
+				elite_infantry = { x = 0 y = 4 }
+				artillery_brigade = { x = 1 y = 0 }
+			}
+			support = {
+				recon = { x = 0 y = 0 }
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "Armored Division"
+			regiments = {
+				APC = { x = 0 y = 0 }
+				APC = { x = 0 y = 1 }
+				APC = { x = 0 y = 2 }
+				APC = { x = 0 y = 3 }
+				APC = { x = 0 y = 4 }
+				IFV = { x = 1 y = 0 }
+				MBT = { x = 1 y = 1 }
+			}
+			support = {
+				engineer = { x = 0 y = 1 }
+			}
+		}
+		1807 = {
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = KAZ
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KAZ
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KAZ
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = KAZ
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Light Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KAZ
+			}
+
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = KAZ
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KAZ
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KAZ
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 1"
+				owner = KAZ
+			}
+			create_unit = {
+				division = "name = \"Infantry Division\" division_template = \"Infantry Division\" start_experience_factor = 0.2 start_equipment_factor = 0.8"
+				owner = KAZ
+			}
+		}
+	}
+	
+
+
+
+	clr_global_flag = TNO_my_world_is_on_fire_how_about_yours
+	set_global_flag = SWRW_OMS_great_finale
+
+	OMS = {
+		change_tag_from = ZZZ
+	}
+
+	XXX = {
+		OMS_Alexander_Lazarenko = { set_nationality = OMS }
+		OMS_Yuriy_Drozdov = { set_nationality = OMS }
+		OMS_Andrey_Matvienko = { set_nationality = OMS }
+		OMS_Aleksandr_Sakharovsky = { set_nationality = OMS }
+		OMS_Evgeny_Savintsev = { set_nationality = OMS }
+
+		OMS_Dmitry_Ustinov = { set_nationality = OMS }
+	}
+
+	every_country = {
+		add_popularity = {
+			ideology = var:current_party_ideology_group
+			popularity = 100
+		}
+
+	}
+	every_country = {
+		if = {
+			limit = { NOT = { tag = OMS }}
+			load_focus_tree = ZZZ_blank_focus
+		}
+	}
+	ZZZ = {
+		every_owned_state = {
+			limit ={
+				NOT = {
+					OR = {
+						is_postnuke_state = yes
+						has_state_flag = nuke_cleared
+					}
+				}
+			}
+			add_core_of = ZZZ
+			set_temp_variable = { local_state_population_k_temp = state_population_k }
+			add_manpower = -2000000
+			add_manpower = -2000000
+			add_manpower = -2000000
+			add_manpower = -2000000
+			add_manpower = -2000000
+			add_manpower = -2000000
+			add_manpower = -2000000
+			add_manpower = -2000000
+			add_manpower = -2000000
+			add_manpower = -2000000
+			set_state_flag = nuke_cleared
+			add_manpower = local_state_population_k_temp
+			set_temp_variable = { state_value_multiplier_temp = 0 }
+			econ_state_value_change_multiply = yes
+		}
+	}
+}
+
+OMS_laws_setup = {
+	add_ideas = {
+		tno_trade_laws_not_applicable
+		tno_income_taxation_not_applicable
+		tno_minimum_wage_not_applicable
+		tno_max_workhours_not_applicable
+		tno_pensions_not_applicable
+		tno_unemployment_not_applicable
+		tno_conscription_not_applicable
+		tno_military_supervision_not_applicable
+		tno_training_not_applicable
+		tno_draft_exemptions_not_applicable
+		tno_pollution_not_applicable
+		tno_safety_not_applicable
+		tno_refugees_not_applicable
+		tno_child_labor_not_applicable
+		tno_minorities_not_applicable
+		tno_lgbt_rights_not_applicable
+		tno_racial_integration
+		tno_women_not_applicable
+		tno_political_parties_not_applicable
+		tno_religious_rights_not_applicable
+		tno_trade_unions_not_applicable
+		tno_immigration_not_applicable
+		tno_slavery_not_applicable
+		tno_public_meetings_not_applicable
+		tno_vote_franchise_not_applicable
+		tno_press_rights_not_applicable
+		tno_health_care_not_applicable
+		tno_education_not_applicable
+		tno_penal_system_not_applicable
+		tno_gender_rights_not_applicable
+		tno_security_not_applicable
+		tno_regulations_not_applicable
+
+		tno_academic_base_basic_literacy
+		tno_research_facilities_outdated
+		tno_agriculture_subsistence
+		tno_healthcare_rudimentary
+		tno_industrial_equipment_manufacturing_lines
+		tno_industrial_expertise_nascent
+		tno_army_professionalism_reluctant_conscripts
+		tno_admin_efficiency_nonexistent_state_apparatus
+		
+	}
+	set_variable = { poverty_rate = 80 }
+	TNO_change_poverty_rate_direct = yes #just in case
+	Antarctica_Clear_Effectiveness = yes
+	calculate_building_variables = yes
+}
+
+SWRW_OMS_total_german_victory = {
+	OMS = {
+		every_owned_state = {
+			limit = {
+				is_core_of = FIN
+				is_claimed_by = FIN
+			}
+			transfer_state_to = FIN 
+		}
+	}
+
+	MCW = {
+		annex_country = {
+			target = OMS
+			transfer_troops = no
+		}
+	}
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 579 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 516 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 761 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 889 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 644 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 759 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 575 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 890 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 574 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 760 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 576 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 758 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 888 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 844 }
+	add_to_array = { SWRW_OMS_total_german_victory_to_dmz = 756 }
+	for_each_scope_loop = {
+		array = SWRW_OMS_total_german_victory_to_dmz
+		set_demilitarized_zone = yes
+	}
+
+	MAN = {
+		transfer_state = 657
+		transfer_state = 1646
+		transfer_state = 1647
+		transfer_state = 1364
+	}
+
+	MEN = {
+		transfer_state = 814
+		transfer_state = 2400
+		transfer_state = 2402
+	}
+
+	KAZ = {
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+		}
+		promote_character = HANGINGJUDGE_Heinz_Gunther_Guderian
+		set_cosmetic_tag = HANGINGJUDGE_reichkommissariat_turkestan
+		add_ideas = {
+			Pakt_Autonomous_Reichskommissariat
+		}
+		econ_join_sphere_GER = yes
+		transfer_state = 406
+		transfer_state = 402
+		transfer_state = 587
+		transfer_state = 404
+		transfer_state = 1805
+		transfer_state = 1806
+		transfer_state = 587
+		transfer_state = 1803
+		transfer_state = 1802
+		transfer_state = 589
+		transfer_state = 1804
+		transfer_state = 750
+		transfer_state = 585
+		transfer_state = 405
+		transfer_state = 1466
+		transfer_state = 1467
+		transfer_state = 586
+		transfer_state = 732
+		transfer_state = 584
+		transfer_state = 1468
+		transfer_state = 742
+		
+	}
+}
+
+
+
+SWRW_OMS_hanging_judge = {
+	XXX = {
+		HANGINGJUDGE_Walther_Wenck = { set_nationality = RFS }
+		HANGINGJUDGE_Heinz_Gunther_Guderian = { set_nationality = KAZ }
+		HANGINGJUDGE_Georg_von_Boeselager = { set_nationality = PSK }
+		HANGINGJUDGE_Wilhelm_Monke = { set_nationality = RZH }
+		HANGINGJUDGE_Gustav_Wagner = { set_nationality = TVR }
+		HANGINGJUDGE_Erich_Topp = { set_nationality = NTI }
+		HANGINGJUDGE_Werner_Molders = { set_nationality = SNP }
+		HANGINGJUDGE_Alexander_Lazarenko = { set_nationality = OMS }
+		HANGINGJUDGE_Alexander_Lazarenko_Victory = { set_nationality = OMS }
+		HANGINGJUDGE_Konstantin_Ageev = { set_nationality = AMR }
+		HANGINGJUDGE_Nikita_Romanov = { set_nationality = AMR }
+		HANGINGJUDGE_Emil_Spiridonov = { set_nationality = MAG }
+		HANGINGJUDGE_Emil_Spiridonov_Epilogue = { set_nationality = MAG }
+	}
+
+
+	add_to_temp_array = { cleanuptags = OMS }
+	add_to_temp_array = { cleanuptags = RFS }
+	add_to_temp_array = { cleanuptags = KAZ }
+	add_to_temp_array = { cleanuptags = PSK }
+	add_to_temp_array = { cleanuptags = RZH }
+	add_to_temp_array = { cleanuptags = TVR }
+	add_to_temp_array = { cleanuptags = NTI }
+	add_to_temp_array = { cleanuptags = SNP }
+	add_to_temp_array = { cleanuptags = AMR }
+	add_to_temp_array = { cleanuptags = MAG }
+
+	add_to_temp_array = { germanpuppettags = RFS }
+	add_to_temp_array = { germanpuppettags = KAZ }
+	add_to_temp_array = { germanpuppettags = PSK }
+	add_to_temp_array = { germanpuppettags = RZH }
+	add_to_temp_array = { germanpuppettags = TVR }
+	add_to_temp_array = { germanpuppettags = NTI }
+	add_to_temp_array = { germanpuppettags = SNP }
+
+
+	SWRW_Cleanup_Tags = yes
+
+	GER = {
+		set_autonomy = { 
+			target = RFS
+			autonomous_state = autonomy_autonomous_reichskommissariat
+		}
+		set_autonomy = { 
+			target = KAZ
+			autonomous_state = autonomy_autonomous_reichskommissariat
+		}
+		set_autonomy = { 
+			target = PSK
+			autonomous_state = autonomy_occupied_territory
+		}
+		set_autonomy = { 
+			target = RZH
+			autonomous_state = autonomy_autonomous_reichskommissariat
+		}
+		set_autonomy = { 
+			target = TVR
+			autonomous_state = autonomy_occupied_territory
+		}
+		set_autonomy = { 
+			target = NTI
+			autonomous_state = autonomy_autonomous_reichskommissariat
+		}
+		set_autonomy = { 
+			target = SNP
+			autonomous_state = autonomy_autonomous_reichskommissariat
+		}
+	}
+
+	OMS = {
+		delete_unit = { disband = no }
+		promote_character = HANGINGJUDGE_Alexander_Lazarenko
+		add_country_leader_role = {
+			character = HANGINGJUDGE_Alexander_Lazarenko
+			promote_leader = yes
+			country_leader = {
+				ideology = "ultranationalism_black_league_thought_subtype"
+				expire = "1999.1.1"
+			}
+		}
+		
+
+		country_event = {
+			id = OMS_hangingjudge.1
+			days = 2
+		}
+	
+		country_event = {
+			id = OMS_hangingjudge.2
+			days = 7
+		}
+	}
+
+	RFS = {
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+
+		}
+		set_popularities = {
+			communist = 5
+			national_socialism = 80
+			ultranationalism = 15
+		}
+		promote_character = HANGINGJUDGE_Walther_Wenck
+
+		set_cosmetic_tag = HANGINGJUDGE_reichkommissariat_ural
+	}
+	KAZ = {
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+		}
+		set_popularities = {
+			communist = 5
+			national_socialism = 80
+			ultranationalism = 15
+		}
+		promote_character = HANGINGJUDGE_Heinz_Gunther_Guderian
+
+		set_cosmetic_tag = HANGINGJUDGE_reichkommissariat_turkestan
+	}
+	
+	PSK = {
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+		}
+		set_popularities = {
+			communist = 5
+			national_socialism = 80
+			ultranationalism = 15
+		}
+		promote_character = HANGINGJUDGE_Georg_von_Boeselager
+
+		set_cosmetic_tag = HANGINGJUDGE_festung_nenzen
+	}
+	
+	RZH = {
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+
+		}
+		set_popularities = {
+			communist = 5
+			national_socialism = 80
+			ultranationalism = 15
+		}
+		promote_character = HANGINGJUDGE_Wilhelm_Monke
+
+		set_cosmetic_tag = HANGINGJUDGE_SS_uralwall
+	}
+	
+	TVR = {
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+		}
+		promote_character = HANGINGJUDGE_Gustav_Wagner
+
+		set_cosmetic_tag = HANGINGJUDGE_ss_aktionsgruppe
+	}
+	
+	NTI = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		promote_character = HANGINGJUDGE_Erich_Topp
+
+		set_cosmetic_tag = HANGINGJUDGE_marinegruppenkommando
+	}
+	
+	SNP = {
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+		}
+		promote_character = HANGINGJUDGE_Werner_Molders
+
+		set_cosmetic_tag = HANGINGJUDGE_jagdverband_molders
+	}
+	
+
+
+	for_each_scope_loop = {
+		array = germanpuppettags
+		econ_join_sphere_GER = yes
+		add_ideas = {
+			Pakt_Autonomous_Reichskommissariat
+		}
+		initiate_display_vars = yes
+		TNO_startup_nation = yes
+	}
+
+
+
+	AMR = {
+		set_politics = {
+			ruling_party = ultranationalism
+			elections_allowed = no
+		}
+		promote_character = HANGINGJUDGE_Konstantin_Ageev
+
+		set_cosmetic_tag = HANGINGJUDGE_newblackhundreds
+
+	}
+	MAG = {
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+		}
+		promote_character = HANGINGJUDGE_Emil_Spiridonov
+
+		set_cosmetic_tag = HANGINGJUDGE_naval_district
+	}
+
+
+	#	/$$$$$$  /$$$$$$$$ /$$$$$$  /$$$$$$$$ /$$$$$$$$  /$$$$$$ 
+	#	/$$__  $$|__  $$__//$$__  $$|__  $$__/| $$_____/ /$$__  $$
+	#  | $$  \__/   | $$  | $$  \ $$   | $$   | $$      | $$  \__/
+	#  |  $$$$$$    | $$  | $$$$$$$$   | $$   | $$$$$   |  $$$$$$ 
+	#	\____  $$   | $$  | $$__  $$   | $$   | $$__/    \____  $$
+	#	/$$  \ $$   | $$  | $$  | $$   | $$   | $$       /$$  \ $$
+	#  |  $$$$$$/   | $$  | $$  | $$   | $$   | $$$$$$$$|  $$$$$$/
+	#	\______/    |__/  |__/  |__/   |__/   |________/ \______/ 
+
+	OMS = {
+		every_owned_state = {
+			limit = {
+				is_core_of = FIN
+			}
+			transfer_state_to = FIN
+		}
+	}
+	
+	add_to_array = { SWRW_OMS_total_german_victory_for_manchuria = 657 }
+	add_to_array = { SWRW_OMS_total_german_victory_for_manchuria = 1646 }
+	add_to_array = { SWRW_OMS_total_german_victory_for_manchuria = 1647 }
+	add_to_array = { SWRW_OMS_total_german_victory_for_manchuria = 1364 }
+	for_each_scope_loop = {
+		array = SWRW_OMS_total_german_victory_for_manchuria
+		transfer_state_to = MAN
+	}
+
+	MCW = {
+		transfer_state = 858
+		transfer_state = 1887
+		transfer_state = 859
+		transfer_state = 214
+		transfer_state = 861
+		transfer_state = 860
+		transfer_state = 857
+		transfer_state = 856
+		transfer_state = 351
+		transfer_state = 855
+		transfer_state = 252
+		transfer_state = 256
+		transfer_state = 250
+		transfer_state = 755
+	}
+
+	RFS = {
+		transfer_state = 862
+		transfer_state = 870
+		transfer_state = 860
+		transfer_state = 397
+		transfer_state = 868
+		transfer_state = 866
+		transfer_state = 867
+		transfer_state = 400
+		transfer_state = 752
+		transfer_state = 398
+		transfer_state = 399
+		transfer_state = 854
+		transfer_state = 249
+		transfer_state = 753
+		transfer_state = 864
+		transfer_state = 851
+		transfer_state = 651
+		transfer_state = 850
+		transfer_state = 251
+		transfer_state = 852
+		transfer_state = 849
+		transfer_state = 853
+		transfer_state = 848
+		transfer_state = 847
+		transfer_state = 652
+		transfer_state = 865
+	}
+
+	KAZ = {
+		transfer_state = 407
+		transfer_state = 406
+		transfer_state = 402
+		transfer_state = 587
+		transfer_state = 404
+		transfer_state = 1805
+		transfer_state = 587
+		transfer_state = 1803
+		transfer_state = 1802
+		transfer_state = 589
+		transfer_state = 1804
+		transfer_state = 750
+		transfer_state = 585
+		transfer_state = 405
+		transfer_state = 1466
+		transfer_state = 1467
+		transfer_state = 586
+		transfer_state = 732
+		transfer_state = 584
+		transfer_state = 1468
+		transfer_state = 742
+	}
+
+	PSK = {
+		transfer_state = 262
+		transfer_state = 869
+		transfer_state = 863
+	}
+
+	RZH = {
+		transfer_state = 756
+		transfer_state = 581
+		transfer_state = 845
+		transfer_state = 871
+		transfer_state = 573
+		transfer_state = 582
+		transfer_state = 846
+	}
+
+	TVR = {
+		transfer_state = 589
+		transfer_state = 1804
+		transfer_state = 1805
+		transfer_state = 404
+		transfer_state = 588
+		transfer_state = 1807
+		transfer_state = 583
+		transfer_state = 590
+		transfer_state = 1808
+		transfer_state = 571
+		transfer_state = 588
+		transfer_state = 403
+		transfer_state = 572
+		transfer_state = 754
+		transfer_state = 653
+		transfer_state = 580
+		transfer_state = 577
+		transfer_state = 403
+		transfer_state = 1806
+	}
+
+	NTI = {
+		transfer_state = 844
+	}
+
+	SNP = {
+		transfer_state = 579
+		transfer_state = 516
+	}
+	KAZ = {
+		transfer_state = 2201
+		transfer_state = 2203
+		transfer_state = 2202
+		transfer_state = 2205
+		transfer_state = 2194
+		transfer_state = 2200
+		transfer_state = 2199
+		transfer_state = 2198
+		transfer_state = 2197
+		transfer_state = 2196
+		transfer_state = 2195
+		transfer_state = 2204
+	}
+}
+
+SWRW_triple_alliance_victory = {
+	#	/$$$$$$$   /$$$$$$  /$$       /$$$$$$ /$$$$$$$$ /$$$$$$  /$$$$$$   /$$$$$$ 
+	#	| $$__  $$ /$$__  $$| $$      |_  $$_/|__  $$__/|_  $$_/ /$$__  $$ /$$__  $$
+	#	| $$  \ $$| $$  \ $$| $$        | $$     | $$     | $$  | $$  \__/| $$  \__/
+	#	| $$$$$$$/| $$  | $$| $$        | $$     | $$     | $$  | $$      |  $$$$$$ 
+	#	| $$____/ | $$  | $$| $$        | $$     | $$     | $$  | $$       \____  $$
+	#	| $$      | $$  | $$| $$        | $$     | $$     | $$  | $$    $$ /$$  \ $$
+	#	| $$      |  $$$$$$/| $$$$$$$$ /$$$$$$   | $$    /$$$$$$|  $$$$$$/|  $$$$$$/
+	#	|__/       \______/ |________/|______/   |__/   |______/ \______/  \______/
+	XXX = {
+		TRIPLEALLIANCE_CPS_Reconstruction_Authority_Siberia = { set_nationality = SVR }
+		TRIPLEALLIANCE_OFN_Reconstruction_Authority_Siberia = { set_nationality = MAG }
+		TRIPLEALLIANCE_Pakt_Reconstruction_Authority_Turkestan = { set_nationality = KAZ }
+		TRIPLEALLIANCE_Pakt_Reconstruction_Authority_Urals = { set_nationality = RFS }
+		TRIPLEALLIANCE_Siberian_Reconstruction_Authority = { set_nationality = MAG }
+		TRIPLEALLIANCE_Evgeny_Savintsev = { set_nationality = OMS }
+	}
+
+	add_to_temp_array = { cleanuptags = MAG }
+	add_to_temp_array = { cleanuptags = SVR }
+	add_to_temp_array = { cleanuptags = KAZ }
+	add_to_temp_array = { cleanuptags = RFS }
+	add_to_temp_array = { cleanuptags = OMS }
+	SWRW_Cleanup_Tags = yes
+
+	OMS = {
+		delete_unit = { disband = no }
+		promote_character = TRIPLEALLIANCE_Evgeny_Savintsev
+	}
+
+	GER = {
+		set_autonomy = { 
+			target = RFS
+			autonomous_state = autonomy_autonomous_reichskommissariat
+		}
+		set_autonomy = { 
+			target = KAZ
+			autonomous_state = autonomy_autonomous_reichskommissariat
+		}
+	}
+
+	JAP = {
+		set_autonomy = {
+			target = SVR
+			autonomous_state = autonomy_military_government
+		}
+	}
+	USA = {
+		set_autonomy = {
+			target = MAG
+			autonomous_state = autonomy_military_government
+		}
+	}
+
+	RFS = {
+		add_ideas = {
+			Pakt_Autonomous_Reichskommissariat
+		}
+		econ_join_sphere_GER = yes
+
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+		}
+		set_popularities = {
+			communist = 5
+			ultranationalism = 5
+			national_socialism = 90
+		}
+		promote_character = TRIPLEALLIANCE_Pakt_Reconstruction_Authority_Urals
+		set_cosmetic_tag = TRIPLEALLIANCE_Paktkommission_Ural
+	}
+	KAZ = {
+		add_ideas = {
+			Pakt_Autonomous_Reichskommissariat
+		}
+		econ_join_sphere_GER = yes
+
+		set_politics = {
+			ruling_party = national_socialism
+			elections_allowed = no
+
+		}
+		set_popularities = {
+			communist = 5
+			ultranationalism = 5
+			national_socialism = 90
+		}
+		promote_character = TRIPLEALLIANCE_Pakt_Reconstruction_Authority_Turkestan
+		set_cosmetic_tag = TRIPLEALLIANCE_Paktkommission_Turkestan
+	}
+
+	SVR = {
+		add_ideas = {
+			Sphere_Imp_Protectorate
+		}
+		econ_join_sphere_JAP = yes
+
+		set_politics = {
+			ruling_party = despotism
+			elections_allowed = no
+
+		}
+		set_popularities = {
+			communist = 5
+			ultranationalism = 5
+			despotism = 90
+		}
+		promote_character = TRIPLEALLIANCE_CPS_Reconstruction_Authority_Siberia
+		set_cosmetic_tag = TRIPLEALLIANCE_CPS_Reconstruction_Authority
+	}
+
+	MAG = {
+		add_ideas = {
+			OFN_Interim_Authority
+		}
+		econ_join_sphere_USA = yes
+
+		set_politics = {
+			ruling_party = paternalism
+			elections_allowed = no
+
+		}
+		set_popularities = {
+			communist = 5
+			ultranationalism = 5
+			paternalism = 60
+			liberalism = 20
+			conservatism = 10
+		}
+		promote_character = TRIPLEALLIANCE_OFN_Reconstruction_Authority_Siberia
+		set_cosmetic_tag = TRIPLEALLIANCE_OFN_Reconstruction_Authority
+	}
+
+
+	#	/$$$$$$  /$$$$$$$$ /$$$$$$  /$$$$$$$$ /$$$$$$$$  /$$$$$$ 
+	#	/$$__  $$|__  $$__//$$__  $$|__  $$__/| $$_____/ /$$__  $$
+	#  | $$  \__/   | $$  | $$  \ $$   | $$   | $$      | $$  \__/
+	#  |  $$$$$$    | $$  | $$$$$$$$   | $$   | $$$$$   |  $$$$$$ 
+	#	\____  $$   | $$  | $$__  $$   | $$   | $$__/    \____  $$
+	#	/$$  \ $$   | $$  | $$  | $$   | $$   | $$       /$$  \ $$
+	#  |  $$$$$$/   | $$  | $$  | $$   | $$   | $$$$$$$$|  $$$$$$/
+	#	\______/    |__/  |__/  |__/   |__/   |________/ \______/ 
+
+	MAG = {
+		transfer_state = 564
+		transfer_state = 561
+		transfer_state = 563
+		transfer_state = 565
+		transfer_state = 574
+		transfer_state = 890
+		transfer_state = 562
+		transfer_state = 886
+		transfer_state = 760
+		transfer_state = 637
+		transfer_state = 891
+		transfer_state = 759
+		transfer_state = 889
+		transfer_state = 644
+		transfer_state = 761
+	}
+
+	SVR = {
+		transfer_state = 569
+		transfer_state = 757
+		transfer_state = 1806
+		transfer_state = 568
+		transfer_state = 846
+		transfer_state = 590
+		transfer_state = 1808
+		transfer_state = 582
+		transfer_state = 654
+		transfer_state = 573
+		transfer_state = 581
+		transfer_state = 756
+		transfer_state = 844
+		transfer_state = 871
+		transfer_state = 403
+		transfer_state = 571
+		transfer_state = 572
+		transfer_state = 580
+		transfer_state = 588
+		transfer_state = 653
+		transfer_state = 754
+		transfer_state = 516
+		transfer_state = 577
+		transfer_state = 579
+		transfer_state = 845
+		transfer_state = 40
+		transfer_state = 570
+		transfer_state = 578
+		transfer_state = 887
+		transfer_state = 566
+		transfer_state = 575
+		transfer_state = 576
+		transfer_state = 758
+		transfer_state = 888
+		transfer_state = 329
+		transfer_state = 567
+		transfer_state = 583
+		transfer_state = 1807
+	}
+
+	KAZ = {
+		transfer_state = 407
+		transfer_state = 402
+		transfer_state = 406
+		transfer_state = 587
+		transfer_state = 589
+		transfer_state = 1802
+		transfer_state = 1804
+		transfer_state = 405
+		transfer_state = 585
+		transfer_state = 586
+		transfer_state = 732
+		transfer_state = 750
+		transfer_state = 1466
+		transfer_state = 1467
+		transfer_state = 1803
+		transfer_state = 584
+		transfer_state = 742
+		transfer_state = 1468
+		transfer_state = 404
+		transfer_state = 1805
+	}
+	KAZ = {
+		transfer_state = 2201
+		transfer_state = 2203
+		transfer_state = 2202
+		transfer_state = 2205
+		transfer_state = 2194
+		transfer_state = 2200
+		transfer_state = 2199
+		transfer_state = 2198
+		transfer_state = 2197
+		transfer_state = 2196
+		transfer_state = 2195
+		transfer_state = 2204
+	}
+
+	RFS = {
+		transfer_state = 862
+		transfer_state = 262
+		transfer_state = 397
+		transfer_state = 863
+		transfer_state = 866
+		transfer_state = 868
+		transfer_state = 869
+		transfer_state = 870
+		transfer_state = 400
+		transfer_state = 752
+		transfer_state = 854
+		transfer_state = 860
+		transfer_state = 867
+		transfer_state = 249
+		transfer_state = 398
+		transfer_state = 399
+		transfer_state = 753
+		transfer_state = 865
+		transfer_state = 651
+		transfer_state = 848
+		transfer_state = 851
+		transfer_state = 853
+		transfer_state = 864
+		transfer_state = 251
+		transfer_state = 849
+		transfer_state = 850
+		transfer_state = 852
+		transfer_state = 652
+		transfer_state = 755
+		transfer_state = 847
+	}
+
+	MCW = {
+		transfer_state = 195
+		transfer_state = 209
+		transfer_state = 210
+		transfer_state = 217
+		transfer_state = 219
+		transfer_state = 222
+		transfer_state = 224
+		transfer_state = 237
+		transfer_state = 238
+		transfer_state = 239
+		transfer_state = 241
+		transfer_state = 242
+		transfer_state = 243
+		transfer_state = 244
+		transfer_state = 245
+		transfer_state = 246
+		transfer_state = 247
+		transfer_state = 257
+		transfer_state = 260
+		transfer_state = 263
+		transfer_state = 264
+		transfer_state = 401
+		transfer_state = 1421
+		transfer_state = 1434
+		transfer_state = 1435
+		transfer_state = 1436
+		transfer_state = 1441
+		transfer_state = 1442
+		transfer_state = 1443
+		transfer_state = 214
+		transfer_state = 858
+		transfer_state = 859
+		transfer_state = 861
+		transfer_state = 1887
+		transfer_state = 250
+		transfer_state = 252
+		transfer_state = 351
+		transfer_state = 855
+		transfer_state = 856
+		transfer_state = 857
+		transfer_state = 256
+	}
+
+	MEN = {
+		transfer_state = 814
+		transfer_state = 2400
+		transfer_state = 2402
+	}
+
+	for_each_scope_loop = {
+		array = cleanuptags
+		initiate_display_vars = yes
+		TNO_startup_nation = yes
+	}
+}
+
+SWRW_mistrial_nuke_main = {
+		add_to_array = { omsnukestates = 1724 }
+		add_to_array = { omsnukestates = 146 }
+		add_to_array = { omsnukestates = 147 }
+		add_to_array = { omsnukestates = 213 }
+		add_to_array = { omsnukestates = 215 }
+		add_to_array = { omsnukestates = 216 }
+		add_to_array = { omsnukestates = 858 }
+		add_to_array = { omsnukestates = 859 }
+		add_to_array = { omsnukestates = 1359 }
+		add_to_array = { omsnukestates = 1887 }
+		add_to_array = { omsnukestates = 1712 }
+		add_to_array = { omsnukestates = 1713 }
+		add_to_array = { omsnukestates = 1722 }
+		add_to_array = { omsnukestates = 1723 }
+		add_to_array = { omsnukestates = 214 }
+		add_to_array = { omsnukestates = 262 }
+		add_to_array = { omsnukestates = 860 }
+		add_to_array = { omsnukestates = 861 }
+		add_to_array = { omsnukestates = 862 }
+		add_to_array = { omsnukestates = 863 }
+		add_to_array = { omsnukestates = 869 }
+		add_to_array = { omsnukestates = 870 }
+		add_to_array = { omsnukestates = 397 }
+		add_to_array = { omsnukestates = 398 }
+		add_to_array = { omsnukestates = 399 }
+		add_to_array = { omsnukestates = 400 }
+		add_to_array = { omsnukestates = 752 }
+		add_to_array = { omsnukestates = 753 }
+		add_to_array = { omsnukestates = 864 }
+		add_to_array = { omsnukestates = 866 }
+		add_to_array = { omsnukestates = 868 }
+		add_to_array = { omsnukestates = 351 }
+		add_to_array = { omsnukestates = 855 }
+		add_to_array = { omsnukestates = 856 }
+		add_to_array = { omsnukestates = 857 }
+		add_to_array = { omsnukestates = 865 }
+		add_to_array = { omsnukestates = 867 }
+		add_to_array = { omsnukestates = 651 }
+		add_to_array = { omsnukestates = 847 }
+		add_to_array = { omsnukestates = 848 }
+		add_to_array = { omsnukestates = 853 }
+		add_to_array = { omsnukestates = 249 }
+		add_to_array = { omsnukestates = 256 }
+		add_to_array = { omsnukestates = 854 }
+		add_to_array = { omsnukestates = 250 }
+		add_to_array = { omsnukestates = 251 }
+		add_to_array = { omsnukestates = 252 }
+		add_to_array = { omsnukestates = 755 }
+		add_to_array = { omsnukestates = 850 }
+		add_to_array = { omsnukestates = 851 }
+		add_to_array = { omsnukestates = 652 }
+		add_to_array = { omsnukestates = 849 }
+		add_to_array = { omsnukestates = 852 }
+		add_to_array = { omsnukestates = 195 }
+		add_to_array = { omsnukestates = 209 }
+		add_to_array = { omsnukestates = 210 }
+		add_to_array = { omsnukestates = 217 }
+		add_to_array = { omsnukestates = 219 }
+		add_to_array = { omsnukestates = 222 }
+		add_to_array = { omsnukestates = 224 }
+		add_to_array = { omsnukestates = 237 }
+		add_to_array = { omsnukestates = 238 }
+		add_to_array = { omsnukestates = 239 }
+		add_to_array = { omsnukestates = 241 }
+		add_to_array = { omsnukestates = 242 }
+		add_to_array = { omsnukestates = 243 }
+		add_to_array = { omsnukestates = 244 }
+		add_to_array = { omsnukestates = 245 }
+		add_to_array = { omsnukestates = 246 }
+		add_to_array = { omsnukestates = 247 }
+		add_to_array = { omsnukestates = 257 }
+		add_to_array = { omsnukestates = 260 }
+		add_to_array = { omsnukestates = 263 }
+		add_to_array = { omsnukestates = 264 }
+		add_to_array = { omsnukestates = 401 }
+		add_to_array = { omsnukestates = 1421 }
+		add_to_array = { omsnukestates = 1434 }
+		add_to_array = { omsnukestates = 1435 }
+		add_to_array = { omsnukestates = 1436 }
+		add_to_array = { omsnukestates = 1441 }
+		add_to_array = { omsnukestates = 1442 }
+		add_to_array = { omsnukestates = 1443 }
+		add_to_array = { omsnukestates = 13 }
+		add_to_array = { omsnukestates = 191 }
+		add_to_array = { omsnukestates = 1440 }
+		add_to_array = { omsnukestates = 1396 }
+		add_to_array = { omsnukestates = 206 }
+		add_to_array = { omsnukestates = 207 }
+		add_to_array = { omsnukestates = 943 }
+		add_to_array = { omsnukestates = 1402 }
+		add_to_array = { omsnukestates = 1405 }
+		add_to_array = { omsnukestates = 406 }
+		add_to_array = { omsnukestates = 407 }
+		add_to_array = { omsnukestates = 1398 }
+}
+
+SWRW_mistrial_nuke_main_ofncps_involvement = {
+		add_to_array = { omsnukestates = 584 }
+		add_to_array = { omsnukestates = 40 }
+		add_to_array = { omsnukestates = 329 }
+		add_to_array = { omsnukestates = 586 }
+		add_to_array = { omsnukestates = 589 }
+		add_to_array = { omsnukestates = 654 }
+		add_to_array = { omsnukestates = 732 }
+		add_to_array = { omsnukestates = 742 }
+		add_to_array = { omsnukestates = 1468 }
+		add_to_array = { omsnukestates = 1804 }
+		add_to_array = { omsnukestates = 1805 }
+		add_to_array = { omsnukestates = 1806 }
+		add_to_array = { omsnukestates = 330 }
+		add_to_array = { omsnukestates = 814 }
+		add_to_array = { omsnukestates = 815 }
+		add_to_array = { omsnukestates = 715 }
+		add_to_array = { omsnukestates = 1643 }
+		add_to_array = { omsnukestates = 714 }
+		add_to_array = { omsnukestates = 1642 }
+		add_to_array = { omsnukestates = 657 }
+		add_to_array = { omsnukestates = 1364 }
+		add_to_array = { omsnukestates = 1639 }
+		add_to_array = { omsnukestates = 1646 }
+		add_to_array = { omsnukestates = 1647 }
+		add_to_array = { omsnukestates = 1645 }
+		add_to_array = { omsnukestates = 561 }
+		add_to_array = { omsnukestates = 562 }
+		add_to_array = { omsnukestates = 637 }
+		add_to_array = { omsnukestates = 886 }
+		add_to_array = { omsnukestates = 891 }
+		add_to_array = { omsnukestates = 537 }
+}
+
+SWRW_mistrial_nuke_5objectives = {
+		add_to_array = { omsnukestates = 1714 }
+		add_to_array = { omsnukestates = 111 }
+		add_to_array = { omsnukestates = 1715 }
+		add_to_array = { omsnukestates = 1717 }
+		add_to_array = { omsnukestates = 1718 }
+		add_to_array = { omsnukestates = 1719 }
+		add_to_array = { omsnukestates = 1721 }
+		add_to_array = { omsnukestates = 1720 }
+		add_to_array = { omsnukestates = 12 }
+		add_to_array = { omsnukestates = 1395 }
+		add_to_array = { omsnukestates = 1397 }
+		add_to_array = { omsnukestates = 1399 }
+		add_to_array = { omsnukestates = 124 }
+		add_to_array = { omsnukestates = 37 }
+		add_to_array = { omsnukestates = 96 }
+		add_to_array = { omsnukestates = 1400 }
+		add_to_array = { omsnukestates = 1403 }
+		add_to_array = { omsnukestates = 1406 }
+		add_to_array = { omsnukestates = 95 }
+		add_to_array = { omsnukestates = 194 }
+		add_to_array = { omsnukestates = 204 }
+		add_to_array = { omsnukestates = 1404 }
+		add_to_array = { omsnukestates = 1407 }
+		add_to_array = { omsnukestates = 202 }
+		add_to_array = { omsnukestates = 218 }
+		add_to_array = { omsnukestates = 221 }
+		add_to_array = { omsnukestates = 227 }
+		add_to_array = { omsnukestates = 228 }
+		add_to_array = { omsnukestates = 234 }
+		add_to_array = { omsnukestates = 235 }
+		add_to_array = { omsnukestates = 1426 }
+		add_to_array = { omsnukestates = 1427 }
+		add_to_array = { omsnukestates = 1429 }
+		add_to_array = { omsnukestates = 225 }
+		add_to_array = { omsnukestates = 259 }
+		add_to_array = { omsnukestates = 1428 }
+		add_to_array = { omsnukestates = 1558 }
+		add_to_array = { omsnukestates = 1559 }
+		add_to_array = { omsnukestates = 1560 }
+		add_to_array = { omsnukestates = 93 }
+		add_to_array = { omsnukestates = 198 }
+		add_to_array = { omsnukestates = 199 }
+		add_to_array = { omsnukestates = 200 }
+		add_to_array = { omsnukestates = 201 }
+		add_to_array = { omsnukestates = 773 }
+		add_to_array = { omsnukestates = 1282 }
+		add_to_array = { omsnukestates = 1430 }
+		add_to_array = { omsnukestates = 1431 }
+		add_to_array = { omsnukestates = 1965 }
+		add_to_array = { omsnukestates = 1966 }
+		add_to_array = { omsnukestates = 78 }
+		add_to_array = { omsnukestates = 80 }
+		add_to_array = { omsnukestates = 192 }
+		add_to_array = { omsnukestates = 1285 }
+		add_to_array = { omsnukestates = 1286 }
+		add_to_array = { omsnukestates = 91 }
+		add_to_array = { omsnukestates = 1392 }
+		add_to_array = { omsnukestates = 1393 }
+		add_to_array = { omsnukestates = 1025 }
+ }
+
+SWRW_mistrial_nuke_9objectives = {
+		add_to_array = { omsnukestates = 189 }
+		add_to_array = { omsnukestates = 190 }
+		add_to_array = { omsnukestates = 11 }
+		add_to_array = { omsnukestates = 1401 }
+		add_to_array = { omsnukestates = 5 }
+		add_to_array = { omsnukestates = 97 }
+		add_to_array = { omsnukestates = 10 }
+		add_to_array = { omsnukestates = 92 }
+		add_to_array = { omsnukestates = 1380 }
+		add_to_array = { omsnukestates = 1381 }
+		add_to_array = { omsnukestates = 1383 }
+		add_to_array = { omsnukestates = 90 }
+		add_to_array = { omsnukestates = 1382 }
+		add_to_array = { omsnukestates = 1384 }
+		add_to_array = { omsnukestates = 88 }
+		add_to_array = { omsnukestates = 1385 }
+		add_to_array = { omsnukestates = 1386 }
+		add_to_array = { omsnukestates = 1389 }
+		add_to_array = { omsnukestates = 89 }
+		add_to_array = { omsnukestates = 1387 }
+		add_to_array = { omsnukestates = 1388 }
+		add_to_array = { omsnukestates = 1390 }
+		add_to_array = { omsnukestates = 1391 }
+		add_to_array = { omsnukestates = 1394 }
+		add_to_array = { omsnukestates = 137 }
+		add_to_array = { omsnukestates = 196 }
+		add_to_array = { omsnukestates = 197 }
+		add_to_array = { omsnukestates = 226 }
+		add_to_array = { omsnukestates = 1532 }
+		add_to_array = { omsnukestates = 141 }
+		add_to_array = { omsnukestates = 145 }
+		add_to_array = { omsnukestates = 1799 }
+		add_to_array = { omsnukestates = 58 }
+		add_to_array = { omsnukestates = 99 }
+		add_to_array = { omsnukestates = 138 }
+		add_to_array = { omsnukestates = 774 }
+		add_to_array = { omsnukestates = 775 }
+		add_to_array = { omsnukestates = 38 }
+		add_to_array = { omsnukestates = 143 }
+		add_to_array = { omsnukestates = 144 }
+		add_to_array = { omsnukestates = 148 }
+		add_to_array = { omsnukestates = 150 }
+		add_to_array = { omsnukestates = 666 }
+		add_to_array = { omsnukestates = 722 }
+		add_to_array = { omsnukestates = 896 }
+		add_to_array = { omsnukestates = 989 }
+		add_to_array = { omsnukestates = 990 }
+		add_to_array = { omsnukestates = 991 }
+		add_to_array = { omsnukestates = 1801 }
+		add_to_array = { omsnukestates = 149 }
+		add_to_array = { omsnukestates = 1716 }
+		add_to_array = { omsnukestates = 70 }
+		add_to_array = { omsnukestates = 71 }
+		add_to_array = { omsnukestates = 73 }
+		add_to_array = { omsnukestates = 1762 }
+		add_to_array = { omsnukestates = 1763 }
+		add_to_array = { omsnukestates = 76 }
+		add_to_array = { omsnukestates = 1288 }
+		add_to_array = { omsnukestates = 1289 }
+		add_to_array = { omsnukestates = 46 }
+		add_to_array = { omsnukestates = 79 }
+		add_to_array = { omsnukestates = 84 }
+		add_to_array = { omsnukestates = 1281 }
+		add_to_array = { omsnukestates = 1284 }
+		add_to_array = { omsnukestates = 1283 }
+		add_to_array = { omsnukestates = 43 }
+		add_to_array = { omsnukestates = 154 }
+		add_to_array = { omsnukestates = 664 }
+		add_to_array = { omsnukestates = 4 }
+		add_to_array = { omsnukestates = 75 }
+		add_to_array = { omsnukestates = 229 }
+		add_to_array = { omsnukestates = 231 }
+		add_to_array = { omsnukestates = 232 }
+		add_to_array = { omsnukestates = 1552 }
+		add_to_array = { omsnukestates = 1554 }
+		add_to_array = { omsnukestates = 1556 }
+		add_to_array = { omsnukestates = 1561 }
+		add_to_array = { omsnukestates = 1564 }
+ }
+
+SWRW_mistrial_nuke_ofncps_involvement = {
+		add_to_array = { omsnukestates = 612 }
+		add_to_array = { omsnukestates = 621 }
+		add_to_array = { omsnukestates = 955 }
+		add_to_array = { omsnukestates = 610 }
+		add_to_array = { omsnukestates = 1641 }
+		add_to_array = { omsnukestates = 716 }
+		add_to_array = { omsnukestates = 717 }
+		add_to_array = { omsnukestates = 1640 }
+		add_to_array = { omsnukestates = 328 }
+		add_to_array = { omsnukestates = 1265 }
+		add_to_array = { omsnukestates = 1638 }
+		add_to_array = { omsnukestates = 1644 }
+		add_to_array = { omsnukestates = 409 }
+		add_to_array = { omsnukestates = 801 }
+		add_to_array = { omsnukestates = 528 }
+		add_to_array = { omsnukestates = 639 }
+		add_to_array = { omsnukestates = 655 }
+		add_to_array = { omsnukestates = 963 }
+		add_to_array = { omsnukestates = 1018 }
+		add_to_array = { omsnukestates = 1816 }
+		add_to_array = { omsnukestates = 1845 }
+		add_to_array = { omsnukestates = 1846 }
+		add_to_array = { omsnukestates = 1847 }
+		add_to_array = { omsnukestates = 1848 }
+		add_to_array = { omsnukestates = 1849 }
+		add_to_array = { omsnukestates = 533 }
+		add_to_array = { omsnukestates = 536 }
+		add_to_array = { omsnukestates = 555 }
+		add_to_array = { omsnukestates = 1822 }
+		add_to_array = { omsnukestates = 378 }
+		add_to_array = { omsnukestates = 379 }
+		add_to_array = { omsnukestates = 385 }
+		add_to_array = { omsnukestates = 386 }
+		add_to_array = { omsnukestates = 471 }
+		add_to_array = { omsnukestates = 629 }
+		add_to_array = { omsnukestates = 740 }
+		add_to_array = { omsnukestates = 739 }
+}
+
+SWRW_mistrial_nuke_random = {
+	#set_variable_to_random = {
+	#	var = random_num
+	#	max = omsnukestates^num
+	#	integer = yes
+	#}
+	find_highest_in_array = {
+		array = omsnukestates
+		index = random_num
+	}
+	set_temp_variable = { boom_state = omsnukestates^random_num }
+
+	if = {
+		limit = {
+			has_variable = omsnukestates^0
+		}
+		ZZZ = {
+			transfer_state = boom_state
+			launch_nuke = {
+				state = boom_state
+				nuke_type = thermonuclear_bomb
+			}
+			launch_nuke = {
+				state = boom_state
+				nuke_type = thermonuclear_bomb
+			}
+			if = {
+				limit = {
+					OMS = {
+						has_completed_focus = OMS_Opreation_Thunderstorm
+					}
+					delete_unit = {
+						state = boom_state
+						disband = no
+					}
+					set_temp_variable = { state_value_multiplier_temp = 0.025 }
+					econ_state_value_change_multiply = yes
+				}
+			}
+			
+		}
+	}
+	else_if = {
+		limit = {
+			has_country_flag = RUS_SWRW_ongoing
+		}
+		SWRW_Halt = yes
+		every_country = {
+			limit = { is_ai = no }
+			news_event = OMS_News.4
+		}
+	}
+
+
+	remove_from_array = { 
+		array = omsnukestates 
+		index = random_num
+	}
+}
+
+
+
+SWRW_mistrial_beginning = {
+	JAP = {
+		if = {
+			limit = {
+				has_war_with = OMS
+			}
+			add_ideas = OMS_failstate_idea
+		}
+	} 
+	GER = {
+		add_ideas = OMS_failstate_idea 
+	}
+	OMS = {
+		set_country_flag = OMS_total_defeat_active
+		add_ideas = OMS_failstate_idea
+	}
+	set_global_flag = TNO_OMS_great_mistrial
+	SWRW_mistrial_nuke_main = yes
+	if = {
+		limit = { 
+			OMS = {
+				has_war_with = JAP
+			}
+		}
+		SWRW_mistrial_nuke_main_ofncps_involvement = yes
+		SWRW_mistrial_nuke_ofncps_involvement = yes
+	}
+
+	# TODO: PLAYTESTER TAPE AND PRAYERS> IMPROVE
+	set_variable = { OMS_GT_cities_control = 0 }
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 1442
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 242
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 1404
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 28
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 13
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 1397
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 96
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 1428
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 10
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+	if = {
+		limit = {
+			OMS = {
+				controls_state = 64
+			}
+		}
+		add_to_variable = { OMS_GT_cities_control = 1 }
+	}
+
+	if = {
+		limit = {
+			OMS = {
+				check_variable = {
+					var = OMS_GT_cities_control
+					value = 5
+					compare = greater_than_or_equals
+				}
+			}
+		}
+		SWRW_mistrial_nuke_5objectives = yes
+	}
+
+	if = {
+		limit = {
+			OMS = {
+				check_variable = {
+					var = OMS_GT_cities_control
+					value = 5
+					compare = greater_than_or_equals
+				}
+			}
+		}
+		SWRW_mistrial_nuke_9objectives = yes
+	}
+
+	OMS = {
+		country_event = { id = OMS_mistrial.1 }
+	}
+}
+
+OMS_trigger_failure = {
+	OMS = {
+		if = {
+			limit = { has_country_flag = OMS_irkutsk_lost }
+			RUS_lost_war = yes
+			set_global_flag = RUS_SWRW_Fail
+			SWRW_triple_alliance_victory = yes
+			every_country = {
+				limit = { is_ai = no }
+				news_event = OMS_News.6
+			}
+		}
+		else = {
+			RUS_lost_war = yes
+			set_global_flag = RUS_SWRW_Fail
+			SWRW_OMS_hanging_judge = yes
+			every_country = {
+				limit = { is_ai = no }
+				news_event = OMS_News.5
+			}
+		}
+	}
+}
+
+
+SWRW_set_tech_postnuke = {
+	set_technology = {
+		##INFANTRY##
+		infantry_weapons_1 = 1
+		night_vision_1 = 1
+		
+		infantry_kit_1 = 1
+		infantry_weapons_2 = 1
+		night_vision_2 = 1
+		infantry_kit_2 = 1
+		infantry_weapons_improvements_mine_1 = 1
+		infantry_kit_3 = 1
+		infantry_weapons_improvements_ammo_1 = 1
+		infantry_weapons_improvements_grenade_1 = 1
+		infantry_kit_4 = 1
+		basic_infantry_equipment = 1
+		support_weapons = 1
+		support_weapons_hmg_1 = 1
+		combat_support_equipment_1 = 1
+		infantry_at = 1
+		infantry_aa1 = 1
+
+		
+		#
+		
+		motorized_infantry = 1
+		motorized_rocket_unit = 1
+		motorized_infantry_1 = 1
+		marines = 1
+		tech_special_forces = 1
+		tech_mountaineers = 1
+		paratroopers = 1
+
+		basic_train = 1
+
+		##SUPPORT##
+		tech_support = 1
+		tech_engineers = 1
+		assault_weapons_1 = 1
+		tech_engineers2 = 1
+		assault_weapons_2 = 1
+		tech_engineers3 = 1
+		assault_weapons_3 = 1
+		tech_recon = 1
+		tech_recon2 = 1
+		tech_military_police = 1
+		tech_maintenance_company = 1
+		tech_field_hospital = 1
+		tech_logistics_company = 1
+
+		command_and_control1 = 1
+		command_and_control2 = 1
+		military_infrastructure1 = 1
+		military_infrastructure2 = 1
+		##ARMOR##
+		
+		# See NSB section #
+
+		##ARTY##
+		
+		# See NSB section #
+
+		##LAND DOCTRINE##
+		maneuver_warfare = 1
+
+		##NAVAL DOCTRINE##
+
+		##HELICOPTERS##
+		very_early_helicopter = 1
+		early_helicopter = 1
+
+		##LIGHT AIR##
+		early_fighter = 1
+		interceptor_1945 = 1
+		fighter_1945 = 1
+		CAS_1945 = 1
+
+		cv_1945_fighter = 1
+		cv_1945_CAS = 1
+
+		##HEAVY AIR##
+		tac_bomber1 = 1
+		tac_air_1945 = 1
+		strategic_bomber1 = 1
+		heavy_air_1945 = 1
+		transport_air1 = 1
+		transport_air_1945 = 1
+
+		##ENGINEERING##
+		electronic_mechanical_engineering = 1
+		radio = 1
+		radio_detection = 1
+		decimetric_radar = 1
+		centimetric_radar = 1
+
+		mechanical_computing = 1
+		computing_machine = 1
+		improved_computing_machine = 1
+		advanced_computing_machine = 1
+		
+		helicopter_engines = 1
+		jet_engines = 1
+		jet_engines_bombers = 1
+		
+		##INDUSTRY##
+		ww2_line_production = 1
+		building_construction_1 = 1
+		consumer_goods_reduction_1 = 1
+		consumer_goods_reduction_2 = 1
+		
+		energy_technology_1 = 1
+		social_construction_1 = 1
+		resource_extraction_methods = 1
+		excavation0 = 1
+		administration_construction_1 = 1
+		military_construction_1 = 1
+		
+		##WMDs##
+		ICBM = 1
+		MRBM = 1
+		SRBM = 1
+		nuclear_reactors = 1
+		nuclear_weapons = 1
+	}
+
+
+	if = {
+
+		limit = {
+			NOT = { has_dlc = "No Step Back" }
+		}
+		set_technology = {
+			IFV_1945 = 1
+			MBT_1945 = 1
+			APC_1945 = 1
+			APC_1950 = 1
+			APC_1950_basic_turret = 1
+			APC_1950_basic_armor = 1
+			IFV_1950 = 1
+			IFV_1950_basic_turret = 1
+			IFV_1950_basic_armor = 1
+			MBT_1950 = 1
+			MBT_1950_basic_turret = 1
+			MBT_1950_basic_armor = 1
+			MBT_1960 = 1
+			AC_1945 = 1
+			AC_1950 = 1
+
+			antiair_1945 = 1
+			antiair_1950 = 1
+			light_SPAA_1950 = 1
+			light_SPAA_1960 = 1
+			SPAA_1950 = 1
+			artillery_1945 = 1
+			artillery_1950 = 1
+			light_SPART_1950 = 1
+			light_SPART_1950_soft_attack = 1
+			SPART_1950 = 1
+			SPART_1950_soft_attack = 1
+		}
+	}
+	if = {
+		limit = {
+			has_dlc = "No Step Back"
+		}
+		set_technology = {
+			NSB_APC_1945 = 1
+			NSB_APC_1950 = 1
+			NSB_IFV_1945 = 1
+			NSB_IFV_1945_modules_1 = 1
+			NSB_IFV_1945_modules_2 = 1
+			NSB_IFV_1950 = 1
+			NSB_IFV_1950_modules_1 = 1
+			NSB_IFV_1950_modules_2 = 1
+			NSB_MBT_1945 = 1
+			NSB_MBT_1945_modules_1 = 1
+			NSB_MBT_1945_modules_2 = 1
+			NSB_MBT_1950 = 1
+			NSB_MBT_1950_modules_1 = 1
+			NSB_MBT_1950_modules_2 = 1
+			NSB_MBT_1960 = 1
+			NSB_AC_1945 = 1
+			NSB_AC_1950 = 1
+			NSB_AC_1960 = 1
+			NSB_Armour_1 = 1
+			NSB_Engine_1 = 1
+
+			NSB_artillery_1945 = 1
+			NSB_artillery_1950 = 1
+			NSB_artillery_MODULE = 1
+			NSB_artillery_1950_SA = 1
+
+			NSB_antiair_1945 = 1
+			NSB_antiair_1950 = 1
+			NSB_antiair_MODULE = 1
+			NSB_antiair_1950_AA = 1
+		}
+	}
+
+	set_research_slots = 3
+}
+
+SWRWCE_PostApoc_decision_init = {
+	set_global_flag = SWRWCE_PostApoc_decision_enable
+	set_global_flag = SWRW_postnuke_situation_flag
+	WRS = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	POV = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	FUK = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	KMC = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	RFS = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	YGR = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	OMS = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	TOM = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	KRS = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+
+	IRK = {
+		set_variable = { Antarctica_Legitimacy = 25 }
+		set_variable = { Antarctica_Militarization = 25 }
+		set_variable = { Antarctica_Equipment = 25 }
+		set_variable = { OMS_team_doing_max = 2 }
+	}
+}
+
+Postnuke_Militarization_Gain_Small = {
+	add_to_variable = { Antarctica_Militarization = 4 }
+	custom_effect_tooltip = Postnuke_Militarization_Gain_Small_tt
+	clamp_variable = {
+		var = Antarctica_Militarization
+		max = 100
+		min = 0
+	}
+}
+
+Postnuke_Militarization_Gain_Med = {
+	add_to_variable = { Antarctica_Militarization = 8 }
+	custom_effect_tooltip = Postnuke_Militarization_Gain_Medium_tt
+	clamp_variable = {
+		var = Antarctica_Militarization
+		max = 100
+		min = 0
+	}
+}
+
+Postnuke_Militarization_Loss_Small = {
+	add_to_variable = { Antarctica_Militarization = -4 }
+	custom_effect_tooltip = Postnuke_Militarization_Loss_Small_tt
+	clamp_variable = {
+		var = Antarctica_Militarization
+		max = 100
+		min = 0
+	}
+}
+
+
+
+Postnuke_Legitimacy_Gain_Small = {
+	add_to_variable = { Antarctica_Legitimacy = 4 }
+	custom_effect_tooltip = Postnuke_Legitimacy_Gain_Small_tt
+	clamp_variable = {
+		var = Antarctica_Legitimacy
+		max = 100
+		min = 0
+	}
+}
+
+Postnuke_Legitimacy_Gain_Med = {
+	add_to_variable = { Antarctica_Legitimacy = 8 }
+	custom_effect_tooltip = Postnuke_Legitimacy_Gain_Medium_tt
+	clamp_variable = {
+		var = Antarctica_Legitimacy
+		max = 100
+		min = 0
+	}
+}
+
+Postnuke_Legitimacy_Loss_Small = {
+	add_to_variable = { Antarctica_Legitimacy = -4 }
+	custom_effect_tooltip = Postnuke_Legitimacy_Loss_Small_tt
+	clamp_variable = {
+		var = Antarctica_Legitimacy
+		max = 100
+		min = 0
+	}
+}
+
+
+
+Postnuke_Equipment_Gain_Small = {
+	add_to_variable = { Antarctica_Equipment = 4 }
+	custom_effect_tooltip = Postnuke_Supply_Gain_Small_tt
+	clamp_variable = {
+		var = Antarctica_Legitimacy
+		max = 100
+		min = 0
+	}
+}
+
+Postnuke_Equipment_Gain_Med = {
+	add_to_variable = { Antarctica_Equipment = 8 }
+	custom_effect_tooltip = Postnuke_Supply_Gain_Medium_tt
+	clamp_variable = {
+		var = Antarctica_Legitimacy
+		max = 100
+		min = 0
+	}
+}
+
+Postnuke_Equipment_Loss_Small = {
+	add_to_variable = { Antarctica_Equipment = -4 }
+	custom_effect_tooltip = Postnuke_Supply_Loss_Small_tt
+	clamp_variable = {
+		var = Antarctica_Legitimacy
+		max = 100
+		min = 0
+	}
+}
+
+OMS_focus_select_effect = {
+	if = {
+		limit = {
+			NOT = {
+				has_global_flag = SWRW_postnuke_war_started
+			}
+		}
+		meta_effect = {
+			text = {
+				complete_national_focus = [OMS_focus_now]
+				clear_variable = OMS_focus
+			}
+			OMS_focus_now = "[?OMS_focus.GetTokenKey]"
+		}
+	}
+
+	if = {
+		limit = {
+			NOT = {
+				has_completed_focus = OMS_enemys_doing
+			}
+		}
+		activate_shine_on_focus = OMS_enemys_doing
+		set_variable = { OMS_focus = token:OMS_enemys_doing }
+		log = 1
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_enemys_doing
+			NOT = { has_completed_focus = OMS_KMC_intelilgests has_completed_focus = OMS_meeting_with_YGR }
+
+		}
+		random_list = {
+			50 = {
+				activate_shine_on_focus = OMS_KMC_intelilgests
+				set_variable = { OMS_focus = token:OMS_KMC_intelilgests }
+			}
+			50 = {
+				activate_shine_on_focus = OMS_meeting_with_YGR
+				set_variable = { OMS_focus = token:OMS_meeting_with_YGR }
+			}
+		}
+		log = 2
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_KMC_intelilgests
+			NOT = { OR = { has_completed_focus = OMS_push_their_border_line  has_completed_focus = OMS_support_them_business } }
+		}
+		random_list = {
+			50 = {
+				activate_shine_on_focus = OMS_push_their_border_line
+				set_variable = { OMS_focus = token:OMS_push_their_border_line }
+			}
+			50 = {
+				activate_shine_on_focus = OMS_support_them_business
+				set_variable = { OMS_focus = token:OMS_support_them_business }
+			}
+		}
+		log = 3
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_KMC_intelilgests
+			OR = { has_completed_focus = OMS_push_their_border_line  has_completed_focus = OMS_support_them_business }
+			NOT = {
+				AND = { has_completed_focus = OMS_push_their_border_line  has_completed_focus = OMS_support_them_business }
+			}
+		}
+		if = {
+			limit = { has_completed_focus = OMS_push_their_border_line }
+			activate_shine_on_focus = OMS_support_them_business
+			set_variable = { OMS_focus = token:OMS_support_them_business }
+		}
+		else = {
+			activate_shine_on_focus = OMS_push_their_border_line
+			set_variable = { OMS_focus = token:OMS_push_their_border_line }
+		}
+		log = 4
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_push_their_border_line
+			has_completed_focus = OMS_support_them_business
+			NOT = { has_completed_focus = OMS_the_old_enemy }
+
+		}
+			activate_shine_on_focus = OMS_the_old_enemy
+			set_variable = { OMS_focus = token:OMS_the_old_enemy }
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_the_old_enemy
+			NOT = { has_completed_focus = OMS_but_we_can_only_coop }
+		}
+		activate_shine_on_focus = OMS_but_we_can_only_coop
+		set_variable = { OMS_focus = token:OMS_but_we_can_only_coop }
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_but_we_can_only_coop
+			NOT = { has_completed_focus = OMS_oversea_loyalists }
+		}
+		activate_shine_on_focus = OMS_oversea_loyalists
+		set_variable = { OMS_focus = token:OMS_oversea_loyalists }
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_oversea_loyalists
+			NOT = { OR = { has_completed_focus = OMS_anti_omsk_pact has_completed_focus = OMS_old_wrrf_army } }
+		}
+		random_list = {
+			50 = {
+				activate_shine_on_focus = OMS_anti_omsk_pact
+				set_variable = { OMS_focus = token:OMS_anti_omsk_pact }
+			}
+			50 = {
+				activate_shine_on_focus = OMS_old_wrrf_army
+				set_variable = { OMS_focus = token:OMS_old_wrrf_army }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_oversea_loyalists
+			OR = {has_completed_focus = OMS_anti_omsk_pact has_completed_focus = OMS_old_wrrf_army }
+			OR = {
+				NOT = {
+					has_completed_focus = OMS_anti_omsk_pact
+				}
+				NOT = {
+					has_completed_focus = OMS_old_wrrf_army
+				}
+			}
+		}
+		if = {
+			limit = { has_completed_focus = OMS_anti_omsk_pact }
+				activate_shine_on_focus = OMS_old_wrrf_army
+				set_variable = { OMS_focus = token:OMS_old_wrrf_army }
+		}
+		else = {
+				activate_shine_on_focus = OMS_anti_omsk_pact
+				set_variable = { OMS_focus = token:OMS_anti_omsk_pact }
+		}
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_anti_omsk_pact
+			has_completed_focus = OMS_old_wrrf_army
+			NOT = { has_completed_focus = OMS_union_forever }
+		}
+		activate_shine_on_focus = OMS_union_forever
+		set_variable = { OMS_focus = token:OMS_union_forever }
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_meeting_with_YGR
+			NOT = {
+				OR = {
+					has_completed_focus = OMS_coop_like_1917
+					has_completed_focus = OMS_coop_like_1942
+				}
+			}
+		}
+		random_list = {
+			50 = {
+				activate_shine_on_focus = OMS_coop_like_1917
+				set_variable = { OMS_focus = token:OMS_coop_like_1917 }
+			}
+			50 = {
+				activate_shine_on_focus = OMS_coop_like_1942
+				set_variable = { OMS_focus = token:OMS_coop_like_1942 }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				has_completed_focus = OMS_coop_like_1917
+				has_completed_focus = OMS_coop_like_1942
+			}
+			NOT = { has_completed_focus = OMS_YGR_frontier_to_OMS }
+		}
+		activate_shine_on_focus = OMS_YGR_frontier_to_OMS
+		set_variable = { OMS_focus = token:OMS_YGR_frontier_to_OMS }
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_YGR_frontier_to_OMS
+			NOT = { has_completed_focus = OMS_TOM_artist_city }
+		}
+		activate_shine_on_focus = OMS_TOM_artist_city
+		set_variable = { OMS_focus = token:OMS_TOM_artist_city }
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_TOM_artist_city
+			NOT = { OR = { has_completed_focus = OMS_arm_against has_completed_focus = OMS_march_to_north_siberia } }
+		}
+		random_list = {
+			50 = {
+				activate_shine_on_focus = OMS_arm_against
+				set_variable = { OMS_focus = token:OMS_arm_against }
+			}
+			50 = {
+				activate_shine_on_focus = OMS_march_to_north_siberia
+				set_variable = { OMS_focus = token:OMS_march_to_north_siberia }
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			OR = { has_completed_focus = OMS_arm_against has_completed_focus = OMS_march_to_north_siberia } 
+		
+			OR = {
+				NOT = { has_completed_focus = OMS_march_to_north_siberia }
+				NOT = { has_completed_focus = OMS_arm_against}
+			}
+		}
+			OR = {
+				NOT = {
+					has_completed_focus = OMS_march_to_north_siberia
+				}
+				NOT = {
+					has_completed_focus = OMS_arm_against
+				}
+			}
+		if= {
+			limit = {
+				has_completed_focus = OMS_arm_against
+			}
+			activate_shine_on_focus = OMS_march_to_north_siberia
+			set_variable = { OMS_focus = token:OMS_march_to_north_siberia }
+		}
+		else = {
+			activate_shine_on_focus = OMS_arm_against
+			set_variable = { OMS_focus = token:OMS_arm_against }
+		}
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_arm_against has_completed_focus = OMS_march_to_north_siberia
+			NOT = { has_completed_focus = OMS_far_eastern_army }
+		}
+		activate_shine_on_focus = OMS_far_eastern_army
+		set_variable = { OMS_focus = token:OMS_far_eastern_army }
+	}
+	else_if = {
+		limit = {
+			NOT = { has_completed_focus = OMS_a_einheitfront }
+			has_completed_focus = OMS_far_eastern_army
+		}
+		activate_shine_on_focus = OMS_a_einheitfront
+		set_variable = { OMS_focus = token:OMS_a_einheitfront }
+	}
+	else_if = {
+		limit = {
+			NOT = { has_completed_focus = OMS_hard_union }
+			has_completed_focus = OMS_a_einheitfront
+		}
+		activate_shine_on_focus = OMS_hard_union
+		set_variable = { OMS_focus = token:OMS_hard_union }
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_hard_union
+			NOT = {has_completed_focus = OMS_KMC_intelilgests }
+		}
+		activate_shine_on_focus = OMS_KMC_intelilgests
+		set_variable = { OMS_focus = token:OMS_KMC_intelilgests }
+	}
+	else_if = {
+		limit = {
+			has_completed_focus = OMS_union_forever
+			NOT = {has_completed_focus = OMS_meeting_with_YGR }
+		}
+		activate_shine_on_focus = OMS_meeting_with_YGR
+		set_variable = { OMS_focus = token:OMS_meeting_with_YGR }
+	}
+
+	if = {
+		limit = {
+			has_completed_focus = OMS_union_forever
+			has_completed_focus = OMS_hard_union
+			NOT = { has_global_flag = SWRW_postnuke_war_started }
+		}
+		set_global_flag = SWRW_WRS_first_postnuke
+		SWRW_WAR_started_smuta = yes
+	}
+}
+
+SWRW_WAR_started_smuta = {
+	if = {
+		limit = {
+			NOT = {
+				has_global_flag = SWRW_postnuke_war_started
+			}
+		}
+	if = {
+		
+		limit = { has_global_flag = SWRW_WRS_first_postnuke }
+		every_country = {
+			limit = {
+				is_in_faction_with = WRS
+			}
+			add_ideas = OMS_strike_attack_self
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = OMS
+			}
+			add_ideas = OMS_strike_attack_other
+		}
+		WRS = {
+			declare_war_on = {
+				target = OMS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = KAZ
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = KRS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MGN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = SNP
+				type = annex_everything
+			}
+			add_ideas = OMS_strike_attack_self
+		}
+
+	}
+	else = {
+
+		OMS = {
+			declare_war_on = {
+				target = WRS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = RFS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = KMC
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = FIN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = IRK
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = TOM
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = YGR
+				type = annex_everything
+			}
+			add_ideas = OMS_strike_attack_self
+			
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = WRS
+			}
+			add_ideas = OMS_strike_attack_other
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = OMS
+			}
+			add_ideas = OMS_strike_attack_self
+		}
+	}
+	set_global_flag = SWRW_postnuke_war_started
+	OMS = {
+		mark_focus_tree_layout_dirty = yes
+		country_event = { id = OMS_POSTNUKE.182 days = 10 }
+		country_event = { id = OMS_POSTNUKE.183 days = 15 }
+	}
+	if = {
+		limit = {
+		ZZZ = {
+			owns_state = 653
+		}
+	}
+		YGR = { transfer_state =653 add_state_core = 653 }
+	}
+	if = {
+		limit = {
+		ZZZ = {
+			owns_state = 572
+		}
+	}
+		YGR = { transfer_state =572 add_state_core = 572 }
+	}
+	if = {
+		limit = {
+		ZZZ = {
+			owns_state = 403
+		}
+	}
+		YGR = { transfer_state =403 add_state_core = 403 }
+	}
+	if = {
+		limit = {
+		ZZZ = {
+			owns_state = 570
+		}
+	}
+		TOM = { transfer_state =570 add_state_core = 570 }
+	}
+	if = {
+		limit = {
+		ZZZ = {
+			owns_state = 40
+		}
+	}
+		TOM = { transfer_state =40 add_state_core = 40 }
+	}
+	if = {
+		limit = {
+		ZZZ = {
+			owns_state = 654
+		}
+	}
+		TOM = { transfer_state =654 add_state_core = 654 }
+	}
+	if = {
+		limit = {
+		ZZZ = {
+			owns_state = 569
+		}
+		}
+
+		TOM = { transfer_state =569 add_state_core = 569 }
+	}
+	hidden_effect = {
+		SNP = {
+		transfer_state = 1421
+		}
+		FUK = {
+			transfer_state = 227
+			transfer_state = 228
+			transfer_state = 200
+			transfer_state = 1426
+			transfer_state = 259
+			transfer_state = 225
+			transfer_state = 1427
+			transfer_state = 1428
+			transfer_state = 202
+			transfer_state = 226
+			transfer_state = 197
+			transfer_state = 196
+			transfer_state = 201
+			transfer_state = 773
+			transfer_state = 1430
+			transfer_state = 93
+			transfer_state = 199
+			transfer_state = 1431
+			transfer_state = 198
+			transfer_state = 1282
+			transfer_state = 192
+			transfer_state = 1966
+			transfer_state = 1965
+			transfer_state = 192
+
+			add_state_core = 227
+			add_state_core = 228
+			add_state_core = 200
+			add_state_core = 1426
+			add_state_core = 259
+			add_state_core = 225
+			add_state_core = 1427
+			add_state_core = 1428
+			add_state_core = 202
+			add_state_core = 226
+			add_state_core = 197
+			add_state_core = 196
+			add_state_core = 201
+			add_state_core = 773
+			add_state_core = 1430
+			add_state_core = 93
+			add_state_core = 199
+			add_state_core = 1431
+			add_state_core = 198
+			add_state_core = 1282
+			add_state_core = 192
+			add_state_core = 1966
+			add_state_core = 1965
+			add_state_core = 192
+		}
+		GER = {
+			transfer_state = 97
+			add_state_core = 97
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = GGN
+					is_core_of = POL
+				}
+			}
+			transfer_state_to = GER
+			add_core_of = GER
+		}
+		every_state = {
+			limit = {
+				is_core_of = CAU
+			}
+			transfer_state_to = GEO
+			add_core_of = GEO
+		}
+		MST = {
+			transfer_state = 189
+			transfer_state = 190
+			transfer_state = 1400
+			transfer_state = 11
+			transfer_state = 2451
+			transfer_state = 1401
+			transfer_state = 96
+			transfer_state = 79
+
+			add_state_core = 189
+			add_state_core = 190
+			add_state_core = 1400
+			add_state_core = 11
+			add_state_core = 2451
+			add_state_core = 1401
+			add_state_core = 96
+			add_state_core = 79
+		}
+		EST = {
+			transfer_state = 1398
+			add_state_core = 1398
+		}
+	}
+	}
+	else = {
+		
+	}
+}
+
+SWRW_GT_idea_improve = {
+	if = {
+		limit = {
+			has_idea = OMS_the_great_trial
+		}
+		swap_ideas = {
+			remove_idea = OMS_the_great_trial
+			add_idea = OMS_the_great_trial_2
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = OMS_the_great_trial_2
+		}
+		swap_ideas = {
+			remove_idea = OMS_the_great_trial_2
+			add_idea = OMS_the_great_trial_3
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = OMS_the_great_trial_3
+		}
+		swap_ideas = {
+			remove_idea = OMS_the_great_trial_3
+			add_idea = OMS_the_great_trial_4
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = OMS_the_great_trial_4
+		}
+		swap_ideas = {
+			remove_idea = OMS_the_great_trial_4
+			add_idea = OMS_the_great_trial_5
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = OMS_the_great_trial_5
+		}
+		swap_ideas = {
+			remove_idea = OMS_the_great_trial_5
+			add_idea = OMS_the_great_trial_6
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = OMS_the_great_trial_6
+		}
+		swap_ideas = {
+			remove_idea = OMS_the_great_trial_6
+			add_idea = OMS_the_great_trial_7
+		}
+	}
+}
+
+SWRW_load_anime = {
+	set_country_flag = OMS_THE_END_CG_ONSHOW
+	scoped_play_song = "OMSK_THE_END"
+}

@@ -1,0 +1,600 @@
+leader_traits = {
+
+
+##################################
+# Common Traits
+##################################
+
+	SWRW_army_size_modifier = {
+		type = all
+		trait_type = personality_trait
+		gain_xp = {
+			always = no
+		}
+		corps_commander_modifier = {
+			max_commander_army_size = 12
+		}
+		field_marshal_modifier = {
+			max_army_group_size = 2
+		}
+		new_commander_weight = {
+			factor = 0
+		}
+	}
+
+	SWRW_skilled_staffer_modifier = {
+		type = all
+		trait_type = personality_trait
+		gain_xp = {
+			always = no
+		}
+		corps_commander_modifier = {
+			max_commander_army_size = 2
+		}
+		new_commander_weight = {
+			factor = 0
+		}
+	}
+
+	############# MILITARY MODERNIZATION ##########
+	PRC_mission_1 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				is_fighting_in_terrain = urban
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^1 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 1 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^1 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^1 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_1
+					}
+					remove_unit_leader_trait = PRC_mission_1
+				}
+			}
+		}
+	}
+
+	PRC_mission_2 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				is_fighting_in_terrain = forest
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^2 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 2 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^2 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^2 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_2
+					}
+					remove_unit_leader_trait = PRC_mission_2
+				}
+			}
+		}
+	}
+
+	PRC_mission_3 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				is_fighting_in_terrain = hills
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^3 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 3 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^3 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^3 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_3
+					}
+					remove_unit_leader_trait = PRC_mission_3
+				}
+			}
+		}
+	}
+
+	PRC_mission_4 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				is_fighting_in_terrain = mountain
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^4 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 4 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^4 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^4 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_4
+					}
+					remove_unit_leader_trait = PRC_mission_4
+				}
+			}
+		}
+	}
+
+	PRC_mission_5 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				temperature < 0
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^5 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 5 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^5 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^5 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_5
+					}
+					remove_unit_leader_trait = PRC_mission_5
+				}
+			}
+		}
+	}
+
+	PRC_mission_6 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				has_combat_modifier = river_crossing
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^6 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 6 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^6 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^6 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_6
+					}
+					remove_unit_leader_trait = PRC_mission_6
+				}
+			}
+		}
+	}
+
+	PRC_mission_7 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				is_fighting_in_weather = mud
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^7 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 7 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^7 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^7 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_7
+					}
+					remove_unit_leader_trait = PRC_mission_7
+				}
+			}
+		}
+	}
+
+	PRC_mission_8 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				OR = {
+					is_fighting_in_weather = rain_light
+					is_fighting_in_weather = rain_heavy
+				}
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^8 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 8 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^8 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^8 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_8
+					}
+					remove_unit_leader_trait = PRC_mission_8
+				}
+			}
+		}
+	}
+
+	PRC_mission_9 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				OR = {
+					is_fighting_in_weather = snow
+				}
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^9 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 9 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^9 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^9 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_9
+					}
+					remove_unit_leader_trait = PRC_mission_9
+				}
+			}
+		}
+	}
+
+	PRC_mission_10 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				opponent = {
+					less_combat_width_than_opponent = yes
+				}
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^10 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 1
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 10 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^10 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^10 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_10
+					}
+					remove_unit_leader_trait = PRC_mission_10
+				}
+			}
+		}
+	}
+
+	PRC_mission_20 = {
+		type = corps_commander
+		gain_xp = {
+			AND = {
+				PRC = {
+					has_country_flag = PRC_military_modernization
+				}
+				PRC = {
+					check_variable = { PRC_research_team_mission_progbar^20 < 100 }
+				}
+			}
+		}
+		custom_gain_xp_trigger_tooltip = PRC_has_modernization
+		cost = 2
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		gui_row = 16
+		gui_column = -2
+
+		allowed = {
+			FROM = { tag = PRC }
+		}
+
+		prerequisites = {
+			PRC = {
+				is_in_array = { PRC_military_modernization_active_missions = 20 }
+			}
+			PRC = {
+				check_variable = { PRC_military_modernization_active_missions_progbar^20 = 1 }
+			}
+		}
+
+		on_add = {
+			PRC = {
+				add_to_variable = { PRC_military_modernization_active_missions_progbar^20 = 33 }
+				every_unit_leader = {
+					limit = {
+						has_trait = PRC_mission_20
+					}
+					remove_unit_leader_trait = PRC_mission_20
+				}
+			}
+		}
+	}
+}
+
+##################################
+# Field Marshal traits.
+##################################
+
+##################################
+# Corps Commander traits.
+##################################
+
+##################################
+# Corps Commander assignable traits.
+##################################
+
+##################################
+# Naval traits.
+##################################

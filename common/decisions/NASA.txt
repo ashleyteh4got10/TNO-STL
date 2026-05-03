@@ -1,0 +1,2356 @@
+#############################################################################
+
+##### NASA TIME BITCHES
+##### GLENN
+
+##############################################################################
+
+
+
+#############################################
+
+### Nuclear Shit
+
+#############################################
+
+USA_GLN_Nuclear_Commission = {
+	USA_GLN_Fuck_With_Japans_stockpile_mine_sabotage = {
+		available = {  NOT = { has_country_flag = GLN_fucking_with_people } }
+		visible = { has_country_flag = USA_GLN_fuck_with_rivals }
+		cost = 45
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = GLN_mine_fuckery_cost }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = USA_GLN_Fuck_Japan_Nukes_mine
+			GLN_increase_nuclear_spending = yes
+		}
+		modifier = { political_power_gain = -0.25 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			hidden_effect = {
+				if = { #Have you recently fucked with someone?
+					limit = { has_country_flag = GLN_suspicion_timer }
+					random_list = {
+						80 = { JAP = { country_event = { id = glenn.104 } } } #Not caught but the timing is suspicious
+						20 = { JAP = { country_event = { id = glenn.106 } } } #Busted
+					}
+				}
+				else = {
+					set_country_flag = GLN_suspicion_timer
+					random_list = {
+						90 = { #Not caught but the timing is suspicious
+							JAP = { country_event = { id = glenn.103 } }
+						}
+						10 = { #Busted
+							JAP = { country_event = { id = glenn.106 } }
+						}
+					}
+				}
+			}
+		}
+	}
+	USA_GLN_Fuck_With_Japans_stockpile_false_flag = {
+		available = {  NOT = { has_country_flag = GLN_fucking_with_people } }
+		visible = { has_country_flag = USA_GLN_fuck_with_rivals }
+		cost = 45
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = GLN_fale_flag_cost }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = USA_GLN_Fuck_Japan_Nukes_false_flag
+			GLN_increase_nuclear_spending = yes
+		}
+		modifier = { political_power_gain = -0.15 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = GLN_suspicion_timer }
+					JAP = { country_event = { id = glenn.109 } }
+				}
+				else = { JAP = { country_event = { id = glenn.108 } } }
+			}
+			GLN_increase_nuclear_spending = yes
+		}
+	}
+	USA_GLN_Fuck_With_Germanys_stockpile = {
+		available = {  NOT = { has_country_flag = GLN_fucking_with_people } }
+		visible = { has_country_flag = USA_GLN_fuck_with_rivals }
+		cost = 45
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = GLN_supplier_fuckery }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = USA_GLN_Fuck_Germany_Nukes
+		}
+		modifier = { political_power_gain = -0.15 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = GLN_suspicion_timer }
+					GER = { country_event = { id = glenn.111 } }
+				}
+				else = { GER = { country_event = { id = glenn.110 } } }
+			}
+			GLN_increase_nuclear_spending = yes
+		}
+	}
+	USA_GLN_head_to_Australia = {
+		available = {
+			AST = { is_in_faction_with = USA }
+			NOT = { has_country_flag = GLN_fucking_with_people }
+		}
+		cost = 60
+		days_remove = 35
+		days_re_enable = 50
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = 0.12 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = GLN_nuclear_stockpile_up
+			custom_effect_tooltip = GLN_OFN_uranium_purchase
+		}
+		modifier = { political_power_gain = -0.1 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			custom_effect_tooltip = USA_GLN_increase_nuclear_production_5
+			add_to_variable = { GLN_nuclear_boost_var = 0.05 }
+			AST = {
+				add_timed_idea = { idea = USA_GLN_head_to_Australia_misc_income days = 90 }
+				add_political_power = 50
+			}
+		}
+	}
+	USA_GLN_head_to_Canada = {
+		available = {
+			CAN = { is_in_faction_with = USA }
+			NOT = { has_country_flag = GLN_fucking_with_people }
+		}
+		cost = 60
+		days_remove = 35
+		days_re_enable = 50
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = 0.12 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = GLN_nuclear_stockpile_up
+			custom_effect_tooltip = GLN_OFN_uranium_purchase
+		}
+		modifier = { political_power_gain = -0.1 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			custom_effect_tooltip = USA_GLN_increase_nuclear_production_5
+			add_to_variable = { GLN_nuclear_boost_var = 0.05 }
+			CAN = {
+				add_timed_idea = { idea = USA_GLN_head_to_Canada_misc_income days = 90 }
+				add_political_power = 50
+			}
+		}
+	}
+	USA_GLN_head_to_SAF = {
+		available = {
+			SAF = { is_in_faction_with = USA }
+			NOT = { has_country_flag = GLN_fucking_with_people }
+		}
+		cost = 60
+		days_remove = 35
+		days_re_enable = 50
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = 0.12 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = GLN_nuclear_stockpile_up
+			custom_effect_tooltip = GLN_OFN_uranium_purchase
+		}
+		modifier = { political_power_gain = -0.1 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			custom_effect_tooltip = USA_GLN_increase_nuclear_production_5
+			add_to_variable = { GLN_nuclear_boost_var = 0.05 }
+			SAF = {
+				add_timed_idea = { idea = USA_GLN_head_to_SAF_misc_income days = 90 }
+				add_political_power = 50
+			}
+		}
+	}
+	GLN_suspicion_timer_mission = { #If Glenn tries to do sabotage while this is active bad shit can happen
+		activation = { has_country_flag = GLN_suspicion_timer }
+		days_mission_timeout = 150
+		timeout_effect = { clr_country_flag = GLN_suspicion_timer }
+		available = { has_country_flag = GLN_clear_timer } #Player used decisions to clear suspicion early
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GLN_suspicion_timer_mission"
+			clr_country_flag = GLN_suspicion_timer
+			clr_country_flag = GLN_clear_timer
+		}
+	}
+	GLN_suspicion_timer_clear = { #If you want to do operations risk free before the timer ends
+		visible = { has_country_flag = GLN_suspicion_timer }
+		available = { has_country_flag = GLN_clear_timer } #Player used decisions to clear suspicion early
+		cost = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GLN_suspicion_timer_mission"
+			custom_effect_tooltip = GLN_suspicion_timer_clear_cost
+			add_political_power = -20
+			subtract_from_variable = { money_reserves = 0.05 } #already converted to billion
+			set_country_flag = GLN_clear_timer
+		}
+	}
+	GLN_load_crisis_tree = {
+		visible = {
+			has_country_flag = USA_debug_decisions
+		}
+		activation = { has_country_flag = GLN_suspicion_timer }
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_reload_pres_tree"
+			set_country_flag = GLN_lost_diplo_crisis
+			USA_reload_presidential_tree = yes
+		}
+	}
+}
+
+
+
+
+
+##############################################
+
+## FUNDING DECISIONS
+
+##############################################
+
+
+USA_GLN_NASA_Program = {
+
+	USA_GLN_NASA_Budget_Increase_Small = {
+		icon = GFX_decision_nasa
+		cost = 45
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Miscs_Costs_Small
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Small
+			set_temp_variable = { temp_econ_spending_amount = 0.075 }
+			GLN_fund_NASA_once_effect = yes
+		}
+
+		modifier = {
+			political_power_gain = -0.1
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_Public_Support = -5 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	USA_GLN_NASA_Budget_Increase_Medium = {
+		icon = GFX_decision_nasa
+		cost = 60
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Miscs_Costs_Medium
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Medium
+			set_temp_variable = { temp_econ_spending_amount = 0.125 }
+			GLN_fund_NASA_once_effect = yes
+			set_country_flag = GLN_Funding_NASA
+		}
+
+		modifier = {
+			political_power_gain = -0.15
+			misc_costs_percent_of_GDP_modifier = 0.035
+		}
+
+		remove_effect = {
+			clr_country_flag = GLN_Funding_NASA
+			add_popularity = {
+				ideology = liberalism
+				popularity = -0.005
+			}
+			add_popularity = {
+				ideology = conservatism
+				popularity = 0.005
+			}
+			add_to_variable = { USA_GLN_Public_Support = -10 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+	USA_GLN_NASA_Budget_Increase_Large = {
+		icon = GFX_decision_nasa
+		available = {
+			has_country_flag = GLN_All_In_On_NASA
+		}
+		visible = {
+			has_country_flag = GLN_All_In_On_NASA
+		}
+		cost = 80
+		days_remove = 0
+		days_re_enable = 35
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Miscs_Costs_Large
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Large
+			set_temp_variable = { temp_econ_spending_amount = 0.225 }
+			GLN_fund_NASA_once_effect = yes
+			set_country_flag = GLN_Funding_NASA
+		}
+
+		modifier = {
+			political_power_gain = -0.25
+			misc_costs_percent_of_GDP_modifier = 0.055
+		}
+
+		remove_effect = {
+			clr_country_flag = GLN_Funding_NASA
+			add_popularity = {
+				ideology = liberal_democracy
+				popularity = -0.01
+			}
+			add_popularity = {
+				ideology = conservative_democracy
+				popularity = 0.01
+			}
+			subtract_from_variable = { USA_RD_Unity = 0.5 }
+			subtract_from_variable = { USA_GLN_Public_Support = 15 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+
+	USA_GLN_NASA_Loan_Resources = {
+		icon = GFX_decision_factory_generic_red
+		available = {
+			num_of_available_civilian_factories > 0
+		}
+		visible = {
+			NOT = { has_country_flag = GLN_stopped_lobbying }
+		}
+		cost = 25
+		days_remove = 35
+		days_re_enable = 20
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Miscs_Costs_Small
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Small
+			add_to_variable = { USA_GLN_NASA_Funding = 0.075 }
+			GLN_NASA_recalculate_budget_left = yes
+			set_country_flag = GLN_Funding_NASA
+		}
+
+		modifier = {
+			misc_costs_percent_of_GDP_modifier = 0.01
+			political_power_gain = -0.1
+		}
+
+
+		remove_effect = {
+			clr_country_flag = GLN_Funding_NASA
+			add_to_variable = { USA_GLN_Public_Support = -2.5 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+
+	USA_GLN_NASA_Siphon_Military = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			has_country_flag = USA_GLN_We_can_Siphon_Now
+		}
+		cost = 40
+		days_remove = 50
+		days_re_enable = 25
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Miscs_Costs_Medium_Large
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Medium_Large
+			add_to_variable = { USA_GLN_NASA_Funding = 0.150 }
+			GLN_NASA_recalculate_budget_left = yes
+			set_country_flag = GLN_Funding_NASA
+		}
+
+		modifier = {
+			production_factory_max_efficiency_factor = -0.1
+			misc_income_percent_of_GDP_modifier = 0.03
+		}
+		remove_effect = {
+			add_to_variable = { USA_GLN_Public_Support = -12 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			add_to_variable = { temporary_congress_votes = -1 }
+			clr_country_flag = GLN_Funding_NASA
+		}
+	}
+
+	USA_GLN_NASA_Joint_Programs = {
+		icon = GFX_decision_nasa
+		visible = {
+			has_country_flag = USA_GLN_We_can_Siphon_Now
+		}
+		cost = 50
+		days_remove = 60
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Miscs_Costs_Gigantic
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Up_Gigantic
+			add_ideas = USA_GLN_Military_Siphoning_NASA_Idea
+			set_country_flag = GLN_Funding_NASA
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			GLN_fund_NASA_once_effect = yes
+		}
+
+		modifier = {
+			production_factory_max_efficiency_factor = -0.15
+			research_speed_factor = 0.05
+		}
+
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_Public_Support = -15 }
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+			add_to_variable = { temporary_congress_votes = -2 }
+			clr_country_flag = GLN_Funding_NASA
+			remove_ideas = USA_GLN_Military_Siphoning_NASA_Idea
+		}
+	}
+
+
+
+	USA_GLN_NASA_Hire_Out_Scientists = {
+		icon = GFX_decision_research_generic
+		visible = {
+			has_country_flag = USA_GLN_best_And_Brightest
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.050 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.050 }
+			}
+		}
+		cost = 25
+		days_remove = 00
+		days_re_enable = 40
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Down_Small
+			custom_effect_tooltip = USA_GLN_JPL_Science_Points
+			set_country_flag = GLN_Funding_NASA
+			subtract_from_variable = { USA_GLN_NASA_Funding = 0.050 }
+			GLN_NASA_recalculate_budget_left = yes
+			add_to_variable = { USA_GLN_NASA_Science_Points = 20 }
+		}
+
+		remove_effect = {
+			clr_country_flag = GLN_Funding_NASA
+		}
+	}
+
+
+	USA_GLN_NASA_Sell_Off_Tech = {
+		icon = GFX_decision_generic_arms_crate
+		visible = {
+			has_country_flag = USA_GLN_best_And_Brightest
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.085 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.085 }
+			}
+		}
+		cost = 30
+		days_remove = 05
+		days_re_enable = 40
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Down_Small
+			custom_effect_tooltip = USA_GLN_JPL_Science_Points
+			set_country_flag = GLN_Funding_NASA
+			subtract_from_variable = { USA_GLN_NASA_Funding = 0.085 }
+			GLN_NASA_recalculate_budget_left = yes
+			add_to_variable = { USA_GLN_NASA_Science_Points = 35 }
+		}
+
+		remove_effect = {
+			clr_country_flag = GLN_Funding_NASA
+		}
+	}
+
+	### Mars Mission ###
+	USA_GLN_NASA_Ares_Landing_Mission = {
+		icon = USA_Glenn_Mars_MissionIcon
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Ares_Landing_Available_tt
+				always = no
+			}
+		}
+		activation = { always = no } # Will activate by command
+		is_good = no
+		selectable_mission = no
+		timeout_effect = {
+			custom_effect_tooltip = USA_GLN_Ares_Landing_tt
+		}
+		days_mission_timeout = 120
+		complete_effect = { }
+	}
+	USA_GLN_NASA_Increase_Public_Support_Small = {
+
+		available = {
+			check_variable = { USA_GLN_NASA_Funding > 0.019 }
+		}
+		cost = 10
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Down_Extremely_Small
+
+			custom_effect_tooltip = GLN_public_support_up_4
+
+			set_country_flag = GLN_Funding_NASA
+
+			subtract_from_variable = { USA_GLN_NASA_Funding = 0.030 }
+
+			add_to_variable = { USA_GLN_Public_Support = 4 }
+
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+
+		remove_effect = {
+			clr_country_flag = GLN_Funding_NASA
+		}
+	}
+
+
+	USA_GLN_NASA_Increase_Public_Support_Large = {
+
+		available = {
+			check_variable = { USA_GLN_NASA_Funding > 0.044 }
+		}
+		cost = 25
+		days_remove = 45
+		days_re_enable = 40
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Budget_Down_Very_Small
+
+			custom_effect_tooltip = GLN_public_support_up_9
+
+			set_country_flag = GLN_Funding_NASA
+
+			subtract_from_variable = { USA_GLN_NASA_Funding = 0.045 }
+
+			add_to_variable = { USA_GLN_Public_Support = 7 }
+
+			clamp_variable = {
+				var = USA_GLN_Public_Support
+				min = 0
+				max = 100
+			}
+		}
+
+		remove_effect = {
+			clr_country_flag = GLN_Funding_NASA
+		}
+	}
+}
+
+
+##############################################
+
+## Jet Propulsion Labs
+
+##############################################
+
+
+USA_GLN_JPL = {
+
+#################################################################### TECH LEVEL 1
+
+	USA_GLN_Research_Improved_Engineering = {
+		visible = { NOT = { has_country_flag = USA_GLN_Research_First_Tier_Done }}
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 19 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 19 }
+		}
+		custom_cost_text = GLN_JPL_Cost_20_Points
+		days_remove = 35
+
+		ai_will_do = {
+			factor = 35
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 20 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Improved_Engineering_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 3 }
+			add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 3 }
+
+			set_country_flag = USA_GLN_Research_First_Tier_Done
+			set_country_flag = USA_GLN_Unlock_Research_Tier_2_Branch_1
+			set_country_flag = USA_GLN_Unlock_Research_Tier_2_Branch_2
+		}
+	}
+
+#################################################################### TECH LEVEL 2
+
+	USA_GLN_Research_Expanded_Payloads = { #Branch 1
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_2_Branch_1 }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 29 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_40_Points
+
+		days_remove = 45
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 29 }
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 30 }
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Expanded_Payloads_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 3 }
+
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_2_Branch_1
+			set_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_1_Alloys_V1
+			set_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_1_Fuel_Tanks_V1
+		}
+	}
+
+	USA_GLN_Research_Reworked_Uplinks = { #Branch 2
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_2_Branch_2 }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 29 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_30_Points
+
+		days_remove = 45
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 29 }
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 30 }
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Reworked_Uplinks_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 5 }
+
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_2_Branch_2
+			set_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_2_Relays
+			set_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_2_Remote_V2
+		}
+	}
+
+#################################################################### TECH LEVEL 3
+
+	USA_GLN_Research_Improved_Alloys = { #Branch 1
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_1_Alloys_V1 }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 44 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_45_Points
+
+		days_remove = 60
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 44 }
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 44 }
+		}
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Improved_Alloys_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Unmanned = 30 }
+			add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Manned= 30 }
+			add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 5 }
+
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_1_Alloys_V1
+			set_country_flag = USA_GLN_Unlock_Research_Tier_4_Alloys
+		}
+	}
+
+	USA_GLN_Research_Recycled_Fuel_Tanks = { #Branch 1
+		visible = {
+			has_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_1_Fuel_Tanks_V1
+			has_country_flag = USA_GLN_We_Can_Research_Oil_Now
+		}
+
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 44 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 44 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_45_Points
+
+		days_remove = 60
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 44 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Recycled_Fuel_Tanks_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Unmanned = -20 }
+
+			set_country_flag = USA_GLN_Unlock_Research_Tier_4_Fuel_Tanks
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_1_Fuel_Tanks_V1
+		}
+	}
+
+	USA_GLN_Research_High_Powered_Relays = { #Branch 2
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_2_Relays }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 44 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 44 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_45_Points
+
+		days_remove = 60
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Research_High_Powered_Relays_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Lower_Missions_Rewards_Boost = 0.5 }
+
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 44 }
+		}
+
+
+		remove_effect = {
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_2_Relays
+			set_country_flag = USA_GLN_Unlock_Research_Tier_4_Telescopes
+		}
+	}
+
+	USA_GLN_Research_Remote_Guidance_V2 = { #Branch 2
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_2_Remote_V2 }
+
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 44 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 44 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_45_Points
+
+		days_remove = 60
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 44 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Remote_Guidance_V2_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 10 }
+			add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Unmanned = 30 }
+
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_3_Branch_2_Remote_V2
+			set_country_flag = USA_GLN_Unlock_Research_Tier_4_Landing
+			set_country_flag = USA_GLN_Unlock_Research_Tier_4_Remote_V3
+		}
+	}
+
+#################################################################### TECH LEVEL 4
+
+	USA_GLN_Research_Improved_Alloys_V2 = { #Branch 1
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_4_Alloys }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+		custom_cost_text = GLN_JPL_Cost_60_Points
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+		days_remove = 60
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Improved_Alloy_V2_Tooltip
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 60 }
+		}
+
+
+		remove_effect = {
+
+			add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 10 }
+
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_4_Alloys
+		}
+	}
+
+
+
+
+	USA_GLN_Research_Recycled_Fuel_Tanks_V2 = { #Branch 1
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_4_Fuel_Tanks }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_60_Points
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+		days_remove = 60
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 60 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Recycled_Fuel_Tanks_V2_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Manned = -30 }
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_4_Fuel_Tanks
+		}
+	}
+
+
+
+
+	USA_GLN_Research_Infrared_Telescopes = { #Branch 2
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_4_Telescopes }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+
+		custom_cost_text = GLN_JPL_Cost_60_Points
+
+		days_remove = 60
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 60 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Infrared_Telescopes_Tooltip
+
+			set_variable = { USA_GLN_NASA_Minerva_Rewards_Boost = 2.5 }
+
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_4_Telescopes
+		}
+	}
+
+
+
+
+	USA_GLN_Research_Remote_Guidance_V3 = { #Branch 2
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_4_Remote_V3 }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_65_Points
+
+		days_remove = 60
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 60 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Remote_Guidance_V3_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Unmanned_Mission_Boost = 15 }
+			add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Unmanned = 40 }
+
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_4_Remote_V3
+
+		}
+	}
+
+
+	USA_GLN_Research_Computer_Assisted_Landing = { #Branch 2
+		visible = { has_country_flag = USA_GLN_Unlock_Research_Tier_4_Landing }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+		custom_cost_text = GLN_JPL_Cost_60_Points
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 59 }
+		}
+
+		days_remove = 60
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 60 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Research_Computer_Assisted_Landing_Tooltip
+
+			add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 15 }
+			add_to_variable = { USA_GLN_NASA_Budget_Costs_From_Research_Manned = 25 }
+
+			clr_country_flag = USA_GLN_Unlock_Research_Tier_4_Landing
+		}
+	}
+
+#################################################################### CUSTOM TECHS
+
+	USA_GLN_Special_Research_New_Capsule = {
+		visible = { has_country_flag = USA_GLN_Special_Research_Unlock_New_Capsule }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 29 }
+		}
+
+
+		custom_cost_text= GLN_JPL_Cost_30_Points
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 29 }
+		}
+
+		days_remove = 45
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 30 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Special_Research_New_Capsule_tooltip
+
+			clr_country_flag = USA_GLN_Special_Research_Unlock_New_Capsule
+			set_country_flag = USA_GLN_New_Capsule_Available
+		}
+	}
+
+
+
+
+	USA_GLN_Special_Research_Space_Suit_V2= {
+		visible = { has_country_flag = USA_GLN_Special_Research_Unlock_Space_Suit_V2 }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 29 }
+		}
+
+
+		custom_cost_text= GLN_JPL_Cost_30_Points
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 29 }
+		}
+
+		days_remove = 45
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 30 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Special_Research_Space_Suit_V2_tooltip
+
+			clr_country_flag = USA_GLN_Special_Research_Unlock_Space_Suit_V2
+			set_country_flag = USA_GLN_Space_Suit_V2_Avaialable
+		}
+	}
+
+	USA_GLN_Special_Research_Software_Update = {
+		visible = { has_country_flag = USA_GLN_Special_Research_Unlock_Software_Update }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 24 }
+		}
+
+		custom_cost_text= GLN_JPL_Cost_25_Points
+		days_remove = 40
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 24 }
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 25 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Special_Research_Software_Update_Tooltip
+
+			clr_country_flag = USA_GLN_Special_Research_Unlock_Software_Update
+			set_country_flag = USA_GLN_Software_Update_Available
+		}
+	}
+
+
+	USA_GLN_Special_Research_Improved_Heat_Shields = {
+		visible = { has_country_flag = USA_GLN_Special_Research_Unlock_Heat_Shielding }
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 34 }
+		}
+
+
+		custom_cost_text= GLN_JPL_Cost_35_Points
+		days_remove = 55
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 34 }
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 35 }
+		}
+
+
+		remove_effect = {
+			custom_effect_tooltip = USA_GLN_Special_Research_Improved_Heat_Shields_Tooltip
+
+			clr_country_flag = USA_GLN_Special_Research_Unlock_Heat_Shielding
+			set_country_flag = USA_GLN_Heath_Shields_Available
+		}
+	}
+
+
+
+
+	USA_GLN_Special_Research_Saturn_V_Rocket = {
+		visible = { has_country_flag = USA_GLN_Special_Research_Unlock_Saturn_V_Rocket}
+		available = {
+			check_variable = { USA_GLN_NASA_Science_Points > 69 }
+		}
+
+
+		custom_cost_text= GLN_JPL_Cost_70_Points
+
+		custom_cost_trigger = {
+			check_variable = { USA_GLN_NASA_Science_Points > 69 }
+		}
+
+		days_remove = 90
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			set_country_flag = USA_GLN_Doing_Research
+			custom_effect_tooltip = USA_GLN_Special_Research_Saturn_V_Rocket_Tooltip
+			subtract_from_variable = { USA_GLN_NASA_Science_Points = 70 }
+		}
+
+
+		remove_effect = {
+			clr_country_flag = USA_GLN_Special_Research_Unlock_Saturn_V_Rocket
+			set_country_flag = USA_GLN_Saturn_V_Rocket_Available
+			set_country_flag = USA_GLN_Mission_Control_Diana_Avaialable
+		}
+	}
+
+}
+################################################################## END OF TECH TREE
+
+
+
+
+##############################################
+
+## Mission Control
+
+##############################################
+
+
+
+USA_GLN_Mission_Control = {
+
+############################################################### MODULES
+
+	USA_GLN_Mission_Control_Add_Special_Research_Space_Suit_V2 = {
+
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			has_country_flag = USA_GLN_Doing_Manned_Mission
+			has_country_flag = USA_GLN_Space_Suit_V2_Avaialable
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.025 }
+			}
+		}
+
+		fire_only_once = yes
+		cost = 30
+		days_remove = 15
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Space_Suit_V2_Features
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.025 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 10 }
+		}
+	}
+
+
+	USA_GLN_Mission_Control_Add_Special_Research_Software_Update = {
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			has_country_flag = USA_GLN_Doing_Unmanned_Mission
+			has_country_flag = USA_GLN_Software_Update_Available
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.035 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.035 }
+			}
+		}
+
+		fire_only_once = yes
+		cost = 35
+		days_remove = 25
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Software_Update_Features
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.035 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Manned_Missions_Rewards_Boost = .25 }
+			add_to_variable = { USA_GLN_NASA_Lower_Missions_Rewards_Boost = .25 }
+		}
+	}
+
+
+
+
+	USA_GLN_Mission_Control_Add_Special_Research_New_Capsule = {
+
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			has_country_flag = USA_GLN_Doing_Manned_Mission
+			has_country_flag = USA_GLN_New_Capsule_Available
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.050 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.050 }
+			}
+		}
+
+		fire_only_once = yes
+		cost = 35
+		days_remove = 25
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_New_Capsule_Features
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.050 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Manned_Missions_Rewards_Boost = 0.5 }
+		}
+	}
+
+
+
+	USA_GLN_Mission_Control_Add_Special_Research_Improved_Heat_Shields = {
+
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			OR = {
+				has_country_flag = USA_GLN_Doing_Manned_Mission
+				has_country_flag = USA_GLN_Doing_Unmanned_Mission
+			}
+			has_country_flag = USA_GLN_USA_GLN_Heath_Shields_Available
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.030 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.030 }
+			}
+		}
+
+		fire_only_once = yes
+		cost = 25
+		days_remove = 15
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Heat_Shields_Feature
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.030 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Manned_Missions_Rewards_Boost = 0.25 }
+			add_to_variable = { USA_GLN_NASA_Manned_Mission_Boost = 5 }
+		}
+	}
+
+
+	############################################################### BASIC PREPARDNESS DECISONS
+
+	USA_GLN_Mission_Control_Check_Over_Rocket = {
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = {
+				has_country_flag = USA_GLN_Already_Checked_Over_Rocket
+				has_country_flag = USA_GLN_Mission_Launched
+			}
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.040 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.040 }
+			}
+		}
+
+		days_remove = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Rocket_Review_Addition
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.040 }
+			GLN_NASA_recalculate_budget_left = yes
+			set_country_flag = USA_GLN_Upgrading_Mission
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Mission_Prep = 10 }
+			clr_country_flag = USA_GLN_Upgrading_Mission
+			set_country_flag = USA_GLN_Already_Checked_Over_Rocket
+
+			clamp_variable = {
+				var = USA_GLN_NASA_Mission_Prep
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+
+	USA_GLN_Mission_Control_Build_Up_Facilities = {
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			has_country_flag = USA_GLN_Upgarding_Infa_decisions_unlocked
+			NOT = {
+				has_country_flag = USA_GLN_Already_Built_Up_Facilities
+				has_country_flag = USA_GLN_Mission_Launched
+			}
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.040 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.040 }
+			}
+		}
+
+		days_remove = 55
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_New_Facilities_Decision
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.040  }
+			GLN_NASA_recalculate_budget_left = yes
+			set_country_flag = USA_GLN_Upgrading_Mission
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Mission_Prep = 23 }
+			clr_country_flag = USA_GLN_Upgrading_Mission
+			set_country_flag = USA_GLN_Already_Built_Up_Facilities
+
+			clamp_variable = {
+				var = USA_GLN_NASA_Mission_Prep
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+
+
+	USA_GLN_Mission_Control_Launch_Pad_Decision = {
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = {
+				has_country_flag = USA_GLN_Already_Preped_Launch_Pad
+				has_country_flag = USA_GLN_Mission_Launched
+			}
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.025 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.025 }
+			}
+		}
+
+		days_remove = 15
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Launch_Pad_Addition
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.025 }
+			GLN_NASA_recalculate_budget_left = yes
+			set_country_flag = USA_GLN_Upgrading_Mission
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Mission_Prep = 5 }
+			clr_country_flag = USA_GLN_Upgrading_Mission
+			set_country_flag = USA_GLN_Already_Preped_Launch_Pad
+
+			clamp_variable = {
+				var = USA_GLN_NASA_Mission_Prep
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+
+	USA_GLN_Mission_Control_Run_Diagnostics_Tests = {
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = {
+				has_country_flag = USA_GLN_Already_Did_Diagnostics_Test
+				has_country_flag = USA_GLN_Mission_Launched
+			}
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.050 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.050 }
+			}
+		}
+
+		days_remove = 40
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Diagnostics_Test_Additions
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.050 }
+			GLN_NASA_recalculate_budget_left = yes
+			set_country_flag = USA_GLN_Upgrading_Mission
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Mission_Prep = 15 }
+			clr_country_flag = USA_GLN_Upgrading_Mission
+			set_country_flag = USA_GLN_Already_Did_Diagnostics_Test
+
+			clamp_variable = {
+				var = USA_GLN_NASA_Mission_Prep
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+
+	USA_GLN_Mission_Control_Hire_In_Extra_Techinicians = {
+		visible = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = {
+				has_country_flag = USA_GLN_Already_Did_Techinians
+				has_country_flag = USA_GLN_Mission_Launched
+			}
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.030 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.030 }
+			}
+		}
+
+		days_remove = 35
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Extra_Techinicians_Addition
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.030 }
+			GLN_NASA_recalculate_budget_left = yes
+			set_country_flag = USA_GLN_Upgrading_Mission
+		}
+
+		remove_effect = {
+			add_to_variable = { USA_GLN_NASA_Mission_Prep = 7 }
+			clr_country_flag = USA_GLN_Upgrading_Mission
+			set_country_flag = USA_GLN_Already_Did_Techinians
+
+			clamp_variable = {
+				var = USA_GLN_NASA_Mission_Prep
+				min = 0
+				max = 100
+			}
+		}
+	}
+
+
+
+	USA_GLN_Mission_Control_Launched_Rocket_Screen = {
+		visible = {	has_country_flag = USA_GLN_Mission_Launched }
+
+		available = { has_country_flag = USA_GLN_never_activated }
+
+		days_remove = 15
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_Mission_Control_Launched_Rocket_Tooltip
+		}
+	}
+
+
+	############################################################### ORION PROGRAM
+
+
+	USA_GLN_Mission_Control_Orion_Program = { #LEO test
+
+		visible = {
+			NOT = {
+				has_country_flag = USA_GLN_Doing_Mission
+				has_country_flag = USA_Preparing_Mission
+			}
+			has_country_flag = USA_GLN_Mission_Control_Orion_Avaialable
+		}
+
+		available = {
+			NOT = {	has_country_flag = USA_GLN_Doing_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.125 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.125 }
+			}
+		}
+
+
+		days_remove = 20
+		days_re_enable = 10
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Orion_Description
+			custom_effect_tooltip = USA_GLN_Orion_Start_Funding
+			set_country_flag = USA_GLN_Doing_Unmanned_Mission
+			add_to_variable = { USA_GLN_Orion_Counter = 1 }
+			set_country_flag = USA_Preparing_Mission
+		}
+
+		modifier = {
+			political_power_gain = -0.1
+		}
+
+		remove_effect = {
+			set_country_flag = USA_GLN_Doing_Mission
+			set_country_flag = USA_GLN_Orion_Program_Activated
+			GLN_NASA_Unmanned_Mission = yes
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.125 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+	}
+
+
+	USA_GLN_Mission_Control_Orion_Launch = {
+		visible = {
+			has_country_flag = USA_GLN_Orion_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Orion_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+		}
+
+		days_remove = 0
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		remove_effect = {
+			hidden_effect = {
+				set_country_flag = USA_GLN_Mission_Launched
+				GLN_NASA_Mission_Outcome_Unmanned = yes
+			}
+		}
+	}
+
+
+
+	########################################################## MINERVA PROGRAM
+
+
+
+	USA_GLN_Mission_Control_Minerva_Program = { #Satalite
+		visible = {
+			NOT = {
+				has_country_flag = USA_GLN_Doing_Mission
+				has_country_flag = USA_Preparing_Mission
+			}
+			has_country_flag = USA_GLN_Mission_Control_Minerva_Available
+		}
+
+		available = {
+			NOT = { has_country_flag = USA_GLN_Doing_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.075 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.075 }
+			}
+		}
+
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Minerva_Description
+			custom_effect_tooltip = USA_GLN_Minerva_Start_Funding
+			set_country_flag = USA_GLN_Doing_Unmanned_Mission
+			set_country_flag = USA_Preparing_Mission
+		}
+
+		modifier = {
+			political_power_gain = -0.15
+		}
+
+		remove_effect = {
+			set_country_flag = USA_GLN_Minerva_Program_Activated
+			GLN_NASA_Unmanned_Mission = yes
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.075 }
+			GLN_NASA_recalculate_budget_left = yes
+			set_country_flag = USA_GLN_Doing_Mission
+		}
+	}
+
+
+	USA_GLN_Mission_Control_Minerva_Launch = {
+		visible = {
+			has_country_flag = USA_GLN_Minerva_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Minerva_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = {	has_country_flag = USA_GLN_Upgrading_Mission }
+		}
+
+		days_remove = 0
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		remove_effect = {
+			hidden_effect = {
+				set_country_flag = USA_GLN_Mission_Launched
+				GLN_NASA_Mission_Outcome_Unmanned = yes
+
+			}
+		}
+	}
+
+################################################################### EROS
+
+	USA_GLN_Mission_Control_Eros_Program = { #Missile
+		visible = {
+			NOT = {
+				has_country_flag = USA_GLN_Doing_Mission
+				has_country_flag = USA_Preparing_Mission
+			}
+			has_country_flag = USA_GLN_Mission_Control_Eros_Avaialable
+		}
+
+		available = {
+			NOT = { has_country_flag = USA_GLN_Doing_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.015 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.015 }
+			}
+		}
+
+		days_remove = 25
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Eros_Description
+			custom_effect_tooltip = USA_GLN_Eros_Start_Funding
+			set_country_flag = USA_GLN_Doing_Unmanned_Mission
+			set_country_flag = USA_Preparing_Mission
+		}
+
+		modifier = {
+			political_power_gain = -0.1
+		}
+
+		remove_effect = {
+			set_country_flag = USA_GLN_Doing_Mission
+			set_country_flag = USA_GLN_Eros_Program_Activated
+			GLN_NASA_Unmanned_Mission = yes
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.015 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+	}
+
+	USA_GLN_Mission_Control_Eros_Launch = {
+		visible = {
+			has_country_flag = USA_GLN_Eros_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Eros_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+		}
+
+		days_remove = 0
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		remove_effect = {
+			hidden_effect = {
+				set_country_flag = USA_GLN_Mission_Launched
+				GLN_NASA_Mission_Outcome_Unmanned = yes
+			}
+		}
+	}
+
+################################################################### DAEDULUS
+
+	USA_GLN_Mission_Control_Daedulus_Program = { #Humans back in space
+		visible = {
+			NOT = {
+				has_country_flag = USA_GLN_Doing_Mission
+				has_country_flag = USA_Preparing_Mission
+			}
+			has_country_flag = USA_GLN_Mission_Control_Daedulus_Avaialable
+		}
+
+		available = {
+			NOT = {
+				has_country_flag = USA_GLN_Doing_Mission
+			}
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.200 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.200 }
+			}
+		}
+
+		days_remove = 45
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		modifier = {
+			political_power_gain = -0.15
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Daedulus_Description
+			custom_effect_tooltip = USA_GLN_Daedulus_Start_Funding
+			set_country_flag = USA_GLN_Doing_Mission
+			set_country_flag = USA_GLN_Doing_Manned_Mission
+			set_country_flag = USA_Preparing_Mission
+		}
+
+
+		remove_effect = {
+			set_country_flag = USA_GLN_Doing_Mission
+			set_country_flag = USA_GLN_Daedulus_Program_Activated
+			GLN_NASA_Manned_Mission = yes
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.200 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+	}
+
+	USA_GLN_Mission_Control_Daedulus_Launch = {
+		visible = {
+			has_country_flag = USA_GLN_Daedulus_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Daedulus_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+		}
+
+		days_remove = 0
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		remove_effect = {
+			hidden_effect = {
+				set_country_flag = USA_GLN_Mission_Launched
+				GLN_NASA_Mission_Outcome_Manned = yes
+			}
+		}
+	}
+
+################################################################### DIANA
+
+	USA_GLN_Mission_Control_Diana_Program = { #Moon orbit/moon
+		visible = {
+			NOT = {
+				has_country_flag = USA_GLN_Doing_Mission
+				has_country_flag = USA_Preparing_Mission
+			}
+
+			has_country_flag = USA_GLN_Mission_Control_Diana_Avaialable
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Saturn_V_Rocket_Available
+			NOT = {
+				has_country_flag = USA_GLN_Doing_Mission
+			}
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.275 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.275 }
+			}
+		}
+
+		days_remove = 60
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Diana_Description
+			custom_effect_tooltip = USA_GLN_Diana_Start_Funding
+			set_country_flag = USA_GLN_Doing_Manned_Mission
+			add_to_variable = { USA_GLN_Diana_Counter = 1 }
+			set_country_flag = USA_Preparing_Mission
+		}
+
+		modifier = {
+			political_power_gain = -0.20
+		}
+
+		remove_effect = {
+			set_country_flag = USA_GLN_Diana_Program_Activated
+			set_country_flag = USA_GLN_Doing_Mission
+			GLN_NASA_Manned_Mission = yes
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.275 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+	}
+
+	USA_GLN_Mission_Control_Diana_Launch = {
+		visible = {
+			has_country_flag = USA_GLN_Diana_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Diana_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+		}
+
+		days_remove = 0
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		remove_effect = {
+			hidden_effect = {
+				set_country_flag = USA_GLN_Mission_Launched
+				GLN_NASA_Mission_Outcome_Manned = yes
+			}
+		}
+	}
+
+################################################################### ARES
+
+	USA_GLN_Mission_Control_Ares_Program = { #Mars Orbit/Mars
+		visible = {
+			NOT = {
+				has_country_flag = USA_GLN_Doing_Mission
+				has_country_flag = USA_Preparing_Mission
+			}
+			has_country_flag = USA_GLN_Mission_Control_Ares_Avaialable
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Saturn_V_Rocket_Available
+			NOT = { has_country_flag = USA_GLN_Doing_Mission }
+			custom_trigger_tooltip = {
+				tooltip = USA_GLN_Mission_Control_Enough_Budget
+				check_variable = { USA_GLN_NASA_Funding > 0.450 }
+				check_variable = { USA_GLN_NASA_Budget_Leftover > 0.450 }
+			}
+		}
+
+		days_remove = 75
+		days_re_enable = 30
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		complete_effect = {
+			custom_effect_tooltip = USA_GLN_NASA_Ares_Description
+			custom_effect_tooltip = USA_GLN_Ares_Start_Funding
+			set_country_flag = USA_GLN_Doing_Manned_Mission
+			add_to_variable = { USA_GLN_Ares_Counter = 1 }
+			set_country_flag = USA_Preparing_Mission
+		}
+
+		modifier = {
+			political_power_gain = -0.25
+		}
+
+		remove_effect = {
+			set_country_flag = USA_GLN_Ares_Program_Activated
+			set_country_flag = USA_GLN_Doing_Mission
+			GLN_NASA_Manned_Mission = yes
+			add_to_variable = { USA_GLN_NASA_Mission_Investment = 0.450 }
+			GLN_NASA_recalculate_budget_left = yes
+		}
+	}
+
+
+	USA_GLN_Mission_Control_Ares_Launch = {
+		visible = {
+			has_country_flag = USA_GLN_Ares_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+
+			NOT = { has_country_flag = USA_GLN_Mission_Launched }
+		}
+
+		available = {
+			has_country_flag = USA_GLN_Ares_Program_Activated
+			has_country_flag = USA_GLN_Doing_Mission
+			NOT = { has_country_flag = USA_GLN_Upgrading_Mission }
+		}
+
+		days_remove = 0
+
+		ai_will_do = {
+			factor = 40
+		}
+
+		remove_effect = {
+			hidden_effect = {
+				set_country_flag = USA_GLN_Mission_Launched
+				GLN_NASA_Mission_Outcome_Manned = yes
+			}
+		}
+	}
+}
+
+USA_GLN_Nuclear_Commission = {
+	USA_GLN_Fuck_With_Japans_stockpile_mine_sabotage = {
+		available = {  NOT = { has_country_flag = GLN_fucking_with_people } }
+		visible = { has_country_flag = USA_GLN_fuck_with_rivals }
+		cost = 45
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = GLN_mine_fuckery_cost }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = USA_GLN_Fuck_Japan_Nukes_mine
+			GLN_increase_nuclear_spending = yes
+		}
+		modifier = { political_power_gain = -0.25 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			hidden_effect = {
+				if = { #Have you recently fucked with someone?
+					limit = { has_country_flag = GLN_suspicion_timer }
+					random_list = {
+						80 = { JAP = { country_event = { id = glenn.104 } } } #Not caught but the timing is suspicious
+						20 = { JAP = { country_event = { id = glenn.106 } } } #Busted
+					}
+				}
+				else = {
+					set_country_flag = GLN_suspicion_timer
+					random_list = {
+						90 = { #Not caught but the timing is suspicious
+							JAP = { country_event = { id = glenn.103 } }
+						}
+						10 = { #Busted
+							JAP = { country_event = { id = glenn.106 } }
+						}
+					}
+				}
+			}
+		}
+	}
+	USA_GLN_Fuck_With_Japans_stockpile_false_flag = {
+		available = {  NOT = { has_country_flag = GLN_fucking_with_people } }
+		visible = { has_country_flag = USA_GLN_fuck_with_rivals }
+		cost = 45
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = GLN_fale_flag_cost }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = USA_GLN_Fuck_Japan_Nukes_false_flag
+			GLN_increase_nuclear_spending = yes
+		}
+		modifier = { political_power_gain = -0.15 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = GLN_suspicion_timer }
+					JAP = { country_event = { id = glenn.109 } }
+				}
+				else = { JAP = { country_event = { id = glenn.108 } } }
+			}
+			GLN_increase_nuclear_spending = yes
+		}
+	}
+	USA_GLN_Fuck_With_Germanys_stockpile = {
+		available = {  NOT = { has_country_flag = GLN_fucking_with_people } }
+		visible = { has_country_flag = USA_GLN_fuck_with_rivals }
+		cost = 45
+		days_remove = 30
+		days_re_enable = 30
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = GLN_supplier_fuckery }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = USA_GLN_Fuck_Germany_Nukes
+		}
+		modifier = { political_power_gain = -0.15 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = GLN_suspicion_timer }
+					GER = { country_event = { id = glenn.111 } }
+				}
+				else = { GER = { country_event = { id = glenn.110 } } }
+			}
+			GLN_increase_nuclear_spending = yes
+		}
+	}
+	USA_GLN_head_to_Australia = {
+		available = {
+			AST = { is_in_faction_with = USA }
+			NOT = { has_country_flag = GLN_fucking_with_people }
+		}
+		cost = 60
+		days_remove = 35
+		days_re_enable = 50
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = 0.12 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = GLN_nuclear_stockpile_up
+			custom_effect_tooltip = GLN_OFN_uranium_purchase
+		}
+		modifier = { political_power_gain = -0.1 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			custom_effect_tooltip = USA_GLN_increase_nuclear_production_5
+			add_to_variable = { GLN_nuclear_boost_var = 0.05 }
+			AST = {
+				add_timed_idea = { idea = USA_GLN_head_to_Australia_misc_income days = 90 }
+				add_political_power = 50
+			}
+		}
+	}
+	USA_GLN_head_to_Canada = {
+		available = {
+			CAN = { is_in_faction_with = USA }
+			NOT = { has_country_flag = GLN_fucking_with_people }
+		}
+		cost = 60
+		days_remove = 35
+		days_re_enable = 50
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = 0.12 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = GLN_nuclear_stockpile_up
+			custom_effect_tooltip = GLN_OFN_uranium_purchase
+		}
+		modifier = { political_power_gain = -0.1 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			custom_effect_tooltip = USA_GLN_increase_nuclear_production_5
+			add_to_variable = { GLN_nuclear_boost_var = 0.05 }
+			CAN = {
+				add_timed_idea = { idea = USA_GLN_head_to_Canada_misc_income days = 90 }
+				add_political_power = 50
+			}
+		}
+	}
+	USA_GLN_head_to_SAF = {
+		available = {
+			SAF = { is_in_faction_with = USA }
+			NOT = { has_country_flag = GLN_fucking_with_people }
+		}
+		cost = 60
+		days_remove = 35
+		days_re_enable = 50
+
+		ai_will_do = { factor = 40 }
+
+		complete_effect = {
+			set_country_flag = GLN_fucking_with_people
+			set_temp_variable = { temp_econ_spending_amount = 0.12 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = GLN_nuclear_stockpile_up
+			custom_effect_tooltip = GLN_OFN_uranium_purchase
+		}
+		modifier = { political_power_gain = -0.1 }
+		remove_effect = {
+			clr_country_flag = GLN_fucking_with_people
+			custom_effect_tooltip = USA_GLN_increase_nuclear_production_5
+			add_to_variable = { GLN_nuclear_boost_var = 0.05 }
+			SAF = {
+				add_timed_idea = { idea = USA_GLN_head_to_SAF_misc_income days = 90 }
+				add_political_power = 50
+			}
+		}
+	}
+	GLN_suspicion_timer_mission = { #If Glenn tries to do sabotage while this is active bad shit can happen
+		activation = { has_country_flag = GLN_suspicion_timer }
+		days_mission_timeout = 150
+		timeout_effect = { clr_country_flag = GLN_suspicion_timer }
+		available = { has_country_flag = GLN_clear_timer } #Player used decisions to clear suspicion early
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GLN_suspicion_timer_mission"
+			clr_country_flag = GLN_suspicion_timer
+			clr_country_flag = GLN_clear_timer
+		}
+	}
+	GLN_suspicion_timer_clear = { #If you want to do operations risk free before the timer ends
+		visible = { has_country_flag = GLN_suspicion_timer }
+		available = { has_country_flag = GLN_clear_timer } #Player used decisions to clear suspicion early
+		cost = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GLN_suspicion_timer_mission"
+			custom_effect_tooltip = GLN_suspicion_timer_clear_cost
+			add_political_power = -20
+			subtract_from_variable = { money_reserves = 0.05 } #already converted to billion
+			set_country_flag = GLN_clear_timer
+		}
+	}
+}

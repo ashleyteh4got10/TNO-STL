@@ -1,0 +1,3091 @@
+greater_china_provinces_initialize_TER = {
+	# Admin Title
+	every_state = {
+		limit = {
+			has_variable = china_state_ref
+			controller = {
+				OR = {
+					tag = CHI
+					tag = CHQ
+					tag = SIC
+					tag = LOY
+					tag = TIB
+					tag = MEN
+					tag = XIN
+					tag = ETR
+					AND = {
+						tag = QYC
+						QYC = { NOT = { has_cosmetic_tag = QYC_UNIFIED } }
+					}
+					AND = {
+						is_in_faction_with = CHI
+						is_in_array = { global.chinese_warlords = THIS }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_variable = china_city_ref }
+			}
+			set_variable = { TNO_admin_title = 51 }
+			if = {
+				limit = { check_variable = { china_state_ref = 22 } }
+				set_variable = { TNO_sub_admin_title = 5 }
+			}
+			else_if = {
+				limit = { check_variable = { china_state_ref = 57 } }
+				set_variable = { TNO_sub_admin_title = 6 }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						check_variable = { china_state_ref = 15 }
+						check_variable = { china_state_ref = 36 }
+					}
+				}
+				set_variable = { TNO_admin_title = 52 }
+				set_variable = { TNO_sub_admin_title = 4 }
+			}
+			else_if = {
+				limit = { 
+					OR = {
+						check_variable = { china_state_ref = 42 } 
+						check_variable = { china_state_ref = 54 }
+						check_variable = { china_state_ref = 55 }
+					}
+				}
+				set_variable = { TNO_sub_admin_title = 7 }
+			}
+			else = {
+				set_variable = { TNO_sub_admin_title = 4 }
+			}
+			set_variable = { TNO_assoc_region = 21 }
+		}
+		else = {
+			set_variable = { TNO_admin_title = 5 }
+		}
+	}
+	every_state = {
+		limit = {
+			has_variable = china_state_ref
+			controller = {
+				OR = {
+					tag = CPC
+					tag = QIN
+					tag = MFN
+					tag = GSM
+					tag = HTC
+					tag = ROS
+					tag = XIK
+					tag = MON
+					AND = {
+						tag = QYC
+						QYC = { has_cosmetic_tag = QYC_UNIFIED }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_variable = china_city_ref }
+			}
+			set_variable = { TNO_admin_title = 1949 }
+			if = {
+				limit = { check_variable = { china_state_ref = 22 } }
+				set_variable = { TNO_sub_admin_title = 5 }
+			}
+			else_if = {
+				limit = { check_variable = { china_state_ref = 57 } }
+				set_variable = { TNO_sub_admin_title = 6 }
+			}
+			else_if = {
+				limit = {
+					OR = {
+						check_variable = { china_state_ref = 15 }
+						check_variable = { china_state_ref = 36 }
+					}
+				}
+				set_variable = { TNO_admin_title = 52 }
+				set_variable = { TNO_sub_admin_title = 4 }
+			}
+			else_if = {
+				limit = { 
+					OR = {
+						check_variable = { china_state_ref = 42 } 
+						check_variable = { china_state_ref = 54 }
+						check_variable = { china_state_ref = 55 }
+					}
+				}
+				set_variable = { TNO_sub_admin_title = 7 }
+			}
+			else = {
+				set_variable = { TNO_sub_admin_title = 4 }
+			}
+			set_variable = { TNO_assoc_region = 21 }
+		}
+		else = {
+			set_variable = { TNO_admin_title = 1950 }
+		}
+	}
+
+	clear_array = global.greater_china_provinces
+	clear_array = global.greater_china_provinces_X
+	clear_array = global.greater_china_provinces_Y
+	clear_array = CPC.CPC_TRCW_region_weight
+
+	# Nanjing - 0
+	add_to_array = { global.greater_china_states = 613 }
+	add_to_array = { global.greater_china_provinces = 613 }
+	add_to_array = { global.greater_china_provinces_huadong = 613 }
+	add_to_array = { global.greater_china_provinces_X = 718 } #-163
+	add_to_array = { global.greater_china_provinces_Y = 468 } #+344 
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Shanghai - 1
+	add_to_array = { global.greater_china_states = 813 }
+	add_to_array = { global.greater_china_provinces = 813 }
+	add_to_array = { global.greater_china_provinces_huadong = 813 }
+	add_to_array = { global.greater_china_provinces_X = 716 }
+	add_to_array = { global.greater_china_provinces_Y = 553 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Jiangsu - 2
+	add_to_array = { global.greater_china_states = 2327 }
+	add_to_array = { global.greater_china_states = 2328 }
+	add_to_array = { global.greater_china_states = 2329 }
+	add_to_array = { global.greater_china_states = 2330 }
+	add_to_array = { global.greater_china_states = 2331 }
+
+	add_to_array = { global.greater_china_provinces = 2328 }
+	add_to_array = { global.greater_china_provinces_huadong = 2328 }
+	add_to_array = { global.greater_china_provinces_X = 582 }
+	add_to_array = { global.greater_china_provinces_Y = 467	 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Huaihai - 3
+	add_to_array = { global.greater_china_states = 598 }
+	add_to_array = { global.greater_china_states = 2338 }
+	add_to_array = { global.greater_china_states = 2339 }
+	add_to_array = { global.greater_china_states = 2340 }
+
+	add_to_array = { global.greater_china_provinces = 598 }
+	add_to_array = { global.greater_china_provinces_huadong = 598 }
+	add_to_array = { global.greater_china_provinces_X = 539 }
+	add_to_array = { global.greater_china_provinces_Y = 454 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Zhejiang - 4
+	add_to_array = { global.greater_china_states = 596 }
+	add_to_array = { global.greater_china_states = 2332 }
+	add_to_array = { global.greater_china_states = 2333 }
+
+	add_to_array = { global.greater_china_provinces = 596 }
+	add_to_array = { global.greater_china_provinces_huadong = 596 }
+	add_to_array = { global.greater_china_provinces_X = 591 }
+	add_to_array = { global.greater_china_provinces_Y = 510 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Ouhai - 5
+	add_to_array = { global.greater_china_states = 2334 }
+	add_to_array = { global.greater_china_states = 2335 }
+	add_to_array = { global.greater_china_states = 2336 }
+	add_to_array = { global.greater_china_states = 2337 }
+
+	add_to_array = { global.greater_china_provinces = 2334 }
+	add_to_array = { global.greater_china_provinces_huadong = 2334 }
+	add_to_array = { global.greater_china_provinces_X = 581 }
+	add_to_array = { global.greater_china_provinces_Y = 529 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Anhui - 6
+	add_to_array = { global.greater_china_states = 606 }
+	add_to_array = { global.greater_china_states = 959 }
+	add_to_array = { global.greater_china_states = 2341 }
+	add_to_array = { global.greater_china_states = 2342 }
+
+	add_to_array = { global.greater_china_provinces = 606 }
+	add_to_array = { global.greater_china_provinces_huadong = 606 }
+	add_to_array = { global.greater_china_provinces_X = 548 }
+	add_to_array = { global.greater_china_provinces_Y = 490 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	### Huabei
+
+	# Beijing - 7
+	add_to_array = { global.greater_china_states = 608 }
+	add_to_array = { global.greater_china_provinces = 608 }
+	add_to_array = { global.greater_china_provinces_huabei = 608 }
+	add_to_array = { global.greater_china_provinces_X = 798 }#-163
+	add_to_array = { global.greater_china_provinces_Y = 478 }#+344 
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+	
+	# Tianjin - 8
+	add_to_array = { global.greater_china_states = 2325 }
+	add_to_array = { global.greater_china_provinces = 2325 }
+	add_to_array = { global.greater_china_provinces_huabei = 2325 }
+	add_to_array = { global.greater_china_provinces_X = 796 }
+	add_to_array = { global.greater_china_provinces_Y = 559 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Qingdao - 9
+	add_to_array = { global.greater_china_states = 812 }
+	add_to_array = { global.greater_china_provinces = 812 }
+	add_to_array = { global.greater_china_provinces_huabei = 812 }
+	add_to_array = { global.greater_china_provinces_X = 794 }
+	add_to_array = { global.greater_china_provinces_Y = 651 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1.5 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Hebei - 10
+	add_to_array = { global.greater_china_states = 609 }
+	add_to_array = { global.greater_china_states = 614 }
+	add_to_array = { global.greater_china_states = 2365 }
+	add_to_array = { global.greater_china_states = 2436 }
+
+	add_to_array = { global.greater_china_provinces = 614 }
+	add_to_array = { global.greater_china_provinces_huabei = 614 }
+	add_to_array = { global.greater_china_provinces_X = 521 }
+	add_to_array = { global.greater_china_provinces_Y = 371 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Zhongyuan - 11
+	add_to_array = { global.greater_china_states = 607 }
+	add_to_array = { global.greater_china_states = 1023 }
+	add_to_array = { global.greater_china_states = 2364 }
+	add_to_array = { global.greater_china_states = 2435 }
+
+	add_to_array = { global.greater_china_provinces = 1023 }
+	add_to_array = { global.greater_china_provinces_huabei = 1023 }
+	add_to_array = { global.greater_china_provinces_X = 504 }
+	add_to_array = { global.greater_china_provinces_Y = 402 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Taiyue - 12
+	add_to_array = { global.greater_china_states = 1020 }
+	add_to_array = { global.greater_china_states = 1021 }
+	add_to_array = { global.greater_china_states = 2366 }
+	add_to_array = { global.greater_china_states = 2367 }
+	add_to_array = { global.greater_china_states = 2441 }
+
+	add_to_array = { global.greater_china_provinces = 1020 }
+	add_to_array = { global.greater_china_provinces_huabei = 1020 }
+	add_to_array = { global.greater_china_provinces_X = 538 }
+	add_to_array = { global.greater_china_provinces_Y = 408 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Shandong - 13
+	add_to_array = { global.greater_china_states = 597 }
+	add_to_array = { global.greater_china_states = 811 }
+	add_to_array = { global.greater_china_states = 1022 }
+
+	add_to_array = { global.greater_china_provinces = 1022 }
+	add_to_array = { global.greater_china_provinces_huabei = 1022 }
+	add_to_array = { global.greater_china_provinces_X = 569 }
+	add_to_array = { global.greater_china_provinces_Y = 411 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Shanxi - 14
+	add_to_array = { global.greater_china_states = 615 }
+	add_to_array = { global.greater_china_states = 2417 }
+	add_to_array = { global.greater_china_states = 2418 }
+	add_to_array = { global.greater_china_states = 2419 }
+	add_to_array = { global.greater_china_states = 2420 }
+	add_to_array = { global.greater_china_states = 2421 }
+
+	add_to_array = { global.greater_china_provinces = 615 }
+	add_to_array = { global.greater_china_provinces_huabei = 615 }
+	add_to_array = { global.greater_china_provinces_X = 479 }
+	add_to_array = { global.greater_china_provinces_Y = 374 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	### Xinan
+
+	#Chongqing - 15
+	add_to_array = { global.greater_china_states = 1538 }
+	add_to_array = { global.greater_china_states = 1537 }
+	add_to_array = { global.greater_china_states = 2358 }
+	add_to_array = { global.greater_china_states = 2359 }
+
+	add_to_array = { global.greater_china_provinces = 1538 }
+	add_to_array = { global.greater_china_provinces_xinan = 1538 }
+	add_to_array = { global.greater_china_provinces_X = 417 }
+	add_to_array = { global.greater_china_provinces_Y = 500 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# placeholder - 16
+	add_to_array = { global.greater_china_provinces = -1 }
+	add_to_array = { global.greater_china_provinces_huanan = -1 }
+	add_to_array = { global.greater_china_provinces_X = -1 }
+	add_to_array = { global.greater_china_provinces_Y = -1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 0 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 0 }
+
+	# Chuanxi - 17
+	add_to_array = { global.greater_china_states = 605 }
+	add_to_array = { global.greater_china_states = 2368 }
+	add_to_array = { global.greater_china_states = 2369 }
+	add_to_array = { global.greater_china_states = 2370 }
+	add_to_array = { global.greater_china_states = 2371 }
+	add_to_array = { global.greater_china_states = 2372 }
+	add_to_array = { global.greater_china_states = 2373 }
+	add_to_array = { global.greater_china_states = 2438 }
+
+	add_to_array = { global.greater_china_provinces = 605 }
+	add_to_array = { global.greater_china_provinces_xinan = 605 }
+	add_to_array = { global.greater_china_provinces_X = 373 }
+	add_to_array = { global.greater_china_provinces_Y = 467 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Guizhou - 18
+	add_to_array = { global.greater_china_states = 603 }
+	add_to_array = { global.greater_china_states = 2383 }
+	add_to_array = { global.greater_china_states = 2384 }
+	add_to_array = { global.greater_china_states = 2385 }
+	add_to_array = { global.greater_china_states = 2386 }
+	add_to_array = { global.greater_china_states = 2387 }
+
+	add_to_array = { global.greater_china_provinces = 603 }
+	add_to_array = { global.greater_china_provinces_xinan = 603 }
+	add_to_array = { global.greater_china_provinces_X = 394 }
+	add_to_array = { global.greater_china_provinces_Y = 546 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Guangxi - 19
+	add_to_array = { global.greater_china_states = 594 }
+	add_to_array = { global.greater_china_states = 599 }
+	add_to_array = { global.greater_china_states = 2390 }
+	add_to_array = { global.greater_china_states = 2391 }
+	add_to_array = { global.greater_china_states = 2392 }
+	add_to_array = { global.greater_china_states = 2393 }
+	add_to_array = { global.greater_china_states = 2394 }
+	add_to_array = { global.greater_china_states = 2472 }
+
+	add_to_array = { global.greater_china_provinces = 599 }
+	add_to_array = { global.greater_china_provinces_xinan = 599 }
+	add_to_array = { global.greater_china_provinces_X = 402 }
+	add_to_array = { global.greater_china_provinces_Y = 588 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Yunnan - 20
+	add_to_array = { global.greater_china_states = 325 }
+	add_to_array = { global.greater_china_states = 960 }
+	add_to_array = { global.greater_china_states = 2376 }
+	add_to_array = { global.greater_china_states = 2377 }
+	add_to_array = { global.greater_china_states = 2378 }
+	add_to_array = { global.greater_china_states = 2379 }
+	add_to_array = { global.greater_china_states = 2380 }
+	add_to_array = { global.greater_china_states = 2381 }
+	add_to_array = { global.greater_china_states = 2382 }
+
+	add_to_array = { global.greater_china_provinces = 325 }
+	add_to_array = { global.greater_china_provinces_xinan = 325 }
+	add_to_array = { global.greater_china_provinces_X = 303 }
+	add_to_array = { global.greater_china_provinces_Y = 541 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Xikang - 21
+	add_to_array = { global.greater_china_states = 2374 }
+	add_to_array = { global.greater_china_states = 905 }
+	add_to_array = { global.greater_china_states = 964 }
+	add_to_array = { global.greater_china_states = 2375 }
+
+	add_to_array = { global.greater_china_provinces = 2374 }
+	add_to_array = { global.greater_china_provinces_xinan = 905 }
+	add_to_array = { global.greater_china_provinces_X = 310 }
+	add_to_array = { global.greater_china_provinces_Y = 477 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Tibet - 22
+	add_to_array = { global.greater_china_states = 322 }
+	add_to_array = { global.greater_china_states = 601 }
+	add_to_array = { global.greater_china_states = 765 }
+	add_to_array = { global.greater_china_states = 1961 }
+	add_to_array = { global.greater_china_states = 1962 }
+	add_to_array = { global.greater_china_states = 1963 }
+	add_to_array = { global.greater_china_states = 2209 }
+	add_to_array = { global.greater_china_states = 2395 }
+	add_to_array = { global.greater_china_states = 2396 }
+	add_to_array = { global.greater_china_states = 2397 }
+	add_to_array = { global.greater_china_states = 2398 }
+
+	add_to_array = { global.greater_china_provinces = 765 }
+	add_to_array = { global.greater_china_provinces_xinan = 765 }
+	add_to_array = { global.greater_china_provinces_X = 81 }
+	add_to_array = { global.greater_china_provinces_Y = 398 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Zhongnan
+
+	# Wuhan - 23
+	add_to_array = { global.greater_china_states = 1016 }
+	add_to_array = { global.greater_china_provinces = 1016 }
+	add_to_array = { global.greater_china_provinces_zhongnan = 1016 }
+	add_to_array = { global.greater_china_provinces_X = 883 }#-163
+	add_to_array = { global.greater_china_provinces_Y = 480 }#+344 
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Jiangxi - 24
+	add_to_array = { global.greater_china_states = 1019 }
+	add_to_array = { global.greater_china_states = 2343 }
+	add_to_array = { global.greater_china_states = 2344 }
+
+	add_to_array = { global.greater_china_provinces = 1019 }
+	add_to_array = { global.greater_china_provinces_zhongnan = 1019 }
+	add_to_array = { global.greater_china_provinces_X = 526 }
+	add_to_array = { global.greater_china_provinces_Y = 528 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 4 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 4 }
+
+	# Ganjiang - 25
+	add_to_array = { global.greater_china_states = 600 }
+	add_to_array = { global.greater_china_states = 2345 }
+	add_to_array = { global.greater_china_states = 2440 }
+
+	add_to_array = { global.greater_china_provinces = 2345 }
+	add_to_array = { global.greater_china_provinces_zhongnan = 2345 }
+	add_to_array = { global.greater_china_provinces_X = 528 }
+	add_to_array = { global.greater_china_provinces_Y = 557 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Hubei - 26
+	add_to_array = { global.greater_china_states = 2350 }
+	add_to_array = { global.greater_china_states = 2351 }
+	add_to_array = { global.greater_china_states = 2352 }
+	add_to_array = { global.greater_china_states = 2353 }
+	add_to_array = { global.greater_china_states = 2360 }
+	add_to_array = { global.greater_china_states = 2434 }
+
+	add_to_array = { global.greater_china_provinces = 2353 }
+	add_to_array = { global.greater_china_provinces_zhongnan = 2353 }
+	add_to_array = { global.greater_china_provinces_X = 455 }
+	add_to_array = { global.greater_china_provinces_Y = 492 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Hunan - 27
+	add_to_array = { global.greater_china_states = 602 }
+	add_to_array = { global.greater_china_states = 961 }
+	add_to_array = { global.greater_china_states = 2355 }
+	add_to_array = { global.greater_china_states = 2356 }
+	add_to_array = { global.greater_china_states = 2388 }
+	add_to_array = { global.greater_china_states = 2389 }
+
+	add_to_array = { global.greater_china_provinces = 602 }
+	add_to_array = { global.greater_china_provinces_zhongnan = 602 }
+	add_to_array = { global.greater_china_provinces_X = 464 }
+	add_to_array = { global.greater_china_provinces_Y = 532 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Hengnan - 28
+	add_to_array = { global.greater_china_states = 2354 }
+	add_to_array = { global.greater_china_states = 2357 }
+	add_to_array = { global.greater_china_states = 2439 }
+
+	add_to_array = { global.greater_china_provinces = 2354 }
+	add_to_array = { global.greater_china_provinces_zhongnan = 2354 }
+	add_to_array = { global.greater_china_provinces_X = 490 }
+	add_to_array = { global.greater_china_provinces_Y = 568 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Henan - 29
+	add_to_array = { global.greater_china_states = 620 }
+	add_to_array = { global.greater_china_states = 1015 }
+	add_to_array = { global.greater_china_states = 2363 }
+	add_to_array = { global.greater_china_states = 2412 }
+	
+	add_to_array = { global.greater_china_provinces = 1015 }
+	add_to_array = { global.greater_china_provinces_zhongnan = 1015 }
+	add_to_array = { global.greater_china_provinces_X = 470 }
+	add_to_array = { global.greater_china_provinces_Y = 475 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Zhongyuan - 30
+	add_to_array = { global.greater_china_states = 1014 }
+	add_to_array = { global.greater_china_states = 2361 }
+	add_to_array = { global.greater_china_states = 2362 }
+
+	add_to_array = { global.greater_china_provinces = 1014 }
+	add_to_array = { global.greater_china_provinces_zhongnan = 1014 }
+	add_to_array = { global.greater_china_provinces_X = 482 }
+	add_to_array = { global.greater_china_provinces_Y = 450 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Huanan
+
+	# Xiamen - 31
+	add_to_array = { global.greater_china_states = 2326 }
+	add_to_array = { global.greater_china_provinces = 2326 }
+	add_to_array = { global.greater_china_provinces_huanan = 2326 }
+	add_to_array = { global.greater_china_provinces_X = 717 }
+	add_to_array = { global.greater_china_provinces_Y = 653 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1.5 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Guangzhou - 32
+	add_to_array = { global.greater_china_states = 326 }
+	add_to_array = { global.greater_china_states = 592 }
+	add_to_array = { global.greater_china_states = 729 }
+
+	add_to_array = { global.greater_china_provinces = 592 }
+	add_to_array = { global.greater_china_provinces_huanan = 592 }
+	add_to_array = { global.greater_china_provinces_X = 890 }#-163 
+	add_to_array = { global.greater_china_provinces_Y = 566 }#+344
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Fujian - 33
+	add_to_array = { global.greater_china_states = 595 }
+	add_to_array = { global.greater_china_states = 2346 }
+	add_to_array = { global.greater_china_states = 2437 }
+
+	add_to_array = { global.greater_china_provinces = 595 }
+	add_to_array = { global.greater_china_provinces_huanan = 595 }
+	add_to_array = { global.greater_china_provinces_X = 565 }
+	add_to_array = { global.greater_china_provinces_Y = 554 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Xingquan - 34
+	add_to_array = { global.greater_china_states = 2347 }
+	add_to_array = { global.greater_china_states = 2348 }
+	add_to_array = { global.greater_china_states = 2349 }
+
+	add_to_array = { global.greater_china_provinces = 2347 }
+	add_to_array = { global.greater_china_provinces_huanan = 2347 }
+	add_to_array = { global.greater_china_provinces_X = 557 }
+	add_to_array = { global.greater_china_provinces_Y = 580 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Guangdong - 35
+	add_to_array = { global.greater_china_states = 593 }
+	add_to_array = { global.greater_china_states = 1017 }
+	add_to_array = { global.greater_china_states = 1438 }
+	add_to_array = { global.greater_china_states = 1439 }
+	add_to_array = { global.greater_china_states = 1464 }
+
+	add_to_array = { global.greater_china_provinces = 1439 }
+	add_to_array = { global.greater_china_provinces_huanan = 1439 }
+	add_to_array = { global.greater_china_provinces_X = 470}
+	add_to_array = { global.greater_china_provinces_Y = 601 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Qiongya - 36
+	add_to_array = { global.greater_china_states = 591 }
+	add_to_array = { global.greater_china_states = 2473 }
+	add_to_array = { global.greater_china_states = 2474 }
+	add_to_array = { global.greater_china_states = 2475 }
+
+	add_to_array = { global.greater_china_provinces = 591 }
+	add_to_array = { global.greater_china_provinces_huanan = 591 }
+	add_to_array = { global.greater_china_provinces_X = 456 }
+	add_to_array = { global.greater_china_provinces_Y = 683 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Taiwan - 37
+	add_to_array = { global.greater_china_states = 524 }
+	add_to_array = { global.greater_china_states = 1850 }
+	add_to_array = { global.greater_china_states = 1851 }
+	add_to_array = { global.greater_china_states = 1852 }
+	add_to_array = { global.greater_china_states = 1853 }
+	add_to_array = { global.greater_china_states = 1854 }
+	add_to_array = { global.greater_china_states = 1855 }
+	add_to_array = { global.greater_china_states = 1856 }
+
+	add_to_array = { global.greater_china_provinces = 524 }
+	add_to_array = { global.greater_china_provinces_huanan = 524 }
+	add_to_array = { global.greater_china_provinces_X = 615 }
+	add_to_array = { global.greater_china_provinces_Y = 596 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 0 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	### Xibei
+
+	# Shaanxi - 38
+	add_to_array = { global.greater_china_states = 622 }
+	add_to_array = { global.greater_china_states = 956 }
+	add_to_array = { global.greater_china_states = 2410 }
+	add_to_array = { global.greater_china_states = 2415 }
+	add_to_array = { global.greater_china_states = 2416 }
+
+	add_to_array = { global.greater_china_provinces = 956 }
+	add_to_array = { global.greater_china_provinces_xibei = 956 }
+	add_to_array = { global.greater_china_provinces_X = 436 }
+	add_to_array = { global.greater_china_provinces_Y = 380 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Hanzhong - 39
+	add_to_array = { global.greater_china_states = 2411 }
+	add_to_array = { global.greater_china_states = 2413 }
+	add_to_array = { global.greater_china_states = 2414 }
+
+	add_to_array = { global.greater_china_provinces = 2413 }
+	add_to_array = { global.greater_china_provinces_xibei = 2413 }
+	add_to_array = { global.greater_china_provinces_X = 423 }
+	add_to_array = { global.greater_china_provinces_Y = 466 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Qinlan - 40
+	add_to_array = { global.greater_china_states = 283 }
+	add_to_array = { global.greater_china_states = 1302 }
+	add_to_array = { global.greater_china_states = 2423 }
+	add_to_array = { global.greater_china_states = 2424 }
+	add_to_array = { global.greater_china_states = 2425 }
+	add_to_array = { global.greater_china_states = 2426 }
+
+	add_to_array = { global.greater_china_provinces = 1302 }
+	add_to_array = { global.greater_china_provinces_xibei = 1302 }
+	add_to_array = { global.greater_china_provinces_X = 388 }
+	add_to_array = { global.greater_china_provinces_Y = 372 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Gansu - 41
+	add_to_array = { global.greater_china_states = 616 }
+	add_to_array = { global.greater_china_states = 764 }
+	add_to_array = { global.greater_china_states = 2427 }
+
+	add_to_array = { global.greater_china_provinces = 764 }
+	add_to_array = { global.greater_china_provinces_xibei = 764 }
+	add_to_array = { global.greater_china_provinces_X = 280 }
+	add_to_array = { global.greater_china_provinces_Y = 326 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Qinghai - 42
+	add_to_array = { global.greater_china_states = 604 }
+	add_to_array = { global.greater_china_states = 906 }
+	add_to_array = { global.greater_china_states = 2429 }
+
+	add_to_array = { global.greater_china_provinces = 906 }
+	add_to_array = { global.greater_china_provinces_xibei = 906 }
+	add_to_array = { global.greater_china_provinces_X = 246 }
+	add_to_array = { global.greater_china_provinces_Y = 380 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Xinjiang - 43
+	add_to_array = { global.greater_china_states = 617 }
+	add_to_array = { global.greater_china_states = 618 }
+	add_to_array = { global.greater_china_states = 619 }
+	add_to_array = { global.greater_china_states = 957 }
+	add_to_array = { global.greater_china_states = 958 }
+	add_to_array = { global.greater_china_states = 1465 }
+	add_to_array = { global.greater_china_states = 1964 }
+	add_to_array = { global.greater_china_states = 2399 }
+	add_to_array = { global.greater_china_states = 2428 }
+	add_to_array = { global.greater_china_states = 2430 }
+	add_to_array = { global.greater_china_states = 2431 }
+	add_to_array = { global.greater_china_states = 2432 }
+	add_to_array = { global.greater_china_states = 2433 }
+
+	add_to_array = { global.greater_china_provinces = 617 }
+	add_to_array = { global.greater_china_provinces_xibei = 617 }
+	add_to_array = { global.greater_china_provinces_X = 59 }
+	add_to_array = { global.greater_china_provinces_Y = 217 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	### Dongbei
+
+	# Mukden - 44
+	add_to_array = { global.greater_china_states = 1265 }
+	add_to_array = { global.greater_china_provinces = 1265 }
+	add_to_array = { global.greater_china_provinces_dongbei = 1265 }
+	add_to_array = { global.greater_china_provinces_X = 966 }
+	add_to_array = { global.greater_china_provinces_Y = 477 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Changchun - 45
+	add_to_array = { global.greater_china_states = 328 }
+	add_to_array = { global.greater_china_provinces = 328 }
+	add_to_array = { global.greater_china_provinces_dongbei = 328 }
+	add_to_array = { global.greater_china_provinces_X = 968 }
+	add_to_array = { global.greater_china_provinces_Y = 562 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Harbin - 46
+	add_to_array = { global.greater_china_states = 801 }
+	add_to_array = { global.greater_china_provinces = 801 }
+	add_to_array = { global.greater_china_provinces_dongbei = 801 }
+	add_to_array = { global.greater_china_provinces_X = 968 }#-163
+	add_to_array = { global.greater_china_provinces_Y = 652 }#+344
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Dalian - 47
+	add_to_array = { global.greater_china_states = 810 }
+	add_to_array = { global.greater_china_provinces = 810 }
+	add_to_array = { global.greater_china_provinces_dongbei = 810 }
+	add_to_array = { global.greater_china_provinces_X = 879 }#-163
+	add_to_array = { global.greater_china_provinces_Y = 656 }#+344
+	add_to_array = { CPC.CPC_TRCW_region_weight = 2 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Liaoning - 48
+	add_to_array = { global.greater_china_states = 716 }
+	add_to_array = { global.greater_china_states = 1636 }
+	add_to_array = { global.greater_china_states = 1640 }
+
+	add_to_array = { global.greater_china_provinces = 716 }
+	add_to_array = { global.greater_china_provinces_dongbei = 716 }
+	add_to_array = { global.greater_china_provinces_X = 585 }
+	add_to_array = { global.greater_china_provinces_Y = 304 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Jilin - 49
+	add_to_array = { global.greater_china_states = 717 }
+	add_to_array = { global.greater_china_states = 1637 }
+	add_to_array = { global.greater_china_states = 1639 }
+	add_to_array = { global.greater_china_states = 1645 }
+
+	add_to_array = { global.greater_china_provinces = 717 }
+	add_to_array = { global.greater_china_provinces_dongbei = 717 }
+	add_to_array = { global.greater_china_provinces_X = 620 }
+	add_to_array = { global.greater_china_provinces_Y = 228 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Heilongjiang - 50
+	add_to_array = { global.greater_china_states = 714 }
+	add_to_array = { global.greater_china_states = 715 }
+	add_to_array = { global.greater_china_states = 1638 }
+	add_to_array = { global.greater_china_states = 1643 }
+	add_to_array = { global.greater_china_states = 1647 }
+
+	add_to_array = { global.greater_china_provinces = 714 }
+	add_to_array = { global.greater_china_provinces_dongbei = 714 }
+	add_to_array = { global.greater_china_provinces_X = 531 }
+	add_to_array = { global.greater_china_provinces_Y = 172 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Jinghai - 51
+	add_to_array = { global.greater_china_states = 408 }
+	add_to_array = { global.greater_china_states = 809 }
+	add_to_array = { global.greater_china_states = 1644 }
+
+	add_to_array = { global.greater_china_provinces = 809 }
+	add_to_array = { global.greater_china_provinces_dongbei = 809 }
+	add_to_array = { global.greater_china_provinces_X = 699 }
+	add_to_array = { global.greater_china_provinces_Y = 144 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Beihai - 52
+	add_to_array = { global.greater_china_states = 409 }
+	add_to_array = { global.greater_china_states = 657 }
+	add_to_array = { global.greater_china_states = 1364 }
+	add_to_array = { global.greater_china_states = 1646 }
+
+	add_to_array = { global.greater_china_provinces = 409 }
+	add_to_array = { global.greater_china_provinces_dongbei = 409 }
+	add_to_array = { global.greater_china_provinces_X = 622 }
+	add_to_array = { global.greater_china_provinces_Y = 127 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Kuye - 53
+	add_to_array = { global.greater_china_states = 537 }
+
+	add_to_array = { global.greater_china_provinces = 537 }
+	add_to_array = { global.greater_china_provinces_dongbei = 537 }
+	add_to_array = { global.greater_china_provinces_X = 786 }
+	add_to_array = { global.greater_china_provinces_Y = 117 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 0 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	### Saibei
+
+	# Chahar - 54
+	add_to_array = { global.greater_china_states = 612 }
+	add_to_array = { global.greater_china_states = 2406 }
+	add_to_array = { global.greater_china_states = 2407 }
+	add_to_array = { global.greater_china_states = 2422 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+
+	add_to_array = { global.greater_china_provinces = 612 }
+	add_to_array = { global.greater_china_provinces_saibei = 612 }
+	add_to_array = { global.greater_china_provinces_X = 482 }
+	add_to_array = { global.greater_china_provinces_Y = 279 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Suiyuan - 55
+	add_to_array = { global.greater_china_states = 621 }
+	add_to_array = { global.greater_china_states = 955 }
+	add_to_array = { global.greater_china_states = 2408 }
+	add_to_array = { global.greater_china_states = 2409 }
+
+	add_to_array = { global.greater_china_provinces = 2408 }
+	add_to_array = { global.greater_china_provinces_saibei = 2408 }
+	add_to_array = { global.greater_china_provinces_X = 417 }
+	add_to_array = { global.greater_china_provinces_Y = 325 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Rehe - 56
+	add_to_array = { global.greater_china_states = 610 }
+	add_to_array = { global.greater_china_states = 1641 }
+	add_to_array = { global.greater_china_states = 1642 }
+
+	add_to_array = { global.greater_china_provinces = 610 }
+	add_to_array = { global.greater_china_provinces_saibei = 610 }
+	add_to_array = { global.greater_china_provinces_X = 541 }
+	add_to_array = { global.greater_china_provinces_Y = 264 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+
+	# Mongolia - 57
+	add_to_array = { global.greater_china_states = 329 }
+	add_to_array = { global.greater_china_states = 330 }
+	add_to_array = { global.greater_china_states = 814 }
+	add_to_array = { global.greater_china_states = 815 }
+	add_to_array = { global.greater_china_states = 2400 }
+	add_to_array = { global.greater_china_states = 2401 }
+	add_to_array = { global.greater_china_states = 2402 }
+	add_to_array = { global.greater_china_states = 2403 }
+	add_to_array = { global.greater_china_states = 2404 }
+	add_to_array = { global.greater_china_states = 2405 }
+	
+	add_to_array = { global.greater_china_provinces = 330 }
+	add_to_array = { global.greater_china_provinces_saibei = 330 }
+	add_to_array = { global.greater_china_provinces_X = 270 }
+	add_to_array = { global.greater_china_provinces_Y = 163 }
+	add_to_array = { CPC.CPC_TRCW_region_weight = 1 }
+	add_to_array = { CPC.CPC_TRCW_state_bomb_speed = 3 }
+	add_to_array = { CPC.CPC_TRCW_state_bio_speed = 3 }
+	TRCW_greater_china_provinces_control_change = yes
+
+	for_each_scope_loop = {
+		array = global.greater_china_states
+		set_variable = { china_state_ref_GUI = china_state_ref }
+		add_to_variable = { china_state_ref_GUI = 1 }
+		set_variable = { china_region_ref_GUI = china_region_ref }
+		add_to_variable = { china_region_ref_GUI = 1 }
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = XIK
+					is_controlled_by = GUX
+					is_controlled_by = GUZ
+					is_controlled_by = LOY
+					is_controlled_by = SHX
+					is_controlled_by = QIN
+					is_controlled_by = CPC
+					is_controlled_by = ETR
+					is_controlled_by = ROS
+					is_controlled_by = HTC
+					is_controlled_by = XIN
+					is_controlled_by = MEN
+					is_controlled_by = MFN
+					is_controlled_by = MON
+					is_controlled_by = TIB
+					is_controlled_by = QYC
+					is_controlled_by = CHQ
+				}
+				NOT = { is_core_of = CHI }
+			}
+			add_claim_by = CHI
+		}
+	}
+}
+
+update_TRCW_map = {
+	add_to_variable = { CPC.CPC_TRCW_dirty = 0.01 }
+}
+
+TRCW_greater_china_provinces_control_change = {
+	update_TRCW_map = yes
+	CPC = { clear_array = TRCW_controller_status }
+	for_each_scope_loop = {
+		array = global.greater_china_states
+		CPC = { set_temp_variable = { i = PREV.china_state_ref } }
+		if = {
+			limit = {
+				OR = { 
+					is_controlled_by = CPC
+					controller = { is_in_faction_with = CPC } 
+				}
+			}
+			CPC = { add_to_temp_variable = { TRCW_controller_status_CPC^i = 1 } }
+		}
+		else_if = {
+			limit = {
+				OR = { 
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI } 
+				}
+			}
+			CPC = { add_to_temp_variable = { TRCW_controller_status_JAP^i = 1 } }
+		}
+		else_if = {
+			limit = {
+				OR = { 
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP } 
+				}
+			}
+			CPC = { add_to_temp_variable = { TRCW_controller_status_JAP^i = 1 } }
+		}
+	}
+	for_each_scope_loop = {
+		array = global.greater_china_provinces
+		clear_variable = TRCW_controller_status
+		CPC = { set_temp_variable = { i = PREV.china_state_ref } }
+		if = {
+			limit = { CPC = { check_variable = { TRCW_controller_status_CPC^i = 0 } } }
+			set_variable = { TRCW_controller_status = 3 }
+			CPC = { add_to_array = { TRCW_controller_status = 3 } }
+		}
+		else_if = {
+			limit = { CPC = { check_variable = { TRCW_controller_status_JAP^i = 0 } } }
+			set_variable = { TRCW_controller_status = 1 }
+			CPC = { add_to_array = { TRCW_controller_status = 1 } }
+		}
+		else_if = {
+			limit = { 
+				NOT = { CPC = { check_variable = { TRCW_controller_status_JAP^i = 0 } } }
+				NOT = { CPC = { check_variable = { TRCW_controller_status_CPC^i = 0 } } }
+			}
+			set_variable = { TRCW_controller_status = 2 }
+			CPC = { add_to_array = { TRCW_controller_status = 2 } }
+		}
+		else_if = {
+			limit = { controller = { is_russian_nation = yes } }
+			set_variable = { TRCW_controller_status = 4 }
+			CPC = { add_to_array = { TRCW_controller_status = 4 } }
+		}
+	}
+	every_state = {
+		limit = { OR = { check_variable = { china_state_ref = 37 }
+						 check_variable = { china_state_ref = 53 } } }
+		set_variable = { TRCW_controller_status = 0 }
+		CPC = { set_variable = { TRCW_controller_status^37 = 0 } }
+		CPC = { set_variable = { TRCW_controller_status^53 = 0 } }
+	}
+	update_TRCW_map = yes
+}
+
+CPC_TRCW_BEGINS = {
+	CPC = {
+		hidden_effect = {
+			#宣战
+			declare_war_on = { target = CHI type = annex_everything }
+			every_country = {
+				limit = { is_in_faction_with = CHI }
+				add_to_war = {
+					targeted_alliance = CHI
+					enemy = CPC
+				}
+			}
+			TRCW_CPC_call_division = yes
+			MAN_oob_TRCW = yes
+			JAP_oob_TRCW = yes
+			country_event = {
+				id = CPC_TRCW.20
+				days = 50
+			}
+			JAP = {
+				set_temp_variable = { Victory_ID = 501 }
+				Cold_War_GUI_AddVictory = yes
+			}
+			JAP = {
+				set_temp_variable = { JAP.target = CHI }
+				set_temp_variable = { to_add = 8 }
+				TNO_add_num_volunteers = yes
+			}
+			JAP = {
+				set_temp_variable = { JAP.target = SHX }
+				set_temp_variable = { to_add = 3 }
+				TNO_add_num_volunteers = yes
+			}
+			JAP = {
+				set_temp_variable = { JAP.target = LOY }
+				set_temp_variable = { to_add = 3 }
+				TNO_add_num_volunteers = yes
+			}
+			#新闻-超事件
+			every_country = {
+				news_event = WORLD_TER.21
+			}
+			if = {
+				limit = { 
+					AZH = {
+						exists = yes
+						has_non_aggression_pact_with = CPC
+					} 
+				}
+				AZH = { leave_faction = yes }
+			}
+			
+			SIK = { leave_faction = yes }
+			BHU = { leave_faction = yes }
+			#GUI初始化效果
+			set_variable = { CPC_GUI_tab_frames^0 = 2 }
+			set_variable = { CPC_GUI_tab_frames^1 = 1 }
+			set_variable = { CPC_GUI_tab_frames^2 = 1 }
+			set_variable = { CPC_GUI_tab_frames^3 = 1 }
+			set_variable = { CPC_GUI_tab_frames^4 = 1 }
+			Alert_NWB_enabled_remove_alerts = yes
+			CMC_NADT_new_proj_remove_alert = yes
+			CMC_reform_remove_alert = yes
+			Alert_SCB_JP_alert_100_remove_alerts = yes
+			Alert_SCB_JP_alert_50_remove_alerts = yes
+			Alert_SCB_rev_enabled_remove_alerts = yes
+			Alert_SCB_trade_state_remove_alerts = yes
+			Alert_SWB_focus_enabled_remove_alerts = yes
+			Alert_XJB_card_enabled_remove_alerts = yes
+			#subtract_from_variable = { NADT_NP_monthly_speed = 1 }
+			clear_array = CPGAC_ordinary_policy
+			clear_array = CPGAC_ordinary_policy_enable_times
+			clear_array = CPGAC_ordinary_policy_intensified
+			add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p3_we_need_more_weapons }
+			add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+			add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p3_we_need_more_money }
+			add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+			add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p3_we_need_more_GDP }
+			add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+			add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p3_we_need_less_inflation }
+			add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+			set_country_flag = CPC_TRCW_begins_flag
+			add_ideas = { CPC_TRCW_idea }
+			add_dynamic_modifier = { modifier = CPC_TRCW_modifier }
+			clear_array = CPC_TRCW_mapmode
+			add_to_array = { CPC_TRCW_mapmode = 2 }
+			add_to_array = { CPC_TRCW_mapmode = 1 }
+			add_to_array = { CPC_TRCW_mapmode = 1 }
+			set_variable = { CPC_TRCW_mapmode_num = 1 }
+			set_variable = { CPC_TRCW_map_select_num = 1 }
+
+			set_variable = { CPC_TRCW_total_bomb_progress = 0 }
+			set_variable = { CPC_TRCW_total_bio_progress = 0 }
+
+			add_to_array = { TRCW_dec_array = 1 }
+			add_to_array = { TRCW_dec_array = 1 }
+			add_to_array = { TRCW_dec_array = 1 }
+			add_to_array = { TRCW_dec_array = 1 }
+			add_to_array = { TRCW_dec_array = 1 }
+			add_to_array = { TRCW_dec_array = 1 }
+			add_to_array = { TRCW_dec_array = 1 }
+			add_to_array = { TRCW_dec_array = 1 }
+			every_state = {
+				limit = { 
+					OR = {
+						has_state_flag = TER_CHINA_CAPITAL_STATE
+						check_variable = { china_state_ref > 0 }
+					}
+				}
+				set_variable = { CPC_TRCW_sub_area_mode = 0 }
+			}
+			country_event = { id = TER_support_backend_events.16 days = 15 }
+			TRCW_greater_china_provinces_control_change = yes
+			
+			set_variable = { china_acted_province = 956 }
+			set_variable = { CPC_TRCW_map_select_num = 38 }
+			meta_effect = {
+				text = {
+					set_variable = { TRCW_sa_active_state = [TARGET] }
+					set_variable = { TRCW_sa_array_status^0 = 2 }
+				}
+				TARGET = "[?956.GetID]"
+			}
+			CPC_TRCW_GUI_force_update = yes
+			mark_focus_tree_layout_dirty = yes
+
+			clr_country_flag = SWB_focus_begins
+			remove_mission = CPC_SWB_policy_0
+			remove_mission = CPC_SWB_policy_1
+			remove_mission = CPC_SWB_policy_2
+			remove_mission = CPC_SWB_policy_3
+			set_variable = { SWB_focus_state^0 = 1 }
+			set_variable = { SWB_focus_state^1 = 1 }
+			set_variable = { SWB_focus_state^2 = 1 }
+			set_variable = { SWB_focus_state^3 = 1 } 
+			Alert_SWB_focus_enabled_remove_alerts = yes
+			if = {
+				limit = { check_variable = { CPC_hosting_service_SWB_var = 2 } }
+				set_variable = { CPC_hosting_service_SWB_var = 1 }
+			}
+
+			CPC_XJB_clear_cards_states = yes
+			HTC = {
+				uncomplete_national_focus = {
+					focus = HTC_card_6
+					uncomplete_children = yes
+				}
+				uncomplete_national_focus = {
+					focus = HTC_card_5
+					uncomplete_children = yes
+				}
+				uncomplete_national_focus = {
+					focus = HTC_card_4
+					uncomplete_children = yes
+				}
+				uncomplete_national_focus = {
+					focus = HTC_card_3
+					uncomplete_children = yes
+				}
+				uncomplete_national_focus = {
+					focus = HTC_card_2
+					uncomplete_children = yes
+				}
+				uncomplete_national_focus = {
+					focus = HTC_card_1
+					uncomplete_children = yes
+				}
+			}
+			if = {
+				limit = { check_variable = { CPC_hosting_service_XJB_var = 2 } }
+				set_variable = { CPC_hosting_service_XJB_var = 1 }
+			}
+			Alert_XJB_card_enabled_remove_alerts = yes
+
+			Alert_NWB_enabled_remove_alerts = yes
+			remove_mission = CPC_NWB_executing_task
+			if = {
+				limit = { check_variable = { CPC_hosting_service_NWB_var = 2 } }
+				set_variable = { CPC_hosting_service_NWB_var = 1 }
+			}
+			if = {
+				limit = { check_variable = { CPC_hosting_service_SCB_var = 2 } }
+				set_variable = { CPC_hosting_service_SCB_var = 1 }
+			}
+		}
+	}
+}
+
+TRCW_CPC_call_division = {
+	CPC = {
+		division_template = {
+			name = "PLA Bubing Shi"
+			division_names_group = CPC_INF_01
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 0 y = 3 }
+				infantry = { x = 0 y = 4 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+				artillery_brigade = { x = 1 y = 3 }
+				artillery_brigade = { x = 1 y = 4 }
+				artillery_brigade = { x = 2 y = 0 }
+			}
+			support = {
+				engineer = { x = 0 y = 0 }
+				recon = { x = 0 y = 1 }
+			}
+		}
+		division_template = {
+			name = "PLA Minbing Shi"
+			division_names_group = CPC_INF_01
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 0 y = 3 }
+				light_infantry = { x = 1 y = 0 }
+			}
+			support = {
+				engineer = { x = 0 y = 0 }
+			}
+		}
+		set_temp_variable = { CPC_TRCW_div_nums_temp = CPC_TRCW_div_nums }
+		random_controlled_state = {
+			create_unit = {
+				division = "division_template = \"PLA Bubing Shi\" start_experience_factor = 0.6 start_equipment_factor = 1.0"
+				owner = CPC
+				count = CPC_TRCW_div_nums_temp
+			}
+		}
+	}
+}
+
+TRCW_decision_btn_click_effect = {
+	set_variable = {  TRCW_dec_array^TRCW_dec_array_i = 2 }
+	effect_tooltip = {
+		set_temp_variable = { TRCW_dec_temp_i = TRCW_dec_array_i }
+		TRCW_decision_done_effect_tt = yes
+	}
+	hidden_effect = {
+		set_country_flag = TRCW_doing_dec
+		activate_mission = TRCW_sp_mission
+	}
+}
+
+TRCW_decision_done_effect_tt = {
+	if = { 
+		limit ={ check_variable = { TRCW_dec_temp_i = 0 } }
+		add_political_power = -50
+		add_command_power = -10
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.1 }
+		CPC_TRCW_bomb_speed_full_change = yes
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_temp_i = 1 } }
+		add_political_power = -50
+		add_command_power = -10
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.1 }
+		CPC_TRCW_bio_speed_full_change = yes
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_temp_i = 2 } }
+		add_political_power = -50
+		add_command_power = -10
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.05 }
+		CPC_TRCW_bio_speed_full_change = yes
+		CPC_TRCW_bomb_speed_full_change = yes
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_temp_i = 3 } }
+		add_political_power = -50
+		add_command_power = -40
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1500
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 1500
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 1500
+		}
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_temp_i = 4 } }
+		add_political_power = -50
+		add_command_power = -10
+		set_temp_variable = { money_reserves_temp = 0.4 }
+		econ_money_reserves_change_raw_money = yes
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_temp_i = 5 } }
+		random_core_state = {
+			add_building_construction = {
+				type = anti_air_building
+				level = 1
+			}
+		}
+		set_temp_variable = { money_reserves_temp = -0.2 }
+		econ_money_reserves_change_raw_money = yes
+	}
+	else_if = { 
+		limit = { check_variable = { TRCW_dec_temp_i = 6 } }
+		random_core_state = {
+			add_building_construction = {
+				type = hospitals
+				level = 1
+			}
+		}
+		set_temp_variable = { money_reserves_temp = -0.2 }
+		econ_money_reserves_change_raw_money = yes
+	}
+	set_variable = { TRCW_dec_array^0 = 1 }
+	set_variable = { TRCW_dec_array^1 = 1 }
+	set_variable = { TRCW_dec_array^2 = 1 }
+	set_variable = { TRCW_dec_array^3 = 1 }
+	set_variable = { TRCW_dec_array^4 = 1 }
+	set_variable = { TRCW_dec_array^5 = 1 }
+	set_variable = { TRCW_dec_array^6 = 1 }
+	clr_country_flag = TRCW_doing_dec
+}
+
+TRCW_decision_done_effect = {
+	if = { 
+		limit ={ check_variable = { TRCW_dec_array^0 = 2 } }
+		add_political_power = -50
+		add_command_power = -10
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.1 }
+		CPC_TRCW_bomb_speed_full_change = yes
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_array^1 = 2 } }
+		add_political_power = -50
+		add_command_power = -10
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.1 }
+		CPC_TRCW_bio_speed_full_change = yes
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_array^2 = 2 } }
+		add_political_power = -50
+		add_command_power = -10
+		set_temp_variable = { CPC_TRCW_state_speed_change_temp = -0.05 }
+		CPC_TRCW_bio_speed_full_change = yes
+		CPC_TRCW_bomb_speed_full_change = yes
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_array^3 = 2 } }
+		add_political_power = -50
+		add_command_power = -40
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1500
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 1500
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 1500
+		}
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_array^4 = 2 } }
+		add_political_power = -50
+		add_command_power = -10
+		set_temp_variable = { money_reserves_temp = 0.4 }
+		econ_money_reserves_change_raw_money = yes
+	}
+	else_if = { 
+		limit ={ check_variable = { TRCW_dec_array^5 = 2 } }
+		random_core_state = {
+			add_building_construction = {
+				type = anti_air_building
+				level = 1
+			}
+		}
+		set_temp_variable = { money_reserves_temp = -0.2 }
+		econ_money_reserves_change_raw_money = yes
+	}
+	else_if = { 
+		limit = { check_variable = { TRCW_dec_array^6 = 2 } }
+		random_core_state = {
+			add_building_construction = {
+				type = hospitals
+				level = 1
+			}
+		}
+		set_temp_variable = { money_reserves_temp = -0.2 }
+		econ_money_reserves_change_raw_money = yes
+	}
+	set_variable = { TRCW_dec_array^0 = 1 }
+	set_variable = { TRCW_dec_array^1 = 1 }
+	set_variable = { TRCW_dec_array^2 = 1 }
+	set_variable = { TRCW_dec_array^3 = 1 }
+	set_variable = { TRCW_dec_array^4 = 1 }
+	set_variable = { TRCW_dec_array^5 = 1 }
+	set_variable = { TRCW_dec_array^6 = 1 }
+	clr_country_flag = TRCW_doing_dec
+}
+
+LZD_REVOLT = {
+	custom_effect_tooltip = "LZD_REVOLT"
+	hidden_effect = {
+		QYC_Henshin = yes
+		LZD = {
+			set_variable = { TER_dem_power = 63 }
+			set_variable = { TER_dem_radical = 15 }
+			transfer_state = 1464
+			add_state_core = 1464
+			
+			set_variable = { GDP = 1464.state_value_B }
+			set_variable = { GDP_growth = 4 }
+			set_variable = { income_tax_rate = 0.3 }
+			set_variable = { business_tax_rate = 0.25 }
+			set_variable = { poverty_rate = 76 }
+			set_variable = { poverty_monthly_change = -0.03 }
+			set_variable = { money_reserves = 0 }	#in billions
+			set_variable = { national_debt = 0 }	#in billions
+			set_variable = { misc_income = 0.1 }
+			set_variable = { misc_costs = 0 }
+			set_variable = { base_inflation_rate = 1.3 }
+			set_temp_variable = { temp_credit_rating = 3 }
+			set_temp_variable = { temp_credit_rating_min = 2 }
+			set_temp_variable = { temp_credit_rating_max = 8 }
+			econ_initialize_credit_rating_system = yes
+			initiate_display_vars = yes
+		}
+	}
+}
+
+WHC_REVOLT = {
+	custom_effect_tooltip = "WHC_REVOLT"
+	hidden_effect = {
+		WHC = {
+			set_variable = { TER_dem_power = 60 }
+			set_variable = { TER_dem_radical = 15 }
+			transfer_state = 1016
+			add_state_core = 1016
+			
+			set_variable = { GDP = 1016.state_value_B }
+			set_variable = { GDP_growth = 4 }
+			set_variable = { income_tax_rate = 0.3 }
+			set_variable = { business_tax_rate = 0.25 }
+			set_variable = { poverty_rate = 76 }
+			set_variable = { poverty_monthly_change = -0.03 }
+			set_variable = { money_reserves = 0 }	#in billions
+			set_variable = { national_debt = 0 }	#in billions
+			set_variable = { misc_income = 0.1 }
+			set_variable = { misc_costs = 0 }
+			set_variable = { base_inflation_rate = 1.3 }
+			set_temp_variable = { temp_credit_rating = 3 }
+			set_temp_variable = { temp_credit_rating_min = 2 }
+			set_temp_variable = { temp_credit_rating_max = 8 }
+			econ_initialize_credit_rating_system = yes
+			initiate_display_vars = yes
+		}
+	}
+}
+BJC_REVOLT_1 ={
+	BJC = {
+		transfer_state = 608
+		transfer_state = 609
+		transfer_state = 2365
+		add_state_core = 2365
+		transfer_state = 2436
+		add_state_core = 2436
+		transfer_state = 2325
+		add_state_core = 2325
+		add_state_core = 608
+		add_state_core = 609
+
+		set_variable = { GDP = 608.state_value_B }
+		add_to_variable = { GDP = 609.state_value_B }
+		add_to_variable = { GDP = 2365.state_value_B }
+		add_to_variable = { GDP = 2436.state_value_B }
+		add_to_variable = { GDP = 2325.state_value_B }
+		set_variable = { GDP_growth = 4 }
+		set_variable = { income_tax_rate = 0.3 }
+		set_variable = { business_tax_rate = 0.25 }
+		set_variable = { poverty_rate = 76 }
+		set_variable = { poverty_monthly_change = -0.03 }
+		set_variable = { money_reserves = 0 }	#in billions
+		set_variable = { national_debt = 0 }	#in billions
+		set_variable = { misc_income = 0.1 }
+		set_variable = { misc_costs = 0 }
+		set_variable = { base_inflation_rate = 1.3 }
+		set_temp_variable = { temp_credit_rating = 3 }
+		set_temp_variable = { temp_credit_rating_min = 2 }
+		set_temp_variable = { temp_credit_rating_max = 8 }
+		econ_initialize_credit_rating_system = yes
+		initiate_display_vars = yes
+	}
+}
+
+BJC_REVOLT_2 = {
+	custom_effect_tooltip = "BJC_REVOLT"
+	hidden_effect = {
+		CHI = {
+			transfer_state = 609
+			transfer_state = 2365
+			add_state_core = 2365
+			transfer_state = 2436
+			add_state_core = 2436
+			transfer_state = 2325
+			add_state_core = 2325
+			add_state_core = 609
+		}
+		BJC = {
+			clear_variable = 608.TNO_admin_title
+			drop_cosmetic_tag = yes
+			CHI = { end_puppet = BJC }
+			remove_ideas = Sphere_special_administrative_region
+			set_politics = {
+				ruling_party = liberalism
+			}
+			set_popularities = {
+				communist = 3
+				liberalism = 67
+				despotism = 30
+			}
+			set_variable = { TER_dem_power = 59 }
+			set_variable = { TER_dem_radical = 15 }
+			set_party_name = {
+				ideology = communist
+				long_name = "BJC_REVOLT_communist_party_long"
+				name = "BJC_REVOLT_communist_party"
+			}
+			set_party_name = {
+				ideology = liberalism
+				long_name = "BJC_REVOLT_liberalism_party_long"
+				name = "BJC_REVOLT_liberalism_party"
+			}
+			set_party_name = {
+				ideology = despotism
+				long_name = "BJC_REVOLT_despotism_party_long"
+				name = "BJC_REVOLT_despotism_party_long"
+			}
+			leave_faction = yes
+			econ_leave_sphere = yes
+			
+			set_variable = { GDP = 608.state_value_B }
+		}
+	}
+}
+
+CPC_TRCW_random_bio_speed_change = {
+	hidden_effect = {
+		set_temp_variable_to_random = { 
+			var = CPC_TRCW_temp_state_num
+			min = 0
+			max = 57
+			integer = yes
+		}
+		while_loop_effect = {
+			limit = { check_variable = { TRCW_controller_status^CPC_TRCW_temp_state_num = 1 } }
+			set_temp_variable_to_random = { 
+				var = CPC_TRCW_temp_state_num
+				min = 0
+				max = 57
+				integer = yes
+			}
+		}
+		CPC_TRCW_bio_speed_change = yes
+	}
+	custom_effect_tooltip = "CPC_TRCW_random_bio_speed_change_tt"
+}
+
+CPC_TRCW_random_bomb_speed_change = {
+	hidden_effect = {
+		set_temp_variable_to_random = { 
+			var = CPC_TRCW_temp_state_num
+			min = 0
+			max = 57
+			integer = yes
+		}
+		while_loop_effect = {
+			limit = { check_variable = { TRCW_controller_status^CPC_TRCW_temp_state_num = 1 } }
+			set_temp_variable_to_random = { 
+				var = CPC_TRCW_temp_state_num
+				min = 0
+				max = 57
+				integer = yes
+			}
+		}
+		CPC_TRCW_bomb_speed_change = yes
+	}
+	custom_effect_tooltip = "CPC_TRCW_random_bomb_speed_change_tt"
+}
+
+CPC_TRCW_bomb_speed_change = {
+	hidden_effect = {
+		add_to_variable = { CPC_TRCW_state_bomb_speed^CPC_TRCW_temp_state_num = CPC_TRCW_state_speed_change_temp }
+		CPC_TRCW_GUI_force_update = yes
+	}
+	custom_effect_tooltip = "CPC_TRCW_bomb_speed_change_tt"
+}
+
+CPC_TRCW_bio_speed_change = {
+	hidden_effect = {
+		add_to_variable = { CPC_TRCW_state_bio_speed^CPC_TRCW_temp_state_num = CPC_TRCW_state_speed_change_temp }
+		CPC_TRCW_GUI_force_update = yes
+	}
+	custom_effect_tooltip = "CPC_TRCW_bio_speed_change_tt"
+}
+
+CPC_TRCW_bomb_speed_full_change = {
+	hidden_effect = {
+		for_loop_effect = {
+			start = 0
+			end = 57
+			value = i
+			if = { 
+				limit = { check_variable = { TRCW_controller_status^i = 1 } } 
+				add_to_variable = { CPC_TRCW_state_bomb_speed^i = CPC_TRCW_state_speed_change_temp }
+			}
+		}
+		CPC_TRCW_GUI_force_update = yes
+	}
+	custom_effect_tooltip = "CPC_TRCW_bomb_speed_full_change_tt"
+}
+
+CPC_TRCW_bio_speed_full_change = {
+	hidden_effect = {
+		for_loop_effect = {
+			start = 0
+			end = 57
+			value = i
+			if = { 
+				limit = { check_variable = { TRCW_controller_status^i = 1 } } 
+				add_to_variable = { CPC_TRCW_state_bio_speed^i = CPC_TRCW_state_speed_change_temp }
+			}
+		}
+		CPC_TRCW_GUI_force_update = yes
+	}
+	custom_effect_tooltip = "CPC_TRCW_bio_speed_full_change_tt"
+}
+
+CPC_TRCW_GUI_force_update = {
+	TRCW_greater_china_provinces_control_change = yes
+	set_variable = { TRCW_controller_status_current_warzone = china_acted_province:TRCW_controller_status }
+	CPC = { clear_array = TRCW_sa_array }
+	CPC = { clear_array = TRCW_sa_array_status }
+	CPC = { clear_variable = TRCW_sa_display_num }
+	#总进度条算法更新
+	for_loop_effect = {
+		start = 0
+		end = 57
+		value = i
+		clamp_variable = {
+			var = CPC.CPC_TRCW_state_bomb_speed^i
+			min = 0
+			max = 100
+		}
+		clamp_variable = {
+			var = CPC.CPC_TRCW_state_bio_speed^i
+			min = 0
+			max = 100
+		}
+	}
+	#地区
+	for_each_scope_loop = {
+		array = global.greater_china_states
+		if = { 
+			limit = { check_variable = { THIS.china_state_ref = CPC.CPC_TRCW_map_select_num } }
+			meta_effect = {
+				text = { add_to_array = { CPC.TRCW_sa_array = [STATEID] } }
+				STATEID = "[?THIS.GetID]"
+			}
+			
+			if = { 
+				limit = { 
+					meta_trigger = {
+						text = { CPC = { check_variable = { TRCW_sa_active_state = [STATEID] } } }
+						STATEID = "[?THIS.GetID]"
+					}
+				}
+				CPC = { add_to_array = { TRCW_sa_array_status = 2 } }
+			}
+			else = {
+				CPC = { add_to_array = { TRCW_sa_array_status = 1 } }
+			}
+			CPC = { add_to_variable = { TRCW_sa_display_num = 1 } }
+		}
+	}
+	if = {
+		limit = { check_variable = { TRCW_sa_display_num > 3 } }
+		add_to_array = { CPC.TRCW_sa_array = 1 } #操你妈派拉多克斯，还要我手动补位
+	}
+	CPC_TRCW_calc_total_progress = yes
+}
+
+CPC_TRCW_calc_total_progress = {
+	set_variable = { CPC_TRCW_total_bomb_speed = 0 }
+	set_variable = { CPC_TRCW_total_bio_speed = 0 }
+	set_variable = { CPC_TRCW_total_weight = 0 }
+	for_loop_effect = {
+		start = 0
+		end = 57
+		value = i
+		if = {
+			limit = { check_variable = { TRCW_controller_status^i = 1 } }
+			add_to_variable = { CPC_TRCW_total_bomb_speed = CPC_TRCW_state_bomb_speed^i }
+			add_to_variable = { CPC_TRCW_total_bio_speed = CPC_TRCW_state_bio_speed^i }
+			add_to_variable = { CPC_TRCW_total_weight = CPC_TRCW_region_weight^i }
+		}
+	}
+	divide_variable = { CPC_TRCW_total_bomb_speed = CPC_TRCW_total_weight }
+	divide_variable = { CPC_TRCW_total_bio_speed = CPC_TRCW_total_weight }
+	CPC_TRCW_modifier_force_change = yes
+}
+
+CPC_TRCW_monthly_prog_change = {
+	CPC_TRCW_calc_total_progress = yes
+	every_state = { clr_state_flag = CPC_TRCW_warzone_btn_clicked }
+	every_state = { clr_state_flag = CPC_TRCW_sa_W_btn_clicked }
+	add_to_variable = { CPC_TRCW_total_bomb_progress = CPC_TRCW_total_bomb_speed }
+	add_to_variable = { CPC_TRCW_total_bio_progress = CPC_TRCW_total_bio_speed }
+	clamp_variable = { var = CPC_TRCW_total_bomb_progress min = 0 max = 100 }
+	clamp_variable = { var = CPC_TRCW_total_bio_progress min = 0 max = 100 }
+	CPC_TRCW_calc_total_progress = yes
+	CPC_TRCW_GUI_force_update = yes
+}
+
+CPC_TRCW_modifier_force_change = {
+	CPC = {
+		set_variable = { CPC_TRCW_modifier_weekly_st = 0 }
+		set_variable = { CPC_TRCW_modifier_production_cap = 0 }
+		set_variable = { CPC_TRCW_modifier_production_growth = 0 }
+		set_variable = { CPC_TRCW_modifier_PUs = 0 }
+		set_variable = { CPC_TRCW_modifier_org = 0 }
+		set_variable = { CPC_TRCW_modifier_org_regain = 0 }
+		set_variable = { CPC_TRCW_modifier_support_rate = 0 }
+		set_variable = { CPC_TRCW_modifier_defence = 0 }
+		set_variable = { CPC_TRCW_modifier_attack = 0 }
+	}
+	#战线重心
+	every_state = {
+		limit = { 
+			controller = { 
+				OR = {
+					original_tag = CPC
+					is_in_faction_with = CPC
+				}
+			}
+			is_core_of = CPC
+			check_variable = { CPC_TRCW_sub_area_mode = 0 }
+			OR = {
+				has_state_flag = TER_CHINA_CAPITAL_STATE
+				check_variable = { china_state_ref > 0 }
+			}
+		}
+		CPC = {
+			add_to_variable = { CPC_TRCW_modifier_weekly_st = 0.001 }
+			add_to_variable = { CPC_TRCW_modifier_production_cap = 0.001 }
+			add_to_variable = { CPC_TRCW_modifier_production_growth = 0.001 }
+			add_to_variable = { CPC_TRCW_modifier_PUs = 0.25 }
+			add_to_variable = { CPC_TRCW_modifier_org = 0.001 }
+			add_to_variable = { CPC_TRCW_modifier_org_regain = 0.001 }
+			add_to_variable = { CPC_TRCW_modifier_support_rate = 0.001 }
+			add_to_variable = { CPC_TRCW_modifier_defence = 0.001 }
+			add_to_variable = { CPC_TRCW_modifier_attack = 0.001 }
+		}
+	}
+	every_state = {
+		limit = { 
+			controller = { 
+				OR = {
+					original_tag = CPC
+					is_in_faction_with = CPC
+				}
+			}
+			is_core_of = CPC
+			check_variable = { CPC_TRCW_sub_area_mode = 1 } #生产模式
+			OR = {
+				has_state_flag = TER_CHINA_CAPITAL_STATE
+				check_variable = { china_state_ref > 0 }
+			}
+		}
+		CPC = {
+			add_to_variable = { CPC_TRCW_modifier_weekly_st = 0.003 }
+			add_to_variable = { CPC_TRCW_modifier_production_cap = 0.003 }
+			add_to_variable = { CPC_TRCW_modifier_production_growth = 0.003 }
+			add_to_variable = { CPC_TRCW_modifier_PUs = 0.5 }
+		}
+	}
+	every_state = {
+		limit = { 
+			controller = { 
+				OR = {
+					original_tag = CPC
+					is_in_faction_with = CPC
+				}
+			}
+			is_core_of = CPC
+			check_variable = { CPC_TRCW_sub_area_mode = 2 } #支前模式
+			OR = {
+				has_state_flag = TER_CHINA_CAPITAL_STATE
+				check_variable = { china_state_ref > 0 }
+			}
+		}
+		CPC = {
+			add_to_variable = { CPC_TRCW_modifier_org = 0.003 }
+			add_to_variable = { CPC_TRCW_modifier_org_regain = 0.003 }
+			add_to_variable = { CPC_TRCW_modifier_support_rate = 0.003 }
+			add_to_variable = { CPC_TRCW_modifier_defence = 0.003 }
+			add_to_variable = { CPC_TRCW_modifier_attack = 0.003 }
+		}
+	}
+	#轰炸污染
+	if = {
+		limit = { check_variable = { CPC_TRCW_total_bomb_progress < 30 } }
+		set_variable = { CPC_TRCW_modifier_buildings_cap = 0.3 }
+		set_variable = { CPC_TRCW_modifier_free_fix = 0.3 }
+		set_variable = { CPC_TRCW_modifier_consumer_needs = -0.3 }
+	}
+	else_if = {
+		limit = { OR = { check_variable = { CPC_TRCW_total_bomb_progress > 30 }
+						 check_variable = { CPC_TRCW_total_bomb_progress = 30 } }
+						 check_variable = { CPC_TRCW_total_bomb_progress < 50 } }
+		set_variable = { CPC_TRCW_modifier_buildings_cap = 0 }
+		set_variable = { CPC_TRCW_modifier_free_fix = 0 }
+		set_variable = { CPC_TRCW_modifier_consumer_needs = 0 }
+	}
+	else_if = {
+		limit = { OR = { check_variable = { CPC_TRCW_total_bomb_progress > 50 }
+						 check_variable = { CPC_TRCW_total_bomb_progress = 50 } }
+						 check_variable = { CPC_TRCW_total_bomb_progress < 80 } }
+		set_variable = { CPC_TRCW_modifier_buildings_cap = -0.15 }
+		set_variable = { CPC_TRCW_modifier_free_fix = -0.15 }
+		set_variable = { CPC_TRCW_modifier_consumer_needs = 0.15 }
+	}
+	else_if = {
+		limit = { OR = { check_variable = { CPC_TRCW_total_bomb_progress > 80 }
+						 check_variable = { CPC_TRCW_total_bomb_progress = 80 } } }
+		set_variable = { CPC_TRCW_modifier_buildings_cap = -0.4 }
+		set_variable = { CPC_TRCW_modifier_free_fix = -0.4 }
+		set_variable = { CPC_TRCW_modifier_consumer_needs = 0.4 }
+	}
+
+	if = {
+		limit = { check_variable = { CPC_TRCW_total_bio_progress < 30 } }
+		set_variable = { CPC_TRCW_modifier_soc_dev_medical = 3 }
+		set_variable = { CPC_TRCW_modifier_suitable_manpower = 0.3 }
+		set_variable = { CPC_TRCW_modifier_monthly_manpower = 0.3 }
+	}
+	else_if = {
+		limit = { OR = { check_variable = { CPC_TRCW_total_bio_progress > 30 }
+						 check_variable = { CPC_TRCW_total_bio_progress = 30 } }
+						 check_variable = { CPC_TRCW_total_bio_progress < 50 } }
+		set_variable = { CPC_TRCW_modifier_soc_dev_medical = 1 }
+		set_variable = { CPC_TRCW_modifier_suitable_manpower = 0.05 }
+		set_variable = { CPC_TRCW_modifier_monthly_manpower = 0 }
+	}
+	else_if = {
+		limit = { OR = { check_variable = { CPC_TRCW_total_bio_progress > 50 }
+						 check_variable = { CPC_TRCW_total_bio_progress = 50 } }
+						 check_variable = { CPC_TRCW_total_bio_progress < 80 } }
+		set_variable = { CPC_TRCW_modifier_soc_dev_medical = -2 }
+		set_variable = { CPC_TRCW_modifier_suitable_manpower = -0.1 }
+		set_variable = { CPC_TRCW_modifier_monthly_manpower = -0.1 }
+	}
+	else_if = {
+		limit = { OR = { check_variable = { CPC_TRCW_total_bio_progress > 80 }
+						 check_variable = { CPC_TRCW_total_bio_progress = 80 } } }
+		set_variable = { CPC_TRCW_modifier_soc_dev_medical = -5 }
+		set_variable = { CPC_TRCW_modifier_suitable_manpower = -0.3 }
+		set_variable = { CPC_TRCW_modifier_monthly_manpower = -0.3 }
+	}
+
+	set_temp_variable = { TRCW_gen_mul_factor = 100 }
+	set_temp_variable = { TRCW_tmp_a = CPC_TRCW_total_bio_progress }
+	add_to_temp_variable = { TRCW_tmp_a = CPC_TRCW_total_bomb_progress }
+	divide_temp_variable = { TRCW_tmp_a = 2 }
+	subtract_from_temp_variable = { TRCW_gen_mul_factor = TRCW_tmp_a }
+	divide_temp_variable = { TRCW_gen_mul_factor = 100 }
+
+	multiply_variable = { CPC_TRCW_modifier_weekly_st = TRCW_gen_mul_factor }
+	multiply_variable = { CPC_TRCW_modifier_production_cap = TRCW_gen_mul_factor }
+	multiply_variable = { CPC_TRCW_modifier_production_growth = TRCW_gen_mul_factor }
+	multiply_variable = { CPC_TRCW_modifier_PUs = TRCW_gen_mul_factor }
+	multiply_variable = { CPC_TRCW_modifier_org = TRCW_gen_mul_factor }
+	multiply_variable = { CPC_TRCW_modifier_org_regain = TRCW_gen_mul_factor }
+	multiply_variable = { CPC_TRCW_modifier_support_rate = TRCW_gen_mul_factor }
+	multiply_variable = { CPC_TRCW_modifier_defence = TRCW_gen_mul_factor }
+	multiply_variable = { CPC_TRCW_modifier_attack = TRCW_gen_mul_factor }
+	force_update_dynamic_modifier = yes
+}
+
+CPC_PRC_cosmetic_tag_effect = {
+	if = { limit = { check_variable = { CPC_flag_1_var = 2 }
+					 check_variable = { CPC_name_1_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_1_1 }
+	else_if = { limit = { check_variable = { CPC_flag_1_var = 2 }
+					 	  check_variable = { CPC_name_2_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_1_2 }
+	else_if = { limit = { check_variable = { CPC_flag_1_var = 2 }
+					 	  check_variable = { CPC_name_3_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_1_3 }
+	else_if = { limit = { check_variable = { CPC_flag_2_var = 2 }
+					 	  check_variable = { CPC_name_1_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_2_1 }
+	else_if = { limit = { check_variable = { CPC_flag_2_var = 2 }
+					 	  check_variable = { CPC_name_2_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_2_2 }
+	else_if = { limit = { check_variable = { CPC_flag_2_var = 2 }
+					 	  check_variable = { CPC_name_3_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_2_3 }
+	else_if = { limit = { check_variable = { CPC_flag_3_var = 2 }
+					 	  check_variable = { CPC_name_1_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_3_1 }
+	else_if = { limit = { check_variable = { CPC_flag_3_var = 2 }
+					 	  check_variable = { CPC_name_2_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_3_2 }
+	else_if = { limit = { check_variable = { CPC_flag_3_var = 2 }
+					 	  check_variable = { CPC_name_3_var = 2 } } 
+			set_cosmetic_tag = CPC_PRC_3_3 }
+}
+#第一阶段核爆效果
+CPC_TRCW_Xibei_Anarchy_effect = {
+	custom_effect_tooltip = "CPC_TRCW_Xibei_Anarchy_effect_tt"
+	ANRL_collapse = yes
+	set_global_flag = CPC_TRCW_NUKE_END
+	hidden_effect = {
+		CPC_TRCW_nuke_phase_1_xibei = yes
+		ZXB = {
+			transfer_state = 2413
+			transfer_state = 621
+			set_capital = { state = 2413 }
+			change_tag_from = CPC
+			clr_country_flag = TNO_Country_Info_Screen_Visible
+		}
+		CPC = {
+			every_enemy_country = {
+				white_peace = CPC
+			}
+			every_state = {
+				limit = { check_variable = { china_state_ref = 14 } }
+				transfer_state_to = SHX
+				add_core_of = SHX
+			}
+			every_state = {
+				limit = { OR = { check_variable = { china_state_ref = 21 }
+								 check_variable = { china_state_ref = 16 }
+								 check_variable = { china_state_ref = 17 } } }
+				transfer_state_to = CHI
+				add_core_of = CHI
+			}
+			every_state = {
+				limit = { check_variable = { china_state_ref = 22 } }
+				transfer_state_to = TIB
+			}
+			TIB = { set_capital = { state = 765 } }
+			clr_country_flag = CPC_TRCW_begins_flag
+			set_global_flag = CPC_LOSES_TRCW
+			CPC = { save_global_event_target_as = losing_country }
+			CHI = { save_global_event_target_as = winning_country }
+			set_global_flag = war_won
+			set_global_flag = show_peace_popup_alert
+			add_to_variable = { global.peace_popup_dirty = 1 }
+		}
+		ZXB = {
+			annex_country = { target = CPC transfer_troops = no }
+			annex_country = { target = HTC transfer_troops = no }
+			annex_country = { target = ETR transfer_troops = no }
+			annex_country = { target = ROS transfer_troops = no }
+			annex_country = { target = XIN transfer_troops = no }
+			every_state = {
+				limit = { is_fully_controlled_by = ZXB }
+				add_core_of = ZXB
+				remove_core_of = CPC
+				remove_core_of = HTC
+				remove_claim_by = HTC
+				remove_core_of = ROS
+				remove_claim_by = ROS
+				remove_core_of = XIN
+				remove_claim_by = XIN
+				remove_core_of = ETR
+				remove_claim_by = ETR
+			}
+		}
+		
+		ZXB = {
+			every_state = {
+				limit = { is_controlled_by = ZXB }
+				set_demilitarized_zone = yes
+				every_neighbor_state = {
+					set_demilitarized_zone = yes
+				}
+			}
+			add_ideas = {
+				CPC_eternal_damage_1
+				CPC_eternal_damage_2
+			}
+			set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+			set_variable = { TNO_economy_subtype = token:Econ_Subtype_Anarchic }
+		}
+
+		JAP = {
+			set_temp_variable = { Victory_ID = 501 }
+			set_temp_variable = { Victory_Outcome = 4 }
+			set_temp_variable = { Victory_Points = 200 }
+			Cold_War_GUI_ManipulateVictory = yes
+
+			add_to_faction = CHI
+			add_to_faction = LOY
+			add_to_faction = KIS
+			add_to_faction = SHX
+			add_to_faction = THA
+			add_to_faction = LAO
+			country_event = { id = TER_support_backend_events.19 days = 10 }
+		}
+		MEN = {
+			annex_country = {
+				target = MON
+			}
+		}
+		every_country = {
+			news_event = {
+				id = WORLD_TER.25
+				days = 3
+			}
+		}
+	}
+}
+CPC_TRCW_nuke_phase_1_xibei = {
+	JAP = {
+		launch_nuke = { use_nuke = no  province = 19647 }
+		launch_nuke = { use_nuke = no  province = 7418 }
+		launch_nuke = { use_nuke = no  province = 17053 }
+		launch_nuke = { use_nuke = no  province = 4167 }
+		launch_nuke = { use_nuke = no  province = 16941 }
+		launch_nuke = { use_nuke = no  province = 9005 }
+		launch_nuke = { use_nuke = no  province = 5007 }
+		launch_nuke = { use_nuke = no  province = 19617 }
+		launch_nuke = { use_nuke = no  province = 12156 }
+		launch_nuke = { use_nuke = no  province = 16864 }
+		launch_nuke = { use_nuke = no  province = 19692 }
+		launch_nuke = { use_nuke = no  province = 2424 }
+		launch_nuke = { use_nuke = no  province = 19507 }
+		launch_nuke = { use_nuke = no  province = 10733 }
+		launch_nuke = { use_nuke = no  province = 19610 }
+		launch_nuke = { use_nuke = no  province = 19620 }
+		launch_nuke = { use_nuke = no  province = 4986 }
+		launch_nuke = { use_nuke = no  province = 7659 }
+		launch_nuke = { use_nuke = no  province = 1959 }
+		launch_nuke = { use_nuke = no  province = 517 }
+		launch_nuke = { use_nuke = no  province = 19563 }
+		launch_nuke = { use_nuke = no  province = 19502 }
+		launch_nuke = { use_nuke = no  province = 16863 }
+		launch_nuke = { use_nuke = no  province = 19490 }
+		launch_nuke = { use_nuke = no  province = 8127 }
+		launch_nuke = { use_nuke = no  province = 4243 }
+		launch_nuke = { use_nuke = no  province = 13250 }
+		launch_nuke = { use_nuke = no  province = 8081 }
+		launch_nuke = { use_nuke = no  province = 16476 }
+		launch_nuke = { use_nuke = no  province = 10796 }
+		launch_nuke = { use_nuke = no  province = 5025 }
+		launch_nuke = { use_nuke = no  province = 1647 }
+		launch_nuke = { use_nuke = no  province = 1933 }
+		launch_nuke = { use_nuke = no  province = 19724 }
+		launch_nuke = { use_nuke = no  province = 19569 }
+		launch_nuke = { use_nuke = no  province = 2022 }
+		launch_nuke = { use_nuke = no  province = 16783 }
+		launch_nuke = { use_nuke = no  province = 12776 }
+		launch_nuke = { use_nuke = no  province = 5100 }
+		launch_nuke = { use_nuke = no  province = 2028 }
+		launch_nuke = { use_nuke = no  province = 7971 }
+		launch_nuke = { use_nuke = no  province = 12820 }
+		launch_nuke = { use_nuke = no  province = 12815 }
+		launch_nuke = { use_nuke = no  province = 19757 }
+		launch_nuke = { use_nuke = no  province = 5193 }
+		launch_nuke = { use_nuke = no  province = 19735 }
+		launch_nuke = { use_nuke = no  province = 16856 }
+		launch_nuke = { use_nuke = no  province = 15647 }
+		launch_nuke = { use_nuke = no  province = 1781 }
+		launch_nuke = { use_nuke = no  province = 19420 }
+		launch_nuke = { use_nuke = no  province = 12656 }
+		launch_nuke = { use_nuke = no  province = 17208 }
+		launch_nuke = { use_nuke = no  province = 17216 }
+		launch_nuke = { use_nuke = no  province = 19425 }
+		launch_nuke = { use_nuke = no  province = 10614 }
+		launch_nuke = { use_nuke = no  province = 19428 }
+		launch_nuke = { use_nuke = no  province = 7792 }
+		launch_nuke = { use_nuke = no  province = 4849 }
+		launch_nuke = { use_nuke = no  province = 4714 }
+		launch_nuke = { use_nuke = no  province = 19426 }
+		launch_nuke = { use_nuke = no  province = 19413 }
+		launch_nuke = { use_nuke = no  province = 19396 }
+		launch_nuke = { use_nuke = no  province = 9077 }
+		launch_nuke = { use_nuke = no  province = 19427 }
+		launch_nuke = { use_nuke = no  province = 14679 }
+		launch_nuke = { use_nuke = no  province = 19766 }
+		launch_nuke = { use_nuke = no  province = 17210 }
+		launch_nuke = { use_nuke = no  province = 4682 }
+		launch_nuke = { use_nuke = no  province = 7949 }
+		launch_nuke = { use_nuke = no  province = 19399 }
+		launch_nuke = { use_nuke = no  province = 1766 }
+		launch_nuke = { use_nuke = no  province = 2015 }
+		launch_nuke = { use_nuke = no  province = 19412 }
+		launch_nuke = { use_nuke = no  province = 5087 }
+		launch_nuke = { use_nuke = no  province = 1970 }
+		launch_nuke = { use_nuke = no  province = 4973 }
+		launch_nuke = { use_nuke = no  province = 8112 }
+		launch_nuke = { use_nuke = no  province = 19394 }
+		launch_nuke = { use_nuke = no  province = 14948 }
+		launch_nuke = { use_nuke = no  province = 12403 }
+	}
+	set_victory_points = { value = 0 province = 19647 }
+	set_victory_points = { value = 0 province = 7418 }
+	set_victory_points = { value = 1 province = 17053 } #The Last Remnant of CNDF
+	set_victory_points = { value = 0 province = 4167 }
+	set_victory_points = { value = 0 province = 16941 }
+	set_victory_points = { value = 0 province = 9005 }
+	set_victory_points = { value = 0 province = 5007 }
+	set_victory_points = { value = 0 province = 19617 }
+	set_victory_points = { value = 0 province = 12156 }
+	set_victory_points = { value = 0 province = 16864 }
+	set_victory_points = { value = 0 province = 19692 }
+	set_victory_points = { value = 0 province = 2424 }
+	set_victory_points = { value = 0 province = 19507 }
+	set_victory_points = { value = 0 province = 10733 }
+	set_victory_points = { value = 0 province = 19610 }
+	set_victory_points = { value = 0 province = 19620 }
+	set_victory_points = { value = 0 province = 4986 }
+	set_victory_points = { value = 0 province = 7659 }
+	set_victory_points = { value = 0 province = 1959 }
+	set_victory_points = { value = 0 province = 517 }
+	set_victory_points = { value = 0 province = 19563 }
+	set_victory_points = { value = 0 province = 19502 }
+	set_victory_points = { value = 0 province = 16863 }
+	set_victory_points = { value = 0 province = 19490 }
+	set_victory_points = { value = 0 province = 8127 }
+	set_victory_points = { value = 0 province = 4243 }
+	set_victory_points = { value = 0 province = 13250 }
+	set_victory_points = { value = 0 province = 8081 }
+	set_victory_points = { value = 0 province = 16476 }
+	set_victory_points = { value = 0 province = 10796 }
+	set_victory_points = { value = 0 province = 5025 }
+	set_victory_points = { value = 0 province = 1647 }
+	set_victory_points = { value = 0 province = 1933 }
+	set_victory_points = { value = 0 province = 19724 }
+	set_victory_points = { value = 0 province = 19569 }
+	set_victory_points = { value = 0 province = 2022 }
+	set_victory_points = { value = 0 province = 16783 }
+	set_victory_points = { value = 0 province = 12776 }
+	set_victory_points = { value = 0 province = 5100 }
+	set_victory_points = { value = 0 province = 2028 }
+	set_victory_points = { value = 0 province = 7971 }
+	set_victory_points = { value = 0 province = 12820 }
+	set_victory_points = { value = 0 province = 12815 }
+	set_victory_points = { value = 0 province = 19757 }
+	set_victory_points = { value = 0 province = 5193 }
+	set_victory_points = { value = 0 province = 19735 }
+	set_victory_points = { value = 0 province = 16856 }
+	set_victory_points = { value = 0 province = 15647 }
+	set_victory_points = { value = 0 province = 1781 }
+	set_victory_points = { value = 0 province = 19420 }
+	set_victory_points = { value = 0 province = 12656 }
+	set_victory_points = { value = 0 province = 17208 }
+	set_victory_points = { value = 0 province = 17216 }
+	set_victory_points = { value = 0 province = 19425 }
+	set_victory_points = { value = 0 province = 10614 }
+	set_victory_points = { value = 0 province = 19428 }
+	set_victory_points = { value = 0 province = 7792 }
+	set_victory_points = { value = 0 province = 4849 }
+	set_victory_points = { value = 0 province = 4714 }
+	set_victory_points = { value = 0 province = 19426 }
+	set_victory_points = { value = 0 province = 19413 }
+	set_victory_points = { value = 0 province = 19396 }
+	set_victory_points = { value = 0 province = 9077 }
+	set_victory_points = { value = 0 province = 19427 }
+	set_victory_points = { value = 0 province = 14679 }
+	set_victory_points = { value = 0 province = 19766 }
+	set_victory_points = { value = 0 province = 17210 }
+	set_victory_points = { value = 0 province = 4682 }
+	set_victory_points = { value = 0 province = 7949 }
+	set_victory_points = { value = 0 province = 19399 }
+	set_victory_points = { value = 0 province = 1766 }
+	set_victory_points = { value = 0 province = 2015 }
+	set_victory_points = { value = 0 province = 19412 }
+	set_victory_points = { value = 0 province = 5087 }
+	set_victory_points = { value = 0 province = 1970 }
+	set_victory_points = { value = 0 province = 4973 }
+	set_victory_points = { value = 0 province = 8112 }
+	set_victory_points = { value = 0 province = 19394 }
+	set_victory_points = { value = 0 province = 14948 }
+	set_victory_points = { value = 0 province = 12403 }
+}
+#第二阶段核爆效果 - 所有主要城市及西安吃一轮核爆，并加精神 - 需要事件
+
+#第一阶段普通战败效果
+CPC_TRCW_Long_and_Arduous_Road = {
+	hidden_effect = {
+		set_global_flag = CPC_TRCW_RGOC_WINS
+		ANRL_collapse = yes
+		CPC = {
+			every_enemy_country = {
+				white_peace = CPC
+			}
+		}
+		CHI = {
+			annex_country = {
+				target = HTC
+				transfer_troops = no
+			}
+			annex_country = {
+				target = CPC
+				transfer_troops = no
+			}
+			annex_country = {
+				target = WHC
+				transfer_troops = no
+			}
+			annex_country = {
+				target = BJC
+				transfer_troops = no
+			}
+			annex_country = {
+				target = LZD
+				transfer_troops = no
+			}
+			annex_country = {
+				target = QYC
+				transfer_troops = no
+			}
+			annex_country = {
+				target = SHX
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = LOY
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = KIS
+				transfer_troops = yes
+			}
+			every_state = {
+				limit = { is_fully_controlled_by = CHI }
+				add_core_of = CHI
+			}
+		}
+		every_state = {
+			limit = { check_variable = { china_state_ref = 22 } }
+			transfer_state_to = TIB
+		}
+		TIB = { set_capital = { state = 765 } }
+		if = {
+			limit = { CPC = { is_ai = no } }
+			TWN = { 
+				change_tag_from = CPC
+			}
+		}
+		JAP = {
+			add_to_faction = CHI
+			add_to_faction = THA
+			add_to_faction = LAO
+			add_to_faction = AZH
+			set_temp_variable = { Victory_ID = 501 }
+			set_temp_variable = { Victory_Outcome = 4 }
+			set_temp_variable = { Victory_Points = 200 }
+			Cold_War_GUI_ManipulateVictory = yes
+			country_event = { id = TER_support_backend_events.19 days = 10 }
+		}
+		CHI = {
+			swap_ideas = {
+				remove_idea = Kyoeiken_EAACP_Leader
+				add_idea = Sphere_Core_Member
+			}
+		}
+		every_country = {
+			news_event = {
+				id = WORLD_TER.36
+				days = 2
+			}
+		}
+		CPC = { save_global_event_target_as = losing_country }
+		CHI = { save_global_event_target_as = winning_country }
+		set_global_flag = war_won
+		set_global_flag = show_peace_popup_alert
+		add_to_variable = { global.peace_popup_dirty = 1 }
+	}
+}
+#第二阶段战败效果
+CPC_TRCW_China_motherland_collapse = {
+	hidden_effect = {
+		set_global_flag = CPC_TRCW_CHI_COLLAPSE
+		HTC = { 
+			change_tag_from = CPC
+			clr_country_flag = TNO_Country_Info_Screen_Visible 
+		}
+		ANRL_collapse = yes
+		CPC = {
+			every_enemy_country = {
+				white_peace = CPC
+			}
+		}
+		#Huabei
+		every_state = {
+			limit = { OR = { check_variable = { china_state_ref = 7 }
+							 check_variable = { china_state_ref = 8 }
+							 check_variable = { china_state_ref = 9 }
+							 check_variable = { china_state_ref = 10 }
+							 check_variable = { china_state_ref = 11 }
+							 check_variable = { china_state_ref = 12 }
+							 check_variable = { china_state_ref = 13 }
+							 check_variable = { china_state_ref = 14 }
+							 check_variable = { china_state_ref = 30 }
+							} }
+			transfer_state_to = SHX
+			add_core_of = SHX
+			set_state_flag = TER_the_darkest_hour_has_come
+		}
+		every_state = {
+			limit = { OR = { check_variable = { china_state_ref = 16 }
+							 check_variable = { china_state_ref = 17 }
+							 check_variable = { china_state_ref = 18 }
+							 check_variable = { china_state_ref = 20 }
+							 check_variable = { china_state_ref = 21 }
+							} }
+			transfer_state_to = LOY
+			add_core_of = LOY
+			set_state_flag = TER_the_darkest_hour_has_come
+		}
+		every_state = {
+			limit = { OR = { check_variable = { china_state_ref = 38 }
+							 check_variable = { china_state_ref = 39 }
+							 check_variable = { china_state_ref = 40 }
+							 check_variable = { china_state_ref = 41 }
+							 check_variable = { china_state_ref = 42 }
+							} }
+			transfer_state_to = GAN
+			add_core_of = GAN
+			set_state_flag = TER_the_darkest_hour_has_come
+		}
+		every_state = {
+			limit = { OR = { check_variable = { china_state_ref = 54 }
+							 check_variable = { china_state_ref = 55 }
+							 check_variable = { china_state_ref = 57 }
+							} }
+			transfer_state_to = MEN
+			add_core_of = MEN
+			set_state_flag = TER_the_darkest_hour_has_come
+		}
+		every_state = {
+			limit = { check_variable = { china_state_ref = 22 } }
+			transfer_state_to = TIB
+			add_core_of = TIB
+			set_state_flag = TER_the_darkest_hour_has_come
+		}
+		every_state = {
+			limit = { OR = { check_variable = { china_state_ref = 31 }
+							 check_variable = { china_state_ref = 32 }
+							 check_variable = { china_state_ref = 33 }
+							 check_variable = { china_state_ref = 33 }
+							 check_variable = { china_state_ref = 34 }
+							 check_variable = { china_state_ref = 35 }
+							 check_variable = { china_state_ref = 19 }
+							} }
+			transfer_state_to = KIS
+			add_core_of = KIS
+			remove_core_of = GNG
+			#remove_core_of = CHI
+			set_state_flag = TER_the_darkest_hour_has_come
+		}
+		every_state = {
+			limit = { OR = { check_variable = { china_state_ref = 44 }
+							 check_variable = { china_state_ref = 45 }
+							 check_variable = { china_state_ref = 46 }
+							 check_variable = { china_state_ref = 47 }
+							 check_variable = { china_state_ref = 48 }
+							 check_variable = { china_state_ref = 49 }
+							 check_variable = { china_state_ref = 50 }
+							 check_variable = { china_state_ref = 51 }
+							 check_variable = { china_state_ref = 52 }
+							 check_variable = { china_state_ref = 53 }
+							 check_variable = { china_state_ref = 56 }
+							}
+						NOT = { state = 537 } }
+			transfer_state_to = MAN
+			add_core_of = MAN
+			set_state_flag = TER_the_darkest_hour_has_come
+		}
+		every_state = {
+			limit = { has_variable = china_state_ref
+					  NOT = { has_state_flag = TER_the_darkest_hour_has_come }
+					  NOT = { state = 1465 }
+					  NOT = { state = 329 }
+					  NOT = { state = 537 }
+					  NOT = { check_variable = { china_state_ref = 37 } }
+					  NOT = { check_variable = { china_state_ref = 43 } } }
+			transfer_state_to = CHI
+			add_core_of = CHI
+		}
+
+		#country
+		LAO = { add_to_faction = JAP }
+		KIS = {
+			set_cosmetic_tag = KIS_TER_END
+			set_party_name = {
+				ideology = ultranationalism
+				long_name = "IJA_TER_END_party_name_long"
+				name = "IJA_TER_END_party_name"
+			}
+			add_popularity = {
+				ideology = ultranationalism
+				popularity = 1
+			}
+			set_politics = {
+				ruling_party = ultranationalism
+			}
+			set_capital = {
+				state = 592
+			}
+			retire_country_leader = yes
+			create_country_leader = {
+				name = "KIS_Prince_Kaya_Tsunenori"
+				picture = "gfx/leaders/KIS/KIS_Prince_Kaya_Tsunenori.png"
+				ideology = ultranationalism_stratocracy_subtype
+				traits = { }
+				expire = "1999.1.1.1"
+			}
+			swap_ideas = {
+				remove_idea = Kyoeiken_EAACP_CHI_warlord
+				add_idea = Sphere_Imp_Protectorate
+			}
+			load_oob = KIS_war
+		}
+		CHI = {
+			swap_ideas = {
+				remove_idea = Kyoeiken_EAACP_Leader
+				add_idea = Sphere_Core_Member
+			}
+		}
+
+		LOY = {
+			set_cosmetic_tag = LOY_TER_END
+			set_politics = {
+				ruling_party = ultranationalism
+			}
+			set_popularities = {
+				ultranationalism = 100
+			}
+			set_party_name = {
+				ideology = ultranationalism
+				long_name = "IJA_TER_END_party_name_long"
+				name = "IJA_TER_END_party_name"
+			}
+			create_country_leader = {
+				name = "IJA_LOY_leader"
+				picture = "gfX/leaders/IJA/IJA_LOY_leader.png"
+				ideology = ultranationalism_stratocracy_subtype
+				traits = { }
+				expire = "1999.1.1.1"
+			}
+			set_capital = {
+				state = 1538
+			}
+			remove_ideas = {
+				TER_SW_new_decisions
+				TER_SW_great_suppress_bandits
+			}
+			swap_ideas = {
+				remove_idea = Kyoeiken_EAACP_CHI_warlord
+				add_idea = Sphere_Imp_Protectorate
+			}
+			load_oob = YUN_1962
+			load_oob = YUN_1962
+		}
+		SHX = {
+			set_cosmetic_tag = SHX_TER_END
+			set_politics = {
+				ruling_party = fascism
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = "IJA_TER_END_party_name_long"
+				name = "IJA_TER_END_party_name"
+			}
+			set_popularities = {
+				fascism = 100
+			}
+			set_capital = {
+				state = 1023
+			}
+			create_country_leader = {
+				name = "IJA_SHX_leader"
+				picture = "gfX/leaders/IJA/IJA_SHX_leader.png"
+				ideology = fascism_reform_bureaucracy_subtype
+				traits = { }
+				expire = "1999.1.1.1"
+			}
+			swap_ideas = {
+				remove_idea = Kyoeiken_EAACP_CHI_warlord
+				add_idea = Sphere_Imp_Protectorate
+			}
+			load_oob = SHX_1962
+			load_oob = SHX_1962
+		}
+		MEN = {
+			set_cosmetic_tag = MEN_TER_END
+			set_politics = {
+				ruling_party = fascism
+			}
+			set_popularities = {
+				fascism = 100
+			}
+			set_capital = {
+				state = 330
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = "IJA_TER_END_party_name_long"
+				name = "IJA_TER_END_party_name"
+			}
+			create_country_leader = {
+				name = "IJA_MEN_leader"
+				picture = "gfX/leaders/IJA/IJA_MEN_leader.png"
+				ideology = fascism_reform_bureaucracy_subtype
+				traits = { }
+				expire = "1999.1.1.1"
+			}
+			load_oob = MEN_1962
+			load_oob = MEN_1962
+		}
+		GAN = {
+			set_cosmetic_tag = GAN_TER_END
+			retire_country_leader = yes
+			set_politics = {
+				ruling_party = fascism
+			}
+			set_popularities = {
+				fascism = 100
+			}
+			set_capital = {
+				state = 956
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = "IJA_TER_END_party_name_long"
+				name = "IJA_TER_END_party_name"
+			}
+			create_country_leader = {
+				name = "IJA_GAN_leader"
+				picture = "gfX/leaders/IJA/IJA_GAN_leader.png"
+				ideology = fascism_corporate_statism_subtype
+				traits = { }
+				expire = "1999.1.1.1"
+			}
+			load_oob = GAN_1962
+			load_oob = GAN_1962
+			load_oob = GAN_1962
+			econ_join_sphere_JAP = yes
+		}
+		JAP = {
+			add_to_faction = LOY
+			add_to_faction = SHX
+			add_to_faction = GAN
+			add_to_faction = CHI
+			add_to_faction = AZH
+			add_to_faction = KIS
+			add_to_faction = THA
+			set_temp_variable = { Victory_ID = 501 }
+			set_temp_variable = { Victory_Outcome = 4 }
+			set_temp_variable = { Victory_Points = 200 }
+			Cold_War_GUI_ManipulateVictory = yes
+			country_event = { id = TER_support_backend_events.19 days = 10 }
+		}
+		CPC = { save_global_event_target_as = losing_country }
+		JAP = { save_global_event_target_as = winning_country }
+		set_global_flag = war_won
+		set_global_flag = show_peace_popup_alert
+		add_to_variable = { global.peace_popup_dirty = 1 }
+		XGZ = {
+			econ_leave_sphere = yes
+		}
+		every_country = {
+			news_event = {
+				id = WORLD_TER.26
+				days = 2
+			}
+		}
+	}
+}
+
+ANRL_collapse = {
+	hidden_effect = {
+		every_country = {
+			limit = { is_in_faction_with = CPC }
+			leave_faction = yes
+			econ_leave_sphere = yes
+			every_enemy_country = { white_peace = PREV }
+		}
+		every_country = {
+			remove_ideas = {
+				ANRL_Leader
+				ANRL_Core_member
+				ANRL_sub_member
+				ANRL_federation_member
+				ANRL_puppet
+				ANRL_observer
+			}
+		}
+	}
+}
+
+MAN_oob_TRCW = {
+	if = {
+		limit = {
+			NOT = {
+				has_dlc = "No Step Back"
+			}
+		}
+		MAN = { load_oob = "MAN_1962" }
+	}
+	if = {
+		limit = {
+			has_dlc = "No Step Back"
+		}
+		MAN = { load_oob = "MAN_1962_nsb" }
+	}
+}
+
+JAP_oob_TRCW = {
+	JAP = { load_oob = "JAP_TRCW" }
+}
+
+CHI_divisions_template_TRCW = {
+	country_lock_all_division_template = no
+	division_template = {
+		name = "Bubing Juntuán"
+  		division_names_group = CHI_INF_01
+		regiments = {
+			infantry = { x = 0 y = 0 }
+			infantry = { x = 0 y = 1 }
+			infantry = { x = 0 y = 2 }
+			infantry = { x = 0 y = 3 }
+			infantry = { x = 0 y = 4 }
+			infantry = { x = 1 y = 0 }
+			artillery_brigade = { x = 1 y = 1 }
+			artillery_brigade = { x = 2 y = 0 }
+			artillery_brigade = { x = 2 y = 1 }
+		}	 
+		support = {
+		   engineer = { x = 0 y = 0 }
+		   artillery = { x = 0 y = 0 }
+		   recon = { x = 0 y = 1 }
+		}
+	}
+	random_state = {
+		limit = { is_fully_controlled_by = CHI }
+		create_unit = {
+			division = "division_template = \"Bubing Juntuán\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+			owner = CHI
+			count = 10
+		}
+	}
+}
+
+CHI_call_mars_divisions = {
+	division_template = {
+		name = "TRCW division"
+  		division_names_group = CHI_INF_01
+		is_locked = yes
+		regiments = {
+			infantry = { x = 0 y = 0 }
+			infantry = { x = 0 y = 1 }
+			infantry = { x = 0 y = 2 }
+			infantry = { x = 0 y = 3 }
+			infantry = { x = 0 y = 4 }
+			infantry = { x = 1 y = 0 }
+			infantry = { x = 1 y = 1 }
+			infantry = { x = 1 y = 2 }
+			infantry = { x = 1 y = 3 }
+			infantry = { x = 1 y = 4 }
+			artillery_brigade = { x = 2 y = 0 }
+			artillery_brigade = { x = 2 y = 1 }
+			artillery_brigade = { x = 2 y = 2 }
+			artillery_brigade = { x = 2 y = 3 }
+			infantry = { x = 3 y = 0 }
+			infantry = { x = 3 y = 1 }
+			infantry = { x = 3 y = 2 }
+			infantry = { x = 3 y = 3 }
+		}	 
+		support = {
+		   engineer = { x = 0 y = 0 }
+		   artillery = { x = 0 y = 0 }
+		   recon = { x = 0 y = 1 }
+		}
+	}
+	random_state = {
+		limit = { is_fully_controlled_by = CHI }
+		create_unit = {
+			division = "division_template = \"TRCW division\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+			owner = CHI
+			count = CHI_TRCW_tmp_div_num
+		}
+	}
+}
+
+###我们胜利了###
+CPC_WE_GOT_THE_FINAL_VICTORY = {
+	custom_effect_tooltip = "CPC_WE_GOT_THE_FINAL_VICTORY"
+	hidden_effect = {
+		every_enemy_country = { white_peace = CPC }
+		every_enemy_country = { white_peace = VIC }
+		every_enemy_country = { white_peace = CRC }
+		every_enemy_country = { white_peace = KPA }
+		every_country = {
+			limit = { is_in_faction_with = CPC }
+			white_peace = JAP
+		}
+		every_country = {
+			news_event = {
+				id = WORLD_TER.24
+				days = 3
+			}
+		}
+		CPC = { 
+			country_event = {
+				id = CPC_main_story_events.163
+				days = 7
+			}
+			econ_raise_max_credit_rating = yes
+			remove_ideas = CPC_leader_of_united_front
+			remove_ideas = CPC_TRCW_idea
+			remove_dynamic_modifier = { modifier = CPC_TRCW_modifier }
+			add_ideas = CPC_AT_ANRL_issue_idea
+			annex_country = { target = MAN }
+			annex_country = { target = MEN }
+			annex_country = { target = GNG }
+			annex_country = { target = HTC }
+			annex_country = { target = BJC }
+			annex_country = { target = QYC }
+			every_state = {
+				limit = { is_core_of = QYC }
+				add_core_of = CPC
+				remove_core_of = QYC
+			}
+			if = {
+				limit = { MON = { has_cosmetic_tag = MON_MRC_2 } }
+				every_state = {
+					limit = { is_core_of = MON }
+					add_dynamic_modifier = { modifier = TER_Mongolia_Federation_modifier }
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						has_dynamic_modifier = { modifier = TER_NWB_modifier_0 }
+						has_dynamic_modifier = { modifier = TER_NWB_modifier_1 }
+						has_dynamic_modifier = { modifier = TER_NWB_modifier_2 }
+						has_dynamic_modifier = { modifier = TER_NWB_modifier_3 }
+					}
+				}
+				remove_dynamic_modifier = { modifier = TER_NWB_modifier_0 }
+				remove_dynamic_modifier = { modifier = TER_NWB_modifier_1 }
+				remove_dynamic_modifier = { modifier = TER_NWB_modifier_2 }
+				remove_dynamic_modifier = { modifier = TER_NWB_modifier_3 }
+			}
+			delete_unit_template_and_units = {
+				division_template = "PLA Minbing Shi"
+			}
+			if = {
+				limit = { has_country_flag = CPC_we_choose_beijing }
+				set_capital = {
+					state = 608
+				}
+			}
+			if = { 
+				limit = { 
+					MON = { has_cosmetic_tag = MON_MRC_1 }
+				}
+				annex_country = {
+					target = MON
+					transfer_troops = yes
+				}
+				remove_ideas = CPC_MRC_modifier_idea
+				remove_dynamic_modifier = { modifier = CPC_MRC_modifier }
+				every_state = {
+					limit = { is_core_of = MON }
+					add_core_of = CPC
+					remove_core_of = MON
+					remove_core_of = MEN
+				}
+			}
+			else_if = { 
+				limit = { MON = { has_cosmetic_tag = MON_MRC_2 } }
+				annex_country = {
+					target = MON
+					transfer_troops = yes
+				}
+				remove_ideas = CPC_MRC_modifier_idea
+				remove_dynamic_modifier = { modifier = CPC_MRC_modifier }
+				every_state = {
+					limit = { is_core_of = MON }
+					add_core_of = CPC
+					remove_core_of = MEN
+				}
+			}
+			else_if = {
+				limit = { MON = { has_cosmetic_tag = MON_MRC_3 } }
+				if = {
+					limit = { check_variable = { MRC_choice^4 = 2 } }
+					every_state = {
+						limit = {
+							is_controlled_by = CPC
+							is_core_of = MON
+						}
+						remove_core_of = CPC
+						transfer_state_to = MON
+					}
+				}
+				MON = { set_cosmetic_tag = MON_MRC_3_final }
+			}
+			every_state = { 
+				limit = { has_variable = china_state_ref
+						  NOT = { state = 1465 }
+						  NOT = { state = 329 }
+						  NOT = { state = 537 }
+						  NOT = { state = 2460 }
+						  NOT = { state = 927 }
+						  NOT = { state = 2461 }
+						  NOT = { check_variable = { china_state_ref = 37 } }
+						  NOT = { check_variable = { china_state_ref = 57 } } }
+				add_core_of = CPC
+				transfer_state_to = CPC
+				remove_core_of = LOY
+				remove_core_of = SHX
+				remove_core_of = KIS
+				remove_core_of = GNG
+				remove_core_of = QIN
+				remove_core_of = GUZ
+				remove_core_of = MEN
+				remove_core_of = SIC
+				remove_core_of = ROS
+				remove_core_of = ETR
+				remove_core_of = GUX
+				remove_core_of = XIN
+				remove_core_of = TIB
+				remove_core_of = XIN
+				remove_core_of = MFN
+				remove_core_of = CHI
+				remove_core_of = MAN
+				remove_core_of = BJC
+				remove_core_of = WHC
+				remove_core_of = LZD
+				remove_core_of = QYC
+				remove_core_of = CHQ
+				remove_core_of = HTC
+				remove_claim_by = HTC
+				remove_claim_by = CHI
+				remove_core_of = XGZ
+			}
+			every_state = {
+				limit = { is_claimed_by = ROS }
+				remove_claim_by = ROS
+				remove_claim_by = HTC
+			}
+			every_state = {
+				limit = { is_core_of = KIS }
+				remove_core_of = KIS
+			}
+			clr_country_flag = CPC_TRCW_begins_flag
+			set_global_flag = CPC_WINS_TRCW
+			mark_focus_tree_layout_dirty = yes
+			1024 = { set_demilitarized_zone = no }
+			527 = { set_demilitarized_zone = no }
+			1820 = { set_demilitarized_zone = no }
+			JAP = { save_global_event_target_as = losing_country }
+			CPC = { save_global_event_target_as = winning_country }
+			set_global_flag = war_won
+			set_global_flag = show_peace_popup_alert
+			add_to_variable = { global.peace_popup_dirty = 1 }
+			remove_dynamic_modifier = { modifier = CPC_TRCW_modifier }
+		}
+		JAP = {
+			country_event = { id = TER_support_backend_events.17 days = 20 }
+			set_temp_variable = { Victory_ID = 501 }
+			set_temp_variable = { Victory_Outcome = 1 }
+			set_temp_variable = { Victory_Points = -2000 }
+			Cold_War_GUI_ManipulateVictory = yes
+			add_to_faction = THA
+		}
+		if = {
+			limit = { LAO = { has_idea = ANRL_observer } }
+			CPC = { add_to_faction = LAO }
+		}
+		VIC = { set_capital = { state = 728 } }
+		KPA = { set_capital = { state = 288 } }
+		CRC = { set_capital = { state = 1535 } }
+	}
+}
+
+###东部民主暴动###
+CPC_dem_riot_power_change = {
+	custom_effect_tooltip = "CPC_dem_riot_power_change_tt"
+	meta_effect = {
+		text = {
+			add_to_variable = { [TARGET].TER_dem_power = CPC.TER_dem_power_tmp }
+			clamp_variable = { 
+				var = [TARGET].TER_dem_power
+				min = 0
+				max = 100
+			}
+		}
+		TARGET = "[?target.GetTag]"
+	}
+}
+CPC_dem_riot_radical_change = {
+	custom_effect_tooltip = "CPC_dem_riot_radical_change_tt"
+	meta_effect = {
+		text = {
+			add_to_variable = { [TARGET].TER_dem_radical = CPC.TER_dem_radical_tmp }
+			clamp_variable = { 
+				var = [TARGET].TER_dem_radical
+				min = 0
+				max = 100
+			}
+		}
+		TARGET = "[?target.GetTag]"
+	}
+}
+
+CPC_dem_riot_weekly_effect = {
+	if = {
+		limit = { BJC = { check_variable = { TER_dem_power < 30 } }
+				  NOT = { BJC = { has_war_with = CHI } }
+				  BJC = { exists = yes } }
+		CHI = { 
+			declare_war_on = {
+				target = BJC
+				type = annex_everything
+			}
+		}
+	}
+	if = {
+		limit = { WHC = { check_variable = { TER_dem_power < 30 } }
+				  NOT = { WHC = { has_war_with = CHI } }
+				  WHC = { exists = yes } }
+		CHI = { 
+			declare_war_on = {
+				target = WHC
+				type = annex_everything
+			}
+		}
+	}
+	if = {
+		limit = { LZD = { check_variable = { TER_dem_power < 30 } }
+				  NOT = { LZD = { has_war_with = CHI } }
+				  LZD = { exists = yes } }
+		CHI = { 
+			declare_war_on = {
+				target = LZD
+				type = annex_everything
+			}
+		}
+	}
+
+	if = {
+		limit = { NOT = { check_variable = { TER_dem_riot_live_num = 0 } } }
+		set_variable = { TER_dem_radical_average = BJC.TER_dem_radical }
+		add_to_variable = { TER_dem_radical_average = WHC.TER_dem_radical }
+		add_to_variable = { TER_dem_radical_average = LZD.TER_dem_radical }
+		divide_variable = { TER_dem_radical_average = TER_dem_riot_live_num }
+	}
+	else = {
+		hidden_effect  = {
+			every_country = {
+				news_event = WORLD_TER.30
+			}
+		}
+		add_ideas = CPC_dem_riot_failure
+		clr_country_flag = CPC_admit_dem_riot
+	}
+}
+CPC_dem_riot_congress_effect = {
+	if = { 
+		limit = { check_variable = { TER_dem_radical_average > 50 }
+				  check_variable = { TER_dem_riot_live_num > 1 } }
+		every_country = {
+			news_event = WORLD_TER.28
+		}
+		BJC = { 
+			create_faction = CHI_liberty_front
+			add_to_faction = WHC
+			add_to_faction = LZD
+		}
+		if = { 
+			limit = { check_variable = { TER_dem_riot_live_num = 3 } }
+			add_to_variable = { CPC_final_hidden_score_riot = 40 }
+		}
+		else_if = { 
+			limit = { check_variable = { TER_dem_riot_live_num = 2 } }
+			add_to_variable = { CPC_final_hidden_score_riot = 30 }
+		}
+	}
+	else = {
+		every_country = {
+			news_event = WORLD_TER.29
+		}
+		BJC = { add_ideas = ANRL_observer }
+		WHC = { add_ideas = ANRL_observer }
+		LZD = { add_ideas = ANRL_observer }
+		if = { 
+			limit = { check_variable = { TER_dem_riot_live_num = 3 } }
+			add_to_variable = { CPC_final_hidden_score_riot = 35 }
+		}
+		else_if = { 
+			limit = { check_variable = { TER_dem_riot_live_num = 2 } }
+			add_to_variable = { CPC_final_hidden_score_riot = 25 }
+		}
+		else_if = { 
+			limit = { check_variable = { TER_dem_riot_live_num = 1 } }
+			add_to_variable = { CPC_final_hidden_score_riot = 15 }
+		}
+	}
+	BJC = { load_oob = BJC_riot }
+	WHC = { load_oob = WHC_riot }
+	LZD = { load_oob = LZD_riot }
+	clr_country_flag = CPC_admit_dem_riot
+}

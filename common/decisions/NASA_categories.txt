@@ -1,0 +1,68 @@
+USA_GLN_NASA_Program = {
+	icon = GFX_decision_category_nasa
+	priority = 760
+
+
+	allowed = {
+		original_tag = USA
+	}
+	visible = {
+		OR = {
+			AND = { has_country_flag = USA_68_D_RDC is_ai = yes }
+			has_country_flag = USA_76_D
+		}
+	}
+}
+
+USA_GLN_Mission_Control = {
+	icon = GFX_decision_category_nasa
+	priority = 759
+	allowed = {
+		original_tag = USA
+	}
+	visible = {
+		has_country_flag = USA_GLN_back_To_Space
+	}
+}
+
+USA_GLN_JPL = {
+	icon = GFX_decision_category_research_generic
+
+
+	allowed = {
+		original_tag = USA
+	}
+	visible = {
+		has_country_flag = USA_68_D_RDC
+	}
+}
+
+USA_GLN_Nuclear_Commission = {
+	icon = GFX_decision_category_research_generic
+
+
+	allowed = {
+		original_tag = USA
+	}
+	visible = {
+		has_country_flag = USA_68_D_RDC
+		has_completed_focus = USA_Glenn_We_shall_have_it_all
+		NOT = { has_country_flag = glenn_nuclear_disarmament_continue_disarm_path }
+	}
+}
+
+USA_bill_decisions_category = {
+	icon = GFX_decision_category_USA_congress
+
+	picture = GFX_decision_image_USA_political_situation
+	priority = 99999
+	allowed = {
+		original_tag = USA
+
+	}
+	visible = {
+		check_variable = { bill_id > 0 }
+	}
+	has_country_flag = USA_hart_presidency
+	has_country_flag = USA_chep_presidency
+}

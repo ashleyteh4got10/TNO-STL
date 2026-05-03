@@ -1,0 +1,388 @@
+add_namespace = CPC_NUKE
+add_namespace = CPC_NADT_event
+add_namespace = CPC_MEOW
+country_event = {
+	id = CPC_NADT_event.1
+	title = CPC_NADT_event.1.t
+	desc = CPC_NADT_event.1.d
+	picture = GFX_event_NADT_logo
+	is_triggered_only = yes
+	option = {
+		name = CPC_NADT_event.1.o
+		ai_chance = { factor = 50 }
+		set_temp_variable = { time_tmp = 365 }
+		set_temp_variable = { proj_name_tmp = token:NADT_proj_2 }
+		set_temp_variable = { money_tmp = 0.18 }
+		TER_NADT_begin_sp_tech_proj = yes
+	}
+}
+
+country_event = {
+	id = CPC_NADT_event.2
+	title = CPC_NADT_event.2.t
+	desc = CPC_NADT_event.2.d
+	picture = GFX_event_NADT_logo
+	is_triggered_only = yes
+	option = {
+		name = CPC_NADT_event.2.o1
+		ai_chance = { factor = 50 }
+		trigger = { 
+			OR = {
+				NOT = { check_variable = { NADT_sp_tech_proj_phase = 6 } }
+				AND = {
+					check_variable = { NADT_sp_tech_proj_phase = 6 }
+					check_variable = { NADT_sp_tech_left = 6 }
+				}
+			}
+		}
+		if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 3 } }
+			set_temp_variable = { time_tmp = 420 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_3_left }
+			set_temp_variable = { money_tmp = 0.3 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 4 } }
+			set_temp_variable = { time_tmp = 450 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_4_left }
+			set_temp_variable = { money_tmp = 0.48 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 5 } }
+			set_temp_variable = { time_tmp = 340 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_5_left }
+			set_temp_variable = { money_tmp = 0.72 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 6 } }
+			set_temp_variable = { time_tmp = 220 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_6_left }
+			set_temp_variable = { money_tmp = 0.72 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+	}
+	option = {
+		name = CPC_NADT_event.2.o2
+		ai_chance = { factor = 50 }
+		if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 3 } }
+			set_temp_variable = { time_tmp = 330 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_3_mid }
+			set_temp_variable = { money_tmp = 0.24 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 4 } }
+			set_temp_variable = { time_tmp = 330 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_4_mid }
+			set_temp_variable = { money_tmp = 0.3 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 5 } }
+			set_temp_variable = { time_tmp = 270 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_5_mid }
+			set_temp_variable = { money_tmp = 0.54 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 6 } }
+			set_temp_variable = { time_tmp = 250 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_6_mid }
+			set_temp_variable = { money_tmp = 0.72 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+	}
+	option = {
+		name = CPC_NADT_event.2.o3
+		ai_chance = { factor = 50 }
+		trigger = { 
+			OR = {
+				NOT = { check_variable = { NADT_sp_tech_proj_phase = 6 } }
+				AND = {
+					check_variable = { NADT_sp_tech_proj_phase = 6 }
+					check_variable = { NADT_sp_tech_right = 6 }
+				}
+			}
+		}
+		if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 3 } }
+			set_temp_variable = { time_tmp = 365 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_3_right }
+			set_temp_variable = { money_tmp = 0.12 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 4 } }
+			set_temp_variable = { time_tmp = 365 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_4_right }
+			set_temp_variable = { money_tmp = 0.36 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 5 } }
+			set_temp_variable = { time_tmp = 300 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_5_right }
+			set_temp_variable = { money_tmp = 0.6 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+		else_if = {
+			limit = { check_variable = { NADT_sp_tech_proj_phase = 6 } }
+			set_temp_variable = { time_tmp = 200 }
+			set_temp_variable = { proj_name_tmp = token:NADT_proj_6_right }
+			set_temp_variable = { money_tmp = 0.72 }
+			TER_NADT_begin_sp_tech_proj = yes
+		}
+	}
+	option = {
+		name = CPC_NADT_event.2.o4
+		ai_chance = { factor = 0 }
+		trigger = { check_variable = { NADT_sp_tech_proj_phase > 4 } }
+		set_country_flag = TER_NADT_sp_tech_proj_stopped
+	}
+}
+
+country_event = {
+	id = CPC_NUKE.1
+	title = CPC_NUKE.1.t
+	desc = CPC_NUKE.1.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_NUKE.1.o
+		ai_chance = { factor = 50 }
+		hidden_effect = {
+			TER_nuke_YEEEEEEEEES = yes
+			every_country = {
+				news_event = {
+					id = CPC_NUKE.2
+					days = 2
+				}
+			}
+		}
+	}
+}
+
+news_event = {
+	id = CPC_NUKE.2
+	title = CPC_NUKE.2.t
+	desc = CPC_NUKE.2.d
+	picture = GFX_TER_NUKE_YEEEEEEEEEEES
+	is_triggered_only = yes
+	option = {
+		name = CPC_NUKE.2.o
+		ai_chance = { factor = 50 }
+		if = {
+			limit = { is_ai = no }
+			set_temp_variable = { TNO_temp_super_event = token:SE_TER_WE_HAVE_GOTTEN_THE_NUKE }
+			TNO_fire_super_event = yes
+		}
+	}
+}
+
+country_event = {
+	id = CPC_NUKE.3
+	title = CPC_NUKE.3.t
+	desc = CPC_NUKE.3.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_NUKE.3.o1
+		ai_chance = { factor = 50 }
+		set_variable = { NADT_nuclear_proj_phase = 2 }
+	}
+	option = {
+		name = CPC_NUKE.3.o2
+		ai_chance = { factor = 50 }
+		set_variable = { NADT_nuclear_proj_phase = 3 }
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.0
+	title = CPC_MEOW.0.t
+	desc = CPC_MEOW.0.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.0.o1
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.1 
+	}
+
+	option = {
+		name = CPC_MEOW.0.o2
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.2
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.1
+	title = CPC_MEOW.1.t
+	desc = CPC_MEOW.1.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.1.o1
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.4 
+	}
+	option = {
+		name = CPC_MEOW.1.o2
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.3
+	}
+}
+
+country_event = { #拿钱，走人
+	id = CPC_MEOW.2
+	title = CPC_MEOW.2.t
+	desc = CPC_MEOW.2.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.2.o
+		ai_chance = { factor = 50 }
+		set_temp_variable = { money_reserves_temp = 0.15 }
+		econ_money_reserves_change_raw_money = yes
+	}
+}
+
+country_event = { #不理猫猫的都是坏蛋！
+	id = CPC_MEOW.3
+	title = CPC_MEOW.3.t
+	desc = CPC_MEOW.3.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.3.o
+		ai_chance = { factor = 50 }
+		add_stability = -0.05
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.4
+	title = CPC_MEOW.4.t
+	desc = CPC_MEOW.4.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.4.o
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.5
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.5
+	title = CPC_MEOW.5.t
+	desc = CPC_MEOW.5.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.5.o1
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.6
+	}
+	option = {
+		name = CPC_MEOW.5.o2
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.7
+		set_temp_variable = { debt_temp = 0.075 }
+		econ_national_debt_change = yes
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.6
+	title = CPC_MEOW.6.t
+	desc = CPC_MEOW.6.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.6.o
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.3
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.7
+	title = CPC_MEOW.7.t
+	desc = CPC_MEOW.7.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.7.o1
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.3
+	}
+	option = {
+		name = CPC_MEOW.7.o2
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.8
+		set_temp_variable = { debt_temp = 0.075 }
+		econ_national_debt_change = yes
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.8
+	title = CPC_MEOW.8.t
+	desc = CPC_MEOW.8.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.8.o
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.9
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.9
+	title = CPC_MEOW.9.t
+	desc = CPC_MEOW.9.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.9.o
+		ai_chance = { factor = 50 }
+	#	TER_april_fool_nuke_YEEEEEEEES = yes
+		country_event = {
+			id = CPC_MEOW.10
+			days = 3
+		}
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.10
+	title = CPC_MEOW.10.t
+	desc = CPC_MEOW.10.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.10.o
+		ai_chance = { factor = 50 }
+		country_event = CPC_MEOW.11
+	}
+}
+
+country_event = {
+	id = CPC_MEOW.11
+	title = CPC_MEOW.11.t
+	desc = CPC_MEOW.11.d
+	picture = GFX_4_1_MEOW
+	is_triggered_only = yes
+	option = {
+		name = CPC_MEOW.11.o
+		ai_chance = { factor = 50 }
+		add_ideas = CPC_Instant_Noodles
+	}
+}

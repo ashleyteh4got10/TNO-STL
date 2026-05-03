@@ -1,0 +1,270 @@
+SWRW_USA_Skeleton = {
+	### NOTE: WHEN PUTTING NEW WORLD EVENTS IN, THE DATE TRIGGER IS THE DATE THAT THE EVENT FIRES, NOT THE DAY BEFORE.
+	### FOR EXAMPLE: IF A WORLD EVENT IS SUPPOSED TO TRIGGER ON JANUARY 9TH 1974, THE TRIGGER SHOULD BE "date > 1974.01.09", NOT "date > 1974.01.08". FORMAT IS YYYY.MM.DD
+	### ULTRA MEGA EXTRA IMPORTANT: MAKE SURE THE CHECK "fire_only_once = yes" IS IN EVERY DECISION. OTHERWISE WE WILL HAVE A 1964 WINTER OLYMPICS FIASCO REPEAT.
+	### SERIOUSLY. IT WILL HAPPEN.
+	### EVEN WORSE INSTEAD OF FIRING HUNDREDS OF TIMES IT WILL FIRE INFINITELY
+	SWRW_USA_Hardhat_Riots = { #8th May 1970
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1970.5.8
+			OR = {
+				USA = { has_government = progressivism }
+				USA = { has_government = liberalism }
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Hardhat_Riots"
+			USA = { country_event = NPP_collapse.1 }
+		}
+	}
+	SWRW_USA_Weatherman_Underground = { #9th July 1969
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1969.7.9
+			OR = {
+				USA = { has_government = conservatism }
+				USA = { has_government = paternalism }
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Weatherman_Underground"
+			USA = { country_event = NPP_collapse.2 }
+		}
+	}
+	SWRW_USA_Draft_Scoop = { #13th April 1971
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1971.4.13
+			USA = {
+				has_country_leader = {
+					character = USA_Margaret_Chase_Smith
+					ruling_only = yes
+				}
+			}
+			NOT = { USA = { has_completed_focus = USA_mcs_68_for_the_general_welfare } }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Draft_Scoop"
+			USA = { country_event = NPP_collapse.36 }
+		}
+	}
+	SWRW_USA_Draft_Schlafly = { #13th April 1971
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1971.4.13
+			OR = {
+				USA = { has_completed_focus = USA_mcs_68_for_the_general_welfare }
+				USA = {
+					has_country_leader = {
+						character = USA_Michael_Harrington
+						ruling_only = yes
+					}
+				} 
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Draft_Schlafly"
+			USA = { country_event = NPP_collapse.37 }
+		}
+	}
+	SWRW_USA_Progressives_Defecting = { #11th January 1974
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1974.1.11
+			NOT = {
+				USA = {
+					has_country_leader = {
+						character = USA_Gus_Hall
+						ruling_only = yes
+					}
+				}
+				USA = {
+					has_country_leader = {
+						character = USA_Francis_Yockey
+						ruling_only = yes
+					}
+				}
+			}
+			USA = { has_country_flag = SWRW_USA_progs_defecting }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Progressives_Defecting"
+			USA = { country_event = NPP_collapse.7 }
+		}
+	}
+	SWRW_USA_Nationalists_Defecting = { #11th January 1974
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1974.1.11
+			NOT = {
+				USA = {
+					has_country_leader = {
+						character = USA_Gus_Hall
+						ruling_only = yes
+					}
+				}
+				USA = {
+					has_country_leader = {
+						character = USA_Francis_Yockey
+						ruling_only = yes
+					}
+				}
+			}
+			USA = { has_country_flag = SWRW_USA_nats_defecting }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Nationalists_Defecting"
+			USA = { country_event = NPP_collapse.14 }
+		}
+	}
+	SWRW_USA_Hall = { #31st August 1975
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1975.8.31
+			USA = {
+				has_country_leader = {
+					character = USA_Gus_Hall
+					ruling_only = yes
+				}
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Hall"
+			USA = { country_event = NPP_collapse.25 }
+		}
+	}
+	SWRW_USA_Yockey = { #15th June 1975
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1975.6.15
+			USA = {
+				has_country_leader = {
+					character = USA_Francis_Yockey
+					ruling_only = yes
+				}
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Yockey"
+			USA = { country_event = NPP_collapse.33 }
+		}
+	}
+	SWRW_USA_Electoral_College_Abolished = { #14th November 1977
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1977.11.14
+			USA = {
+				has_country_leader = {
+					character = USA_Birch_Bayh
+					ruling_only = yes
+				}
+			}
+			USA = { has_country_flag = USA_chep_perfect_ending }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Electoral_College_Abolished"
+			every_country = { news_event = SWRW_USA_skeleton.18 }
+		}
+	}
+	SWRW_USA_Electoral_College_Stands = { #18th January 1978
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1978.01.18
+			NOT = {
+				USA = {
+					has_country_leader = {
+						character = USA_Birch_Bayh
+						ruling_only = yes
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Electoral_College_Stands"
+			every_country = { news_event = SWRW_USA_skeleton.19 }
+		}
+	}
+	SWRW_USA_ERA_Disaster = { #12th October 1979
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1980.10.12
+			USA = {
+				has_country_leader = {
+					character = USA_Ronald_Reagan
+					ruling_only = yes
+				}
+			}
+			USA = { has_country_flag = USA_72_FR_NPP_Past }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_ERA_Disaster"
+			every_country = { news_event = SWRW_USA_skeleton.20 }
+		}
+	}
+	SWRW_USA_Title_IX_Strengthened = { #6th June 1974
+		icon = GFX_decision_generic_decision
+		visible = {
+			date > 1974.06.06
+			USA = {
+				has_country_leader = {
+					character = USA_Phyllis_Schlafly
+					ruling_only = yes
+				}
+			}
+			USA = { has_country_flag = USA_fetal_protection_act }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 1000
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_USA_Title_IX_Strengthened"
+			every_country = { news_event = SWRW_USA_skeleton.21 }
+		}
+	}
+}

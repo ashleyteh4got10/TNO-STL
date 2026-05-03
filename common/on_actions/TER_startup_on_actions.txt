@@ -1,0 +1,146 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			#if = {
+			#	limit = { 
+			#		has_game_rule = {
+			#			rule = TER_Zombie_mode
+			#			option = TER_Zombie_mode_activated
+			#		} 
+			#	}
+			#	#CPC = {
+			#	#	TER_ZOMBIE_MODE_INITIALIZE = yes
+			#	#}
+			#}
+			#
+			CPC_apply_embargos = yes
+			325 = { set_state_flag = CPC_has_control_change_event }
+			1023 = { set_state_flag = CPC_has_control_change_event }
+			328 = { set_state_flag = CPC_has_control_change_event }
+			613 = { set_state_flag = CPC_has_control_change_event }
+			599 = { set_state_flag = CPC_has_control_change_event }
+			615 = { set_state_flag = CPC_has_control_change_event }
+			813 = { set_state_flag = CPC_has_control_change_event }
+			607 = { set_state_flag = CPC_has_control_change_event }
+			596 = { set_state_flag = CPC_has_control_change_event }
+
+			#事件
+			CPC = {
+				set_country_flag = TER_SKYNET_achievement #判定托管
+				country_event = {
+					id = CPC_CPGAC.0
+					hours = 12
+				}
+				####2025丧尸版本预热####
+				every_country = {
+					news_event = {
+						id = WORLD_TER.666
+						days = 666
+					}
+				}
+				####2023愚人节彩蛋####
+				#country_event = {
+				#	id = CPC_MEOW.0
+				#	days = 3
+				#}
+				country_event = {
+					id = CPC_main_story_events.1
+					days = 12
+				}
+				country_event = {
+					id = CPC_main_story_events.3
+					days = 24
+				}
+				country_event = {
+					id = CPC_main_story_events.5
+					days = 79
+				}
+				country_event = {
+					id = CPC_main_story_events.6
+					days = 199
+				}
+				country_event = {
+					id = CPC_main_story_events.7
+					days = 74
+				}
+				country_event = {
+					id = CPC_main_story_events.8
+					days = 100
+				}
+				country_event = {
+					id = CPC_main_story_events.9
+					days = 89
+				}
+				country_event = {
+					id = CPC_main_story_events.10
+					days = 80
+				}
+				country_event = {
+					id = CPC_main_story_events.11
+					days = 83
+				}
+				country_event = {
+					id = CPC_main_story_events.12
+					days = 58
+				}
+				country_event = {
+					id = CPC_main_story_events.16
+					days = 168
+				}
+				country_event = {
+					id = CPC_main_story_events.131
+					days = 288
+				}
+			}
+		}
+		effect = {
+			TWN = {
+				country_event = {
+					id = TWN_skeleton.1
+					days = 205
+				}
+			}
+			GGC = {
+				country_event = {
+					id = GGC_skeleton.1
+					days = 156
+				}
+				country_event = {
+					id = GGC_skeleton.2
+					days = 605
+				}
+			}
+			MEN = {
+				leave_faction = yes
+			}
+			VIC = {
+				set_temp_variable = { pus_temp = 1 }
+				econ_pus_change = yes
+			}
+			LOY = {
+				annex_country = {
+					target = YUN
+					transfer_troops = no
+				}
+			}
+			SHX = {
+				annex_country = {
+					target = GAN
+					transfer_troops = no
+				}
+			}
+		}
+		effect = {
+			every_country = {
+				news_event = {
+					id = WORLD_TER.15
+					days = 189
+				}
+				news_event = {
+					id = WORLD_TER.2
+					days = 455
+				}
+			}
+		}
+	}
+}

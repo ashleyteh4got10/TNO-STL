@@ -1,0 +1,195 @@
+add_namespace = CPC_CPGAC
+add_namespace = CPC_LB_GM
+country_event = {
+	id = CPC_LB_GM.1
+	title = CPC_LB_GM.1.t
+	desc = CPC_LB_GM.1.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_LB_GM.1.o
+		ai_chance = { factor = 50 }
+	}
+}
+country_event = {
+	id = CPC_LB_GM.2
+	title = CPC_LB_GM.2.t
+	desc = CPC_LB_GM.2.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_LB_GM.2.o
+		ai_chance = { factor = 50 }
+	}
+}
+country_event = {
+	id = CPC_LB_GM.3
+	title = CPC_LB_GM.3.t
+	desc = CPC_LB_GM.3.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_LB_GM.3.o
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = "GAC_damn_we_fucking_messed_up"
+	}
+}
+
+country_event = {
+	id = CPC_CPGAC.0
+	title = CPC_CPGAC.0.t
+	desc = CPC_CPGAC.0.d
+	picture = GFX_Honqi
+	is_triggered_only = yes
+	option = {
+		name = CPC_CPGAC.0.o
+		ai_chance = { factor = 50 }
+		country_event = { 
+			id = CPC_CPGAC.1
+			hours = 12
+		}
+	}
+}
+
+country_event = {
+	id = CPC_CPGAC.1
+	title = CPC_CPGAC.1.t
+	desc = CPC_CPGAC.1.d
+	picture = GFX_Kaimu
+	is_triggered_only = yes
+	option = {
+		name = CPC_CPGAC.1.o
+		ai_chance = { factor = 50 }
+		complete_national_focus = CPC_end_of_the_very_beginning
+	}
+}
+
+country_event = {
+	id = CPC_CPGAC.2
+	title = CPC_CPGAC.2.t
+	desc = CPC_CPGAC.2.d
+	picture = GFX_Kaimu
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = PM_health_0_punish
+		set_variable = { CPGAC_btn_PM_frame = 2 }
+		if = { 
+			limit = { has_country_flag = CS_patience_0_punish } 
+			country_event = { id = CPC_CPGAC.4 }
+		}
+		else = {
+			country_event = {
+				id = CPC_CPGAC.6
+				days = 90
+			}
+		}
+		random_list = {
+			50 = { CPC_Lin_Biao_dissatisfaction_up_without_event = yes }
+			50 = { }
+		}
+	}
+	option = {
+		name = CPC_CPGAC.2.o
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = CPC_CPGAC.3
+	title = CPC_CPGAC.3.t
+	desc = CPC_CPGAC.3.d
+	#picture = #
+	is_triggered_only = yes
+	immediate = {
+		set_country_flag = CS_patience_0_punish
+		set_variable = { CPGAC_btn_CS_frame = 1 }
+		if = { 
+			limit = { has_country_flag = PM_health_0_punish } 
+			country_event = { id = CPC_CPGAC.4 }
+		}
+		else = {
+			country_event = {
+				id = CPC_CPGAC.7
+				days = 90
+			}
+		}
+		random_list = {
+			50 = { CPC_Lin_Biao_dissatisfaction_up_without_event = yes }
+			50 = { }
+		}
+	}
+	option = {
+		name = CPC_CPGAC.3.o
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = CPC_CPGAC.4
+	title = CPC_CPGAC.4.t
+	desc = CPC_CPGAC.4.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_CPGAC.4.o
+		ai_chance = { factor = 50 }
+		set_country_flag = GAC_biggest_punish
+		country_event = {
+			id = CPC_CPGAC.5
+			days = 90
+		}
+	}
+}
+
+country_event = {
+	id = CPC_CPGAC.5
+	title = CPC_CPGAC.5.t
+	desc = CPC_CPGAC.5.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_CPGAC.5.o
+		ai_chance = { factor = 50 }
+		clr_country_flag = GAC_biggest_punish
+		clr_country_flag = CS_patience_0_punish
+		clr_country_flag = PM_health_0_punish
+		set_variable = { CPGAC_trait_CS_reputation = 0 }
+		set_variable = { CPGAC_trait_CS_patience = 3 }
+		set_variable = { CPGAC_trait_PM_pressure = 0 }
+		set_variable = { CPGAC_trait_PM_health = 3 }
+	}
+}
+
+country_event = {
+	id = CPC_CPGAC.6
+	title = CPC_CPGAC.6.t
+	desc = CPC_CPGAC.6.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_CPGAC.6.o
+		ai_chance = { factor = 50 }
+		clr_country_flag = PM_health_0_punish
+		set_variable = { CPGAC_trait_PM_pressure = 0 }
+		set_variable = { CPGAC_trait_PM_health = 1 }
+		if = {
+			limit = { has_country_flag = PM_Zhou_retire_flag }
+			custom_effect_tooltip = "PM_Zhou_retire_flag"
+		}
+	}
+}
+
+country_event = {
+	id = CPC_CPGAC.7
+	title = CPC_CPGAC.7.t
+	desc = CPC_CPGAC.7.d
+	#picture = #
+	is_triggered_only = yes
+	option = {
+		name = CPC_CPGAC.7.o
+		ai_chance = { factor = 50 }
+		clr_country_flag = CS_patience_0_punish
+		set_variable = { CPGAC_trait_CS_reputation = 0 }
+		set_variable = { CPGAC_trait_CS_patience = 1 }
+	}
+}

@@ -1,0 +1,325 @@
+scripted_gui = {
+	TER_SWB_main_GUI = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_SWB_main_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^2 = 2 }
+		}
+
+		properties = {
+			TER_SWB_hosting_service_btn = { frame = CPC.CPC_hosting_service_SWB_var }
+			map_state_xikang = { frame = SWB_region_state^0 }
+			map_state_sichuan = { frame = SWB_region_state^1 }
+			map_state_chongqing = { frame = SWB_region_state^2 }
+			map_state_chuandong = { frame = SWB_region_state^3 }
+			SWB_strategy_focus_bar = { frame = SWB_balance_num }
+			TER_SWB_switch_state_btn = { frame = SWB_map_mode }
+			SWB_chosen_region_state = { frame = SWB_map_mode }
+			SWB_development_level = { frame = SWB_development_level }
+			city_state_weapon = { frame = city_state_weapon_var^SWB_choose_point }
+			city_state_consumer = { frame = city_state_consumer_var^SWB_choose_point }
+			mine_state_trade = { frame = mine_state_trade_var^SWB_choose_point }
+			mine_state_mine = { frame = mine_state_mine_var^SWB_choose_point }
+			segment = {
+				frame = TER_SWB_Line_graph_deltas^segment_idx
+				y = TER_SWB_Line_graph_offsets^segment_idx
+			}
+			horizontal_bar = {
+				y = TER_SWB_Line_graph_vbar_offsets^vbar_idx
+			}
+			horizontal_bar_label = {
+				y = TER_SWB_Line_graph_vbar_offsets^vbar_idx
+			}
+			SWB_development_ring_progress = {
+				frame = SWB_region_development_pct_print^SWB_choose_point
+			}
+			SWB_military_ring_progress = {
+				frame = SWB_region_military_pct_print^SWB_choose_point
+			}
+			btn_Xikang_focus_unlock = {
+				frame = SWB_focus_state^0
+			}
+			btn_Sichuan_focus_unlock = {
+				frame = SWB_focus_state^1
+			}
+			btn_Daxian_focus_unlock = {
+				frame = SWB_focus_state^3
+			}
+			btn_Chongqing_focus_unlock = {
+				frame = SWB_focus_state^2
+			}
+		}
+
+		dynamic_lists = { 
+			TER_SWB_line_segments = {
+				array = TER_SWB_Line_graph_offsets 
+				change_scope = no
+				entry_container = TER_SWB_line_graph_line_segment
+				index = segment_idx
+			}  
+			vbars = {
+				array = TER_SWB_Line_graph_vbars
+				change_scope = no
+				entry_container = TER_SWB_line_graph_vbar
+				index = vbar_idx
+			}
+		}
+		
+		triggers = {
+			mine_state_trade_visible = { check_variable = { SWB_map_mode = 1 } }
+			mine_state_mine_visible = { check_variable = { SWB_map_mode = 1 } }
+			city_state_consumer_visible = { check_variable = { SWB_map_mode = 2 } }
+			city_state_weapon_visible = { check_variable = { SWB_map_mode = 2 } }
+			btn_Agriculture_focus_click_enabled = { check_variable = { SWB_balance_register < 20 }
+													has_political_power > 19.99 }
+			btn_Military_focus_click_enabled = { check_variable = { SWB_balance_register > -40 }
+													has_political_power > 19.99 }
+			btn_Sichuan_focus_unlock_click_enabled = { SIC = { exists = no } }
+			btn_Chongqing_focus_unlock_click_enabled = { CHQ = { exists = no } }
+			btn_Daxian_focus_unlock_click_enabled = { CHQ = { exists = no } }								
+		}
+
+		effects = {
+			TER_SWB_hosting_service_btn_click = {
+				CPC_hosting_service_SWB = yes
+			}
+			TER_SWB_switch_state_btn_click = {
+				if = {
+					limit = { check_variable = { SWB_map_mode = 1 } }
+					set_variable = { SWB_map_mode = 2 }
+				}
+				else = {
+					set_variable = { SWB_map_mode = 1 }
+				}
+				set_variable = { SWB_choose_point = 0 }
+			}
+			SWB_btn_graph_mode_1_click = {
+				set_variable = { SWB_graph_mode = 1 }
+				SWB_draw_the_graph = yes
+			}
+			SWB_btn_graph_mode_2_click = {
+				set_variable = { SWB_graph_mode = 2 }
+				SWB_draw_the_graph = yes
+			}
+			SWB_btn_graph_mode_3_click = {
+				set_variable = { SWB_graph_mode = 3 }
+				SWB_draw_the_graph = yes
+			}
+			Pan_Zhihua_map_btn_click = {
+				set_variable = { SWB_choose_point = 0 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			city_state_weapon_click = {
+				set_variable = { city_state_weapon_var^SWB_choose_point = 2 }
+				set_variable = { city_state_consumer_var^SWB_choose_point = 1 }
+				SWB_calc_modifiers = yes
+			}
+			city_state_consumer_click = {
+				set_variable = { city_state_weapon_var^SWB_choose_point = 1 }
+				set_variable = { city_state_consumer_var^SWB_choose_point = 2 }
+				SWB_calc_modifiers = yes
+			}
+			mine_state_mine_click = {
+				set_variable = { mine_state_mine_var^SWB_choose_point = 2 }
+				set_variable = { mine_state_trade_var^SWB_choose_point = 1 }
+				SWB_calc_modifiers = yes
+			}
+			mine_state_trade_click = {
+				set_variable = { mine_state_mine_var^SWB_choose_point = 1 }
+				set_variable = { mine_state_trade_var^SWB_choose_point = 2 }
+				SWB_calc_modifiers = yes
+			}
+			btn_Xikang_focus_unlock_click = {
+				if =  {
+					limit = {
+						check_variable = { SWB_focus_state^0 = 1 }
+						check_variable = { SWB_focus_state^1 = 1 }
+						check_variable = { SWB_focus_state^2 = 1 }
+						check_variable = { SWB_focus_state^3 = 1 }
+						OR = {
+							AND = { NOT = { XIK = { has_country_flag = SWB_focus_begins } }
+									XIK = { exists = yes } }
+							AND = { XIK = { exists = no } }
+						}
+					}
+					set_variable = { SWB_focus_state^0 = 2 }
+					XIK = { set_country_flag = SWB_focus_begins }
+					set_country_flag = SWB_focus_begins
+					add_political_power = -20
+					Alert_SWB_focus_enabled_remove_alerts = yes
+				}
+			}
+			btn_Sichuan_focus_unlock_click = {
+				if =  {
+					limit = {
+						check_variable = { SWB_focus_state^0 = 1 }
+						check_variable = { SWB_focus_state^1 = 1 }
+						check_variable = { SWB_focus_state^2 = 1 }
+						check_variable = { SWB_focus_state^3 = 1 }
+						check_variable = { TER_SWB_map_controller_state = 1 }
+						OR = {
+							AND = { NOT = { XIK = { has_country_flag = SWB_focus_begins } }
+									XIK = { exists = yes } }
+							AND = { XIK = { exists = no } }
+						}
+					}
+					set_variable = { SWB_focus_state^1 = 2 }
+					XIK = { set_country_flag = SWB_focus_begins }
+					set_country_flag = SWB_focus_begins
+					add_political_power = -20
+					Alert_SWB_focus_enabled_remove_alerts = yes
+				}
+			}
+			btn_Chongqing_focus_unlock_click = {
+				if =  {
+					limit = {
+						check_variable = { SWB_focus_state^0 = 1 }
+						check_variable = { SWB_focus_state^1 = 1 }
+						check_variable = { SWB_focus_state^2 = 1 }
+						check_variable = { SWB_focus_state^3 = 1 }
+						check_variable = { TER_SWB_map_controller_state = 1 }
+						OR = {
+							AND = { NOT = { XIK = { has_country_flag = SWB_focus_begins } }
+									XIK = { exists = yes } }
+							AND = { XIK = { exists = no } }
+						}
+					}
+					set_variable = { SWB_focus_state^2 = 2 }
+					XIK = { set_country_flag = SWB_focus_begins }
+					set_country_flag = SWB_focus_begins
+					add_political_power = -20
+					Alert_SWB_focus_enabled_remove_alerts = yes
+				}
+			}
+			btn_Daxian_focus_unlock_click = {
+				if =  {
+					limit = {
+						check_variable = { SWB_focus_state^0 = 1 }
+						check_variable = { SWB_focus_state^1 = 1 }
+						check_variable = { SWB_focus_state^2 = 1 }
+						check_variable = { SWB_focus_state^3 = 1 }
+						check_variable = { TER_SWB_map_controller_state = 1 }
+						OR = {
+							AND = { NOT = { XIK = { has_country_flag = SWB_focus_begins } }
+									XIK = { exists = yes } }
+							AND = { XIK = { exists = no } }
+						}
+					}
+					set_variable = { SWB_focus_state^3 = 2 }
+					XIK = { set_country_flag = SWB_focus_begins }
+					set_country_flag = SWB_focus_begins
+					add_political_power = -20
+					Alert_SWB_focus_enabled_remove_alerts = yes
+				}
+			}
+			btn_Military_focus_click = {
+				add_to_variable = { SWB_balance_register = -5 }
+				add_political_power = -20
+				SWB_calc_dev_mil_effect = yes
+				SWB_calc_balance = yes
+				SWB_calc_modifiers = yes
+				SWB_draw_the_graph = yes
+			}
+			btn_Agriculture_focus_click = {
+				add_to_variable = { SWB_balance_register = 5 }
+				add_political_power = -20
+				SWB_calc_dev_mil_effect = yes
+				SWB_calc_balance = yes
+				SWB_calc_modifiers = yes
+				SWB_draw_the_graph = yes
+			}
+		}
+	}
+	TER_SWB_mine_point_map = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_SWB_mine_point_map"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_frames^2 = 2 }
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { SWB_map_mode = 1 }
+		}
+		triggers = {
+			Mine_3_visible = { check_variable = { TER_SWB_map_controller_state = 1 } }
+			Mine_4_visible = { check_variable = { TER_SWB_map_controller_state = 1 } }
+			Mine_5_visible = { check_variable = { TER_SWB_map_controller_state = 1 } }
+			Mine_6_visible = { check_variable = { TER_SWB_map_controller_state = 1 } }
+			Mine_7_visible = { check_variable = { TER_SWB_map_controller_state = 1 } }
+			Mine_8_visible = { check_variable = { TER_SWB_map_controller_state = 1 } }
+			Mine_9_visible = { check_variable = { TER_SWB_map_controller_state = 1 } }
+		}
+		effects = {
+			Mine_1_click = {
+				set_variable = { SWB_choose_point = 1 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			Mine_2_click = {
+				set_variable = { SWB_choose_point = 2 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			Mine_3_click = {
+				set_variable = { SWB_choose_point = 3 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			Mine_4_click = {
+				set_variable = { SWB_choose_point = 4 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			Mine_5_click = {
+				set_variable = { SWB_choose_point = 5 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			Mine_6_click = {
+				set_variable = { SWB_choose_point = 6 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			Mine_7_click = {
+				set_variable = { SWB_choose_point = 7 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			Mine_8_click = {
+				set_variable = { SWB_choose_point = 8 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			Mine_9_click = {
+				set_variable = { SWB_choose_point = 9 }
+				SWB_calc_dev_mil_effect = yes
+			}
+		}
+	}
+
+	TER_SWB_city_point_map = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_SWB_city_point_map"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_frames^2 = 2 }
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { SWB_map_mode = 2 }
+			check_variable = { TER_SWB_map_controller_state = 1 }
+		}
+		effects = {
+			city_1_click = {
+				set_variable = { SWB_choose_point = 1 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			city_2_click = {
+				set_variable = { SWB_choose_point = 2 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			city_3_click = {
+				set_variable = { SWB_choose_point = 3 }
+				SWB_calc_dev_mil_effect = yes
+			}
+			city_4_click = {
+				set_variable = { SWB_choose_point = 4 }
+				SWB_calc_dev_mil_effect = yes
+			}
+		}
+	}
+}

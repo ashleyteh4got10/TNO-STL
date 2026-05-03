@@ -1,0 +1,1389 @@
+shared_focus = {
+	id = CPC_end_of_the_very_beginning
+	icon = GFX_goals_CPC_end_of_the_very_beginning
+	cost = 1
+	x = 13
+	y = 0
+	available = {
+		hidden_trigger = {
+			always = no
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_end_of_the_very_beginning"
+		add_political_power = 10
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_1
+	icon = GFX_goals_CPC_MRC_issue_1
+	cost = 2
+	prerequisite = { focus = CPC_end_of_the_very_beginning }
+	relative_position_id = CPC_end_of_the_very_beginning
+	available = {
+		MON = { has_war = no }
+		CPC = { has_war = no }
+	}
+	x = -5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_1"
+		add_political_power = 20
+		add_to_variable = { CPC_MRC_phase = 1 }
+		custom_effect_tooltip = "CPC_MRC_issue_begin_tt"
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_1_left
+	icon = GFX_goals_CPC_MRC_issue_1_left
+	cost = 2
+	prerequisite = { focus = CPC_MRC_issue_1 }
+	relative_position_id = CPC_MRC_issue_1
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_1_left"
+		country_event = {
+			id = CPC_main_story_events.83
+			days = 3
+		}
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_1_right
+	icon = GFX_goals_CPC_MRC_issue_1_right
+	cost = 2
+	prerequisite = { focus = CPC_MRC_issue_1 }
+	relative_position_id = CPC_MRC_issue_1
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_1_right"
+		add_political_power = -5
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.001 }
+		econ_GDP_boost_once_percentage = yes
+		MON = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.001 }
+			econ_GDP_boost_once_percentage = yes
+		}
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_2
+	icon = GFX_goals_CPC_MRC_issue_2
+	cost = 2
+	prerequisite = { focus = CPC_MRC_issue_1_left }
+	prerequisite = { focus = CPC_MRC_issue_1_right }
+	relative_position_id = CPC_MRC_issue_1_left
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = -3
+	y = 1
+	available = {
+		hidden_trigger = {
+			OR = {
+				is_ai = yes
+				AND = {
+					is_ai = no
+					check_variable = { CPC_MRC_phase = 1 }
+					check_variable = { MRC_choice^1 > 0 }
+				}
+			}
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_2"
+		add_to_variable = { CPC_MRC_phase = 1 }
+		add_to_variable = { MRC_total_progress = 20 }
+		custom_effect_tooltip = "CPC_MRC_issue_begin_tt"
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_2_left
+	icon = GFX_goals_CPC_MRC_issue_2_left
+	cost = 2
+	prerequisite = { focus = CPC_MRC_issue_2 }
+	relative_position_id = CPC_MRC_issue_2
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_2_left"
+		add_stability = 0.05
+		MON = { add_stability = 0.05 }
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_2_right
+	icon = GFX_goals_CPC_MRC_issue_2_right
+	cost = 2
+	prerequisite = { focus = CPC_MRC_issue_2 }
+	relative_position_id = CPC_MRC_issue_2
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_2_right"
+		add_popularity = {
+			ideology = communist
+			popularity = 0.025
+		}
+		MON = {
+			add_popularity = {
+				ideology = communist
+				popularity = 0.025
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_3
+	icon = GFX_goals_CPC_MRC_issue_3
+	cost = 3
+	prerequisite = { focus = CPC_MRC_issue_1_left }
+	prerequisite = { focus = CPC_MRC_issue_1_right }
+	relative_position_id = CPC_MRC_issue_1_left
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	available = {
+		hidden_trigger = {
+			OR = {
+				is_ai = yes
+				AND = {
+					is_ai = no
+					check_variable = { CPC_MRC_phase = 2 }
+					check_variable = { MRC_choice^2 > 0 }
+				}
+			}
+		}
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_3"
+		add_to_variable = { CPC_MRC_phase = 1 }
+		add_to_variable = { MRC_total_progress = 20 }
+		custom_effect_tooltip = "CPC_MRC_issue_begin_tt"
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_3_left
+	icon = GFX_goals_CPC_MRC_issue_3_left
+	cost = 3
+	prerequisite = { focus = CPC_MRC_issue_3 }
+	relative_position_id = CPC_MRC_issue_3
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_3_left"
+		add_political_power = 5
+		country_event = { 
+			id = CPC_main_story_events.30 
+			days = 15
+		}
+		country_event = { 
+			id = CPC_main_story_events.29 
+			days = 3 
+		}
+		hidden_effect = {
+			country_event = {
+				id = CPC_main_story_events.32
+				days = 25
+			}
+			country_event = {
+				id = CPC_main_story_events.31
+				days = 40
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_3_right
+	icon = GFX_goals_CPC_MRC_issue_3_right
+	cost = 3
+	prerequisite = { focus = CPC_MRC_issue_3 }
+	relative_position_id = CPC_MRC_issue_3
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_3_right"
+		MON = { add_political_power = -30 }
+		custom_effect_tooltip = "CPC_say_goodbye_to_Vasilevsky"
+		country_event = CPC_main_story_events.27
+		hidden_effect = {
+			814 = { remove_core_of = PRC }
+			2400 = { remove_core_of = PRC }
+			2402 = { remove_core_of = PRC }
+			MON = {
+				transfer_state = 814
+				transfer_state = 2400
+				transfer_state = 2402
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_4
+	icon = GFX_goals_CPC_MRC_issue_4
+	cost = 3
+	prerequisite = { focus = CPC_MRC_issue_1_left }
+	prerequisite = { focus = CPC_MRC_issue_1_right }
+	relative_position_id = CPC_MRC_issue_1_left
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	available = {
+		hidden_trigger = {
+			OR = {
+				is_ai = yes
+				AND = {
+					is_ai = no
+					check_variable = { CPC_MRC_phase = 3 }
+					check_variable = { MRC_choice^3 > 0 }
+				}
+			}
+		}
+	}
+	x = 5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_3"
+		add_to_variable = { CPC_MRC_phase = 1 }
+		add_to_variable = { MRC_total_progress = 20 }
+		custom_effect_tooltip = "CPC_MRC_issue_begin_tt"
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_4_left
+	icon = GFX_goals_CPC_MRC_issue_4_left
+	cost = 3
+	prerequisite = { focus = CPC_MRC_issue_4 }
+	relative_position_id = CPC_MRC_issue_4
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_4_left"
+		add_stability = 0.1
+		country_event = CPC_main_story_events.85
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_4_right
+	icon = GFX_goals_CPC_MRC_issue_4_right
+	cost = 3
+	prerequisite = { focus = CPC_MRC_issue_4 }
+	relative_position_id = CPC_MRC_issue_4
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_4_right"
+		country_event = {
+			id = CPC_main_story_events.36
+			days = 10
+		}
+		2408 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 7631
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 16863
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_MRC_issue_5
+	icon = GFX_goals_CPC_MRC_issue_5
+	cost = 3
+	prerequisite = { focus = CPC_MRC_issue_2_left }
+	prerequisite = { focus = CPC_MRC_issue_3_left }
+	prerequisite = { focus = CPC_MRC_issue_4_left }
+	prerequisite = { focus = CPC_MRC_issue_2_right }
+	prerequisite = { focus = CPC_MRC_issue_3_right }
+	prerequisite = { focus = CPC_MRC_issue_4_right }
+	relative_position_id = CPC_MRC_issue_1
+	available = {
+		hidden_trigger = {
+			OR = {
+				is_ai = yes
+				AND = {
+					is_ai = no
+					check_variable = { CPC_MRC_phase = 4 }
+					check_variable = { MRC_choice^4 > 0 }
+				}
+			}
+		}
+	}
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = 0
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_issue_5"
+		add_to_variable = { CPC_MRC_phase = 1 }
+		add_to_variable = { MRC_total_progress = 20 }
+		custom_effect_tooltip = "CPC_MRC_issue_begin_tt"
+	}
+}
+shared_focus = {
+	id = CPC_MRC_end
+	icon = GFX_goals_CPC_MRC_end
+	prerequisite = { focus = CPC_MRC_issue_5 }
+	relative_position_id = CPC_MRC_issue_5
+	bypass = {
+		OR = {
+			has_war_with = MON
+			check_variable = { CPGAC_ongoing_prop_num = token:CPGAC_prop_Mongolia_emergency_plan }
+		}
+	}
+	x = 3
+	y = 1
+	cost = 2
+	available = {
+		OR = {
+			AND = {
+				NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal }
+				OR = {
+					check_variable = { MRC_at_CPC < 75 }
+					check_variable = { MRC_at_MON < 75 }
+				}
+			}
+			AND = {
+				check_variable = { MRC_at_CPC > 74.99 }
+				check_variable = { MRC_at_MON > 74.99 }
+			}
+		}
+		check_variable = { MRC_choice^5 > 0 }
+	}
+	cancel_if_invalid = yes
+	continue_if_invalid = no
+	available_if_capitulated = no
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_MRC_end"
+		MRC_final_effect = yes
+	}
+}
+shared_focus = {
+	id = CPC_northwest_crisis
+	icon = GFX_goals_CPC_northwest_crisis
+	cost = 1
+	prerequisite = { focus = CPC_end_of_the_very_beginning }
+	relative_position_id = CPC_end_of_the_very_beginning
+	x = 5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_northwest_crisis"
+		country_event = { id = CPC_main_story_events.80 }
+	}
+}
+shared_focus = {
+	id = CPC_reorganize_army
+	icon = GFX_goals_CPC_reorganize_army
+	cost = 1
+	bypass = { QIN = { exists = no } }
+	prerequisite = { focus = CPC_northwest_crisis }
+	relative_position_id = CPC_northwest_crisis
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_reorganize_army"
+		country_event = CPC_main_story_events.21
+	}
+}
+shared_focus = {
+	id = CPC_training_cavalry
+	icon = GFX_goals_CPC_training_cavalry
+	cost = 1
+	bypass = { QIN = { exists = no } }
+	prerequisite = { focus = CPC_reorganize_army }
+	relative_position_id = CPC_reorganize_army
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_training_cavalry"
+		army_experience = 30
+		country_event = CPC_main_story_events.18
+	}
+}
+shared_focus = {
+	id = CPC_no_robbing
+	icon = GFX_goals_CPC_no_robbing
+	cost = 2
+	prerequisite = { focus = CPC_training_cavalry }
+	relative_position_id = CPC_training_cavalry
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_no_robbing"
+		country_event = CPC_main_story_events.19
+		add_war_support = 0.025
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_pol_1 }
+		TER_PLA_CMC_reform_task_without_options_begins = yes
+	}
+}
+shared_focus = {
+	id = CPC_conspiracy_resurfaces
+	icon = GFX_goals_CPC_conspiracy_resurfaces
+	cost = 1
+	prerequisite = { focus = CPC_northwest_crisis }
+	relative_position_id = CPC_northwest_crisis
+	available = { HTC = { has_war = no } }
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_conspiracy_resurfaces"
+		country_event = CPC_main_story_events.39
+		hidden_effect = {
+			if = {
+				limit = { is_ai = yes }
+				CPC_hosting_service_XJB = yes
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_track_what_they_are_doing
+	icon = GFX_goals_CPC_track_what_they_are_doing
+	cost = 1
+	prerequisite = { focus = CPC_conspiracy_resurfaces }
+	relative_position_id = CPC_conspiracy_resurfaces
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_track_what_they_are_doing"
+		custom_effect_tooltip = "CPC_track_what_they_are_doing_tt"
+		hidden_effect = {
+			country_event = { id = CPC_main_story_events.40 days = 5 }
+		}
+	}
+}
+shared_focus = {
+	id = CPC_recover_north_long
+	icon = GFX_goals_CPC_recover_north_long
+	cost = 2
+	prerequisite = { focus = CPC_track_what_they_are_doing }
+	relative_position_id = CPC_track_what_they_are_doing
+	available = {
+		QIN = { exists = no }
+	}
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_recover_north_long"
+		annex_country = { target = GSM }
+		every_state = {
+			limit = { is_core_of = GSM }
+			add_core_of = CPC
+			remove_core_of = GSM
+		}
+	}
+}
+shared_focus = {
+	id = CPC_everything_in_northwest_is_settled
+	icon = GFX_goals_CPC_everything_in_northwest_is_settled
+	cost = 1
+	prerequisite = { focus = CPC_recover_north_long }
+	prerequisite = { focus = CPC_no_robbing }
+	available = { 
+		QIN = { exists = no } 
+	}
+	relative_position_id = CPC_recover_north_long
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_everything_in_northwest_is_settled"
+		country_event = {
+			id = CPC_main_story_events.17
+			days = 5
+		}
+		hidden_effect = {
+			CPC_unlock_SWB_gui = yes
+			TER_NWB_unlock_GUI = yes
+			if = {
+				limit = { is_ai = yes }
+				CPC_hosting_service_NCCPC = yes
+				CPC_hosting_service_NWB = yes
+				CPC_hosting_service_SWB = yes
+			}
+		}
+		custom_effect_tooltip = "CPC_everything_in_northwest_is_settled_tt"
+	}
+}
+shared_focus = {
+	id = CPC_restore_from_the_disaster
+	icon = GFX_goals_CPC_restore_from_the_disaster
+	cost = 1
+	prerequisite = { focus = CPC_everything_in_northwest_is_settled }
+	relative_position_id = CPC_MRC_issue_5
+	available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+	x = 7
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_restore_from_the_disaster"
+		#议案主题
+		set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_party_committee_appointment_reform }
+		set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+
+		#议案选项
+		add_to_array = { CPGAC_prop_option = 1 }
+		add_to_array = { CPGAC_prop_option_in_party = 1 }
+		add_to_array = { CPGAC_prop_option = 1 }
+		add_to_array = { CPGAC_prop_option_in_party = 0 }
+
+		#初始态度 - 党内
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 60 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 90 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 90 }
+		set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 60 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 20 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 0 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 0 }
+		set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 20 }
+		
+		#初始态度 - 党外
+		set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 30 }
+		set_temp_variable = { CPGAC_no_attitude_tmp^0 = 60 }
+
+		set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 40 }
+		set_temp_variable = { CPGAC_no_attitude_tmp^1 = 40 }
+		
+		#启动议案
+		TER_CPGAC_begin_a_proposal = yes
+		custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+	}
+}
+shared_focus = {
+	id = CPC_designate_committee
+	icon = GFX_goals_CPC_designate_committee
+	cost = 3
+	prerequisite = { focus = CPC_restore_from_the_disaster }
+	prerequisite = { focus = CPC_MRC_end }
+	relative_position_id = CPC_restore_from_the_disaster
+	mutually_exclusive = { focus = CPC_committee_election }
+	available = { has_country_flag = CPGAC_prop_PCAR_we_choose_Liu }
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_designate_committee"
+		TNO_improve_admin_efficiency_low = yes
+		raise_li_and_liu = yes
+	}
+}
+shared_focus = {
+	id = CPC_committee_election
+	icon = GFX_goals_CPC_committee_election
+	cost = 3
+	prerequisite = { focus = CPC_restore_from_the_disaster }
+	prerequisite = { focus = CPC_MRC_end }
+	relative_position_id = CPC_restore_from_the_disaster
+	mutually_exclusive = { focus = CPC_designate_committee }
+	available = { has_country_flag = CPGAC_prop_PCAR_we_choose_Mao }
+	x = -3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_committee_election"
+		TNO_improve_admin_efficiency_low = yes
+		raise_mao_and_deng = yes
+	}
+}
+shared_focus = {
+	id = CPC_Strong_intervention
+	icon = GFX_goals_CPC_Strong_intervention
+	cost = 3
+	prerequisite = { focus = CPC_committee_election focus = CPC_designate_committee }
+	relative_position_id = CPC_designate_committee
+	mutually_exclusive = { focus = CPC_stability_first }
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_Strong_intervention"
+		TNO_improve_agriculture_med = yes
+		TNO_worsen_poverty_low = yes
+	}
+}
+shared_focus = {
+	id = CPC_stability_first
+	icon = GFX_goals_CPC_stability_first
+	cost = 3
+	prerequisite = { focus = CPC_committee_election focus = CPC_designate_committee }
+	relative_position_id = CPC_committee_election
+	mutually_exclusive = { focus = CPC_Strong_intervention }
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_stability_first"
+		add_stability = 0.025
+		TNO_improve_agriculture_low = yes
+	}
+}
+shared_focus = {
+	id = CPC_confirm_main_position
+	icon = GFX_goals_CPC_confirm_main_position
+	cost = 3
+	prerequisite = { focus = CPC_Strong_intervention focus = CPC_stability_first }
+	relative_position_id = CPC_Strong_intervention
+	mutually_exclusive = { focus = CPC_ease_the_relationship }
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_confirm_main_position"
+		set_temp_variable = { RBM_3_tmp = 0.2 }
+		set_temp_variable = { RBM_1_tmp = 0.04 }
+		CPC_RBM_modifier_change = yes
+	}
+}
+shared_focus = {
+	id = CPC_ease_the_relationship
+	icon = GFX_goals_CPC_ease_the_relationship
+	cost = 3
+	prerequisite = { focus = CPC_Strong_intervention focus = CPC_stability_first }
+	relative_position_id = CPC_stability_first
+	mutually_exclusive = { focus = CPC_confirm_main_position }
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_stability_first"
+		set_temp_variable = { RBM_3_tmp = 0.1 }
+		set_temp_variable = { RBM_6_tmp = 0.03 }
+		CPC_RBM_modifier_change = yes
+	}
+}
+#小赢、中赢
+shared_focus = {
+	id = CPC_General_Ma
+	icon = GFX_goals_CPC_General_Ma
+	cost = 3
+	prerequisite = { focus = CPC_restore_from_the_disaster }
+	prerequisite = { focus = CPC_MRC_end }
+	relative_position_id = CPC_restore_from_the_disaster
+	allow_branch = {
+		has_country_flag = CPC_we_have_done_Ma_Hushan_issue
+		NOT = { has_country_flag = CPC_we_exactly_know_what_Ma_Hushan_will_do }
+	}
+	x = -7
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_General_Ma"
+		HTC = {
+			declare_war_on = {
+				target = XIN
+				type = annex_everything
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_unite_ROS_1
+	icon = GFX_goals_CPC_unite_ROS
+	cost = 3
+	prerequisite = { focus = CPC_General_Ma }
+	relative_position_id = CPC_General_Ma
+	bypass = { XIN = { exists = no } }
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_unite_ROS_1"
+		ROS = {
+			add_to_war = {
+				targeted_alliance = HTC
+				enemy = XIN
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_add_our_chips
+	icon = GFX_goals_CPC_add_our_chips
+	cost = 3
+	prerequisite = { focus = CPC_General_Ma }
+	relative_position_id = CPC_General_Ma
+	bypass = { XIN = { exists = no } }
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_add_our_chips"
+		send_equipment = {
+			amount = 100
+			type = infantry_equipment
+			target = HTC
+		}
+		add_manpower = -2000
+		HTC = { add_manpower = 2000 }
+	}
+}
+shared_focus = {
+	id = CPC_support_xinjiang_brigade_1
+	icon = GFX_goals_CPC_support_xinjiang_brigade
+	cost = 3
+	prerequisite = { focus = CPC_General_Ma }
+	relative_position_id = CPC_General_Ma
+	bypass = { XIN = { exists = no } }
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_support_xinjiang_brigade_1"
+		set_temp_variable = { CPC.target = HTC }
+		TNO_increase_volunteer_cap_3 = yes
+	}
+}
+shared_focus = {
+	id = CPC_unify_xinjiang
+	icon = GFX_goals_CPC_unify_xinjiang
+	cost = 3
+	prerequisite = { focus = CPC_support_xinjiang_brigade_1 }
+	prerequisite = { focus = CPC_add_our_chips }
+	prerequisite = { focus = CPC_unite_ROS_1 }
+	relative_position_id = CPC_add_our_chips
+	available = { XIN = { exists = no } }
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_unify_xinjiang"
+		HTC = { 
+			annex_country = {
+				target = ROS
+				transfer_troops = yes
+			} 
+			clr_country_flag = XJB_phase_IW
+			set_country_flag = XJB_phase_PW
+			set_cosmetic_tag = HTC_UNIFIED
+			set_party_name = {
+				ideology = communist
+				long_name = "HTC_UNIFIED_communist_party_long"
+				name = "HTC_UNIFIED_communist_party"
+			}
+		}
+		set_autonomy = {
+			target = HTC
+			autonomy_state = autonomy_Revolution_base_area
+		}
+		hidden_effect = {
+			HTC = {
+				set_capital = { state = 617 }
+				set_popularities = {
+					communist = CPC.XJB_real_pct_C
+					despotism = CPC.XJB_real_pct_M
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_setting_old_scores_1
+	icon = GFX_goals_CPC_setting_old_scores
+	cost = 3
+	prerequisite = { focus = CPC_unify_xinjiang }
+	relative_position_id = CPC_unify_xinjiang
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_setting_old_scores_1"
+		set_temp_variable = { XJB_temp_change_pct = -10 }
+		XJB_pies_change = yes
+		set_temp_variable = { popular_will_change = 10 }
+		CPC_XJ_popular_will_change = yes
+		country_event = { id = CPC_main_story_events.124 days = 15 }
+		hidden_effect = {
+			country_event = { id = CPC_main_story_events.127 days = 185 }
+		}
+	}
+}
+
+#大赢
+shared_focus = {
+	id = CPC_letter_to_Hetian
+	icon = GFX_goals_CPC_letter_to_Hetian
+	cost = 3
+	prerequisite = { focus = CPC_restore_from_the_disaster }
+	prerequisite = { focus = CPC_MRC_end }
+	relative_position_id = CPC_restore_from_the_disaster
+	allow_branch = {
+		has_country_flag = CPC_we_have_done_Ma_Hushan_issue
+		has_country_flag = CPC_we_exactly_know_what_Ma_Hushan_will_do
+	}
+	x = -7
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_letter_to_Hetian"
+		HTC = {
+			transfer_state = 2433
+			declare_war_on = {
+				target = XIN
+				type = annex_everything
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_unite_ROS_2
+	icon = GFX_goals_CPC_unite_ROS
+	cost = 3
+	prerequisite = { focus = CPC_letter_to_Hetian }
+	relative_position_id = CPC_letter_to_Hetian
+	bypass = {
+		XIN = { exists = no }
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_unite_ROS_2"
+		ROS = {
+			add_to_war = {
+				targeted_alliance = HTC
+				enemy = XIN
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_support_xinjiang_brigade_2
+	icon = GFX_goals_CPC_support_xinjiang_brigade
+	cost = 3
+	prerequisite = { focus = CPC_letter_to_Hetian }
+	relative_position_id = CPC_letter_to_Hetian
+	bypass = {
+		XIN = { exists = no }
+	}
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_support_xinjiang_brigade_2"
+		CPC = {
+			add_to_war = {
+				targeted_alliance = HTC
+				enemy = XIN
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_liberate_xinjiang
+	icon = GFX_goals_CPC_liberate_xinjiang
+	cost = 3
+	prerequisite = { focus = CPC_support_xinjiang_brigade_2 }
+	prerequisite = { focus = CPC_unite_ROS_2 }
+	relative_position_id = CPC_letter_to_Hetian
+	available = { XIN = { exists = no } }
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_liberate_xinjiang"
+		HTC = { 
+			annex_country = {
+				target = ROS
+				transfer_troops = yes
+			} 
+			clr_country_flag = XJB_phase_IW
+			set_country_flag = XJB_phase_PW
+			set_cosmetic_tag = HTC_UNIFIED
+			set_party_name = {
+				ideology = communist
+				long_name = "HTC_UNIFIED_communist_party_long"
+				name = "HTC_UNIFIED_communist_party"
+			}
+		}
+		set_autonomy = {
+			target = HTC
+			autonomy_state = autonomy_Liberated_area
+		}
+		hidden_effect = {
+			HTC = {
+				set_capital = { state = 617 }
+				set_popularities = {
+					communist = CPC.XJB_real_pct_C
+					despotism = CPC.XJB_real_pct_M
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_setting_old_scores_2
+	icon = GFX_goals_CPC_setting_old_scores
+	cost = 3
+	prerequisite = { focus = CPC_liberate_xinjiang }
+	relative_position_id = CPC_liberate_xinjiang
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_setting_old_scores_2"
+		set_portraits = {
+			character = HTC_Ma_Zhongying
+			civilian = { large = "gfx/leaders/XIN/Portrait_Ma_zhongying_JOY.png" }
+		}
+		set_temp_variable = { XJB_temp_change_pct = -20 }
+		XJB_pies_change = yes
+		set_temp_variable = { popular_will_change = 15 }
+		CPC_XJ_popular_will_change = yes
+		country_event = { id = CPC_main_story_events.124 days = 15 }
+		hidden_effect = {
+			country_event = { id = CPC_main_story_events.127 days = 185 }
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_revisit_old_friends
+	icon = GFX_goals_CPC_revisit_old_friends
+	cost = 3
+	allow_branch = {
+		CHQ = { exists = no }
+		SIC = { exists = no }
+	}
+	prerequisite = { focus = CPC_restore_from_the_disaster }
+	prerequisite = { focus = CPC_MRC_end }
+	relative_position_id = CPC_restore_from_the_disaster
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_revisit_old_friends"
+		country_event = CPC_Yang_Yingcai_stories.10
+		XIK = {
+			set_capital = { state = 605 }
+			if = {
+				limit = { NOT = { is_puppet_of = CPC } }
+				CPC = {
+					set_autonomy = {
+						target = XIK
+						autonomous_state = autonomy_Liberated_area
+					}
+				}
+			}
+			hidden_effect = {
+				set_politics = {	
+					ruling_party = communist
+					last_election = "1962.1.1"
+					election_frequency = 48
+					elections_allowed = no
+				}
+				set_popularities = {
+					communist = 20
+					socialist = 8
+					progressivism = 7
+					liberalism = 15
+					paternalism = 30
+					despotism = 20
+				}
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_push_collectivization
+	icon = GFX_goals_CPC_push_collectivization
+	cost = 3
+	prerequisite = { focus = CPC_revisit_old_friends }
+	relative_position_id = CPC_revisit_old_friends
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_push_collectivization"
+		add_stability = 0.1
+		set_temp_variable = { RBM_11_tmp = 0.01 }
+		CPC_RBM_modifier_change = yes
+		TNO_improve_agriculture_low = yes
+		XIK = {
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+			TNO_improve_agriculture_low = yes
+		}
+	}
+}
+shared_focus = {
+	id = CPC_evacuate_cities
+	icon = GFX_goals_CPC_evacuate_cities
+	cost = 3
+	prerequisite = { focus = CPC_revisit_old_friends }
+	relative_position_id = CPC_revisit_old_friends
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_evacuate_cities"
+		TNO_improve_industrial_equipment_low = yes
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		XIK = {
+			every_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+			TNO_improve_industrial_equipment_low = yes
+		}
+	}
+}
+shared_focus = {
+	id = CPC_stablish_market
+	icon = GFX_goals_CPC_stablish_market
+	cost = 3
+	prerequisite = { focus = CPC_revisit_old_friends }
+	relative_position_id = CPC_revisit_old_friends
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_stable_market"
+		add_stability = 0.03
+		set_temp_variable = { RBM_11_tmp = 0.03 }
+		CPC_RBM_modifier_change = yes
+		XIK = {
+			add_stability = 0.05
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+shared_focus = {
+	id = CPC_expand_Cheng_Yu_railway
+	icon = GFX_goals_CPC_expand_Cheng_Yu_railway
+	cost = 3
+	prerequisite = { focus = CPC_push_collectivization }
+	prerequisite = { focus = CPC_evacuate_cities }
+	prerequisite = { focus = CPC_stablish_market }
+	relative_position_id = CPC_evacuate_cities
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_expand_Cheng_Yu_railway"
+		TNO_improve_industrial_equipment_low = yes
+		XIK = {
+			TNO_improve_industrial_equipment_low = yes
+			build_railway = {
+				level = 2
+				fallback = yes
+				path = { 6999 19826 19819 12705 19834 1395 4925 }
+				start_province = 4925
+				target_province = 6999
+			}
+		}
+		country_event = {
+			id = CPC_Yang_Yingcai_stories.11
+			days = 10
+		}
+		hidden_effect = {
+			country_event = { id = CPC_funni.0 days = 70 }
+		}
+	}
+}
+
+shared_focus = {
+	id = CPC_long_live_the_unity
+	icon = GFX_goals_CPC_long_live_the_unity
+	cost = 3
+	prerequisite = { focus = CPC_confirm_main_position focus = CPC_ease_the_relationship }
+	relative_position_id = CPC_confirm_main_position
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = "CPC_long_live_the_unity_trigger_tooltip"
+			hidden_trigger = {
+				OR = {
+					has_completed_focus = CPC_setting_old_scores_1
+					has_completed_focus = CPC_setting_old_scores_2
+				}
+				has_completed_focus = CPC_expand_Cheng_Yu_railway
+			}
+		}
+	}
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_long_live_the_unity"
+		country_event = {
+			id = CPC_Yang_Yingcai_stories.8
+			days = 35
+		}
+		set_temp_variable = { money_reserves_temp = 0.005 }
+		econ_money_reserves_change_raw_money = yes
+		set_temp_variable = { gdp_growth_temp = 0.05 }
+		econ_gdp_growth_change = yes
+		CPC_RBM_level_up = yes
+	}
+}
+shared_focus = {
+	id = CPC_rebuild_trade
+	icon = GFX_goals_CPC_rebuild_trade
+	cost = 3
+	prerequisite = { focus = CPC_long_live_the_unity }
+	relative_position_id = CPC_long_live_the_unity
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_rebuild_trade"
+		country_event = {
+			id = CPC_main_story_events.37
+			days = 5
+		}
+		TNO_improve_trade_laws_policy_effectiveness_med = yes
+	}
+}
+shared_focus = {
+	id = CPC_field_investigation_movement
+	icon = GFX_goals_CPC_field_investigation_movement
+	cost = 3
+	prerequisite = { focus = CPC_long_live_the_unity }
+	relative_position_id = CPC_long_live_the_unity
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_field_investigation_movement"
+		set_temp_variable = { begin_ut_temp = token:CPGAC_u_field_investigation_movement }
+		set_temp_variable = { days_temp = 130 }
+		TER_CPGAC_begin_an_urgent_task = yes
+		hidden_effect = {
+			country_event = {
+				id = CPC_main_story_events.45
+				days = 20
+			}
+			country_event = {
+				id = CPC_main_story_events.46
+				days = 80
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_dig_canals
+	icon = GFX_goals_CPC_dig_canals
+	cost = 3
+	prerequisite = { focus = CPC_long_live_the_unity }
+	relative_position_id = CPC_long_live_the_unity
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_dig_canals"
+		set_temp_variable = { misc_costs_temp = 0.01 }
+		custom_effect_tooltip = TNO_econ_misc_costs_increase_tt
+		country_event = {
+			id = CPC_main_story_events.48
+			days = 5
+		}
+		906 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+			}
+		}
+		283 = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_Xian_university
+	icon = GFX_goals_CPC_Xian_university
+	cost = 3
+	prerequisite = { focus = CPC_dig_canals }
+	prerequisite = { focus = CPC_field_investigation_movement }
+	prerequisite = { focus = CPC_rebuild_trade }
+	relative_position_id = CPC_rebuild_trade
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_Xian_university"
+		TNO_improve_academic_base_low = yes
+		TNO_improve_research_facilities_med = yes
+		country_event = {
+			id = CPC_main_story_events.49
+			days = 10
+		}
+	}
+}
+shared_focus = {
+	id = CPC_military_factory_in_Tian_Shui
+	icon = GFX_goals_CPC_military_factory_in_Tian_Shui
+	cost = 3
+	prerequisite = { focus = CPC_dig_canals }
+	prerequisite = { focus = CPC_field_investigation_movement }
+	prerequisite = { focus = CPC_rebuild_trade }
+	relative_position_id = CPC_field_investigation_movement
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_military_factory_in_Tian_Shui"
+		set_temp_variable = { misc_costs_temp = 0.01 }
+		custom_effect_tooltip = TNO_econ_misc_costs_increase_tt
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_equip_1 }
+		TER_PLA_CMC_reform_begins = yes
+		country_event = {
+			id = CPC_main_story_events.38
+			days = 10
+		}
+	}
+}
+shared_focus = {
+	id = CPC_factories_in_Tong_Guan
+	icon = GFX_goals_CPC_factories_in_Tong_Guan
+	cost = 3
+	prerequisite = { focus = CPC_Xian_university }
+	prerequisite = { focus = CPC_military_factory_in_Tian_Shui }
+	relative_position_id = CPC_Xian_university
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_factories_in_Tong_Guan"
+		set_temp_variable = { RBM_2_tmp = 0.06 }
+		set_temp_variable = { RBM_5_tmp = 0.04 }
+		set_temp_variable = { RBM_9_tmp = 0.06 }
+		CPC_RBM_modifier_change = yes
+		country_event = {
+			id = CPC_main_story_events.47
+			days = 10
+		}
+	}
+}
+shared_focus = {
+	id = CPC_experiment_in_bend_of_Yellow_river
+	icon = GFX_goals_CPC_experiment_in_bend_of_Yellow_river
+	cost = 3
+	prerequisite = { focus = CPC_Xian_university }
+	prerequisite = { focus = CPC_military_factory_in_Tian_Shui }
+	relative_position_id = CPC_Xian_university
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_experiment_in_bend_of_Yellow_river"
+		set_temp_variable = { time_tmp = 100 }
+		set_temp_variable = { proj_name_tmp = token:NADT_proj_1 }
+		set_temp_variable = { money_tmp = 0.12 }
+		TER_NADT_begin_sp_tech_proj = yes
+		country_event = {
+			id = CPC_main_story_events.28
+			days = 10
+		}
+	}
+}
+shared_focus = {
+	id = CPC_oil_in_Lanzhou
+	icon = GFX_goals_CPC_oil_in_Lanzhou
+	cost = 3
+	prerequisite = { focus = CPC_Xian_university }
+	prerequisite = { focus = CPC_military_factory_in_Tian_Shui }
+	relative_position_id = CPC_Xian_university
+	x = 3
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_oil_in_Lanzhou"
+		country_event = {
+			id = CPC_main_story_events.26
+			days = 10
+		}
+		1302 = {
+			add_resource = {
+				type = oil
+				amount = 3
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+			}
+		}
+	}
+}
+shared_focus = {
+	id = CPC_say_goodbye_to_poor_base
+	icon = GFX_goals_CPC_say_goodbye_to_poor_base
+	cost = 3
+	prerequisite = { focus = CPC_factories_in_Tong_Guan }
+	prerequisite = { focus = CPC_experiment_in_bend_of_Yellow_river }
+	prerequisite = { focus = CPC_oil_in_Lanzhou }
+	relative_position_id = CPC_experiment_in_bend_of_Yellow_river
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_say_goodbye_to_poor_base"
+		country_event = {
+			id = CPC_main_story_events.25
+			days = 5
+		}
+		CPC_RBM_level_up = yes
+	}
+}
+shared_focus = {
+	id = CPC_eighth_national_congress
+	icon = GFX_goals_CPC_eighth_national_congress
+	cost = 3
+	prerequisite = { focus = CPC_say_goodbye_to_poor_base }
+	relative_position_id = CPC_say_goodbye_to_poor_base
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CPC_eighth_national_congress"
+		country_event = CPC_8th_congress.1
+		add_research_slot = 1
+	}
+}

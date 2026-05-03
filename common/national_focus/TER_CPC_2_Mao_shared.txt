@@ -1,0 +1,627 @@
+	shared_focus = {
+		id = CPC_equity_recovery
+		icon = GFX_goals_CPC_equity_recovery
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		cost = 3
+		x = 15
+		y = 0
+		completion_reward = {
+			tno_max_workhours_improve = yes
+			TNO_worsen_max_workhours_policy_effectiveness_med = yes
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_ban_individual_businesses }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 2 }
+			add_to_array = { CPGAC_prop_option = 3 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 85 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 35 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 40 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 60 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 10 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 55 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 50 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 30 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 10 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 75 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 20 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 70 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+			country_event = { id = CPC_main_story_events.73 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_industrial_collective
+		icon = GFX_goals_CPC_industrial_collective
+		cost = 3
+		prerequisite = {
+			focus = CPC_equity_recovery
+		}
+		relative_position_id = CPC_equity_recovery
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { money_reserves_temp = 0.3 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { gdp_growth_temp = 0.1 }
+			econ_gdp_growth_change = yes
+			if = { 
+				limit = { has_completed_focus = CPC_unified_production_criterion_Mao }
+				set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_M_S_develop_industry }
+				set_temp_variable = { times_tmp = 2 }
+				CPGAC_unlock_limited_policy_effect = yes
+			}
+			country_event = { id = CPC_main_story_events.79 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_unified_production_criterion_Mao
+		icon = GFX_goals_CPC_unified_production_criterion_Mao
+		cost = 3
+		prerequisite = {
+			focus = CPC_equity_recovery
+		}
+		relative_position_id = CPC_equity_recovery
+		x = 1
+		y = 1
+		completion_reward = {
+			tno_regulations_improve = yes
+			if = { 
+				limit = { has_completed_focus = CPC_industrial_collective }
+				set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_M_S_develop_industry }
+				set_temp_variable = { times_tmp = 2 }
+				CPGAC_unlock_limited_policy_effect = yes
+			}
+			country_event = { id = CPC_main_story_events.74 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_go_to_the_mountains_and_the_countryside
+		icon = GFX_goals_CPC_go_to_the_mountains_and_the_countryside
+		cost = 3
+		prerequisite = {
+			focus = CPC_industrial_collective
+			focus = CPC_unified_production_criterion_Mao
+		}
+		relative_position_id = CPC_industrial_collective
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		x = 1
+		y = 1
+		completion_reward = { 
+			add_stability = 0.05
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_release_surplus_labor_to_rural_areas }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 1 }
+			add_to_array = { CPGAC_prop_option = 2 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 80 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 50 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 50 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 60 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 10 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 40 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 40 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 25 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 20 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 65 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 20 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 70 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+
+			country_event = { id = CPC_main_story_events.22 days = 3 }
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_beating_exercise
+		icon = GFX_goals_CPC_beating_exercise
+		cost = 3
+		prerequisite = {
+			focus = CPC_go_to_the_mountains_and_the_countryside
+		}
+		relative_position_id = CPC_go_to_the_mountains_and_the_countryside
+		x = -1
+		y = 1
+		completion_reward = { 
+			set_temp_variable = { RBM_9_tmp = 0.05 }
+			CPC_RBM_modifier_change = yes
+			country_event = { id = CPC_main_story_events.23 days = 3 }
+		}
+	}
+
+
+	shared_focus = {
+		id = CPC_factory_community_construction
+		icon = GFX_goals_CPC_factory_community_construction
+		cost = 3
+		prerequisite = {
+			focus = CPC_go_to_the_mountains_and_the_countryside
+		}
+		relative_position_id = CPC_go_to_the_mountains_and_the_countryside
+		x = 1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_M_S_rectify_factory_environment }
+			set_temp_variable = { times_tmp = 3 }
+			CPGAC_unlock_limited_policy_effect = yes
+			TNO_improve_healthcare_low = yes
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_labor_protection_compensation_Mao
+		icon = GFX_goals_CPC_labor_protection_compensation_Mao
+		cost = 3
+		prerequisite = {
+			focus =  CPC_factory_community_construction
+		}
+		relative_position_id =  CPC_factory_community_construction
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_M_labor_protection_allowance }
+			CPGAC_intensify_policy_effect = yes
+			TNO_improve_healthcare_med = yes
+			country_event = { id = CPC_main_story_events.119 days = 3 }
+		}
+	}
+	
+	
+	shared_focus = {
+		id = CPC_anti_economicist_black_wind
+		icon = GFX_goals_CPC_anti_economicist_black_wind
+		cost = 3
+		prerequisite = {
+			focus = CPC_beating_exercise
+		}
+		relative_position_id = CPC_beating_exercise
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_M_clean_up_our_party }
+			CPGAC_intensify_policy_effect = yes
+			country_event = { id = CPC_main_story_events.24 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_expand_product_release
+		icon = GFX_goals_CPC_expand_product_release
+		cost = 3
+		prerequisite = {
+			focus = CPC_factory_community_construction
+		}
+		relative_position_id = CPC_factory_community_construction
+		x = 1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_2_tmp = 0.05 }
+			set_temp_variable = { RBM_11_tmp = 0.0025 }
+			CPC_RBM_modifier_change = yes
+			country_event = { id = CPC_main_story_events.117 days = 3 }
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_eliminate_three_major_differences
+		icon = GFX_goals_CPC_eliminate_three_major_differences
+		cost = 3
+		prerequisite = {
+			focus = CPC_anti_economicist_black_wind
+			focus = CPC_expand_product_release
+		}
+		relative_position_id = CPC_anti_economicist_black_wind
+		x = 2
+		y = 1
+		completion_reward = {
+			CPC_RBM_level_up = yes
+			set_temp_variable = { temp_law = token:CPC_industrial_reform_law }
+			TNO_add_assorted_law = yes
+			country_event = { id = CPC_main_story_events.118 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_rural_commsearization
+		icon = GFX_goals_CPC_rural_commsearization
+		cost = 3
+		x = 5
+		y = 0
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		completion_reward = { 
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_rural_commsearization }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 1 }
+			add_to_array = { CPGAC_prop_option = 2 }
+			add_to_array = { CPGAC_prop_option = 3 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 80 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 35 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 40 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 65 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 10 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 50 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 45 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 25 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 30 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 50 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 20 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 60 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+		}
+	}
+
+	shared_focus = {
+		id = CPC_big_community_is_preferred
+		icon = GFX_goals_CPC_big_community_is_preferred
+		cost = 3
+		prerequisite = {
+			focus = CPC_rural_commsearization
+		}
+		relative_position_id = CPC_rural_commsearization
+		x = -1
+		y = 1
+		completion_reward = {
+			TNO_improve_agriculture_low = yes
+			country_event = { id = CPC_main_story_events.50 days = 3 }
+		}
+	}
+	
+	shared_focus = {
+		id = CPC_wage_system
+		icon = GFX_goals_CPC_wage_system
+		cost = 3
+		prerequisite = {
+			focus = CPC_big_community_is_preferred
+		}
+		relative_position_id = CPC_big_community_is_preferred
+		x = -3
+		y = 1
+		completion_reward = { 
+			tno_minimum_wage_improve = yes
+			TNO_worsen_minimum_wage_policy_effectiveness_med = yes
+			country_event = { id = CPC_main_story_events.56  days = 3 }
+		}
+	}
+
+	
+	shared_focus = {
+		id = CPC_state_monopoly_of_purchasing_and_marketing
+		icon = GFX_goals_CPC_state_monopoly_of_purchasing_and_marketing
+		cost = 3
+		prerequisite = {
+			focus = CPC_big_community_is_preferred
+		}
+		available = { NOT = { has_country_flag = CPC_we_have_an_ongoing_proposal } }
+		relative_position_id = CPC_big_community_is_preferred
+		x = -1
+		y = 1
+		completion_reward = { 
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_state_monopoly_of_purchasing_and_marketing }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 1 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 80 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 30 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 30 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 75 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 10 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 55 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 55 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 15 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 20 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 70 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 20 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 70 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+			country_event = { id = CPC_main_story_events.51 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_team_settlement
+		icon = GFX_goals_CPC_team_settlement
+		cost = 3
+		prerequisite = {
+			focus = CPC_wage_system
+			focus = CPC_state_monopoly_of_purchasing_and_marketing
+		}
+		relative_position_id = CPC_wage_system
+		x = 1
+		y = 1
+		completion_reward = {
+			TNO_improve_income_taxation_policy_effectiveness_med = yes
+			country_event = { id = CPC_main_story_events.57 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_grain_hard_indicator
+		icon = GFX_goals_CPC_grain_hard_indicator
+		cost = 3
+		prerequisite = {
+			focus = CPC_team_settlement
+		}
+		relative_position_id = CPC_team_settlement
+		x = -2
+		y = 1
+		completion_reward = {
+			set_temp_variable = { temp_econ_GDP_boost_flat = 0.1 }
+			econ_GDP_boost_once_flat = yes
+			set_temp_variable = { inflation_temp = 0.5 }
+			econ_inflation_change = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_farmers
+		icon = GFX_goals_CPC_farmers
+		cost = 3
+		prerequisite = {
+			focus = CPC_team_settlement
+		}
+		relative_position_id = CPC_team_settlement
+		x = 0
+		y = 1
+		completion_reward = { 
+			set_temp_variable = { money_reserves_temp = -0.3 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { temp_econ_GDP_boost_flat = 0.1 }
+			econ_GDP_boost_once_flat = yes
+			add_to_variable = { poverty_monthly_change = 0.04 }
+			custom_effect_tooltip = improve_poverty_small
+			TNO_improve_agriculture_low = yes
+		}
+	}
+
+	shared_focus = {
+		id = CPC_factory_docking
+		icon = GFX_goals_CPC_factory_docking
+		cost = 3
+		prerequisite = {
+			focus = CPC_team_settlement
+		}
+		relative_position_id = CPC_team_settlement
+		x = 2
+		y = 1
+		completion_reward = { 
+			TNO_improve_industrial_equipment_low = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_M_urban_rural_conference }
+			CPGAC_intensify_policy_effect = yes
+			country_event = { id = CPC_main_story_events.59 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_supply_and_marketing_agency
+		icon = GFX_goals_CPC_supply_and_marketing_agency
+		cost = 3
+		prerequisite = {
+			focus = CPC_grain_hard_indicator
+			focus = CPC_farmers
+			focus = CPC_factory_docking
+		}
+		relative_position_id = CPC_farmers
+		x = 1
+		y = 1
+		completion_reward = {
+			CPC_RBM_level_up = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_M_additional_cooperatives }
+			CPGAC_intensify_policy_effect = yes
+			country_event = { id = CPC_main_story_events.58 days = 3 }
+		}
+	}
+
+	shared_focus = {
+		id = CPC_cancel_three_one
+		icon = GFX_goals_CPC_cancel_three_one
+		cost = 3
+		prerequisite = {
+			focus = CPC_rural_commsearization
+		}
+		relative_position_id = CPC_rural_commsearization
+		x = 1
+		y = 1
+		completion_reward = { 
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p2_M_restrict_individual_business }
+			CPGAC_intensify_policy_effect = yes
+			set_temp_variable = { gdp_growth_temp = -0.5 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { inflation_temp = -0.5 }
+			econ_inflation_change = yes
+		}
+	}
+	
+	shared_focus = {
+		id = CPC_socialist_education
+		icon = GFX_goals_CPC_socialist_education
+		cost = 3
+		prerequisite = {
+			focus = CPC_cancel_three_one
+		}
+		available = {
+			NOT = { has_country_flag = CPC_we_have_an_urgent_task }
+		}
+		relative_position_id = CPC_cancel_three_one
+		x = 2
+		y = 1
+		completion_reward = { 
+			set_temp_variable = { begin_ut_temp = token:CPGAC_u_the_four_clean_ups_movement }
+			set_temp_variable = { days_temp = 150 }
+			TER_CPGAC_begin_an_urgent_task = yes
+			#country_event = CPC_main_story_events.51
+		}
+	}
+	
+	shared_focus = {
+		id = CPC_anti_corruption
+		icon = GFX_goals_CPC_anti_corruption
+		cost = 3
+		prerequisite = {
+			focus = CPC_socialist_education
+		}
+		available = {
+			CPC_we_have_UT_4_clean = yes
+		}
+		relative_position_id = CPC_socialist_education
+		x = -2
+		y = 1
+		completion_reward = { 
+			TNO_improve_admin_efficiency_low = yes
+			set_temp_variable = { RBM_12_tmp = 0.05 }
+			set_temp_variable = { RBM_11_tmp = 0.001 }
+			CPC_RBM_modifier_change = yes
+			country_event = { id = CPC_main_story_events.52 days = 3 }
+		}
+	}
+	
+	shared_focus = {
+		id = CPC_abundance
+		icon = GFX_goals_CPC_abundance
+		cost = 3
+		prerequisite = {
+			focus = CPC_socialist_education
+		}
+		available = {
+			CPC_we_have_UT_4_clean = yes
+		}
+		relative_position_id = CPC_socialist_education
+		x = 0
+		y = 1
+		completion_reward = { 
+			TNO_improve_admin_efficiency_low = yes
+			set_temp_variable = { RBM_2_tmp = 0.05 }
+			CPC_RBM_modifier_change = yes
+			country_event = { id = CPC_main_story_events.53 days = 3 }
+		}
+	}
+	
+	shared_focus = {
+		id = CPC_bright_bureaucracy
+		icon = GFX_goals_CPC_bright_bureaucracy
+		cost = 3
+		prerequisite = {
+			focus = CPC_socialist_education
+		}
+		available = {
+			CPC_we_have_UT_4_clean = yes
+		}
+		relative_position_id = CPC_socialist_education
+		x = 2
+		y = 1
+		completion_reward = { 
+			TNO_improve_admin_efficiency_low = yes
+			set_temp_variable = { RBM_5_tmp = 0.05 }
+			CPC_RBM_modifier_change = yes
+			country_event = { id = CPC_main_story_events.54 days = 3 }
+		}
+	}
+	
+	shared_focus = {
+		id = CPC_anti_revisionism
+		icon = GFX_goals_CPC_anti_revisionism
+		cost = 3
+		prerequisite = {
+			focus = CPC_anti_corruption
+			focus = CPC_abundance
+			focus = CPC_bright_bureaucracy
+		}
+		available = {
+			CPC_we_have_UT_4_clean = yes
+		}
+		bypass_if_unavailable = yes
+		relative_position_id = CPC_abundance
+		x = 0
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_12_tmp = 0.05 }
+			CPC_RBM_modifier_change = yes
+			TNO_improve_religious_rights_policy_effectiveness_low = yes
+			#country_event = { id = CPC_main_story_events.55 days = 3 }
+		}
+	}
+	
+	shared_focus = {
+		id = CPC_new_name_word
+		icon = GFX_goals_CPC_new_name_word
+		cost = 3
+		prerequisite = {
+			focus = CPC_anti_revisionism
+		}
+		available = {
+			CPC_we_have_UT_4_clean = yes
+		}
+		bypass_if_unavailable = yes
+		relative_position_id = CPC_anti_revisionism
+		x = -1
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_3_tmp = -0.025 }
+			set_temp_variable = { RBM_12_tmp = 0.1 }
+			CPC_RBM_modifier_change = yes
+			TNO_improve_political_parties_policy_effectiveness_low = yes
+			#country_event = CPC_main_story_events.56
+		}
+	}
+	
+	shared_focus = {
+		id = CPC_socialist_agriculture
+		icon = GFX_goals_CPC_socialist_agriculture
+		cost = 3
+		prerequisite = {
+			focus = CPC_new_name_word
+		}
+		prerequisite = {
+			focus = CPC_supply_and_marketing_agency
+		}
+		relative_position_id = CPC_new_name_word
+		x = -2
+		y = 1
+		completion_reward = {
+			set_temp_variable = { RBM_11_tmp = 0.02 }
+			CPC_RBM_modifier_change = yes
+			TNO_improve_agriculture_low = yes
+			if = {
+				limit = { has_country_flag = CPC_UT_4_clean_least_limit }
+				CPC_RBM_level_up = yes
+			}
+			set_temp_variable = { temp_law = token:CPC_agricutural_reform_law_1 }
+			TNO_add_assorted_law = yes
+		}
+	}

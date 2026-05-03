@@ -1,0 +1,479 @@
+OMS_operation_alekseyev_category = {
+    operation_alekseyev_cooldown = { 
+        icon = GFX_decision_generic_border_war
+
+        available = {
+            always = no
+        }
+        activation = {
+            always = no
+        }
+    
+        war_with_on_remove = MAN
+        days_mission_timeout = 14
+        fire_only_once = yes
+        is_good = no
+        selectable_mission = no
+        timeout_effect = {
+            start_border_war = {
+                change_state_after_war = no
+                attacker = {
+                    state = 1639
+                    num_provinces = 4
+                    on_win = OMS_manchurian_skirmish.3
+                    on_lose = OMS_manchurian_skirmish.4
+                    modifier = 0.3
+                }
+                defender = {
+                    state = 657
+                    num_provinces = 4
+                    on_win = OMS_manchurian_skirmish.4
+                    on_lose = OMS_manchurian_skirmish.3
+                    dig_in_factor = 0
+                }
+            }
+        }
+    }
+
+
+    OMS_attack_manchuria = {
+        icon = GFX_decision_generic_assault
+        ai_will_do = {
+            factor = 25
+        }
+
+        available = {
+            AND = {
+			    original_tag = OMS
+			    has_global_flag = operation_alekseyev_ongoing
+		    }
+        }
+
+        visible = {
+            AND = {
+		    	original_tag = OMS
+		    	has_global_flag = operation_alekseyev_ongoing
+		    }
+        }
+
+        fire_only_once = yes
+
+        complete_effect = {
+            log = "[GetDateText]: [Root.GetName]: OMS_attack_manchuria"
+
+            if = {
+                limit = {
+                    NOT = {
+                        owns_state = 1364
+                    }
+                }
+                MAN = {
+                    set_country_flag = MAN_manchurian_skirmish_flag
+                }
+                start_border_war = {
+                    change_state_after_war = no
+                    attacker = {
+                        state = 561
+                        num_provinces = 3
+                        on_win = OMS_manchurian_skirmish.1
+                        on_lose = WORLD.41050
+                        modifier = 10.0
+                        dig_in_factor = 0
+                    }
+                    defender = {
+                        state = 1364
+                        num_provinces = 3
+                        on_win = WORLD.41050
+                        on_lose = OMS_manchurian_skirmish.1
+                        dig_in_factor = 0
+                    }
+                }
+            }
+            else = {
+                every_country = { limit = { is_ai = no } news_event = WORLD.41048 }
+                start_border_war = {
+                    change_state_after_war = no
+                    attacker = {
+                        state = 1364
+                        num_provinces = 3
+                        on_win = OMS_manchurian_skirmish.1
+                        on_lose = WORLD.41050
+                        modifier = 1.0
+                        dig_in_factor = 0
+                    }
+                    defender = {
+                        state = 657
+                        num_provinces = 3
+                        on_win = WORLD.41050
+                        on_lose = OMS_manchurian_skirmish.1
+                        dig_in_factor = 0
+                    }
+                }
+            }
+            hidden_effect = {
+                country_event = { id = OMS_more_flavor.5 }
+                country_event = { id = OMS_more_flavor.6 days = 1 }
+                country_event = { id = OMS_more_flavor.7 days = 2 }
+                country_event = { id = OMS_more_flavor.8 days = 3 }
+                country_event = { id = OMS_more_flavor.9 days = 4 }
+            }
+        }
+    }
+
+    OMS_skirmish_buff = {
+        icon = GFX_decision_category_generic_army_reform
+        ai_will_do = {
+            factor = 10
+        }
+
+        available = {
+            OR = {
+                AND = {
+                    original_tag = OMS
+                    has_border_war_with = MAN
+                }
+            } 
+        }
+        visible = {
+            original_tag = OMS
+        }
+
+        fire_only_once = yes
+
+        complete_effect = {
+            add_timed_idea = {
+                idea = OMS_manchuria_buff
+                days = 30
+            }
+        }
+
+    }
+}
+
+SWRW_USA_operation_redzone_category = {
+    SWRW_USA_expand_our_asian_commitment = {
+        available = {
+            original_tag = USA
+            NOT = {
+                check_variable = { SWRW_USA_expand_our_asian_commitment_limit = 4 }
+            }
+        }
+        ai_will_do = {
+            factor = 5
+        }
+        cost = 50
+        custom_cost_text = decision_cost_25_cp_50_pp
+        custom_cost_trigger = {
+            command_power > 24.99
+        }
+        days_re_enable = 30
+        complete_effect = {
+            set_temp_variable = { target = MAN }
+            set_temp_variable = { target = JAP }
+			TNO_increase_volunteer_cap_3 = yes
+            add_popularity = {
+                ideology = ROOT
+                popularity = -0.01
+            }
+            add_stability = -0.02
+            add_war_support = -0.02
+            hidden_effect = {
+                add_command_power = -25
+                add_to_variable = { SWRW_USA_expand_our_asian_commitment_limit = 1 }
+            }
+        }
+    }
+}
+
+SWRW_OMS_the_eastern_redoubt_category = {
+    SWRW_OMS_declare_war_eastern_retribution = {
+        available = {
+            has_war_with = JAP
+        }
+        cost = 20
+        days_remove = 30
+        days_re_enable = 30 
+        targeted_modifier = { #this foreshadows the war against Japan decently.
+            tag = JAP
+            defense_bonus_against = 0.10 #You already have insane org and stats as Omsk, I think a 10% defense buff is more than enough.
+        }
+        targeted_modifier = {
+            tag = MAN
+            defense_bonus_against = 0.10
+        }
+        targeted_modifier = {
+            tag = MEN
+            defense_bonus_against = 0.10
+        }
+    }
+    #SWRW_OMS_establish_siberian_redoubt = { #Far Eastern readiness redoubt decision covers this, and nobody navies in TNO/2WRW at the moment for the coastal redoubts lmao
+    #   custom_cost_text = decision_cost_20_cp
+    #  fire_only_once = yes
+    #    custom_cost_trigger = {
+    #        command_power > 19.99
+    #    }
+    #    complete_effect = {
+    #        set_temp_variable = { temp_econ_spending_amount = -3 }
+    #        econ_spend_money_once_effect_raw_money = yes
+    #        hidden_effect = {
+    #            add_command_power = -20
+    #        }
+    #    }
+    #}
+	SWRW_OMS_create_black_guard = {
+		available = {
+			has_manpower > 179999
+		}
+		custom_cost_text = decision_cost_20_cp
+        fire_only_once = yes
+		 days_remove = 60
+        custom_cost_trigger = {
+            command_power > 19.99
+        }
+        complete_effect = {
+            hidden_effect = {
+                add_command_power = -20
+            }
+        }
+        days_remove = 60
+		remove_effect = {
+			add_manpower = -180000
+			division_template = {
+				name = "Novaya Chernaya Gvardiya"
+				is_locked = yes
+				priority = 0
+				regiments = {
+					light_infantry = { x = 0 y = 0 }
+					light_infantry = { x = 0 y = 1 }
+					light_infantry = { x = 0 y = 2 }
+					light_infantry = { x = 0 y = 3 }
+					light_infantry = { x = 1 y = 0 }
+					light_infantry = { x = 1 y = 1 }
+					light_infantry = { x = 1 y = 2 }
+					light_infantry = { x = 1 y = 3 }
+					light_infantry = { x = 2 y = 0 }
+					light_infantry = { x = 2 y = 1 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					anti_air = { x = 0 y = 1 }
+					artillery = { x = 0 y = 2 }
+					anti_tank = { x = 0 y = 3 }
+				}
+			}
+			566 = { #Irktusk
+				create_unit = {
+					division = "name = \"Novaya Chernaya Gvardiya\" division_template = \"Novaya Chernaya Gvardiya\" start_experience_factor = 0.2"
+					owner = OMS
+					count = 9
+				}
+			}
+			562 = { #Magadan
+				create_unit = {
+					division = "name = \"Novaya Chernaya Gvardiya\" division_template = \"Novaya Chernaya Gvardiya\" start_experience_factor = 0.2"
+					owner = OMS
+					count = 9
+				}
+			}
+			set_country_flag = OMS_black_guard_1_deployed
+		}
+	}
+	SWRW_OMS_create_black_guard2 = {
+		available = {
+			has_manpower > 179999
+			has_country_flag = OMS_black_guard_1_deployed
+		}
+		visible = { 
+			hidden_trigger = {
+				has_global_flag = OMS_warned_by_JAP
+			}
+		}
+		custom_cost_text = decision_cost_20_cp
+        fire_only_once = yes
+        custom_cost_trigger = {
+            command_power > 19.99
+        }
+        complete_effect = {
+            hidden_effect = {
+                add_command_power = -20
+				set_country_flag = OMS_has_black_guard_2_deployed
+            }
+        }
+        days_remove = 7
+		remove_effect = {
+			add_manpower = -180000
+			566 = { #Irktusk
+				create_unit = {
+					division = "name = \"Novaya Chernaya Gvardiya\" division_template = \"Novaya Chernaya Gvardiya\" start_experience_factor = 0"
+					owner = OMS
+					count = 9
+				}
+			}
+			562 = { #Magadan
+				create_unit = {
+					division = "name = \"Novaya Chernaya Gvardiya\" division_template = \"Novaya Chernaya Gvardiya\" start_experience_factor = 0"
+					owner = OMS
+					count = 9
+				}
+			}
+		}
+		
+	}
+	SWRW_OMS_create_black_guard3 = {
+		available = {
+			has_manpower > 179999
+			has_country_flag = OMS_black_guard_2_deployed
+		}
+		visible = { 
+			hidden_trigger = {
+				has_global_flag = OMS_warned_by_JAP
+			}
+		}
+		custom_cost_text = decision_cost_20_cp
+        fire_only_once = yes
+        custom_cost_trigger = {
+            command_power > 19.99
+        }
+        complete_effect = {
+            hidden_effect = {
+                add_command_power = -20
+            }
+        }
+        days_remove = 7
+		remove_effect = {
+			add_manpower = -180000
+			570 = { #Novosibirsk
+				create_unit = {
+					division = "name = \"Novaya Chernaya Gvardiya\" division_template = \"Novaya Chernaya Gvardiya\" start_experience_factor = 0"
+					owner = OMS
+					count = 18
+				}
+			}
+		}
+	}
+	SWRW_OMS_create_black_planes = {
+		custom_cost_text = decision_cost_30_cp
+        fire_only_once = yes
+        custom_cost_trigger = {
+            command_power > 29.99
+        }		
+        complete_effect = {
+            hidden_effect = {
+                add_command_power = -30
+            }
+			set_temp_variable = { temp_econ_spending_amount = -5 }
+            econ_spend_money_once_effect_raw_money = yes	
+        }
+		days_remove = 60
+		remove_effect = {
+			654 = {
+				add_building_construction = {
+					type = radar_station
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			566 = {
+				add_building_construction = {
+					type = radar_station
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			757 = {
+				add_building_construction = {
+					type = radar_station
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+			866 = {
+				add_building_construction = {
+					type = radar_station
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	SWRW_OMS_eastern_radar = {
+		custom_cost_text = decision_cost_10_cp
+        fire_only_once = yes
+        custom_cost_trigger = {
+            command_power > 9.99
+        }		
+        complete_effect = {
+            hidden_effect = {
+                add_command_power = -10
+            }
+			set_temp_variable = { temp_econ_spending_amount = -0.5 }
+            econ_spend_money_once_effect_raw_money = yes	
+        }
+		remove_effect = {
+			570 = {
+				add_building_construction = {
+					type = air_base
+					level = 3
+					instant_build = yes
+				}
+			}
+			add_equipment_to_stockpile = {
+					type = CAS_equipment_1
+					amount = 100
+					producer = OMS
+			}
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_1
+				amount = 400
+				producer = OMS
+			}		
+		}
+	}
+
+    #SWRW_test_decision = {
+    #    available = {
+    #        NOT = {
+    #            var:OMS_far_east_selected_state = {
+    #                has_state_flag = OMS_far_east_state_action_1
+    #            }
+    #        }
+    #    }
+    #    cost = 20
+    #    days_re_enable = 20
+    #    complete_effect = {
+    #        add_resource = {
+    #            type = oil
+    #            amount = 10
+    #            state = var:OMS_far_east_selected_state
+    #        }
+    #        var:OMS_far_east_selected_state = {
+    #            set_state_flag = {
+    #                flag = OMS_far_east_state_action_1
+    #                days = 120
+    #            }
+    #        }
+    #    }
+    #}
+}
+
+

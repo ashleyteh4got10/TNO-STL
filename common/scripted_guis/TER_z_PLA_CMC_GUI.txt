@@ -1,0 +1,102 @@
+scripted_gui = {
+	TER_PLA_CMC_GUI = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "TER_PLA_CMC_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_issue^2 = 2 }
+		}
+		properties = {
+			TER_CMC_mil_reform_o1 = { frame = PLA_CMC_proj_slct_num_1 }
+			TER_CMC_mil_reform_o2 = { frame = PLA_CMC_proj_slct_num_2 }
+			TER_NADT_NP_prog_P1 = { frame = NADT_NP_progress^1 }
+			TER_NADT_NP_prog_P2 = { frame = NADT_NP_progress^2 }
+			TER_NADT_NP_prog_P3 = { frame = NADT_NP_progress^3 }
+			TER_NADT_NP_prog_P4 = { frame = NADT_NP_progress^4 }
+			TER_NADT_NP_prog_P5 = { frame = NADT_NP_progress^5 }
+			TER_NADT_NP_SP_proj = { frame = TER_NADT_NP_SP_proj_num }
+			TER_NADT_pics = { image = "[NADT_ongoing_proj_pic]" }
+		}
+		triggers = {
+			TER_CMC_cover_for_nuclear_plan_visible = { check_variable = { NADT_nuclear_proj_phase = 0 } }
+			TER_CMC_cover_for_nuclear_plan_done_visible = { check_variable = { NADT_nuclear_proj_phase > 5 } }
+			TER_CMC_cover_for_mil_reform_visible = { check_variable = { PLA_CMC_ongoing_proj_num = token:PLA_CMC_p_empty } }
+			TER_CMC_cover_for_NADT_sp_research_visible = { check_variable = { NADT_ongoing_proj_num = token:NADT_proj_e } }
+			TER_CMC_this_prop_is_not_controversial_visible = { has_country_flag = CMC_this_task_is_not_controversial }
+			TER_CMC_mil_reform_o1_visible = { NOT = { check_variable = { PLA_CMC_ongoing_proj_num = token:PLA_CMC_p_empty } } }
+			TER_CMC_mil_reform_o2_visible = { NOT = { check_variable = { PLA_CMC_ongoing_proj_num = token:PLA_CMC_p_empty } } }
+		}
+		effects = {
+			TER_NADT_pics_dummy_click = {
+				effect_tooltip = {
+					set_temp_variable = { proj_name_tmp = NADT_ongoing_proj_num }
+             	  	TER_NADT_complete_sp_tech_proj = yes
+				}
+			}
+			TER_CMC_mil_reform_o1_click = {
+				effect_tooltip = {
+					set_temp_variable = { PLA_CMC_proj_slct_num_1_tmp = 2 }
+					set_temp_variable = { PLA_CMC_proj_slct_num_2_tmp = 1 }
+					TER_PLA_CMC_reform_proj_complete_effect = yes
+				}
+				if = {
+					limit = { has_country_flag = CMC_reform_pre_flag }
+					set_variable = { PLA_CMC_proj_slct_num_1 = 2 }
+					set_variable = { PLA_CMC_proj_slct_num_2 = 1 }
+				}
+			}
+			TER_CMC_mil_reform_o2_click = {
+				effect_tooltip = {
+					set_temp_variable = { PLA_CMC_proj_slct_num_1_tmp = 1 }
+					set_temp_variable = { PLA_CMC_proj_slct_num_2_tmp = 2 }
+					TER_PLA_CMC_reform_proj_complete_effect = yes
+				}
+				if = {
+					limit = { has_country_flag = CMC_reform_pre_flag }
+					set_variable = { PLA_CMC_proj_slct_num_1 = 1 }
+					set_variable = { PLA_CMC_proj_slct_num_2 = 2 }
+				}
+			}
+			TER_NADT_NP_btn_1_add_click = {
+				set_temp_variable = { NP_money_tmp = 0.05 }
+				NADT_NP_modifier_change_money = yes
+			}
+			TER_NADT_NP_btn_1_minus_click = {
+				set_temp_variable = { NP_money_tmp = -0.05 }
+				NADT_NP_modifier_change_money = yes
+			}
+			TER_NADT_NP_btn_2_add_click = {
+				set_temp_variable = { NP_res_tmp = 0.02 }
+				NADT_NP_modifier_change_res = yes
+			}
+			TER_NADT_NP_btn_2_minus_click = {
+				set_temp_variable = { NP_res_tmp = -0.02 }
+				NADT_NP_modifier_change_res = yes
+			}
+			TER_NADT_NP_btn_3_add_click = {
+				set_temp_variable = { NP_PP_tmp = 0.2 }
+				NADT_NP_modifier_change_pp = yes
+			}
+			TER_NADT_NP_btn_3_minus_click = {
+				set_temp_variable = { NP_PP_tmp = -0.2 }
+				NADT_NP_modifier_change_pp = yes
+			}
+			TER_NADT_NP_SP_proj_click = {
+				if = {
+					limit = { check_variable = { TER_NADT_NP_SP_proj_num = 1 } }
+					NADT_NP_sp_mission_begins = yes
+					effect_tooltip = {
+						NADT_NP_sp_mission_done = yes
+					}
+				}
+				else = {
+					effect_tooltip = {
+						NADT_NP_sp_mission_begins = yes
+						NADT_NP_sp_mission_done = yes
+					}
+				}
+			}	
+		}
+	}
+}

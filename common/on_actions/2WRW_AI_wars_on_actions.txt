@@ -1,0 +1,280 @@
+on_actions = {
+	## AI WARS ##
+	## ROOT - WAR DECLARER, FROM - DEFENDER ##
+	
+	## war_stages_timer - default timer for stages lasting
+	## war_stage_0/1/2_timer - timer for certain stages lasting, overwrites the default one
+    ## STAGE 0 - default TNO AI
+    ## STAGE 1 - forced careful planning
+    ## STAGE 2 - forced balanced planning
+    ## STAGE 3 - forced rush planning
+
+	on_declare_war = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = {
+						is_ai = yes
+					}
+					FROM = {
+						is_ai = yes
+					}
+					NOT = {
+						AND = { # beginning of SAW should be ignored, the system will kick in when Schild joins
+							ROOT = { tag = BOR }
+							FROM = { tag = SAF }
+						}
+					}
+				}
+                ROOT = {
+					set_variable = { war_stage_0_timer = 365 }
+                    set_variable = { war_stages_timer = 180 }
+                }
+                FROM = {
+					set_variable = { war_stage_0_timer = 365 }
+                    set_variable = { war_stages_timer = 180 }
+                }
+				if = {
+					limit = {
+						FROM = {
+							tag = DOM
+						}
+						ROOT = {
+							tag = CAL
+						}
+					}
+					DOM = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 30 }
+					}
+					CAL = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 30 }
+					}
+				}
+				else_if = {
+					limit = {
+						ROOT = {
+							tag = GRO
+						}
+						FROM = {
+							tag = SAF
+						}
+					}
+					SAF = {
+						set_variable = { war_stage_1_timer = 180 }
+						set_variable = { war_stage_2_timer = 240 }
+					}
+					BOR = {
+						set_variable = { war_stage_1_timer = 180 }
+						set_variable = { war_stage_2_timer = 240 }
+					}
+					GRO = {
+						set_variable = { war_stage_1_timer = 180 }
+						set_variable = { war_stage_2_timer = 240 }
+					}
+					COG = {
+						set_variable = { war_stage_1_timer = 180 }
+						set_variable = { war_stage_2_timer = 240 }
+					}
+					ANG = {
+						set_variable = { war_stage_1_timer = 180 }
+						set_variable = { war_stage_2_timer = 240 }
+					}
+				}
+				else_if = {
+					limit = {
+						ROOT = { is_russian_nation = yes }
+						FROM = {
+							OR = {
+								is_kazakh_nation = yes
+								is_central_asian_nation = yes
+							}
+						}
+					}
+					ROOT = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 60 }
+					}
+				}
+				else_if = { # 2WRW
+					limit = {
+						ROOT = { is_russian_nation = yes }
+						FROM = {
+							tag = GER
+						}
+					}
+					ROOT = {
+						set_variable = { war_stages_timer = 180 }
+					}
+					FROM = {
+						set_variable = { war_stages_timer = 180 }
+					}
+				}
+				else_if = { # West African War
+					limit = {
+						ROOT = { is_west_african_nation = yes }
+						has_global_flag = west_african_war_ongoing
+					}
+					ROOT = {
+						set_variable = { war_stages_timer = 180 }
+					}
+					FROM = {
+						set_variable = { war_stages_timer = 180 }
+					}
+				}
+                else_if = { # Moskowien
+                    limit = {
+                        ROOT = { is_moskowien_splits = yes }
+                        FROM = { is_moskowien_splits = yes }
+                    }
+					ROOT = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 90 }
+					}
+					FROM = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 90 }
+					}
+                }
+                else_if = { # Russian warlord declares war on non unifier, instant rage
+                    limit = {
+                        ROOT = { is_russian_nation = yes }
+                        FROM = {
+							is_russian_nation = yes
+							is_russian_unifier = no
+							NOT = { tag = ONG }
+						}
+                    }
+					ROOT = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stage_1_timer = 1 }
+						set_variable = { war_stage_2_timer = 1 }
+					}
+					FROM = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stage_1_timer = 1 }
+						set_variable = { war_stage_2_timer = 1 }
+					}
+                }
+                else_if = { # Russian warlords, Smuta, super/regional unifications undergo standard stages
+                    limit = {
+                        ROOT = {
+							is_russian_nation = yes
+							RUS_Smuta_ScriptedTrigger_Enabled = yes
+						}
+                        FROM = {
+							is_russian_nation = yes
+							is_russian_unifier = yes
+						}
+                    }
+					ROOT = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stage_1_timer = 1 }
+						set_variable = { war_stages_timer = 90 }
+					}
+					FROM = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stage_1_timer = 1 }
+						set_variable = { war_stages_timer = 90 }
+					}
+                }
+                else_if = { # Russia against Onega
+                    limit = {
+                        ROOT = {
+							is_russian_unifier = yes
+							is_central_russian_nation = yes
+						}
+                        FROM = {
+							tag = ONG
+						}
+                    }
+					ROOT = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 90 }
+					}
+					FROM = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 90 }
+					}
+                }
+				else_if = {
+					limit = {
+						ROOT = { tag = POL }
+						FROM = { tag = GGN }
+					}
+					ROOT = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 30 }
+					}
+					FROM = {
+						set_variable = { war_stage_0_timer = 1 }
+						set_variable = { war_stages_timer = 30 }
+					}
+				}
+				ROOT = {
+					if = {
+						limit = {
+							NOT = { # it's here and not in initial trigger because by the time war starts ROOT may have idea applied and FROM may not and vice versa
+								OR = {
+									has_idea = ZZZ_war_stage_0
+									has_idea = ZZZ_war_stage_1
+									has_idea = ZZZ_war_stage_2
+									has_idea = ZZZ_war_stage_3
+								}
+							}
+						}
+						if = {
+							limit = {
+								has_variable = war_stage_0_timer
+							}
+							add_timed_idea = {
+								idea = ZZZ_war_stage_0
+								days = war_stage_0_timer
+							}
+						}
+						else = {
+							add_timed_idea = {
+								idea = ZZZ_war_stage_0
+								days = war_stages_timer
+							}
+						}
+					}
+				}
+				FROM = {
+					if = {
+						limit = {
+							NOT = {
+								OR = {
+									has_idea = ZZZ_war_stage_0
+									has_idea = ZZZ_war_stage_1
+									has_idea = ZZZ_war_stage_2
+									has_idea = ZZZ_war_stage_3
+
+									# SHOULD GIVE NO RESISTANCE #
+									is_kazakh_nation = yes
+									is_central_asian_nation = yes
+								}
+							}
+						}
+						if = {
+							limit = {
+								has_variable = war_stage_0_timer
+							}
+							add_timed_idea = {
+								idea = ZZZ_war_stage_0
+								days = war_stage_0_timer
+							}
+						}
+						else = {
+							add_timed_idea = {
+								idea = ZZZ_war_stage_0
+								days = war_stages_timer
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

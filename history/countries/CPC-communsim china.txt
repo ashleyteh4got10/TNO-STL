@@ -1,0 +1,445 @@
+capital = 956
+set_major = yes
+set_country_flag = GDP_regions
+
+###Playable
+set_country_flag = tno_playable_country
+set_country_flag = CPC_custom_difficulties_dec_active
+load_focus_tree = CPC_Phase_1
+TER_motion_d_fire_alerts = yes
+TER_NCCPC_budget_fire_alerts = yes
+TER_NCCPC_fire_alerts = yes
+set_variable = { MRC_at_CPC = 100 }
+set_variable = { MRC_at_MON = 85 }
+
+add_political_power = 30
+####党代会
+set_variable = { CPC_NCCPC_political_power_gain = 0 }
+set_variable = { CPC_NCCPC_stability_factor = 0 }
+set_variable = { CPC_NCCPC_war_support_factor = 0 }
+set_variable = { CPC_NCCPC_production_factory_max_efficiency_factor = 0 }
+set_variable = { CPC_NCCPC_production_factory_efficiency_gain_factor = 0 }
+set_variable = { CPC_NCCPC_line_change_production_efficiency_factor = 0 }
+set_variable = { CPC_NCCPC_production_speed_buildings_factor = 0 }
+set_variable = { CPC_NCCPC_add_to_GDP_growth = 0 }
+set_variable = { CPC_maos_power = 0 }
+set_variable = { CPC_lius_power = 0 }
+
+#####党代会各派初始权重
+TER_NWB_initialization = yes #由于需要党员数目，因此首先执行NWB的初始化
+set_variable = { TER_PS_original_percent^0 = 45 }
+set_variable = { TER_PS_original_percent^1 = 40 }
+set_variable = { TER_PS_original_percent^2 = 9 }
+set_variable = { TER_PS_original_percent^3 = 6 }
+calc_politics_startup_powers_in_CPC = yes
+NCCPC_statistics_data = yes
+set_variable = { NCCPC_graph_mode_left_num = 2 }
+set_variable = { NCCPC_graph_mode_right_num = 1 }
+NCCPC_draw_the_graph = yes
+add_dynamic_modifier = { modifier = CPC_pol_str_dynamic_modifier }
+
+####地方局初始化
+TER_SCB_initialization = yes
+CPC_initialize_SWB_gui = yes
+
+#####政务委员会初始化
+TER_CPGAC_initialization = yes
+
+#####根据地经济社会
+set_variable = { CPC_RBM_level = 1 }
+set_variable = { CPC_RBM_consumer_goods_factor = 0.2 }
+set_variable = { CPC_RBM_production_factory_efficiency_gain_factor = -0.4 }
+set_variable = { CPC_RBM_political_power_gain = -0.3 }
+set_variable = { CPC_RBM_local_resources_factor = -0.35 }
+set_variable = { CPC_RBM_line_change_production_efficiency_factor = -0.2 }
+set_variable = { CPC_RBM_monthly_population = -0.15 }
+set_variable = { CPC_RBM_conscription_factor = -0.35 }
+set_variable = { CPC_RBM_global_building_slots_factor = -0.3 }
+set_variable = { CPC_RBM_production_speed_buildings_factor = -0.4 }
+set_variable = { CPC_RBM_agriculture_monthly_rate = -1 }
+set_variable = { CPC_RBM_admin_efficiency_monthly_rate = -0.15 }
+set_variable = { CPC_RBM_poverty_monthly_rate = -0.02 }
+add_dynamic_modifier = { modifier = CPC_rev_base_modifier }
+
+######PLA开局情况
+TER_PLA_CMC_initialization = yes
+
+#国家关系#
+add_opinion_modifier = { target = JAP modifier = CPC_Japan_imperialism }
+add_opinion_modifier = { target = MAN modifier = CPC_Japan_puppet_regime }
+add_opinion_modifier = { target = CHI modifier = CPC_Japan_puppet_regime }
+add_opinion_modifier = { target = MEN modifier = CPC_Japan_puppet_regime }
+add_opinion_modifier = { target = GNG modifier = CPC_Japan_puppet_regime }
+add_opinion_modifier = { target = XIN modifier = CPC_local_warlord }
+add_opinion_modifier = { target = ROS modifier = CPC_unify }
+add_opinion_modifier = { target = HTC modifier = CPC_unify }
+add_opinion_modifier = { target = MFN modifier = CPC_unify }
+add_opinion_modifier = { target = XIK modifier = CPC_unify }
+add_opinion_modifier = { target = VIC modifier = CPC_unify }
+add_opinion_modifier = { target = ETR modifier = CPC_separatist_forces }
+add_opinion_modifier = { target = SIC modifier = CPC_broken_unify }
+add_opinion_modifier = { target = TIB modifier = CPC_separatist_forces }
+add_opinion_modifier = { target = QIN modifier = CPC_traitor }
+
+QIN = {
+	declare_war_on = {
+		target = CPC
+		type = annex_everything
+	}
+}
+set_war_support = 0.5
+set_stability = 0.5
+add_manpower = 60000
+set_country_flag = gui_alert_visible
+set_country_flag = CPC_phase_1
+### Country Leader ###
+recruit_character = CPC_Mao_Zedong
+recruit_character = CPC_Liu_Shaoqi
+recruit_character = CPC_Ji_Fang
+recruit_character = CPC_Liang_Shuming
+recruit_character = CPC_Wang_Kunlun
+recruit_character = CPC_Shen_Junru
+recruit_character = CPC_union
+recruit_character = CPC_power_vacant
+
+###Minister###
+recruit_character = CPC_Zhou_Enlai
+recruit_character = CPC_Bo_Gu
+recruit_character = CPC_Chen_Yun
+recruit_character = CPC_Luo_Ruiqing
+recruit_character = CPC_Pan_Hannian
+recruit_character = CPC_Bo_Yibo
+recruit_character = CPC_Xi_Zhongxun
+recruit_character = CPC_Luo_Qingchang
+recruit_character = CPC_Wan_Li
+recruit_character = CPC_Qiao_Guanhua
+recruit_character = CPC_Bai_Dongcai
+
+### Generals ###
+recruit_character = CPC_Lin_Biao
+recruit_character = CPC_Peng_Dehuai
+recruit_character = CPC_Liu_Bocheng
+recruit_character = CPC_He_Long
+recruit_character = CPC_Xu_Xiangqian
+recruit_character = CPC_Su_Yu
+recruit_character = CPC_Xu_Guangda
+recruit_character = CPC_Xu_Shiyou
+recruit_character = CPC_Xiao_Hua
+recruit_character = CPC_Xu_Haidong
+recruit_character = CPC_Huang_Kecheng
+recruit_character = CPC_Zhang_Aiping
+recruit_character = CPC_Nie_RongZhen
+recruit_character = CPC_Xiao_Jinguang
+recruit_character = CPC_Zhang_Kexia
+recruit_character = CPC_Yang_Dezhi
+recruit_character = CPC_Tan_Zheng
+recruit_character = CPC_Chen_Xilian
+recruit_character = CPC_Yang_Yong
+recruit_character = CPC_Wang_Shusheng
+
+set_research_slots = 2
+set_technology = {
+	basic_train = 1
+	infantry_kit_1 = 1
+	infantry_kit_2 = 1
+	infantry_kit_3 = 1
+	infantry_kit_4 = 1
+	combat_support_equipment_1 = 1
+	##INFANTRY##
+	infantry_weapons_1 = 1
+	infantry_weapons_2 = 1
+	infantry_weapons_3 = 1
+	infantry_weapons_improvements_mine_1 = 1
+	infantry_weapons_improvements_ammo_1 = 1
+	infantry_weapons_improvements_grenade_1 = 1
+	basic_infantry_equipment = 1
+	support_weapons = 1
+	infantry_at = 1
+	infantry_at_upgrade_1 = 1
+	infantry_at2 = 1
+	motorized_infantry = 1
+	night_vision_1 = 1
+	marines = 1
+	tech_mountaineers = 1
+	assault_weapons_1 = 1
+	tech_logistics_company = 1
+	tech_signal_company = 1
+	#infantry_aa = 1
+	#infantry_aa2 = 1
+	##SUPPORT##
+	tech_support = 1
+	tech_engineers = 1
+	tech_engineers2 = 1
+	tech_military_police = 1
+	tech_military_police2 = 1
+	tech_maintenance_company = 1
+	tech_maintenance_company2 = 1
+	tech_field_hospital = 1
+	tech_recon = 1
+	tech_recon2 = 1
+	##ARTY##
+
+	##ARMOR##
+
+
+	##AIRCRAFT##
+	
+
+	##HEAVY AIRCRAFT##
+
+	##HELICOPTERS##
+	
+	##ENGINEERING##
+	electronic_mechanical_engineering = 1
+	radio = 1
+	mechanical_computing = 1
+	computing_machine = 1
+	basic_encryption = 1
+	basic_decryption = 1
+	##INDUSTRY##
+	ww2_line_production = 1
+	batch_production_1 = 1
+	building_construction_1 = 1
+	resource_extraction_methods = 1
+	excavation0 = 1
+	energy_technology_1 = 1
+	social_construction_1 = 1
+	military_construction_1 = 1
+	production_unit_gain_1 = 1
+	administration_construction_1 = 1
+	consumer_goods_reduction_1 = 1
+}
+# NSB tech #
+
+if = {
+    limit = {
+        NOT = { has_dlc = "No Step Back" }
+    }
+    set_technology = {
+        APC_1945 = 1
+        IFV_1945 = 1
+        APC_1950 = 1
+
+        artillery_1945 = 1
+    }
+}
+if = {
+    limit = {
+        has_dlc = "No Step Back"
+    }
+    set_technology = {
+        NSB_APC_1945 = 1
+        NSB_APC_1950 = 1
+
+        NSB_IFV_1945 = 1
+        NSB_IFV_1945_modules_1 = 1
+        NSB_IFV_1945_modules_2 = 1
+        NSB_IFV_1950 = 1
+        
+        NSB_MBT_1945 = 1
+
+        NSB_Engine_1 = 1
+
+        NSB_artillery_1945 = 1
+        NSB_artillery_1950 = 1
+        NSB_artillery_1950_SA = 1
+    }
+}
+set_politics = {
+	ruling_party = communist
+	last_election = "1960.11.11"
+	election_frequency = 36
+	elections_allowed = no
+}
+
+set_popularities = {
+    communist = 70
+    socialist = 8
+	liberalism = 2
+    progressivism = 8
+    conservatism= 8
+    paternalism = 4
+}
+
+#国家精神
+add_ideas = {
+	CPC_leader_of_united_front
+	CPC_red_star_in_rev_base
+	CPC_RBM_dummy_1
+	CPC_PLA_issue_1
+	CPC_non_exsistent_air_force
+	###Minister###
+	CPC_Zhou_Enlai_hog
+	CPC_Bo_Gu_for
+	CPC_Chen_Yun_eco
+	CPC_Luo_Ruiqing_sec
+
+	CPC_Lin_Biao_army_chief
+	CPC_Su_Yu_high_command
+	CPC_Xu_Shiyou_high_command
+	CPC_Yang_Dezhi_high_command
+	CPC_Xu_Xiangqian_theorist
+
+	#Political
+	tno_political_parties_one_party_state
+	tno_religious_rights_state_atheism
+	tno_trade_unions_state_controlled
+	tno_immigration_skilled_labor_only
+	tno_slavery_penal_labor
+	tno_public_meetings_regulated
+	tno_press_rights_censored_press
+	tno_vote_franchise_elite_voting
+
+	#Military
+	tno_conscription_service_by_requirement
+	tno_military_supervision_rules_of_engagement
+	tno_training_basic_training
+	tno_draft_exemptions_educational_deferment
+
+	#Economic
+	tno_trade_laws_closed_economy
+	tno_income_taxation_flat_taxes
+	tno_minimum_wage_trinket_minimum_wage
+	tno_max_workhours_14_hour_work_day
+	tno_pensions_trinket_pensions
+	tno_unemployment_trinket_subsidies
+
+	#Social
+	tno_health_care_support_for_emergencies
+	tno_education_public_education
+	tno_penal_system_politicized_penal_system
+	tno_child_labor_restricted
+	tno_gender_rights_women_in_the_workplace
+	tno_security_maintenance_of_order
+	tno_regulations_utterly_unregulated
+
+	#MISC
+	tno_refugees_vetted_entry
+	tno_women_combat_roles
+	tno_racial_integration_integrated_military
+	tno_safety_limited_regulations
+	tno_pollution_few_regulations
+	tno_lgbt_rights_lgbt_outlawed
+	tno_minorities_equal_rights
+
+	### Societal Development ###
+	tno_admin_efficiency_deficient_administrative_systems
+	tno_army_professionalism_disgruntled_veterans
+	tno_industrial_expertise_incompetent
+	tno_industrial_equipment_power_tools
+	tno_healthcare_makeshift
+	tno_agriculture_centralized
+	tno_research_facilities_basic
+	tno_academic_base_basic_literacy
+}
+
+# NSB #
+if = {
+	limit = {
+		has_dlc = "No Step Back"
+	}
+	create_equipment_variant = {
+		name = "Type 77A Xi'an"
+		type = IFV_chassis_1
+		parent_version = 0
+		modules = {
+			main_armament_slot = tank_heavy_machine_gun
+			turret_type_slot = IFV_one_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_gasoline_engine
+		}
+		
+		icon = GFX_CPC_IFV_1950_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 3
+			tank_nsb_armor_upgrade = 2
+		}
+	}
+}
+
+set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+set_variable = { TNO_economy_subtype = token:Econ_Subtype_Revolutionary_Transitional_System }
+
+diplomatic_relation = { country = GSM relation = non_aggression_pact }
+diplomatic_relation = { country = XIK relation = non_aggression_pact }
+diplomatic_relation = { country = ROS relation = non_aggression_pact }
+diplomatic_relation = { country = HTC relation = non_aggression_pact }
+diplomatic_relation = { country = MFN relation = non_aggression_pact }
+
+diplomatic_relation = { country = GSM 
+						relation = military_access 
+						active = yes }
+diplomatic_relation = { country = XIK 
+						relation = military_access 
+						active = yes  }
+diplomatic_relation = { country = ROS 
+						relation = military_access 
+						active = yes }
+diplomatic_relation = { country = HTC
+						relation = military_access
+						active = yes }
+diplomatic_relation = { country = MFN
+						relation = military_access
+						active = yes }
+
+
+every_country = {
+	limit = { has_idea = Member_of_the_United_Front }
+	diplomatic_relation = {
+		country = CPC
+		relation = military_access
+		active = yes
+	}
+}
+
+# Policy effectivness
+set_country_flag = tno_defined_startup_effectiveness
+
+set_variable = { tno_trade_laws_effectiveness = 25 }
+set_variable = { tno_income_taxation_effectiveness = 40 }
+set_variable = { tno_minimum_wage_effectiveness = 62 }
+set_variable = { tno_max_workhours_effectiveness = 64 }
+set_variable = { tno_unemployment_effectiveness = 73 }
+set_variable = { tno_pensions_effectiveness = 77 }
+set_variable = { tno_regulations_effectiveness = 50 }
+
+set_variable = { tno_health_care_effectiveness = 70 }
+set_variable = { tno_education_effectiveness = 61 }
+set_variable = { tno_penal_system_effectiveness = 73 }
+set_variable = { tno_gender_rights_effectiveness = 61 }
+set_variable = { tno_security_effectiveness = 82 }
+
+set_variable = { tno_political_parties_effectiveness = 89 }
+set_variable = { tno_religious_rights_effectiveness = 74 }
+set_variable = { tno_trade_unions_effectiveness = 85 }
+set_variable = { tno_immigration_effectiveness = 90 }
+set_variable = { tno_slavery_effectiveness = 100 }
+set_variable = { tno_public_meetings_effectiveness = 75 }
+set_variable = { tno_press_rights_effectiveness = 84 }
+set_variable = { tno_vote_franchise_effectiveness = 37 }
+
+set_variable = { tno_conscription_effectiveness = 85 }
+set_variable = { tno_military_supervision_effectiveness = 59 }
+set_variable = { tno_training_effectiveness = 65 }
+set_variable = { tno_draft_exemptions_effectiveness = 93 }
+
+JAP = {
+	add_to_faction = QYC #琼崖演艺生涯
+	add_to_faction = LOY
+	add_to_faction = GGC #哇，他妈的朝鲜总督府
+}
+
+every_country = {
+	limit = { is_in_faction_with = JAP }
+	reverse_add_opinion_modifier = { target = CPC modifier = embargo }
+	reverse_add_opinion_modifier = { target = MON modifier = embargo }
+	reverse_add_opinion_modifier = { target = HTC modifier = embargo }
+	reverse_add_opinion_modifier = { target = ROS modifier = embargo }
+	reverse_add_opinion_modifier = { target = MFN modifier = embargo }
+	reverse_add_opinion_modifier = { target = XIK modifier = embargo }
+	reverse_add_opinion_modifier = { target = QIN modifier = embargo }
+}
+
+reverse_add_opinion_modifier = { target = GGC modifier = embargo }
+oob = "CPC_1962"

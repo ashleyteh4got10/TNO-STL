@@ -1,0 +1,28 @@
+CPC_debug_dec = {
+	CPC_debug_dec_activate_test_prop = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			TER_CPGAC_begin_a_proposal_test = yes
+		}
+	}
+	CPC_debug_dec_activate_bureau_GUI = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			hidden_effect = {
+				CPC_unlock_SWB_gui = yes
+				TER_NWB_unlock_GUI = yes
+				set_country_flag = CPC_unlock_XJB
+				CPC_initialize_XJB_gui = yes
+				TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+
+				add_dynamic_modifier = {
+					modifier = SCB_CPC_modifier
+				}
+				TER_SCB_visual_update = yes
+				set_country_flag = CPC_unlock_SCB
+			}
+		}
+	}
+}

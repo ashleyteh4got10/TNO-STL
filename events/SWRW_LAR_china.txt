@@ -1,0 +1,148 @@
+
+add_namespace = SWRW_TNOLAR_GAW
+country_event = { # 
+	id = SWRW_TNOLAR_GAW.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SWRW_TNOLAR_GAW.1"}
+	title = SWRW_TNOLAR_GAW.1.t
+	desc = SWRW_TNOLAR_GAW.1.desc
+	picture = GFX_report_event_RUS_russians
+	
+	trigger = {
+        has_global_flag = TNOLAR_GAW_in_progress
+        OR = {
+            original_tag = USA
+            tag = RUS
+        }
+        always = no
+    }
+    fire_only_once = yes
+	option = {
+		name = SWRW_TNOLAR_GAW.1.a
+        SWRW_fopo_add_GAW_LAR_tab = yes
+        set_global_flag = SWRW_fopo_add_GAW_LAR_tab_done
+        RUS = {
+            set_country_flag = {
+                flag = GAW_start_180_days
+                days = 180
+                value = 1
+            }
+        }
+        hidden_effect = {
+            scoped_play_song = Unsere_Panzerdivision_Tank_March
+        }
+	}
+}
+
+country_event = { # 
+	id = SWRW_TNOLAR_GAW.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event SWRW_TNOLAR_GAW.2"}
+	title = SWRW_TNOLAR_GAW.2.t
+	desc = SWRW_TNOLAR_GAW.2.desc
+	picture = GFX_report_event_RUS_russians
+	
+	trigger = {
+        NOT = { has_global_flag = TNOLAR_GAW_in_progress }
+        has_global_flag = SWRW_fopo_add_GAW_LAR_tab_done
+        OR = {
+            original_tag = USA
+            tag = RUS
+        }
+        always = no
+    }
+    immediate = { set_country_flag = conclusion_victory }
+    fire_only_once = yes
+	option = {
+		name = SWRW_TNOLAR_GAW.2.a
+        SWRW_fopo_remove_GAW_LAR_tab = yes
+        clr_global_flag = SWRW_fopo_add_GAW_LAR_tab_done
+        if = {
+            limit = {
+                tag = USA
+            }
+            set_temp_variable = { conclusion_weeks = 32 }
+            set_temp_variable = { conclusion_bonus = 0.1 }
+            USA_proxy_conclusion_effect = yes
+			transfer_state = 629
+			transfer_state = 2518
+			transfer_state = 2523
+			629 = {
+				set_demilitarized_zone = yes
+				set_state_flag = US_election_state
+				state_control_effect_629 = yes
+			}
+			transfer_state = 768
+			transfer_state = 769
+            HA_pp_reset = yes
+            USA_decrease_depression = yes
+            USA_decrease_depression = yes
+            USA_decrease_depression = yes
+            add_to_variable = { OFN_Unity = 5 }
+            custom_effect_tooltip = USA_add_OFN_unity_large
+        }
+        add_political_power = 500
+        add_stability = 0.25
+        add_war_support = 0.25
+        hidden_effect = {
+            RUS = {
+                transfer_state = 1364
+                transfer_state = 657
+                transfer_state = 1646
+                transfer_state = 409
+                transfer_state = 1644
+                transfer_state = 408
+                transfer_state = 809
+            }
+            scoped_play_song = Auferstanden_aus_Ruinen
+            country_event = { id = BFC.1 days = 90 }
+        }
+	}
+}
+
+add_namespace = BFC 
+
+############    ##############       #############
+############    #                   #
+##         #    #                   #
+##         #    #                   #
+###########     ########            #
+###########     #                   #
+##         #    #                   #
+##         #    #                   #
+###########     #                    #############
+
+
+country_event = { # 
+	id = BFC.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event BFC.1"}
+	title = BFC.1.t
+	desc = BFC.1.desc
+	picture = GFX_report_event_RUS_russians
+	
+	is_triggered_only = yes
+    trigger = {
+        always = no
+    }
+    fire_only_once = yes
+	option = {
+		name = BFC.1.a
+        CHI = {
+			set_variable = {
+				var = ITA_isolation_support
+				value = 0
+			}
+			CHI = {
+				set_country_flag = ita_ready_for_battle_ita
+				BFC_setup_influence = yes
+			}
+			hidden_effect = {
+				every_country = {
+					limit = { is_ai = no }
+					#news_event = {
+						#id = WORLD.930
+						#days = 4
+					#}
+				}
+			}
+        }
+	}
+}

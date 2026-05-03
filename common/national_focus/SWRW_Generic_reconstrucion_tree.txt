@@ -1,0 +1,3763 @@
+
+shared_focus = {
+	id = RUS_commie_reconstruction
+	icon = GFX_NOV_a_federation_reborn
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 10
+	y = 0
+	completion_reward = {
+		country_event = { id = SWRW_RUS.14 days = 7 }
+		hidden_effect = {
+			scoped_play_song = "maintheme"
+		}
+		
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_no_time_to_wait
+	icon = GFX_focus_OMO_2022_we_have_not_forgotten
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	relative_position_id = RUS_commie_reconstruction
+	prerequisite = {
+		focus = RUS_commie_reconstruction
+	}
+	completion_reward = {
+		country_event = { id = SWRW_RUS.15 days = 7 }
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_independent_ssr
+	icon = GFX_focus_generic_liberty_handshake
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 2
+	relative_position_id = RUS_commie_reconstruction
+	mutually_exclusive = {
+		focus = RUS_commie_unity_and_strong_union
+	}
+	prerequisite = {
+		focus = RUS_commie_no_time_to_wait
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_commie_independent_ssr_tt
+		set_country_flag = independent_ssr
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_unity_and_strong_union
+	icon = GFX_focus_RUS_legacy_of_democratic_russia
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 2
+	prerequisite = {
+		focus = RUS_commie_no_time_to_wait
+	}
+	mutually_exclusive = {
+		focus = RUS_commie_independent_ssr
+	}
+	relative_position_id = RUS_commie_reconstruction
+	completion_reward = {
+		custom_effect_tooltip = RUS_commie_unity_and_strong_union_tt
+		set_country_flag = unity_and_strong_union
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_reconstruct_and_develop
+	icon = GFX_NOV_rebuilding_moscow
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 3
+	prerequisite = {
+		focus = RUS_commie_unity_and_strong_union
+		focus = RUS_commie_independent_ssr
+	}
+	relative_position_id = RUS_commie_reconstruction
+	completion_reward = {
+		custom_effect_tooltip = RUS_commie_reconstruct_and_develop_tt
+		set_country_flag = RUS_reconstruct_and_develop_started_commie
+		mark_focus_tree_layout_dirty = yes
+	}
+}
+
+
+
+shared_focus = {
+	id = RUS_commie_reconstruct_moscow
+	icon = GFX_RUS_reconstruct_moscow
+	cost = 3
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 5
+	prerequisite = {
+		focus = RUS_commie_reconstruct_and_develop
+	}
+	relative_position_id = RUS_commie_reconstruct_and_develop
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.101 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_once = yes
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 0.1 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_from_city_to_rural
+	icon = GFX_focus_GNG_industrial_urban_integration
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_moscow
+	}
+	relative_position_id = RUS_commie_reconstruct_moscow
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.102 days = 7 } }
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 0.1 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = ORL.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.05 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_all_mens_a_brothers
+	icon = GFX_focus_GNG_a_safe_port
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_from_city_to_rural
+	}
+	prerequisite = {
+		focus = RUS_commie_heal_the_pain
+	}
+	prerequisite = {
+		focus = RUS_commie_kill_the_nazi
+	}
+	relative_position_id = RUS_commie_from_city_to_rural
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.30 days = 3 }
+		}
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_modernize_moscow
+	icon = GFX_focus_GNG_new_industrial_communities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_all_mens_a_brothers
+	}
+	relative_position_id = RUS_commie_all_mens_a_brothers
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.113 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 0.2 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.035 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = ORL.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.05 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_arbat
+	icon = GFX_RUS_Arbat
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_modernize_moscow
+	}
+	relative_position_id = RUS_commie_modernize_moscow
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.114 days = 7 } }
+		1442 = {
+			set_temp_variable = { temp_state_value_addition = 2 } #already converted to billion
+			econ_state_value_change_addition_specified_state = yes
+			set_temp_variable = { state_value_multiplier_temp = 2 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+		hidden_effect = {
+			capital_scope = {
+				set_temp_variable = { state_value_multiplier_temp = 0.75 }
+				econ_state_value_change_multiply_specified_state = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_heal_the_pain
+	icon = GFX_focus_USA_SAW_universal_service_act
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_moscow
+	}
+	relative_position_id = RUS_commie_reconstruct_moscow
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.103 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_weekly = yes
+		set_temp_variable = { RUS_add_rebuild_var = 1 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		ORL = {
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_kill_the_nazi
+	icon = GFX_focus_MZB_USA_a_much_needed_change
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_moscow
+	}
+	relative_position_id = RUS_commie_reconstruct_moscow
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.108 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_weekly = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_once = yes
+		ORL = {
+			add_stability = 0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_there_is_lot_people
+	icon = GFX_focus_GNG_The_Peoples_Faces_Success
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -3
+	y = 2
+	prerequisite = {
+		focus = RUS_commie_reconstruct_moscow
+	}
+	relative_position_id = RUS_commie_reconstruct_moscow
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.104 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = -0.1 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_weekly = yes
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_let_them_in_factory
+	icon = GFX_focus_GNG_snap_factory_inspections
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_there_is_lot_people
+	}
+	relative_position_id = RUS_commie_there_is_lot_people
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.106 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = -5 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_once = yes
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = ORL.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.05 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.1 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_lots_places_need_them
+	icon = GFX_focus_generic_no_more_closed_factories
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_let_them_in_factory
+	}
+	relative_position_id = RUS_commie_let_them_in_factory
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.107 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = -5 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_once = yes
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_flat = 5 }
+			econ_GDP_boost_once_flat = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = ORL.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.05 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.1 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_weekly = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_and_there_is_lots_wealth
+	icon = GFX_focus_generic_corporate_wealth_gold
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 3
+	y = 2
+	prerequisite = {
+		focus = RUS_commie_reconstruct_moscow
+	}
+	relative_position_id = RUS_commie_reconstruct_moscow
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.110 days = 7 } }
+		ORL = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_to_temp_variable = { RUS.temp_econ_spending_amount = 0.25 }
+			}
+		}
+		multiply_temp_variable = { temp_econ_spending_amount = 1.03 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_moscowien_resource_develop
+	icon = GFX_focus_generic_our_available_resources
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_and_there_is_lots_wealth
+	}
+	relative_position_id = RUS_commie_and_there_is_lots_wealth
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.111 days = 7 } }
+		add_resource = {
+			type = steel
+			amount = 22
+			state = 1453
+		}
+		add_resource = {
+			type = oil
+			amount = 11
+			state = 217
+		}
+		add_resource = {
+			type = oil
+			amount = 11
+			state = 237
+		}
+		add_resource = {
+			type = oil
+			amount = 11
+			state = 224
+		}
+		add_resource = {
+			type = oil
+			amount = 21
+			state = 243
+		}
+		1435 = {
+			set_temp_variable = { state_value_multiplier_temp = 1.2 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		217 = {
+			set_temp_variable = { state_value_multiplier_temp = 1.2 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		237 = {
+			set_temp_variable = { state_value_multiplier_temp = 1.2 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		224 = {
+			set_temp_variable = { state_value_multiplier_temp = 1.2 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		243 = {
+			set_temp_variable = { state_value_multiplier_temp = 1.2 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_reform_the_natural
+	icon = GFX_focus_generic_clean_enviromental_action
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_moscowien_resource_develop
+	}
+	relative_position_id = RUS_commie_moscowien_resource_develop
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.112 days = 7 } }
+		add_ideas = RUS_change_the_nature
+		every_other_country = {
+			limit = {
+				is_in_faction_with = RUS
+			}
+			add_ideas = RUS_change_the_nature
+		}
+		multiply_temp_variable = { temp_gdp_paid = 0.1 }
+		econ_spend_money_once_effect_gdp_percent = yes
+
+		set_temp_variable = { temp_law = token:RUS_reconstruction_reform_nature }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_a_new_silicon_dreams
+	icon = GFX_focus_GNG_eyes_on_the_horizon
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reform_the_natural
+	}
+	prerequisite = {
+		focus = RUS_commie_lots_places_need_them
+	}
+	prerequisite = {
+		focus = RUS_commie_arbat
+	}
+	relative_position_id = RUS_commie_arbat
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.116 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 1.5 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.1 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = ORL.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.1 }
+		econ_spend_money_once_effect_raw_money = yes
+
+		set_temp_variable = { temp_law = token:RUS_reconstruction_silicon }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_sound_from_stalingrad
+	icon = GFX_focus_ENG_our_sound_stock
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reform_the_natural
+	}
+	prerequisite = {
+		focus = RUS_commie_lots_places_need_them
+	}
+	prerequisite = {
+		focus = RUS_commie_arbat
+	}
+	relative_position_id = RUS_commie_arbat
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.117 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		217 = {
+			add_manpower = 150000
+			add_manpower = -400000
+		}
+		243 = {
+			add_manpower = -150000
+			add_manpower = 400000
+			set_temp_variable = { state_value_multiplier_temp = 0.75 }
+			econ_state_value_change_multiply_specified_state = yes
+			set_temp_variable = { state_value_multiplier_temp = 1.5 }
+			econ_state_value_change_multiply_specified_state = yes
+			add_building_construction = {
+				type = infrastructure
+				level = 3
+				instant_build = yes
+			}
+			set_state_category = megalopolis
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_voices_form_leningrad
+	icon = GFX_focus_generic_change_law_speech
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reform_the_natural
+	}
+	prerequisite = {
+		focus = RUS_commie_lots_places_need_them
+	}
+	prerequisite = {
+		focus = RUS_commie_arbat
+	}
+	relative_position_id = RUS_commie_arbat
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.115 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		195 = {
+			add_manpower = 400000
+			set_temp_variable = { state_value_multiplier_temp = 1.5 }
+			econ_state_value_change_multiply_specified_state = yes
+			add_building_construction = {
+				type = infrastructure
+				level = 3
+				instant_build = yes
+			}
+			set_state_category = megalopolis
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_history_should_be_remained
+	icon = GFX_focus_generic_study_history
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_voices_form_leningrad
+	}
+	prerequisite = {
+		focus = RUS_commie_sound_from_stalingrad
+	}
+	prerequisite = {
+		focus = RUS_commie_a_new_silicon_dreams
+	}
+	relative_position_id = RUS_commie_a_new_silicon_dreams
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.118 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_MOSCOW_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_country_industralize
+	icon = GFX_focus_BOV_galicias_industrial_veins
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_voices_form_leningrad
+	}
+	prerequisite = {
+		focus = RUS_commie_sound_from_stalingrad
+	}
+	prerequisite = {
+		focus = RUS_commie_a_new_silicon_dreams
+	}
+	relative_position_id = RUS_commie_a_new_silicon_dreams
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.119 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		ORL = {
+			TNO_improve_industrial_expertise = yes
+			TNO_improve_industrial_expertise = yes
+			tno_improve_industrial_equipment = yes
+			tno_improve_industrial_equipment = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.035 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = ORL.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.1 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_russia_economy_miracle
+	icon = GFX_focus_GNG_our_new_economy
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_country_industralize
+	}
+	prerequisite = {
+		focus = RUS_commie_history_should_be_remained
+	}
+	relative_position_id = RUS_commie_history_should_be_remained
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.120 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		set_temp_variable = { temp_econ_spending_amount = ORL.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.3 }
+		econ_spend_money_once_effect_raw_money = yes
+		ORL = {
+			set_temp_variable = { gdp_growth_temp = 1.5 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.1 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { temp_econ_GDP_boost_flat = 5 }
+			econ_GDP_boost_once_flat = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_the_seven_moscow_sisters
+	icon = NOV_metropolitan_moscow
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_russia_economy_miracle
+	}
+	relative_position_id = RUS_commie_russia_economy_miracle
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.121 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_MOSCOW_add_rebuild_econ = yes
+		1442 = {
+			add_state_modifier = {
+				modifier = {
+					state_GDP_growth_modifier = 2
+					state_GDP_growth_factor_modifier = 0.3
+				}
+			}
+			set_state_category = megalopolis
+		}
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_take_moscow_to_home
+	icon = NOV_university_of_moscow
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_the_seven_moscow_sisters
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RUS_commie_take_moscow_to_home_tt
+			OR = {
+				AND = {
+					check_variable = { ORL.rc_stability_display > 90 }
+					check_variable = { ORL.rc_econ_display > 99 }
+				}
+				is_ai = yes
+			}
+		}
+	}
+	relative_position_id = RUS_commie_the_seven_moscow_sisters
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.122 days = 7 } }
+		custom_effect_tooltip = RUS_take_moscow_to_home_tt
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+		SWRW_take_moscow_to_home = yes
+		SWRW_fopo_remove_rc_mos_tab = yes
+		set_global_flag = take_moscow_to_home
+		set_temp_variable = { temp_law = token:RUS_reconstruction_moscow }
+		TNO_add_assorted_law = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_reconstruct_ukraine
+	icon = GFX_NOV_the_future_of_ukraine
+	cost = 3
+	ai_will_do = { factor = 1 }
+	x = 10
+	y = 7
+	prerequisite = {
+		focus = RUS_commie_reconstruct_and_develop
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_reconstruct_and_develop
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_country_flag = reconstruct_ukraine
+		custom_effect_tooltip = reconstruct_ukraine_tt
+		UKS = {
+			set_temp_variable = { income_tax_temp = 0.25 }
+			econ_income_tax_rate_change = yes
+			set_temp_variable = { business_tax_temp = 0.15 }
+			econ_business_tax_rate_change = yes
+			set_temp_variable = { sales_tax_temp = 0.1 }
+			econ_sales_tax_rate_change = yes
+		}
+		hidden_effect = { country_event = { id = SWRW_RUS.71 days = 7 } }
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_ukraines_farm
+	icon = GFX_focus_TYM_for_the_bounty_of_the_land
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_ukraine
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_reconstruct_ukraine
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.16 days = 3 }
+		}
+		set_temp_variable = {
+			ukraines_farm = 0
+		}
+		while_loop_effect = {
+			limit = {
+				check_variable = {
+					ukraines_farm < 4
+				}
+			}
+			UKS = {
+				random_owned_state = {
+					prioritize = {
+						226
+						200
+						227
+						218
+						228
+						1429
+					}
+					limit = {
+						NOT = {
+							has_state_flag = RUS_ukraines_farm_flag 
+						}
+					}
+					set_temp_variable = { state_value_multiplier_temp = 1.1 }
+					econ_state_value_change_multiply_specified_state = yes
+					set_state_flag = RUS_ukraines_farm_flag
+				}
+			}
+			add_to_temp_variable = { ukraines_farm = 1 }
+		}
+		effect_tooltip = {
+			UKS = {
+				random_owned_state = {
+					prioritize = {
+						226
+					}
+					limit = {
+						NOT = {
+							has_state_flag = RUS_ukraines_farm_flag 
+						}
+					}
+					set_temp_variable = { state_value_multiplier_temp = 1.1 }
+					econ_state_value_change_multiply_specified_state = yes
+					set_state_flag = RUS_ukraines_farm_flag
+				}
+			}
+			UKS = {
+				random_owned_state = {
+					prioritize = {
+						200
+						227
+						218
+						228
+						1429
+					}
+					limit = {
+						NOT = {
+							has_state_flag = RUS_ukraines_farm_flag 
+						}
+					}
+					set_temp_variable = { state_value_multiplier_temp = 1.1 }
+					econ_state_value_change_multiply_specified_state = yes
+					set_state_flag = RUS_ukraines_farm_flag
+				}
+			}
+			UKS = {
+				random_owned_state = {
+					prioritize = {
+						227
+						218
+						228
+						1429
+					}
+					limit = {
+						NOT = {
+							has_state_flag = RUS_ukraines_farm_flag 
+						}
+					}
+					set_temp_variable = { state_value_multiplier_temp = 1.1 }
+					econ_state_value_change_multiply_specified_state = yes
+					set_state_flag = RUS_ukraines_farm_flag
+				}
+			}
+			UKS = {
+				random_owned_state = {
+					prioritize = {
+						218
+						228
+						1429
+					}
+					limit = {
+						NOT = {
+							has_state_flag = RUS_ukraines_farm_flag 
+						}
+					}
+					set_temp_variable = { state_value_multiplier_temp = 1.1 }
+					econ_state_value_change_multiply_specified_state = yes
+					set_state_flag = RUS_ukraines_farm_flag
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_not_europe_uterus
+	icon = GFX_focus_JAP_stop_the_reformers
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_ukraines_farm
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_ukraines_farm
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_weekly = yes
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.24 days = 3 }
+		}
+		UKS = {
+			set_temp_variable = { inflation_temp = 0.1 }
+			econ_inflation_change = yes
+
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_we_are_europes_granary
+	icon = GFX_focus_generic_farming
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_not_europe_uterus
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_not_europe_uterus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.25 days = 3 }
+		}
+		UKS = {
+			set_temp_variable = { inflation_temp = 1 }
+			econ_inflation_change = yes
+			set_temp_variable = { gdp_growth_temp = 1.5 }
+			econ_gdp_growth_change = yes
+			TNO_improve_agriculture = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = UKS.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.05 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_cultivating_identity
+	icon = GFX_focus_RUS_rally_the_russians
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_we_are_europes_granary
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_we_are_europes_granary
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.23 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_weekly = yes
+		UKS = {
+			add_stability = 0.1
+			add_war_support = 0.1
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_land_reform
+	icon = GFX_focus_generic_decentralized_land_reform
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_ukraines_farm
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_ukraines_farm
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.17 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		UKS = {
+			every_owned_state = {
+				limit = {
+					check_variable = { state_GDPPC < 800 }
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.1 }
+				econ_state_value_change_multiply_specified_state = yes
+			}
+		}
+		set_temp_variable = { temp_law = token:RUS_reconstruction_land }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	
+	id = RUS_commie_farm_cooperatives
+	icon = GFX_focus_generic_class_cooperation
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_land_reform
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_land_reform
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.21 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		UKS = {
+			set_temp_variable = { inflation_temp = 0.5 }
+			econ_inflation_change = yes
+			set_temp_variable = { gdp_growth_temp = 1.5 }
+			econ_gdp_growth_change = yes
+			TNO_improve_agriculture = yes
+			TNO_improve_poverty_high = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = UKS.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.1 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_work_and_reward
+	icon = GFX_focus_GNG_the_spanner_in_the_works
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_farm_cooperatives
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_farm_cooperatives
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.22 days = 3 }
+		}
+		UKS = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+		}
+		UKS = {
+			set_temp_variable = { income_tax_temp = -0.05 }
+			econ_income_tax_rate_change = yes
+			TNO_improve_poverty_high = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_commune_and_cooperatives
+	icon = GFX_focus_generic_communist_offer_our_thanks
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_cultivating_identity
+	}
+	prerequisite = {
+		focus = RUS_commie_work_and_reward
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_work_and_reward
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.80 days = 7 } }
+		UKS = {
+			set_temp_variable = { income_tax_temp = -0.05 }
+			econ_income_tax_rate_change = yes
+			set_temp_variable = { gdp_growth_temp = 1.5 }
+			econ_gdp_growth_change = yes
+			TNO_improve_poverty_high = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_colonize_eras_heritage
+	icon = GFX_focus_UKR_walk_the_eggshells
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_ukraine
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_reconstruct_ukraine
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = -0.35 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_weekly = yes
+		UKS = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		hidden_effect = { country_event = { id = SWRW_RUS.72 days = 7 } }
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_bread_baskets
+	icon = GFX_focus_UPO_secure_the_breadbasket
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_colonize_eras_heritage
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_colonize_eras_heritage
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		UKS = {
+			add_ideas = RUS_bread_baskets
+		}
+		add_ideas = RUS_bread_baskets
+		set_temp_variable = { temp_law = token:RUS_reconstruction_bread }
+		TNO_add_assorted_law = yes
+		hidden_effect = { country_event = { id = SWRW_RUS.73 days = 7 } }
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_kiev_city
+	icon = GFX_focus_generic_horizontal_urban_density
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_bread_baskets
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_bread_baskets
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		hidden_effect = { country_event = { id = SWRW_RUS.75 days = 7 } }
+		1428 = {
+			set_state_category = megalopolis
+			add_state_modifier = {
+				modifier = {
+					state_GDP_growth_modifier = 2
+					state_GDP_growth_factor_modifier = 0.3
+				}
+			}
+			set_temp_variable = { state_value_multiplier_temp = 2 }
+			econ_state_value_change_multiply_specified_state = yes
+			add_manpower = 300000
+			set_variable = { nationality = 164 }
+			custom_effect_tooltip = RUS_ukr_culture
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_urbanization_ukraine
+	icon = GFX_focus_KOM_closed_cities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_kiev_city
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_kiev_city
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		set_temp_variable = { gdp_growth_temp = 0.3 }
+		econ_gdp_growth_change = yes
+		hidden_effect = { country_event = { id = SWRW_RUS.78 days = 7 } }
+		UKS = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+			221 = {
+				set_state_category = metropolis
+			}
+			1532 = { 
+				set_state_category = metropolis
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_black_soil
+	icon = GFX_focus_BRA_something_something_rural_towns
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_urbanization_ukraine
+	}
+	prerequisite = {
+		focus = RUS_commie_we_arent_nazi
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_urbanization_ukraine
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.81 days = 7 } }
+		UKS = {
+			every_owned_state = {
+				limit = {
+					check_variable = { state_GDPPC < 2000 }
+				}
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_modifier = 0.5
+						state_GDP_growth_factor_modifier = 0.15
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_hydropower_in_dnipro
+	icon = GFX_focus_generic_the_power_of_electricity
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 3
+	prerequisite = {
+		focus = RUS_commie_land_reform
+	}
+	prerequisite = {
+		focus = RUS_commie_bread_baskets
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_reconstruct_ukraine
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.26 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		226 = {
+			set_state_category = megalopolis
+			set_temp_variable = { state_value_multiplier_temp = 1.5 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		add_resource = {
+			type = power
+			amount = 64
+			state = 226
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_electricity_output
+	icon = GFX_focus_generic_power_generation_methods
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_hydropower_in_dnipro
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_hydropower_in_dnipro
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.27 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		UKS = {
+			set_temp_variable = { gdp_growth_temp = 1.5 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { inflation_temp = 1 }
+			econ_inflation_change = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_nuclear_station_in_zaporozhye
+	icon = GFX_focus_generic_nuclear_power
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_electricity_output
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_electricity_output
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.28 days = 3 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_tech = nuclear_technology_1
+				}
+			}
+			set_technology = { nuclear_technology_1 = 1 }
+		}
+		UKS = {
+			if = {
+				limit = {
+					NOT = {
+						has_tech = nuclear_technology_1
+					}
+				}
+				set_technology = { nuclear_technology_1 = 1 }
+			}	
+		}
+		200 = {
+			add_building_construction = {
+				type = nuclear_reactor
+				level = 2
+				instant_build = yes
+			}
+			set_state_category = megalopolis
+			set_temp_variable = { state_value_multiplier_temp = 1.5 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_fuck_you_nazi
+	icon = GFX_focus_GER_reinforce_nazism
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_colonize_eras_heritage
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_colonize_eras_heritage
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.74 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_weekly = yes
+		UKS = {
+			add_popularity = {
+				ideology = national_socialism
+				popularity = -0.15
+			}
+		}
+		FUK = {
+			add_popularity = {
+				ideology = national_socialism
+				popularity = -0.15
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_stop_exploit_farmers
+	icon = GFX_focus_BOV_every_farmer_a_chemist
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_fuck_you_nazi
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_fuck_you_nazi
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.77 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_weekly = yes
+		UKS = {
+			set_temp_variable = { income_tax_temp = -0.1 }
+			econ_income_tax_rate_change = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_we_arent_nazi
+	icon = GFX_focus_PRM_cleansing_russia
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_stop_exploit_farmers
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_stop_exploit_farmers
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.79 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_UKRAINE_add_rebuild_stab_weekly = yes
+		UKS = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.1
+			}
+		}
+		FUK = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_ukraine_heavy_industry
+	icon = GFX_focus_GNG_the_industrial_organization_ordinance
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_commune_and_cooperatives
+	}
+	prerequisite = {
+		focus = RUS_commie_nuclear_station_in_zaporozhye
+	}
+	prerequisite = {
+		focus = RUS_commie_black_soil
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_nuclear_station_in_zaporozhye
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.83 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		set_temp_variable = { gdp_growth_temp = 0.2 }
+		econ_gdp_growth_change = yes
+		UKS = {
+			set_temp_variable = { gdp_growth_temp = 0.8 }
+			econ_gdp_growth_change = yes
+			TNO_improve_industrial_expertise = yes
+			tno_improve_industrial_equipment = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_azovstal_plant
+	icon = GFX_focus_GNG_the_steel_belt
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_commune_and_cooperatives
+	}
+	prerequisite = {
+		focus = RUS_commie_nuclear_station_in_zaporozhye
+	}
+	prerequisite = {
+		focus = RUS_commie_black_soil
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_nuclear_station_in_zaporozhye
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.82 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_UKRAINE_add_rebuild_econ = yes
+		227 = {
+			set_state_category = metropolis
+			set_temp_variable = { state_value_multiplier_temp = 1.5 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		add_resource = {
+			type = steel
+			amount = 60
+			state = 227
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_take_ukraine_to_home
+	icon = GFX_focus_GNG_our_home_our_way_of_life
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	prerequisite = {
+		focus = RUS_commie_azovstal_plant
+	}
+	prerequisite = {
+		focus = RUS_commie_ukraine_heavy_industry
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RUS_commie_take_ukraine_to_home_trigger_tt
+			OR = {
+				AND = {
+					check_variable = { UKS.rc_stability_display > 90 }
+					check_variable = { UKS.rc_econ_display > 99 }
+				}
+				is_ai = yes
+			}
+		}
+	}
+	bypass = {
+		NOT = { has_global_flag = ukraine_is_russians }
+	}
+	relative_position_id = RUS_commie_nuclear_station_in_zaporozhye
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.29 days = 3 }
+		}
+		SWRW_take_ukr_to_home = yes
+		set_temp_variable = { gdp_growth_temp = 0.5 }
+		econ_gdp_growth_change = yes
+		SWRW_fopo_remove_rc_ukr_tab = yes
+		set_global_flag = take_ukr_to_home
+		set_temp_variable = { temp_law = token:RUS_reconstruction_ukr }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_reconstruct_caucasus
+	icon = GFX_focus_GER_assist_caucasia
+	cost = 3
+	ai_will_do = { factor = 1 }
+	x = 20
+	y = 9
+	prerequisite = {
+		focus = RUS_commie_reconstruct_and_develop
+	}
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	relative_position_id = RUS_commie_reconstruct_and_develop
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.84 days = 7 } }
+		set_country_flag = reconstruct_caucasus
+		custom_effect_tooltip = reconstruct_caucasus_tt
+		ADY = {
+			set_temp_variable = { income_tax_temp = 0.25 }
+			econ_income_tax_rate_change = yes
+			set_temp_variable = { business_tax_temp = 0.15 }
+			econ_business_tax_rate_change = yes
+			set_temp_variable = { sales_tax_temp = 0.1 }
+			econ_sales_tax_rate_change = yes
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_the_resource_in_caucasus
+	icon = GFX_focus_generic_our_available_resources
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_caucasus
+	}
+	relative_position_id = RUS_commie_reconstruct_caucasus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.85 days = 7 } }
+		add_resource = {
+			type = uranium
+			amount = 20
+			state = 227
+		}
+		add_resource = {
+			type = tungsten
+			amount = 22
+			state = 234
+		}
+		ADY = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.15 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+		set_temp_variable = { temp_law = token:RUS_reconstruction_resource }
+		TNO_add_assorted_law = yes
+	}
+}
+shared_focus = {
+	id = RUS_commie_sochi_tour
+	icon = GFX_focus_USA_hart_driver_clubs
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	prerequisite = {
+		focus = RUS_commie_reconstruct_caucasus
+	}
+	relative_position_id = RUS_commie_reconstruct_caucasus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.88 days = 7 } }
+		1558 = {
+			set_state_category = large_city
+			add_state_modifier = {
+				modifier = {
+					state_GDP_growth_modifier = 2
+					state_GDP_growth_factor_modifier = 0.15
+				}
+			}
+			set_temp_variable = { state_value_multiplier_temp = 2.5 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_sochi_olympic
+	icon = GFX_focus_MEX_olympic_dream
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_sochi_tour
+	}
+	relative_position_id = RUS_commie_sochi_tour
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.97 days = 7 } }
+		1558 = {
+			add_state_modifier = {
+				modifier = {
+					state_GDP_growth_modifier = 2
+					state_GDP_growth_factor_modifier = 0.15
+				}
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.2 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = 10 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_the_baku_oil
+	icon = GFX_NOV_repair_oil_fields
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_the_resource_in_caucasus
+	}
+	relative_position_id = RUS_commie_the_resource_in_caucasus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.86 days = 7 } }
+		229 = {
+			add_state_modifier = {
+				modifier = {
+					state_GDP_growth_modifier = 1
+					state_GDP_growth_factor_modifier = 0.15
+				}
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.5 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		1552 = {
+			set_state_category = large_city
+			add_state_modifier = {
+				modifier = {
+					state_GDP_growth_modifier = 2
+					state_GDP_growth_factor_modifier = 0.15
+				}
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.5 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_the_wealth_underground
+	icon = GFX_focus_USA_hart_the_answer_to_everything
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_the_baku_oil
+	}
+	relative_position_id = RUS_commie_the_baku_oil
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.89 days = 7 } }
+		ADY = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.15 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = ADY.GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.05 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_immigration_to_caucasus
+	icon = GFX_focus_USA_immigration_and_nationality_act
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_the_resource_in_caucasus
+	}
+	relative_position_id = RUS_commie_the_resource_in_caucasus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.90 days = 7 } }
+		1552 = { add_manpower = 200000 }
+		1558 = { add_manpower = 100000 }
+		229 = { add_manpower = 150000 }
+		ADY = {
+			set_temp_variable = { gdp_growth_temp = 2 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_caucasus_infrastructure
+	icon = GFX_focus_GNG_resettlement_packages
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_immigration_to_caucasus
+	}
+	relative_position_id = RUS_commie_immigration_to_caucasus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.96 days = 7 } }
+		ADY = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_to_temp_variable = { RUS.temp_econ_spending_amount = 0.25 }
+			}
+		}
+		multiply_temp_variable = { temp_econ_spending_amount = 1.03 }
+		econ_spend_money_once_effect_raw_money = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_how_much_nazi_here_is
+	icon = GFX_focus_GER_reform_fascism
+	cost = 2
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_caucasus
+	}
+	relative_position_id = RUS_commie_reconstruct_caucasus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.91 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = -10 }
+		SWRW_RUS_CAU_add_rebuild_stab_once = yes
+		set_temp_variable = { temp_law = token:RUS_reconstruction_antispy }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	id = RUS_commie_the_want_to_be_partisans
+	icon = GFX_focus_generic_unite_the_partisans
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_how_much_nazi_here_is
+	}
+	relative_position_id = RUS_commie_how_much_nazi_here_is
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.92 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_CAU_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	id = RUS_commie_but_we_have_more_experience
+	icon = GFX_focus_generic_global_anti_fascism
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_the_want_to_be_partisans
+	}
+	relative_position_id = RUS_commie_the_want_to_be_partisans
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.93 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_CAU_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}	
+	id = RUS_commie_how_much_coops_here_is
+	icon = GFX_focus_generic_anti_fascism
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_how_much_nazi_here_is
+	}
+	relative_position_id = RUS_commie_how_much_nazi_here_is
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.94 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_CAU_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_kill_these_unstable_people
+	icon = GFX_focus_generic_smash_fascism
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_how_much_coops_here_is
+	}
+	relative_position_id = RUS_commie_how_much_coops_here_is
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.95 days = 7 } }
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_CAU_add_rebuild_stab_weekly = yes
+	}
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_new_caucasus
+	icon = GFX_focus_GNG_civilization_on_the_river_personalist
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_sochi_olympic
+	}
+	prerequisite = {
+		focus = RUS_commie_kill_these_unstable_people
+	}
+	prerequisite = {
+		focus = RUS_commie_but_we_have_more_experience
+	}
+	prerequisite = {
+		focus = RUS_commie_caucasus_infrastructure
+	}
+	prerequisite = {
+		focus = RUS_commie_the_wealth_underground
+	}
+	relative_position_id = RUS_commie_sochi_olympic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.99 days = 7 } }
+		ADY = {
+			set_temp_variable = { gdp_growth_temp = 2 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+shared_focus = {
+	id = RUS_commie_the_great_caucasus
+	icon = GFX_NOV_rebuilding_caucasian_cities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_sochi_olympic
+	}
+	prerequisite = {
+		focus = RUS_commie_kill_these_unstable_people
+	}
+	prerequisite = {
+		focus = RUS_commie_but_we_have_more_experience
+	}
+	prerequisite = {
+		focus = RUS_commie_caucasus_infrastructure
+	}
+	prerequisite = {
+		focus = RUS_commie_the_wealth_underground
+	}
+	relative_position_id = RUS_commie_sochi_olympic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.98 days = 7 } }
+		ADY = {
+			set_temp_variable = { gdp_growth_temp = 2 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_CAU_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_take_caucasus_to_home
+	icon = GFX_focus_CAU_venue_tiflis
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_new_caucasus
+	}
+	prerequisite = {
+		focus = RUS_commie_the_great_caucasus
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RUS_commie_take_caucasus_to_home_trigger_tt
+			OR = {
+				AND = {
+					check_variable = { ADY.rc_stability_display > 90 }
+					check_variable = { ADY.rc_econ_display > 99 }
+				}
+				is_ai = yes
+			}
+		}
+	}
+
+	bypass = {
+		NOT = { has_global_flag = caucasian_is_russians }
+	}
+	relative_position_id = RUS_commie_the_great_caucasus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = { country_event = { id = SWRW_RUS.101 days = 7 } }
+		custom_effect_tooltip = RUS_commie_take_caucasus_to_home_tt
+		SWRW_take_cau_to_home = yes
+		SWRW_fopo_remove_rc_cau_tab = yes
+		set_global_flag = take_cau_to_home
+		set_temp_variable = { temp_law = token:RUS_reconstruction_newdays }
+		TNO_add_assorted_law = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_reconstruct_belarus
+	icon = GFX_NOV_future_of_belarus
+	cost = 3
+	ai_will_do = { factor = 1 }
+	x = -10
+	y = 7
+	prerequisite = {
+		focus = RUS_commie_reconstruct_and_develop
+	}
+	relative_position_id = RUS_commie_reconstruct_and_develop
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.47 days = 3 }
+		}
+		set_country_flag = reconstruct_belarus
+		custom_effect_tooltip  = reconstruct_belarus_tt
+		BLR = {
+			set_temp_variable = { income_tax_temp = 0.25 }
+			econ_income_tax_rate_change = yes
+			set_temp_variable = { business_tax_temp = 0.15 }
+			econ_business_tax_rate_change = yes
+			set_temp_variable = { sales_tax_temp = 0.1 }
+			econ_sales_tax_rate_change = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_front_line_to_german
+	icon = GFX_focus_GER_grand_cold_wall
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_belarus
+	}
+	relative_position_id = RUS_commie_reconstruct_belarus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.56 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_stab = yes
+		every_owned_state = {
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+				add_to_temp_variable = { RUS.temp_econ_spending_amount = 0.25 }
+			}
+		}
+		multiply_temp_variable = { temp_econ_spending_amount = 1.01 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_beautiful_land
+	icon = GFX_focus_USA_goldwater_the_enviromental_protection_agency
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_front_line_to_german
+	}
+	relative_position_id = RUS_commie_front_line_to_german
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.57 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_stab = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_BLR_add_rebuild_stab_weekly = yes
+		BLR = {
+			every_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.15
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_must_be_never_invade
+	icon = GFX_focus_USA_johnson_roof_over_ones_head
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_beautiful_land
+	}
+	relative_position_id = RUS_commie_beautiful_land
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.59 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		SWRW_RUS_BLR_add_rebuild_stab = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_BLR_add_rebuild_stab_weekly = yes
+
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_protect_the_country
+	icon = GFX_focus_USA_SAW_ramp_up_production
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_must_be_never_invade
+	}
+	relative_position_id = RUS_commie_must_be_never_invade
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.61 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		SWRW_RUS_BLR_add_rebuild_stab = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_BLR_add_rebuild_stab_weekly = yes
+		set_temp_variable = { gdp_growth_temp = 0.2 }
+		econ_gdp_growth_change = yes
+		BLR = {
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_the_bunker_line
+	icon = GFX_focus_USA_fort_alcatraz
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_front_line_to_german
+	}
+	relative_position_id = RUS_commie_front_line_to_german
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.58 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		SWRW_RUS_BLR_add_rebuild_stab = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_BLR_add_rebuild_stab_weekly = yes
+	}
+	2012 = {
+		add_building_construction = {
+			type = bunker
+			level = 5
+			instant_build = yes
+			province = 9274
+		}
+		add_building_construction = {
+			type = bunker
+			level = 5
+			instant_build = yes
+			province = 3366
+		}
+		add_building_construction = {
+			type = bunker
+			level = 5
+			instant_build = yes
+			province = 14556
+		}
+	}
+	1407 = {
+		add_building_construction = {
+			type = bunker
+			level = 5
+			instant_build = yes
+			province = 6359
+		}
+		add_building_construction = {
+			type = bunker
+			level = 5
+			instant_build = yes
+			province = 6306
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_the_military_must_be_prepared
+	icon = GFX_focus_GER_reichsamt_fur_militarforschung
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_the_bunker_line
+	}
+	relative_position_id = RUS_commie_the_bunker_line
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.60 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		SWRW_RUS_BLR_add_rebuild_stab = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_BLR_add_rebuild_stab_weekly = yes
+		tno_training_improve = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_first_shot_in_war
+	icon = GFX_focus_USA_goldwater_fighting_fascism_domestically
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_the_military_must_be_prepared
+	}
+	relative_position_id = RUS_commie_the_military_must_be_prepared
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.62 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		SWRW_RUS_BLR_add_rebuild_stab = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_BLR_add_rebuild_stab_weekly = yes
+		army_experience = 30
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_always_preparing
+	icon = GFX_focus_generic_prepare_the_troops
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_protect_the_country
+	}
+	prerequisite = {
+		focus = RUS_commie_first_shot_in_war
+	}
+	relative_position_id = RUS_commie_protect_the_country
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.63 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 3 }
+		SWRW_RUS_CAU_add_rebuild_stab = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.1 }
+		SWRW_RUS_CAU_add_rebuild_stab_weekly = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+		set_temp_variable = { temp_law = token:RUS_reconstruction_prepare_military }
+		TNO_add_assorted_law = yes
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_animal_husbandry_in_here
+	icon = GFX_focus_USA_hart_open_up_a_world
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_reconstruct_belarus
+	}
+	relative_position_id = RUS_commie_reconstruct_belarus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.48 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+
+		BLR = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+		TNO_improve_poverty_high = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_scale_up
+	icon = GFX_focus_USA_kirk_uproot_the_enemies
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_animal_husbandry_in_here
+	}
+	relative_position_id = RUS_commie_animal_husbandry_in_here
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.50 days = 3 }
+		}
+
+		BLR = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+		TNO_improve_poverty_high = yes
+		set_temp_variable = { temp_econ_spending_amount = 10 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_centrize_husbandry
+	icon = GFX_focus_USA_hart_take_a_rest
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_scale_up
+	}
+	relative_position_id = RUS_commie_scale_up
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.51 days = 3 }
+		}
+		BLR = {
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_modernize_husbandry
+	icon = GFX_focus_USA_hart_call_of_the_wild
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_centrize_husbandry
+	}
+	relative_position_id = RUS_commie_centrize_husbandry
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+
+		BLR = {
+			set_temp_variable = { gdp_growth_temp = 2.5 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { inflation_temp = 1.5 }
+			econ_inflation_change = yes
+		}
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.52 days = 3 }
+		}
+		set_temp_variable = { gdp_growth_temp = 0.05 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 0.1 }
+		econ_inflation_change = yes
+		set_temp_variable = { temp_econ_spending_amount = 5 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_wealth_in_belarus
+	icon = GFX_focus_USA_schlafly_expanding_the_arsenal
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_modernize_husbandry
+	}
+	prerequisite = {
+		focus = RUS_commie_natural_protect_zone
+	}
+	relative_position_id = RUS_commie_modernize_husbandry
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.55 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+		BLR = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.1 }
+			econ_GDP_boost_once_percentage = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_new_minsk
+	icon = GFX_NOV_free_the_universities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 3
+	prerequisite = {
+		focus = RUS_commie_reconstruct_belarus
+	}
+	relative_position_id = RUS_commie_reconstruct_belarus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.64 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+		1404 = {
+			set_state_category = megalopolis
+			add_state_modifier = {
+				modifier = {
+					state_GDP_growth_factor_modifier = 0.3
+				}
+			}
+		}
+		set_temp_variable = { gdp_growth_temp = 0.35 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_balance_develop
+	icon = GFX_focus_USA_hart_ink_and_skin
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_new_minsk
+	}
+	relative_position_id = RUS_commie_new_minsk
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.65 days = 3 }
+		}
+		BLR = {
+			TNO_improve_poverty_high = yes
+			hidden_effect = {
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+				TNO_improve_poverty_high = yes
+			}
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+		}
+		TNO_improve_poverty_high = yes
+		TNO_improve_poverty_high = yes
+		set_temp_variable = { gdp_growth_temp = 0.05 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_never_be_poor
+	icon = GFX_focus_USA_hart_new_blood
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_balance_develop
+	}
+	relative_position_id = RUS_commie_balance_develop
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.66 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+		BLR = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.1 }
+			econ_GDP_boost_once_percentage = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_museum_in_belarus
+	icon = GFX_focus_generic_study_history
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_animal_husbandry_in_here
+	}
+	relative_position_id = RUS_commie_animal_husbandry_in_here
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.49 days = 3 }
+		}
+		BLR = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.035 }
+			econ_GDP_boost_once_percentage = yes
+			add_stability = 0.1
+			add_war_support = 0.1
+		}
+		set_temp_variable = { temp_law = token:RUS_reconstruction_history_museum }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_remember_the_war
+	icon = GFX_focus_USA_hart_eo_34498
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_museum_in_belarus
+	}
+	relative_position_id = RUS_commie_museum_in_belarus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.53 days = 3 }
+		}
+		add_ideas = RUS_remember_the_war
+		BLR = { add_ideas = RUS_remember_the_war }
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_natural_protect_zone
+	icon = GFX_focus_USA_hart_alternative_movement
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_remember_the_war
+	}
+	relative_position_id = RUS_commie_remember_the_war
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.54 days = 3 }
+		}
+		BLR = {
+			every_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = -0.05
+					}
+				}
+			}
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.035 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.005 }
+		econ_GDP_boost_once_percentage = yes
+		set_temp_variable = { temp_law = token:RUS_reconstruction_nature_protect }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_shiny_new_belarus
+	icon = GFX_focus_GNG_the_engineers_paradise
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_never_be_poor
+	}
+	prerequisite = {
+		focus = RUS_commie_wealth_in_belarus
+	}
+	prerequisite = {
+		focus = RUS_commie_always_preparing
+	}
+	relative_position_id = RUS_commie_never_be_poor
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.68 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_BLR_add_rebuild_econ = yes
+		BLR = {
+			set_temp_variable = { temp_econ_GDP_boost_once_flat = 10 }
+			econ_GDP_boost_once_flat = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_great_new_belarus
+	icon = GFX_focus_USA_hart_the_democracy_mobile
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_never_be_poor
+	}
+	prerequisite = {
+		focus = RUS_commie_wealth_in_belarus
+	}
+	prerequisite = {
+		focus = RUS_commie_always_preparing
+	}
+	relative_position_id = RUS_commie_never_be_poor
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.67 days = 3 }
+		}
+		BLR = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_take_belarus_to_home
+	icon = GFX_NOV_promote_russian_culture
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_great_new_belarus
+	}
+	prerequisite = {
+		focus = RUS_commie_shiny_new_belarus
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RUS_commie_take_belarus_to_home_trigger_tt
+			OR = {
+				AND = {
+					check_variable = { BLR.rc_stability_display > 90 }
+					check_variable = { BLR.rc_econ_display > 99 }
+				}
+				is_ai = yes
+			}
+		}
+	}
+
+	relative_position_id = RUS_commie_great_new_belarus
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	bypass = {
+		NOT = { has_global_flag = belarus_is_russians }
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.69 days = 3 }
+		}
+		custom_effect_tooltip = RUS_commie_take_belarus_to_home_tt
+		SWRW_take_blr_to_home = yes
+		SWRW_fopo_remove_rc_blr_tab = yes
+		set_global_flag = take_blr_to_home
+	}
+}
+
+
+
+shared_focus = {
+	id = RUS_commie_reconstruct_baltic
+	icon = GFX_NOV_future_of_the_baltic
+	cost = 3
+	ai_will_do = { factor = 1 }
+	x = -20
+	y = 9
+	prerequisite = {
+		focus = RUS_commie_reconstruct_and_develop
+	}
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	relative_position_id = RUS_commie_reconstruct_and_develop
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_country_flag = reconstruct_baltic
+		custom_effect_tooltip  = reconstruct_baltic_tt
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.31 days = 3 }
+		}
+		UPO = {
+			set_temp_variable = { income_tax_temp = 0.25 }
+			econ_income_tax_rate_change = yes
+			set_temp_variable = { business_tax_temp = 0.15 }
+			econ_business_tax_rate_change = yes
+			set_temp_variable = { sales_tax_temp = 0.1 }
+			econ_sales_tax_rate_change = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_fishing_here
+	icon = GFX_focus_USA_right_to_water
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_reconstruct_baltic
+	}
+	relative_position_id = RUS_commie_reconstruct_baltic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.33 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		UPO = {
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_baltic_fishing_area
+	icon = GFX_focus_generic_fund_the_fisheries
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_fishing_here
+	}
+	relative_position_id = RUS_commie_fishing_here
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.40 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		UPO = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { inflation_temp = 0.5 }
+			econ_inflation_change = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_fish_days
+	icon = GFX_focus_ENG_OLD_best_of_english_food
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_baltic_fishing_area
+	}
+	relative_position_id = RUS_commie_baltic_fishing_area
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.41 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		set_temp_variable = { RUS_add_rebuild_var = -0.5 }
+		SWRW_RUS_OST_add_rebuild_stab = yes
+		UPO = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { inflation_temp = 0.5 }
+			econ_inflation_change = yes
+		}
+		set_temp_variable = { gdp_growth_temp = 0.15 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_touring_here
+	icon = GFX_focus_generic_tourism
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 2
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_fishing_here
+	}
+	relative_position_id = RUS_commie_fishing_here
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.42 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		UPO = {
+			every_owned_state = {
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.3
+					}
+				}
+			}
+		}
+		set_temp_variable = { temp_law = token:RUS_reconstruction_environment }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_riga_city
+	icon = GFX_focus_GNG_civilization_on_the_river_manchurian
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_touring_here
+	}
+	relative_position_id = RUS_commie_touring_here
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		1397 = {
+			set_state_category = megalopolis
+			set_temp_variable = { temp_state_value_addition = 0.5 }
+			econ_state_value_change_addition = yes
+		}
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.43 days = 3 }
+		}
+		UPO = {
+			set_temp_variable = { gdp_growth_temp = 2 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { inflation_temp = 2 }
+			econ_inflation_change = yes
+		}
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_fourty_years_tyranny
+	icon = GFX_focus_generic_tyranny_red
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_reconstruct_baltic
+	}
+	relative_position_id = RUS_commie_reconstruct_baltic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.32 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		SWRW_RUS_OST_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.2 }
+		SWRW_RUS_OST_add_rebuild_stab_weekly = yes
+		set_temp_variable = { temp_law = token:RUS_reconstruction_command }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_clean_forest_brothers
+	icon = GFX_NOV_the_final_strike
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -2
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_fourty_years_tyranny
+	}
+	relative_position_id = RUS_commie_fourty_years_tyranny
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.34 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		SWRW_RUS_OST_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		SWRW_RUS_OST_add_rebuild_stab_weekly = yes
+		UPO = {
+			add_stability = 0.05
+		}
+	}
+}
+
+
+shared_focus = {
+	id = RUS_commie_clean_nazi
+	icon = GFX_focus_GER_nazi_industrial_development
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_clean_forest_brothers
+	}
+	relative_position_id = RUS_commie_clean_forest_brothers
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.35 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		SWRW_RUS_OST_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		SWRW_RUS_OST_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_rebuild_identity
+	icon = GFX_NOV_assure_the_nation
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_fourty_years_tyranny
+	}
+	relative_position_id = RUS_commie_fourty_years_tyranny
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.36 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 2 }
+		SWRW_RUS_OST_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.15 }
+		SWRW_RUS_OST_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_you_are_freedom_nations_civ
+	icon = GFX_focus_USA_hart_breaking_the_hart_of_the_world
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_rebuild_identity
+	}
+	relative_position_id = RUS_commie_rebuild_identity
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.37 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 7 }
+		SWRW_RUS_OST_add_rebuild_stab_once = yes
+		set_temp_variable = { RUS_add_rebuild_var = 0.05 }
+		SWRW_RUS_OST_add_rebuild_stab_weekly = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_industry_in_baltic
+	icon = GFX_focus_generic_improving_factory_efficiency
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_reconstruct_baltic
+	}
+	relative_position_id = RUS_commie_reconstruct_baltic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.38 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		UPO = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.1 }
+			econ_GDP_boost_once_percentage = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_centrize_industry
+	icon = GFX_focus_GNG_paradise_lost
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_industry_in_baltic
+	}
+	relative_position_id = RUS_commie_industry_in_baltic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.39 days = 3 }
+		}
+		UPO = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+			econ_GDP_boost_once_percentage = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_baltic_navy_base
+	icon = GFX_focus_USA_hart_by_and_for
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 1
+	y = 2
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_clean_nazi
+	}
+	prerequisite = {
+		focus = RUS_commie_you_are_freedom_nations_civ
+	}
+	prerequisite = {
+		focus = RUS_commie_centrize_industry
+	}
+	prerequisite = {
+		focus = RUS_commie_fish_days
+	}
+	prerequisite = {
+		focus = RUS_commie_riga_city
+	}
+	relative_position_id = RUS_commie_industry_in_baltic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.45 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		UPO = {
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_baltic_tour_city
+	icon = GFX_focus_USA_hart_americanist_cities
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = -1
+	y = 2
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_clean_nazi
+	}
+	prerequisite = {
+		focus = RUS_commie_you_are_freedom_nations_civ
+	}
+	prerequisite = {
+		focus = RUS_commie_centrize_industry
+	}
+	prerequisite = {
+		focus = RUS_commie_fish_days
+	}
+	prerequisite = {
+		focus = RUS_commie_riga_city
+	}
+	relative_position_id = RUS_commie_industry_in_baltic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.44 days = 3 }
+		}
+		set_temp_variable = { RUS_add_rebuild_var = 5 }
+		SWRW_RUS_OST_add_rebuild_econ = yes
+		11 = {
+			set_state_category = metropolis
+		}
+		13 = {
+			set_state_category = metropolis
+		}
+		79 = {
+			set_state_category = metropolis
+		}
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_take_baltic_to_home
+	icon = GFX_focus_generic_democratic_unity
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 3
+	bypass = {
+		NOT = { has_global_flag = baltic_is_russians }
+	}
+	prerequisite = {
+		focus = RUS_commie_baltic_tour_city
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RUS_commie_take_baltic_to_home_trigger_tt
+			OR = {
+				AND = {
+					check_variable = { UPO.rc_stability_display > 90 }
+					check_variable = { UPO.rc_econ_display > 99 }
+				}
+				is_ai = yes
+			}
+		}
+	}
+
+	prerequisite = {
+		focus = RUS_commie_baltic_navy_base
+	}
+	relative_position_id = RUS_commie_industry_in_baltic
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		hidden_effect = {
+			country_event = { id = SWRW_RUS.46 days = 3 }
+		}
+		custom_effect_tooltip = RUS_commie_take_baltic_to_home_tt
+		SWRW_take_ost_to_home = yes
+		SWRW_fopo_remove_rc_ost_tab = yes
+		set_global_flag = take_ost_to_home
+		set_temp_variable = { temp_law = token:RUS_reconstruction_new_baltic }
+		TNO_add_assorted_law = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_oh_mother_russia
+	icon = GFX_NOV_Russian_Dream
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 2
+	prerequisite = {
+		focus = RUS_commie_take_baltic_to_home
+	}
+	prerequisite = {
+		focus = RUS_commie_take_belarus_to_home
+	}
+	prerequisite = {
+		focus = RUS_commie_take_caucasus_to_home
+	}
+	prerequisite = {
+		focus = RUS_commie_take_moscow_to_home
+	}
+	prerequisite = {
+		focus = RUS_commie_take_ukraine_to_home
+	}
+	relative_position_id = RUS_commie_take_moscow_to_home
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_commie_oh_mother_russia_tt
+		every_other_country = {
+			limit = {
+				is_in_faction_with = RUS
+			}
+			set_temp_variable = { gdp_growth_temp = 0.9 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { inflation_temp = -0.4 }
+			econ_inflation_change = yes
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.015 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		set_temp_variable = { gdp_growth_temp = 0.9 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = -0.4 }
+		econ_inflation_change = yes
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.015 }
+		econ_GDP_boost_once_percentage = yes
+	}
+}
+
+shared_focus = {
+	id = RUS_commie_union_and_strong
+	icon = GFX_focus_KOM_innovative_union
+	cost = 2
+	ai_will_do = { factor = 1 }
+	x = 0
+	y = 1
+	prerequisite = {
+		focus = RUS_commie_oh_mother_russia
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = RUS_commie_union_and_strong_trigger_tt
+			OR = {
+				AND = {
+					has_country_flag = RUS_soc_ended
+					has_country_flag = RUS_pol_ended
+					has_country_flag = RUS_eco_ended
+				}
+				
+				AND = {
+						NOT = {
+							has_country_leader = {
+								character = KOM_Ivan_Serov
+								ruling_only = yes
+							}
+						}
+					OR = {
+						has_government = national_socialism
+						has_government = ultranationalism
+						has_government = fascism
+						has_country_leader = {
+							character = MAG_Mikhail_Matkovsky
+							ruling_only = yes
+						}
+					}
+				}
+			}	
+		}
+	}
+	relative_position_id = RUS_commie_oh_mother_russia
+	allow_branch = {
+		has_country_flag = RUS_reconstruct_and_develop_started_commie
+	}
+	completion_reward = {
+		custom_effect_tooltip = RUS_commie_union_and_strong_tt
+		TNO_Country_Closing_Screen_Show = yes
+	}
+}

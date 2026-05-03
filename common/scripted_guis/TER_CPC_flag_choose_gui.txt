@@ -1,0 +1,39 @@
+scripted_gui = {
+	TER_CPC_flag_choose_gui = {
+		context_type = player_context
+		window_name = "TER_CPC_flag_choose_gui"
+		visible = {
+			has_country_flag = CPC_now_we_should_choose_our_flag
+		}
+
+		properties = {
+			flag_1 = { frame = CPC_flag_1_var }
+			flag_2 = { frame = CPC_flag_2_var }
+			flag_3 = { frame = CPC_flag_3_var }
+			name_1 = { frame = CPC_name_1_var }
+			name_2 = { frame = CPC_name_2_var }
+			name_3 = { frame = CPC_name_3_var }
+		}
+
+		triggers = {
+			confirm_btn_click_enabled = {
+				check_variable = { CPC_flag_1_var > 0 }
+				check_variable = { CPC_flag_2_var > 0 }
+				check_variable = { CPC_flag_3_var > 0 }
+				check_variable = { CPC_name_1_var > 0 }
+				check_variable = { CPC_name_2_var > 0 }
+				check_variable = { CPC_name_3_var > 0 }
+			}
+		}
+
+		effects = {
+			flag_1_click = { set_variable = { CPC_flag_1_var = 2 } set_variable = { CPC_flag_2_var = 1 } set_variable = { CPC_flag_3_var = 1 } }
+			flag_2_click = { set_variable = { CPC_flag_2_var = 2 } set_variable = { CPC_flag_1_var = 1 } set_variable = { CPC_flag_3_var = 1 } }
+			flag_3_click = { set_variable = { CPC_flag_3_var = 2 } set_variable = { CPC_flag_1_var = 1 } set_variable = { CPC_flag_2_var = 1 } }
+			name_1_click = { set_variable = { CPC_name_1_var = 2 } set_variable = { CPC_name_2_var = 1 } set_variable = { CPC_name_3_var = 1 } }
+			name_2_click = { set_variable = { CPC_name_2_var = 2 } set_variable = { CPC_name_1_var = 1 } set_variable = { CPC_name_3_var = 1 } }
+			name_3_click = { set_variable = { CPC_name_3_var = 2 } set_variable = { CPC_name_1_var = 1 } set_variable = { CPC_name_2_var = 1 } }
+			confirm_btn_click = { clr_country_flag = CPC_now_we_should_choose_our_flag }
+		}
+	}
+}

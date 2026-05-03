@@ -1,0 +1,6464 @@
+#We do a little trolling preparing the G R E A T   T R I A L
+
+add_namespace = OMS_Warprep
+add_namespace = OMS_Greattrial
+add_namespace = OMS_Post_unification
+add_namespace = OMS_unification_war
+add_namespace = OMS_great_trial
+add_namespace = OMS_great_stall
+add_namespace = OMS_Epilogue
+add_namespace = OMS_chemical_weapons_cooldown
+add_namespace = OMS_stability_chemical_weapons_cooldown
+add_namespace = OMS_forpol
+add_namespace = OMS_manchurian_skirmish
+add_namespace = OMS_more_flavor
+add_namespace = OMS_far_eastern
+add_namespace = SWRW_Omskmilestones
+
+country_event = { #Minutes to Midnight
+	id = OMS_Warprep.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.1"}
+	title = OMS_Warprep.1.t
+	desc = OMS_Warprep.1.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.1.a
+		ai_chance = { factor = 50 }
+	}
+}
+ 
+country_event = {
+	id = OMS_Warprep.2 #Shadow and steel
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.2"}
+	title = OMS_Warprep.2.t
+	desc = OMS_Warprep.2.desc
+	picture = GFX_event_pic_totalwar
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.2.a
+		ai_chance = { factor = 50 } 
+	}
+}
+
+country_event = {
+	id = OMS_Warprep.3 #Torch's blaze
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.3"}
+	title = OMS_Warprep.3.t
+	desc = OMS_Warprep.3.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.3.a
+		ai_chance = { factor = 50 } 
+	}
+}
+
+country_event = {
+	id = OMS_Warprep.4 #Motherland's blood
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.4"}
+	title = OMS_Warprep.4.t
+	desc = OMS_Warprep.4.desc
+	picture = GFX_event_pic_factory
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.4.a
+		ai_chance = { factor = 50 } 
+		add_manpower = -5000
+	}
+}
+
+country_event = {
+	id = OMS_Warprep.5 #posture our might
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.5"}
+	title = OMS_Warprep.5.t
+	desc = OMS_Warprep.5.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.5.a
+		ai_chance = { factor = 50 } 
+		GER = {
+			add_war_support = -0.15
+		}
+	}
+}
+country_event = {
+	id = OMS_Warprep.6 #activate the sleepers 
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.6"}
+	title = OMS_Warprep.6.t
+	desc = OMS_Warprep.6.desc
+	picture = GFX_event_pic_mortart
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.6.a
+		ai_chance = { factor = 50 } 
+		MCW = {
+			add_stability = -0.05
+			add_war_support = -0.05
+			add_manpower = -115
+			random_owned_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+		}
+		country_event = {
+			id = OMS_Warprep.7
+			days = 1
+		}
+	}
+}
+country_event = {
+	id = OMS_Warprep.7 #chernobog 1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.7"}
+	title = OMS_Warprep.7.t
+	desc = OMS_Warprep.7.desc
+	picture = GFX_event_pic_Germanpistol
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.7.a
+		ai_chance = { factor = 50 } 
+		MCW = {
+			add_war_support = -0.05
+			add_stability = -0.05
+			add_manpower = -79
+			random_owned_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+			random_owned_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+			random_owned_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+		}
+		country_event = {
+			id = OMS_Warprep.13
+			days = 1
+		}
+	}
+}
+	
+country_event = {
+	id = OMS_Warprep.8 #german response
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.8"}
+	title = OMS_Warprep.8.t
+	desc = OMS_Warprep.8.desc
+	picture = GFX_event_pic_the_kremlin_walls
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.8.a
+		ai_chance = { factor = 50 } 
+		country_event = {
+			id = OMS_Warprep.9
+		}
+	}
+}
+country_event = {
+	id = OMS_Warprep.9 #declined offer
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.9"}
+	title = OMS_Warprep.9.t
+	desc = OMS_Warprep.9.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.9.a
+		ai_chance = { factor = 50 } 
+		add_war_support = 0.05
+	}
+}
+country_event = {
+	id = OMS_Warprep.10 #waking moment
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.10"}
+	title = OMS_Warprep.10.t
+	desc = OMS_Warprep.10.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.10.a
+		ai_chance = { factor = 50 } 
+		 
+		}
+}
+country_event = {
+	id = OMS_Warprep.11 #torwards midnight
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.11"}
+	title = OMS_Warprep.11.t
+	desc = OMS_Warprep.11.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.11.a
+		ai_chance = { factor = 50 } 
+	}
+}
+country_event = {
+	id = OMS_Warprep.12 #heavens fall
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.12"}
+	title = OMS_Warprep.12.t
+	desc = OMS_Warprep.12.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.12.a
+		ai_chance = { factor = 50 } 
+	}
+}
+country_event = {
+	id = OMS_Warprep.13 #chernobog 2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.13"}
+	title = OMS_Warprep.13.t
+	desc = OMS_Warprep.13.desc
+	picture = GFX_event_pic_TrainStation
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.13.a
+		ai_chance = { factor = 50 } 
+		GER = {
+			add_stability = -0.05
+			add_war_support = 0.05
+			add_manpower = -185
+			50 = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+		}
+		country_event = {
+			id = OMS_Warprep.14
+			days = 1
+		}	
+	}
+}
+country_event = {
+	id = OMS_Warprep.14 #chernobog 3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.14"}
+	title = OMS_Warprep.14.t
+	desc = OMS_Warprep.14.desc
+	picture = GFX_event_pic_burning_house
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.14.a
+		ai_chance = { factor = 50 } 
+		 UKR = {
+			add_stability = -0.10
+			add_manpower = -98
+			218 = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+			random_owned_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+			random_owned_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+		}
+		country_event = {
+			id = OMS_Warprep.15
+			days = 1
+		}
+	}
+}
+country_event = {
+	id = OMS_Warprep.15 #chernobog 4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.15"}
+	title = OMS_Warprep.15.t
+	desc = OMS_Warprep.15.desc
+	picture = GFX_event_pic_OmskOffice2
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.15.a
+		ai_chance = { factor = 50 }
+		CAU = {
+			add_stability = -0.10
+			add_manpower = -543
+			234 = {
+				damage_building = {
+					type = infrastructure
+					damage = 3
+				}
+			}
+			1552 = {
+				damage_building = {
+					type = infrastructure
+					damage = 3
+				}
+			}
+			229 = {
+				damage_building = {
+					type = infrastructure
+					damage = 3
+				}
+			}
+		}
+		country_event = {
+			id = OMS_Warprep.16
+			days = 1
+		}
+	}
+}
+country_event = {
+	id = OMS_Warprep.16 #chernobog 5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Warprep.16"}
+	title = OMS_Warprep.16.t
+	desc = OMS_Warprep.16.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Warprep.16.a
+		ai_chance = { factor = 50 } 
+		GER = {
+			add_stability = -0.1
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				news_event = {
+					id = OMS_news.1
+					days = 1
+				}
+			}
+		}
+	}
+}
+	
+news_event = {
+	id = OMS_Greattrial.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Greattrial.1"}
+	title = OMS_Greattrial.1.t
+	desc = OMS_Greattrial.1.desc
+	picture = GFX_news_event_omsk_declaration
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Greattrial.1.a
+		trigger = {
+			tag = OMS
+		}
+	}
+
+	option = {
+		name = OMS_Greattrial.1.b
+		trigger = {
+			tag = GER
+		}
+	}
+
+	option = {
+		name = OMS_Greattrial.1.c
+		trigger = {
+			NOT = {
+				tag = OMS
+				tag = GER
+			}
+		}
+	}
+}
+country_event = { # A Black Siberia
+	id = OMS_Post_unification.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.1"}
+	title = OMS_Post_unification.1.t
+	desc = OMS_Post_unification.1.desc
+	picture = GFX_event_pic_spetznaz_house_raid
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.1.a
+	}
+}
+country_event = { # An Atmosphere of Silence
+	id = OMS_Post_unification.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.2"}
+	title = OMS_Post_unification.2.t
+	desc = OMS_Post_unification.2.desc
+	picture = GFX_event_pic_russian_graveyard
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.2.a
+	}
+}
+country_event = { # Teach Them Hate 
+   id = OMS_Post_unification.4
+   immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.4"}
+   title = OMS_Post_unification.4.t
+   desc = OMS_Post_unification.4.desc
+   picture = GFX_event_pic_russia_germany_cold_war
+
+   is_triggered_only = yes
+
+   option = {
+	   	name = OMS_Post_unification.4.a
+   }
+}
+country_event = { # A Slight Divergence
+	id = OMS_Post_unification.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.5"}
+	title = OMS_Post_unification.5.t
+	desc = OMS_Post_unification.5.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.5.a
+	}
+}
+country_event = { # Some Never Grow Old
+	id = OMS_Post_unification.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.6"}
+	title = OMS_Post_unification.6.t
+	desc = OMS_Post_unification.6.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.6.a
+	}
+}
+country_event = { # The Gears Grind On
+	id = OMS_Post_unification.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.7"}
+	title = OMS_Post_unification.7.t
+	desc = OMS_Post_unification.7.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.7.a
+	}
+}
+country_event = { # Costs of Victory
+	id = OMS_Post_unification.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.8"}
+	title = OMS_Post_unification.8.t
+	desc = OMS_Post_unification.8.desc
+	picture = GFX_event_pic_YazovOlder
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.8.a
+	}
+}
+country_event = { # Name, Age, and Place of Birth
+	id = OMS_Post_unification.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.9"}
+	title = OMS_Post_unification.9.t
+	desc = OMS_Post_unification.9.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.9.a
+	}
+}
+country_event = { # For All to See
+	id = OMS_Post_unification.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.10"}
+	title = OMS_Post_unification.10.t
+	desc = OMS_Post_unification.10.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.10.a
+	}
+}
+country_event = { # We Are Ready
+	id = OMS_Post_unification.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.11"}
+	title = OMS_Post_unification.11.t
+	desc = OMS_Post_unification.11.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.11.a
+	}
+}
+country_event = { # All for One
+	id = OMS_Post_unification.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.12"}
+	title = OMS_Post_unification.12.t
+	desc = OMS_Post_unification.12.desc
+	picture = GFX_event_pic_AllForOne
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.12.a
+	}
+}
+country_event = { # Numbers Don't Lie
+	id = OMS_Post_unification.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.13"}
+	title = OMS_Post_unification.13.t
+	desc = OMS_Post_unification.13.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.13.a
+	}
+}
+country_event = { # On Minefields
+	id = OMS_Post_unification.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.14"}
+	title = OMS_Post_unification.14.t
+	desc = OMS_Post_unification.14.desc
+	picture = GFX_event_pic_On_Mines
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.14.a
+	}
+}
+country_event = { # The Men on the Front
+	id = OMS_Post_unification.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.15"}
+	title = OMS_Post_unification.15.t
+	desc = OMS_Post_unification.15.desc
+	picture = GFX_event_pic_OmskOffice2
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.15.a
+	}
+}
+country_event = { # A Pain Beyond Pain
+	id = OMS_Post_unification.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.16"}
+	title = OMS_Post_unification.16.t
+	desc = OMS_Post_unification.16.desc
+	picture = GFX_event_pic_PainBeyondPain
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.16.a
+	}
+}
+country_event = { # Free Loaders
+	id = OMS_Post_unification.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.17"}
+	title = OMS_Post_unification.17.t
+	desc = OMS_Post_unification.17.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.17.a
+	}
+}
+country_event = { # Separate the Wheat from the Chaff
+	id = OMS_Post_unification.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.18"}
+	title = OMS_Post_unification.18.t
+	desc = OMS_Post_unification.18.desc
+	picture = GFX_event_pic_Separating_the_Wheat
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.18.a
+	}
+}
+country_event = { # More For The Soldiers
+	id = OMS_Post_unification.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.19"}
+	title = OMS_Post_unification.19.t
+	desc = OMS_Post_unification.19.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.19.a
+	}
+}
+country_event = { # The Men in the Factories
+	id = OMS_Post_unification.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.20"}
+	title = OMS_Post_unification.20.t
+	desc = OMS_Post_unification.20.desc
+	picture = GFX_event_pic_pamplhlet
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.20.a
+	}
+}
+country_event = { # Expand the Bunkers West
+	id = OMS_Post_unification.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.21"}
+	title = OMS_Post_unification.21.t
+	desc = OMS_Post_unification.21.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.21.a
+	}
+}
+country_event = { # Dig Deeper
+	id = OMS_Post_unification.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.22"}
+	title = OMS_Post_unification.22.t
+	desc = OMS_Post_unification.22.desc
+	picture = GFX_event_pic_On_Mines
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.22.a
+	}
+}
+country_event = { # More Ears on the Border
+	id = OMS_Post_unification.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.23"}
+	title = OMS_Post_unification.23.t
+	desc = OMS_Post_unification.23.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.23.a
+	}
+}
+country_event = { # Under Lock and Key
+	id = OMS_Post_unification.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.24"}
+	title = OMS_Post_unification.24.t
+	desc = OMS_Post_unification.24.desc
+	picture = GFX_event_pic_UnderLockandKEy
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.24.a
+	}
+}
+country_event = { # Fortresses Among the Tundra
+	id = OMS_Post_unification.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.25"}
+	title = OMS_Post_unification.25.t
+	desc = OMS_Post_unification.25.desc
+	picture = GFX_event_pic_Tundra
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.25.a
+	}
+}
+country_event = { # The T.V's will Run Black
+	id = OMS_Post_unification.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.26"}
+	title = OMS_Post_unification.26.t
+	desc = OMS_Post_unification.26.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.26.a
+	}
+}
+country_event = { # A Justified Military Reclamation
+	id = OMS_Post_unification.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.27"}
+	title = OMS_Post_unification.27.t
+	desc = OMS_Post_unification.27.desc
+	picture = GFX_event_pic_A_Justified_Millitary_Reclamation
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.27.a
+	}
+}
+country_event = { # This Is My Shovel
+	id = OMS_Post_unification.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.28"}
+	title = OMS_Post_unification.28.t
+	desc = OMS_Post_unification.28.desc
+	picture = GFX_event_pic_shovel
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.28.a
+	}
+}
+country_event = { # Little Eyes, Little Ears
+	id = OMS_Post_unification.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.29"}
+	title = OMS_Post_unification.29.t
+	desc = OMS_Post_unification.29.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.29.a
+	}
+}
+country_event = { # True League Comrades
+	id = OMS_Post_unification.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.30"}
+	title = OMS_Post_unification.30.t
+	desc = OMS_Post_unification.30.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.30.a
+	}
+}
+country_event = { # Great Russian Murals
+	id = OMS_Post_unification.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.31"}
+	title = OMS_Post_unification.31.t
+	desc = OMS_Post_unification.31.desc
+	picture = GFX_event_pic_Mural
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.31.a
+	}
+}
+country_event = { # A Safe Frontline
+	id = OMS_Post_unification.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.32"}
+	title = OMS_Post_unification.32.t
+	desc = OMS_Post_unification.32.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.32.a
+	}
+}
+country_event = { # Burn Evidence, Burn Witnesses
+	id = OMS_Post_unification.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.33"}
+	title = OMS_Post_unification.33.t
+	desc = OMS_Post_unification.33.desc
+	picture = GFX_event_pic_BurnEvidence
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.33.a
+	}
+}
+country_event = { # The Weaponization of Social Progress
+	id = OMS_Post_unification.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.34"}
+	title = OMS_Post_unification.34.t
+	desc = OMS_Post_unification.34.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.34.a
+	}
+}
+country_event = { # An Ear in Every Room
+	id = OMS_Post_unification.36
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.36"}
+	title = OMS_Post_unification.36.t
+	desc = OMS_Post_unification.36.desc
+	picture = GFX_event_pic_Ears
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.36.a
+	}
+}
+
+country_event = { # Produce Only What You Need
+	id = OMS_Post_unification.37
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.37"}
+	title = OMS_Post_unification.37.t
+	desc = OMS_Post_unification.37.desc
+	picture = GFX_event_pic_factory
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.37.a
+	}
+}
+
+country_event = { # Acceptance is Defeat
+	id = OMS_Post_unification.38
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.38"}
+	title = OMS_Post_unification.38.t
+	desc = OMS_Post_unification.38.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.38.a
+	}
+}
+
+country_event = { # Goodbyes at Fifteen
+ 	id = OMS_Post_unification.39
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Post_unification.39"}
+	title = OMS_Post_unification.39.t
+	desc = OMS_Post_unification.39.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_Post_unification.39.a
+	}
+}
+
+ # Omsk does a little unifying 
+
+country_event = {
+	id = OMS_unification_war.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification.1"}
+	title = OMS_unification_war.1.t
+	desc = OMS_unification_war.1.desc
+	picture = GFX_event_pic_OMS_vagner1
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_unification_war.1.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.2"}
+	title = OMS_unification_war.2.t
+	desc = OMS_unification_war.2.desc
+	picture = GFX_event_pic_OMS_vagner2
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_unification_war.2.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.3"}
+	title =  OMS_unification_war.3.t
+	desc =  OMS_unification_war.3.desc
+	picture = GFX_event_pic_OMS_zhukov
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.3.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.4"}
+	title =  OMS_unification_war.4.t
+	desc =  OMS_unification_war.4.desc
+	picture = GFX_event_pic_OMS_tukh
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.4.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.5"}
+	title =  OMS_unification_war.5.t
+	desc =  OMS_unification_war.5.desc
+	picture = GFX_event_pic_OMS_komi_centrism
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.5.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.6"}
+	title =  OMS_unification_war.6.t
+	desc =  OMS_unification_war.6.desc
+	picture = GFX_event_pic_OMS_staffy
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.6.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.7"}
+	title =  OMS_unification_war.7.t
+	desc =  OMS_unification_war.7.desc
+	picture = GFX_event_pic_OMS_gumi
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.7.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.8"}
+	title =  OMS_unification_war.8.t
+	desc =  OMS_unification_war.8.desc
+	picture = GFX_event_pic_OMS_tabby
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.8.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.9"}
+	title =  OMS_unification_war.9.t
+	desc =  OMS_unification_war.9.desc
+	picture = GFX_event_pic_OMS_serov
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.9.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.10"}
+	title =  OMS_unification_war.10.t
+	desc =  OMS_unification_war.10.desc
+	picture = GFX_event_pic_OMS_bukharina
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.10.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.11"}
+	title =  OMS_unification_war.11.t
+	desc =  OMS_unification_war.11.desc
+	picture = GFX_event_pic_OMS_suslov
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.11.a
+	}
+}
+ 
+country_event = {
+	id = OMS_unification_war.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.12"}
+	title =  OMS_unification_war.12.t
+	desc =  OMS_unification_war.12.desc
+	picture = GFX_event_pic_OMS_zhdanov
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.12.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.13"}
+	title =  OMS_unification_war.13.t
+	desc =  OMS_unification_war.13.desc
+	picture = GFX_event_pic_OMS_vyatka
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.13.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.14"}
+	title =  OMS_unification_war.14.t
+	desc =  OMS_unification_war.14.desc
+	picture = GFX_event_pic_OMS_bunyachenko
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.14.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.15"}
+	title =  OMS_unification_war.15.t
+	desc =  OMS_unification_war.15.desc
+	picture = GFX_event_pic_OMS_zykov
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.15.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.16"}
+	title =  OMS_unification_war.16.t
+	desc =  OMS_unification_war.16.desc
+	picture = GFX_event_pic_OMS_oktan
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.16.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.17"}
+	title =  OMS_unification_war.17.t
+	desc =  OMS_unification_war.17.desc
+	picture = GFX_event_pic_OMS_tomsk
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.17.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.18"}
+	title =  OMS_unification_war.18.t
+	desc =  OMS_unification_war.18.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.18.a
+	}
+}
+
+country_event = {
+	id = OMS_unification_war.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.19"}
+	title =  OMS_unification_war.19.t
+	desc =  OMS_unification_war.19.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.19.a
+	}
+}
+ 
+country_event = { # Bukharinist Sablin cap 
+	id = OMS_unification_war.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.20"}
+	title =  OMS_unification_war.20.t
+	desc =  OMS_unification_war.20.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.20.a
+	}
+}
+
+country_event = { # Wholesome Sablin Cap
+	id = OMS_unification_war.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.21"}
+	title =  OMS_unification_war.21.t
+	desc =  OMS_unification_war.21.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.21.a
+	}
+}
+
+country_event = { #Amur Cap
+	id = OMS_unification_war.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.22"}
+	title =  OMS_unification_war.22.t
+	desc =  OMS_unification_war.22.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.22.a
+	}
+}
+
+country_event = { # Werbell Cap
+	id = OMS_unification_war.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.23"}
+	title =  OMS_unification_war.23.t
+	desc =  OMS_unification_war.23.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.23.a
+	}
+}
+
+country_event = { # Novosibirsk Cap Shuk
+	id = OMS_unification_war.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.24"}
+	title =  OMS_unification_war.24.t
+	desc =  OMS_unification_war.24.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.24.a
+	}
+}
+
+country_event = { # Novosibirsk Cap Pork
+	id = OMS_unification_war.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.25"}
+	title =  OMS_unification_war.25.t
+	desc =  OMS_unification_war.25.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.25.a
+	}
+}
+
+country_event = { # SBA Liberal (ew) 
+	id = OMS_unification_war.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.26"}
+	title =  OMS_unification_war.26.t
+	desc =  OMS_unification_war.26.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.26.a
+	}
+}
+
+country_event = { # Tomsk
+	id = OMS_unification_war.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.27"}
+	title =  OMS_unification_war.27.t
+	desc =  OMS_unification_war.27.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.27.a
+	}
+}
+
+country_event = { # Kemerovo Lydia
+	id = OMS_unification_war.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.28"}
+	title =  OMS_unification_war.28.t
+	desc =  OMS_unification_war.28.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.28.a
+	}
+}
+
+country_event = { # Kemerovo (Yuri)
+	id = OMS_unification_war.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.29"}
+	title =  OMS_unification_war.29.t
+	desc =  OMS_unification_war.29.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.29.a
+	}
+}
+
+country_event = { # Chita (Mil)
+	id = OMS_unification_war.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.30"}
+	title =  OMS_unification_war.30.t
+	desc =  OMS_unification_war.30.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.30.a
+	}
+}
+
+country_event = { # Chita Mikhail
+	id = OMS_unification_war.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.31"}
+	title =  OMS_unification_war.31.t
+	desc =  OMS_unification_war.31.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.31.a
+	}
+}
+
+country_event = { # Magadan Petlin
+	id = OMS_unification_war.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.32"}
+	title =  OMS_unification_war.32.t
+	desc =  OMS_unification_war.32.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.32.a
+	}
+}
+
+country_event = { # Magadan Mat
+	id = OMS_unification_war.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.33"}
+	title =  OMS_unification_war.33.t
+	desc =  OMS_unification_war.33.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.33.a
+	}
+}
+country_event = { # Despot Stalina
+	id = OMS_unification_war.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.34"}
+	title =  OMS_unification_war.34.t
+	desc =  OMS_unification_war.34.desc
+	picture = GFX_event_pic_OMS_stalina
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.34.a
+	}
+}
+country_event = { # SBA auth (BASED)
+	id = OMS_unification_war.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_unification_war.35"}
+	title =  OMS_unification_war.35.t
+	desc =  OMS_unification_war.35.desc
+	picture = GFX_event_pic_OMS_yagoda
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_unification_war.35.a
+	}
+}
+
+# Russian initial victory in manchurian skirmish
+country_event = {
+	id = OMS_manchurian_skirmish.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_manchurian_skirmish.1"}
+	
+	is_triggered_only = yes
+	hidden = yes
+	timeout_days = 0
+
+	option = {
+		name = OMS_manchurian_skirmish.1.a
+		OMS = {
+			transfer_state = 1364
+			transfer_state = 657
+			transfer_state = 1646
+			transfer_state = 409
+			transfer_state = 1644
+			add_state_core = 1364
+			add_state_core = 657
+			add_state_core = 1646
+			add_state_core = 409
+			add_state_core = 1644
+		}
+		MAN = {
+			add_ai_strategy = {
+				type = front_unit_request
+				id = OMS
+				value = 200
+			}
+		}
+		1364 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		657 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		1646 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		#country_event = {
+		#	id = OMS_manchurian_skirmish.2
+		#	days = 14
+		#}
+		OMS = {
+			activate_mission = operation_alekseyev_cooldown
+		}
+	}
+}
+
+## Allow Manchuria to strike back
+#country_event = {
+#	id = OMS_manchurian_skirmish.2
+#	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_manchurian_skirmish.2"}
+#	
+#	is_triggered_only = yes
+#	hidden = yes
+#	timeout_days = 0
+#
+#	option = {
+#		name = OMS_manchurian_skirmish.2.a
+#		MAN = {
+#			set_variable = { MAN_attack_allowed = 1 }
+#		}
+#	}
+#}
+#
+# Manchuria victory in Skirmish
+country_event = {
+	id = OMS_manchurian_skirmish.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_manchurian_skirmish.3"}
+
+	is_triggered_only = yes
+	hidden = yes
+	timeout_days = 0
+
+	option = {
+		name = OMS_manchurian_skirmish.3.a
+		clr_global_flag = operation_alekseyev_ongoing
+		every_country = {
+			limit = { is_ai = no }
+			news_event = WORLD.41050
+		}
+		MAN = {
+			transfer_state = 1364
+			transfer_state = 657
+			transfer_state = 1646
+			transfer_state = 409
+			transfer_state = 1644
+		}
+		OMS = {
+			unlock_national_focus = OMS_deport_the_collaborators
+		}
+		1364 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
+			}
+		}
+		657 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
+			}
+		}
+		1646 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
+			}
+		}
+	}
+}
+
+# Russian victory in Skirmish
+country_event = {
+	id = OMS_manchurian_skirmish.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_manchurian_skirmish.4"}
+
+	is_triggered_only = yes
+	hidden = yes
+	timeout_days = 0
+
+	option = {
+		name = OMS_manchurian_skirmish.4.a
+		clr_global_flag = operation_alekseyev_ongoing
+		every_country = {
+			limit = { is_ai = no }
+			news_event = WORLD.41049
+		}
+		OMS = {
+			set_country_flag = OMS_conquered_man_flag
+		}
+		1364 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
+			}
+		}
+		657 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
+			}
+		}
+		1646 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.1 # A True War Economy
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.1"}
+	title =  OMS_great_trial.1.t
+	desc =  OMS_great_trial.1.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.1.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.2 # Anja
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.2"}
+	title =  OMS_great_trial.2.t
+	desc =  OMS_great_trial.2.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.2.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.3 # A Culture of Pillage
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.3"}
+	title =  OMS_great_trial.3.t
+	desc =  OMS_great_trial.3.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.3.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.4 # Only a Matter of Time
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.4"}
+	title =  OMS_great_trial.4.t
+	desc =  OMS_great_trial.4.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.4.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.5 # Bested Again by the Aryan
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.5"}
+	title =  OMS_great_trial.5.t
+	desc =  OMS_great_trial.5.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.5.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.6 # Hold the Line
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.6"}
+	title =  OMS_great_trial.6.t
+	desc =  OMS_great_trial.6.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.6.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.7 # Whatever it takes
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.7"}
+	title =  OMS_great_trial.7.t
+	desc =  OMS_great_trial.7.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.7.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.8 # No Dissident
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.8"}
+	title =  OMS_great_trial.8.t
+	desc =  OMS_great_trial.8.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.8.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.9 # No Death is Meaningless
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.9"}
+	title =  OMS_great_trial.9.t
+	desc =  OMS_great_trial.9.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.9.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.10 # No Wreckers
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.10"}
+	title =  OMS_great_trial.10.t
+	desc =  OMS_great_trial.10.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.10.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.11 # A Few Questions
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.11"}
+	title =  OMS_great_trial.11.t
+	desc =  OMS_great_trial.11.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.11.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.12 # A Youth’s Mission
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.12"}
+	title =  OMS_great_trial.12.t
+	desc =  OMS_great_trial.12.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.12.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.14 # What's Left
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.14"}
+	title =  OMS_great_trial.14.t
+	desc =  OMS_great_trial.14.desc
+	picture = GFX_event_pic_mosin
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.14.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.15 # Ersatz Blitzkrieg
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.15"}
+	title =  OMS_great_trial.15.t
+	desc =  OMS_great_trial.15.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.15.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.16 # Accept Nothing
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.16"}
+	title =  OMS_great_trial.16.t
+	desc =  OMS_great_trial.16.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name =  OMS_great_trial.16.a
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.17 # Military Grade
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.17"}
+	title = OMS_great_trial.17.t
+	desc = OMS_great_trial.17.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.17.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.18 # Echo In The Wind
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.18"}
+	title = OMS_great_trial.18.t
+	desc = OMS_great_trial.18.desc
+	picture = GFX_event_pic_ruins
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.18.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.19 # Those Who Fought For Love
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.19"}
+	title = OMS_great_trial.19.t
+	desc = OMS_great_trial.19.desc
+	picture = GFX_event_pic_Corpse
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.19.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.20 # Our Eternal War
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.20"}
+	title = OMS_great_trial.20.t
+	desc = OMS_great_trial.20.desc
+	picture = GFX_event_pic_Yazov2
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.20.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.21 # Misgiven Trust
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.21"}
+	title = OMS_great_trial.21.t
+	desc = OMS_great_trial.21.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.21.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.22 # Minesweepers
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.22"}
+	title = OMS_great_trial.22.t
+	desc = OMS_great_trial.22.desc
+	picture = GFX_news_event_eastern_front_german_troops
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.22.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.23 # Battle on the Ice
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.23"}
+	title = OMS_great_trial.23.t
+	desc = OMS_great_trial.23.desc
+	picture = GFX_event_pic_moscow_destoryed
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.23.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.24 # The Glavkoverkh Speaks
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.24"}
+	title = OMS_great_trial.24.t
+	desc = OMS_great_trial.24.desc
+	picture = GFX_event_pic_moscow_destoryed
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.24.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.25 # A Letter Of Intent
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.25"}
+	title = OMS_great_trial.25.t
+	desc = OMS_great_trial.25.desc
+	picture = GFX_report_event_RUS_letter
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.25.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.26 # A Rude Awakening
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.26"}
+	title = OMS_great_trial.26.t
+	desc = OMS_great_trial.26.desc
+	picture = GFX_event_pic_Tundra
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.26.a
+		ai_chance = { factor = 50 }
+		hidden_effect = {
+			country_event = { 
+				id = OMS_great_trial.27
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.27 # If You Gaze Into The Abyss...
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.27"} 
+	title = OMS_great_trial.27.t
+	desc = OMS_great_trial.27.desc
+	picture = GFX_event_pic_guy
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.27.a
+		ai_chance = { factor = 50 }
+		hidden_effect = {
+			country_event = {
+				id = OMS_great_trial.28
+				days = 7
+			}
+		}
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.28 # ...The Abyss Will Gaze Back
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.28"}
+	title = OMS_great_trial.28.t
+	desc = OMS_great_trial.28.desc
+	picture = GFX_event_pic_guy_even_worse
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.28.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.29 # Arise, Motherland Of Mine!
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.29"}
+	title = OMS_great_trial.29.t
+	desc = OMS_great_trial.29.desc
+	picture = GFX_news_event_eastern_front_german_troops
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_great_trial.29.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.30 # Purpose in Hate
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.30"}
+	title = OMS_great_trial.30.t
+	desc = OMS_great_trial.30.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.30.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.31 # The End Rimes
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.31"}
+	title = OMS_great_trial.31.t
+	desc = OMS_great_trial.31.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.31.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.33 # The Liberation of Volgograd
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.33"}
+	title = OMS_great_trial.33.t
+	desc = OMS_great_trial.33.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.33.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.34 # Ashes to Ashes
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.34"}
+	title = OMS_great_trial.34.t
+	desc = OMS_great_trial.34.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.34.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.35 # A Rude Awakening
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.35"}
+	title = OMS_great_trial.35.t
+	desc = OMS_great_trial.35.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.35.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.36 # The Streets of Moscow Run Red
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.36"}
+	title = OMS_great_trial.36.t
+	desc = OMS_great_trial.36.desc
+	picture = GFX_event_pic_tvsrunred
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.36.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.37 # The Second Day of the Rope
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.37"}
+	title = OMS_great_trial.37.t
+	desc = OMS_great_trial.37.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.37.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.38 # There Will Come Soft Fog...
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.38"}
+	title = OMS_great_trial.38.t
+	desc = OMS_great_trial.38.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.38.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.39 # ...And Bringeth The Taste of Metal
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.39"}
+	title = OMS_great_trial.39.t
+	desc = OMS_great_trial.39.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.39.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.40 # Nothingness Under the Earth
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.40"}
+	title = OMS_great_trial.40.t
+	desc = OMS_great_trial.40.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.40.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.41 # The Riot
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.41"}
+	title = OMS_great_trial.41.t
+	desc = OMS_great_trial.41.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.41.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.42 # The Finale
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.42"}
+	title = OMS_great_trial.42.t
+	desc = OMS_great_trial.42.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.42.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.43 # Time was running thin on Oleg
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.43"}
+	title = OMS_great_trial.43.t
+	desc = OMS_great_trial.43.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.43.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_trial.44 # The Yellow City
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_great_trial.44"}
+	title = OMS_great_trial.44.t
+	desc = OMS_great_trial.44.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_trial.44.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.1 #A Weary Beast
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.1" }
+	title = OMS_great_stall.1.t
+	desc = OMS_great_stall.1.desc
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.1.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_great_stall.2 days = 2 } }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.2 #And An Uncomfortable Reality
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.2" }
+	title = OMS_great_stall.2.t
+	desc = OMS_great_stall.2.desc
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.2.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_great_stall.3 days = 2 } }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.3 #The Wells Run Dry
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.3" }
+	title = OMS_great_stall.3.t
+	desc = OMS_great_stall.3.desc
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.3.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_great_stall.4 days = 2 } }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.4 #The Engine Sputters
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.4" }
+	title = OMS_great_stall.4.t
+	desc = OMS_great_stall.4.desc
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.4.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_great_stall.5 days = 2 } }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.5 #The Engine Stops
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.5" }
+	title = OMS_great_stall.5.t
+	desc = OMS_great_stall.5.desc
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.5.a
+		ai_chance = { factor = 50 }
+		set_country_flag = OMS_great_stall_active
+		mark_focus_tree_layout_dirty = yes
+		add_ideas = OMS_the_great_stall_idea_1
+		hidden_effect = {
+			news_event = { id = OMS_News.2 days = 1 }
+		}
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.6 #A True Believer
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.6" }
+	title = OMS_great_stall.6.t
+	desc = OMS_great_stall.6.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.6.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_great_stall.7 days = 3 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.7 #Diamonds in the Rough
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.7" }
+	title = OMS_great_stall.7.t
+	desc = OMS_great_stall.7.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.7.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.8" }
+	title = OMS_great_stall.8.t
+	desc = OMS_great_stall.8.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.8.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.9" }
+	title = OMS_great_stall.9.t
+	desc = OMS_great_stall.9.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.9.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.10" }
+	title = OMS_great_stall.10.t
+	desc = OMS_great_stall.10.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.10.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.11" }
+	title = OMS_great_stall.11.t
+	desc = OMS_great_stall.11.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.11.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.12" }
+	title = OMS_great_stall.12.t
+	desc = OMS_great_stall.12.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.12.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.13" }
+	title = OMS_great_stall.13.t
+	desc = OMS_great_stall.13.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.13.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.14" }
+	title = OMS_great_stall.14.t
+	desc = OMS_great_stall.14.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.14.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.15
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.15" }
+	title = OMS_great_stall.15.t
+	desc = OMS_great_stall.15.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.15.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.16
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.16" }
+	title = OMS_great_stall.16.t
+	desc = OMS_great_stall.16.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.16.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.17
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.17" }
+	title = OMS_great_stall.17.t
+	desc = OMS_great_stall.17.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.17.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.18
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.18" }
+	title = OMS_great_stall.18.t
+	desc = OMS_great_stall.18.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.18.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.19
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.19" }
+	title = OMS_great_stall.19.t
+	desc = OMS_great_stall.19.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.19.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_great_stall.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_great_stall.20" }
+	title = OMS_great_stall.20.t
+	desc = OMS_great_stall.20.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_great_stall.20.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+
+
+#####Epilogue
+country_event = {
+	id = OMS_Epilogue.1 # LIght from the East
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Epilogue.1"}
+	title = OMS_Epilogue.1.t
+	desc = OMS_Epilogue.1.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_Epilogue.1.a
+		ai_chance = { factor = 50 }
+	}
+}
+country_event = {
+	id = OMS_Epilogue.2 # Cries_from_the_ash
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Epilogue.2"}
+	title = OMS_Epilogue.2.t
+	desc = OMS_Epilogue.2.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_Epilogue.2.a
+		ai_chance = { factor = 50 }
+	}
+}
+country_event = {
+	id = OMS_Epilogue.3 # Cries_from_the_ash
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Epilogue.3"}
+	title = OMS_Epilogue.3.t
+	desc = OMS_Epilogue.3.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_Epilogue.3.a
+		ai_chance = { factor = 50 }
+	}
+}
+country_event = {
+	id = OMS_Epilogue.4 # Cries_from_the_ash
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Epilogue.4"}
+	title = OMS_Epilogue.4.t
+	desc = OMS_Epilogue.4.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_Epilogue.4.a
+		ai_chance = { factor = 50 }
+	}
+}
+country_event = {
+	id = OMS_Epilogue.5 # Cries_from_the_ash
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_Epilogue.5"}
+	title = OMS_Epilogue.5.t
+	desc = OMS_Epilogue.5.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_Epilogue.5.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_chemical_weapons_cooldown.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_chemical_weapons_cooldown.1" }
+	title = OMS_chemical_weapons_cooldown.1.t
+	desc = OMS_chemical_weapons_cooldown.1.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_chemical_weapons_cooldown.1.a
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_1_cooldown
+	}
+}
+
+country_event = {
+	id = OMS_chemical_weapons_cooldown.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_chemical_weapons_cooldown.2" }
+	title = OMS_chemical_weapons_cooldown.2.t
+	desc = OMS_chemical_weapons_cooldown.2.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_chemical_weapons_cooldown.2.a
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_2_cooldown
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+	}
+}
+
+country_event = {
+	id = OMS_chemical_weapons_cooldown.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_chemical_weapons_cooldown.3" }
+	title = OMS_chemical_weapons_cooldown.3.t
+	desc = OMS_chemical_weapons_cooldown.3.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_chemical_weapons_cooldown.3.a
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_3_cooldown
+		add_to_variable = { OMS_chemical_weapons_gui_research_speed = 0.03 }
+	}
+}
+
+country_event = {
+	id = OMS_chemical_weapons_cooldown.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_chemical_weapons_cooldown.4" }
+	title = OMS_chemical_weapons_cooldown.4.t
+	desc = OMS_chemical_weapons_cooldown.4.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_chemical_weapons_cooldown.4.a
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_4_cooldown
+		set_country_flag = OMS_chemical_weapons_gui_effect_button_4_already_clicked
+
+		if = {
+			limit = { has_idea = OMS_spetsgruppa_chemical_training }
+			swap_ideas = {
+				remove_idea = OMS_spetsgruppa_chemical_training
+				add_idea = OMS_spetsgruppa_chemical_training_2
+			}
+		}
+	}
+}
+
+country_event = {
+	id = OMS_chemical_weapons_cooldown.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_chemical_weapons_cooldown.5" }
+	title = OMS_chemical_weapons_cooldown.5.t
+	desc = OMS_chemical_weapons_cooldown.5.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_chemical_weapons_cooldown.5.a
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_5_cooldown
+		set_country_flag = OMS_chemical_weapons_gui_effect_button_5_already_clicked
+
+		if = {
+			limit = { check_variable = { OMS_chemical_weapons_gui_current_stage < 2 } }
+			set_temp_variable = { pus_temp = 2 }
+			econ_pus_change = yes
+		}
+		else_if = {
+			limit = { check_variable = { OMS_chemical_weapons_gui_current_stage = 2 } }
+			set_temp_variable = { pus_temp = 4 }
+			econ_pus_change = yes
+		}
+	}
+}
+
+country_event = {
+	id = OMS_chemical_weapons_cooldown.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_chemical_weapons_cooldown.6" }
+	title = OMS_chemical_weapons_cooldown.6.t
+	desc = OMS_chemical_weapons_cooldown.6.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_chemical_weapons_cooldown.6.a
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_6_cooldown
+		set_country_flag = OMS_chemical_weapons_gui_effect_button_6_already_clicked
+	}
+}
+
+country_event = {
+	id = OMS_chemical_weapons_cooldown.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_chemical_weapons_cooldown.7" }
+	title = OMS_chemical_weapons_cooldown.7.t
+	desc = OMS_chemical_weapons_cooldown.7.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_chemical_weapons_cooldown.7.a
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_7_cooldown
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_4_already_clicked
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_5_already_clicked
+		clr_country_flag = OMS_chemical_weapons_gui_effect_button_6_already_clicked
+
+		set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = -60 }
+		set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = -60 }
+		OMS_chemical_weapons_gui_stability_change = yes
+
+		add_to_variable = { OMS_chemical_weapons_gui_current_stage = 1 }
+		set_temp_variable = { OMS_chemical_weapons_gui_stockpile_limit_change = 25 }
+		OMS_chemical_weapons_gui_stockpile_limit_change = yes
+		
+	}
+}
+
+
+##########################
+### stability cooldown ###
+##########################
+# set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = 5 }
+# set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = 5 }
+# OMS_chemical_weapons_gui_stability_change = yes
+# set_temp_variable = { pus_temp = 4 }
+# econ_pus_change = yes
+
+country_event = {
+	id = OMS_stability_chemical_weapons_cooldown.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_stability_chemical_weapons_cooldown.1" }
+	title = OMS_stability_chemical_weapons_cooldown.1.t
+	desc = OMS_stability_chemical_weapons_cooldown.1.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_stability_chemical_weapons_cooldown.1.a
+		clr_country_flag = OMS_stability_chemical_weapons_gui_effect_button_1_cooldown
+		set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = 25 }
+ 		set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = 25 }
+ 		OMS_chemical_weapons_gui_stability_change = yes
+	}
+}
+
+country_event = {
+	id = OMS_stability_chemical_weapons_cooldown.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_stability_chemical_weapons_cooldown.2" }
+	title = OMS_stability_chemical_weapons_cooldown.2.t
+	desc = OMS_stability_chemical_weapons_cooldown.2.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_stability_chemical_weapons_cooldown.2.a
+		clr_country_flag = OMS_stability_chemical_weapons_gui_effect_button_2_cooldown
+ 		set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = 15 }
+ 		OMS_chemical_weapons_gui_stability_change = yes
+
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+	}
+}
+
+country_event = {
+	id = OMS_stability_chemical_weapons_cooldown.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_stability_chemical_weapons_cooldown.3" }
+	title = OMS_stability_chemical_weapons_cooldown.3.t
+	desc = OMS_stability_chemical_weapons_cooldown.3.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_stability_chemical_weapons_cooldown.3.a
+		clr_country_flag = OMS_stability_chemical_weapons_gui_effect_button_3_cooldown
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+
+		set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = 15 }
+ 		OMS_chemical_weapons_gui_stability_change = yes
+	}
+}
+
+country_event = {
+	id = OMS_stability_chemical_weapons_cooldown.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_stability_chemical_weapons_cooldown.4" }
+	title = OMS_stability_chemical_weapons_cooldown.4.t
+	desc = OMS_stability_chemical_weapons_cooldown.4.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_stability_chemical_weapons_cooldown.4.a
+		clr_country_flag = OMS_stability_chemical_weapons_gui_effect_button_4_cooldown
+
+		set_temp_variable = { OMS_chemical_weapons_gui_biologic_stability_change = 15 }
+ 		OMS_chemical_weapons_gui_stability_change = yes
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+	}
+}
+
+country_event = {
+	id = OMS_stability_chemical_weapons_cooldown.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_stability_chemical_weapons_cooldown.5" }
+	title = OMS_stability_chemical_weapons_cooldown.5.t
+	desc = OMS_stability_chemical_weapons_cooldown.5.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_stability_chemical_weapons_cooldown.5.a
+		clr_country_flag = OMS_stability_chemical_weapons_gui_effect_button_5_cooldown
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+
+		set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = 15 }
+ 		OMS_chemical_weapons_gui_stability_change = yes
+
+	}
+}
+
+country_event = {
+	id = OMS_stability_chemical_weapons_cooldown.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_stability_chemical_weapons_cooldown.6" }
+	title = OMS_stability_chemical_weapons_cooldown.6.t
+	desc = OMS_stability_chemical_weapons_cooldown.6.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_stability_chemical_weapons_cooldown.6.a
+		clr_country_flag = OMS_stability_chemical_weapons_gui_effect_button_6_cooldown
+		
+		set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = 15 }
+ 		OMS_chemical_weapons_gui_stability_change = yes
+
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+	}
+}
+
+country_event = {
+	id = OMS_stability_chemical_weapons_cooldown.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_stability_chemical_weapons_cooldown.7" }
+	title = OMS_stability_chemical_weapons_cooldown.7.t
+	desc = OMS_stability_chemical_weapons_cooldown.7.desc
+
+	is_triggered_only = yes
+	hidden = yes
+
+	option = {
+		name = OMS_stability_chemical_weapons_cooldown.7.a
+		clr_country_flag = OMS_stability_chemical_weapons_gui_effect_button_7_cooldown
+
+		add_political_power = 50
+		set_temp_variable = { OMS_chemical_weapons_gui_chemical_stability_change = 25 }
+ 		OMS_chemical_weapons_gui_stability_change = yes
+		
+	}
+}
+
+###########################################################################################################3
+
+country_event = { #
+	id = OMS_forpol.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.1" }
+	title = OMS_forpol.1.t
+	desc = OMS_forpol.1.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.1.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.2" }
+	title = OMS_forpol.2.t
+	desc = OMS_forpol.2.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.2.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.3" }
+	title = OMS_forpol.3.t
+	desc = OMS_forpol.3.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.3.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.4" }
+	title = OMS_forpol.4.t
+	desc = OMS_forpol.4.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.4.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.5" }
+	title = OMS_forpol.5.t
+	desc = OMS_forpol.5.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.5.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.6" }
+	title = OMS_forpol.6.t
+	desc = OMS_forpol.6.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.6.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.7" }
+	title = OMS_forpol.7.t
+	desc = OMS_forpol.7.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.7.a
+		ai_chance = { factor = 1 }
+		
+	}
+
+	option = { #
+		name = OMS_forpol.7.b
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.8" }
+	title = OMS_forpol.8.t
+	desc = OMS_forpol.8.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.8.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.9" }
+	title = OMS_forpol.9.t
+	desc = OMS_forpol.9.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.9.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.10" }
+	title = OMS_forpol.10.t
+	desc = OMS_forpol.10.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.10.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.11" }
+	title = OMS_forpol.11.t
+	desc = OMS_forpol.11.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.11.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.12" }
+	title = OMS_forpol.12.t
+	desc = OMS_forpol.12.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.12.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.13" }
+	title = OMS_forpol.13.t
+	desc = OMS_forpol.13.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.13.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.14" }
+	title = OMS_forpol.14.t
+	desc = OMS_forpol.14.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.14.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.15
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.15" }
+	title = OMS_forpol.15.t
+	desc = OMS_forpol.15.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.15.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.16
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.16" }
+	title = OMS_forpol.16.t
+	desc = OMS_forpol.16.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.16.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.17
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.17" }
+	title = OMS_forpol.17.t
+	desc = OMS_forpol.17.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.17.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.18
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.18" }
+	title = OMS_forpol.18.t
+	desc = OMS_forpol.18.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.18.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.19
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.19" }
+	title = OMS_forpol.19.t
+	desc = OMS_forpol.19.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.19.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = OMS_forpol.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_forpol.20" }
+	title = OMS_forpol.20.t
+	desc = OMS_forpol.20.desc
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = OMS_forpol.20.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.1 # What Must Return
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.1" }
+	title = OMS_more_flavor.1.t
+	desc = OMS_more_flavor.1.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.1.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.2 # A Plan to Execute
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.2" }
+	title = OMS_more_flavor.2.t
+	desc = OMS_more_flavor.2.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.2.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.3 # Casual Talk Before A Mission
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.3" }
+	title = OMS_more_flavor.3.t
+	desc = OMS_more_flavor.3.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.3.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.4 # In The Gray Area
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.4" }
+	title = OMS_more_flavor.4.t
+	desc = OMS_more_flavor.4.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.4.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.5 # Birds That Cried, Birds That Whistled
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.5" }
+	title = OMS_more_flavor.5.t
+	desc = OMS_more_flavor.5.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.5.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.6 # A Form of Traffic Control
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.6" }
+	title = OMS_more_flavor.6.t
+	desc = OMS_more_flavor.6.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.6.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.7 # Scandalous, No?
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.7" }
+	title = OMS_more_flavor.7.t
+	desc = OMS_more_flavor.7.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.7.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.8 # Gone With A Whisper
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.8" }
+	title = OMS_more_flavor.8.t
+	desc = OMS_more_flavor.8.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.8.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.9 # The Work Doesn’t End Here!
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.9" }
+	title = OMS_more_flavor.9.t
+	desc = OMS_more_flavor.9.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.9.a
+		ai_chance = { factor = 50 }
+		hidden_effect = {
+			every_country = { limit = { is_ai = no } news_event = WORLD.41047 }
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.10 # An Untold Night
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.10" }
+	title = OMS_more_flavor.10.t
+	desc = OMS_more_flavor.10.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.10.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { # BLACK ALERT - GLAVKOVERKH'S EYES ONLY ofn cps invasion
+	id = OMS_more_flavor.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.11" }
+	title = OMS_more_flavor.11.t
+	desc = OMS_more_flavor.11.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.11.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.12 # The League's Special Brew
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.12" }
+	title = OMS_more_flavor.12.t
+	desc = OMS_more_flavor.12.desc
+	picture = GFX_report_event_OMS_special_brew
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.12.a
+		ai_chance = { factor = 50 }
+		
+		set_technology = {
+			infantry_equipment_chemical_0 = 1
+		}
+		#create_equipment_variant = {
+		#	name = "Experimental Chemical Weapons"
+		#	type = infantry_equipment_chem_3
+		#}
+		#add_equipment_production = {
+		#	equipment = {
+		#		type = infantry_equipment_chem_3
+		#	}
+		#}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.13 # Near Misses
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.13" }
+	title = OMS_more_flavor.13.t
+	desc = OMS_more_flavor.13.desc
+	picture = GFX_report_event_OMS_near_misses
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.13.a
+		ai_chance = { factor = 50 }
+		set_technology = {
+			SRBM = 1
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.14 # Object 416 Test Results
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.14" }
+	title = OMS_more_flavor.14.t
+	desc = OMS_more_flavor.14.desc
+	picture = GFX_report_event_OMS_object_416_results
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.14.a
+		ai_chance = { factor = 50 }
+		set_temp_variable = { pus_temp = -2 }
+		econ_pus_change = yes
+		587 = {
+			add_manpower = -124000
+			set_temp_variable = { temp_state_value_addition = -4 }
+			econ_state_value_change_addition = yes
+			set_temp_variable = { gdp_growth_temp = -1 }
+			econ_gdp_growth_change = yes
+		}
+		585 = {
+			add_manpower = -11454
+		}
+		1802 = {
+			add_manpower = -10897
+		}
+		402 = {
+			add_manpower = -12453
+		}
+		add_state_core = 750
+		add_state_core = 584
+		add_state_core = 585
+		add_state_core = 1468
+		add_state_core = 405
+		add_state_core = 586
+		add_state_core = 1466
+		add_state_core = 732
+		add_state_core = 742
+		add_state_core = 1467
+		add_state_core = 587
+		add_state_core = 1802
+		add_state_core = 1803
+		add_state_core = 589
+		add_state_core = 2194
+		add_state_core = 2202
+		add_state_core = 2195
+		add_state_core = 2196
+		add_state_core = 2201
+		add_state_core = 2197
+		add_state_core = 2198
+		add_state_core = 2199
+		add_state_core = 2200
+		add_state_core = 2203
+		add_state_core = 2204
+		add_state_core = 2205
+		TNO_worsen_poverty_low = yes
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.15 # Report on the AN416 Incident
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.15" }
+	title = OMS_more_flavor.15.t
+	desc = OMS_more_flavor.15.desc
+	picture = GFX_report_event_OMS_an416
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.15.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.16 # Report on the Glavkoverkh Bomb
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.16" }
+	title = OMS_more_flavor.16.t
+	desc = OMS_more_flavor.16.desc
+	picture = GFX_report_event_OMS_an416
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.16.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.17 # AN416 Inciden
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.17" }
+	title = OMS_more_flavor.17.t
+	desc = OMS_more_flavor.17.desc
+	picture = GFX_report_event_OMS_an416
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.17.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.18 # Report From Menshikovgrad
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.18" }
+	title = OMS_more_flavor.18.t
+	desc = OMS_more_flavor.18.desc
+	picture = GFX_report_event_OMS_NBC_soldiers
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.18.a
+		ai_chance = { factor = 50 }
+		FIN = {
+			every_core_state = {
+				add_core_of = OMS
+			}
+		}
+		722 = { set_variable = { nationality = 151 } }
+		1724 = { set_variable = { nationality = 151 } }
+		147 = { set_variable = { nationality = 151 } }
+		150 = { set_variable = { nationality = 151 } }
+		145 = { set_variable = { nationality = 151 } }
+
+		1719 = { add_manpower = -50000 }
+		1716 = { add_manpower = -5000 }
+		1715 = { add_manpower = -150000 }
+		1714 = { add_manpower = -50000 }
+		111 = { add_manpower = -100000 }
+
+		402 = { add_manpower = -50000 }
+		583 = { add_manpower = -50000 }
+		1807 = { add_manpower = -50000 }
+		590 = { add_manpower = -50000 }
+
+		1806 = { add_manpower = 50000 }
+		404 = { add_manpower = 200000 }
+		587 = { add_manpower = 100000 }
+		586 = { add_manpower = 100000 }
+		406 = { add_manpower = 100000 }
+		584 = { add_manpower = 100000 }
+
+		add_to_temp_array = { fuckupgdp = 1719 }
+		add_to_temp_array = { fuckupgdp = 1717 }
+		add_to_temp_array = { fuckupgdp = 1715 }
+		add_to_temp_array = { fuckupgdp = 1714 }
+		add_to_temp_array = { fuckupgdp = 111 }
+		add_to_temp_array = { fuckupgdp = 402 }
+		add_to_temp_array = { fuckupgdp = 583 }
+		add_to_temp_array = { fuckupgdp = 1807 }
+		add_to_temp_array = { fuckupgdp = 590 }
+		add_to_temp_array = { fuckupgdp = 1806 }
+		add_to_temp_array = { fuckupgdp = 1806 }
+		add_to_temp_array = { fuckupgdp = 404 }
+		add_to_temp_array = { fuckupgdp = 587 }
+		add_to_temp_array = { fuckupgdp = 586 }
+		add_to_temp_array = { fuckupgdp = 406 }
+		add_to_temp_array = { fuckupgdp = 584 }
+
+		for_each_loop = {
+			array = fuckupgdp
+			value = v
+			set_temp_variable = { maxfuckupgdp = v.state_value }
+			divide_temp_variable = { maxfuckupgdp = 1.5 }
+			set_temp_variable = {
+				var = random_num
+				min = 0
+				max = maxfuckupgdp
+			}
+			multiply_temp_variable = { random_num = -1 }
+			set_temp_variable = { temp_state_value_addition = var:random_num }
+			econ_state_value_change_addition = yes
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.19 # Project Reports: CT-60 & OT-60M
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.19" }
+	title = OMS_more_flavor.19.t
+	desc = OMS_more_flavor.19.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.19.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.20 # Opening Salvo
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.20" }
+	title = OMS_more_flavor.20.t
+	desc = OMS_more_flavor.20.desc
+	picture = GFX_report_event_OMS_opening_salvo
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.20.a
+		trigger = {
+			tag = OMS
+		}
+		
+		effect_tooltip = {
+			GER = {
+				set_temp_variable = { pus_temp = -1 }
+				econ_pus_change = yes
+				add_manpower = -217
+				5 = {
+					damage_building = {
+						type = infrastructure
+						damage = 2
+					}
+				}
+			}
+		}
+		custom_effect_tooltip = OMS_the_time_is_now
+		#custom_effect_tooltip = OMS_activate_weapons
+	}
+	option = {
+		name = OMS_more_flavor.20.a
+		trigger = {
+			tag = GER
+		}
+		GER = {
+			set_temp_variable = { pus_temp = -1 }
+			econ_pus_change = yes
+			add_manpower = -217
+			5 = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.21
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.21" }
+	title = OMS_more_flavor.21.t
+	desc = OMS_more_flavor.21.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.21.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.22
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.22" }
+	title = OMS_more_flavor.22.t
+	desc = OMS_more_flavor.22.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.22.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.23
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.23" }
+	title = OMS_more_flavor.23.t
+	desc = OMS_more_flavor.23.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.23.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.24
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.24" }
+	title = OMS_more_flavor.24.t
+	desc = OMS_more_flavor.24.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.24.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.25
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.25" }
+	title = OMS_more_flavor.25.t
+	desc = OMS_more_flavor.25.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.25.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.26
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.26" }
+	title = OMS_more_flavor.26.t
+	desc = OMS_more_flavor.26.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.26.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.27
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.27" }
+	title = OMS_more_flavor.27.t
+	desc = OMS_more_flavor.27.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.27.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.28
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.28" }
+	title = OMS_more_flavor.28.t
+	desc = OMS_more_flavor.28.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.28.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.29
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.29" }
+	title = OMS_more_flavor.29.t
+	desc = OMS_more_flavor.29.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.29.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.30
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.30" }
+	title = OMS_more_flavor.30.t
+	desc = OMS_more_flavor.30.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.30.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.31
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.31" }
+	title = OMS_more_flavor.31.t
+	desc = OMS_more_flavor.31.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.31.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.32
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.32" }
+	title = OMS_more_flavor.32.t
+	desc = OMS_more_flavor.32.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.32.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.33
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.33" }
+	title = OMS_more_flavor.33.t
+	desc = OMS_more_flavor.33.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.33.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.34
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.34" }
+	title = OMS_more_flavor.34.t
+	desc = OMS_more_flavor.34.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.34.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.35
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.35" }
+	title = OMS_more_flavor.35.t
+	desc = OMS_more_flavor.35.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.35.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.36
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.36" }
+	title = OMS_more_flavor.36.t
+	desc = OMS_more_flavor.36.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.36.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.37
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.37" }
+	title = OMS_more_flavor.37.t
+	desc = OMS_more_flavor.37.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.37.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.38
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.38" }
+	title = OMS_more_flavor.38.t
+	desc = OMS_more_flavor.38.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.38.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.39
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.39" }
+	title = OMS_more_flavor.39.t
+	desc = OMS_more_flavor.39.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.39.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.40
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.40" }
+	title = OMS_more_flavor.40.t
+	desc = OMS_more_flavor.40.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.40.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.41
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.41" }
+	title = OMS_more_flavor.41.t
+	desc = OMS_more_flavor.41.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.41.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.42
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.42" }
+	title = OMS_more_flavor.42.t
+	desc = OMS_more_flavor.42.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.42.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.43
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.43" }
+	title = OMS_more_flavor.43.t
+	desc = OMS_more_flavor.43.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.43.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.44
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.44" }
+	title = OMS_more_flavor.44.t
+	desc = OMS_more_flavor.44.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.44.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.45
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.45" }
+	title = OMS_more_flavor.45.t
+	desc = OMS_more_flavor.45.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.45.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.46
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.46" }
+	title = OMS_more_flavor.46.t
+	desc = OMS_more_flavor.46.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.46.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.47
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.47" }
+	title = OMS_more_flavor.47.t
+	desc = OMS_more_flavor.47.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.47.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.48
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.48" }
+	title = OMS_more_flavor.48.t
+	desc = OMS_more_flavor.48.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.48.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.49
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.49" }
+	title = OMS_more_flavor.49.t
+	desc = OMS_more_flavor.49.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.49.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.50
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.50" }
+	title = OMS_more_flavor.50.t
+	desc = OMS_more_flavor.50.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.50.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.51
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.51" }
+	title = OMS_more_flavor.51.t
+	desc = OMS_more_flavor.51.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.51.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.52
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.52" }
+	title = OMS_more_flavor.52.t
+	desc = OMS_more_flavor.52.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.52.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.53
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.53" }
+	title = OMS_more_flavor.53.t
+	desc = OMS_more_flavor.53.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.53.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.54
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.54" }
+	title = OMS_more_flavor.54.t
+	desc = OMS_more_flavor.54.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.54.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.55
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.55" }
+	title = OMS_more_flavor.55.t
+	desc = OMS_more_flavor.55.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.55.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.56
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.56" }
+	title = OMS_more_flavor.56.t
+	desc = OMS_more_flavor.56.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.56.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.57
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.57" }
+	title = OMS_more_flavor.57.t
+	desc = OMS_more_flavor.57.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.57.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.58
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.58" }
+	title = OMS_more_flavor.58.t
+	desc = OMS_more_flavor.58.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.58.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.59
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.59" }
+	title = OMS_more_flavor.59.t
+	desc = OMS_more_flavor.59.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.59.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.60
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.60" }
+	title = OMS_more_flavor.60.t
+	desc = OMS_more_flavor.60.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.60.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.61
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.61" }
+	title = OMS_more_flavor.61.t
+	desc = OMS_more_flavor.61.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.61.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.62
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.62" }
+	title = OMS_more_flavor.62.t
+	desc = OMS_more_flavor.62.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.62.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.63
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.63" }
+	title = OMS_more_flavor.63.t
+	desc = OMS_more_flavor.63.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.63.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.64
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.64" }
+	title = OMS_more_flavor.64.t
+	desc = OMS_more_flavor.64.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.64.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.65
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.65" }
+	title = OMS_more_flavor.65.t
+	desc = OMS_more_flavor.65.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.65.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.66
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.66" }
+	title = OMS_more_flavor.66.t
+	desc = OMS_more_flavor.66.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.66.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.67
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.67" }
+	title = OMS_more_flavor.67.t
+	desc = OMS_more_flavor.67.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.67.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.68
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.68" }
+	title = OMS_more_flavor.68.t
+	desc = OMS_more_flavor.68.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.68.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.69
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.69" }
+	title = OMS_more_flavor.69.t
+	desc = OMS_more_flavor.69.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.69.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.70
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.70" }
+	title = OMS_more_flavor.70.t
+	desc = OMS_more_flavor.70.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.70.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.71
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.71" }
+	title = OMS_more_flavor.71.t
+	desc = OMS_more_flavor.71.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.71.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.72
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.72" }
+	title = OMS_more_flavor.72.t
+	desc = OMS_more_flavor.72.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.72.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.73
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.73" }
+	title = OMS_more_flavor.73.t
+	desc = OMS_more_flavor.73.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.73.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.74
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.74" }
+	title = OMS_more_flavor.74.t
+	desc = OMS_more_flavor.74.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.74.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.75
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.75" }
+	title = OMS_more_flavor.75.t
+	desc = OMS_more_flavor.75.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.75.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.76
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.76" }
+	title = OMS_more_flavor.76.t
+	desc = OMS_more_flavor.76.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.76.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.77
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.77" }
+	title = OMS_more_flavor.77.t
+	desc = OMS_more_flavor.77.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.77.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.78
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.78" }
+	title = OMS_more_flavor.78.t
+	desc = OMS_more_flavor.78.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.78.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.79
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.79" }
+	title = OMS_more_flavor.79.t
+	desc = OMS_more_flavor.79.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.79.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.80
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.80" }
+	title = OMS_more_flavor.80.t
+	desc = OMS_more_flavor.80.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.80.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.81
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.81" }
+	title = OMS_more_flavor.81.t
+	desc = OMS_more_flavor.81.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.81.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.82
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.82" }
+	title = OMS_more_flavor.82.t
+	desc = OMS_more_flavor.82.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.82.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.83
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.83" }
+	title = OMS_more_flavor.83.t
+	desc = OMS_more_flavor.83.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.83.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.84
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.84" }
+	title = OMS_more_flavor.84.t
+	desc = OMS_more_flavor.84.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.84.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.85
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.85" }
+	title = OMS_more_flavor.85.t
+	desc = OMS_more_flavor.85.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.85.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.86
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.86" }
+	title = OMS_more_flavor.86.t
+	desc = OMS_more_flavor.86.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.86.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.87
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.87" }
+	title = OMS_more_flavor.87.t
+	desc = OMS_more_flavor.87.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.87.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.88
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.88" }
+	title = OMS_more_flavor.88.t
+	desc = OMS_more_flavor.88.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.88.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.89
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.89" }
+	title = OMS_more_flavor.89.t
+	desc = OMS_more_flavor.89.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.89.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.90
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.90" }
+	title = OMS_more_flavor.90.t
+	desc = OMS_more_flavor.90.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.90.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.91
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.91" }
+	title = OMS_more_flavor.91.t
+	desc = OMS_more_flavor.91.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.91.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.92
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.92" }
+	title = OMS_more_flavor.92.t
+	desc = OMS_more_flavor.92.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.92.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.93
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.93" }
+	title = OMS_more_flavor.93.t
+	desc = OMS_more_flavor.93.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.93.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.94
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.94" }
+	title = OMS_more_flavor.94.t
+	desc = OMS_more_flavor.94.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.94.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.95
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.95" }
+	title = OMS_more_flavor.95.t
+	desc = OMS_more_flavor.95.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.95.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.96
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.96" }
+	title = OMS_more_flavor.96.t
+	desc = OMS_more_flavor.96.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.96.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.97
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.97" }
+	title = OMS_more_flavor.97.t
+	desc = OMS_more_flavor.97.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.97.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.98
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.98" }
+	title = OMS_more_flavor.98.t
+	desc = OMS_more_flavor.98.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.98.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.99
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.99" }
+	title = OMS_more_flavor.99.t
+	desc = OMS_more_flavor.99.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.99.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.100
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.100" }
+	title = OMS_more_flavor.100.t
+	desc = OMS_more_flavor.100.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.100.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.1"}
+	title = OMS_far_eastern.1.t
+	desc = OMS_far_eastern.1.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.1.a
+		ai_chance = { factor = 50 }
+		hidden_effect = {
+			JAP = { country_event = { id = OMS_far_eastern.4 days = 28 } }
+			USA = { country_event = { id = OMS_far_eastern.5 days = 28 } }
+			set_global_flag = OMS_warned_by_JAP
+		}
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.4"}
+	title = OMS_far_eastern.4.t
+	desc = OMS_far_eastern.4.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.4.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_far_eastern.6 days = 21 } }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.5"}
+	title = OMS_far_eastern.5.t
+	desc = OMS_far_eastern.5.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.5.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_far_eastern.7 days = 21 } }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.6"}
+	title = OMS_far_eastern.6.t
+	desc = OMS_far_eastern.6.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.6.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.7"}
+	title = OMS_far_eastern.7.t
+	desc = OMS_far_eastern.7.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.7.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.8"}
+	title = OMS_far_eastern.8.t
+	desc = OMS_far_eastern.8.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.8.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.10"}
+	title = OMS_far_eastern.10.t
+	desc = OMS_far_eastern.10.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.10.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.11"}
+	title = OMS_far_eastern.11.t
+	desc = OMS_far_eastern.11.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.11.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.12"}
+	title = OMS_far_eastern.12.t
+	desc = OMS_far_eastern.12.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.12.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+
+country_event = { #
+	id = OMS_far_eastern.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.13"}
+	title = OMS_far_eastern.13.t
+	desc = OMS_far_eastern.13.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.13.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.14"}
+	title = OMS_far_eastern.14.t
+	desc = OMS_far_eastern.14.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.14.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = { #
+	id = OMS_far_eastern.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event OMS_far_eastern.15"}
+	title = OMS_far_eastern.15.t
+	desc = OMS_far_eastern.15.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+
+	is_triggered_only = yes
+
+	option = {
+		name = OMS_far_eastern.15.a
+		ai_chance = { factor = 50 }
+	}
+	option = {
+		name = OMS_far_eastern.15.b
+		ai_chance = { factor = 50 }
+		add_manpower = 11
+	}
+}
+
+#SWRW_Omskmilestones were duplicates from 2WRW_Newsevents. Check your error logs!
+
+country_event = {
+	id = OMS_more_flavor.101
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.101" }
+	title = OMS_more_flavor.101.t
+	desc = OMS_more_flavor.101.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = OMS_more_flavor.101.a
+		ai_chance = { factor = 50 }
+	}
+}
+country_event = {
+	id = OMS_more_flavor.102
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.102" }
+	title = OMS_more_flavor.102.t
+	desc = OMS_more_flavor.102.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.102.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.103
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.103" }
+	title = OMS_more_flavor.103.t
+	desc = OMS_more_flavor.103.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.103.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.104
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.104" }
+	title = OMS_more_flavor.104.t
+	desc = OMS_more_flavor.104.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.104.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.105
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.105" }
+	title = OMS_more_flavor.105.t
+	desc = OMS_more_flavor.105.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.105.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.106
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.106" }
+	title = OMS_more_flavor.106.t
+	desc = OMS_more_flavor.106.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.106.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.107
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.107" }
+	title = OMS_more_flavor.107.t
+	desc = OMS_more_flavor.107.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.107.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.108
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.108" }
+	title = OMS_more_flavor.108.t
+	desc = OMS_more_flavor.108.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.108.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.109
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.109" }
+	title = OMS_more_flavor.109.t
+	desc = OMS_more_flavor.109.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.109.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.110
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.110" }
+	title = OMS_more_flavor.110.t
+	desc = OMS_more_flavor.110.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.110.a
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = OMS_more_flavor_tt_2
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.111
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.111" }
+	title = OMS_more_flavor.111.t
+	desc = OMS_more_flavor.111.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.111.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.112
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.112" }
+	title = OMS_more_flavor.112.t
+	desc = OMS_more_flavor.112.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.112.a
+		ai_chance = { factor = 50 }
+		add_manpower = -50
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.113
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.113" }
+	title = OMS_more_flavor.113.t
+	desc = OMS_more_flavor.113.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.113.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.114
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.114" }
+	title = OMS_more_flavor.114.t
+	desc = OMS_more_flavor.114.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.114.a
+		ai_chance = { factor = 50 }
+		add_manpower = -15
+		set_temp_variable = { OMS_chemical_weapons_gui_adding_to_stockpile = 1 }
+		OMS_chemical_weapons_gui_stockpile_change = yes
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.115
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.115" }
+	title = OMS_more_flavor.115.t
+	desc = OMS_more_flavor.115.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.115.a
+		ai_chance = { factor = 50 }
+		add_manpower = -1
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.116
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.116" }
+	title = OMS_more_flavor.116.t
+	desc = OMS_more_flavor.116.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.116.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.117
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.117" }
+	title = OMS_more_flavor.117.t
+	desc = OMS_more_flavor.117.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.117.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.118
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.118" }
+	title = OMS_more_flavor.118.t
+	desc = OMS_more_flavor.118.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.118.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.119
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.119" }
+	title = OMS_more_flavor.119.t
+	desc = OMS_more_flavor.119.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.119.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.120
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.120" }
+	title = OMS_more_flavor.120.t
+	desc = OMS_more_flavor.120.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.120.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.121
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.121" }
+	title = OMS_more_flavor.121.t
+	desc = OMS_more_flavor.121.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.121.a
+		ai_chance = { factor = 50 }
+		add_manpower = 1
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.122
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.122" }
+	title = OMS_more_flavor.122.t
+	desc = OMS_more_flavor.122.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.122.a
+		ai_chance = { factor = 50 }
+		add_manpower = 1
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.123
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.123" }
+	title = OMS_more_flavor.123.t
+	desc = OMS_more_flavor.123.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.123.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.124
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.124" }
+	title = OMS_more_flavor.124.t
+	desc = OMS_more_flavor.124.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.124.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.125
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.125" }
+	title = OMS_more_flavor.125.t
+	desc = OMS_more_flavor.125.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.125.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.126
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.126" }
+	title = OMS_more_flavor.126.t
+	desc = OMS_more_flavor.126.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.126.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.127
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.127" }
+	title = OMS_more_flavor.127.t
+	desc = OMS_more_flavor.127.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.127.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.128
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.128" }
+	title = OMS_more_flavor.128.t
+	desc = OMS_more_flavor.128.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.128.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.129
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.129" }
+	title = OMS_more_flavor.129.t
+	desc = OMS_more_flavor.129.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.129.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.130
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.130" }
+	title = OMS_more_flavor.130.t
+	desc = OMS_more_flavor.130.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.130.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.131
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.131" }
+	title = OMS_more_flavor.131.t
+	desc = OMS_more_flavor.131.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.131.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.132
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.132" }
+	title = OMS_more_flavor.132.t
+	desc = OMS_more_flavor.132.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.132.a
+		ai_chance = { factor = 50 }
+		FIN = {
+			add_manpower = -35
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.133
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.133" }
+	title = OMS_more_flavor.133.t
+	desc = OMS_more_flavor.133.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.133.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.134
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.134" }
+	title = OMS_more_flavor.134.t
+	desc = OMS_more_flavor.134.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.134.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.135
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.135" }
+	title = OMS_more_flavor.135.t
+	desc = OMS_more_flavor.135.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.135.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.136
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.136" }
+	title = OMS_more_flavor.136.t
+	desc = OMS_more_flavor.136.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.136.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.137
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.137" }
+	title = OMS_more_flavor.137.t
+	desc = OMS_more_flavor.137.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.137.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.138
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.138" }
+	title = OMS_more_flavor.138.t
+	desc = OMS_more_flavor.138.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.138.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.139
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.139" }
+	title = OMS_more_flavor.139.t
+	desc = OMS_more_flavor.139.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.139.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.140
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.140" }
+	title = OMS_more_flavor.140.t
+	desc = OMS_more_flavor.140.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.140.a
+		ai_chance = { factor = 50 }
+		add_manpower = 237
+		add_manpower = -1
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.141
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.141" }
+	title = OMS_more_flavor.141.t
+	desc = OMS_more_flavor.141.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.141.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.142
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.142" }
+	title = OMS_more_flavor.142.t
+	desc = OMS_more_flavor.142.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.142.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.143
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.143" }
+	title = OMS_more_flavor.143.t
+	desc = OMS_more_flavor.143.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.143.a
+		ai_chance = { factor = 50 }
+		add_manpower = -5
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.144
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.144" }
+	title = OMS_more_flavor.144.t
+	desc = OMS_more_flavor.144.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.144.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.145
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.145" }
+	title = OMS_more_flavor.145.t
+	desc = OMS_more_flavor.145.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.145.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.146
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.146" }
+	title = OMS_more_flavor.146.t
+	desc = OMS_more_flavor.146.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.146.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.147
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.147" }
+	title = OMS_more_flavor.147.t
+	desc = OMS_more_flavor.147.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.147.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.148
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.148" }
+	title = OMS_more_flavor.148.t
+	desc = OMS_more_flavor.148.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.148.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.149
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.149" }
+	title = OMS_more_flavor.149.t
+	desc = OMS_more_flavor.149.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.149.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.150
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.150" }
+	title = OMS_more_flavor.150.t
+	desc = OMS_more_flavor.150.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.150.a
+		ai_chance = { factor = 50 }
+	}
+}
+# 151-160
+country_event = {
+	id = OMS_more_flavor.151
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.151" }
+	title = OMS_more_flavor.151.t
+	desc = OMS_more_flavor.151.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.151.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.152
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.152" }
+	title = OMS_more_flavor.152.t
+	desc = OMS_more_flavor.152.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.152.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.153
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.153" }
+	title = OMS_more_flavor.153.t
+	desc = OMS_more_flavor.153.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.153.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.154
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.154" }
+	title = OMS_more_flavor.154.t
+	desc = OMS_more_flavor.154.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.154.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.155
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.155" }
+	title = OMS_more_flavor.155.t
+	desc = OMS_more_flavor.155.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.155.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.156
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.156" }
+	title = OMS_more_flavor.156.t
+	desc = OMS_more_flavor.156.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.156.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.157
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.157" }
+	title = OMS_more_flavor.157.t
+	desc = OMS_more_flavor.157.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.157.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.158
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.158" }
+	title = OMS_more_flavor.158.t
+	desc = OMS_more_flavor.158.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.158.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.159
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.159" }
+	title = OMS_more_flavor.159.t
+	desc = OMS_more_flavor.159.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.159.a
+		ai_chance = { factor = 50 }
+		add_manpower = -1
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.160
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.160" }
+	title = OMS_more_flavor.160.t
+	desc = OMS_more_flavor.160.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.160.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+# 161-170
+country_event = {
+	id = OMS_more_flavor.161
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.161" }
+	title = OMS_more_flavor.161.t
+	desc = OMS_more_flavor.161.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.161.a
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = OMS_more_flavor_tt_1
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.162
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.162" }
+	title = OMS_more_flavor.162.t
+	desc = OMS_more_flavor.162.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.162.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.163
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.163" }
+	title = OMS_more_flavor.163.t
+	desc = OMS_more_flavor.163.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.163.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.164
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.164" }
+	title = OMS_more_flavor.164.t
+	desc = OMS_more_flavor.164.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.164.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_more_flavor.165 days = 7 } }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.165
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.165" }
+	title = OMS_more_flavor.165.t
+	desc = OMS_more_flavor.165.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.165.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_more_flavor.166 days = 49 } }
+		add_manpower = -34
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.166
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.166" }
+	title = OMS_more_flavor.166.t
+	desc = OMS_more_flavor.166.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.166.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_more_flavor.167 days = 7 } }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.167
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.167" }
+	title = OMS_more_flavor.167.t
+	desc = OMS_more_flavor.167.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.167.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_more_flavor.168 days = 7 } }
+		
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.168
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.168" }
+	title = OMS_more_flavor.168.t
+	desc = OMS_more_flavor.168.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.168.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_more_flavor.169 days = 49 } }
+		add_manpower = -3475
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.169
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.169" }
+	title = OMS_more_flavor.169.t
+	desc = OMS_more_flavor.169.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.169.a
+		ai_chance = { factor = 50 }
+		hidden_effect = { country_event = { id = OMS_more_flavor.170 days = 7 } }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.170
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.170" }
+	title = OMS_more_flavor.170.t
+	desc = OMS_more_flavor.170.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.170.a
+		ai_chance = { factor = 50 }
+		add_manpower = -2
+		406 = {
+			add_building_construction = {
+				type = nuclear_reactor
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+
+
+# 171-180
+country_event = {
+	id = OMS_more_flavor.171
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.171" }
+	title = OMS_more_flavor.171.t
+	desc = OMS_more_flavor.171.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.171.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+
+
+country_event = {
+	id = OMS_more_flavor.172
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.172" }
+	title = OMS_more_flavor.172.t
+	desc = OMS_more_flavor.172.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.172.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.173 days = 7 }
+		custom_effect_tooltip = OMS_more_flavor_tt_7
+		588 = {
+			add_manpower = -4672
+		}
+		1807 = { set_demilitarized_zone = yes }
+		589 = { set_demilitarized_zone = yes }
+		1802 = { set_demilitarized_zone = yes }
+		586 = { set_demilitarized_zone = yes }
+		1467 = { set_demilitarized_zone = yes }
+		2196 = { set_demilitarized_zone = yes }
+		1466 = { set_demilitarized_zone = yes }
+		742 = { set_demilitarized_zone = yes }
+		584 = { set_demilitarized_zone = yes }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.173
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.173" }
+	title = OMS_more_flavor.173.t
+	desc = OMS_more_flavor.173.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.173.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.174 days = 7 }
+		custom_effect_tooltip = OMS_more_flavor_tt_8
+		1807 = {
+			add_manpower = -13448
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.174
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.174" }
+	title = OMS_more_flavor.174.t
+	desc = OMS_more_flavor.174.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.174.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.175 days = 7 }
+		custom_effect_tooltip = OMS_more_flavor_tt_9
+		589 = {
+			add_manpower = -25418
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.175
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.175" }
+	title = OMS_more_flavor.175.t
+	desc = OMS_more_flavor.175.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.175.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.176 days = 7 }
+		custom_effect_tooltip = OMS_more_flavor_tt_10
+		1802 = {
+			add_manpower = -12892
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.176
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.176" }
+	title = OMS_more_flavor.176.t
+	desc = OMS_more_flavor.176.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.176.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.177 days = 7 }
+		custom_effect_tooltip = OMS_more_flavor_tt_11
+		586 = {
+			add_manpower = -15781
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.177
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.177" }
+	title = OMS_more_flavor.177.t
+	desc = OMS_more_flavor.177.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.177.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.178 days = 7 }
+		custom_effect_tooltip = OMS_more_flavor_tt_12
+		1467 = {
+			add_manpower = -41762
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.178
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.178" }
+	title = OMS_more_flavor.178.t
+	desc = OMS_more_flavor.178.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.178.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.179 days = 7 }
+		custom_effect_tooltip = OMS_more_flavor_tt_13
+		2197 = {
+			add_manpower = -32765
+			set_demilitarized_zone = no
+		}
+		1466 = {
+			add_manpower = -12778
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.179
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.179" }
+	title = OMS_more_flavor.179.t
+	desc = OMS_more_flavor.179.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.179.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.180 days = 7 }
+		custom_effect_tooltip = OMS_more_flavor_tt_14
+		742 = {
+			add_manpower = -8931
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.180
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.180" }
+	title = OMS_more_flavor.180.t
+	desc = OMS_more_flavor.180.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.180.a
+		ai_chance = { factor = 50 }
+		custom_effect_tooltip = OMS_more_flavor_tt_15
+		584 = {
+			add_manpower = -22165
+			set_demilitarized_zone = no
+		}
+	}
+}
+
+# 181-190
+country_event = {
+	id = OMS_more_flavor.181
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.181" }
+	title = OMS_more_flavor.181.t
+	desc = OMS_more_flavor.181.desc
+	picture = GFX_report_event_antarctica_argentina_g21_goose
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.181.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.183 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.182
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.182" }
+	title = OMS_more_flavor.182.t
+	desc = OMS_more_flavor.182.desc
+	picture = GFX_report_event_generic_city_fire
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.182.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.181 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.183
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.183" }
+	title = OMS_more_flavor.183.t
+	desc = OMS_more_flavor.183.desc
+	picture = GFX_report_event_antarctica_expedition_convoy
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.183.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.184 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.184
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.184" }
+	title = OMS_more_flavor.184.t
+	desc = OMS_more_flavor.184.desc
+	picture = GFX_report_event_antarctica_map_2
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.184.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.185 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.185
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.185" }
+	title = OMS_more_flavor.185.t
+	desc = OMS_more_flavor.185.desc
+	picture = GFX_report_event_antarctica_map_german_text
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.185.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.186 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.186
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.186" }
+	title = OMS_more_flavor.186.t
+	desc = OMS_more_flavor.186.desc
+	picture = GFX_report_event_antarctica_mountains
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.186.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.187 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.187
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.187" }
+	title = OMS_more_flavor.187.t
+	desc = OMS_more_flavor.187.desc
+	picture = GFX_report_event_antarctica_op90_broken_sled
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.187.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.188 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.188
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.188" }
+	title = OMS_more_flavor.188.t
+	desc = OMS_more_flavor.188.desc
+	picture = GFX_report_event_antarctica_op90_full_team
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.188.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.189 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.189
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.189" }
+	title = OMS_more_flavor.189.t
+	desc = OMS_more_flavor.189.desc
+	picture = GFX_report_event_antarctica_outpost_blizzard
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.189.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.190 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.190
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.190" }
+	title = OMS_more_flavor.190.t
+	desc = OMS_more_flavor.190.desc
+	picture = GFX_report_event_antarctica_scott_tomb
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.190.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.191 days = 20 }
+	}
+}
+
+# 191-200
+country_event = {
+	id = OMS_more_flavor.191
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.191" }
+	title = OMS_more_flavor.191.t
+	desc = OMS_more_flavor.191.desc
+	picture = GFX_report_event_antarctica_the_end
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.191.a
+		ai_chance = { factor = 50 }
+		country_event = { id = OMS_more_flavor.192 days = 20 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.192
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.192" }
+	title = OMS_more_flavor.192.t
+	desc = OMS_more_flavor.192.desc
+	picture = GFX_report_event_deception_eruption_2
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.192.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.193
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.193" }
+	title = OMS_more_flavor.193.t
+	desc = OMS_more_flavor.193.desc
+	picture = GFX_event_pic_russia_germany_cold_war
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.193.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.194
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.194" }
+	title = OMS_more_flavor.194.t
+	desc = OMS_more_flavor.194.desc
+	picture = GFX_report_event_RUS_soldiers_generic_4
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.194.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.195
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.195" }
+	title = OMS_more_flavor.195.t
+	desc = OMS_more_flavor.195.desc
+	picture = GFX_report_event_generic_crying_soldier
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.195.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.196
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.196" }
+	title = OMS_more_flavor.196.t
+	desc = OMS_more_flavor.196.desc
+	picture = GFX_report_event_generic_crying_man
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.196.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.197
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.197" }
+	title = OMS_more_flavor.197.t
+	desc = OMS_more_flavor.197.desc
+	picture = GFX_report_event_post_apoc_album_cover
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.197.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.198
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.198" }
+	title = OMS_more_flavor.198.t
+	desc = OMS_more_flavor.198.desc
+	picture = GFX_report_event_srbm_nuclear_rocket
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.198.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.199
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.199" }
+	title = OMS_more_flavor.199.t
+	desc = OMS_more_flavor.199.desc
+	picture = GFX_report_event_SCO_hands
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.199.a
+		ai_chance = { factor = 50 }
+	}
+}
+
+country_event = {
+	id = OMS_more_flavor.200
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_more_flavor.200" }
+	title = OMS_more_flavor.200.t
+	desc = OMS_more_flavor.200.desc
+	picture = GFX_report_event_IRE_peace
+	is_triggered_only = yes
+	option = {
+		name = OMS_more_flavor.200.a
+		ai_chance = { factor = 50 }
+	}
+}

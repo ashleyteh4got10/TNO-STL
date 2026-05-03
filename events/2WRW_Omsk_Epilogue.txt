@@ -1,0 +1,208 @@
+add_namespace = OMS_nuclearfoci
+add_namespace = OMS_failstate
+add_namespace = OMS_hangingjudge
+add_namespace = OMS_triplealliance
+add_namespace = OMS_mistrial
+
+country_event = {
+	id = OMS_nuclearfoci.1
+	title = OMS_nuclearfoci.1.t
+	desc = OMS_nuclearfoci.1.desc
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_nuclearfoci.1" }
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = OMS_nuclearfoci.1.a
+		custom_effect_tooltip = OMS_nuclearfoci_tt
+		hidden_effect = {
+			if = {
+				limit = {
+					original_tag = OMS
+				}
+				fire_nuclear_war = yes
+			}
+			if = {
+				limit = {
+					OMS = { is_ai = no }
+				}
+				set_global_flag = SWRW_trigger_post_nuke_content
+			}
+			every_country = {
+				delete_unit = {}
+			}
+			ZZZ = {
+				transfer_units_fraction= {
+					target = AAN
+					size = 0
+					stockpile_ratio = 0.2
+					army_ratio = 0.2
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = OMS_failstate.1
+	title = OMS_failstate.1.t
+	desc = OMS_failstate.1.desc
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_failstate.1" }
+	#trigger = {  }
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = OMS_failstate.1.a
+		hidden_effect = {
+			country_event = { id = OMS_failstate.2 days = 5 }
+		}
+	}
+}
+
+country_event = {
+	id = OMS_failstate.2
+	title = OMS_failstate.2.t
+	desc = OMS_failstate.2.desc
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_failstate.2" }
+	picture = GFX_event_pic_GermanTv
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = OMS_failstate.2.a
+		hidden_effect = {
+			country_event = { id = OMS_failstate.3 days = 5 }
+		}
+	}
+}
+
+
+country_event = {
+	id = OMS_failstate.3
+	title = OMS_failstate.3.t
+	desc = OMS_failstate.3.desc
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_failstate.3" }
+	picture = GFX_event_pic_GermanTv
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = OMS_failstate.3.a
+		custom_effect_tooltip = OMS_failstate_3_tt
+		hidden_effect = {
+			OMS_trigger_failure = yes
+		}
+	}
+}
+
+
+country_event = {
+	id = OMS_hangingjudge.1
+	title = "1"
+	desc = "dmz"
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_hangingjudge.1" }
+
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		add_to_temp_array = { dmz = 561 } 
+		add_to_temp_array = { dmz = 561 }
+		add_to_temp_array = { dmz = 886 }
+		add_to_temp_array = { dmz = 1364 }
+		add_to_temp_array = { dmz = 563 }
+		add_to_temp_array = { dmz = 565 }
+		add_to_temp_array = { dmz = 564 }
+		add_to_temp_array = { dmz = 760 }
+		add_to_temp_array = { dmz = 574 }
+		add_to_temp_array = { dmz = 562 }
+		add_to_temp_array = { dmz = 891 }
+		add_to_temp_array = { dmz = 637 }
+		add_to_temp_array = { dmz = 644 }
+		add_to_temp_array = { dmz = 759 }
+		add_to_temp_array = { dmz = 889 }
+
+		for_each_scope_loop = {
+			array = dmz
+			set_demilitarized_zone = yes
+		}
+	}
+}
+
+
+
+country_event = {
+	id = OMS_hangingjudge.2
+	title = "2"
+	desc = "setowner"
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_hangingjudge.2" }
+
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		add_to_temp_array = { dmz = 561 } 
+		add_to_temp_array = { dmz = 561 }
+		add_to_temp_array = { dmz = 886 }
+		add_to_temp_array = { dmz = 1364 }
+		add_to_temp_array = { dmz = 563 }
+		add_to_temp_array = { dmz = 565 }
+		add_to_temp_array = { dmz = 564 }
+		add_to_temp_array = { dmz = 760 }
+		add_to_temp_array = { dmz = 574 }
+		add_to_temp_array = { dmz = 562 }
+		add_to_temp_array = { dmz = 891 }
+		add_to_temp_array = { dmz = 637 }
+		add_to_temp_array = { dmz = 644 }
+		add_to_temp_array = { dmz = 759 }
+		add_to_temp_array = { dmz = 889 }
+		for_each_scope_loop = {
+			array = dmz
+			set_demilitarized_zone = no
+		}
+		AMR = {
+			transfer_state = 561
+			transfer_state = 886
+			transfer_state = 1364
+			transfer_state = 563
+			transfer_state = 565
+			transfer_state = 564
+			transfer_state = 760
+			set_cosmetic_tag = HANGINGJUDGE_newblackhundreds
+
+		}
+		MAG = {
+			transfer_state = 562
+			transfer_state = 891
+			transfer_state = 637
+			transfer_state = 644
+			transfer_state = 759
+			transfer_state = 889
+			transfer_state = 574
+			set_cosmetic_tag = HANGINGJUDGE_naval_district
+		}
+	}
+}
+
+country_event = {
+	id = OMS_mistrial.1
+	title = "mistrial 1"
+	desc = "setowner and NUKE BOOM"
+	immediate = { log = "[GetDateText]: [Root.GetName]: event OMS_mistrial.1" }
+
+	hidden = yes
+	is_triggered_only = yes
+	fire_only_once = no
+
+	option = {
+		SWRW_mistrial_nuke_random = yes
+		SWRW_mistrial_nuke_random = yes
+		SWRW_mistrial_nuke_random = yes
+		#goto_state = boom_state
+
+		if = {
+			limit = {
+				has_variable = omsnukestates^0
+			}
+			country_event = { id = OMS_mistrial.1 days = 1 }
+		}
+	}
+}

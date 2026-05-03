@@ -1,0 +1,26 @@
+on_actions = {
+	on_monthly_CPC = {
+		effect = {
+			if = { 
+				limit = { 
+					has_completed_focus = CPC_Yellow_river_army	
+					has_completed_focus = CPC_increase_conscription	
+					has_completed_focus = CPC_mountain_special_army
+					date > 1970.7.1
+					NOT = { has_country_flag = CPC_TRCW_final_event_check } 
+				} 
+				country_event = CPC_TRCW.7
+				set_country_flag = CPC_TRCW_final_event_check
+			}
+		}
+	}
+
+	on_weekly_CPC = {
+		effect = {
+			if = { 
+				limit = { has_country_flag = CPC_PM_uses_skill_2 }
+				clr_country_flag = CPC_PM_uses_skill_2
+			}
+		}
+	}
+}

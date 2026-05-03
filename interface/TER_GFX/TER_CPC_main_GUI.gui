@@ -1,0 +1,611 @@
+guiTypes = {
+	containerWindowType = {
+		name = "CPC_NCCPC_entry_bg"
+		size = { width = 220 height = 128 }
+		position = { x = 0 y = 289 }
+
+		buttonType = {
+			name = "CPC_NCCPC_button"
+			quadTextureSprite = "GFX_CPC_party_GUI_Open_Button"
+			position = { x = 238 y = 38 }
+			pdx_tooltip = "CPC_gui_entry_tt"
+		}
+
+		iconType = {
+			name = "gui_alert"
+			spriteType = "GFX_gui_alert"
+			position = {  x = 184 y = -20 }
+		}
+	}
+
+	containerWindowType = {
+		name = "CPC_main_GUI"
+		size = { width = 1325 height = 740 }
+		position = { x = 567 y = 250 }
+		fade_type = linear
+		fade_time = 500
+		moveable = yes
+		clipping = no
+
+		containerWindowType = {
+			name = "tabs"
+			size = { width = 100%% height = 28 }
+			position = { x = 1 y = 0 }
+			buttonType = {
+				name = "tab_party_issue"
+				position = { x = -27 y = 6 }
+				quadTextureSprite = "GFX_TER_tab_vertical"
+			}
+			buttonType = {
+				name = "icon_CPC"
+				position = { x = -18 y = 18 }
+				quadTextureSprite = "GFX_CPC_texticon"
+			}
+			instantTextBoxType = {
+				name = "title_party_issue"
+				position = { x = -21 y = 98 }
+				font = "Bomb_18"
+				text = "CPC_party_issue_title" 
+				maxWidth = 20
+				maxHeight = 90
+				format = center
+				alwaystransparent = yes
+			}
+
+			buttonType = {
+				name = "tab_government_issue"
+				position = { x = -27 y = 230 }
+				quadTextureSprite = "GFX_TER_tab_vertical"
+			}
+			buttonType = {
+				name = "icon_CPGAC"
+				position = { x = -18 y = 242 }
+				quadTextureSprite = "GFX_CPGAC_texture_loc"
+			}
+			instantTextBoxType = {
+				name = "title_government_issue"
+				position = { x = -21 y = 322 }
+				font = "Bomb_18"
+				text = "CPC_government_issue_title" 
+				maxWidth = 20
+				maxHeight = 90
+				format = center
+				alwaystransparent = yes
+			}
+
+			buttonType = {
+				name = "tab_military_issue"
+				position = { x = -27 y = 454 }
+				quadTextureSprite = "GFX_TER_tab_vertical"
+			}
+			buttonType = {
+				name = "icon_PLA"
+				position = { x = -18 y = 467 }
+				quadTextureSprite = "GFX_TER_texticon_PLA"
+			}
+			instantTextBoxType = {
+				name = "title_military_issue"
+				position = { x = -21 y = 547 }
+				font = "Bomb_18"
+				text = "CPC_military_issue_title" 
+				maxWidth = 20
+				maxHeight = 90
+				format = center
+				alwaystransparent = yes
+			}
+
+			buttonType = {
+				name = "tab_0"
+				position = { x = 5 y = -27 }
+				quadTextureSprite = "GFX_BoP_Tab"
+				buttonFont = "Bomb_18"
+				text = "CPC_NCCPC_title_short"
+			}
+			buttonType = {
+				name = "icon_0"
+				position = { x = 18 y = -17 }
+				quadTextureSprite = "GFX_CPC_texticon"
+			}
+
+			buttonType = {
+				name = "tab_1"
+				position = { x = 229 y = -27 }
+				quadTextureSprite = "GFX_BoP_Tab"
+				buttonFont = "Bomb_18"
+				text = "CPC_NCCPC_XB_title_short"
+			}
+			buttonType = {
+				name = "icon_1"
+				position = { x = 242 y = -17 }
+				quadTextureSprite = "GFX_CPC_texticon"
+			}
+
+			buttonType = {
+				name = "tab_2"
+				position = { x = 453 y = -27 }
+				quadTextureSprite = "GFX_BoP_Tab"
+				buttonFont = "Bomb_18"
+				text = "CPC_NCCPC_SW_title_short"
+			}
+			buttonType = {
+				name = "icon_2"
+				position = { x = 466 y = -17 }
+				quadTextureSprite = "GFX_CPC_texticon"
+			}
+
+			buttonType = {
+				name = "tab_3"
+				position = { x = 677 y = -27 }
+				quadTextureSprite = "GFX_BoP_Tab"
+				buttonFont = "Bomb_18"
+				text = "CPC_NCCPC_X_title_short"
+				pdx_disabled_tooltip = "CPC_XJ_mess_up"
+			}
+			buttonType = {
+				name = "icon_3"
+				position = { x = 690 y = -17 }
+				quadTextureSprite = "GFX_CPC_texticon"
+			}
+
+			buttonType = {
+				name = "tab_4"
+				position = { x = 901 y = -27 }
+				quadTextureSprite = "GFX_BoP_Tab"
+				buttonFont = "Bomb_18"
+				text = "CPC_NCCPC_S_title_short"
+			}
+			buttonType = {
+				name = "icon_4"
+				position = { x = 914 y = -17 }
+				quadTextureSprite = "GFX_CPC_texticon"
+			}
+		}
+		
+		background = {
+			name = "Background"
+			quadTextureSprite = "GFX_tiled_window_1b_no_border"
+	    }
+
+		buttonType = {
+			name = "close_button"
+			position = { x = 1257 y = 17 }
+			quadTextureSprite ="GFX_TER_large_scale_close_btn"
+			shortcut = "ESCAPE"
+			clicksound = click_close
+			pdx_tooltip = "CLOSE"
+			
+		}
+	}
+
+	containerWindowType = {
+		name = "CPC_NCCPC_Main_GUI"
+		
+		containerWindowType = {
+            name = "NCCPC_budget_graph_line_ctn"
+            size = { width = 540 height = 250 }      
+            position = { x = 665 y = 410 }   
+            clipping = no  
+            moveable = yes
+            Orientation = CENTER
+
+
+            instantTextBoxType = {
+				name = "NCCPC_finance_graph_line_title" 
+				position = { x = 35 y = 27 }
+				maxWidth = 480
+				maxHeight = 53
+				format = center
+				font = "aldrich_28_outline"
+				text = "NCCPC_grapht_mode_select"
+				alwaystransparent = yes
+			}
+
+            containerWindowType = { 
+                name = "line_graph"
+                position = { x = 80 y = 60 }
+                
+                gridboxtype = {
+                    name = "vbars" 
+                    position = { x = 145 y = 150 }
+                    size = { width = 0 height = 300 }
+                    slotsize = { width = 300 height = 1 }
+                    max_slots_horizontal = 1
+                    add_horizontal = no
+                }
+                gridboxtype = { 
+                    name = "NCCPC_line_segments"
+                    position = { x = 0 y = 0 }
+                    size = { width = 0 height = 300 }
+                    slotsize = { width = 25 height = 300 }
+                    max_slots_horizontal = 16 
+                    add_horizontal = yes
+                }
+
+                iconType = {
+                    name = "vertical_bar"
+                    spriteType = "GFX_BRA_Map_Graph_Vertical_Bar"
+                    position = { x = 0 y = 0}
+                }
+                instantTextboxType = {
+                    name = "label" 
+                    position = { x = -15 y = 157}
+                    font = "aldrich_14_outline"
+                    text = "NCCPC_graph_label_first_label" 
+                    maxWidth = 30
+					maxHeight = 90
+                    format = center
+                } 
+            }
+        }
+
+		containerWindowType = {
+			name = "CPC_NCCPC_pie_container"
+			position = { x = 27  y = 129 }
+			size = { width = 400 height = 400 }
+			iconType = {
+				name = "mao_pie"
+				quadTextureSprite = "GFX_pie_maos_power"
+			}
+			iconType = {
+				name = "liu_pie"
+				quadTextureSprite = "GFX_pie_lius_power"
+			}
+			iconType = {
+				name = "li_pie"
+				quadTextureSprite = "GFX_pie_lis_power"
+			}
+			iconType = {
+				name = "deng_pie"
+				quadTextureSprite = "GFX_pie_dengs_power"
+			}
+			iconType = {
+				name = "pie_overlay"
+				quadTextureSprite = "GFX_CPC_NCCPC_pie_overlay"
+			}
+		}
+
+		icontype = {
+			name = "CPC_Background_icon"
+			quadTextureSprite ="GFX_CPC_politics_strugle_main_gui_bg"
+			position = { x = 11 y = 15 }
+			alwaystransparent = yes
+		}
+
+		buttonType = {
+			name = "TER_NCCPC_hosting_service_btn"
+			quadTextureSprite = "GFX_TER_GUI_btn_hosting_service"
+			position = { x = 14 y = 17 }
+			pdx_tooltip = "TER_hosting_service_NCCPC_tt"
+		}
+
+		
+		iconType = {
+			name = "CPC_NCCPC_info_icon"
+			position = { x = 1257 y = 72 }
+			spriteType = "GFX_TER_large_scale_info"
+			Orientation = "UPPER_RIGHT"
+			pdx_tooltip = CPC_NCCPC_info_desc
+		}
+
+		iconType = {
+			name = "NCCPC_info_icon"
+			position = { x = 1145 y = 433 }
+			spriteType = "GFX_TER_generic_info"
+			pdx_tooltip = NCCPC_info_icon_dynamic
+		}
+
+		containerWindowType = {
+			name = "brief_power_intro_container"
+			size = { width = 100 height = 700 }
+			position = {
+				x = -439
+				y = 53
+			}
+
+			instantTextBoxType = {
+				name = "brief_power_intro_mao"
+				font = "aldrich_24_outline"
+				position = { x = 904 y = 147 }
+				text = "CPC_mao_power"
+				format = center
+			}
+
+			instantTextBoxType = {
+				name = "brief_power_value_mao"
+				font = "aldrich_24_outline"
+				position = { x = 904 y = 175 }
+				text = "CPC_mao_power_value"
+				format = center
+			}
+
+			instantTextBoxType = {
+				name = "brief_power_intro_liu"
+				font = "aldrich_24_outline"
+				position = { x = 904 y = 206 }
+				text = "CPC_liu_power"
+				format = center
+			}
+
+			instantTextBoxType = {
+				name = "brief_power_value_liu"
+				font = "aldrich_24_outline"
+				position = { x = 904 y = 234 }
+				text = "CPC_liu_power_value"
+				format = center
+			}
+
+			instantTextBoxType = {
+				name = "brief_power_intro_li"
+				font = "aldrich_24_outline"
+				position = { x = 904 y = 266 }
+				text = "CPC_brief_intro_2"
+				format = center
+			}
+
+			instantTextBoxType = {
+				name = "brief_power_value_li"
+				font = "aldrich_24_outline"
+				position = { x = 904 y = 293 }
+				text = "CPC_li_power_value"
+				format = center
+			}
+
+			instantTextBoxType = {
+				name = "brief_power_intro_deng"
+				font = "aldrich_24_outline"
+				position = { x = 904 y = 325 }
+				text = "CPC_deng_power"
+				format = center
+			}
+
+			instantTextBoxType = {
+				name = "brief_power_value_deng"
+				font = "aldrich_24_outline"
+				position = { x = 904 y = 353 }
+				text = "CPC_deng_power_value"
+				format = center
+			}
+		}	
+
+		iconType = {
+			name = "Mao_entry"
+			position = { x = 39 y = 523 }
+			pdx_tooltip = "CPC_pie_0_desc"
+		}
+		iconType = {
+			name = "Liu_entry"
+			position = { x = 195 y = 523 }
+			pdx_tooltip = "CPC_pie_1_desc"
+		}
+		iconType = {
+			name = "Li_entry"
+			position = { x = 346 y = 523 }
+			pdx_tooltip = "CPC_pie_2_desc"
+		}
+		iconType = {
+			name = "Deng_entry"
+			position = { x = 502 y = 523 }
+			pdx_tooltip = "CPC_NCCPC_Deng_entry_tt"
+		}
+
+		iconType = {
+			name = "NCCPC_Portraits_left"
+			position = { x = 683 y = 149 }
+		}
+		iconType = {
+			name = "NCCPC_Portraits_right"
+			position = { x = 839 y = 149 }
+		}
+		instantTextBoxType = {
+			name = "NCCPC_faction_names_left"
+			font = "aldrich_32_outline"
+			position = { x = 688 y = 329 }
+			text = "[TER_NCCPC_names_left]"
+			maxHeight = 40
+			maxWidth = 120
+			format = center
+		}
+		instantTextBoxType = {
+			name = "NCCPC_faction_names_right"
+			font = "aldrich_32_outline"
+			position = { x = 844 y = 329 }
+			text = "[TER_NCCPC_names_right]"
+			maxHeight = 40
+			maxWidth = 120
+			format = center
+		}
+		instantTextBoxType = {
+			name = "NCCPC_faction_names"
+			font = "aldrich_48_outline"
+			position = { x = 725 y = 369 }
+			text = "[TER_NCCPC_faction_name]"
+			format = center
+			maxHeight = 60
+		}
+		instantTextBoxType = {
+			name = "NCCPC_faction_descs"
+			font = "aldrich_18_outline"
+			text = "[TER_NCCPC_faction_desc]"
+			position = { x = 999 y = 133 }
+			scrollbartype = standardtext_slider
+			maxHeight = 190
+			maxWidth = 295
+		}
+
+		instantTextBoxType = {
+			name = "NCCPC_mode_left_tt"
+			text = "NCCPC_mode_left_tt"
+			font = "aldrich_28_outline"
+			format = center
+			position = { x = 693 y = 680 }
+			maxHeight = 60
+			maxWidth = 225
+		}
+		
+		instantTextBoxType = {
+			name = "NCCPC_mode_right_tt"
+			text = "NCCPC_mode_right_tt"
+			font = "aldrich_28_outline"
+			format = center
+			position = { x = 921 y = 680 }
+			maxHeight = 60
+			maxWidth = 225
+		}
+
+		buttonType = {
+			name = "NCCPC_graph_mode_left_btn"
+			quadTextureSprite = "GFX_NCCPC_graph_mode_left_btn"
+			position = { x = 670 y = 663 }
+		}
+
+		buttonType = {
+			name = "NCCPC_graph_mode_right_btn"
+			quadTextureSprite = "GFX_NCCPC_graph_mode_right_btn"
+			position = { x = 921 y = 663 }
+		}
+		
+		containerWindowType = {
+			name = "NCCPC_btn_ctn"
+			position = { x = 993 y = 327 }
+
+			buttonType = {
+				name = "NCCPC_btn_blue"
+				quadTextureSprite = "GFX_pol_str_special_care_in_party"
+				position = { x = 2 y = 2 }
+				buttonText = "NCCPC_special_care_btn"
+				buttonFont = "aldrich_24_outline"
+				pdx_tooltip = "button_special_care_in_party_tt"
+			}
+			buttonType = {
+				name = "NCCPC_btn_green"
+				quadTextureSprite = "GFX_pol_str_praise_in_party"
+				position = { x = 2 y = 53 }
+				buttonText = "NCCPC_praise_btn"
+				buttonFont = "aldrich_24_outline"
+				pdx_tooltip = "button_praise_tt"
+			}
+			buttonType = {
+				name = "NCCPC_btn_yellow"
+				quadTextureSprite = "GFX_pol_str_criticize_in_party"
+				position = { x = 160 y = 53 }
+				buttonText = "NCCPC_criticize_btn"
+				buttonFont = "aldrich_24_outline"
+				pdx_tooltip = "button_criticize_in_party_tt"
+			}
+			buttonType = {
+				name = "NCCPC_btn_red"
+				quadTextureSprite = "GFX_pol_str_punish_in_party"
+				position = { x = 160 y = 2 }
+				buttonText = "NCCPC_punish_btn"
+				buttonFont = "aldrich_24_outline"
+				pdx_tooltip = "button_punish_in_party_tt"
+			}
+		}
+
+		buttonType = {
+			name = "NCCPC_budget_up_btn"
+			quadTextureSprite = "GFX_NCCPC_budget_up_btn"
+			position = { x = 1179 y = 434 }
+			pdx_tooltip = "NCCPC_up_btn_desc"
+		}
+		buttonType = {
+			name = "NCCPC_budget_dn_btn"
+			quadTextureSprite = "GFX_NCCPC_budget_dn_btn"
+			position = { x = 1286 y = 434 }
+			pdx_tooltip = "NCCPC_dn_btn_desc"
+		}
+		instantTextBoxType = {
+			name = "NCCPC_next_budget_txt"
+			text = "[?NCCPC_next_party_budget|1]M"
+			font = "aldrich_22_outline"
+			format = center
+			maxWidth = 85
+			maxHeight = 30
+			position = { x = 1202 y = 436 }
+		}
+		buttonType = {
+			name = "NCCPC_budget_confirm_btn"
+			quadTextureSprite = "GFX_NCCPC_budget_confirm_btn"
+			position = { x = 1179 y = 464 }
+			buttonText = "NCCPC_budget_confirm_btn_tt"
+			buttonFont = "aldrich_18_outline"
+			pdx_tooltip = "NCCPC_budget_confirm_btn_desc"
+		}
+
+		instantTextBoxType = {
+			name = "NCCPC_current_budget_txt"
+			text = "NCCPC_current_budget_txt"
+			font = "aldrich_24_outline"
+			format = center
+			maxWidth = 125
+			position = { x = 1182 y = 526 }
+		}
+
+		instantTextBoxType = {
+			name = "NCCPC_current_pop_txt"
+			text = "NCCPC_current_pop_txt"
+			font = "aldrich_24_outline"
+			format = center
+			maxWidth = 125
+			position = { x = 1182 y = 626 }
+		}
+	}
+
+	containerWindowType = {
+		name = "NCCPC_line_graph_line_segment"
+		size = { width = 25 height = 300 }         
+		position = { x = 12 y = 0 }
+		iconType = {
+			name = "segment"
+			spriteType = "GFX_NCCPC_finance_line_segment"
+			position = { x = 0 y = 0 }   
+			frame = 57
+		}
+		instantTextboxType = {
+			name = "label"
+			position = { x = 10 y = 157}
+			font = "aldrich_14_outline" 
+			text = "NCCPC_graph_label_x_label"
+			maxWidth = 30
+			format = center
+		}
+		iconType = {
+			name = "vertical_bar"
+			spriteType = "GFX_BRA_Map_Graph_Vertical_Bar"
+			position = { x = 25 y = 0} 
+		} 
+	}
+
+	containerWindowType = {
+		name = "NCCPC_line_graph_vbar"
+		size = { width = 300 height = 1 } 
+		position = { x = 0 y = 0 }
+		iconType = {
+			name = "horizontal_bar"
+			spriteType = "GFX_NCCPC_Map_Graph_Horizontal_Bar"
+			position = { x = 0 y = 0}
+		}
+
+		iconType = {
+			name = "horizontal_bar_red"
+			spriteType = "GFX_NCCPC_Map_Graph_Horizontal_Bar_Red"
+			position = { x = 0 y = 0}
+		}
+
+
+		containerWindowType = {
+			name = "label_container"
+			position = { x = 0 y = -5 }
+
+			instantTextboxType = {
+				name = "horizontal_bar_label"
+				position = { x = -105 y = 0}  
+				font = "aldrich_14_outline"
+				text = "[?NCCPC_Line_graph_vbars^vbar_idx|1][NCCPC_Line_graph_display_unit_name]"
+				maxWidth = 100
+				format = right 
+			}
+			
+		}
+	}
+}

@@ -1,0 +1,568 @@
+on_actions = {
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = { 
+					CPC = { has_country_flag = CPC_TRCW_begins_flag } 
+					ROOT = { tag = CPC }
+					FROM.FROM = { has_state_flag = CPC_has_control_change_event }
+				}
+				meta_effect = {
+					text = { TER_state_control_fire_events_[STATEID] = yes }
+					STATEID = "[?This.GetID]"
+				}
+				FROM.FROM = {
+					if = {
+						limit = { 
+							OR = { 
+								is_controlled_by = CPC
+								is_controlled_by = MON
+								is_controlled_by = HTC
+								is_controlled_by = VIC
+								is_controlled_by = KPA
+								is_controlled_by = QYC 
+							} 
+						}
+						TRCW_greater_china_provinces_control_change = yes
+					}
+				}
+			}
+		}
+	}
+	on_weekly_CPC = {
+		effect = {
+			if = {
+				limit = { has_idea = CPC_Black_Ops
+						  NOT = { has_country_flag = CPC_TRCW_begins_flag }
+						  NOT = { check_variable = { CPC_mode_array^1 = -1 } } }
+				if = {
+					limit = { OR = { has_idea = tno_army_professionalism_disgruntled_veterans
+									 has_idea = tno_army_professionalism_reluctant_conscripts
+									 has_idea = tno_army_professionalism_untrained } }
+					if = { limit = { NOT = { check_variable = { CPC_Black_Ops_rate = 12 } } } 
+							set_variable = { CPC_Black_Ops_rate = 12 } }
+					random_list = {
+						12 = {
+							random_list = {
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_1 } }
+										country_event = TER_RGOC_black_ops.1	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.11 }
+											50 = { country_event = TER_RGOC_black_ops.12 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_2 } }
+										country_event = TER_RGOC_black_ops.2	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.21 }
+											50 = { country_event = TER_RGOC_black_ops.22 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_3 } }
+										country_event = TER_RGOC_black_ops.3
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.31
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_4 } }
+										country_event = TER_RGOC_black_ops.4
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.41
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_5 } }
+										country_event = TER_RGOC_black_ops.5
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.51
+									}
+								}
+							}
+						}
+						88 = {}
+					}
+				}
+				else_if = {
+					limit = { has_idea = tno_army_professionalism_cronyism }
+					if = { limit = { NOT = { check_variable = { CPC_Black_Ops_rate = 8 } } } 
+							set_variable = { CPC_Black_Ops_rate = 8 } }
+					random_list = {
+						8 = {
+							random_list = {
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_1 } }
+										country_event = TER_RGOC_black_ops.1	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.11 }
+											50 = { country_event = TER_RGOC_black_ops.12 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_2 } }
+										country_event = TER_RGOC_black_ops.2	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.21 }
+											50 = { country_event = TER_RGOC_black_ops.22 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_3 } }
+										country_event = TER_RGOC_black_ops.3
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.31
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_4 } }
+										country_event = TER_RGOC_black_ops.4
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.41
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_5 } }
+										country_event = TER_RGOC_black_ops.5
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.51
+									}
+								}
+							}
+						}
+						92 = {}
+					}
+				}
+				else_if = {
+					limit = { has_idea = tno_army_professionalism_political_interference }
+					if = { limit = { NOT = { check_variable = { CPC_Black_Ops_rate = 4 } } } 
+							set_variable = { CPC_Black_Ops_rate = 4 } }
+					random_list = {
+						4 = {
+							random_list = {
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_1 } }
+										country_event = TER_RGOC_black_ops.1	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.11 }
+											50 = { country_event = TER_RGOC_black_ops.12 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_2 } }
+										country_event = TER_RGOC_black_ops.2	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.21 }
+											50 = { country_event = TER_RGOC_black_ops.22 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_3 } }
+										country_event = TER_RGOC_black_ops.3
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.31
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_4 } }
+										country_event = TER_RGOC_black_ops.4
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.41
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_5 } }
+										country_event = TER_RGOC_black_ops.5
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.51
+									}
+								}
+							}
+						}
+						96 = {}
+					}
+				}
+				else_if = {
+					limit = { OR = { has_idea = tno_army_professionalism_political_interference
+									 has_idea = tno_army_professionalism_spartan_discipline } }
+					if = { limit = { NOT = { check_variable = { CPC_Black_Ops_rate = 0 } } } 
+							set_variable = { CPC_Black_Ops_rate = 0 } 
+							remove_ideas = { CPC_Black_Ops } }
+				}
+			}
+			else_if = {
+				limit = { has_idea = CPC_Black_Ops
+						  NOT = { has_country_flag = CPC_TRCW_begins_flag }
+						 check_variable = { CPC_mode_array^1 = -1 } }
+				if = {
+					limit = { OR = { has_idea = tno_army_professionalism_disgruntled_veterans
+									 has_idea = tno_army_professionalism_reluctant_conscripts
+									 has_idea = tno_army_professionalism_untrained } }
+					if = { limit = { NOT = { check_variable = { CPC_Black_Ops_rate = 20 } } } 
+							set_variable = { CPC_Black_Ops_rate = 20 } }
+					random_list = {
+						20 = {
+							random_list = {
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_1 } }
+										country_event = TER_RGOC_black_ops.1	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.11 }
+											50 = { country_event = TER_RGOC_black_ops.12 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_2 } }
+										country_event = TER_RGOC_black_ops.2	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.21 }
+											50 = { country_event = TER_RGOC_black_ops.22 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_3 } }
+										country_event = TER_RGOC_black_ops.3
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.31
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_4 } }
+										country_event = TER_RGOC_black_ops.4
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.41
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_5 } }
+										country_event = TER_RGOC_black_ops.5
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.51
+									}
+								}
+							}
+						}
+						80 = {}
+					}
+				}
+				else_if = {
+					limit = { has_idea = tno_army_professionalism_cronyism }
+					if = { limit = { NOT = { check_variable = { CPC_Black_Ops_rate = 15 } } } 
+							set_variable = { CPC_Black_Ops_rate = 15 } }
+					random_list = {
+						15 = {
+							random_list = {
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_1 } }
+										country_event = TER_RGOC_black_ops.1	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.11 }
+											50 = { country_event = TER_RGOC_black_ops.12 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_2 } }
+										country_event = TER_RGOC_black_ops.2	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.21 }
+											50 = { country_event = TER_RGOC_black_ops.22 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_3 } }
+										country_event = TER_RGOC_black_ops.3
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.31
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_4 } }
+										country_event = TER_RGOC_black_ops.4
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.41
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_5 } }
+										country_event = TER_RGOC_black_ops.5
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.51
+									}
+								}
+							}
+						}
+						75 = {}
+					}
+				}
+				else_if = {
+					limit = { has_idea = tno_army_professionalism_political_interference }
+					if = { limit = { NOT = { check_variable = { CPC_Black_Ops_rate = 10 } } } 
+							set_variable = { CPC_Black_Ops_rate = 10 } }
+					random_list = {
+						10 = {
+							random_list = {
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_1 } }
+										country_event = TER_RGOC_black_ops.1	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.11 }
+											50 = { country_event = TER_RGOC_black_ops.12 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_2 } }
+										country_event = TER_RGOC_black_ops.2	
+									}
+									else = { 
+										random_list = {
+											50 = { country_event = TER_RGOC_black_ops.21 }
+											50 = { country_event = TER_RGOC_black_ops.22 }
+										}
+									 }
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_3 } }
+										country_event = TER_RGOC_black_ops.3
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.31
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_4 } }
+										country_event = TER_RGOC_black_ops.4
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.41
+									}
+								}
+								20 = {
+									if = { limit = { NOT = { has_country_flag = TER_RGOC_black_ops_flag_5 } }
+										country_event = TER_RGOC_black_ops.5
+									}
+									else = { 
+										country_event = TER_RGOC_black_ops.51
+									}
+								}
+							}
+						}
+						90 = {}
+					}
+				}
+				else_if = {
+					limit = { OR = { has_idea = tno_army_professionalism_political_interference
+									 has_idea = tno_army_professionalism_spartan_discipline } }
+					if = { limit = { NOT = { check_variable = { CPC_Black_Ops_rate = 0 } } } 
+							set_variable = { CPC_Black_Ops_rate = 0 } 
+							remove_ideas = { CPC_Black_Ops } }
+				}
+			}
+
+			if = {
+				limit = { is_neighbor_of = WHC
+						  has_country_flag = CPC_WHC_has_revolt }
+				clr_country_flag = CPC_WHC_has_revolt
+				country_event = { id = CPC_TRCW_Revolt.21 }
+			}
+			if = {
+				limit = { is_neighbor_of = LZD
+						  has_country_flag = CPC_LZD_has_revolt }
+				clr_country_flag = CPC_LZD_has_revolt
+				country_event = { id = CPC_TRCW_Revolt.31 }
+			}
+			if = {
+				limit = { is_neighbor_of = BJC
+						  has_country_flag = CPC_BJC_has_revolt }
+				clr_country_flag = CPC_BJC_has_revolt
+				country_event = { id = CPC_TRCW_Revolt.11 }
+			}
+		}
+	}
+	on_monthly_CPC = {
+		effect = {
+			if = { 
+				limit = { has_country_flag = CPC_TRCW_begins_flag }
+				add_to_variable = { TRCW_months = 1 }
+				CPC_TRCW_monthly_prog_change = yes
+			}
+			if = { 
+				limit = { 
+					date > 1969.12.30
+					#NOT = { has_game_rule = { rule = TER_Zombie_mode option = TER_Zombie_mode_activated }  }
+					NOT = { has_country_flag = CPC_dem_riot_begins } 
+				}
+				set_country_flag = CPC_dem_riot_begins
+				country_event = CPC_TRCW_Revolt.1
+			}
+			if = { 
+				limit = { date > 1968.3.15
+						  NOT = { has_country_flag = CPC_5_1_ninth_congress } }
+				set_country_flag = CPC_5_1_ninth_congress
+				country_event = CPC_9th_congress.0
+			}
+		}
+	}
+	on_daily_CPC = {
+		effect = {
+			if = { limit = { MAN = { surrender_progress > 0.95 }
+							 MAN = { exists = yes } }
+				country_event = CPC_TRCW.18
+			}
+			if = {
+				limit = { 
+					CHI = { exists = yes }
+					check_variable = { CPC_TRCW_total_bomb_progress > 90 }
+					check_variable = { CPC_TRCW_total_bio_progress > 90 }
+				}
+				country_event = CPC_TRCW.19
+			}
+			if = {
+				limit = { 
+					has_war_with = JAP
+					surrender_progress > 0.7
+				}
+				country_event = CPC_TRCW.21
+			}
+			if = {
+				limit = {
+					has_war_with = CHI
+					surrender_progress > 0.7
+					NOT = { 956 = { is_fully_controlled_by = CPC } }
+				}
+				country_event = CPC_TRCW.30
+			}
+			if = {
+				limit = {
+					CHI = { exists = no }
+					NOT = { has_idea = CPC_eternal_damage_3 }
+					check_variable = { CPC_TRCW_total_bomb_progress > 90 }
+				}
+				add_ideas = CPC_eternal_damage_3
+			}
+			if = {
+				limit = {
+					CHI = { exists = no }
+					NOT = { has_idea = CPC_eternal_damage_4 }
+					check_variable = { CPC_TRCW_total_bio_progress > 90 }
+				}
+				add_ideas = CPC_eternal_damage_4
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = CPC_Mao_final_warn }
+					has_war_with = CHI
+					CHI = { surrender_progress > 0.2 }
+				}
+				country_event = CPC_TRCW.25
+				set_country_flag = CPC_Mao_final_warn
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = CPC_first_contract }
+					has_war_with = CHI
+					CHI = { surrender_progress > 0.7 }
+				}
+				country_event = CPC_TRCW.23
+				set_country_flag = CPC_first_contract
+			}
+		}
+	}
+	on_daily_XIK = {
+		effect = {
+			if = {
+				limit = {
+					has_war_with = TIB
+					NOT = { has_cosmetic_tag = XIK_UNIFIED }
+				}
+				2374 = {
+					set_demilitarized_zone = yes
+				}
+			}
+		}
+	}
+	on_daily_JAP = {
+		effect = {
+			if = { limit = { MAN = { surrender_progress > 0.4 }
+							 MAN = { exists = yes }
+							 has_war_with = CPC
+							 NOT = { has_global_flag = CPC_NO_WE_DESTROY_THE_WORLD } }
+					1024 = { set_demilitarized_zone = yes }
+					527 = { set_demilitarized_zone = yes }
+					1820 = { set_demilitarized_zone = yes } }
+			if = {
+				limit = { MAN = { has_idea = MAN_Kwantung_Army } }
+				MAN = {
+					swap_ideas = {
+						remove_idea = MAN_Kwantung_Army
+						add_idea = MAN_Kwantung_Army_TER
+					}
+				}
+			}
+		}
+	}
+
+	on_daily_ZXB = {
+		effect = {
+			if = { 
+				limit = { ZXB = { exists = yes } }
+				every_state = {
+					limit = { is_controlled_by = ZXB }
+					set_demilitarized_zone = yes
+					every_neighbor_state = {
+						set_demilitarized_zone = yes
+					}
+				}
+			}
+		}
+	}
+}
