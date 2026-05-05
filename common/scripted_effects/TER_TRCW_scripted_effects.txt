@@ -2268,60 +2268,188 @@ CPC_TRCW_Long_and_Arduous_Road = {
 			}
 		}
 		CHI = {
-			annex_country = {
-				target = HTC
-				transfer_troops = no
-			}
+			#张治中代餐这一块，cpc残部这一块，牢星火这一块
+			#annex_country = {
+			#	target = HTC
+			#	transfer_troops = no
+			#}
+			#这里放小马和辻政信
 			annex_country = {
 				target = CPC
 				transfer_troops = no
 			}
+			#武汉，同下
 			annex_country = {
 				target = WHC
 				transfer_troops = no
 			}
+			#北京，可以吞
 			annex_country = {
 				target = BJC
 				transfer_troops = no
 			}
+			#雷州，可以吞
 			annex_country = {
 				target = LZD
 				transfer_troops = no
 			}
+			#琼崖，这个可以吞
 			annex_country = {
 				target = QYC
 				transfer_troops = no
 			}
-			annex_country = {
-				target = SHX
-				transfer_troops = yes
-			}
-			annex_country = {
-				target = LOY
-				transfer_troops = yes
-			}
-			annex_country = {
-				target = KIS
-				transfer_troops = yes
-			}
+			#傅作义，放出来不吞迷惑牢日
+			#annex_country = {
+			#	target = SHX
+			#	transfer_troops = yes
+			#}
+			#卢汉不吞，放出来迷惑牢日
+			#annex_country = {
+			#	target = LOY
+			#	transfer_troops = yes
+			#}
+			#广西，先不吞，留着跟卢汉会谈一起吞
+			#annex_country = {
+			#	target = KIS
+			#	transfer_troops = yes
+			#}
 			every_state = {
 				limit = { is_fully_controlled_by = CHI }
 				add_core_of = CHI
 			}
 		}
+
+		every_state = {
+			limit = {
+				is_core_of = MEN
+			}
+			transfer_state_to = MEN
+		}
+		#复活吧小马111
+		QIN = {
+			transfer_state = 604
+			transfer_state = 906
+			transfer_state = 2429
+			transfer_state = 616
+			transfer_state = 764
+			transfer_state = 2427
+			transfer_state = 2426
+			transfer_state = 1302
+			transfer_state = 2425
+			transfer_state = 2424
+			transfer_state = 2423
+			transfer_state = 283
+
+		    add_core = 616
+			add_core = 764
+			add_core = 2427
+			add_core = 2426
+			add_core = 1302
+			add_core = 2425
+			add_core = 2424
+			add_core = 2423
+			add_core = 283
+
+			remove_all_ideas = yes
+
+			set_cosmetic_tag = QIN_LAR
+		}
+		#对先借你用着
+		MEN = {
+			transfer_state = 2422
+		}
+		#复活吧，我的晋陕111111111
+		SHX = {
+			transfer_state = 615
+			transfer_state = 622
+			transfer_state = 956
+			transfer_state = 2410
+			transfer_state = 2415
+			transfer_state = 2416
+			transfer_state = 2417
+			transfer_state = 2418
+			transfer_state = 2419
+			transfer_state = 2420
+			transfer_state = 2421
+
+			add_core = 615
+			add_core = 622
+			add_core = 956
+			add_core = 2410
+			add_core = 2415
+			add_core = 2416
+			add_core = 2417
+			add_core = 2418
+			add_core = 2419
+			add_core = 2420
+			add_core = 2421
+			set_cosmetic_tag = SHX_SHAANXI
+		}
 		every_state = {
 			limit = { check_variable = { china_state_ref = 22 } }
 			transfer_state_to = TIB
 		}
+		every_state = {
+			limit = { check_variable = { china_state_ref = 21 } }
+			remove_core_of = CHI
+			remove_claim_by = CHI
+			transfer_state_to = CHI
+		}
+		if = {
+			limit = {
+				LAO = {
+					has_cosmetic_tag = LAO_LPDR
+				}
+			}
+					LAO = {
+						drop_cosmetic_tag = yes
+						set_cosmetic_tag = LAO_republic
+						promote_character = LAO_Soukane_Vilaysarn
+						set_politics = {
+							ruling_party = despotism
+						}
+						set_party_name = {
+							ideology = despotism
+							long_name = LAO_Armed_Forces_party_long
+							name = LAO_Armed_Forces_party
+						}
+						set_popularities = {
+							communist = 11
+							socialist = 0
+							progressivism = 0
+							liberalism = 21
+							conservatism = 21
+							paternalism = 0
+							despotism = 47
+						}
+						econ_leave_sphere = yes
+						econ_join_sphere_JAP = yes
+					}
+		}
 		TIB = { set_capital = { state = 765 } }
 		if = {
 			limit = { CPC = { is_ai = no } }
-			TWN = { 
+			CHI = { 
 				change_tag_from = CPC
+			}
+		}
+		if = {
+			limit = {
+				MLY = { exist = yes }
+				MLY = { has_idea = ANRL_Core_member }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = MLY
+				}
+				add_core_of = SHO
+				transfer_state_to = SHO
 			}
 		}
 		JAP = {
 			add_to_faction = CHI
+			add_to_faction = QIN
+			add_to_faction = GAN
 			add_to_faction = THA
 			add_to_faction = LAO
 			add_to_faction = AZH
