@@ -9,6 +9,7 @@ recruit_character = CHI_Generic_Vacant
 set_major = yes
 
 oob = "CHI_1962"
+set_naval_oob = "CHI_1962_naval"
 
 set_country_flag = CHI_Modernization
 load_focus_tree = china_modernization
@@ -21,6 +22,12 @@ set_stability = 1.00
 
 set_research_slots = 3
 set_convoys = 40
+
+set_grand_doctrine = defensive_warfare
+set_sub_doctrine = regular_infantry_primacy
+set_sub_doctrine = towed_artillery_firepower
+set_sub_doctrine = coin_operational_doctrine
+set_sub_doctrine = defense_operational_doctrine
 
 recruit_character = CHI_gao_zongwu
 recruit_character = CHI_zhou_fohai
@@ -35,13 +42,9 @@ recruit_character = CHI_Ren_Yuandao
 recruit_character = CHI_Xiong_Jiandong
 recruit_character = CHI_Hao_Pengju
 recruit_character = CHI_Hu_Yukun
-recruit_character = CHI_sun_dianying
-recruit_character = CHI_luo_benli
-recruit_character = CHI_pang_bingxun
-recruit_character = CHI_Fang_Xianjue
-recruit_character = CHI_Zhang_Lanfeng
-recruit_character = CHI_tsuji_masanobu
-recruit_character = CHI_Takashina_Takehiko
+recruit_character = CHI_Sun_Dianying
+recruit_character = CHI_Luo_Benli
+recruit_character = CHI_Pang_Bingxun
  set_technology = {
 	basic_train = 1
 
@@ -50,7 +53,7 @@ recruit_character = CHI_Takashina_Takehiko
 	# infantry_equipment_0 = 1
 	infantry_weapons_1 = 1
 	night_vision_1 = 1
-	
+
 	infantry_kit_1 = 1
 	infantry_weapons_2 = 1
 	night_vision_2 = 1
@@ -67,13 +70,13 @@ recruit_character = CHI_Takashina_Takehiko
 	support_weapons = 1
 	support_weapons_hmg_1 = 1
 	combat_support_equipment_1 = 1
-	
+
 	support_weapons_arty_1 = 1
 	infantry_at = 1
 	infantry_at_upgrade_1 = 1
 	#
-	
-	
+
+
 	motorized_infantry = 1
 	motorized_rocket_unit = 1
 	motorized_infantry_1 = 1
@@ -81,32 +84,19 @@ recruit_character = CHI_Takashina_Takehiko
 	#
 	tech_special_forces = 1
 
-
-	
-
 	##SUPPORT##
 	tech_support = 1
 	tech_engineers = 1
-	assault_weapons_1 = 1
 	tech_engineers2 = 1
-	assault_weapons_2 = 1
-	tech_engineers3 = 1
-	assault_weapons_3 = 1
 	tech_recon = 1
-	tech_recon2 = 1
 	tech_military_police = 1
-	tech_military_police2 = 1
-	tech_military_police3 = 1
 	tech_maintenance_company = 1
-	tech_maintenance_company2 = 1
-	tech_field_hospital = 1
-	tech_field_hospital2 = 1
-	tech_logistics_company = 1
-	tech_signal_company = 1
-	tech_signal_company2 = 1
+
+	command_and_control1 = 1
+	command_and_control2 = 1
+	military_infrastructure1 = 1
 
 	##ARMOR##
-	
 
 	##HELICOPTERS##
 	helicopter_engines = 1
@@ -118,7 +108,7 @@ recruit_character = CHI_Takashina_Takehiko
 	interceptor_1945 = 1
 	fighter_1945 = 1
 	CAS_1945 = 1
-	
+
 ##HEAVY AIR##
 	tac_bomber1 = 1
 	tac_air_1945 = 1
@@ -128,17 +118,34 @@ recruit_character = CHI_Takashina_Takehiko
 	transport_air_1945 = 1
 
 ##NAVAL##
-	ww2_destroyer = 1
-	#basic_destroyer = 1
-	ww2_cruiser = 1
-	#basic_cruiser = 1
-	ww2_battleship = 1
-	ww2_submarine = 1
-	#ww2_carrier = 1
-	#early_carrier = 1
-	transport = 1
-	#basic_frigate = 1
-	
+	early_ship_hull_very_light = 1
+	basic_ship_hull_very_light = 1
+	early_ship_hull_more_light = 1
+	basic_ship_hull_more_light = 1
+	early_ship_hull_light = 1
+	basic_ship_hull_light = 1
+	improved_ship_hull_light = 1
+	basic_depth_charges = 1
+	improved_depth_charges = 1
+	advanced_depth_charges = 1
+	sonar = 1
+	improved_sonar = 1
+	good_sonar = 1
+	early_ship_hull_cruiser = 1
+	basic_ship_hull_cruiser = 1
+	early_ship_hull_submarine = 1
+	basic_ship_hull_submarine = 1
+	smoke_generator = 1
+	basic_torpedo = 1
+	magnetic_detonator = 1
+	basic_battery = 1
+	basic_light_battery = 1
+	basic_secondary_battery = 1
+	improved_secondary_battery = 1
+	mtg_transport = 1
+	basic_naval_mines = 1
+	submarine_mine_laying = 1
+
 ##ENGINEERING##
 	electronic_mechanical_engineering = 1
 	radio = 1
@@ -160,7 +167,6 @@ recruit_character = CHI_Takashina_Takehiko
 	mass_production_1 = 1
 	building_construction_1 = 1
 	consumer_goods_reduction_1 = 1
-	
 	energy_technology_1 = 1
 	social_construction_1 = 1
 	resource_extraction_methods = 1
@@ -168,145 +174,68 @@ recruit_character = CHI_Takashina_Takehiko
 	military_construction_1 = 1
 }
 
-# MtG tech #
-
-if = {
-	limit = {
-		has_dlc = "Man the Guns"
-	}
-	set_technology = {
-		early_ship_hull_very_light = 1
-		basic_ship_hull_very_light = 1
-		early_ship_hull_more_light = 1
-		basic_ship_hull_more_light = 1
-		early_ship_hull_light = 1
-		basic_ship_hull_light = 1
-		improved_ship_hull_light = 1
-		basic_depth_charges = 1
-		improved_depth_charges = 1
-		advanced_depth_charges = 1
-		sonar = 1
-		improved_sonar = 1
-		good_sonar = 1
-		early_ship_hull_cruiser = 1
-		basic_ship_hull_cruiser = 1
-		early_ship_hull_submarine = 1
-		basic_ship_hull_submarine = 1
-		smoke_generator = 1
-		basic_torpedo = 1
-		magnetic_detonator = 1
-		basic_battery = 1
-		basic_light_battery = 1
-		basic_secondary_battery = 1
-		improved_secondary_battery = 1
-		mtg_transport = 1
-		basic_naval_mines = 1
-		submarine_mine_laying = 1
-	}
-	set_naval_oob = "CHI_1962_naval_mtg"
-	create_equipment_variant = {
-		name = "Agano Class"
-		type = ship_hull_cruiser_2
-		name_group = CHI_CA_HISTORICAL
-		parent_version = 0
-		modules = {
-			fixed_ship_engine_slot = cruiser_ship_engine_2
-			fixed_ship_armor_slot = ship_armor_cruiser_2
-			fixed_ship_radar_slot = ship_radar_1
-			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-			fixed_ship_anti_air_slot = ship_anti_air_1
-			fixed_ship_battery_slot = dp_light_battery
-			fixed_ship_secondaries_slot = ship_secondaries_2
-			rear_1_custom_slot = ship_depth_charge_3
-			mid_2_custom_slot = ship_mine_layer_1
-			mid_1_custom_slot = ship_anti_air_1
-			front_1_custom_slot = ship_anti_air_1
-		}
-	}
-	create_equipment_variant = {
-		name = "Akizuki Class"
-		type = ship_hull_light_2
-		name_group = JAP_DD_HISTORICAL
-		parent_version = 0
-		modules = {
-			fixed_ship_engine_slot = light_ship_engine_3
-			fixed_ship_radar_slot = ship_sonar_3
-			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-			fixed_ship_anti_air_slot = ship_anti_air_1
-			fixed_ship_battery_slot = dp_light_battery
-			mid_1_custom_slot = ship_mine_sweeper_1
-			rear_1_custom_slot = ship_depth_charge_3
-		}
-	}
-	create_equipment_variant = {
-		name = "Kagero Class"
-		type = ship_hull_light_1
-		name_group = CHI_DD_HISTORICAL
-		parent_version = 0
-		modules = {
-			fixed_ship_engine_slot = light_ship_engine_1
-			fixed_ship_radar_slot = ship_radar_1
-			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-			fixed_ship_anti_air_slot = ship_anti_air_1
-			fixed_ship_battery_slot = dp_light_battery
-			mid_1_custom_slot = ship_depth_charge_3
-			rear_1_custom_slot = ship_mine_sweeper_1
-		}
-	}
-	## Frigates ##
-	create_equipment_variant = {
-		name = "Matsu Class"
-		type = ship_hull_more_light_1
-		parent_version = 0
-		modules = {
-			fixed_ship_battery_slot = dp_light_battery
-			fixed_ship_anti_air_slot = ship_anti_air_1
-			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
-			fixed_ship_radar_slot = ship_radar_1
-			fixed_ship_engine_slot = light_ship_engine_2
-			mid_1_custom_slot = ship_anti_air_1
-			rear_1_custom_slot = ship_mine_sweeper_1
-		}
+create_equipment_variant = {
+	name = "Agano Class"
+	type = ship_hull_cruiser_2
+	name_group = CHI_CA_HISTORICAL
+	parent_version = 0
+	modules = {
+		fixed_ship_engine_slot = cruiser_ship_engine_2
+		fixed_ship_armor_slot = ship_armor_cruiser_2
+		fixed_ship_radar_slot = ship_radar_1
+		fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+		fixed_ship_anti_air_slot = ship_anti_air_1
+		fixed_ship_battery_slot = dp_light_battery
+		fixed_ship_secondaries_slot = ship_secondaries_2
+		rear_1_custom_slot = ship_depth_charge_3
+		mid_2_custom_slot = ship_mine_layer_1
+		mid_1_custom_slot = ship_anti_air_1
+		front_1_custom_slot = ship_anti_air_1
 	}
 }
-
-if = {
-	limit = {
-		NOT = { has_dlc = "Man the Guns" }
+create_equipment_variant = {
+	name = "Akizuki Class"
+	type = ship_hull_light_2
+	name_group = JAP_DD_HISTORICAL
+	parent_version = 0
+	modules = {
+		fixed_ship_engine_slot = light_ship_engine_3
+		fixed_ship_radar_slot = ship_sonar_3
+		fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+		fixed_ship_anti_air_slot = ship_anti_air_1
+		fixed_ship_battery_slot = dp_light_battery
+		mid_1_custom_slot = ship_mine_sweeper_1
+		rear_1_custom_slot = ship_depth_charge_3
 	}
-	set_technology = {
-		ww2_frigate = 1
-		basic_frigate = 1
-		ww2_submarine = 1
-		basic_submarine = 1
-		ww2_destroyer = 1
-		basic_destroyer = 1
-		improved_destroyer = 1
-		ww2_cruiser = 1
-		basic_cruiser = 1
-		transport = 1
-		landing_craft = 1
+}
+create_equipment_variant = {
+	name = "Kagero Class"
+	type = ship_hull_light_1
+	name_group = CHI_DD_HISTORICAL
+	parent_version = 0
+	modules = {
+		fixed_ship_engine_slot = light_ship_engine_1
+		fixed_ship_radar_slot = ship_radar_1
+		fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+		fixed_ship_anti_air_slot = ship_anti_air_1
+		fixed_ship_battery_slot = dp_light_battery
+		mid_1_custom_slot = ship_depth_charge_3
+		rear_1_custom_slot = ship_mine_sweeper_1
 	}
-	set_naval_oob = "CHI_1962_naval"
-	create_equipment_variant = {
-		name = "Agano Class"
-		type = heavy_cruiser_2
-		name_group = CHI_CA_HISTORICAL
-	}
-	create_equipment_variant = {
-		name = "Akizuki Class"
-		type = destroyer_2
-		name_group = CHI_DD_HISTORICAL
-	}
-	create_equipment_variant = {
-		name = "Kagero Class"
-		type = destroyer_1
-		name_group = CHI_DD_HISTORICAL
-	}
-	## Frigates ##
-	create_equipment_variant = {
-		name = "Matsu Class"
-		type = frigate_1
+}
+## Frigates ##
+create_equipment_variant = {
+	name = "Matsu Class"
+	type = ship_hull_more_light_1
+	parent_version = 0
+	modules = {
+		fixed_ship_battery_slot = dp_light_battery
+		fixed_ship_anti_air_slot = ship_anti_air_1
+		fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+		fixed_ship_radar_slot = ship_radar_1
+		fixed_ship_engine_slot = light_ship_engine_2
+		mid_1_custom_slot = ship_anti_air_1
+		rear_1_custom_slot = ship_mine_sweeper_1
 	}
 }
 
@@ -323,6 +252,10 @@ if = {
 		IFV_1945 = 1
 		IFV_1950 = 1
 		MBT_1945 = 1
+
+		AC_1945 = 1
+		AC_1950 = 1
+		AC_1960 = 1
 
 		Heavy_1945 = 1
 
@@ -343,9 +276,11 @@ if = {
 		NSB_IFV_1950 = 1
 
 		NSB_heavy_1945 = 1
-		
-		NSB_MBT_1945 = 1
 
+		NSB_MBT_1945 = 1
+		NSB_AC_1945 = 1
+		NSB_AC_1950 = 1
+		NSB_AC_1960 = 1
 		NSB_Engine_1 = 1
 
 		NSB_artillery_1945 = 1
@@ -382,11 +317,19 @@ set_politics = {
 	elections_allowed = no
 }
 
+##TNOLAR added 周佛海的保守派阵营
 set_popularities = {
-	despotism_2 = 17
-	despotism = 35
-	despotism_1 = 30
-	fascism = 18
+	communist = 1
+	socialist = 0
+	liberalism = 3
+	conservatism = 6
+	paternalism = 17	#维新派
+	despotism = 30		#高派
+	despotism_1 = 25	#保守派
+	fascism = 18		#华北派
+	national_socialism = 0
+	ultranationalism = 0
+	
 }
 
 set_cosmetic_tag = CHI_JAP
@@ -396,8 +339,8 @@ GUZ = {
 GUX = {
 	set_cosmetic_tag = GUX_CHI
 }
-LOY = {
-	set_cosmetic_tag = LOY_CHI
+YUN = {
+	set_cosmetic_tag = YUN_CHI
 }
 SHX = {
 	set_cosmetic_tag = SHX_CHI
@@ -407,9 +350,6 @@ GAN = {
 }
 MEN = {
 	set_cosmetic_tag = MEN_CHI
-}
-CHQ = {
-	set_cosmetic_tag = CHQ_CHI
 }
 
 set_autonomy = {
@@ -425,18 +365,14 @@ set_autonomy = {
 	autonomous_state = autonomy_china_warlord_regime
 }
 set_autonomy = {
-	target = CHQ
-	autonomous_state = autonomy_china_special_administrative_region
-}
-set_autonomy = {
-	target = LOY
+	target = YUN
 	autonomous_state = autonomy_china_warlord_regime
 }
 set_autonomy = {
-	target = QYC
+	target = MEN
 	autonomous_state = autonomy_china_warlord_regime
 }
-
+#TNOLAR 取消西北派遣军傀儡
 
 add_ideas = {
 	#Country
@@ -447,7 +383,7 @@ add_ideas = {
 	CHI_surrounded_by_enemies
 	CHI_edu_debuff_placeholder
 	CHI_Research_Dummy_idea
-	
+
 	#Political
 	tno_political_parties_one_party_state
 	tno_religious_rights_secularism
@@ -512,8 +448,8 @@ add_ideas = {
 	# Officer Corps
 	CHI_Bao_Wenyue_army_chief
 	CHI_Ye_Peng_high_command
-	CHI_sun_dianying_high_command
-	CHI_pang_bingxun_high_command
+	CHI_Sun_Dianying_high_command
+	CHI_Pang_Bingxun_high_command
 }
 
 set_country_flag = tno_defined_startup_effectiveness
@@ -570,13 +506,13 @@ if = {
 		type = IFV_chassis_1
 		parent_version = 0
 		modules = {
-			main_armament_slot = tank_heavy_machine_gun
+			main_armament_slot = IFV_cannon
 			turret_type_slot = IFV_one_man_tank_turret
 			suspension_type_slot = tank_torsion_bar_suspension
 			armor_type_slot = tank_riveted_armor
 			engine_type_slot = tank_gasoline_engine
 		}
-		
+
 		icon = GFX_JAP_IFV_1950_medium
 		upgrades = {
 			tank_nsb_engine_upgrade = 3
@@ -596,11 +532,128 @@ if = {
 			special_type_slot_1 = tank_radio_1
 			special_type_slot_2 = secondary_turret_hmg
 		}
-		
+
 		icon = GFX_CHI_APC_1960_medium
 		upgrades = {
 			ac_nsb_engine_upgrade = 6
 			ac_nsb_armor_upgrade = 6
 		}
 	}
+}
+
+###Starting Production###
+add_equipment_production = {
+	equipment = {
+		type = infantry_equipment_2
+		creator = "CHI"
+	}
+	requested_factories = 1
+	progress = 0.1
+	efficiency = 10
+}
+
+add_equipment_production = {
+	equipment = {
+		type = anti_tank_equipment_0
+		creator = "CHI"
+	}
+	requested_factories = 1
+	progress = 0.1
+	efficiency = 10
+}
+
+add_equipment_production = {
+	equipment = {
+		type = support_equipment_1
+		creator = "CHI"
+	}
+	requested_factories = 1
+	progress = 0.1
+	efficiency = 10
+}
+
+add_equipment_production = {
+	equipment = {
+		type = artillery_equipment_2
+		creator = "CHI"
+	}
+	requested_factories = 1
+	progress = 0.1
+	efficiency = 10
+}
+
+##### TNOLAR added #####
+
+#战后内阁
+recruit_character = CHI_Shen_Changhuan
+recruit_character = CHI_Sun_Yaodong
+
+#战后政治人物
+recruit_character = CHI_CPC_unknown
+recruit_character = CHI_Ji_Fang
+recruit_character = CHI_Fei_Xiaotong
+recruit_character = CHI_Jiang_Yuntian
+recruit_character = CHI_Luo_Junqiang
+recruit_character = CHI_Wu_Guozhen
+recruit_character = CHI_Li_Huang
+recruit_character = CHI_DPLU
+
+#### 国防部，启动! ####
+##内阁
+recruit_character = CHI_Fang_Xianjue
+
+##顾问团
+#战后
+recruit_character = CHI_Hao_Baicun
+recruit_character = CHI_Jiang_Zhongling
+
+##普通军事将领
+## 民族派 ##
+recruit_character = CHI_Zhou_Qingxiang
+recruit_character = CHI_Ge_Xiancai
+recruit_character = CHI_Peng_Mengji
+recruit_character = CHI_Chen_Daqing
+recruit_character = CHI_Rao_Shaowei
+recruit_character = CHI_Rong_Youlue
+
+## 中央派 ##
+recruit_character = CHI_Xiang_Zhizhuang
+recruit_character = CHI_Shi_Yafu
+recruit_character = CHI_Tang_Shengming
+recruit_character = CHI_Wang_Wenti
+
+## 华北派 ##
+recruit_character = CHI_Zhang_Lanfeng
+recruit_character = CHI_Rong_Ziheng
+recruit_character = CHI_Wu_Huawen
+recruit_character = CHI_Wang_Fenggang
+
+## 海军将领 ##
+recruit_character = CHI_Jiang_Xiyuan
+recruit_character = CHI_Bao_Yimin
+recruit_character = CHI_Huang_Xun
+
+## 战后 ##
+recruit_character = CHI_Tong_Zhaoyang
+recruit_character = CHI_Chen_Zhenxiang
+recruit_character = CHI_Xie_Jiandong
+
+#add_ideas = {
+#	CHI_LAR_limit_navy_and_airforce_idea	#限制海空军，军事现代化开始移除
+#}
+
+#国防部开局效果
+set_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 } #募兵页面按钮帧变量
+
+set_variable = { CHI_MND_GUI_army_limit = 90 } #军队数量限制，最高35
+set_variable = { CHI_MND_GUI_current_army_number = 76 } #当前军队数量
+
+set_variable = { CHI_MND_GUI_JapanAlert_level = 30 } #日本警惕，1-100，共九级
+set_variable = { CHI_MND_GUI_JapanAlert_level_lowerlimit = 20 } #日本警惕下限，与军队数量挂钩
+
+#韩人老李事件链开始
+country_event = {
+	id = tnolar_chi_flavor.10
+	days = 14
+	random_days = 2
 }

@@ -933,7 +933,18 @@ country_event = { # for Stalin i think?
 			transfer_state = 55
 			transfer_state = 1815
 			transfer_state = 57
-			create_faction = REV_faction
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = REV_faction template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = REV_faction
+}
 			add_ideas = REV_Member
 			add_to_faction = SRH
 			add_to_faction = HRC

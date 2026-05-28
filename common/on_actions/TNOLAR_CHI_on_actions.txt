@@ -1,0 +1,1532 @@
+on_actions = {
+    on_daily_CHI = { #西北危机GUI脉冲
+        effect = {
+            CHI = {
+                if = {
+                    limit = {
+                        has_country_flag = CHI_Northwest_War
+                        QIN = {
+                            has_war_with = GAN
+                        }
+                    }
+                    add_to_variable = {
+                        CHI_Northwest_War_GUI_progressbar_var = -1
+                    }
+                    clamp_variable = {
+                        var = CHI_Northwest_War_GUI_progressbar_var
+                        min = 0
+                        max = 100
+                    }
+                    add_to_variable = {
+                        Northwest_War_timeleft = 1
+                    }
+                    clamp_variable = {
+                        var = Northwest_War_timeleft
+                        min = 1
+                        max = 61
+                    }
+                }
+            }
+        }
+    }
+    on_daily_CHI = { #外交博弈GUI脉冲
+        effect = {
+            CHI = {
+                if = {
+                    limit = {
+                        has_global_flag = TNOLAR_GAW_diplomatic_games
+                        has_country_flag = TNOLAR_country_has_gui
+                        check_variable = {
+                            CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var < 12
+                        }
+                    }
+                    add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 1 }
+                }
+                else_if = { #选国家回合结束
+                    limit = {
+                        has_global_flag = TNOLAR_GAW_diplomatic_games
+                        has_country_flag = TNOLAR_country_has_gui
+                        has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+                        check_variable = {
+                            CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12
+                        }
+                        check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var < 2 }
+                    }
+                    add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 1 }
+                    add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_round_var = 1 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 0 }
+                    clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_lock
+                    set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_confirm_lock_button_available
+
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_access_denied_var = 3 }
+
+                    #专属阶段事件
+                    country_event = tnolar_chi.1120
+
+
+                    #重设日本分数
+                    CHI_TMCAT_reset_jap_points = yes
+
+                    #检查自定义提醒
+                    CHI_TMCAT_dipogame_check = yes
+                    CHI_TMCAT_diposelect_check = yes
+                }
+
+                else_if = { #前三个正常回合
+                    limit = {
+                        has_global_flag = TNOLAR_GAW_diplomatic_games
+                        has_country_flag = TNOLAR_country_has_gui
+                        has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+                        check_variable = {
+                            CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12
+                        }
+                        check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var < 5 }
+                        check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var > 1 }
+                    }
+                    add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 1 }
+                    add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_round_var = 1 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 0 }
+                    clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_lock
+                    set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_confirm_lock_button_available
+
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_selected_quantity = 0 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_access_denied_var = 3 }
+
+                    #专属阶段事件
+                    country_event = tnolar_chi.1120
+
+
+
+                    #结算小回合分数
+                    if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints > CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points }
+                        }
+                        add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 1 }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints < CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points }
+                        }
+                        add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+                    }
+                    else = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points }
+                        }
+                        add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 1 }
+                        add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+                    }
+                    #玩家分数重置
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_points = 0 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints = 0 }
+
+                    #重设日本分数
+                    CHI_TMCAT_reset_jap_points = yes
+
+                    CHI_TMCAT_reset_gamebutton = yes
+                    CHI_TMCAT_reset_selected_gamebutton = yes
+
+                    #检查自定义提醒
+                    CHI_TMCAT_dipogame_check = yes
+                    CHI_TMCAT_diposelect_check = yes
+                }
+
+                else_if = { #第四回合结束
+                    limit = {
+                        has_global_flag = TNOLAR_GAW_diplomatic_games
+                        has_country_flag = TNOLAR_country_has_gui
+                        has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+                        check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+                        check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 5 }
+                    }
+                    add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 1 }
+                    add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_round_var = 1 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 0 }
+                    clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_lock
+                    set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_confirm_lock_button_available
+
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_selected_quantity = 0 }
+
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_access_denied_var = 2 }
+                    
+                    #结算小回合分数
+                    if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints > CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points }
+                        }
+                        add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 1 }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints < CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points }
+                        }
+                        add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+                    }
+                    else = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points }
+                        }
+                        add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 1 }
+                        add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+                    }
+                    #分数重置
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_points = 0 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints = 0 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points = 0 }
+
+                    CHI_TMCAT_reset_gamebutton = yes
+                    CHI_TMCAT_reset_selected_gamebutton = yes
+
+                    #检查自定义提醒
+                    CHI_TMCAT_dipogame_check = yes
+                    CHI_TMCAT_diposelect_check = yes
+                }
+
+                else_if = { #结算回合结束
+                    limit = {
+                        has_global_flag = TNOLAR_GAW_diplomatic_games
+                        has_country_flag = TNOLAR_country_has_gui
+                        has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+                        check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 12 }
+                        check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+                    }
+                    #回到选国家回合
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 0 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 0 }
+
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 1 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_round_var = 1 }
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 0 }
+                    clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+                    clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_lock
+                    
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_access_denied_var = 3 }
+
+                    #检查自定义提醒
+                    CHI_TMCAT_dipogame_check = yes
+                    CHI_TMCAT_diposelect_check = yes
+
+                    #（结算本回合内容并...
+                    if = { #胜利
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var > CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var }
+                        }
+                        add_to_variable = { CHI_GAWMUP_Liberation_Alliance_stability_factor = 0.05 }
+		                add_to_variable = { CHI_GAWMUP_Liberation_Alliance_gdp_growth_modifier = 0.05 }
+		                add_to_variable = { CHI_GAWMUP_Liberation_Alliance_inflation_rate_modifier = -0.05 }
+		                add_to_variable = { CHI_GAWMUP_Liberation_Alliance_war_support_factor = 0.05 }
+
+                        #奖励：令目标国加入阵营
+                        ##广东
+                        if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GNG
+                                }
+                                GNG = {
+                                    NOT = {
+                                        has_country_leader = {
+                                            character = GNG_nagano_shigeto
+                                            ruling_only = yes
+                                        }
+                                    }
+                                    NOT = {
+                                        has_country_leader = {
+                                            character = GNG_komai_kenichiro
+                                            ruling_only = yes
+                                        }
+                                    }
+                                }
+                            }
+                            GNG = {
+                                leave_faction = yes
+                                set_cosmetic_tag = GNG_CHI_alliance_region
+
+                                #移除经济圈
+                                econ_leave_sphere = yes
+		                        econ_recompile_all_spheres = yes
+		                        recalculate_world_trade_influence = yes
+
+                                #移除成员国精神
+                                #remove_ideas = Sphere_Core_Member
+                                #remove_ideas = Sphere_Coequal
+                                #remove_ideas = Sphere_Economic_Dependent
+                                #remove_ideas = Sphere_Fully_Dependent
+                                #remove_ideas = Sphere_Imp_Protectorate
+                                #remove_ideas = Sphere_Corporate_Dependency
+                                #remove_ideas = Sphere_Observer
+
+                                #换用了另一种更简洁的方式，且能够减小适配压力
+                                #前提是特浓组还在维护这个效果，祈祷吧
+                                remove_faction_status = yes
+
+                                #添加新成员国精神
+                                add_ideas = TNOLAR_PALA_Guangdong
+                            }
+                            CHI = {
+                                add_to_faction = GNG
+                            }
+                            remove_from_array = {
+                                global.Table_GUI_faction_member_JAP = GNG
+                            }
+                            add_to_array = {
+                                global.Table_GUI_faction_member_CHI = GNG
+                            }
+
+                            if = {
+                                limit = {
+                                    GNG = {
+                                        has_country_leader = {
+                                            character = GNG_morita_akio
+                                            ruling_only = yes
+                                        }
+                                    }
+                                }
+                                country_event = tnolar_chi.1150
+                            }
+                            else_if = {
+                                limit = {
+                                    GNG = {
+                                        has_country_leader = {
+                                            character = GNG_matsushita_masaharu
+                                            ruling_only = yes
+                                        }
+                                    }
+                                }
+                                country_event = tnolar_chi.1151
+                            }
+                            else_if = {
+                                limit = {
+                                    GNG = {
+                                        has_country_leader = {
+                                            character = GNG_ibuka_masaru
+                                            ruling_only = yes
+                                        }
+                                        has_country_flag = Fujitsu_PersistenceEnding
+                                    }
+                                }
+                                country_event = tnolar_chi.1153
+                            }
+
+                            add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_GNG
+                        }
+
+                        ##早上好越南现在我有直升机
+                        if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_VIN
+                                }
+                            }
+                            VIN = {
+                                leave_faction = yes
+
+                                #移除经济圈
+                                econ_leave_sphere = yes
+		                        econ_recompile_all_spheres = yes
+		                        recalculate_world_trade_influence = yes
+
+                                #移除成员国精神
+                                remove_faction_status = yes
+
+                                #添加新成员国精神
+                                add_ideas = TNOLAR_PALA_Member
+                            }
+                            CHI = {
+                                add_to_faction = VIN
+                            }
+                            remove_from_array = {
+                                global.Table_GUI_faction_member_JAP = VIN
+                            }
+                            add_to_array = {
+                                global.Table_GUI_faction_member_CHI = VIN
+                            }
+
+                            add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_VIN
+                        }
+
+                        ##老挝
+                        if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_LAO
+                                }
+                            }
+                            LAO = {
+                                leave_faction = yes
+
+                                #移除经济圈
+                                econ_leave_sphere = yes
+		                        econ_recompile_all_spheres = yes
+		                        recalculate_world_trade_influence = yes
+
+                                #移除成员国精神
+                                remove_faction_status = yes
+
+                                #添加新成员国精神
+                                add_ideas = TNOLAR_PALA_Member
+                            }
+                            CHI = {
+                                add_to_faction = LAO
+                            }
+                            remove_from_array = {
+                                global.Table_GUI_faction_member_JAP = LAO
+                            }
+                            add_to_array = {
+                                global.Table_GUI_faction_member_CHI = LAO
+                            }
+
+                            add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_LAO
+                        }
+
+                        ##柬埔寨
+                        if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_CAM
+                                }
+                            }
+                            CAM = {
+                                leave_faction = yes
+
+                                #移除经济圈
+                                econ_leave_sphere = yes
+		                        econ_recompile_all_spheres = yes
+		                        recalculate_world_trade_influence = yes
+
+                                #移除成员国精神
+                                remove_faction_status = yes
+
+                                #添加新成员国精神
+                                add_ideas = TNOLAR_PALA_Member
+                            }
+                            CHI = {
+                                add_to_faction = CAM
+                            }
+                            remove_from_array = {
+                                global.Table_GUI_faction_member_JAP = CAM
+                            }
+                            add_to_array = {
+                                global.Table_GUI_faction_member_CHI = CAM
+                            }
+
+                            add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_CAM
+                        }
+
+                        ##泰国
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_THA
+                                }
+                            }
+                            THA = {
+                                leave_faction = yes
+
+                                #移除经济圈
+                                econ_leave_sphere = yes
+		                        econ_recompile_all_spheres = yes
+		                        recalculate_world_trade_influence = yes
+
+                                #移除成员国精神
+                                remove_faction_status = yes
+
+                                #添加新成员国精神
+                                add_ideas = TNOLAR_PALA_Member
+                            }
+                            CHI = {
+                                add_to_faction = THA
+                            }
+                            remove_from_array = {
+                                global.Table_GUI_faction_member_JAP = THA
+                            }
+                            add_to_array = {
+                                global.Table_GUI_faction_member_CHI = THA
+                            }
+
+                            add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_THA
+                        }
+
+                        ##缅甸
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_BUR
+                                }
+                            }
+                            BUR = {
+                                leave_faction = yes
+
+                                #移除经济圈
+                                econ_leave_sphere = yes
+		                        econ_recompile_all_spheres = yes
+		                        recalculate_world_trade_influence = yes
+
+                                #移除成员国精神
+                                remove_faction_status = yes
+
+                                #添加新成员国精神
+                                add_ideas = TNOLAR_PALA_Member
+                            }
+                            CHI = {
+                                add_to_faction = BUR
+                            }
+                            remove_from_array = {
+                                global.Table_GUI_faction_member_JAP = BUR
+                            }
+                            add_to_array = {
+                                global.Table_GUI_faction_member_CHI = BUR
+                            }
+
+                            add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_BUR
+                        }
+                        
+                        ##自由印度-组长有令，暂时不管
+                        #else_if = {
+                        #    limit = {
+                        #        CHI = {
+                        #            has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_AZH
+                        #        }
+                        #    }
+                        #    AZH = {
+                        #        leave_faction = yes
+                        #
+                        #        #移除经济圈
+                        #        econ_leave_sphere = yes
+		                #        econ_recompile_all_spheres = yes
+		                #        recalculate_world_trade_influence = yes
+                        #
+                        #        #移除成员国精神
+                        #        remove_faction_status = yes
+                        #
+                        #        #添加新成员国精神
+                        #        add_ideas = TNOLAR_PALA_Member
+                        #    }
+                        #    CHI = {
+                        #        add_to_faction = AZH
+                        #    }
+                        #    remove_from_array = {
+                        #        global.Table_GUI_faction_member_JAP = AZH
+                        #    }
+                        #    add_to_array = {
+                        #        global.Table_GUI_faction_member_CHI = AZH
+                        #    }
+                        #
+                        #    add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                        #    set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_AZH
+                        #}
+
+                        ##菲律宾
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_PHI
+                                }
+                                PHI = {
+                                    NOT = {
+                                        has_idea = Sphere_Imp_Protectorate
+                                    }
+                                }
+                            }
+                            PHI = {
+                                leave_faction = yes
+
+                                #移除经济圈
+                                econ_leave_sphere = yes
+		                        econ_recompile_all_spheres = yes
+		                        recalculate_world_trade_influence = yes
+
+                                #移除成员国精神
+                                remove_faction_status = yes
+
+                                #添加新成员国精神
+                                add_ideas = TNOLAR_PALA_Member
+                            }
+                            CHI = {
+                                add_to_faction = PHI
+                            }
+                            remove_from_array = {
+                                global.Table_GUI_faction_member_JAP = PHI
+                            }
+                            add_to_array = {
+                                global.Table_GUI_faction_member_CHI = PHI
+                            }
+
+                            add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_FGB                           
+                        }
+
+                        ##印尼
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_INS
+                                }
+                            }
+                            INS = {
+                                leave_faction = yes
+
+                                #移除经济圈
+                                econ_leave_sphere = yes
+		                        econ_recompile_all_spheres = yes
+		                        recalculate_world_trade_influence = yes
+
+                                #移除成员国精神
+                                remove_faction_status = yes
+
+                                #添加新成员国精神
+                                add_ideas = TNOLAR_PALA_Member
+                            }
+                            CHI = {
+                                add_to_faction = INS
+                            }
+                            remove_from_array = {
+                                global.Table_GUI_faction_member_JAP = INS
+                            }
+                            add_to_array = {
+                                global.Table_GUI_faction_member_CHI = INS
+                            }
+
+                            add_to_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 8 }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_INS
+                        }
+
+
+
+                        #奖励：令目标国被破坏
+                        ##蒙疆
+                        if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MEN
+                                }
+                            }
+                            MEN = {
+                                add_timed_idea = {
+                                    idea = CHI_LAR_Victims_of_diplomatic_games_idea
+                                    days = 360
+                                }
+                            }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_MEN
+                        }
+
+                        ##广东但是永野图了所有人/驹井超了所有人
+                        if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GNG
+                                }
+                                GNG = {
+                                    OR = {
+                                        has_country_leader = {
+                                            character = GNG_nagano_shigeto
+                                            ruling_only = yes
+                                        }
+
+                                        has_country_leader = {
+                                            character = GNG_komai_kenichiro
+                                            ruling_only = yes
+                                        }
+                                    }
+                                }
+                            }
+                            GNG = {
+                                add_timed_idea = {
+                                    idea = CHI_LAR_Victims_of_diplomatic_games_idea
+                                    days = 360
+                                }
+                            }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_GNG
+                        }
+
+                        ##马来亚
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_SHO
+                                }
+                            }
+                            SHO = {
+                                add_timed_idea = {
+                                    idea = CHI_LAR_Victims_of_diplomatic_games_idea
+                                    days = 360
+                                }
+                            }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_SHO
+                        }
+                        
+                        ##婆罗洲
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_NRB
+                                }
+                            }
+                            NRB = {
+                                add_timed_idea = {
+                                    idea = CHI_LAR_Victims_of_diplomatic_games_idea
+                                    days = 360
+                                }
+                            }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_NRB
+                        }
+
+                        ##菲律宾被IJA直接控制
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_FGB
+                                }
+                            }
+                            FGB = {
+                                add_timed_idea = {
+                                    idea = CHI_LAR_Victims_of_diplomatic_games_idea
+                                    days = 360
+                                }
+                            }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_FGB
+                        }
+
+                        ##印尼
+                        #else_if = {
+                        #    limit = {
+                        #        CHI = {
+                        #            has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_INS
+                        #        }
+                        #    }
+                        #    INS = {
+                        #        add_timed_idea = {
+                        #            idea = CHI_LAR_Victims_of_diplomatic_games_idea
+                        #            days = 360
+                        #        }
+                        #    }
+                        #    set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_INS
+                        #}
+                        
+                        ##西北
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GAN
+                                }
+                            }
+                            GAN = {
+                                add_timed_idea = {
+                                    idea = CHI_LAR_Victims_of_diplomatic_games_idea
+                                    days = 360
+                                }
+                            }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_GAN
+                        }
+                        
+                        ##满洲
+                        else_if = {
+                            limit = {
+                                CHI = {
+                                    has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MAN
+                                }
+                            }
+                            MAN = {
+                                add_timed_idea = {
+                                    idea = CHI_LAR_Victims_of_diplomatic_games_idea
+                                    days = 360
+                                }
+                            }
+                            set_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_has_selected_MAN
+                        }
+
+                        #刷新顶部指示器
+                        if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 3 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 3 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 3 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 3 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 3 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 3 }
+                        }
+
+                        #清除当前选择地区flag
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MEN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GNG
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_VIN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_LAO
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_CAM
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_THA
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_BUR
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_AZH
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_SHO
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_NRB
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_PHI
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_FGB
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_INS
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GAN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MAN
+                    }
+                    else_if = { #失败
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var < CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var }
+                        }
+
+
+                        #刷新顶部指示器
+                        if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 4 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 4 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 4 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 4 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 4 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 4 }
+                        }
+
+                        #清除当前选择地区flag
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MEN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GNG
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_VIN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_LAO
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_CAM
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_THA
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_BUR
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_AZH
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_SHO
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_NRB
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_PHI
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_FGB
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_INS
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GAN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MAN
+                    }
+                    else = { #平局
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var }
+                        }
+
+
+                        #刷新顶部指示器
+                        if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 5 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 5 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 5 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 5 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 5 }
+                        }
+                        else_if = {
+                            limit = {
+                                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+                            }
+                            set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 5 }
+                        }
+
+                        #清除当前选择地区flag
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MEN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GNG
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_VIN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_LAO
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_CAM
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_THA
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_BUR
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_AZH
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_SHO
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_NRB
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_PHI
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_FGB
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_INS
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GAN
+                        clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MAN
+                    }
+                    clr_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+
+                    #重置双方可视筹码
+                    set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 1 }
+			        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+
+                    if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 20 }
+			                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 85 }
+                        }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 33 }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 71 }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 33 }
+			                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 71 }
+                        }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 47 }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 57 }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 47 }
+			                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 57 }
+                        }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 60 }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 43 }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 60 }
+			                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 43 }
+                        }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 73 }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 28 }
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 73 }
+			                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 28 }
+                        }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 86 }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 14 }
+                    }
+                    else_if = {
+                    limit = {
+                            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 86 }
+			                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 14 }
+                        }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 100 }
+                        set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 0 }
+                    }
+                }
+            }
+        }
+    }
+
+    on_daily_CHI = { #大东亚战争GUI脉冲
+        effect = {
+            CHI = {
+                if = {
+                    limit = {
+                        has_global_flag = TNOLAR_GAW_in_progress
+                    }
+                    if = {
+                        limit = {
+                            has_global_flag = TNOLAR_GAW_Tsushima_Tunnel_blocked
+                        }
+                        639 = {	#LAR地块-封锁海底隧道
+                            set_demilitarized_zone = yes
+                        }
+                    }
+
+                    #############
+                    # 计划槽位1 #
+                    #############
+                    if = {
+                        limit = {   #默认时间-1
+                            has_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+                        }
+                        add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = -1 }
+                        #if = {
+                        #    limit = {   #若完成快速计划国策，则额外-11时间
+                        #        has_completed_focus = CHI_LAR_Quick_Plan
+                        #    }
+                        #    add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = -11 }
+                        #}
+                        if = {      #若计划类型是战争预案，则加速为10天
+                            limit = {
+                                check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 2 }
+                            }
+                            add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = -5 }
+                        }
+                        clamp_variable = {  #留个后手，防止变成负数
+                            var = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+                            min = 0
+                        }
+                        if = {
+                            limit = {       #如果剩余时间为0
+                                check_variable = {
+                                    var = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+                                    value = 0
+                                    compare = less_than_or_equals
+                                }
+                                NOT = {
+                                    has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+                                }
+                            }
+                            meta_effect = {	#移除此前的效果
+                                text = {
+                                    for_each_scope_loop = {
+                                        array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+                                        }
+                                    }
+                                }
+                                LAR_GAW_STATE = "[?CHI_Great_Asian_War_warplan_GUI_plan_1_state.GetTokenKey]"
+                            }
+
+                            meta_effect = {	#重设所选地区的计划显示
+                                text = {
+                                    set_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 1 }
+                                }
+                                LAR_GAW_STATE = "[?CHI_Great_Asian_War_warplan_GUI_plan_1_state.GetTokenKey]"
+                            }
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_state
+
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 1 }
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 1 }
+
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+
+                            #设置冷却时间
+                            set_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = 60 }
+                        }
+
+                        if = {
+                            limit = {       #如果完成国策雷厉风行，则减少75%冷却时间
+                                has_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+                                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+                                has_completed_focus = CHI_LAR_Quick_Plan
+                            }
+                            clamp_variable = {
+                                var = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+                                min = 0
+                            }
+                            add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = -2 }
+                        }
+                        if = {
+                            limit = {       #如果剩余时间为0，且正在冷却期
+                                check_variable = {
+                                    var = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+                                    value = 0
+                                    compare = less_than_or_equals
+                                }
+                                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+                            }
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+                            clr_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+                        }
+                    }
+
+                    #############
+                    # 计划槽位2 #
+                    #############
+                    if = {
+                        limit = {   #默认时间-1
+                            has_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+                        }
+                        add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = -1 }
+                        #if = {
+                        #    limit = {   #若完成快速计划国策，则额外-11时间
+                        #        has_completed_focus = CHI_LAR_Quick_Plan
+                        #    }
+                        #    add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = -11 }
+                        #}
+                        if = {      #若计划类型是战争预案，则加速为10天
+                            limit = {
+                                check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 2 }
+                            }
+                            add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = -5 }
+                        }
+                        clamp_variable = {  #留个后手，防止变成负数
+                            var = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+                            min = 0
+                        }
+                        if = {
+                            limit = {       #如果剩余时间为0
+                                check_variable = {
+                                    var = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+                                    value = 0
+                                    compare = less_than_or_equals
+                                }
+                                NOT = {
+                                    has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+                                }
+                            }
+                            meta_effect = {	#移除此前的效果
+                                text = {
+                                    for_each_scope_loop = {
+                                        array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+                                        }
+                                    }
+                                }
+                                LAR_GAW_STATE = "[?CHI_Great_Asian_War_warplan_GUI_plan_2_state.GetTokenKey]"
+                            }
+
+                            meta_effect = {	#重设所选地区的计划显示
+                                text = {
+                                    set_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 1 }
+                                }
+                                LAR_GAW_STATE = "[?CHI_Great_Asian_War_warplan_GUI_plan_2_state.GetTokenKey]"
+                            }
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_state
+
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 1 }
+
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+
+                            #设置冷却时间
+                            set_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = 60 }
+                        }
+
+                        if = {
+                            limit = {       #如果完成国策雷厉风行，则减少75%冷却时间
+                                has_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+                                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+                                has_completed_focus = CHI_LAR_Quick_Plan
+                            }
+                            add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = -2 }
+                            clamp_variable = {
+                                var = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+                                min = 0
+                            }
+                        }
+                        if = {
+                            limit = {       #如果剩余时间为0，且正在冷却期
+                                check_variable = {
+                                    var = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+                                    value = 0
+                                    compare = less_than_or_equals
+                                }
+                                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+                            }
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+                            clr_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+                        }
+                    }
+
+                    #############
+                    # 计划槽位3 #
+                    #############
+                    if = {
+                        limit = {   #默认时间-1
+                            has_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+                        }
+                        add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = -1 }
+                        #if = {
+                        #    limit = {   #若完成快速计划国策，则额外-11时间
+                        #        has_completed_focus = CHI_LAR_Quick_Plan
+                        #    }
+                        #    add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = -11 }
+                        #}
+                        if = {      #若计划类型是战争预案，则加速为10天
+                            limit = {
+                                check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 2 }
+                            }
+                            add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = -5 }
+                        }
+                        clamp_variable = {  #留个后手，防止变成负数
+                            var = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+                            min = 0
+                        }
+                        if = {
+                            limit = {       #如果剩余时间为0
+                                check_variable = {
+                                    var = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+                                    value = 0
+                                    compare = less_than_or_equals
+                                }
+                                NOT = {
+                                    has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+                                }
+                            }
+                            meta_effect = {	#移除此前的效果
+                                text = {
+                                    for_each_scope_loop = {
+                                        array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+                                        }
+                                        remove_dynamic_modifier = {
+                                            modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+                                        }
+                                    }
+                                }
+                                LAR_GAW_STATE = "[?CHI_Great_Asian_War_warplan_GUI_plan_3_state.GetTokenKey]"
+                            }
+
+                            meta_effect = {	#重设所选地区的计划显示
+                                text = {
+                                    set_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 1 }
+                                }
+                                LAR_GAW_STATE = "[?CHI_Great_Asian_War_warplan_GUI_plan_3_state.GetTokenKey]"
+                            }
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_state
+
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 1 }
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 1 }
+
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+
+                            #设置冷却时间
+                            set_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+                            set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = 60 }
+                        }
+                        
+                        if = {
+                            limit = {       #如果完成国策雷厉风行，则减少75%冷却时间
+                                has_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+                                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+                                has_completed_focus = CHI_LAR_Quick_Plan
+                            }
+                            clamp_variable = {
+                                var = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+                                min = 0
+                            }
+                            add_to_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = -2 }
+                        }
+                        if = {
+                            limit = {       #如果剩余时间为0，且正在冷却期
+                                check_variable = {
+                                    var = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+                                    value = 0
+                                    compare = less_than_or_equals
+                                }
+                                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+                            }
+                            clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+                            clr_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    on_annex = {
+        effect = {
+            CHI = {
+                if = {
+                    limit = {
+                        ROOT = { tag = GAN }
+                        FROM = { tag = QIN }
+                    }
+                    CHI = {
+                        country_event = {
+                            id = tnolar_chi.467
+                            hours = 12
+                            random_hours = 2
+                        }
+                        country_event = {
+                            id = tnolar_chi.468
+                            hours = 24
+                            random_hours = 4
+                        }
+                    }
+                    JAP = {
+			            add_to_faction = GAN
+		            }
+                }
+            }
+        }
+    }
+
+    on_capitulation = { #西北战争结果
+        effect = {
+            if = {
+				limit = {
+					FROM = { original_tag = QIN }
+					ROOT = { original_tag = GAN }
+				}
+                QIN = {
+                    save_global_event_target_as = winning_country
+                    transfer_state = 764
+                    transfer_state = 283
+                    transfer_state = 1302
+                    transfer_state = 2427
+                    transfer_state = 2425
+                    transfer_state = 2424
+                    transfer_state = 2423
+                    add_state_core = 764
+                    add_state_core = 283
+                    add_state_core = 1302
+                    add_state_core = 2427
+                    add_state_core = 2425
+                    add_state_core = 2424
+                    add_state_core = 2423
+                }
+                GAN = {
+                    white_peace = QIN
+                    save_global_event_target_as = losing_country
+                    remove_state_core = 764
+                    remove_state_core = 283
+                    remove_state_core = 1302
+                    remove_state_core = 2427
+                    remove_state_core = 2425
+                    remove_state_core = 2424
+                    remove_state_core = 2423
+                    drop_cosmetic_tag = yes
+                    set_cosmetic_tag = GAN_neinatsu_gunseikan
+                    set_politics = {
+	                    ruling_party = despotism
+                        elections_allowed = no
+                        last_election = "1935.12.17"
+                    }
+				    set_political_party = {
+    				    ideology = despotism
+    				    popularity = 45
+				    }
+                    set_country_leader_description = {
+                        ideology = despotism
+                        desc = "POLITICS_SEIHOKU_COUNCIL_DESC_NINGXIA"
+                    }
+                    set_capital = { state = 2426 remember_old_capital = no }
+                }
+                set_global_flag = war_won
+				set_global_flag = show_peace_popup_alert
+				add_to_variable = { global.peace_popup_dirty = 1 }
+                set_global_flag = skip_default_capitulation
+                JAP = {
+			        add_to_faction = GAN
+		        }
+                CHI = {
+                    country_event = {
+                        id = tnolar_chi.464
+                        hours = 12
+                        random_hours = 2
+                    }
+                    country_event = {
+                        id = tnolar_chi.465
+                        hours = 24
+                        random_hours = 4
+                    }
+                    set_country_flag = LAR_CHI_ACHIEVE_NORTHWESTWAR_WIN
+                }
+            }
+        }
+    }
+
+    on_capitulation = { #大东亚战争失败
+        effect = {
+            if = {
+				limit = {
+					FROM = { original_tag = JAP }
+					ROOT = { original_tag = CHI }
+				}
+                every_enemy_country = {
+                    white_peace = CHI
+                }
+                JAP = {
+                    save_global_event_target_as = winning_country
+                }
+                CHI = {
+                    save_global_event_target_as = losing_country
+                }
+                set_global_flag = war_won
+				set_global_flag = show_peace_popup_alert
+				add_to_variable = { global.peace_popup_dirty = 1 }
+                set_global_flag = skip_default_capitulation
+
+                TNOLAR_GAW_failed = yes
+
+                CHI = {
+                    set_country_flag = CHI_gaw_failure_ending
+                    TNOLAR_Country_Closing_Screen_Show = yes
+                }
+            }
+        }
+    }
+
+    on_capitulation = { #广东被击败
+        effect = {
+            if = {
+				limit = {
+					FROM = { original_tag = CHI }
+					ROOT = { original_tag = GNG }
+				}
+                if = {
+                    limit = {
+                        GNG = {
+                            has_country_leader = {  #永野
+                                character = GNG_nagano_shigeto
+                                ruling_only = yes
+                            }
+                        }
+                    }
+                    CHI = {
+                        country_event = {
+                            id = tnolar_chi.1156
+                            days = 4
+                        }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        GNG = {
+                            OR = {
+                                has_country_leader = {  #松下
+                                    character = GNG_matsushita_masaharu
+                                    ruling_only = yes
+                                }
+                                has_country_leader = {  #盛田
+                                    character = GNG_morita_akio
+                                    ruling_only = yes
+                                }
+                            }
+                        }
+                    }
+                    CHI = {
+                        country_event = {
+                            id = tnolar_chi.1152
+                            days = 10
+                        }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        GNG = {
+                            has_country_leader = {  #井深
+                                character = GNG_ibuka_masaru
+                                ruling_only = yes
+                            }
+                        }
+                    }
+                    CHI = {
+                        country_event = {
+                            id = tnolar_chi.1154
+                            days = 4
+                        }
+                    }
+                }
+                else_if = {
+                    limit = {
+                        GNG = {
+                            has_country_leader = {  #驹井
+                                character = GNG_komai_kenichiro
+                                ruling_only = yes
+                            }
+                        }
+                    }
+                    CHI = {
+                        country_event = {
+                            id = tnolar_chi.1155
+                            days = 4
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

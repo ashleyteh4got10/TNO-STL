@@ -1,0 +1,362 @@
+STL_Omsk_Witch_Trial_category = {
+	TGWT_west_russia = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 15
+		visible = { 
+            check_variable = {
+                MGI_map_var = 0
+            }
+         }
+		remove_effect = {
+            every_country = {
+                limit = {
+                    is_central_russian_nation = yes
+                }
+                MGI = {
+                    declare_war_on = {
+                        target = PREV
+                        type = annex_everything
+                    }
+                }
+                MGI = {
+                    declare_war_on = {
+                        target = ORE
+                        type = annex_everything
+                    }
+                }
+                ORE = { annex_country = { target = URL transfer_troops = no } }
+				ORE = { annex_country = { target = DRL transfer_troops = no } }
+				ORE = { annex_country = { target = MGN transfer_troops = no } }
+            }
+		}
+	}
+
+    TGWT_far_east = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 15
+		visible = { 
+            check_variable = {
+                MGI_map_var = 0
+            }
+         }
+		remove_effect = {
+            every_country = {
+                limit = {
+                    is_far_eastern_nation = yes
+                }
+                MGI = {
+                    declare_war_on = {
+                        target = PREV
+                        type = annex_everything
+                    }
+                }
+				MGI = {
+                    declare_war_on = {
+                        target = PRC
+                        type = annex_everything
+                    }
+                }
+                MGI = {
+                    declare_war_on = {
+                        target = NRL
+                        type = annex_everything
+                    }
+                }
+            }
+		}
+	}
+
+    TGWT_west_siberia = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 15
+		visible = { 
+            check_variable = {
+                MGI_map_var = 0
+            }
+         }
+		remove_effect = {
+            every_country = {
+                limit = {
+                    is_west_siberian_nation = yes
+                }
+                MGI = {
+                    declare_war_on = {
+                        target = PREV
+                        type = annex_everything
+                    }
+                }
+            }
+		}
+	}
+
+    TGWT_reunify_russia = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 0
+		visible = { 
+			check_variable = {
+				MGI_map_var = 0
+			}
+		 }
+		available = { 
+			custom_trigger_tooltip = {
+				tooltip = can_form_west_siberia_tt
+				can_form_west_siberia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_west_russia_tt
+				can_form_west_russia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_southern_urals_tt
+				can_form_southern_urals = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_central_siberia_tt
+				can_form_central_siberia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_far_east_tt
+				can_form_far_east = yes
+			}
+         }
+		remove_effect = {
+            MGI = {
+                every_controlled_state = {
+                    add_core_of = MGI
+                }
+                set_cosmetic_tag = MGI_RUS
+				set_country_flag = MGI_russia_reunified
+            }
+		}
+	}
+
+    TGWT_bite_off_the_mask = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 0
+		visible = { 
+            check_variable = {
+                MGI_map_var = 0
+            }
+			has_country_flag = MGI_russia_reunified
+         }
+		remove_effect = {
+            set_cosmetic_tag = MGI_Big_Trial
+            custom_effect_tooltip = STL_april_fools_tt
+            set_country_flag = MGI_TGWT_started
+			hidden_effect = {
+			every_country = {
+				limit = {
+					is_ai = no
+				}
+				news_event = {
+					id = WORLD_2WRWTER.114514
+				}
+			}
+			USA = { add_to_faction = BRA }
+			}
+		}
+	}
+
+	TGWT_european = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 15
+		visible = { 
+            check_variable = {
+                MGI_map_var = 0
+            }
+			has_country_flag = MGI_TGWT_started
+         }
+		remove_effect = {
+            every_country = {
+                limit = {
+                    is_european_nation = yes
+                }
+                MGI = {
+                    declare_war_on = {
+                        target = PREV
+                        type = annex_everything
+                    }
+                }
+            }
+		}
+	}
+
+	TGWT_american = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 15
+		visible = { 
+			OR = {
+				check_variable = {
+                MGI_map_var = 1
+            }
+			    check_variable = {
+                MGI_map_var = 4
+             }
+			}
+         }
+		remove_effect = {
+            every_country = {
+                limit = {
+					is_in_faction_with = USA
+				}
+			
+                MGI = {
+                    declare_war_on = {
+                        target = PREV
+                        type = annex_everything
+                    }
+                }
+            }
+		}
+	}
+
+	TGWT_african = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 15
+		visible = { 
+            check_variable = {
+                MGI_map_var = 2
+            }
+         }
+		remove_effect = {
+            every_country = {
+                limit = {
+					is_in_faction_with = CAO
+                }
+                MGI = {
+                    declare_war_on = {
+                        target = PREV
+                        type = annex_everything
+                    }
+                }
+            }
+		}
+	}
+
+	TGWT_indopacific = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 15
+		visible = { 
+            check_variable = {
+                MGI_map_var = 3
+            }
+         }
+		remove_effect = {
+            every_country = {
+                limit = {
+                    is_in_faction_with = JAP
+                }
+                MGI = {
+                    declare_war_on = {
+                        target = PREV
+                        type = annex_everything
+                    }
+                }
+            }
+		}
+	}
+	
+
+    TGWT_the_great_finale = {
+		icon = GFX_decision_category_generic_foreign_policy
+		allowed = { tag = MGI }
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 0
+		fire_only_once = yes
+		days_remove = 0
+		visible = {
+			has_country_flag = MGI_TGWT_started
+		}
+		available = {
+            JAP = { exists = no }
+			CPC = { exists = no }
+			ENG = { exists = no }
+			GER = { exists = no }
+			ITA = { exists = no }
+			USA = { exists = no }
+		    BRA = { exists = no }
+			OMS = { exists = no }
+        }
+        remove_effect = {
+				MGI = {
+					country_event = {
+						id = STL_MGI_main_story.2
+						days = 7
+					}
+				}
+			hidden_effect = {
+				every_country = {
+					limit = {
+						NOT = {
+							tag = MGI
+						}
+					}
+					MGI = {
+						annex_country = {
+							target = PREV
+							transfer_troops = no
+						}
+					}
+				}
+				clr_country_flag = MGI_reunified_central
+			}
+        }
+    }
+    
+}

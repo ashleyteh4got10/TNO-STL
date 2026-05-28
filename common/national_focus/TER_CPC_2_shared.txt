@@ -628,7 +628,19 @@ shared_focus = {
 		custom_effect_tooltip = "CPC_victory_in_southeast_tt"
 		hidden_effect = {
 			VIC = {
-				create_faction = SEA_revolution_league
+			
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = SEA_revolution_league template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = SEA_revolution_league
+}
 				add_to_faction = KPA
 				if = {
 					limit = { CPI =  { exists = yes } }
@@ -637,22 +649,6 @@ shared_focus = {
 			}
 			every_country = {
 				news_event = { id = SEA_news.11 days = 3 }
-			}
-			if = {
-				limit = {
-					LAO = {
-						has_country_leader_ideology = {
-							ideology = communist_national_communism_subtype
-							ruling_only = yes
-						}
-					}
-					LAO = {
-						country_event = {
-							id = LAO_LPDR.1
-							days = 14
-						}
-					}
-				}
 			}
 			THA = {
 				country_event = { id = SEA_support.3 days = 30 }

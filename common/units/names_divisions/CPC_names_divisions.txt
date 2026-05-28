@@ -1,15 +1,9 @@
 ﻿CPC_INF_01 ={
 	name = "步兵部队"
-
 	for_countries = { CPC }
-
 	can_use = { always = yes }
-
 	division_types = { "infantry" }
-
-
 	fallback_name = "人民解放军第%d步兵师"
-
 	# Names with numbers (only one number per entry). 
 	# It's okay to have gaps in numbering.
 	ordered =
@@ -29,18 +23,12 @@
 
 CPC_CAV_01 ={
 	name = "骑兵部队"
-
 	for_countries = { CPC }
-
 	can_use = { always = yes }
-
 	division_types = { "cavalry" }
-
 	# Number reservation system will tie to another group.
 	#link_numbering_with = { CHI_INF_01 }
-
 	fallback_name = "人民解放军第%d骑兵旅"
-
 	# Names with numbers (only one number per entry). 
 	# It's okay to have gaps in numbering.
 	ordered =
@@ -55,38 +43,91 @@ CPC_CAV_01 ={
 }
 
 CPC_ARM_01 = {
-	name = "装甲部队"
-
+	name = "坦克师"
 	for_countries = { CPC }
-
 	can_use = { always = yes }
-
-	division_types = { "MBT" }
-
-	# Number reservation system will tie to another group.
-	
-
-	fallback_name = "人民解放军装甲第%d师"
-
+	division_types = { "MBT" "IFV" }
+	# Number reservation system will tie to another group.	
+	fallback_name = "人民解放军第%d坦克师"
 	# Names with numbers (only one number per entry). 
 	# It's okay to have gaps in numbering.
 	ordered =
 	{
-		1 = { "人民解放军装甲第%d师" }
-		2 = { "人民解放军装甲第%d师" }
-		3 = { "人民解放军装甲第%d师" }
-		4 = { "人民解放军装甲第%d师" }
-		5 = { "人民解放军装甲第%d师" }
-		6 = { "人民解放军装甲第%d师" }
-		7 = { "人民解放军装甲第%d师" }
-		8 = { "人民解放军装甲第%d师" }
-		9 = { "人民解放军装甲第%d师" }
-		10 = { "人民解放军装甲第%d师" }
-		11 = { "人民解放军装甲第%d师" }
-		12 = { "人民解放军装甲第%d师" }
-		13 = { "人民解放军装甲第%d师" }
-		14 = { "人民解放军装甲第%d师" }
-		15 = { "人民解放军装甲第%d师" }
+		1 = { "人民解放军第%d坦克师" }
+		2 = { "人民解放军第%d坦克师" }
+		3 = { "人民解放军第%d坦克师" }
+		4 = { "人民解放军第%d坦克师" }
+		5 = { "人民解放军第%d坦克师" }
+		6 = { "人民解放军第%d坦克师" }
+		7 = { "人民解放军第%d坦克师" }
+		8 = { "人民解放军第%d坦克师" }
+		9 = { "人民解放军第%d坦克师" }
+		10 = { "人民解放军第%d坦克师" }
+		11 = { "人民解放军第%d坦克师" }
+		12 = { "人民解放军第%d坦克师" }
+		13 = { "人民解放军第%d坦克师" }
+		14 = { "人民解放军第%d坦克师" }
+		15 = { "人民解放军第%d坦克师" }
+	}
+}
+CPC_ARM_02 = {
+	name = "坦克旅"
+	for_countries = { CPC }
+	can_use = { always = yes }
+	division_types = { "MBT" "IFV" }
+	# Number reservation system will tie to another group.
+	link_numbering_with = { CPC_ARM_01 }	
+	fallback_name = "人民解放军第%d坦克旅"
+	# Names with numbers (only one number per entry). 
+	# It's okay to have gaps in numbering.
+	ordered =
+	{
+		1 = { "人民解放军第%d坦克旅" }
+		2 = { "人民解放军第%d坦克旅" }
+		3 = { "人民解放军第%d坦克旅" }
+		4 = { "人民解放军第%d坦克旅" }
+		5 = { "人民解放军第%d坦克旅" }
+		6 = { "人民解放军第%d坦克旅" }
+		7 = { "人民解放军第%d坦克旅" }
+		8 = { "人民解放军第%d坦克旅" }
+		9 = { "人民解放军第%d坦克旅" }
+		10 = { "人民解放军第%d坦克旅" }
+		11 = { "人民解放军第%d坦克旅" }
+		12 = { "人民解放军第%d坦克旅" }
+		13 = { "人民解放军第%d坦克旅" }
+		14 = { "人民解放军第%d坦克旅" }
+		15 = { "人民解放军第%d坦克旅" }
+	}
+}
+
+CPC_PAR_01 = 
+{
+	name = "空降师"
+	for_countries = { CPC }
+	can_use = { always = yes }
+	division_types = { "air_assault" "air_assault_old" }
+	# Number reservation system will tie to another group.
+	link_numbering_with = { CPC_INF_01 }
+	fallback_name = "第%d空降师"
+	# Names with numbers (only one number per entry). 
+	# It's okay to have gaps in numbering.
+	ordered =
+	{
+		43 = { "第43空降师" }
+		44 = { "第44空降师" }
+		45 = { "第45空降师" }
+		3 = { "第%d空降师" }
+		4 = { "第%d空降师" }
+		1 = { "第%d空降师" }
+		2 = { "第%d空降师" }
+		5 = { "第%d空降师" }
+		6 = { "第%d空降师" }
+		7 = { "第%d空降师" }
+		8 = { "第%d空降师" }
+		9 = { "第%d空降师" }
+		10 = { "第%d空降师" }
+		11 = { "第%d空降师" }
+		12 = { "第%d空降师" }
 	}
 }
 
@@ -119,6 +160,55 @@ CPC_MOT_01 = {
 		9 = { "人民解放军机动第%d师" }
 		10 = { "人民解放军机动第%d师" }
 		
+	}
+}
+CPC_MOT_02 = {
+	name = "应急机动旅"
+
+	for_countries = { CPC }
+
+	can_use = { always = yes }
+
+	division_types = { "motorized" "APC" }
+
+	# Number reservation system will tie to another group.
+
+	fallback_name = "人民解放军应急机动第%d旅"
+
+	# Names with numbers (only one number per entry). 
+	# It's okay to have gaps in numbering.
+	ordered =
+	{
+		2 = { "人民解放军应急机动第%d旅" }
+		35 = { "人民解放军应急机动第%d旅" }
+		160 = { "人民解放军应急机动第%d旅" }
+		235= { "人民解放军应急机动第%d旅" }
+		10 = { "人民解放军应急机动第%d旅" }
+		34 = { "人民解放军应急机动第%d旅" }
+		86 = { "人民解放军应急机动第%d旅" }
+		16 = { "人民解放军应急机动第%d旅" }
+		31 = { "人民解放军应急机动第%d旅" }
+		123 = { "人民解放军应急机动第%d旅" }
+		12 = { "人民解放军应急机动第%d旅" }
+		17 = { "人民解放军应急机动第%d旅" }
+		56 = { "人民解放军应急机动第%d旅" }
+		62 = { "人民解放军应急机动第%d旅" }
+		139 = { "人民解放军应急机动第%d旅" }
+		8 = { "人民解放军应急机动第%d旅" }
+		68 = { "人民解放军应急机动第%d旅" }
+		202 = { "人民解放军应急机动第%d旅" }
+		204 = { "人民解放军应急机动第%d旅" }
+		116 = { "人民解放军应急机动第%d旅" }
+		190 = { "人民解放军应急机动第%d旅" }
+		69 = { "人民解放军应急机动第%d旅" }
+		7 = { "人民解放军应急机动第%d旅" }
+		194 = { "人民解放军应急机动第%d旅" }
+		195= { "人民解放军应急机动第%d旅" }
+		6 = { "人民解放军应急机动第%d旅" }
+		151 = { "人民解放军应急机动第%d旅" }
+		188 = { "人民解放军应急机动第%d旅" }
+		11 = { "人民解放军应急机动第%d旅" }
+		54 = { "人民解放军应急机动第%d旅" }
 	}
 }
 
@@ -185,6 +275,25 @@ CPC_MNT_01 = {
 
 	}
 }
+CPC_MNT_02 ={
+	name = "山地步兵旅"
+	for_countries = { CPC }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	# Number reservation system will tie to another group.
+	link_numbering_with = { CPC_INF_01 }
+	fallback_name = "解放军第%d山地步兵旅"
+	# Names with numbers (only one number per entry). 
+	# It's okay to have gaps in numbering.
+	ordered =
+	{
+		1 = { "解放军第%d山地步兵旅" }
+		2 = { "解放军第%d山地步兵旅" }
+		3 = { "解放军第%d山地步兵旅" }
+		4 = { "解放军第%d山地步兵旅" }
+		9 = { "解放军第%d山地步兵旅" }
+	}
+}
 
 CPC_GAR_01 = {
 	name = "守备部队"
@@ -208,5 +317,51 @@ CPC_GAR_01 = {
 		2 = { "中央直属第二警备师" }		
 		3 = { "中央直属第三警备师" }	
 		
+	}
+}
+
+
+HTC_INF_01 ={
+	name = "步兵部队"
+	for_countries = { HTC }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "新疆边区独立%d师"
+	ordered =
+	{
+		1 = { "新疆边区独立1师" }
+	}
+}
+HTC_CAV_01 ={
+	name = "骑兵部队"
+	for_countries = { HTC }
+	can_use = { always = yes }
+	division_types = { "cavalry" }
+	fallback_name = "新疆边区独立第%d骑兵旅"
+	ordered =
+	{
+		1 = { "新疆边区独立第%d骑兵旅" }
+	}
+}
+MFN_INF_01 ={
+	name = "步兵部队"
+	for_countries = { MFN }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "内蒙古人民革命军第%d步兵师"
+	ordered =
+	{
+		1 = { "内蒙古人民革命军第1步兵师" }
+	}
+}
+XIK_INF_01 ={
+	name = "步兵部队"
+	for_countries = { XIK }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "西南兵团独立%d师"
+	ordered =
+	{
+		1 = { "西南兵团独立1师" }
 	}
 }

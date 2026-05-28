@@ -1011,9 +1011,6 @@ POWER_ENDLESS_POWER_WHOAAAAA = {
 #变身？
 QYC_Henshin = {
 	hidden_effect = {
-		CHI = {
-			end_puppet = QYC
-		}
 		QYC = {
 			set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
 			econ_type_change = yes
@@ -1102,11 +1099,18 @@ Alert_SCB_rev_enabled_remove_alerts = {
 ANRL_foundation = {
 	custom_effect_tooltip = "CPC_ANRL_foundation"
 	hidden_effect = {
-		CPC = { 
-                create_faction_from_template = { name = Asia_National_Revolutionary_League icon = GFX_ANRL_faction template = faction_template_generic }
-                add_faction_goal_slot = { category = short_term  value = -10 }
-                add_faction_goal_slot = { category = medium_term value = -10 }
-                add_faction_goal_slot = { category = long_term   value = -10 }
+		CPC = { 			if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = Asia_National_Revolutionary_League template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = Asia_National_Revolutionary_League
+}
 				add_ideas = ANRL_Leader
 				set_country_flag = HAS_ECON_SPHERE
 				econ_join_sphere_CPC = yes }
@@ -1156,43 +1160,10 @@ ANRL_foundation = {
 			}
 		}
 		if = {
-			limit = { 
-				SPH = { 
-					has_country_leader = {
-							character = SPH_Luis_Taruc
-							ruling_only = yes
-						} 
-					} 
-				}
-			SPH = {
-				add_ideas = ANRL_Core_member
-				econ_join_sphere_CPC = yes
-			}
-		}
-		if = {
 			limit = { CPI = { exists = yes } }
 			CPI = {
 				add_ideas = ANRL_sub_member
 				econ_join_sphere_CPC = yes
-			}
-		}
-		if = {
-			limit = { LAO = { has_country_leader_ideology = communist_national_communism_subtype } }
-			JAP = {
-				remove_from_faction = LAO
-			}
-			LAO = {
-				remove_ideas = Sphere_Fully_Dependent
-				add_ideas = ANRL_Core_member
-				econ_join_sphere_CPC = yes
-			}
-		}
-		if = {
-			limit = { AFG = {has_country_leader_ideology = communist_mao_zedong_thought_subtype}}
-			AFG = {
-				econ_leave_sphere = yes
-				econ_join_sphere_CPC = yes
-				add_ideas = ANRL_Core_member
 			}
 		}
 		every_country = {
@@ -1200,6 +1171,14 @@ ANRL_foundation = {
 				check_variable = { ECON_SPHERE_LEADER = CPC }
 			}
 			CPC = { add_to_faction = PREV }
+		}
+		if = {
+			limit = { LAO = { has_country_leader_ideology = communist_national_communism_subtype } }
+			LAO = {
+				remove_ideas = Sphere_Fully_Dependent
+				add_ideas = ANRL_observer
+				econ_join_sphere_CPC = yes
+			}
 		}
 		every_country = {
 			news_event = CPC_ANRL_events.8
@@ -1210,15 +1189,26 @@ ANRL_foundation = {
 
 EAACP_foundation = {
 	hidden_effect = {
-		CHI = { create_faction = Kyoeiken_EAACP
+		CHI = { 
+			if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = Kyoeiken_EAACP template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = Kyoeiken_EAACP
+}
 				remove_ideas = Sphere_Core_Member
 				add_ideas = Kyoeiken_EAACP_Leader
 				set_temp_variable = { debt_temp = -20 }
 				econ_national_debt_change = yes
 				add_to_faction = LOY
 				add_to_faction = KIS
-				add_to_faction = SHX
-			#	add_to_faction = MEN 
+				add_to_faction = SHX 
 				set_autonomy = {
 					target = LOY
 					autonomy_state = autonomy_china_warlord_regime
@@ -1232,7 +1222,7 @@ EAACP_foundation = {
 					autonomy_state = autonomy_china_warlord_regime
 				}
 				swap_ideas = {
-					remove_idea = CHI_small_army_1
+					remove_idea = CHI_small_army_TER_1
 					add_idea = CHI_small_army_TER_2
 				}
 				CHI_divisions_template_TRCW = yes

@@ -1,0 +1,7408 @@
+##########################################
+## TNOLAR - 高宗武中华民国 - 大会后国策树 ##
+##########################################
+
+# TOTALLY ORIGINAL INDEX
+# - 1) MILITARY TREE
+# - 2) OIL CRISIS TREE
+# - 3) SOCIAL REFORM TREE
+# - - - - - - - - - - - - - - - - - - - -
+# - 4) UNIFICATION TREE
+# - 5) RENLI'S CURSED ADVENTURE
+# - 6) ZHONGHUA MINGUO GREAT ASIAN WAR - WARMUP TREE
+# - 7) ZHONGHUA MINGUO GREAT ASIAN WAR - MAIN TREE
+# - 8) ZHONGHUA MINGUO POST GREAT ASIAN WAR - TRANSITION TREE
+
+
+###########################################################################
+# 1) MILITARY TREE - LETS REFORM MILITARY AND PREPARE FIGHT AGAINST JAPAN #
+###########################################################################
+
+shared_focus = {
+	id = CHI_LAR_Military
+	icon = GFX_focus_CHI_LAR_Military
+	cost = 1.00
+	allow_branch = { has_country_flag = CHI_Modernization }
+
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_Military_modernization_trigger_tt
+			check_variable = {
+				var = edu_tracker
+				value = 4
+				compare = greater_than_or_equals
+			}
+		}
+	}
+	cancel_if_invalid = yes
+
+	x = 52
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Military"
+
+		set_country_flag = CHI_mil_modernisation
+		custom_effect_tooltip = CHI_LAR_Military_tt
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.100
+			}
+			country_event = {
+    			id = tnolar_chi_flavor.1
+				days = 20
+				random_days = 8
+			}
+			set_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 } #军事页面按钮帧变量		#2为选中，1为未选中
+			set_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 1 } #募兵页面按钮帧变量
+
+			set_variable = { CHI_MND_GUI_modernization_progress_var = 0 } #现代化进度
+			set_variable = { CHI_MND_GUI_modernization_progress_month_var = 1.5 } #每月现代化进度
+			set_variable = { CHI_MND_GUI_real_modernization_progress_month_var = 0 } #经过军队忠诚度修正过后的现代化进度
+			set_variable = { CHI_MND_GUI_Military_level_var = 1 } #军事化等级
+			set_variable = { CHI_MND_GUI_Military_general_loyalty_var = 0 } #总体忠诚度
+
+			set_variable = { CHI_MND_GUI_nationalists_influences_var = 15 } #民族派影响力
+			set_variable = { CHI_MND_GUI_conservatives_influences_var = 50 } #中央派影响力
+			set_variable = { CHI_MND_GUI_japanophiles_influences_var = 25 } #华北派影响力
+			set_variable = { CHI_MND_GUI_nationalists_loyalty_var = 0.7 } #民族派忠诚度
+			set_variable = { CHI_MND_GUI_conservatives_loyalty_var = 0.5 } #中央派忠诚度
+			set_variable = { CHI_MND_GUI_japanophiles_loyalty_var = 0.3 } #华北派忠诚度
+
+			if = {	#难度自定义效果
+				limit = {
+					has_country_flag = CHI_enable_easier_NMD_GUI
+				}
+				add_to_variable = { CHI_MND_GUI_modernization_progress_month_var = 5 }
+				add_to_variable = { CHI_MND_GUI_JapanAlert_level_lowerlimit = -10 }
+			}
+			else_if = {
+				limit = {
+					has_country_flag = CHI_enable_harder_NMD_GUI
+				}
+				add_to_variable = { CHI_MND_GUI_modernization_progress_month_var = -5 }
+				add_to_variable = { CHI_MND_GUI_JapanAlert_level_lowerlimit = 10 }
+			}
+
+			CHI_MND_faction_value_change = yes #计算各项互相影响的数值
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Develop_military_technology
+	icon = GFX_focus_CHI_LAR_Develop_military_technology
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Military
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_Military_modernization_trigger_tt
+			has_completed_focus = CHI_Education_Fully_Modernized
+			has_completed_focus = CHI_Showing_Ourselves_to_the_World
+			has_completed_focus = CHI_Made_in_China
+		}
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -6
+	y = 1
+	completion_reward = {
+		unlock_decision_tooltip = CHI_new_equipment_blueprints
+		unlock_decision_tooltip = CHI_purchase_engines_from_mitsubishi
+		unlock_decision_tooltip = CHI_bribery_in_exchange_for_blueprints
+		unlock_decision_tooltip = CHI_reverse_engineering_advanced_designs
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_self_reliance
+	icon = GFX_focus_CHI_LAR_self_reliance
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Develop_military_technology
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Technology_introduction
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -8
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = CHI_increase_defense_budget_upgrade_tt
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_State_owned_enterprise_orders
+	icon = GFX_focus_CHI_LAR_State_owned_enterprise_orders
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_self_reliance
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Comprehensive_reverse_research
+		focus = CHI_LAR_Japanese_orders
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -9
+	y = 3
+	completion_reward = {
+		country_event = { id = tnolar_chi.101 }
+
+		custom_effect_tooltip = CHI_increase_defense_budget_upgrade_tt
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0.025 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = 0 }
+		CHI_MND_faction_loyalty_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Technology_introduction
+	icon = GFX_focus_CHI_LAR_Technology_introduction
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Develop_military_technology
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_self_reliance
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -4
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = CHI_new_equipment_blueprints_upgrade_tt
+		
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 2.5 }
+		CHI_MND_faction_influences_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Comprehensive_reverse_research
+	icon = GFX_focus_CHI_LAR_Comprehensive_reverse_research
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_self_reliance
+		focus = CHI_LAR_Technology_introduction
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_State_owned_enterprise_orders
+		focus = CHI_LAR_Japanese_orders
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -6
+	y = 3
+	completion_reward = {
+		country_event = { id = tnolar_chi.102 }
+
+		unlock_decision_tooltip = CHI_secret_transportation_blueprint
+		custom_effect_tooltip = CHI_reverse_engineering_advanced_designs_upgrade_tt
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = 0.025 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = 0 }
+		CHI_MND_faction_loyalty_change = yes
+
+		CHI_MND_JapanAlert_upper_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Japanese_orders
+	icon = GFX_focus_CHI_LAR_Japanese_orders
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Technology_introduction
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_State_owned_enterprise_orders
+		focus = CHI_LAR_Comprehensive_reverse_research
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -3
+	y = 3
+	completion_reward = {
+		country_event = { id = tnolar_chi.103 }
+
+		custom_effect_tooltip = CHI_purchase_engines_from_mitsubishi_upgrade_tt
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = 0.025 }
+		CHI_MND_faction_loyalty_change = yes
+
+		CHI_MND_JapanAlert_lower_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_combined_warfare
+	icon = GFX_focus_CHI_LAR_combined_warfare
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_State_owned_enterprise_orders
+		focus = CHI_LAR_Comprehensive_reverse_research
+		focus = CHI_LAR_Japanese_orders
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Land_battle_first
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -8
+	y = 4
+	completion_reward = {
+		army_funding_maximal_increase_low = yes
+		army_funding_minimal_increase_low = yes
+		naval_funding_maximal_increase_low = yes
+		naval_funding_minimal_increase_low = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		CHI_MND_JapanAlert_upper_med = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Land_battle_first
+	icon = GFX_focus_CHI_LAR_Land_battle_first
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_State_owned_enterprise_orders
+		focus = CHI_LAR_Comprehensive_reverse_research
+		focus = CHI_LAR_Japanese_orders
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_combined_warfare
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -4
+	y = 4
+	completion_reward = {
+		army_funding_maximal_increase_low = yes
+		army_funding_minimal_increase_low = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		CHI_MND_JapanAlert_upper_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Start_mechanization
+	icon = GFX_focus_CHI_LAR_Start_mechanization
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_combined_warfare
+		focus = CHI_LAR_Land_battle_first
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -6
+	y = 5
+	completion_reward = {
+		add_tech_bonus = {
+			name = MBT
+    		bonus = 0.5
+    		uses = 1
+    		category = MBT
+		}
+		add_tech_bonus = {
+			name = IFV
+    		bonus = 0.5
+    		uses = 1
+    		category = IFV
+		}
+		add_tech_bonus = {
+			name = APC
+    		bonus = 0.5
+    		uses = 1
+    		category = APC
+		}
+
+		set_temp_variable = { temp_econ_spending_amount = 0.450 }
+		econ_spend_money_once_effect_raw_money = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Heavy_military_industry
+	icon = GFX_focus_CHI_LAR_Heavy_military_industry
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Start_mechanization
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -5
+	y = 6
+	completion_reward = {
+		add_tech_bonus = {
+			name = fighter
+    		bonus = 0.5
+    		uses = 1
+    		category = fighter
+		}
+		add_tech_bonus = {
+			name = tactical_bomber
+    		bonus = 0.5
+    		uses = 1
+    		category = tactical_bomber
+		}
+		add_tech_bonus = {
+			name = strategic_bomber
+    		bonus = 0.5
+    		uses = 1
+    		category = strategic_bomber
+		}
+		add_tech_bonus = {
+			name = helicopter
+    		bonus = 0.5
+    		uses = 1
+    		category = helicopter
+		}
+		add_tech_bonus = {
+			name = cas
+    		bonus = 0.5
+    		uses = 1
+    		category = cas
+		}
+
+		set_temp_variable = { temp_econ_spending_amount = 0.450 }
+		econ_spend_money_once_effect_raw_money = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+
+
+shared_focus = {
+	id = CHI_LAR_Revitalize_Whampoa_spirit
+	icon = GFX_focus_CHI_LAR_Revitalize_Whampoa_spirit
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Military
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 0
+	y = 1
+	completion_reward = {
+		country_event = { id = tnolar_chi.104 }
+
+		TNO_improve_army_professionalism_low = yes
+
+		army_funding_maximal_increase_low = yes
+		army_funding_minimal_increase_low = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Under_the_blue_sky
+	icon = GFX_focus_CHI_LAR_Under_the_blue_sky
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Revitalize_Whampoa_spirit
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -1
+	y = 2
+	completion_reward = {
+		country_event = { id = tnolar_chi.105 }
+
+		598 = {	#徐州
+			add_building_construction = {
+    			type = air_base
+    			level = 3
+    			instant_build = yes
+			}
+		}
+		1016 = {	#武汉
+			add_building_construction = {
+    			type = air_base
+    			level = 3
+    			instant_build = yes
+			}
+		}
+
+		602 = {	#长沙
+			add_building_construction = {
+    			type = air_base
+    			level = 1
+    			instant_build = yes
+			}
+		}
+		609 = {	#唐山
+			add_building_construction = {
+    			type = air_base
+    			level = 1
+    			instant_build = yes
+			}
+		}
+		606 = {	#合肥
+			add_building_construction = {
+    			type = air_base
+    			level = 1
+    			instant_build = yes
+			}
+		}
+
+		custom_effect_tooltip = CHI_LAR_Under_the_blue_sky_buff_tt
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_air_ace_generation_chance_factor = 0.25 }
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_air = 0.20 }
+
+		army_funding_maximal_increase_low = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_change = 10 }
+		CHI_MND_modernization_progress_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_above_the_blue_waves
+	icon = GFX_focus_CHI_LAR_above_the_blue_waves
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Revitalize_Whampoa_spirit
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 1
+	y = 2
+	completion_reward = {
+		country_event = { id = tnolar_chi.106 }
+
+		custom_effect_tooltip = CHI_LAR_above_the_blue_waves_buff_tt
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_naval_speed_factor = 0.05 }
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_navy_org_factor = 0.05 }
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_navy_screen_attack_factor = 0.1 }
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_navy_screen_defence_factor = 0.1 }
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_navy = 0.10 }
+
+		naval_funding_maximal_increase_low = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_change = 10 }
+		CHI_MND_modernization_progress_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_perfect_war_theory
+	icon = GFX_focus_CHI_LAR_perfect_war_theory
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Under_the_blue_sky
+	}
+	prerequisite = {
+		focus = CHI_LAR_above_the_blue_waves
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 0
+	y = 3
+	completion_reward = {
+		country_event = { id = tnolar_chi.107 }
+
+		TNO_improve_army_professionalism_low = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_New_theory
+	icon = GFX_focus_CHI_LAR_New_theory
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_perfect_war_theory
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_traditional_thinking
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_New_theory_tt
+			has_country_flag = CHI_LAR_Accept_New_theory
+		}
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -1
+	y = 4
+	completion_reward = {
+		clr_country_flag = CHI_LAR_Accept_New_theory
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_traditional_thinking
+	icon = GFX_focus_CHI_LAR_traditional_thinking
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_perfect_war_theory
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_New_theory
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_traditional_thinking_tt
+			has_country_flag = CHI_LAR_Accept_traditional_thinking
+		}
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 1
+	y = 4
+	completion_reward = {
+		clr_country_flag = CHI_LAR_Accept_traditional_thinking
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Reuse_young_officers
+	icon = GFX_focus_CHI_LAR_Reuse_young_officers
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_New_theory
+		focus = CHI_LAR_traditional_thinking
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Hire_Japanese_officers
+		focus = CHI_LAR_Rehiring_retired_officers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -3
+	y = 5
+	completion_reward = {
+		country_event = { id = tnolar_chi.108 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = -0.025 }
+		CHI_MND_faction_loyalty_change = yes
+
+		set_temp_variable = { temp_CHI_MND_JapanAlert_level_lowerlimit_change = 5 }
+		CHI_MND_JapanAlert_level_lowerlimit_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Hire_Japanese_officers
+	icon = GFX_focus_CHI_LAR_Hire_Japanese_officers
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_New_theory
+		focus = CHI_LAR_traditional_thinking
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Reuse_young_officers
+		focus = CHI_LAR_Rehiring_retired_officers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 0
+	y = 5
+	completion_reward = {
+		country_event = { id = tnolar_chi.109 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 5 }
+		CHI_MND_faction_influences_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = -0.025 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = 0 }
+		CHI_MND_faction_loyalty_change = yes
+
+		CHI_MND_JapanAlert_lower_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Rehiring_retired_officers
+	icon = GFX_focus_CHI_LAR_Rehiring_retired_officers
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_New_theory
+		focus = CHI_LAR_traditional_thinking
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Reuse_young_officers
+		focus = CHI_LAR_Hire_Japanese_officers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 3
+	y = 5
+	completion_reward = {
+		country_event = { id = tnolar_chi.110 }
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_independent_command_system
+	icon = GFX_focus_CHI_LAR_independent_command_system
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Reuse_young_officers
+		focus = CHI_LAR_Hire_Japanese_officers
+		focus = CHI_LAR_Rehiring_retired_officers
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Japanese_command_system
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -1
+	y = 6
+	completion_reward = {
+		country_event = { id = tnolar_chi.111 }
+
+		custom_effect_tooltip = CHI_LAR_command_system_buff_tt
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_max_command_power = 20 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_JapanAlert_level_lowerlimit_change = 10 }
+		CHI_MND_JapanAlert_level_lowerlimit_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Japanese_command_system
+	icon = GFX_focus_CHI_LAR_Japanese_command_system
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Reuse_young_officers
+		focus = CHI_LAR_Hire_Japanese_officers
+		focus = CHI_LAR_Rehiring_retired_officers
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_independent_command_system
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 1
+	y = 6
+	completion_reward = {
+		country_event = { id = tnolar_chi.112 }
+
+		custom_effect_tooltip = CHI_LAR_command_system_buff_tt
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_max_command_power = 20 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		CHI_MND_JapanAlert_lower_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Reorganize_soldiers
+	icon = GFX_focus_CHI_LAR_Reorganize_soldiers
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Military
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 6
+	y = 1
+	completion_reward = {
+		country_event = { id = tnolar_chi.113 }
+
+		TNO_improve_training_policy_effectiveness_med = yes
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_technical_officer
+	icon = GFX_focus_CHI_LAR_technical_officer
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Reorganize_soldiers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 3
+	y = 2
+	completion_reward = {
+		country_event = { id = tnolar_chi.114 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_young_officer
+	icon = GFX_focus_CHI_LAR_young_officer
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Reorganize_soldiers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 6
+	y = 2
+	completion_reward = {
+		country_event = { id = tnolar_chi_flavor.2 }
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 2.5 }
+		CHI_MND_faction_influences_change = yes
+
+		#添加两个青年军官
+		add_corps_commander_role = {
+			Character = CHI_Peng_Mengji
+			traits = { commando }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 2
+		}
+		add_corps_commander_role = {
+			Character = CHI_Chen_Daqing
+			traits = { organizer }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 3
+		}
+
+		#战后的军官现在就添加吧，移动到这里
+		add_corps_commander_role = {
+			Character = CHI_Hao_Baicun
+			traits = { brilliant_strategist thorough_planner }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 3
+			logistics_skill = 3
+		}
+		add_corps_commander_role = {
+			Character = CHI_Jiang_Zhongling
+			traits = { armor_officer combined_arms_expert }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 3
+		}
+		add_corps_commander_role = {
+			Character = CHI_Luo_Benli
+			traits = { media_personality }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 5
+			logistics_skill = 3
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Corrupt_officer
+	icon = GFX_focus_CHI_LAR_Corrupt_officer
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Reorganize_soldiers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 9
+	y = 2
+	completion_reward = {
+		country_event = { id = tnolar_chi.115 }
+
+		TNO_improve_army_professionalism_low = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = -2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = -0.025 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = 0 }
+		CHI_MND_faction_loyalty_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Political_Warfare_Bureau
+	icon = GFX_focus_CHI_LAR_Political_Warfare_Bureau
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_technical_officer
+	}
+	prerequisite = {
+		focus = CHI_LAR_young_officer
+	}
+	prerequisite = {
+		focus = CHI_LAR_Corrupt_officer
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 6
+	y = 3
+	completion_reward = {
+		country_event = { id = tnolar_chi.116 }
+
+		custom_effect_tooltip = CHI_LAR_Political_Warfare_Bureau_buff_tt
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_war_support_factor = 0.1 }
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_surrender_limit = 0.1 }
+		
+		TNO_improve_press_rights_policy_effectiveness_high = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Nation_first
+	icon = GFX_focus_CHI_LAR_Nation_first
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Political_Warfare_Bureau
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Pan_Asian_Pioneer
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 4
+	y = 4
+	completion_reward = {
+		country_event = { id = tnolar_chi.117 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 2.5 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+		CHI_MND_faction_influences_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = -0.025 }
+		CHI_MND_faction_loyalty_change = yes
+
+		CHI_MND_JapanAlert_upper_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Pan_Asian_Pioneer
+	icon = GFX_focus_CHI_LAR_Pan_Asian_Pioneer
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Political_Warfare_Bureau
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Nation_first
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 8
+	y = 4
+	completion_reward = {
+		country_event = { id = tnolar_chi.118 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 0.5 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 2.5 }
+		CHI_MND_faction_influences_change = yes
+
+		set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = -0.025 }
+		set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0 }
+		set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = 0 }
+		CHI_MND_faction_loyalty_change = yes
+
+		CHI_MND_JapanAlert_lower_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Raise_recruitment_standards
+	icon = GFX_focus_CHI_LAR_Raise_recruitment_standards
+	cost = 3.00
+
+	prerequisite = {
+		focus = CHI_LAR_Nation_first
+		focus = CHI_LAR_Pan_Asian_Pioneer
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 6
+	y = 5
+	completion_reward = {
+		country_event = { id = tnolar_chi.125 }
+		army_funding_minimal_increase_low = yes
+		naval_funding_minimal_increase_low = yes
+		tno_draft_exemptions_improve = yes
+		TNO_improve_draft_exemptions_policy_effectiveness_med = yes
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Iron_Discipline
+	icon = GFX_focus_CHI_LAR_Iron_Discipline
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Raise_recruitment_standards
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 5
+	y = 6
+	completion_reward = {
+		country_event = { id = tnolar_chi.119 }
+
+		unlock_decision_tooltip = CHI_Inspect_military_discipline
+		unlock_decision_tooltip = CHI_Reduce_inspect_frequency
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Seeking_countermeasures
+	icon = GFX_focus_CHI_LAR_Seeking_countermeasures
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Heavy_military_industry
+	}
+	prerequisite = {
+		focus = CHI_LAR_Iron_Discipline
+	}
+	prerequisite = {
+		focus = CHI_LAR_independent_command_system
+		focus = CHI_LAR_Japanese_command_system
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -4
+	y = 7
+	completion_reward = {
+		add_tech_bonus = {
+			name = infantry_weapons
+			bonus = 0.5
+			uses = 1
+			category = infantry_weapons
+		}
+		add_tech_bonus = {
+			name = infantry_anti_tank
+			bonus = 0.5
+			uses = 1
+			category = infantry_anti_tank
+		}
+		add_tech_bonus = {
+			name = anti_air_tech
+			bonus = 0.5
+			uses = 1
+			category = anti_air_tech
+		}
+
+		set_temp_variable = { temp_econ_spending_amount = 0.250 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Area_Denial_Strategy
+	icon = GFX_focus_CHI_LAR_Area_Denial_Strategy
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Seeking_countermeasures
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -3
+	y = 8
+	completion_reward = {
+		country_event = { id = tnolar_chi.120 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+
+		set_temp_variable = { temp_CHI_MND_JapanAlert_level_lowerlimit_change = 5 }
+		CHI_MND_JapanAlert_level_lowerlimit_change = yes
+
+		CHI_MND_JapanAlert_upper_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Ten_years_sword_sharpening
+	icon = GFX_focus_CHI_LAR_Ten_years_sword_sharpening
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Heavy_military_industry
+	}
+	prerequisite = {
+		focus = CHI_LAR_Iron_Discipline
+	}
+	prerequisite = {
+		focus = CHI_LAR_independent_command_system
+		focus = CHI_LAR_Japanese_command_system
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 0
+	y = 7
+	completion_reward = {
+		country_event = { id = tnolar_chi.121 }
+
+		if = {
+			limit = {
+				#日本冷战排名1或2
+				check_variable = { CHI_MND_GUI_JapanAlert_level < 31 }
+			}
+			set_country_flag = CHI_LAR_Unlock_Showing_sharp_edge
+		}
+		else_if = {
+			limit = {
+				#日本冷战排名3
+				check_variable = { CHI_MND_GUI_JapanAlert_level < 51 }
+			}
+			set_country_flag = CHI_LAR_Unlock_Showing_sharp_edge
+		}
+		else = {
+			set_country_flag = CHI_LAR_Unlock_Keep_low_profile
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Showing_sharp_edge
+	icon = GFX_focus_CHI_LAR_Showing_sharp_edge
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Ten_years_sword_sharpening
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Keep_low_profile
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_Showing_sharp_edge_trigger_tt
+			has_country_flag = CHI_LAR_Unlock_Showing_sharp_edge
+		}
+	}
+	relative_position_id = CHI_LAR_Military
+	x = -1
+	y = 8
+	completion_reward = {
+		clr_country_flag = CHI_LAR_Unlock_Showing_sharp_edge
+
+		country_event = { id = tnolar_chi.122 }
+
+		CHI_MND_JapanAlert_upper_low = yes
+
+		add_to_variable = { CHI_MND_GUI_army_limit = 10 }
+		clamp_variable = {
+			var = CHI_MND_GUI_army_limit
+			max = 105
+		}
+		custom_effect_tooltip = CHI_LAR_Showing_sharp_edge_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Keep_low_profile
+	icon = GFX_focus_CHI_LAR_Keep_low_profile
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Ten_years_sword_sharpening
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Showing_sharp_edge
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_Keep_low_profile_trigger_tt
+			has_country_flag = CHI_LAR_Unlock_Keep_low_profile
+		}
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 1
+	y = 8
+	completion_reward = {
+		clr_country_flag = CHI_LAR_Unlock_Keep_low_profile
+
+		country_event = { id = tnolar_chi.123 }
+
+		set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+		CHI_MND_modernization_progress_month_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Rearmament
+	icon = GFX_focus_CHI_LAR_Rearmament
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Iron_Discipline
+	}
+	prerequisite = {
+		focus = CHI_LAR_Heavy_military_industry
+	}
+	prerequisite = {
+		focus = CHI_LAR_independent_command_system
+		focus = CHI_LAR_Japanese_command_system
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 4
+	y = 7
+	completion_reward = {
+		unlock_decision_tooltip = CHI_Increase_military_operations
+
+		tno_training_improve = yes
+
+		TNO_improve_army_professionalism_low = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Cycle_the_Reserves
+	icon = GFX_focus_CHI_LAR_Cycle_the_Reserves
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Rearmament
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 3
+	y = 8
+	completion_reward = {
+		custom_effect_tooltip = CHI_LAR_Cycle_the_Reserves_buff_tt
+		add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_minimum_training_level = -0.05 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Waking_the_Tiger
+	icon = GFX_focus_CHI_LAR_Waking_the_Tiger
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Area_Denial_Strategy
+	}
+	prerequisite = {
+		focus = CHI_LAR_Cycle_the_Reserves
+	}
+	prerequisite = {
+		focus = CHI_LAR_Showing_sharp_edge
+		focus = CHI_LAR_Keep_low_profile
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	relative_position_id = CHI_LAR_Military
+	x = 0
+	y = 9
+	completion_reward = {
+		CHI_Change_Colour = yes
+		CHI_Reduce_Reliance_on_Japan = yes
+		add_war_support = 0.1
+		country_event = { id = tnolar_chi.124 }
+		hidden_effect = {
+			country_event = {
+				id = tnolar_chi.1
+				days = 2
+				random_hours = 12
+			}
+		}
+	}
+}
+
+#############################################################################
+# 2) OIL CRISIS TREE - FOR ALLAH SAKE THIS IS ALL MUSSOLINI AND CIANO FAULT #
+#############################################################################
+
+shared_focus = {
+	id = CHI_The_Oil_Crisis
+	icon = GFX_focus_CHI_the_oil_crisis
+	cost = 1.00
+	allow_branch = {
+		has_country_flag = CHI_Oil_Crisis
+	}
+	relative_position_id = CHI_The_Best_of_Both_Worlds
+	x = -5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_The_Oil_Crisis"
+		add_political_power = -10
+	}
+}
+
+shared_focus = {
+	id = CHI_Inland_Exploration
+	icon = GFX_focus_CHI_inland_exploration
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_The_Oil_Crisis
+	}
+	relative_position_id = CHI_The_Oil_Crisis
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Inland_Exploration"
+		custom_effect_tooltip = CHI_Inland_Exploration_tt
+		set_temp_variable = { CHI_calc_cost = GDP }
+		multiply_temp_variable = { CHI_calc_cost = 0.02 }
+		add_to_variable = { CHI_industry_misc_costs = CHI_calc_cost }
+		custom_effect_tooltip = CHI_industry_cost_change_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_Limit_Oil_Usage
+	icon = GFX_focus_generic_oil_concessions
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_The_Oil_Crisis
+	}
+	relative_position_id = CHI_The_Oil_Crisis
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Limit_Oil_Usage"
+		custom_effect_tooltip = CHI_Limit_Oil_Usage_tt
+		add_to_variable = { OC_consumer_goods_factor = -0.1 }
+		add_to_variable = { OC_political_power_factor = -0.1 }
+		social_funding_minimal_decrease_med = yes
+		social_funding_maximal_decrease_med = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_Search_for_New_Oilfields
+	icon = GFX_focus_generic_subcontinental_oil
+	cost = 1.72
+	available = {
+        #custom_trigger_tooltip = {
+		#	tooltip = CHI_social_crisis_abated_trigger_tt
+		#	check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 15 }
+		#}
+    }
+	prerequisite = {
+		focus = CHI_Inland_Exploration
+	}
+	relative_position_id = CHI_Inland_Exploration
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Search_for_New_Oilfields"
+		set_temp_variable = { temp_econ_spending_amount = GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.02 }
+		econ_spend_money_once_effect_raw_money = yes
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -5 }
+		clamp_variable = {
+            var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+            min = 0
+            max = 100
+        }
+		CHI_Oil_Crisis_upload_industry_effects_var = yes
+		custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_5_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_Price_Controls
+	icon = GFX_focus_CHI_price_controls
+	cost = 1.72
+	available = {
+        #custom_trigger_tooltip = {
+		#	tooltip = CHI_social_crisis_abated_trigger_tt
+		#	check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 15 }
+		#}
+    }
+	prerequisite = {
+		focus = CHI_Limit_Oil_Usage
+	}
+	relative_position_id = CHI_Limit_Oil_Usage
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Price_Controls"
+		custom_effect_tooltip = CHI_Price_Controls_tt
+		add_to_variable = { OC_fuel_gain_factor = 0.2 }
+		add_to_variable = { OC_stability_factor = -0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_Petroleum_in_Henan
+	icon = GFX_focus_generic_oil_barrels
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Search_for_New_Oilfields
+	}
+	relative_position_id = CHI_Search_for_New_Oilfields
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Petroleum_in_Henan"
+		add_to_variable = { OC_political_power_factor = 0.05 }
+		add_resource = {
+			type = oil
+			amount = 17
+			state = 607
+		}
+		custom_effect_tooltip = CHI_Petroleum_in_Henan_tt
+		hidden_effect = {
+			607 = {
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.05
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_The_Anhui_Fields
+	icon = GFX_focus_CHI_the_oil_of_shengli
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Search_for_New_Oilfields
+	}
+	relative_position_id = CHI_Search_for_New_Oilfields
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_The_Anhui_Fields"
+		add_to_variable = { OC_political_power_factor = 0.05 }
+		add_resource = {
+			type = oil
+			amount = 20
+			state = 606
+		}
+		custom_effect_tooltip = CHI_The_Anhui_Fields_tt
+		hidden_effect = {
+			606 = {
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.05
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_Better_Extraction_Methods
+	icon = GFX_focus_generic_expand_oil_quotas
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Petroleum_in_Henan
+	}
+	prerequisite = {
+		focus = CHI_The_Anhui_Fields
+	}
+	relative_position_id = CHI_Search_for_New_Oilfields
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Better_Extraction_Methods"
+		custom_effect_tooltip = CHI_Better_Extraction_Methods_tt
+		add_to_variable = { OC_production_oil_factor = 0.1 }
+		add_to_variable = { OC_fuel_gain_factor = 0.1 }
+		add_tech_bonus = {
+			name = excavation_tech
+			bonus = 0.75
+			uses = 2
+			category = excavation_tech
+		}
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -7.5 }
+		clamp_variable = {
+            var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+            min = 0
+            max = 100
+        }
+		CHI_Oil_Crisis_upload_industry_effects_var = yes
+		custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_7_5_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_Odd_Even_Policy
+	icon = GFX_focus_CHI_odd_even_policy
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Price_Controls
+	}
+	relative_position_id = CHI_Price_Controls
+	x = 1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Odd_Even_Policy"
+		custom_effect_tooltip = CHI_Odd_Even_Policy_tt
+		add_to_variable = { OC_proportional_pop_cost = -0.02 }
+		add_to_variable = { OC_political_power_factor = -0.1 }
+		social_funding_minimal_decrease_med = yes
+		social_funding_maximal_decrease_med = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_Oil_For_the_Industries
+	icon = GFX_focus_CHI_oil_for_the_companies
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Odd_Even_Policy
+	}
+	relative_position_id = CHI_Odd_Even_Policy
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Oil_For_the_Industries"
+		custom_effect_tooltip = CHI_Oil_For_the_Industries_tt
+		add_to_variable = { OC_production_speed_buildings_factor = 0.2 }
+		add_to_variable = { OC_industrial_capacity_factory = 0.05 }
+		add_to_variable = { OC_industrial_capacity_dockyard = 0.05 }
+		add_to_variable = { OC_annual_gdp_growth_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_We_Need_More_Oil
+	icon = GFX_focus_CHI_we_need_more_oil
+	cost = 1.72
+	available = {
+        #custom_trigger_tooltip = {
+		#	tooltip = CHI_social_crisis_abated_trigger_tt
+		#	check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 35 }
+		#}
+    }
+	prerequisite = {
+		focus = CHI_Oil_For_the_Industries
+	}
+	prerequisite = {
+		focus = CHI_Better_Extraction_Methods
+	}
+	relative_position_id = CHI_Oil_For_the_Industries
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_We_Need_More_Oil"
+		country_event = {
+			id = chi.5501
+			hours = 1
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_Offshore_Exploration
+	icon = GFX_focus_CHI_offshore_exploration
+	cost = 1.72
+	available = {
+		always = no
+	}
+	mutually_exclusive = {
+		focus = CHI_Synthetic_Dawn
+	}
+	prerequisite = {
+		focus = CHI_We_Need_More_Oil
+	}
+	relative_position_id = CHI_We_Need_More_Oil
+	x = -5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Offshore_Exploration"
+		custom_effect_tooltip = CHI_Offshore_Exploration_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_Convince_Japan_oilcrisis
+	icon = GFX_focus_JAP_japan
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Offshore_Exploration
+	}
+	relative_position_id = CHI_Offshore_Exploration
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Convince_Japan_oilcrisis"
+		JAP = {
+			country_event = {
+				id = chi.5503
+				hours = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_We_Have_The_Technology
+	icon = GFX_focus_generic_we_have_the_technology
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Offshore_Exploration
+	}
+	relative_position_id = CHI_Convince_Japan_oilcrisis
+	x = 2
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_We_Have_The_Technology"
+		custom_effect_tooltip = CHI_We_Have_The_Technology_tt
+		add_to_variable = { OC_production_speed_buildings_factor = 0.1 }
+		add_to_variable = { OC_consumer_goods_factor = -0.05 }
+	}
+}
+
+shared_focus = {
+	id = CHI_We_Need_More_Than_You
+	icon = GFX_focus_JAP_and_everyone_needs_oil
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Convince_Japan_oilcrisis
+	}
+	prerequisite = {
+		focus = CHI_We_Have_The_Technology
+	}
+	relative_position_id = CHI_Convince_Japan_oilcrisis
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_We_Need_More_Than_You"
+		add_political_power = 25
+		custom_effect_tooltip = CHI_We_Need_More_Than_You_tt
+		add_to_variable = { OC_political_power_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_Ask_for_Permission
+	icon = GFX_focus_JAP_beg_the_emperor
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Convince_Japan_oilcrisis
+	}
+	prerequisite = {
+		focus = CHI_We_Have_The_Technology
+	}
+	relative_position_id = CHI_We_Have_The_Technology
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Ask_for_Permission"
+		JAP = {
+			country_event = {
+				id = japchiinteraction.9
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_Shanghai_Coastal_Fields
+	icon = GFX_focus_generic_explore_the_ports
+	cost = 1.72
+	available = {
+		has_country_flag = CHI_allow_offshore_exploration
+	}
+	bypass = {
+		has_country_flag = CHI_denied_offshore_exploration
+	}
+	prerequisite = {
+		focus = CHI_We_Need_More_Than_You
+	}
+	prerequisite = {
+		focus = CHI_Ask_for_Permission
+	}
+	relative_position_id = CHI_Ask_for_Permission
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Shanghai_Coastal_Fields"
+		add_to_variable = { OC_stability_factor = 0.05 }
+		add_ideas = CHI_Shanghai_Offshore_exploration_idea
+		add_resource = {
+			type = oil
+			amount = 19
+			state = 596
+		}
+		custom_effect_tooltip = CHI_Shanghai_Coastal_Fields_tt
+		hidden_effect = {
+			613 = {
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				set_temp_variable = { state_value_multiplier_temp = 1.1 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.10
+					}
+				}
+			}
+			596 = {
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				set_temp_variable = { state_value_multiplier_temp = 1.1 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.10
+					}
+				}
+			}
+		}
+	}
+}
+
+
+shared_focus = {
+	id = CHI_Expand_the_Refineries
+	icon = GFX_focus_generic_synthetic_refineries
+	cost = 1.72
+	available = {
+		OR = {
+			has_completed_focus = CHI_Shanghai_Coastal_Fields
+			has_completed_focus = CHI_Synthetic_Fuel
+		}
+        #custom_trigger_tooltip = {
+		#	tooltip = CHI_social_crisis_abated_trigger_tt
+		#	check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 50 }
+		#}
+	}
+	prerequisite = {
+		focus = CHI_Synthetic_Dawn
+		focus = CHI_Offshore_Exploration
+	}
+	relative_position_id = CHI_We_Need_More_Oil
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Expand_the_Refineries"
+		random_owned_state = {
+			limit = {
+				synthetic_refinery > 1
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = synthetic_refinery
+				level = 1
+				instant_build = yes
+			}
+		}
+		set_temp_variable = { temp_econ_spending_amount = GDP }
+		multiply_temp_variable = { temp_econ_spending_amount = 0.03 }
+		econ_spend_money_once_effect_raw_money = yes
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -10 }
+		clamp_variable = {
+            var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+            min = 0
+            max = 100
+        }
+		CHI_Oil_Crisis_upload_industry_effects_var = yes
+		custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_10_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_Improve_Shengli_Production
+	icon = GFX_focus_CHI_improve_shengli_production
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Expand_the_Refineries
+	}
+	relative_position_id = CHI_Expand_the_Refineries
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Improve_Shengli_Production"
+		add_to_variable = { OC_fuel_gain_factor = 0.05 }
+		add_resource = {
+			type = oil
+			amount = 15
+			state = 597
+		}
+		custom_effect_tooltip = CHI_Improve_Shengli_Production_tt
+		hidden_effect = {
+			597 = {
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				set_temp_variable = { state_value_multiplier_temp = 1.1 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.10
+					}
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_The_Worst_Has_Passed
+	icon = GFX_focus_generic_storm
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Expand_the_Refineries
+	}
+	relative_position_id = CHI_Expand_the_Refineries
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_The_Worst_Has_Passed"
+		custom_effect_tooltip = CHI_The_Worst_Has_Passed_tt
+		add_to_variable = { OC_production_speed_buildings_factor = 0.05 }
+		add_to_variable = { OC_consumer_goods_factor = -0.1 }
+		add_to_variable = { OC_stability_factor = 0.1 }
+		set_temp_variable = { gdp_growth_temp = 1.0 } #already converted to billion
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = -1.5 }
+		econ_inflation_change = yes
+		social_funding_minimal_increase_med = yes
+		social_funding_maximal_increase_med = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_End_Rationing
+	icon = GFX_focus_generic_mind_the_economy
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Expand_the_Refineries
+	}
+	relative_position_id = CHI_Expand_the_Refineries
+	x = 2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_End_Rationing"
+		custom_effect_tooltip = CHI_End_Rationing_tt
+		add_to_variable = { OC_political_power_factor = 0.25 }
+		add_to_variable = { OC_stability_factor = 0.1 }
+		set_temp_variable = { temp_econ_GDP_boost_percentage = 0.02 } #already converted to billion
+		econ_GDP_boost_once_percentage = yes
+		set_temp_variable = { gdp_growth_temp = 1.0 } #already converted to billion
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = -1.5 }
+		econ_inflation_change = yes
+		social_funding_minimal_increase_med = yes
+		social_funding_maximal_increase_med = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_Crisis_Resolved
+	icon = GFX_focus_generic_prosperity_2
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Improve_Shengli_Production
+	}
+	prerequisite = {
+		focus = CHI_The_Worst_Has_Passed
+	}
+	prerequisite = {
+		focus = CHI_End_Rationing
+	}
+	relative_position_id = CHI_End_Rationing
+	x = -2
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Crisis_Resolved"
+		TNO_Oil_Crisis_remove_modifier = yes
+		set_temp_variable = { inflation_temp = -1.5 }
+		econ_inflation_change = yes
+		set_temp_variable = { CHI_industry_free_pus_calc = 5 }
+		CHI_calc_industry_pu_change = yes
+	}
+}
+
+
+shared_focus = {
+	id = CHI_Synthetic_Dawn
+	icon = GFX_focus_CHI_synthetic_refineries
+	cost = 1.72
+	available = {
+		always = no
+	}
+	mutually_exclusive = {
+		focus = CHI_Offshore_Exploration
+	}
+	prerequisite = {
+		focus = CHI_We_Need_More_Oil
+	}
+	relative_position_id = CHI_We_Need_More_Oil
+	x = 5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Synthetic_Dawn"
+		custom_effect_tooltip = CHI_Synthetic_Dawn_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_Find_the_Experts
+	icon = GFX_focus_CHI_technology
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Synthetic_Dawn
+	}
+	relative_position_id = CHI_Synthetic_Dawn
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Find_the_Experts"
+		custom_effect_tooltip = CHI_Find_the_Experts_tt
+		add_to_variable = { OC_production_oil_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_What_Method
+	icon = GFX_focus_generic_invest_in_coal
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Synthetic_Dawn
+	}
+	relative_position_id = CHI_Find_the_Experts
+	x = 2
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_What_Method"
+		country_event = chi.5502
+	}
+}
+
+shared_focus = {
+	id = CHI_Start_the_Experiments
+	icon = GFX_focus_generic_technological_research
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Find_the_Experts
+	}
+	prerequisite = {
+		focus = CHI_What_Method
+	}
+	relative_position_id = CHI_Find_the_Experts
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Start_the_Experiments"
+		if = {
+			limit = {
+				has_country_flag = CHI_Fischer_Tropsch
+			}
+			add_tech_bonus = {
+				name = industry
+				bonus = 1.00
+				uses = 4
+				category = industry
+			}
+			set_temp_variable = { temp_econ_spending_amount = GDP }
+			multiply_temp_variable = { temp_econ_spending_amount = 0.02 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		else = {
+			add_tech_bonus = {
+				name = industry
+				bonus = 0.50
+				uses = 2
+				category = industry
+			}
+			set_temp_variable = { temp_econ_spending_amount = GDP }
+			multiply_temp_variable = { temp_econ_spending_amount = 0.01 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_Build_Synthetic_Refineries
+	icon = GFX_focus_CHI_build_synthetic_refineries
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Find_the_Experts
+	}
+	prerequisite = {
+		focus = CHI_What_Method
+	}
+	relative_position_id = CHI_What_Method
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Build_Synthetic_Refineries"
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = synthetic_refinery
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_state = {
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = synthetic_refinery
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_Synthetic_Fuel
+	icon = GFX_focus_ANG_fuel_quickly
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Start_the_Experiments
+	}
+	prerequisite = {
+		focus = CHI_Build_Synthetic_Refineries
+	}
+	relative_position_id = CHI_Build_Synthetic_Refineries
+	x = -1
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Synthetic_Fuel"
+		custom_effect_tooltip = CHI_Synthetic_Fuel_tt
+		add_to_variable = { OC_production_oil_factor = 0.2 }
+		if = {
+			limit = {
+				has_country_flag = CHI_Fischer_Tropsch
+			}
+			add_ideas = CHI_Synthetic_Fuel_2
+			custom_effect_tooltip = CHI_Synthetic_Fuel_2_tt
+			hidden_effect = {
+				set_temp_variable = { temp_econ_GDP_boost_percentage = 0.02 } #already converted to billion
+				econ_GDP_boost_once_percentage = yes
+				set_temp_variable = { gdp_growth_temp = 1.5 }
+				econ_gdp_growth_change = yes
+				set_temp_variable = { inflation_temp = -2.0 }
+				econ_inflation_change = yes
+				set_temp_variable = { CHI_industry_free_pus_calc = 5 }
+				CHI_calc_industry_pu_change = yes
+			}
+		}
+		else = {
+			add_ideas = CHI_Synthetic_Fuel_1
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_Marching_On
+	icon = GFX_focus_CHI_marching_on
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_Shanghai_Coastal_Fields
+		focus = CHI_Synthetic_Fuel
+	}
+	prerequisite = {
+		focus = CHI_Crisis_Resolved
+	}
+	relative_position_id = CHI_Crisis_Resolved
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_Marching_On"
+		add_stability = 0.1
+		set_temp_variable = { gdp_growth_temp = 1.0 } #already converted to billion
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = -1.5 }
+		econ_inflation_change = yes
+		custom_effect_tooltip = CHI_Marching_On_desc_tt
+		remove_dynamic_modifier = { modifier = CHI_oilcrisis_status_modifier }
+
+		add_political_power = 100	#TNOLAR 添加政治点数
+	}
+}
+
+################################################
+# 3) SOCIAL REFORM TREE - GENG ZHE YOU QI TIAN #
+################################################
+
+shared_focus = {
+	id = CHI_LAR_The_Urgent_Reform
+	icon = GFX_focus_CHI_LAR_The_Urgent_Reform
+	cost = 1.72
+	allow_branch = {
+		has_country_flag = CHI_Oil_Crisis
+	}
+	relative_position_id = CHI_The_Oil_Crisis
+	x = 18
+	y = 2
+	ai_will_do = {
+		base = 5
+		modifier = {
+			factor = 0
+			has_game_rule = { rule = LAR_CHI_SOCIALCRISIS option = LAR_CHI_SOCIALCRISIS_FAILURE }
+		}
+	}
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_The_Urgent_Reform"
+		unlock_decision_tooltip = CHI_Oil_Crisis_reduce_grain_exports
+		add_stability = 0.1
+		add_political_power = 100
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Radical_Reform
+	icon = GFX_focus_CHI_LAR_Radical_Reform
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_The_Urgent_Reform
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Moderate_Reform
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = -5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Radical_Reform"
+		custom_effect_tooltip = CHI_LAR_Radical_Reform_tt
+
+		unlock_decision_tooltip = CHI_Oil_Crisis_distribute_food
+		set_temp_variable = { faction_opinion_change_reformist = 5 }
+		set_temp_variable = { faction_opinion_change_japanophile = -2.5 }
+		set_temp_variable = { faction_opinion_change_oldguard = -2.5 }
+		CHI_Yuan_opinion_change = yes
+		CHI_Leg_Yuan_Clamp_Everything = yes
+		CHI_Update_Leg_Yuan_Modifier = yes
+		CHI_GUI_LegYuan_Setup = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Land_Redemption
+	icon = GFX_focus_CHI_LAR_Land_Redemption
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Radical_Reform
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = -7
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Land_Redemption"
+		unlock_decision_tooltip = CHI_Oil_Crisis_symbolic_average_land_rights
+		unlock_decision_tooltip = CHI_Oil_Crisis_subsidized_enterprises
+		set_temp_variable = { temp_econ_spending_amount = 0.225 }
+		econ_spend_money_once_effect_raw_money = yes
+		TNO_improve_agriculture_med = yes
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = -15 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+			min = 0
+			max = 100
+		}
+		CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+		custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_increase_15_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Land_To_The_Tiller
+	icon = GFX_focus_CHI_LAR_Land_To_The_Tiller
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Land_Redemption
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = -9
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Land_To_The_Tiller"
+		unlock_decision_tooltip = CHI_Oil_Crisis_give_up_benefits
+		unlock_decision_tooltip = CHI_Oil_Crisis_create_jobs
+
+		tno_slavery_improve = yes
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 5 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_government_prestige
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_5_effect_tt
+		
+		add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = -12.5 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+			min = 0
+			max = 100
+		}
+		CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+		custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_increase_12_5_effect_tt
+
+		set_temp_variable = { faction_opinion_change_reformist = 2.5 }
+		set_temp_variable = { faction_opinion_change_oldguard = -5 }
+		CHI_Yuan_opinion_change = yes
+		CHI_Leg_Yuan_Clamp_Everything = yes
+		CHI_Update_Leg_Yuan_Modifier = yes
+		CHI_GUI_LegYuan_Setup = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Golden_Surge
+	icon = GFX_focus_CHI_LAR_Golden_Surge
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Land_Redemption
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = -7
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Golden_Surge"
+		unlock_decision_tooltip = CHI_Oil_Crisis_small_scale_improve_welfare
+		unlock_decision_tooltip = CHI_Oil_Crisis_increase_investment_in_infrastructure
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 12.5 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_government_prestige
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_12_5_effect_tt
+		
+		add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = -12.5 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+			min = 0
+			max = 100
+		}
+		CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+		custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_increase_12_5_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Moderate_Reform
+	icon = GFX_focus_CHI_LAR_Moderate_Reform
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_The_Urgent_Reform
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Radical_Reform
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 5
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Moderate_Reform"
+		custom_effect_tooltip = CHI_LAR_Moderate_Reform_tt
+
+		unlock_decision_tooltip = CHI_Oil_Crisis_distribute_food
+		set_temp_variable = { faction_opinion_change_reformist = -5 }
+		set_temp_variable = { faction_opinion_change_oldguard = 2.5 }
+		set_temp_variable = { faction_opinion_change_japanophile = 2.5 }
+		CHI_Yuan_opinion_change = yes
+		CHI_Leg_Yuan_Clamp_Everything = yes
+		CHI_Update_Leg_Yuan_Modifier = yes
+		CHI_GUI_LegYuan_Setup = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Old_Bottle_New_Wine
+	icon = GFX_focus_CHI_LAR_Old_Bottle_New_Wine
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Moderate_Reform
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 7
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Old_Bottle_New_Wine"
+		unlock_decision_tooltip = CHI_Oil_Crisis_cover_up_the_facts
+		unlock_decision_tooltip = CHI_Oil_Crisis_subsidized_enterprises
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = -7.5 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+			min = 0
+			max = 100
+		}
+		CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+		custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_increase_7_5_effect_tt
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -10 }
+		clamp_variable = {
+            var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+            min = 0
+            max = 100
+        }
+		CHI_Oil_Crisis_upload_industry_effects_var = yes
+		custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_10_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Cultivating_The_Barren_Land
+	icon = GFX_focus_CHI_LAR_Cultivating_The_Barren_Land
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Old_Bottle_New_Wine
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 7
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Cultivating_The_Barren_Land"
+		unlock_decision_tooltip = CHI_Oil_Crisis_reclaim_wasteland
+		unlock_decision_tooltip = CHI_Oil_Crisis_create_jobs
+
+		TNO_worsen_poverty_med = yes
+
+		set_temp_variable = { faction_opinion_change_oldguard = 2.5 }
+		CHI_Yuan_opinion_change = yes
+		CHI_Leg_Yuan_Clamp_Everything = yes
+		CHI_Update_Leg_Yuan_Modifier = yes
+		CHI_GUI_LegYuan_Setup = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Grassroots_Expansion
+	icon = GFX_focus_CHI_LAR_Grassroots_Expansion
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Old_Bottle_New_Wine
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 9
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Grassroots_Expansion"
+		unlock_decision_tooltip = CHI_Oil_Crisis_punish_the_smuggler
+		unlock_decision_tooltip = CHI_Oil_Crisis_increase_investment_in_infrastructure
+		
+		custom_effect_tooltip = CHI_LAR_Grassroots_Expansion_tt
+		hidden_effect = {
+			add_political_power = var:CHI_Oil_Crisis_GUI_government_prestige
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_No_More_Tolerance
+	icon = GFX_focus_CHI_LAR_No_More_Tolerance
+	cost = 1.72
+	available = {
+        #custom_trigger_tooltip = {
+		#	tooltip = CHI_oil_crisis_abated_trigger_tt
+		#	has_completed_focus = CHI_Better_Extraction_Methods
+		#	has_completed_focus = CHI_Oil_For_the_Industries
+		#}
+    }
+	prerequisite = {
+		focus = CHI_LAR_The_Urgent_Reform
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_No_More_Tolerance"
+		unlock_decision_tooltip = CHI_Oil_Crisis_strengthen_police_force
+		add_command_power = 25
+		add_political_power = 150
+		add_stability = 0.05
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Win_Over_The_People
+	icon = GFX_focus_CHI_LAR_Win_Over_The_People
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_No_More_Tolerance
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = -3
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Win_Over_The_People"
+		add_political_power = -25
+		add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_government_prestige
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Reward_For_Labor
+	icon = GFX_focus_CHI_LAR_Reward_For_Labor
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Win_Over_The_People
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = -4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Reward_For_Labor"
+		TNO_improve_minimum_wage_policy_effectiveness_low = yes
+		add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 12.5 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_government_prestige
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_12_5_effect_tt
+
+		set_temp_variable = { faction_opinion_change_oldguard = -2.5 }
+		CHI_Yuan_opinion_change = yes
+		CHI_Leg_Yuan_Clamp_Everything = yes
+		CHI_Update_Leg_Yuan_Modifier = yes
+		CHI_GUI_LegYuan_Setup = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Healing_For_Wound
+	icon = GFX_focus_CHI_LAR_Healing_For_Wound
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Win_Over_The_People
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = -2
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Healing_For_Wound"
+		TNO_improve_health_care_policy_effectiveness_med = yes
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_government_prestige
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Wipe_Out_The_Enemy
+	icon = GFX_focus_CHI_LAR_Wipe_Out_The_Enemy
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_No_More_Tolerance
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 3
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Wipe_Out_The_Enemy"
+		add_equipment_to_stockpile = {
+    		type = infantry_equipment
+    		amount = -100
+		}
+		add_to_variable = { CHI_Oil_Crisis_gears_turning_agriculture_var = -0.5 }
+		custom_effect_tooltip = CHI_Oil_Crisis_gears_turning_weakened_1_effect_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Execute_A_Warning
+	icon = GFX_focus_CHI_LAR_Execute_A_Warning
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Wipe_Out_The_Enemy
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 2
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Execute_A_Warning"
+		add_command_power = -25
+		add_equipment_to_stockpile = {
+    		type = infantry_equipment
+    		amount = -10
+		}
+		add_to_variable = { CHI_Oil_Crisis_Japanophiles_is_in_action_invalid_probability_var = 10 }
+		custom_effect_tooltip = CHI_Oil_Crisis_Japanophiles_is_in_action_weakened_2_effect_tt
+
+		set_temp_variable = { faction_opinion_change_japanophile = -5 }
+		set_temp_variable = { faction_opinion_change_reformist = 2.5 }
+		CHI_Yuan_opinion_change = yes
+		CHI_Leg_Yuan_Clamp_Everything = yes
+		CHI_Update_Leg_Yuan_Modifier = yes
+		CHI_GUI_LegYuan_Setup = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Influence_In_The_Shadows
+	icon = GFX_focus_CHI_LAR_Influence_In_The_Shadows
+	cost = 1.72
+	prerequisite = {
+		focus = CHI_LAR_Wipe_Out_The_Enemy
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Influence_In_The_Shadows"
+		set_temp_variable = { temp_econ_spending_amount = 0.090 }
+		econ_spend_money_once_effect_raw_money = yes
+
+		set_temp_variable = { faction_opinion_change_japanophile = 0.5 }
+		set_temp_variable = { faction_opinion_change_oldguard = 1.5 }
+		CHI_Yuan_opinion_change = yes
+		CHI_Leg_Yuan_Clamp_Everything = yes
+		CHI_Update_Leg_Yuan_Modifier = yes
+		CHI_GUI_LegYuan_Setup = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Dust_Settled
+	icon = GFX_focus_CHI_LAR_Dust_Settled
+	cost = 1.72
+	available = {
+        #custom_trigger_tooltip = {
+		#	tooltip = CHI_oil_crisis_abated_trigger_tt
+		#	has_completed_focus = CHI_Crisis_Resolved
+		#	OR = {
+		#		has_completed_focus = CHI_Shanghai_Coastal_Fields
+		#		has_completed_focus = CHI_Synthetic_Fuel
+		#	}
+		#}
+    }
+	prerequisite = {
+		focus = CHI_LAR_Land_To_The_Tiller focus = CHI_LAR_Grassroots_Expansion
+	}
+	prerequisite = {
+		focus = CHI_LAR_Golden_Surge focus = CHI_LAR_Cultivating_The_Barren_Land
+	}
+	prerequisite = {
+		focus = CHI_LAR_Reward_For_Labor
+	}
+	prerequisite = {
+		focus = CHI_LAR_Healing_For_Wound
+	}
+	prerequisite = {
+		focus = CHI_LAR_Execute_A_Warning
+	}
+	prerequisite = {
+		focus = CHI_LAR_Influence_In_The_Shadows
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = -3
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Dust_Settled"
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 5 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_government_prestige
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_5_effect_tt
+
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Nothing_Happened
+	icon = GFX_focus_CHI_LAR_Nothing_Happened
+	cost = 1.72
+	available = {
+        #custom_trigger_tooltip = {
+		#	tooltip = CHI_oil_crisis_abated_trigger_tt
+		#	has_completed_focus = CHI_Crisis_Resolved
+		#	OR = {
+		#		has_completed_focus = CHI_Shanghai_Coastal_Fields
+		#		has_completed_focus = CHI_Synthetic_Fuel
+		#	}
+		#}
+    }
+	prerequisite = {
+		focus = CHI_LAR_Land_To_The_Tiller focus = CHI_LAR_Grassroots_Expansion
+	}
+	prerequisite = {
+		focus = CHI_LAR_Golden_Surge focus = CHI_LAR_Cultivating_The_Barren_Land
+	}
+	prerequisite = {
+		focus = CHI_LAR_Reward_For_Labor
+	}
+	prerequisite = {
+		focus = CHI_LAR_Healing_For_Wound
+	}
+	prerequisite = {
+		focus = CHI_LAR_Execute_A_Warning
+	}
+	prerequisite = {
+		focus = CHI_LAR_Influence_In_The_Shadows
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 3
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Nothing_Happened"
+
+		add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 5 }
+		clamp_variable = {
+			var = CHI_Oil_Crisis_GUI_government_prestige
+			min = 0
+			max = 100
+		}
+		custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_5_effect_tt
+
+		add_political_power = 50
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Stable_And_Improved
+	icon = GFX_focus_CHI_LAR_Stable_And_Improved
+	cost = 1.72
+	available = {
+        custom_trigger_tooltip = {
+			tooltip = CHI_Social_Reform_successful_trigger_tt
+			NOT = {
+				has_country_flag = CHI_Social_Reform
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = CHI_oil_crisis_has_resolved_trigger_tt
+			custom_trigger_tooltip = {
+				tooltip = CHI_oil_crisis_has_resolved_trigger_tt
+				NOT = {
+					has_dynamic_modifier = { modifier = CHI_oilcrisis_status_modifier }
+				}
+			}
+		}
+    }
+	prerequisite = {
+		focus = CHI_LAR_Dust_Settled
+	}
+	prerequisite = {
+		focus = CHI_LAR_Nothing_Happened
+	}
+	relative_position_id = CHI_LAR_The_Urgent_Reform
+	x = 0
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Stable_And_Improved"
+		set_temp_variable = { gdp_growth_temp = 2 }
+		econ_gdp_growth_change = yes
+		TNO_improve_admin_efficiency_low = yes
+		clr_country_flag = CHI_Oil_Crisis
+		clr_country_flag = CHI_Social_Reform
+		CHI_reload_tree = yes
+	}
+}
+
+#############################################################
+# 4) UNIFICATION TREE - MAIN TREE - MAKE CHINA GREAT AGAIN! #
+#############################################################
+
+shared_focus = {
+	id = CHI_LAR_Sovereignty
+	icon = GFX_focus_CHI_LAR_Sovereignty
+	cost = 1.00
+	allow_branch = {
+		has_country_flag = CHI_Sovereignty_Reunification
+	}
+
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+
+	relative_position_id = CHI_The_Conference
+	x = 0
+	y = 1
+	completion_reward = {
+		hidden_effect = {
+			country_event = {
+    			id = tnolar_chi.200
+			}
+			#country_event = {
+			#	id = tnolar_chi.400
+			#	days = 140
+    		#	random_hours = 36
+			#}
+			#set_country_flag = CHI_Northwest_War
+			#set_variable = { CHI_Northwest_War_GUI_progressbar_var = 0 }
+			#set_variable = { Northwest_War_timeleft = 1 }
+			#set_variable = { CHI_current_number_volunteers = 0 }
+			#set_variable = { CHI_NWW_EQ_firearms = 0 }
+			#set_variable = { CHI_NWW_EQ_artillery = 0 }
+			#set_variable = { CHI_NWW_EQ_armor = 0 }
+			#GAN = {
+			#	leave_faction = yes
+			#}
+		}
+		custom_effect_tooltip = CHI_LAR_Sovereignty_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Meet_Xia_Wei
+	icon = GFX_focus_CHI_LAR_Meet_Xia_Wei
+	cost = 1.00
+	prerequisite = {
+		focus = CHI_LAR_Sovereignty
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_northwestwar_has_resolved_trigger_tt
+			CHI = {
+				has_country_flag = CHI_northwestwar_has_resolved
+			}
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -8
+	y = 1
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.240
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Dispel_Doubts
+	icon = GFX_focus_CHI_LAR_Dispel_Doubts
+	cost = 1.00
+	prerequisite = {
+		focus = CHI_LAR_Meet_Xia_Wei
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -9
+	y = 2
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.241
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Restart_War_Machine
+	icon = GFX_focus_ENG_the_crews_on_auxiliary
+	cost = 1.00
+	prerequisite = {
+		focus = CHI_LAR_Meet_Xia_Wei
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -7
+	y = 2
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.242
+		#}
+		add_ideas = CHI_LAR_guangxi_arsenal_idea
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Love_For_Homeland
+	icon = GFX_focus_CHI_LAR_Love_For_Homeland
+	cost = 1.00
+    prerequisite = {
+		focus = CHI_LAR_Dispel_Doubts
+	}
+    prerequisite = {
+		focus = CHI_LAR_Restart_War_Machine
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -8
+	y = 3
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.243
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Never_Give_Up_Until_Die
+	icon = GFX_focus_CHI_LAR_Never_Give_Up_Until_Die
+	cost = 1.00
+    mutually_exclusive = {
+        focus = CHI_LAR_Calm_Down
+    }
+	prerequisite = {
+		focus = CHI_LAR_Love_For_Homeland
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -9
+	y = 4
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.244
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Calm_Down
+	icon = GFX_focus_CHI_LAR_Calm_Down
+	cost = 1.00
+    mutually_exclusive = {
+        focus = CHI_LAR_Never_Give_Up_Until_Die
+    }
+	prerequisite = {
+		focus = CHI_LAR_Love_For_Homeland
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -7
+	y = 4
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.245
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Wolf_Soldier
+	icon = GFX_focus_CHI_LAR_Wolf_Soldier
+	cost = 1.00
+	prerequisite = {
+		focus = CHI_LAR_Never_Give_Up_Until_Die  focus = CHI_LAR_Calm_Down
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -8
+	y = 5
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.246
+		#}
+		TNO_improve_training_policy_effectiveness_med = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Loyal_Guangxi
+	icon = GFX_focus_CHI_LAR_Loyal_Guangxi
+	cost = 1.00
+	prerequisite = {
+		focus = CHI_LAR_Wolf_Soldier
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -8
+	y = 7
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.247
+		#}
+		annex_country = {
+			target = LOY
+			transfer_troops = yes
+		}
+		annex_country = {
+			target = KIS
+			transfer_troops = yes
+		}
+		LOY = {
+			every_unit_leader = {
+				set_nationality = CHI
+			}
+		}
+		LOY = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+			every_core_state = {
+				remove_core_of = LOY
+			}
+		}
+		KIS = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+			every_core_state = {
+				remove_core_of = LOY
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Visit_Zhang_Zhizhong
+	icon = GFX_focus_CHI_LAR_Visit_Zhang_Zhizhong
+	cost = 1.00
+	prerequisite = {
+		focus = CHI_LAR_Sovereignty
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_northwestwar_has_resolved_trigger_tt
+			CHI = {
+				has_country_flag = CHI_northwestwar_has_resolved
+			}
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -4
+	y = 3
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.270
+		#}
+	}
+}
+
+#shared_focus = {
+#	id = CHI_LAR_Destroy_Remants
+#	icon = GFX_focus_CHI_LAR_Destroy_Remants
+#	cost = 1.00
+ #   mutually_exclusive = {
+ #       focus = CHI_LAR_Incorporate_Remnants
+ #   }
+#	prerequisite = {
+#		focus = CHI_LAR_Visit_Zhang_Zhizhong
+#	}
+#	available = {
+#		CHI_is_not_in_crisis = yes
+#	}
+#	cancel_if_invalid = yes
+#	relative_position_id = CHI_LAR_Sovereignty
+#	x = -5
+#	y = 4
+#	completion_reward = {
+#		add_political_power = -50
+#		add_command_power = -25
+#		XIN = {
+#			add_manpower = -10000
+#		}
+		#country_event = {
+		#	id = tnolar_chi.271
+		#}
+#	}
+#}
+
+shared_focus = {
+	id = CHI_LAR_Incorporate_Remnants
+	icon = GFX_focus_CHI_LAR_Incorporate_Remnants
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Visit_Zhang_Zhizhong
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -4
+	y = 4
+	completion_reward = {
+		add_popularity = {
+    		ideology = communist
+    		popularity = 0.02
+		}
+		TNO_worsen_press_rights_policy_effectiveness_low = yes
+		capital_scope = {
+			create_unit = {
+				division = "name = \"Xinjiang 1st Bubing Shi\" division_template = \"Bubing Shi\" start_experience_factor = 1.0"
+				owner = CHI
+			}
+			create_unit = {
+				division = "name = \"Xinjiang 2nd Bubing Shi\" division_template = \"Bubing Shi\" start_experience_factor = 1.0"
+				owner = CHI
+			}
+		}
+		#country_event = {
+		#	id = tnolar_chi.272
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Appease_Minorities
+	icon = GFX_focus_CHI_LAR_Appease_Minorities
+	cost = 1.00
+	prerequisite = {
+		focus = CHI_LAR_Incorporate_Remnants
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -5
+	y = 5
+	completion_reward = {
+		tno_minorities_improve = yes
+		HTC = {
+			add_stability = 0.15
+		}
+		#country_event = {
+		#	id = tnolar_chi.274
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Another_Collaboration
+	icon = GFX_focus_CHI_LAR_Another_Collaboration
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Incorporate_Remnants
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -3
+	y = 5
+	completion_reward = {
+		HTC = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.05 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		add_popularity = {
+			ideology = communist
+			popularity = 0.1
+		}
+		#country_event = {
+		#	id = tnolar_chi.275
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Reclaim_And_Garrision
+	icon = GFX_focus_generic_new_broad_gauge_railways
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Another_Rupture
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Appease_Minorities
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -5
+	y = 6
+	completion_reward = {
+		HTC = {
+			capital_scope = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		#country_event = {
+		#	id = tnolar_chi.276
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Production_And_Construction_Corps
+	icon = GFX_focus_ENG_the_old_never_failed_them
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Another_Collaboration
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Appease_Minorities
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -3
+	y = 6
+	completion_reward = {
+		HTC = {
+			capital_scope = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		#country_event = {
+		#	id = tnolar_chi.277
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Unstable_Xinjiang
+	icon = GFX_focus_CHI_LAR_Unstable_Xinjiang
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Reclaim_And_Garrision
+		focus = CHI_LAR_Production_And_Construction_Corps
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -4
+	y = 7
+	completion_reward = {
+		annex_country = {
+			target = HTC
+			transfer_troops = no
+		}
+		HTC = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+			every_core_state = {
+				remove_core_of = HTC
+			}
+		}
+		hidden_effect = {
+		CHI = {
+			retire_character = CHI_CPC_unknown
+			add_country_leader_role = {
+				character = HTC_Ma_Zhongying
+				promote_leader = yes
+				country_leader = {
+					expire = "1999.1.1"
+			        desc = "HTC_MA_Zhongying_desc"
+			        ideology = communist_mao_zedong_thought_TER_subtype
+			        id = -1
+					}
+				}
+		}
+		}
+		#country_event = {
+		#	id = tnolar_chi.278
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Appointment_With_Liu_Wenhui
+	icon = GFX_focus_CHI_LAR_Appointment_With_Liu_Wenhui
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Sovereignty
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 0
+	y = 1
+	completion_reward = {
+		#add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 5 }
+		custom_effect_tooltip = CHI_LAR_Appointment_With_Liu_Wenhui_tt
+		custom_effect_tooltip = CHI_supply_route_smooth_rate_increase_tooltip
+
+	    country_event = { id = tnolar_chi.201 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Connect_Road
+	icon = GFX_focus_CHI_LAR_Connect_Road
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Appointment_With_Liu_Wenhui
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -2
+	y = 2
+	completion_reward = {
+		# 铺设铁路 6999 12705 12919 2067
+		build_railway = {
+			level = 1
+			fallback = yes
+			path = { 6999 12705 12819 2067}
+			start_state = 6999
+			target_state = 2067
+		}
+
+		# 增加基建
+		every_owned_state = {
+			limit = {
+				any_neighbor_state = {
+					is_owned_by = XIK
+				}
+			}
+			
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		set_temp_variable = { temp_econ_spending_amount = 0.075 }
+		econ_spend_money_once_effect_raw_money = yes
+		#add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 5 }
+		custom_effect_tooltip = CHI_supply_route_smooth_rate_increase_tooltip
+
+		country_event = { id = tnolar_chi.205 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Wooing_Lower_level_Officials
+	icon = GFX_focus_CHI_LAR_Wooing_Lower_level_Officials
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Appointment_With_Liu_Wenhui
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 0
+	y = 2
+	completion_reward = {
+		add_political_power = -25
+		#add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 5 }
+		custom_effect_tooltip = CHI_LAR_Wooing_Lower_level_Officials_tt
+
+		if = {
+			limit = {
+				XIK = {
+					is_in_faction_with = JAP
+				}
+			}
+			country_event = { id = tnolar_chi.203 }
+		}
+		else = {
+			country_event = { id = tnolar_chi.204 }
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Explore_the_Terrain
+	icon = GFX_focus_CHI_LAR_Explore_the_Terrain
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Appointment_With_Liu_Wenhui
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 2
+	y = 2
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 0.050 }
+		econ_spend_money_once_effect_raw_money = yes
+		add_command_power = -15
+		#add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 5 }
+		custom_effect_tooltip = CHI_supply_route_smooth_rate_increase_tooltip
+
+		if = {
+			limit = {
+				XIK = {
+					is_in_faction_with = JAP
+				}
+			}
+			country_event = { id = tnolar_chi.206 }
+		}
+		else = {
+			country_event = { id = tnolar_chi.207 }
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Hydraulic_Engineering
+	icon = GFX_focus_CHI_LAR_Hydraulic_Engineering
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Connect_Road
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Wooing_Lower_level_Officials
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Explore_the_Terrain
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 0
+	y = 3
+	completion_reward = {
+		XIK = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 3
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 3
+					instant_build = yes
+				}
+			}
+		}
+		set_temp_variable = { temp_econ_spending_amount = 0.025 }
+		econ_spend_money_once_effect_raw_money = yes
+		#add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 5 }
+		custom_effect_tooltip = CHI_supply_route_smooth_rate_increase_tooltip
+
+		country_event = { id = tnolar_chi.208 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Light_the_Lights
+	icon = GFX_focus_CHI_LAR_Light_the_Lights
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Hydraulic_Engineering
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 0
+	y = 4
+	completion_reward = {
+		XIK = {
+			capital_scope = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = thermoelectric_plant
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		set_temp_variable = { temp_econ_spending_amount = 0.025 }
+		econ_spend_money_once_effect_raw_money = yes
+		#add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 5 }
+		custom_effect_tooltip = CHI_supply_route_smooth_rate_increase_tooltip
+
+		country_event = { id = tnolar_chi.209 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Resident_Officials
+	icon = GFX_focus_CHI_LAR_Resident_Officials
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Light_the_Lights
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 0
+	y = 6
+	completion_reward = {
+		add_political_power = -50
+		add_manpower = -5000
+		#add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 5 }
+		custom_effect_tooltip = CHI_LAR_Resident_Officials_tt
+
+		country_event = { id = tnolar_chi.210 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Regression_of_Xikang
+	icon = GFX_focus_CHI_LAR_Regression_of_Xikang
+	cost = 2.00
+	prerequisite = {
+	    focus = CHI_LAR_Resident_Officials
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 0
+	y = 7
+	completion_reward = {
+		annex_country = {
+			target = XIK
+			transfer_troops = no
+		}
+		XIK = {
+			every_unit_leader = {
+				set_nationality = CHI
+			}
+		}
+		XIK = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+			every_core_state = {
+				remove_core_of = XIK
+			}
+		}
+		CHI_MND_JapanAlert_upper_low = yes
+
+		country_event = { id = tnolar_chi.211 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Support_Ma_Jiyuan
+	icon = GFX_focus_CHI_LAR_Support_Ma_Jiyuan
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Sovereignty
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 4
+	y = 3
+	completion_reward = {
+		custom_effect_tooltip = CHI_LAR_Support_Ma_Jiyuan_tt
+		country_event = {
+			id = tnolar_chi.452
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Stick_Out_an_Olive_Branch
+	icon = GFX_focus_CHI_LAR_Stick_Out_an_Olive_Branch
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Support_Ma_Jiyuan
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 3
+	y = 4
+	completion_reward = {
+		#add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 10 }
+		#clamp_variable = {
+        #    var = CHI_Northwest_War_GUI_progressbar_var
+        #    min = 0
+       #     max = 100
+		#}
+		custom_effect_tooltip = CHI_LAR_Stick_Out_an_Olive_Branch_tt
+		country_event = {
+			id = tnolar_chi.453
+		}
+		hidden_effect = {
+		#	set_country_flag = may_send_volunteers
+		#	set_temp_variable = { target = QIN }
+		#	set_temp_variable = { number = 1 }
+		#	TNO_set_num_volunteers = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Provide_War_Materiel
+	icon = GFX_focus_CHI_LAR_Provide_War_Materiel
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Support_Ma_Jiyuan
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 5
+	y = 4
+	completion_reward = {
+		add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 10 }
+		#clamp_variable = {
+       #     var = CHI_Northwest_War_GUI_progressbar_var
+        #    min = 0
+        #    max = 100
+		#}
+		custom_effect_tooltip = CHI_LAR_Provide_War_Materiel_tt
+		country_event = {
+			id = tnolar_chi.455
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Advisers_Westbound
+	icon = GFX_focus_CHI_LAR_Advisers_Westbound
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Stick_Out_an_Olive_Branch
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Provide_War_Materiel
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 2
+	y = 5
+	completion_reward = {
+		QIN = {
+			add_timed_idea = {
+				idea = QIN_LAR_chinese_advisors_idea
+				days = 30
+			}
+		}
+		CHI_MND_JapanAlert_upper_low = yes
+		custom_effect_tooltip = CHI_LAR_Advisers_Westbound_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Camouflage_Volunteers
+	icon = GFX_focus_CHI_LAR_Camouflage_Volunteers
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Stick_Out_an_Olive_Branch
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Provide_War_Materiel
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 4
+	y = 5
+	completion_reward = {
+	#	set_temp_variable = { target = QIN }
+	#	TNO_increase_volunteer_cap_1 = yes
+		CHI_MND_JapanAlert_upper_low = yes
+		country_event = {
+			id = tnolar_chi.456
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Refugees_Move_East
+	icon = GFX_focus_CHI_LAR_Refugees_Move_East
+	cost = 1.00
+	prerequisite = {
+		focus = CHI_LAR_Stick_Out_an_Olive_Branch
+	}
+	prerequisite = {
+		focus = CHI_LAR_Provide_War_Materiel
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 6
+	y = 5
+	completion_reward = {
+		GAN = {
+			add_manpower = -16589
+		}
+		QIN = {
+			add_manpower = -5367
+		}
+		add_manpower = 21956
+		custom_effect_tooltip = CHI_LAR_Refugees_Move_East_tt
+	#	add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 10 }
+	#	clamp_variable = {
+    #        var = CHI_Northwest_War_GUI_progressbar_var
+     #       min = 0
+    #        max = 100
+	#	}
+		country_event = {
+			id = tnolar_chi.454
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Negotiation
+	icon = GFX_focus_CHI_LAR_Negotiation
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Advisers_Westbound
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Camouflage_Volunteers
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Refugees_Move_East
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 4
+	y = 6
+	completion_reward = {
+		CHI_MND_JapanAlert_upper_low = yes
+		custom_effect_tooltip = CHI_LAR_Negotiation_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Vengeful_Qinghai
+	icon = GFX_focus_CHI_LAR_Vengeful_Qinghai
+	cost = 2.00
+	prerequisite = {
+	    focus = CHI_LAR_Negotiation
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 4
+	y = 7
+	completion_reward = {
+		annex_country = {
+			target = QIN
+			transfer_troops = no
+		}
+		QIN = {
+			every_unit_leader = {
+				set_nationality = CHI
+			}
+		}
+		QIN = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+			every_core_state = {
+				remove_core_of = QIN
+			}
+		}
+		set_country_flag = CHI_northwestwar_has_resolved
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_invite_Fu_Zuoyi
+	icon = GFX_focus_CHI_LAR_invite_Fu_Zuoyi
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Sovereignty
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_northwestwar_has_resolved_trigger_tt
+			CHI = {
+				has_country_flag = CHI_northwestwar_has_resolved
+			}
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 7
+	y = 1
+	completion_reward = {
+		#country_event = {
+		#	id = tnolar_chi.220
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Transfer_of_Military_Power
+	icon = GFX_focus_generic_back_of_the_truck
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_invite_Fu_Zuoyi
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 6
+	y = 2
+	completion_reward = {
+		SHX = {
+			every_owned_state = {
+				SHX = {
+					delete_unit = {
+						state = PREV
+						disband = yes
+					}
+				}
+			}
+		}
+		capital_scope = {
+			create_unit = {
+				division = "name = \"Shanxi 1st Bubing Juntuan\" division_template = \"Jingrui Jingwei Shi\" start_experience_factor = 1.0"
+				owner = CHI
+			}
+			create_unit = {
+				division = "name = \"Shanxi 2nd Bubing Juntuan\" division_template = \"Jingrui Jingwei Shi\" start_experience_factor = 1.0"
+				owner = CHI
+			}
+		}
+		#country_event = {
+		#	id = tnolar_chi.222
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Economic_Integration
+	icon = GFX_focus_ENG_the_factories_unstaffed
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_invite_Fu_Zuoyi
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 8
+	y = 2
+	completion_reward = {
+		set_temp_variable = { temp_econ_spending_amount = 0.500 }
+		econ_spend_money_once_effect_raw_money = yes
+		SHX = {
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.02 }
+			econ_GDP_boost_once_percentage = yes
+		}
+		#country_event = {
+		#	id = tnolar_chi.223
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_CCP_Sympathizers
+	icon = GFX_focus_CHI_LAR_CCP_Sympathizers
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Transfer_of_Military_Power
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Economic_Integration
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 8
+	y = 3
+	completion_reward = {
+		add_popularity = {
+    		ideology = communist
+    		popularity = 0.01
+		}
+		add_stability = -0.1
+		#country_event = {
+		#	id = tnolar_chi.224
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Suppress_Sympathizers
+	icon = GFX_focus_CHI_LAR_Suppress_Sympathizers
+	cost = 1.00
+    mutually_exclusive = {
+        focus = CHI_LAR_Ignore_Sympathizers
+    }
+	prerequisite = {
+	    focus = CHI_LAR_CCP_Sympathizers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 7
+	y = 4
+	completion_reward = {
+		TNO_improve_press_rights_policy_effectiveness_low = yes
+		add_political_power = -50
+		add_stability = 0.05
+		SHX = {
+			add_manpower = -3000
+		}
+		#country_event = {
+		#	id = tnolar_chi.225
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Ignore_Sympathizers
+	icon = GFX_focus_CHI_LAR_Ignore_Sympathizers
+	cost = 1.00
+    mutually_exclusive = {
+        focus = CHI_LAR_Suppress_Sympathizers
+    }
+	prerequisite = {
+	    focus = CHI_LAR_CCP_Sympathizers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 9
+	y = 4
+	completion_reward = {
+		add_political_power = 50
+		add_stability = -0.05
+		#country_event = {
+		#	id = tnolar_chi.226
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Incite_Hatred_of_Japan
+	icon = GFX_focus_CHI_LAR_Incite_Hatred_of_Japan
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Suppress_Sympathizers  focus = CHI_LAR_Ignore_Sympathizers
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 8
+	y = 5
+	completion_reward = {
+		add_political_power = 75
+		#country_event = {
+		#	id = tnolar_chi.227
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Revengeful_Shanxi
+	icon = GFX_focus_CHI_LAR_Revengeful_Shanxi
+	cost = 1.00
+	prerequisite = {
+	    focus = CHI_LAR_Incite_Hatred_of_Japan
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 8
+	y = 7
+	completion_reward = {
+		annex_country = {
+			target = SHX
+			transfer_troops = no
+		}
+		SHX = {
+			every_unit_leader = {
+				set_nationality = CHI
+			}
+		}
+		SHX = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+			every_core_state = {
+				remove_core_of = SHX
+			}
+		}
+		#country_event = {
+		#	id = tnolar_chi.228
+		#}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Redistribute_The_War_Zone
+	icon = GFX_focus_CHI_LAR_Redistribute_The_War_Zone
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Loyal_Guangxi
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Unstable_Xinjiang
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Regression_of_Xikang
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Vengeful_Qinghai
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Revengeful_Shanxi
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -7
+	y = 8
+	completion_reward = {
+		add_ideas = CHI_LAR_war_zone_plan_idea
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Negotiations_with_Tibet
+	icon = GFX_focus_CHI_LAR_Negotiations_with_Tibet
+	cost = 3.00
+
+	will_lead_to_war_with = TIB
+
+    mutually_exclusive = {
+        focus = CHI_LAR_Military_Operations
+    }
+	prerequisite = {
+	    focus = CHI_LAR_Loyal_Guangxi
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Unstable_Xinjiang
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Regression_of_Xikang
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Vengeful_Qinghai
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Revengeful_Shanxi
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+
+	ai_will_do = {
+        base = 0
+    }
+
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -2
+	y = 8
+	completion_reward = {
+		custom_effect_tooltip = CHI_LAR_Negotiations_with_Tibet_tt
+
+		hidden_effect = {
+			country_event = {
+				id = tnolar_chi.290
+				days = 7
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Military_Operations
+	icon = GFX_focus_CHI_LAR_Military_Operations
+	cost = 3.00
+
+	will_lead_to_war_with = TIB
+
+    mutually_exclusive = {
+        focus = CHI_LAR_Negotiations_with_Tibet
+    }
+	prerequisite = {
+	    focus = CHI_LAR_Loyal_Guangxi
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Unstable_Xinjiang
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Regression_of_Xikang
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Vengeful_Qinghai
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Revengeful_Shanxi
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+
+	ai_will_do = {
+        base = 100
+    }
+
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 2
+	y = 8
+	completion_reward = {
+		declare_war_on = {
+			target = TIB
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Unify_Road_Standards
+	icon = GFX_focus_CHI_LAR_Unify_Road_Standards
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Loyal_Guangxi
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Unstable_Xinjiang
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Regression_of_Xikang
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Vengeful_Qinghai
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Revengeful_Shanxi
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 7
+	y = 8
+	completion_reward = {
+		build_railway = {
+			level = 1
+			fallback = yes
+			start_state = 961
+			target_state = 603
+		}
+		build_railway = {
+			level = 1
+			fallback = yes
+			start_state = 603
+			target_state = 325
+		}
+		build_railway = {
+			level = 1
+			fallback = yes
+			start_state = 1302
+			target_state = 617
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Transfer_Officer
+	icon = GFX_focus_CHI_LAR_Transfer_Officer
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Redistribute_The_War_Zone
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = -5
+	y = 9
+	completion_reward = {
+		add_timed_idea = {
+			idea = CHI_LAR_Transfer_Officer_idea
+			days = 180
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Autonomous_Tibet
+	icon = GFX_focus_CHI_LAR_Autonomous_Tibet
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Negotiations_with_Tibet  focus = CHI_LAR_Military_Operations
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		TIB = {
+			exists = no
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 0
+	y = 9
+	completion_reward = {
+		TIB = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+			every_core_state = {
+				remove_core_of = TIB
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Unify_Frastructure
+	icon = GFX_focus_CHI_LAR_Unify_Frastructure
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Unify_Road_Standards
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 5
+	y = 9
+	completion_reward = {
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = SHX
+					is_core_of = GUX
+					is_core_of = GUZ
+					is_core_of = YUN
+					is_core_of = XIK
+					is_core_of = QIN
+					is_core_of = XIN
+					is_core_of = TIB
+				}
+			}
+			add_building_construction = {
+				type = infrastructure
+				level = 1
+				instant_build = yes
+			}
+		}
+		set_temp_variable = { temp_econ_spending_amount = 0.450 }
+		econ_spend_money_once_effect_raw_money = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Half_a_Begonia_Leaf
+	icon = GFX_focus_CHI_LAR_Half_a_Begonia_Leaf
+	cost = 3.00
+	prerequisite = {
+	    focus = CHI_LAR_Transfer_Officer
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Autonomous_Tibet
+	}
+    prerequisite = {
+	    focus = CHI_LAR_Unify_Frastructure
+	}
+	available = {
+		CHI_is_not_in_crisis = yes
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_Half_a_Begonia_Leaf_trigger_tt
+			NOT = {
+				has_dynamic_modifier = {
+    				modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+				}
+			}
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_Sovereignty
+	x = 0
+	y = 10
+	completion_reward = {
+		CHI_Change_Colour = yes
+		add_stability = 0.1
+
+		hidden_effect = {
+			country_event = {
+				id = tnolar_chi.4000
+				days = 7
+			}
+
+
+			#关闭国防部
+			clear_variable = CHI_Ministry_of_National_Defense_GUI_Military_page_button_var #军事页面按钮帧变量		#2为选中，1为未选中
+			clear_variable = CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var #募兵页面按钮帧变量
+
+			clear_variable = CHI_MND_GUI_modernization_progress_var #现代化进度
+			clear_variable = CHI_MND_GUI_modernization_progress_month_var #每月现代化进度
+			clear_variable = CHI_MND_GUI_real_modernization_progress_month_var #经过军队忠诚度修正过后的现代化进度
+			clear_variable = CHI_MND_GUI_Military_level_var #军事化等级
+			clear_variable = CHI_MND_GUI_Military_general_loyalty_var #总体忠诚度
+
+			clear_variable = CHI_MND_GUI_nationalists_influences_var #民族派影响力
+			clear_variable = CHI_MND_GUI_conservatives_influences_var #中央派影响力
+			clear_variable = CHI_MND_GUI_japanophiles_influences_var #华北派影响力
+			clear_variable = CHI_MND_GUI_nationalists_loyalty_var #民族派忠诚度
+			clear_variable = CHI_MND_GUI_conservatives_loyalty_var #中央派忠诚度
+			clear_variable = CHI_MND_GUI_japanophiles_loyalty_var #华北派忠诚度
+
+			clear_variable = CHI_MND_GUI_army_limit #军队数量限制，最高35
+			clear_variable = CHI_MND_GUI_current_army_number #当前军队数量
+
+			clear_variable = CHI_MND_GUI_JapanAlert_level #日本警惕，1-100，共九级
+			clear_variable = CHI_MND_GUI_JapanAlert_level_lowerlimit #日本警惕下限，与军队数量挂钩
+
+			#最后移除一次国防部提示
+			set_temp_variable = { alert_id = token:LAR_Alert_CHI_Excessive_speed }
+			remove_TNO_alert = yes
+			set_temp_variable = { alert_id = token:LAR_Alert_CHI_Over_the_limit }
+			remove_TNO_alert = yes
+			set_temp_variable = { alert_id = token:LAR_Alert_CHI_Critical_point }
+			remove_TNO_alert = yes
+
+			clr_country_flag = CHI_Modernization
+		}
+	}
+}
+
+################################
+# 5) RENLI'S CURSED ADVENTURE #
+################################
+
+shared_focus = {
+	id = CHI_LAR_New_Modernization
+	icon = GFX_focus_GNG_our_new_economy
+	cost = 2.00
+	x = 9
+	y = 0
+
+	allow_branch = {
+		has_country_flag = CHI_The_New_Modernization
+	}
+
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_New_Modernization"
+		custom_effect_tooltip = CHI_Renli_1_tt
+		hidden_effect = {
+			country_event = {
+				id = tnolar_chi_renli.4
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Revitalization
+	icon = GFX_focus_CHI_the_future_is_now
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_New_Modernization
+	}
+
+	x = 9
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Revitalization"
+		custom_effect_tooltip = CHI_Renli_2_tt
+		hidden_effect = {
+			country_event = {
+				id = tnolar_chi_renli.5
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Reject_Zongwu
+	icon = GFX_focus_GNG_a_blank_cheque
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Revitalization
+	}
+
+	x = 9
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Reject_Zongwu"
+		custom_effect_tooltip = CHI_Renli_3_tt
+		hidden_effect = {
+			country_event = {
+				id = tnolar_chi_renli.6
+				days = 1
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Cancel_the_Expansions
+	icon = GFX_focus_GER_military_garbage
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Reject_Zongwu
+	}
+
+	x = 7
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Cancel_the_Expansions"
+		custom_effect_tooltip = CHI_Renli_4_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Buy_Chinese
+	icon = GFX_focus_CHI_better_computers
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Cancel_the_Expansions
+	}
+
+	x = 6
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Buy_Chinese"
+		custom_effect_tooltip = CHI_Renli_5_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Fat_Trim
+	icon = GFX_focus_generic_smoke_out_the_rats
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Cancel_the_Expansions
+	}
+
+	x = 8
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Fat_Trim"
+		custom_effect_tooltip = CHI_Renli_6_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Austerity_Ship
+	icon = GFX_focus_JAP_sphere_mercantilism
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Buy_Chinese
+	}
+
+	prerequisite = {
+		focus = CHI_LAR_Fat_Trim
+	}
+
+	x = 7
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Austerity_Ship"
+		custom_effect_tooltip = CHI_Renli_7_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_All_of_China
+	icon = GFX_focus_CHI_a_hardworking_people
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Austerity_Ship
+	}
+
+	x = 7
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_All_of_China"
+		custom_effect_tooltip = CHI_Renli_8_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Not_Alone
+	icon = GFX_focus_CHI_cooperation_with_japan
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Reject_Zongwu
+	}
+
+	x = 10
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Not_Alone"
+		custom_effect_tooltip = CHI_Renli_9_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Import_Labor
+	icon = GFX_focus_CHI_exploitable_population
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Not_Alone
+	}
+
+	x = 10
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Import_Labor"
+		custom_effect_tooltip = CHI_Renli_10_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Art_Deal
+	icon = GFX_focus_CHI_bribery
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Import_Labor
+	}
+
+	x = 10
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Art_Deal"
+		custom_effect_tooltip = CHI_Renli_11_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Import_Quotas
+	icon = GFX_focus_generic_good_economy
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Reject_Zongwu
+	}
+
+	x = 12
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Import_Quotas"
+		custom_effect_tooltip = CHI_Renli_12_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Chinese_Zaibatsu
+	icon = GFX_focus_generic_rights_of_corporations
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Import_Quotas
+	}
+
+	x = 12
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Chinese_Zaibatsu"
+		custom_effect_tooltip = CHI_Renli_13_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Bankruptcy
+	icon = GFX_focus_JAP_economic_plan
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Chinese_Zaibatsu
+	}
+
+	x = 12
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Bankruptcy"
+		custom_effect_tooltip = CHI_Renli_14_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_River_Rights
+	icon = GFX_focus_GNG_a_breath_of_new_life
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Bankruptcy
+	}
+
+	prerequisite = {
+		focus = CHI_LAR_Art_Deal
+	}
+
+	x = 11
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_River_Rights"
+		custom_effect_tooltip = CHI_Renli_16_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Pop_Exchange
+	icon = GFX_focus_generic_encourage_immigration
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Art_Deal
+	}
+
+	x = 9
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Pop_Exchange"
+		custom_effect_tooltip = CHI_Renli_15_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Pan_Asianist_Society
+	icon = GFX_focus_JAP_consumerize_the_sphere_economy
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Pop_Exchange
+	}
+
+	prerequisite = {
+		focus = CHI_LAR_River_Rights
+	}
+
+	prerequisite = {
+		focus = CHI_LAR_All_of_China
+	}
+
+	x = 9
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Pan_Asianist_Society"
+		custom_effect_tooltip = CHI_Renli_17_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Only_Way
+	icon = GFX_focus_generic_cabinet_reshuffle
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Pan_Asianist_Society
+	}
+
+	x = 9
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Only_Way"
+		custom_effect_tooltip = CHI_Renli_18_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Right_Thing
+	icon = GFX_focus_generic_reluctant_cooperation
+	cost = 5.00
+
+	prerequisite = {
+		focus = CHI_LAR_Only_Way
+	}
+
+	x = 9
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Right_Thing"
+		custom_effect_tooltip = CHI_Renli_19_tt
+	}
+}
+
+####################################################
+# 6) ZHONGHUA MINGUO GREAT ASIAN WAR - WARMUP TREE #
+####################################################
+
+shared_focus = {
+	id = CHI_LAR_The_Of_Summit
+	icon = GFX_focus_CHI_LAR_The_Of_Summit
+	cost = 3.00
+	allow_branch = {
+		has_country_flag = CHI_war_prepare
+	}
+	
+	x = 9
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_The_Of_Summit"
+		hidden_effect = {
+			set_global_flag = TNOLAR_GAW_diplomatic_games
+			set_country_flag = TNOLAR_country_has_gui
+			set_country_flag = gui_alert_visible
+			set_country_flag = gui_alert_visible_2
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 25 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 20 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 85 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_points_add = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_round_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 0 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var = 100 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_cn_progressbar_var = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_jp_progressbar_var = 100 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 0 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 0 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_1_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_2_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_3_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_4_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_5_var = 1 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_1_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_2_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_3_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_4_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_5_var = 1 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_selected_quantity = 0 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 0 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 0 }
+			
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_access_denied_var = 3 }
+
+			CHI_TMCAT_diposelect_check = yes
+			CHI_TMCAT_dipogame_check = yes
+
+			add_to_array = {
+				global.Table_GUI_faction_member_CHI = CHI
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = CHI
+					NOT = {
+						tag = CHI
+					}
+				}
+				add_to_array = {
+					global.Table_GUI_faction_member_CHI = THIS
+				}
+			}
+
+			add_to_array = {
+				global.Table_GUI_faction_member_JAP = JAP
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = JAP
+					NOT = {
+						tag = JAP
+					}
+				}
+				add_to_array = {
+					global.Table_GUI_faction_member_JAP = THIS
+				}
+			}
+
+			if = {
+				limit = {
+					GAN = {
+						has_full_control_of_state = 906		#LAR地块-青海
+					}
+				}
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_GAN_var = 1 }
+			}
+			else_if = {
+				limit = {
+					GAN = {
+						has_full_control_of_state = 1302	#LAR地块-兰州
+					}
+				}
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_GAN_var = 2 }
+			}
+			else = {
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_GAN_var = 3 }
+			}
+
+			if = {
+				limit = {
+					MAN = {
+						has_full_control_of_state = 657		#LAR地块-纽勒们河
+					}
+				}
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_MAN_var = 1 }
+			}
+			else = {
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_MAN_var = 2 }
+			}
+
+
+
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				country_event = {
+					id = tnolar_chi.1200
+					days = 60
+				}
+			}
+		}
+		custom_effect_tooltip = CHI_LAR_The_Of_Summit_tt
+
+		set_variable = { CHI_GAWMUP_Liberation_Alliance_stability_factor = 0.05 }
+		set_variable = { CHI_GAWMUP_Liberation_Alliance_gdp_growth_modifier = 0.05 }
+		set_variable = { CHI_GAWMUP_Liberation_Alliance_inflation_rate_modifier = -0.05 }
+		set_variable = { CHI_GAWMUP_Liberation_Alliance_war_support_factor = 0.05 }
+
+		every_country = {
+			limit = {
+				is_in_faction_with = JAP
+			}
+			add_stability = -0.1
+			add_war_support = -0.05
+		}
+
+
+		country_event = {	#政治清洗事件链开始
+			id = tnolar_chi.500
+			days = 3
+			random_days = 2
+		}
+
+		country_event = {
+			id = tnolar_chi.505
+			days = 15
+			random_days = 8
+		}
+		country_event = {
+			id = tnolar_chi.519
+			days = 2
+			random_hours = 12
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Focus_On_Domestic
+	icon = GFX_focus_CHI_LAR_Focus_On_Domestic
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_The_Of_Summit
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Focus_On_Domestic"
+
+		add_political_power = 100
+		add_command_power = 30
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Dilemma_Of_The_Sea_And_Defenselessness
+	icon = GFX_focus_CHI_LAR_Dilemma_Of_The_Sea_And_Defenselessness
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Focus_On_Domestic
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Dilemma_Of_The_Sea_And_Defenselessness"
+		add_command_power = 30
+		add_political_power = 100
+
+		add_ideas = CHI_LAR_Operation_sun_set_0_idea
+
+		country_event = {
+			id = tnolar_chi.510
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Glimpse_On_The_Sea_Sky
+	icon = GFX_focus_CHI_LAR_Glimpse_On_The_Sea_Sky
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Dilemma_Of_The_Sea_And_Defenselessness
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = -2
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Glimpse_On_The_Sea_Sky"
+
+		if = {
+			limit = {
+				has_idea = CHI_LAR_Operation_sun_set_2_idea
+			}
+			swap_ideas = {
+    			remove_idea = CHI_LAR_Operation_sun_set_2_idea
+    			add_idea = CHI_LAR_Operation_sun_set_3_idea
+			}
+		}
+		else = {
+			swap_ideas = {
+    			remove_idea = CHI_LAR_Operation_sun_set_0_idea
+    			add_idea = CHI_LAR_Operation_sun_set_1_idea
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.511
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Lightning_From_Shore
+	icon = GFX_focus_CHI_LAR_Lightning_From_Shore
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Dilemma_Of_The_Sea_And_Defenselessness
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 2
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Lightning_From_Shore"
+
+		if = {
+			limit = {
+				has_idea = CHI_LAR_Operation_sun_set_1_idea
+			}
+			swap_ideas = {
+    			remove_idea = CHI_LAR_Operation_sun_set_1_idea
+    			add_idea = CHI_LAR_Operation_sun_set_3_idea
+			}
+		}
+		else = {
+			swap_ideas = {
+    			remove_idea = CHI_LAR_Operation_sun_set_0_idea
+    			add_idea = CHI_LAR_Operation_sun_set_2_idea
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.512
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Weapons_Of_Wuhan
+	icon = GFX_focus_CHI_LAR_Weapons_Of_Wuhan
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Glimpse_On_The_Sea_Sky
+	}
+	prerequisite = {
+		focus = CHI_LAR_Lightning_From_Shore
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 0
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Weapons_Of_Wuhan"
+
+		swap_ideas = {
+    		remove_idea = CHI_LAR_Operation_sun_set_3_idea
+    		add_idea = CHI_LAR_Operation_sun_set_4_idea
+		}
+
+		country_event = {
+			id = tnolar_chi.513
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Industruction_Of_Chongqing
+	icon = GFX_focus_CHI_LAR_Industruction_Of_Chongqing
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Weapons_Of_Wuhan
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 0
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Industruction_Of_Chongqing"
+		613 = {		#LAR地块-南京
+			set_temp_variable = { state_value_multiplier_temp = 0.75 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		813 = {		#LAR地块-上海
+			set_temp_variable = { state_value_multiplier_temp = 0.75 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		605 = {		#LAR地块-成都
+			set_temp_variable = { state_value_multiplier_temp = 1.4 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		1538 = {	#LAR地块-重庆
+			set_temp_variable = { state_value_multiplier_temp = 1.4 }
+			econ_state_value_change_multiply_specified_state = yes
+		}
+		set_temp_variable = { CHI_industry_free_pus_calc = 1 }
+		CHI_calc_industry_pu_change = yes
+
+		country_event = {
+			id = tnolar_chi.514
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_The_fire_of_public_opinion
+	icon = GFX_focus_CHI_LAR_The_fire_of_public_opinion
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Focus_On_Domestic
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = -7
+	y = 2
+	select_effect = {
+		country_event = {
+			id = tnolar_chi.515
+			days = 7
+		}
+		country_event = {
+			id = tnolar_chi.516
+			days = 14
+		}
+        country_event = {
+			id = tnolar_chi.517
+			days = 21
+		}
+	}
+	completion_reward = {
+		every_country = {
+			limit = {
+				is_in_faction_with = JAP
+			}
+			add_war_support = -0.1
+		}
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_The_fire_of_public_opinion"
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_truth_of_Pan-Asian
+	icon = GFX_focus_CHI_LAR_truth_of_Pan-Asian
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_The_fire_of_public_opinion
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = -6
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_truth_of_Pan-Asian"
+		country_event = {
+			id = tnolar_chi.518
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_our_Pan-Asian
+	icon = GFX_focus_CHI_LAR_our_Pan-Asian
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_truth_of_Pan-Asian
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = -4
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_our_Pan-Asian"
+
+		custom_effect_tooltip = CHI_LAR_our_Pan-Asian_tt
+
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_focus = CHI_LAR_our_Pan-Asian
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_a_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_b_modifier
+				}
+				add_dynamic_modifier = {
+					modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_2_modifier
+				}
+			}
+			else = {
+				add_dynamic_modifier = {
+					modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_a_modifier
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_decoupling_in_progress
+	icon = GFX_focus_CHI_LAR_decoupling_in_progress
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Focus_On_Domestic
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 7
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_decoupling_in_progress"
+		every_country = {
+			limit = {
+				is_in_faction_with = JAP
+			}
+			set_temp_variable = { temp_econ_GDP_boost_percentage = -0.05 }
+			econ_GDP_boost_once_percentage = yes
+
+			set_temp_variable = { inflation_temp = 2 }
+			econ_inflation_change = yes
+
+			add_stability = -0.05
+		}
+
+		set_temp_variable = { temp_econ_GDP_boost_percentage = -0.05 }
+		econ_GDP_boost_once_percentage = yes
+
+		set_temp_variable = { inflation_temp = 2 }
+		econ_inflation_change = yes
+
+		add_stability = -0.05
+
+		country_event = {
+			id = tnolar_chi.523
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Economic_Internal_Circulation
+	icon = GFX_focus_CHI_LAR_Economic_Internal_Circulation
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_decoupling_in_progress
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 6
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Economic_Internal_Circulation"
+		set_temp_variable = { gdp_growth_temp = 1 }
+		econ_gdp_growth_change = yes
+
+		set_temp_variable = { inflation_temp = -1 }
+		econ_inflation_change = yes
+
+		add_stability = 0.1
+
+		set_temp_variable = { CHI_industry_free_pus_calc = 3 }
+		CHI_calc_industry_pu_change = yes
+
+		country_event = {
+			id = tnolar_chi.524
+		}
+		country_event = {
+			id = tnolar_chi.525
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Flood_into_rivers
+	icon = GFX_focus_CHI_LAR_Flood_into_rivers
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Economic_Internal_Circulation
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 4
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Flood_into_rivers"
+
+		custom_effect_tooltip = CHI_LAR_Flood_into_rivers_tt
+
+		hidden_effect = {
+			if = {
+				limit = {
+					has_completed_focus = CHI_LAR_Flood_into_rivers
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_a_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_b_modifier
+				}
+				add_dynamic_modifier = {
+					modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_2_modifier
+				}
+			}
+			else = {
+				add_dynamic_modifier = { #设置变量的效果在第一个国策里
+					modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_b_modifier
+				}
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.528
+		}
+		country_event = {
+			id = tnolar_chi.529
+			days = 7
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Coming_events_cast_their_shadows_before
+	icon = GFX_focus_CHI_LAR_Coming_events_cast_their_shadows_before
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_our_Pan-Asian
+	}
+	prerequisite = {
+		focus = CHI_LAR_Industruction_Of_Chongqing
+	}
+	prerequisite = {
+		focus = CHI_LAR_Flood_into_rivers
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 0
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Coming_events_cast_their_shadows_before"
+		add_political_power = 100
+
+		country_event = {
+			id = tnolar_chi.531
+		}
+
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.101
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Friends_to_help
+	icon = GFX_focus_CHI_LAR_Friends_to_help
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Coming_events_cast_their_shadows_before
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = -6
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Friends_to_help"
+		country_event = {
+			id = tnolar_chi.532
+		}
+		GER = {
+			country_event = {
+				id = tnolar_chi.533
+			}
+		}
+		USA = {
+			country_event = {
+				id = tnolar_chi.534
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Hump_route
+	icon = GFX_focus_CHI_LAR_Hump_route
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Friends_to_help
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = -8
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Hump_route"
+		country_event = {
+			id = tnolar_chi.536
+		}
+		country_event = {
+			id = tnolar_gaw.2000
+			days = 5
+			random_days = 3
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_The_call_of_blood_relatives
+	icon = GFX_focus_CHI_LAR_The_call_of_blood_relatives
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Coming_events_cast_their_shadows_before
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 0
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_The_call_of_blood_relatives"
+		add_war_support = 0.1
+		MAN = {
+			add_war_support = -0.15
+		}
+		if = {
+			limit = {
+				GNG = {
+					NOT = {
+						is_in_faction_with = CHI
+					}
+				}
+			}
+			GNG = {
+				add_war_support = -0.15
+			}
+		}
+
+		country_event = {
+			id = tnolar_chi.537
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Take_them_home
+	icon = GFX_focus_CHI_LAR_Take_them_home
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_The_call_of_blood_relatives
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = -2
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Take_them_home"
+
+		swap_ideas = {
+    		remove_idea = CHI_LAR_Operation_sun_set_4_idea
+    		add_idea = CHI_LAR_Operation_sun_set_5_idea
+		}
+
+		country_event = {
+			id = tnolar_chi.539
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_Wait_for_us_to_get_home
+	icon = GFX_focus_CHI_LAR_Wait_for_us_to_get_home
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_The_call_of_blood_relatives
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 2
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Wait_for_us_to_get_home"
+		MAN = {
+			every_owned_state = {
+				add_core_of = CHI
+			}
+		}
+		MEN = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+		}
+		GAN = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+		}
+		GNG = {
+			every_core_state = {
+				add_core_of = CHI
+			}
+		}
+
+		#LAR地块-海南
+		add_state_core = 1464
+		add_state_core = 591
+
+		#LAR地块-大连
+		add_state_core = 810
+		
+		country_event = {
+			id = tnolar_chi.538
+		}
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_friends_expectations
+	icon = GFX_focus_CHI_LAR_friends_expectations
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Coming_events_cast_their_shadows_before
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 6
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_friends_expectations"
+		add_war_support = 0.1
+	}
+}
+
+shared_focus = {
+	id =  CHI_LAR_flag_of_resistance
+	icon = GFX_focus_CHI_LAR_flag_of_resistance
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_friends_expectations
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 8
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_flag_of_resistance"
+
+		custom_effect_tooltip = CHI_LAR_flag_of_resistance_tt
+
+		hidden_effect = {
+			remove_dynamic_modifier = {
+				modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_a_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_b_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_2_modifier
+			}
+			add_dynamic_modifier = {
+				modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_3_modifier
+			}
+		}
+	}
+
+
+}
+
+shared_focus = {
+	id =  CHI_LAR_Long_night_breaks
+	icon = GFX_focus_CHI_LAR_Long_night_breaks
+	cost = 3.00
+	prerequisite = {
+		focus = CHI_LAR_Hump_route
+	}
+	prerequisite = {
+		focus = CHI_LAR_Take_them_home
+	}
+	prerequisite = {
+		focus = CHI_LAR_Wait_for_us_to_get_home
+	}
+	prerequisite = {
+		focus = CHI_LAR_flag_of_resistance
+	}
+
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_Long_night_breaks_trigger_tt
+			NOT = {
+				has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected
+			}
+		}
+	}
+	
+	relative_position_id = CHI_LAR_The_Of_Summit
+	x = 0
+	y = 9
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus  CHI_LAR_Long_night_breaks"
+		country_event = {
+			id = tnolar_chi.540
+		}
+		
+		#以防万一移除自定义提醒
+		set_temp_variable = { alert_id = token:LAR_Alert_CHI_Diposelect }
+		remove_TNO_alert = yes
+		set_temp_variable = { alert_id = token:LAR_Alert_CHI_Dipogame }
+		remove_TNO_alert = yes
+	}
+}
+##############################################################################
+# 7) ZHONGHUA MINGUO GREAT ASIAN WAR - MAIN TREE - PUT JAPANESES INTO SEA!!! #
+##############################################################################
+
+shared_focus = {
+	id = CHI_LAR_War
+	icon = GFX_focus_CHI_LAR_War
+	cost = 1.00
+	allow_branch = { has_country_flag = CHI_war_with_japan }
+	x = 13
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_War"
+		hidden_effect = {
+			remove_ideas = {
+				CHI_LAR_Operation_sun_set_0_idea
+				CHI_LAR_Operation_sun_set_1_idea
+				CHI_LAR_Operation_sun_set_2_idea
+				CHI_LAR_Operation_sun_set_3_idea
+				CHI_LAR_Operation_sun_set_4_idea
+				CHI_LAR_Operation_sun_set_5_idea
+			}
+
+			add_dynamic_modifier = {
+				modifier = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier
+			}
+			set_variable = { CHI_GAW_Operation_sun_set_production_factory_efficiency_gain_factor = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_production_factory_max_efficiency_factor = 0.05 }
+			set_variable = { CHI_GAW_Operation_sun_set_army_speed_factor = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_armor_attack_factor = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_terrain_penalty_reduction = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_max_dig_in_factor = 0.1 }
+			set_variable = { CHI_GAW_Operation_sun_set_dig_in_speed_factor = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_production_speed_coastal_bunker_factor = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_planning_speed = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_recon_factor = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_special_forces_cap = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_special_forces_attack_factor = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_resistance_target = 0 }
+			set_variable = { CHI_GAW_Operation_sun_set_compliance_gain = 0 }
+
+			add_ideas = CHI_LAR_GAW_Operation_sun_set_base_idea
+		}
+
+		custom_effect_tooltip = CHI_LAR_War_tt
+
+		country_event = {
+			id = tnolar_chi_flavor.601
+			days = 7
+			random_days = 4
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_National_Defense_Council
+	icon = GFX_focus_CHI_LAR_National_Defense_Council
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_War
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 0
+	y = 1
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_National_Defense_Council"
+
+		set_country_flag = TNOLAR_CHI_LegYuan_locked
+		custom_effect_tooltip = CHI_LAR_National_Defense_Council_tt
+
+		hidden_effect = {
+			remove_dynamic_modifier = {
+				modifier = CHI_legislative_yuan_faction_modifier
+			}
+
+			#重组战前内阁
+			remove_ideas = {
+				CHI_Zhou_Fohai_hog
+
+				CHI_Tao_Xisheng_for
+			}
+			retire_character = CHI_zhou_fohai
+
+			add_ideas = {
+				CHI_Tao_Xisheng_hog
+				CHI_Shen_Changhuan_for
+			}
+
+			#国民党保守派新政党领导人
+			promote_character = {
+				character = CHI_Luo_Junqiang
+				ideology = despotism_1_subtype
+			}
+
+			country_event = {
+				id = tnolar_chi_flavor.602
+				days = 16
+				random_days = 4
+			}
+		}
+	}
+}
+
+#战时经济委员会-左半部分
+shared_focus = {
+	id = CHI_LAR_War_Economics_Commission
+	icon = GFX_focus_CHI_LAR_War_Economics_Commission
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_National_Defense_Council
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -9
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_War_Economics_Commission"
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_supply_change = 25 }
+		CHI_Great_Asian_War_GUI_cn_supply_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Acquisition_of_materials
+	icon = GFX_focus_CHI_LAR_Acquisition_of_materials
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_War_Economics_Commission
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Forcible_collection_of_materials
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -11
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Acquisition_of_materials"
+
+		custom_effect_tooltip = CHI_LAR_Acquisition_of_materials_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Forcible_collection_of_materials
+	icon = GFX_focus_CHI_LAR_Forcible_collection_of_materials
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_War_Economics_Commission
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Acquisition_of_materials
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -7
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Forcible_collection_of_materials"
+
+		custom_effect_tooltip = CHI_LAR_Forcible_collection_of_materials_tt
+		
+		add_war_support = -0.1
+		add_stability = -0.1
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Shift_Working
+	icon = GFX_focus_CHI_LAR_Shift_Working
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Acquisition_of_materials
+		focus = CHI_LAR_Forcible_collection_of_materials
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Mandatory_Overtime
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -10
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Shift_Working"
+
+		tno_max_workhours_improve = yes
+
+		custom_effect_tooltip = CHI_LAR_Shift_Working_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_production_factory_efficiency_gain_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Mandatory_Overtime
+	icon = GFX_focus_CHI_LAR_Mandatory_Overtime
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Acquisition_of_materials
+		focus = CHI_LAR_Forcible_collection_of_materials
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Shift_Working
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -8
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Mandatory_Overtime"
+
+		tno_max_workhours_worsen = yes
+
+		add_war_support = -0.05
+		add_stability = -0.05
+
+		custom_effect_tooltip = CHI_LAR_Mandatory_Overtime_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_production_factory_max_efficiency_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Seizure_Japanese_property
+	icon = GFX_focus_CHI_LAR_Seizure_Japanese_property
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_War_Economics_Commission
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -9
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Seizure_Japanese_property"
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_supply_change = 30 }
+		CHI_Great_Asian_War_GUI_cn_supply_change = yes
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change = -50 }
+		CHI_Great_Asian_War_GUI_jp_supply_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Protecting_basic_livelihoods
+	icon = GFX_focus_CHI_LAR_Protecting_basic_livelihoods
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Seizure_Japanese_property
+	}
+	prerequisite = {
+		focus = CHI_LAR_Shift_Working
+		focus = CHI_LAR_Mandatory_Overtime
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Overall_resource_orientation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -10
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Protecting_basic_livelihoods"
+
+		add_war_support = 0.1
+		add_stability = 0.1
+
+		custom_effect_tooltip = CHI_LAR_Protecting_basic_livelihoods_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Overall_resource_orientation
+	icon = GFX_focus_CHI_LAR_Overall_resource_orientation
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Seizure_Japanese_property
+	}
+	prerequisite = {
+		focus = CHI_LAR_Shift_Working
+		focus = CHI_LAR_Mandatory_Overtime
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Protecting_basic_livelihoods
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -8
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Overall_resource_orientation"
+
+		add_war_support = -0.1
+		add_stability = -0.1
+
+		custom_effect_tooltip = CHI_LAR_Overall_resource_orientation_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Stabilizing_financial_markets
+	icon = GFX_focus_CHI_LAR_Stabilizing_financial_markets
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Protecting_basic_livelihoods
+		focus = CHI_LAR_Overall_resource_orientation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -9
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Stabilizing_financial_markets"
+
+		set_temp_variable = { gdp_growth_temp = 1 }
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = -2 }
+		econ_inflation_change = yes
+	}
+}
+
+#总参谋部-中间部分
+shared_focus = {
+	id = CHI_LAR_Wartime_General_Staff
+	icon = GFX_focus_CHI_LAR_Wartime_General_Staff
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_National_Defense_Council
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Wartime_General_Staff"
+
+		remove_ideas = {
+			# 移除战前军官团
+			CHI_Bao_Wenyue_army_chief
+			CHI_Ye_Peng_high_command
+			CHI_Sun_Dianying_high_command
+			CHI_Pang_Bingxun_high_command
+		}
+
+		add_ideas = {
+			# 添加战后顾问团
+			CHI_Hao_Baicun_army_chief
+			CHI_Jiang_Zhongling_high_command
+			CHI_Luo_Benli_high_command
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Quick_Plan
+	icon = GFX_focus_CHI_LAR_Quick_Plan
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Wartime_General_Staff
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Detailed_Plan
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -2
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Quick_Plan"
+
+		custom_effect_tooltip = CHI_LAR_Quick_Plan_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Detailed_Plan
+	icon = GFX_focus_CHI_LAR_Detailed_Plan
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Wartime_General_Staff
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Quick_Plan
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 2
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Detailed_Plan"
+
+		custom_effect_tooltip = CHI_LAR_Detailed_Plan_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Urban_Offensive
+	icon = GFX_focus_CHI_LAR_Urban_Offensive
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Quick_Plan
+		focus = CHI_LAR_Detailed_Plan
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Urban_Offensive"
+
+		custom_effect_tooltip = CHI_LAR_Urban_Offensive_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_planning_speed = 0.05 }
+		add_to_variable = { CHI_GAW_Operation_sun_set_recon_factor = 0.05 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Theory_tested_in_combat
+	icon = GFX_focus_CHI_LAR_Theory_tested_in_combat
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Wartime_General_Staff
+	}
+	prerequisite = {
+		focus = CHI_LAR_Quick_Plan
+		focus = CHI_LAR_Detailed_Plan
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 0
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Theory_tested_in_combat"
+		
+		add_tech_bonus = {
+			bonus = 0.5
+			uses = 1
+			category = land_doctrine
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Urban_Fortification
+	icon = GFX_focus_CHI_LAR_Urban_Fortification
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Quick_Plan
+		focus = CHI_LAR_Detailed_Plan
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Urban_Fortification"
+
+		custom_effect_tooltip = CHI_LAR_Urban_Fortification_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_planning_speed = 0.05 }
+		add_to_variable = { CHI_GAW_Operation_sun_set_recon_factor = 0.05 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Mobile_Warfare
+	icon = GFX_focus_CHI_LAR_Mobile_Warfare
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Urban_Offensive
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -5
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Mobile_Warfare"
+
+		custom_effect_tooltip = CHI_LAR_Mobile_Warfare_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_army_speed_factor = 0.1 }
+		add_to_variable = { CHI_GAW_Operation_sun_set_armor_attack_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_High_frequency_bombing
+	icon = GFX_focus_CHI_LAR_High_frequency_bombing
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Quick_Plan
+		focus = CHI_LAR_Detailed_Plan
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Wide_area_bombardment
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -2
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_High_frequency_bombing"
+
+		custom_effect_tooltip = CHI_LAR_High_frequency_bombing_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Wide_area_bombardment
+	icon = GFX_focus_CHI_LAR_Wide_area_bombardment
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Quick_Plan
+		focus = CHI_LAR_Detailed_Plan
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_High_frequency_bombing
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 2
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Wide_area_bombardment"
+
+		custom_effect_tooltip = CHI_LAR_Wide_area_bombardment_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Modern_Trench_Warfare
+	icon = GFX_focus_CHI_LAR_Modern_Trench_Warfare
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Urban_Fortification
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 5
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Modern_Trench_Warfare"
+
+		custom_effect_tooltip = CHI_LAR_Modern_Trench_Warfare_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_max_dig_in_factor = 0.1 }
+		add_to_variable = { CHI_GAW_Operation_sun_set_dig_in_speed_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_All_Terrain_Adaptation
+	icon = GFX_focus_CHI_LAR_All_Terrain_Adaptation
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Mobile_Warfare
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = -3
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_All_Terrain_Adaptation"
+
+		custom_effect_tooltip = CHI_LAR_All_Terrain_Adaptation_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_terrain_penalty_reduction = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Special_Commando
+	icon = GFX_focus_CHI_LAR_Special_Commando
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Theory_tested_in_combat
+	}
+	prerequisite = {
+		focus = CHI_LAR_High_frequency_bombing
+		focus = CHI_LAR_Wide_area_bombardment
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 0
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Special_Commando"
+
+		custom_effect_tooltip = CHI_LAR_Special_Commando_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_special_forces_cap = 0.1 }
+		add_to_variable = { CHI_GAW_Operation_sun_set_special_forces_attack_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Coast_defense_bastions
+	icon = GFX_focus_CHI_LAR_Coast_defense_bastions
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Modern_Trench_Warfare
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 3
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Coast_defense_bastions"
+
+		custom_effect_tooltip = CHI_LAR_Coast_defense_bastions_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_production_speed_coastal_bunker_factor = 0.1 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_To_victory
+	icon = GFX_focus_CHI_LAR_To_victory
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_All_Terrain_Adaptation
+	}
+	prerequisite = {
+		focus = CHI_LAR_Special_Commando
+	}
+	prerequisite = {
+		focus = CHI_LAR_Coast_defense_bastions
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 0
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_To_victory"
+
+		add_war_support = 0.1
+	}
+}
+
+#战争宣传委员会-右半部分
+shared_focus = {
+	id = CHI_LAR_War_Propaganda_Committee
+	icon = GFX_focus_CHI_LAR_War_Propaganda_Committee
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_National_Defense_Council
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 11
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_War_Propaganda_Committee"
+
+		set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 5 }
+		CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Diplomatic_cooperation
+	icon = GFX_focus_CHI_LAR_Diplomatic_cooperation
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_War_Propaganda_Committee
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 8
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Diplomatic_cooperation"
+
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = CHI
+						is_in_faction_with = CHI
+					}
+				}
+				add_ideas = CHI_LAR_GAW_Liberation_Alliance_1_idea
+			}
+		}
+
+		custom_effect_tooltip = CHI_LAR_Diplomatic_cooperation_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Patriotic_mobilization
+	icon = GFX_focus_CHI_LAR_Patriotic_mobilization
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_War_Propaganda_Committee
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 14
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Patriotic_mobilization"
+
+		tno_conscription_worsen = yes
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Emphasis_on_discipline
+	icon = GFX_focus_CHI_LAR_Emphasis_on_discipline
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Diplomatic_cooperation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 7
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Emphasis_on_discipline"
+
+		custom_effect_tooltip = CHI_LAR_Emphasis_on_discipline_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_resistance_target = -0.1 }
+		add_to_variable = { CHI_GAW_Operation_sun_set_compliance_gain = 0.5 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Intelligence_sharing
+	icon = GFX_focus_CHI_LAR_Intelligence_sharing
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Diplomatic_cooperation
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 10
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Intelligence_sharing"
+
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = CHI
+						is_in_faction_with = CHI
+					}
+				}
+				add_ideas = CHI_LAR_GAW_Liberation_Alliance_2_idea
+			}
+		}
+
+		custom_effect_tooltip = CHI_LAR_Intelligence_sharing_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_The_Righteous_Army
+	icon = GFX_focus_CHI_LAR_The_Righteous_Army
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Patriotic_mobilization
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_A_tooth_for_a_tooth
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 12
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_The_Righteous_Army"
+
+		custom_effect_tooltip = CHI_LAR_The_Righteous_Army_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_resistance_target = -0.1 }
+		add_to_variable = { CHI_GAW_Operation_sun_set_compliance_gain = 0.5 }
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_A_tooth_for_a_tooth
+	icon = GFX_focus_CHI_LAR_A_tooth_for_a_tooth
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Patriotic_mobilization
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_The_Righteous_Army
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 15
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_A_tooth_for_a_tooth"
+
+		custom_effect_tooltip = CHI_LAR_A_tooth_for_a_tooth_tt
+		add_to_variable = { CHI_GAW_Operation_sun_set_resistance_target = 0.1 }
+		add_to_variable = { CHI_GAW_Operation_sun_set_compliance_gain = -0.5 }
+
+		hidden_effect = {
+			add_ideas = CHI_LAR_GAW_Operation_sun_set_1_idea
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_The_Chinese_Expeditionary_Force
+	icon = GFX_focus_CHI_LAR_The_Chinese_Expeditionary_Force
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Emphasis_on_discipline
+	}
+	prerequisite = {
+		focus = CHI_LAR_Intelligence_sharing
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 9
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_The_Chinese_Expeditionary_Force"
+
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = CHI
+						is_in_faction_with = CHI
+					}
+				}
+				add_ideas = CHI_LAR_GAW_Liberation_Alliance_3_idea
+			}
+		}
+
+		custom_effect_tooltip = CHI_LAR_The_Chinese_Expeditionary_Force_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_The_will_to_win
+	icon = GFX_focus_CHI_LAR_The_will_to_win
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_The_Righteous_Army
+		focus = CHI_LAR_A_tooth_for_a_tooth
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 13
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_The_will_to_win"
+
+		custom_effect_tooltip = CHI_LAR_The_will_to_win_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_At_dusk
+	icon = GFX_focus_CHI_LAR_At_dusk
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_The_Chinese_Expeditionary_Force
+	}
+	prerequisite = {
+		focus = CHI_LAR_The_will_to_win
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 11
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_At_dusk"
+
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						tag = CHI
+						is_in_faction_with = CHI
+					}
+				}
+				add_ideas = CHI_LAR_GAW_Liberation_Alliance_4_idea
+			}
+		}
+
+		custom_effect_tooltip = CHI_LAR_At_dusk_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Sabotage_by_force
+	icon = GFX_focus_CHI_LAR_Sabotage_by_force
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_At_dusk
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Sabotage_by_psychological
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 9
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Sabotage_by_force"
+
+		custom_effect_tooltip = CHI_LAR_Sabotage_by_force_tt
+
+		hidden_effect = {
+			add_ideas = CHI_LAR_GAW_Operation_sun_set_2_idea
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Sabotage_by_psychological
+	icon = GFX_focus_CHI_LAR_Sabotage_by_psychological
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_At_dusk
+	}
+	mutually_exclusive = {
+		focus = CHI_LAR_Sabotage_by_force
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 13
+	y = 7
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Sabotage_by_psychological"
+
+		custom_effect_tooltip = CHI_LAR_Sabotage_by_psychological_tt
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Golden_Crow_lift_wings
+	icon = GFX_focus_CHI_LAR_Golden_Crow_lift_wings
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Stabilizing_financial_markets
+	}
+	prerequisite = {
+		focus = CHI_LAR_To_victory
+	}
+	prerequisite = {
+		focus = CHI_LAR_Sabotage_by_force
+		focus = CHI_LAR_Sabotage_by_psychological
+	}
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = CHI_LAR_GAW_in_progress_trigger_tt
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+	}
+	cancel_if_invalid = yes
+	relative_position_id = CHI_LAR_War
+
+	x = 0
+	y = 8
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Golden_Crow_lift_wings"
+
+		add_war_support = 0.1
+		add_stability = 0.1
+
+		custom_effect_tooltip = CHI_LAR_Golden_Crow_lift_wings_tt
+
+		hidden_effect = {
+			remove_ideas = CHI_LAR_GAW_Operation_sun_set_2_idea
+			add_ideas = CHI_LAR_GAW_Operation_sun_set_3_idea
+		}
+	}
+}
+
+####################################################################################################
+# 8) ZHONGHUA MINGUO POST GREAT ASIAN WAR - TRANSITION TREE - AFTER THE WAR, WHAT DO WE HAVE LEFT? #
+####################################################################################################
+
+shared_focus = {
+	id = CHI_LAR_White_Sun_Rise_Again
+	icon = GFX_focus_CHI_LAR_White_Sun_Rise_Again
+	cost = 2.00
+
+	x = 8
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_White_Sun_Rise_Again"
+
+		custom_effect_tooltip = CHI_LAR_White_Sun_Rise_Again_tt
+
+		country_event = {
+			id = tnolar_chi.800
+		}
+		
+		#创建战后阵营
+		hidden_effect = {
+			set_faction_name = TNOLAR_Asian_Independent_Alliance
+			every_country = {
+				limit = {
+					has_idea = TNOLAR_PALA_Member
+				}
+				swap_ideas = {
+    				remove_idea = TNOLAR_PALA_Member
+    				add_idea = TNOLAR_AIA_Coequal
+				}
+			}
+
+			swap_ideas = {
+				remove_idea = TNOLAR_PALA_Leader
+				add_idea = TNOLAR_AIA_Leader
+			}
+		}
+
+		#创建战后经济圈
+		hidden_effect = {
+			set_country_flag = HAS_ECON_SPHERE
+
+			every_country = {
+				limit = {
+					is_in_faction_with = CHI
+				}
+				set_temp_variable = { target = CHI }
+				econ_join_sphere_target = yes
+			}
+		}
+
+		hidden_effect = {
+			add_ideas = {
+				CHI_LAR_Victor_of_GAW_idea
+				CHI_LAR_The_fruits_of_modernization_idea
+			}
+		}
+
+		#吞广东
+		hidden_effect = {
+			if = {
+				limit = {
+					country_exists = GNG
+				}
+				annex_country = {
+					target = GNG
+					transfer_troops = no
+				}
+			}
+		}
+
+		#移除所有战前中国精神
+		hidden_effect = {
+			#原版中国
+			remove_dynamic_modifier = {
+				modifier = CHI_research_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_education_status_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_industrialization_status_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_nanjing_papers_shockwave
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_nanjing_fallout
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_legislative_yuan_faction_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_coop_mil_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_coop_research_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_coop_econ_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_secret_army
+			}
+			remove_ideas = {	#byd好多没使用的精神
+				CHI_japans_breadbasket_0
+				CHI_japans_breadbasket_1
+				CHI_japans_breadbasket_2
+				CHI_slave_of_the_samurai_0
+				CHI_slave_of_the_samurai_1
+				CHI_slave_of_the_samurai_2
+				CHI_slave_of_the_samurai_3
+				CHI_slave_of_the_samurai_4
+				CHI_small_army
+				CHI_surrounded_by_enemies
+				CHI_arsenal_of_the_cosphere
+				CHI_Sphere_Energy_1
+				CHI_Sphere_Energy_2
+				CHI_New_Chinese_Companies_Spirit
+				CHI_Engineering_Breakthroughs
+				CHI_Efficient_Resource_Exploitation
+				CHI_Resource_Exploitation_idea
+				CHI_Manning_Factories_1
+				CHI_Manning_Factories_2
+				CHI_Manning_Factories_3
+				CHI_Hardworking_People
+				CHI_Exploit_Pop
+				CHI_Made_in_China_Spirit
+				CHI_Restricted_Army
+				CHI_Little_Brother_Army
+				CHI_China_Navy
+				CHI_Necessary_Army
+				CHI_Mil_Propaganda
+				CHI_Five_Races_United
+				CHI_Brain_Drain_Temp
+				CHI_Brain_Drain_Harsh
+				CHI_edu_debuff_placeholder
+				CHI_evacuation_in_progress
+				CHI_Minimize_losses
+				CHI_Stop_retreat
+				CHI_insubordination_in_army
+				CHI_minor_insubordination_in_army
+				CHI_rotated_officer
+				CHI_rotated_officer_2
+				CHI_Training_Time
+				CHI_wasted_lead
+				CHI_Touring_The_Front_Lines_Idea
+				CHI_Committee_Purged
+				CHI_For_China_idea
+				CHI_Propaganda_News
+				CHI_econ_links_YUN
+				CHI_garrison_alerted
+				CHI_Western_Insurrection
+				CHI_coop_econ
+				CHI_coop_research
+				CHI_coop_mil
+				Warlord_send_teachers
+				warlord_modern_construction_equipment
+				CHI_Synthetic_Fuel_1
+				CHI_Synthetic_Fuel_2
+				CHI_Shanghai_Offshore_exploration_idea
+				CHI_Research_Dummy_idea
+				CHI_chinese_warlords
+				CHI_nanjing_falls
+			}
+
+
+			#TNOLAR
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_oil_crisis_agriculture_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_oil_crisis_industry_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_a_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_1_b_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_2_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_GAWMUP_Liberation_Alliance_dynamic_3_modifier
+			}
+			clear_variable = CHI_GAWMUP_Liberation_Alliance_stability_factor
+			clear_variable = CHI_GAWMUP_Liberation_Alliance_gdp_growth_modifier
+			clear_variable = CHI_GAWMUP_Liberation_Alliance_inflation_rate_modifier
+			clear_variable = CHI_GAWMUP_Liberation_Alliance_war_support_factor
+
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_Great_Asian_War_GUI_cn_confidence_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_Great_Asian_War_GUI_cn_supply_dynamic_modifier
+			}
+
+			JAP = {
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_jp_confidence_dynamic_modifier
+				}
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_jp_supply_dynamic_modifier
+				}
+			}
+
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier
+			}
+
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_easy_mode_1_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_easy_mode_2_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_hard_mode_1_dynamic_modifier
+			}
+			remove_dynamic_modifier = {
+				modifier = CHI_LAR_hard_mode_2_dynamic_modifier
+			}
+
+			remove_ideas = {
+				#	1)军事现代化相关精神
+				CHI_LAR_remilitarization_modernized_army_idea		#现代化的军队
+				CHI_LAR_Real_remilitarization_modernized_army_idea	#退出CPS后的现代化的军队
+
+				#	2)主权统一相关精神
+				CHI_LAR_guangxi_arsenal_idea				#广西兵工厂
+				QIN_LAR_chinese_advisors_idea				#马家军顾问
+				GAN_LAR_agents_infiltrate_idea				#西北间谍渗透
+				CHI_LAR_Camouflage_Volunteers_idea			#伪装志愿军
+				CHI_LAR_war_zone_plan_idea					#重划战区
+				CHI_LAR_Transfer_Officer_idea				#调任官员
+				CHI_LAR_Autonomous_Tibet_idea				#西藏自治
+
+				#	3)GAW预热相关精神
+				CHI_LAR_Victims_of_diplomatic_games_idea			#外交博弈的牺牲品
+				CHI_LAR_Operation_sun_set_0_idea					#落日行动
+				CHI_LAR_Operation_sun_set_1_idea
+				CHI_LAR_Operation_sun_set_2_idea
+				CHI_LAR_Operation_sun_set_3_idea
+				CHI_LAR_Operation_sun_set_4_idea
+				CHI_LAR_Operation_sun_set_5_idea
+
+				#	w)GAW相关隐藏精神
+				CHI_LAR_GAW_Operation_sun_set_base_idea
+				CHI_LAR_GAW_Operation_sun_set_1_idea
+				CHI_LAR_GAW_Operation_sun_set_2_idea
+				CHI_LAR_GAW_Operation_sun_set_3_idea
+
+				CHI_LAR_GAW_Liberation_Alliance_1_idea
+				CHI_LAR_GAW_Liberation_Alliance_2_idea
+				CHI_LAR_GAW_Liberation_Alliance_3_idea
+				CHI_LAR_GAW_Liberation_Alliance_4_idea
+			}
+
+			remove_ideas = {	#特浓原版
+				TNO_foreign_advisors
+			}
+		}
+
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				country_event = {
+					id = TNOLAR_WORLD.13
+					days = 1
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_But_at_What_Cost
+	icon = GFX_focus_CHI_LAR_But_at_What_Cost
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_White_Sun_Rise_Again
+	}
+	relative_position_id = CHI_LAR_White_Sun_Rise_Again
+
+	x = 0
+	y = 2
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_But_at_What_Cost"
+
+		country_event = {
+			id = tnolar_chi.801
+		}
+
+		add_stability = -0.15
+		add_war_support = -0.15
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Land_of_Ten_Thousand_Miles
+	icon = GFX_focus_CHI_LAR_Land_of_Ten_Thousand_Miles
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_But_at_What_Cost
+	}
+	relative_position_id = CHI_LAR_White_Sun_Rise_Again
+
+	x = -3
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Land_of_Ten_Thousand_Miles"
+
+		country_event = {
+			id = tnolar_chi.802
+		}
+
+		add_ideas = CHI_LAR_Uninhibited_frontier_idea
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Under_the_rubble
+	icon = GFX_focus_CHI_LAR_Under_the_rubble
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Land_of_Ten_Thousand_Miles
+	}
+	relative_position_id = CHI_LAR_White_Sun_Rise_Again
+
+	x = -4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Under_the_rubble"
+
+		country_event = {
+			id = tnolar_chi.805
+		}
+
+		add_ideas = CHI_LAR_Elegy_of_War_idea
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Above_the_High_Towers
+	icon = GFX_focus_CHI_LAR_Above_the_High_Towers
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_But_at_What_Cost
+	}
+	relative_position_id = CHI_LAR_White_Sun_Rise_Again
+
+	x = 0
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Above_the_High_Towers"
+
+		country_event = {
+			id = tnolar_chi.803
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Vision_of_disillusioned_prosperity
+	icon = GFX_focus_CHI_LAR_Vision_of_disillusioned_prosperity
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_But_at_What_Cost
+	}
+	relative_position_id = CHI_LAR_White_Sun_Rise_Again
+
+	x = 3
+	y = 3
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Vision_of_disillusioned_prosperity"
+
+		country_event = {
+			id = tnolar_chi.804
+		}
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Midst_of_thousands_troops
+	icon = GFX_focus_CHI_LAR_Midst_of_thousands_troops
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Vision_of_disillusioned_prosperity
+	}
+	relative_position_id = CHI_LAR_White_Sun_Rise_Again
+
+	x = 4
+	y = 4
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Midst_of_thousands_troops"
+
+		country_event = {
+			id = tnolar_chi.806
+		}
+
+		add_ideas = CHI_LAR_Uncontrollable_army_idea
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Shadow_of_The_Past
+	icon = GFX_focus_CHI_LAR_Shadow_of_The_Past
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Under_the_rubble
+	}
+	prerequisite = {
+		focus = CHI_LAR_Above_the_High_Towers
+	}
+	prerequisite = {
+		focus = CHI_LAR_Midst_of_thousands_troops
+	}
+	relative_position_id = CHI_LAR_White_Sun_Rise_Again
+
+	x = 0
+	y = 5
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Long_and_Arduous_Road"
+
+		country_event = {
+			id = tnolar_chi.807
+		}
+
+		add_ideas = CHI_LAR_Shadows_of_the_Past_idea
+	}
+}
+
+shared_focus = {
+	id = CHI_LAR_Long_and_Arduous_Road
+	icon = GFX_focus_CHI_LAR_Long_and_Arduous_Road
+	cost = 1.00
+
+	prerequisite = {
+		focus = CHI_LAR_Shadow_of_The_Past
+	}
+	relative_position_id = CHI_LAR_White_Sun_Rise_Again
+
+	x = 0
+	y = 6
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Long_and_Arduous_Road"
+
+		country_event = {
+			id = tnolar_chi.808
+			hours = 2
+		}
+	}
+}
+
+############################
+# 主界面假国策 - FAKE FOCUS #
+############################
+
+shared_focus = {
+	id = CHI_LAR_Long_night_breaks_mainpage
+	icon = GFX_focus_CHI_LAR_Long_night_breaks_mainpage
+	cost = 5.00
+
+	x = 0
+	y = 0
+	completion_reward = {
+		log = "[GetDateText]: [Root.GetName]: Focus CHI_LAR_Long_night_breaks_mainpage"
+	}
+}

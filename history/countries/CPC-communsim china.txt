@@ -63,6 +63,7 @@ add_dynamic_modifier = { modifier = CPC_rev_base_modifier }
 
 ######PLA开局情况
 TER_PLA_CMC_initialization = yes
+TNO_KD_Can_Research_Modern_SPECOPS = yes
 
 #国家关系#
 add_opinion_modifier = { target = JAP modifier = CPC_Japan_imperialism }
@@ -216,11 +217,13 @@ if = {
         NOT = { has_dlc = "No Step Back" }
     }
     set_technology = {
-        APC_1945 = 1
+        AC_1945 = 1
+		APC_1945 = 1
         IFV_1945 = 1
         APC_1950 = 1
 
         artillery_1945 = 1
+		antiair_1945 = 1
     }
 }
 if = {
@@ -228,7 +231,10 @@ if = {
         has_dlc = "No Step Back"
     }
     set_technology = {
-        NSB_APC_1945 = 1
+        NSB_AC_1945 = 1
+		NSB_AC_1950 = 1
+
+		NSB_APC_1945 = 1
         NSB_APC_1950 = 1
 
         NSB_IFV_1945 = 1
@@ -243,6 +249,8 @@ if = {
         NSB_artillery_1945 = 1
         NSB_artillery_1950 = 1
         NSB_artillery_1950_SA = 1
+
+		NSB_antiair_1945 = 1
     }
 }
 set_politics = {
@@ -324,7 +332,7 @@ add_ideas = {
 
 	### Societal Development ###
 	tno_admin_efficiency_deficient_administrative_systems
-	tno_army_professionalism_disgruntled_veterans
+	tno_army_professionalism_political_interference # tno_army_professionalism_disgruntled_veterans 开局这么低有点过分了
 	tno_industrial_expertise_incompetent
 	tno_industrial_equipment_power_tools
 	tno_healthcare_makeshift
@@ -333,27 +341,541 @@ add_ideas = {
 	tno_academic_base_basic_literacy
 }
 
+# LAR #
+if = {
+	limit = { has_dlc = "La Resistance" }
+	create_intelligence_agency = yes
+}
+
 # NSB #
 if = {
 	limit = {
 		has_dlc = "No Step Back"
 	}
 	create_equipment_variant = {
-		name = "Type 77A Xi'an"
-		type = IFV_chassis_1
+		name = "Type 49A"
+		type = armored_car_chassis_1
 		parent_version = 0
 		modules = {
 			main_armament_slot = tank_heavy_machine_gun
-			turret_type_slot = IFV_one_man_tank_turret
-			suspension_type_slot = tank_torsion_bar_suspension
+			turret_type_slot = AC_two_man_tank_turret
+			suspension_type_slot = tank_wheeled_suspension
 			armor_type_slot = tank_riveted_armor
 			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = additional_machine_guns
 		}
-		
+		icon = GFX_CPC_AC_1950_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 56 APC"
+		type = APC_chassis_1
+		parent_version = 0
+		modules = {
+			APC_designation_slot = APC_infantry
+			APC_armament_slot = APC_infantry_weapon_2
+			suspension_type_slot = tank_half_track_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = expanded_fuel_capacity
+		}		
+		icon = GFX_CPC_APC_1950_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 4
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 56 AFV"
+		type = IFV_chassis_1
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_37_Type100
+			turret_type_slot = IFV_two_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+		}
 		icon = GFX_CPC_IFV_1950_medium
 		upgrades = {
-			tank_nsb_engine_upgrade = 3
+			tank_nsb_engine_upgrade = 4
 			tank_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 47"
+		type = MBT_chassis_0
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_47_Type1
+			turret_type_slot = MBT_two_man_tank_turret
+			suspension_type_slot = tank_bogie_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = additional_machine_guns
+		}
+		icon = GFX_CPC_MBT_1945_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 5
+			tank_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 47 SPG"
+		type = MBT_artillery_chassis_0
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_75_Type90
+			turret_type_slot = MBT_fixed_superstructure_turret
+			suspension_type_slot = tank_bogie_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_diesel_engine
+		}		
+		icon = GFX_CPC_SPART_1945_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 5
+			tank_nsb_armor_upgrade = 2
+		}
+	}
+
+	create_equipment_variant = {
+		name = "Type 58"
+		type = MBT_chassis_1
+		parent_version = 0
+		modules = {
+			main_armament_slot = MBT_cannon
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+		}
+		icon = GFX_CPC_MBT_1950_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 6
+			tank_nsb_armor_upgrade = 6
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 49A2"
+		type = armored_car_chassis_2
+		parent_version = 0
+		modules = {
+			main_armament_slot = tank_heavy_machine_gun
+			turret_type_slot = AC_two_man_tank_turret
+			suspension_type_slot = tank_wheeled_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = additional_machine_guns
+			special_type_slot_2 = tank_radio_1
+		}
+		icon = GFX_CPC_AC_1960_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 66 APC"
+		type = APC_chassis_2
+		parent_version = 0
+		modules = {
+			APC_designation_slot = APC_infantry
+			APC_armament_slot = APC_infantry_weapon_2
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = additional_machine_guns
+		}		
+		icon = GFX_CPC_APC_1960_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 6
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 66 AFV"
+		type = IFV_chassis_2
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_Unique_IFV_76_D56T
+			turret_type_slot = IFV_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = stabilizer
+		}
+		icon = GFX_CPC_IFV_1960_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 4
+			tank_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 68"
+		type = MBT_chassis_2
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_Unique_MBT_100_D10T
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = additional_machine_guns
+			special_type_slot_2 = expanded_fuel_capacity
+			special_type_slot_3 = smoke_launchers
+		}
+		icon = GFX_CPC_MBT_1960_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 7
+			tank_nsb_armor_upgrade = 7
+		}
+	}
+
+	create_equipment_variant = {
+		name = "Type 75 AC"
+		type = armored_car_chassis_3
+		parent_version = 0
+		modules = {
+			main_armament_slot = tank_auto_cannon
+			turret_type_slot = AC_one_man_tank_turret
+			suspension_type_slot = tank_wheeled_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = smoke_launchers
+		}
+		icon = GFX_CPC_AC_1970_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 7
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 79 APC"
+		type = APC_chassis_3
+		parent_version = 0
+		modules = {
+			APC_designation_slot = APC_infantry
+			APC_armament_slot = APC_infantry_weapon_3
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = expanded_fuel_capacity
+		}		
+		icon = GFX_CPC_APC_1970_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 4
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 76 AFV"
+		type = IFV_chassis_3
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_76_M32
+			turret_type_slot = IFV_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = smoke_launchers
+			special_type_slot_3 = night_vision_1
+		}
+		icon = GFX_CPC_IFV_1970_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 5
+			tank_nsb_armor_upgrade = 5
+		}
+	}
+	create_equipment_variant = {
+		name = "M48A3CN"
+		type = MBT_chassis_3
+		parent_version = 1
+		modules = {
+			main_armament_slot = TER_unique_90_M41
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_cast_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = command_optics
+			special_type_slot_3 = additional_machine_guns
+		}
+		icon = GFX_CPC_MBT_1970_Alt_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 7
+			tank_nsb_armor_upgrade = 5
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 79"
+		type = MBT_chassis_3
+		parent_version = 2
+		modules = {
+			main_armament_slot = TER_unique_90_T208
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_cast_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = command_optics
+			special_type_slot_3 = secondary_turret_hmg
+			special_type_slot_4 = expanded_fuel_capacity
+		}
+		icon = GFX_CPC_MBT_1970_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 8
+			tank_nsb_armor_upgrade = 9
+		}
+	}
+
+	create_equipment_variant = {
+		name = "Type 89 AC"
+		type = armored_car_chassis_4
+		parent_version = 0
+		modules = {
+			main_armament_slot = tank_auto_cannon_2
+			turret_type_slot = AC_one_man_tank_turret
+			suspension_type_slot = tank_wheeled_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = tank_radio_2
+		}
+		icon = GFX_CPC_AC_1980_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 8
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 79A APC"
+		type = APC_chassis_4
+		parent_version = 0
+		modules = {
+			APC_designation_slot = APC_infantry
+			APC_armament_slot = APC_infantry_weapon_3
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = tank_radio_2
+			special_type_slot_2 = expanded_fuel_capacity
+			special_type_slot_3 = additional_machine_guns
+		}		
+		icon = GFX_CPC_APC_1980_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 6
+		}
+	}
+	create_equipment_variant = {
+		name = "ZTQ-76A"
+		type = IFV_chassis_4
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_90_Mk3
+			turret_type_slot = IFV_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_2
+			special_type_slot_2 = smoke_launchers
+			special_type_slot_3 = night_vision
+		}
+		icon = GFX_CPC_IFV_1980_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 6
+			tank_nsb_armor_upgrade = 6
+		}
+	}
+	create_equipment_variant = {
+		name = "M48A5CN"
+		type = MBT_chassis_4
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_90_T208
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_cast_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_2
+			special_type_slot_2 = command_optics
+			special_type_slot_3 = additional_machine_guns
+		}
+		icon = GFX_CPC_MBT_1980_Alt_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 7
+			tank_nsb_armor_upgrade = 8
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 84"
+		type = MBT_chassis_4
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_105_Type83
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_cast_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_2
+			special_type_slot_2 = command_optics
+			special_type_slot_3 = secondary_turret_hmg
+			special_type_slot_4 = night_vision
+		}
+		icon = GFX_CPC_MBT_1980_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 9
+			tank_nsb_armor_upgrade = 10
+		}
+	}
+
+	create_equipment_variant = {
+		name = "Type 99 AC"
+		type = armored_car_chassis_5
+		parent_version = 0
+		modules = {
+			main_armament_slot = tank_grenade_launcher_3
+			turret_type_slot = AC_one_man_tank_turret
+			suspension_type_slot = tank_wheeled_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = tank_radio_2
+			special_type_slot_2 = command_optics
+			special_type_slot_3 = additional_machine_guns
+		}
+		icon = GFX_CPC_AC_1990_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 8
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "PTL-99"
+		type = IFV_chassis_5
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_105_LRF
+			turret_type_slot = IFV_three_man_tank_turret
+			suspension_type_slot = tank_wheeled_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_2
+			special_type_slot_2 = command_optics
+			special_type_slot_3 = night_vision_1
+			special_type_slot_4 = expanded_fuel_capacity
+		}
+		icon = GFX_CPC_IFV_1990_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 8
+			tank_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 88 AIFV"
+		type = APC_chassis_5
+		parent_version = 0
+		modules = {
+			APC_designation_slot = APC_infantry
+			APC_armament_slot = APC_infantry_weapon_4
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = tank_radio_2
+			special_type_slot_2 = anti_tank_guided_missiles
+			special_type_slot_3 = command_optics
+			special_type_slot_4 = night_vision
+		}		
+		icon = GFX_CPC_APC_1990_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 6
+		}
+	}
+	
+	create_equipment_variant = {
+		name = "Type 84A"
+		type = MBT_chassis_5
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_120_M256
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_2
+			special_type_slot_2 = command_optics
+			special_type_slot_3 = fire_control_system
+			special_type_slot_4 = night_vision
+		}
+		icon = GFX_CPC_MBT_1990_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 9
+			tank_nsb_armor_upgrade = 11
+		}
+	}
+
+	create_equipment_variant = {
+		name = "NB-2"
+		type = heavy_tank_chassis_0
+		parent_version = 0
+		modules = {
+			main_armament_slot = heavy_cannon
+			turret_type_slot = heavy_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_cast_armor
+			engine_type_slot = tank_diesel_engine
+		}		
+		icon = GFX_CPC_Heavy_1945_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 12
+			tank_nsb_armor_upgrade = 10
+		}
+	}
+	create_equipment_variant = {
+		name = "NB-2M"
+		type = heavy_tank_chassis_1
+		parent_version = 0
+		modules = {
+			main_armament_slot = heavy_cannon
+			turret_type_slot = heavy_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_cast_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = expanded_fuel_capacity
+			special_type_slot_2 = expanded_toolbox
+		}		
+		icon = GFX_CPC_Heavy_1950_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 12
+			tank_nsb_armor_upgrade = 10
+		}
+	}
+	create_equipment_variant = {
+		name = "WZ-111"
+		type = heavy_tank_chassis_2
+		parent_version = 0
+		modules = {
+			main_armament_slot = heavy_cannon_2
+			turret_type_slot = heavy_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = command_optics
+			special_type_slot_3 = additional_machine_guns
+			special_type_slot_4 = expanded_fuel_capacity
+		}		
+		icon = GFX_CPC_Heavy_1960_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 11
+			tank_nsb_armor_upgrade = 11
 		}
 	}
 }
@@ -443,3 +965,12 @@ every_country = {
 
 reverse_add_opinion_modifier = { target = GGC modifier = embargo }
 oob = "CPC_1962"
+
+set_grand_doctrine = unconventional_warfare
+set_sub_doctrine = light_infantry_primacy
+set_sub_doctrine = alternative_artillery_firepower
+set_sub_doctrine = armored_car_support
+set_sub_doctrine = guerrilla_operational_doctrine
+add_mastery = {
+	amount = 200
+}

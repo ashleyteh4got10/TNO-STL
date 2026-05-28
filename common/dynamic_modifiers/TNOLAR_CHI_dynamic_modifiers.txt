@@ -1,0 +1,320 @@
+
+#################################################
+##=|            RGOC dynamic modifiers       |=##
+##======================| |====================##
+#################################################
+
+#目录，用ctrl+F搜索相关动态修正
+#	1)国防部与军事现代化相关动态修正
+#		CHI_LAR_remilitarization_status_dynamic_modifier	#军事现代化状态
+#
+#	2)主权统一相关动态修正
+#
+#
+#	3)石油危机相关动态修正
+#		CHI_LAR_oil_crisis_agriculture_dynamic_modifier		#石油危机-农业影响
+#		CHI_LAR_oil_crisis_industry_dynamic_modifier		#石油危机-工业影响
+#
+#	4)GAW预热相关动态修正
+#		CHI_LAR_GAWMUP_Liberation_Alliance_dynamic_modifier		#GAW预热-解放阵线
+#
+#	5)GAW相关动态修正
+#		CHI_LAR_GAW_Operation_sun_set_dynamic_modifier			#日落行动
+#
+#		CHI_LAR_Great_Asian_War_GUI_cn_confidence_dynamic_modifier				#中国战争信心修正
+#		CHI_LAR_Great_Asian_War_GUI_cn_supply_dynamic_modifier					#中国战争补给修正
+#		CHI_LAR_Great_Asian_War_GUI_jp_confidence_dynamic_modifier				#日本战争信心修正
+#		CHI_LAR_Great_Asian_War_GUI_jp_supply_dynamic_modifier					#日本战争补给修正
+#
+#		CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier			#省份修正-缺少战争预案
+#		CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier				#省份修正-战略轰炸
+#		CHI_LAR_STATE_defensive_plan_dynamic_modifier					#省份修正-防御计划
+#		CHI_LAR_STATE_offensive_plan_dynamic_modifier					#省份修正-进攻计划
+#		CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier			#省份修正-防御计划加强版
+#		CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier			#省份修正-进攻计划加强版
+#
+#	x)自定义难度动态修正
+#		CHI_LAR_easy_mode_1_dynamic_modifier		#简单
+#		CHI_LAR_easy_mode_2_dynamic_modifier		#极易
+#		CHI_LAR_hard_mode_1_dynamic_modifier		#困难
+#		CHI_LAR_hard_mode_2_dynamic_modifier		#极难
+#
+#
+#
+#
+#
+#
+####################################################################
+# 1) Ministry of National Defense  |  国防部与军事现代化相关动态修正 #
+####################################################################
+
+CHI_LAR_remilitarization_status_dynamic_modifier = {
+	enable = { always = yes }
+	icon = GFX_dynamic_modifier_CHI_remilitarization_status
+
+	custom_modifier_tooltip = CHI_LAR_remilitarization_status_dynamic_modifier_tt
+	air_ace_generation_chance_factor = CHI_LAR_remilitarization_status_dynamic_modifier_air_ace_generation_chance_factor	#王牌飞行员
+	experience_gain_air = CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_air	#空军经验
+	naval_speed_factor = CHI_LAR_remilitarization_status_dynamic_modifier_naval_speed_factor	#海军速度
+	navy_org_factor = CHI_LAR_remilitarization_status_dynamic_modifier_navy_org_factor	#海军组织度
+	navy_screen_attack_factor = CHI_LAR_remilitarization_status_dynamic_modifier_navy_screen_attack_factor	#屏卫舰攻击
+	navy_screen_defence_factor = CHI_LAR_remilitarization_status_dynamic_modifier_navy_screen_defence_factor	#屏卫舰防御
+	experience_gain_navy = CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_navy	#海军经验
+	conscription_factor = CHI_LAR_remilitarization_status_dynamic_modifier_conscription_factor	#人力修正
+	army_attack_factor = CHI_LAR_remilitarization_status_dynamic_modifier_army_attack_factor	#进攻
+	army_org_factor = CHI_LAR_remilitarization_status_dynamic_modifier_army_org_factor	#组织度
+	army_defence_factor = CHI_LAR_remilitarization_status_dynamic_modifier_army_defence_factor	#陆军防御
+	experience_gain_army_factor = CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_army_factor	#经验获取修正
+	war_support_factor = CHI_LAR_remilitarization_status_dynamic_modifier_war_support_factor	#战争支持度
+	surrender_limit = CHI_LAR_remilitarization_status_dynamic_modifier_surrender_limit	#投降倾向
+	max_command_power = CHI_LAR_remilitarization_status_dynamic_modifier_max_command_power	#最大指挥点
+	minimum_training_level = CHI_LAR_remilitarization_status_dynamic_modifier_minimum_training_level	#训练程度下限
+}
+
+
+##########################################
+# 2) Sovereignty  |  主权统一相关动态修正 #
+##########################################
+
+
+#########################################
+# 3) Oil Crisis  |  石油危机相关动态修正 #
+#########################################
+
+CHI_LAR_oil_crisis_agriculture_dynamic_modifier = {
+	enable = { always = yes }
+
+	political_power_factor = CHI_LAR_oil_crisis_agriculture_dynamic_modifiers_var
+	stability_factor = CHI_LAR_oil_crisis_agriculture_dynamic_modifiers_var
+}
+CHI_LAR_oil_crisis_industry_dynamic_modifier = {
+	enable = { always = yes }
+
+	production_factory_max_efficiency_factor = CHI_LAR_oil_crisis_industry_dynamic_modifiers_var
+}
+
+####################################
+# 4) GAWMUP  |  GAW预热相关动态修正 #
+####################################
+CHI_GAWMUP_Liberation_Alliance_dynamic_1_a_modifier = {
+	enable = { always = yes }
+	icon = GFX_dynamic_modifier_CHI_GAWMUP_Liberation_Alliance
+
+	stability_factor = CHI_GAWMUP_Liberation_Alliance_stability_factor
+
+	custom_modifier_tooltip = CHI_LAR_GAWMUP_Liberation_Alliance_dynamic_modifier_tt
+}
+
+CHI_GAWMUP_Liberation_Alliance_dynamic_1_b_modifier = {
+	enable = { always = yes }
+	icon = GFX_dynamic_modifier_CHI_GAWMUP_Liberation_Alliance
+
+	gdp_growth_modifier = CHI_GAWMUP_Liberation_Alliance_gdp_growth_modifier
+	inflation_rate_modifier = CHI_GAWMUP_Liberation_Alliance_inflation_rate_modifier
+
+	custom_modifier_tooltip = CHI_LAR_GAWMUP_Liberation_Alliance_dynamic_modifier_tt
+}
+
+CHI_GAWMUP_Liberation_Alliance_dynamic_2_modifier = {
+	enable = { always = yes }
+	icon = GFX_dynamic_modifier_CHI_GAWMUP_Liberation_Alliance
+
+	stability_factor = CHI_GAWMUP_Liberation_Alliance_stability_factor
+	gdp_growth_modifier = CHI_GAWMUP_Liberation_Alliance_gdp_growth_modifier
+	inflation_rate_modifier = CHI_GAWMUP_Liberation_Alliance_inflation_rate_modifier
+
+	custom_modifier_tooltip = CHI_LAR_GAWMUP_Liberation_Alliance_dynamic_modifier_tt
+}
+
+CHI_GAWMUP_Liberation_Alliance_dynamic_3_modifier = {
+	enable = { always = yes }
+	icon = GFX_dynamic_modifier_CHI_GAWMUP_Liberation_Alliance
+
+	stability_factor = CHI_GAWMUP_Liberation_Alliance_stability_factor
+	gdp_growth_modifier = CHI_GAWMUP_Liberation_Alliance_gdp_growth_modifier
+	inflation_rate_modifier = CHI_GAWMUP_Liberation_Alliance_inflation_rate_modifier
+	war_support_factor = CHI_GAWMUP_Liberation_Alliance_war_support_factor
+
+	custom_modifier_tooltip = CHI_LAR_GAWMUP_Liberation_Alliance_dynamic_modifier_tt
+}
+
+########################################
+# 5) Great Asia War  |  GAW相关动态修正 #
+########################################
+CHI_LAR_GAW_Operation_sun_set_dynamic_modifier = {
+	enable = { always = yes }
+	icon = GFX_idea_CHI_Operation_sun_set
+
+	amphibious_invasion_defence = 0.1					#防御登陆加成
+	army_core_attack_factor = 0.1						#核心攻击
+
+	production_factory_efficiency_gain_factor = CHI_GAW_Operation_sun_set_production_factory_efficiency_gain_factor		#生产效率增长
+	production_factory_max_efficiency_factor = CHI_GAW_Operation_sun_set_production_factory_max_efficiency_factor		#生产效率上限
+	army_speed_factor = CHI_GAW_Operation_sun_set_army_speed_factor		#单位速度
+	army_armor_attack_factor = CHI_GAW_Operation_sun_set_armor_attack_factor		#装甲攻击
+	terrain_penalty_reduction = CHI_GAW_Operation_sun_set_terrain_penalty_reduction		#地形惩罚
+	max_dig_in_factor = CHI_GAW_Operation_sun_set_max_dig_in_factor			#堑壕上限
+	dig_in_speed_factor = CHI_GAW_Operation_sun_set_dig_in_speed_factor		#堑壕速度
+	production_speed_coastal_bunker_factor = CHI_GAW_Operation_sun_set_production_speed_coastal_bunker_factor	#海岸要塞建造速度
+	planning_speed = CHI_GAW_Operation_sun_set_planning_speed		#计划速度
+	recon_factor = CHI_GAW_Operation_sun_set_recon_factor			#侦察
+	special_forces_cap = CHI_GAW_Operation_sun_set_special_forces_cap		#特种容量上限
+	special_forces_attack_factor = CHI_GAW_Operation_sun_set_special_forces_attack_factor	#特种攻击
+	resistance_target = CHI_GAW_Operation_sun_set_resistance_target			#抵抗目标
+	compliance_gain = CHI_GAW_Operation_sun_set_compliance_gain			#顺从度增长
+
+	custom_modifier_tooltip = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_0
+	custom_modifier_tooltip = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_1
+	custom_modifier_tooltip = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_2
+	custom_modifier_tooltip = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_3
+}
+
+
+
+
+
+
+
+#中国战争信心修正
+CHI_LAR_Great_Asian_War_GUI_cn_confidence_dynamic_modifier = {
+	enable = { always = yes }
+
+	army_core_attack_factor = CHI_Great_Asian_War_GUI_cn_confidence_var_army_core_attack_factor
+	army_core_defence_factor = CHI_Great_Asian_War_GUI_cn_confidence_var_army_core_defence_factor
+	war_support_factor = CHI_Great_Asian_War_GUI_cn_confidence_var_war_support_factor
+}
+#中国战争补给修正
+CHI_LAR_Great_Asian_War_GUI_cn_supply_dynamic_modifier = {
+	enable = { always = yes }
+
+	conscription_factor = CHI_Great_Asian_War_GUI_cn_supply_var_conscription_factor
+	army_org_factor = CHI_Great_Asian_War_GUI_cn_supply_var_army_org_factor
+	out_of_supply_factor = CHI_Great_Asian_War_GUI_cn_supply_var_out_of_supply_factor
+}
+
+
+#日本战争信心修正
+CHI_LAR_Great_Asian_War_GUI_jp_confidence_dynamic_modifier = {
+	enable = { always = yes }
+
+	army_attack_factor = CHI_Great_Asian_War_GUI_jp_confidence_var_army_core_attack_factor
+	army_defence_factor = CHI_Great_Asian_War_GUI_jp_confidence_var_army_core_defence_factor
+	war_support_factor = CHI_Great_Asian_War_GUI_jp_confidence_var_war_support_factor
+}
+#日本战争补给修正
+CHI_LAR_Great_Asian_War_GUI_jp_supply_dynamic_modifier = {
+	enable = { always = yes }
+
+	conscription_factor = CHI_Great_Asian_War_GUI_jp_supply_var_conscription_factor
+	army_org_factor = CHI_Great_Asian_War_GUI_jp_supply_var_army_org_factor
+	out_of_supply_factor = CHI_Great_Asian_War_GUI_jp_supply_var_out_of_supply_factor
+}
+
+
+#缺少战争预案
+CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier = {
+	icon = GFX_dynamic_modifier_CHI_STATE_Lack_of_war_preparations
+	attacker_modifier = yes
+
+	army_attack_factor = -0.6
+	breakthrough_factor = -0.2
+}
+
+#战略轰炸
+CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier = {
+	icon = GFX_dynamic_modifier_CHI_STATE_strategic_cn_bombing
+
+	army_speed_factor = -0.25
+	army_attack_factor = -0.25
+	breakthrough_factor = -0.25
+}
+
+#防御计划
+CHI_LAR_STATE_defensive_plan_dynamic_modifier = {
+	icon = GFX_dynamic_modifier_CHI_STATE_defensive_plan
+
+	max_dig_in = 20
+	army_core_defence_factor = 0.25
+}
+
+#进攻计划
+CHI_LAR_STATE_offensive_plan_dynamic_modifier = {
+	icon = GFX_dynamic_modifier_CHI_STATE_offensive_plan
+	attacker_modifier = yes
+
+	army_speed_factor = 0.10
+	army_core_attack_factor = 0.25
+	breakthrough_factor = 0.05
+}
+
+#防御计划加强版
+CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier = {
+	icon = GFX_dynamic_modifier_CHI_STATE_defensive_plan
+
+	max_dig_in = 30
+	army_core_defence_factor = 0.35
+}
+
+#进攻计划加强版
+CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier = {
+	icon = GFX_dynamic_modifier_CHI_STATE_offensive_plan
+	attacker_modifier = yes
+
+	army_speed_factor = 0.15
+	army_core_attack_factor = 0.35
+	breakthrough_factor = 0.10
+}
+
+
+
+#################################################
+# x) CUSTOM DIFFICULTY IDEA - 自定义难度修正相关 #
+#################################################
+
+CHI_LAR_easy_mode_1_dynamic_modifier = {
+	enable = { always = yes }
+
+	research_speed_factor = 0.15
+	political_power_gain = 0.25
+	stability_factor = 0.15
+	war_stability_factor = 0.15
+	command_power_gain = 0.5
+	offence = 0.15
+	defence = 0.15
+	production_factory_max_efficiency_factor = 0.15
+}
+
+CHI_LAR_easy_mode_2_dynamic_modifier = {
+	enable = { always = yes }
+
+	research_speed_factor = 0.25
+	political_power_gain = 0.50
+	stability_factor = 0.25
+	war_stability_factor = 0.25
+	command_power_gain = 0.2
+	offence = 0.25
+	defence = 0.25
+	production_factory_max_efficiency_factor = 0.25
+}
+
+CHI_LAR_hard_mode_1_dynamic_modifier = {
+	enable = { always = yes }
+
+	research_speed_factor = -0.15
+	political_power_gain = -0.10
+	stability_factor = -0.15
+	war_stability_factor = -0.15
+	offence = -0.15
+	defence = -0.15
+}
+
+CHI_LAR_hard_mode_2_dynamic_modifier = {
+	enable = { always = yes }
+
+	research_speed_factor = -0.15
+	political_power_gain = -0.20
+	stability_factor = -0.15
+	war_stability_factor = -0.15
+	offence = -0.25
+	defence = -0.25
+}

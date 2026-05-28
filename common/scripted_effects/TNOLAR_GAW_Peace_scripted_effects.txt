@@ -1,0 +1,518 @@
+TNOLAR_GAW_win = {
+	annex_country = {
+		target = GAN
+		transfer_troops = no
+	}
+	annex_country = {
+		target = MAN
+		transfer_troops = no
+	}
+	annex_country = {
+		target = MEN
+		transfer_troops = no
+	}
+	annex_country = {
+		target = GNG
+		transfer_troops = no
+	}
+	JAP = {
+		every_enemy_country = {
+		white_peace = JAP
+	    }
+	}
+	every_enemy_country = {
+		white_peace = CHI
+	}
+	every_state = {
+		limit = {
+			is_core_of = CHI
+		}
+		transfer_state_to = CHI
+	}
+	every_state = {
+		limit = {
+			is_core_of = MAN
+		}
+		transfer_state_to = CHI
+	}
+	every_state = {
+		limit = {
+			is_core_of = GNG
+		}
+		transfer_state_to = CHI
+	}
+	537 = { #LAR地块-库页岛
+		transfer_state_to = CHI
+		add_core_of = CHI
+	}
+	809 = { #LAR地块-海参崴
+		transfer_state_to = CHI
+		add_core_of = CHI
+	}	
+	if = {
+		limit = {
+			country_exists = VIN
+			VIN = {
+				NOT = {
+					is_in_faction_with = CHI
+				}
+			}
+		}
+		VIN = {
+			drop_cosmetic_tag = yes
+			leave_faction = yes
+
+            #移除经济圈
+            econ_leave_sphere = yes
+			econ_recompile_all_spheres = yes
+			recalculate_world_trade_influence = yes
+
+            #移除成员国精神
+            remove_ideas = Sphere_Core_Member
+            remove_ideas = Sphere_Coequal
+            remove_ideas = Sphere_Economic_Dependent
+            remove_ideas = Sphere_Fully_Dependent
+            remove_ideas = Sphere_Imp_Protectorate
+            remove_ideas = Sphere_Corporate_Dependency
+            remove_ideas = Sphere_Observer
+
+            #添加新成员国精神
+            add_ideas = TNOLAR_PALA_Member
+		}
+		CHI = {
+			add_to_faction = VIN
+		}
+		VIN = {
+			set_politics = {
+				ruling_party = despotism
+			}
+			add_country_leader_role = {
+				character = VIN_Ruan_Wenshao
+				promote_leader = yes
+				country_leader = {
+					ideology = despotism_civilian_dictatorship_subtype
+					expire = "1999.1.1.1"
+				}
+			}
+			promote_character = {
+				character = VIN_Ruan_Wenshao
+				ideology = despotism_civilian_dictatorship_subtype
+			}
+		}
+	}
+
+	#兄啊你怎么把越盟也加进去了
+	#if = {
+	#	limit = {
+	#		country_exists = VIC
+	#		VIC = {
+	#			NOT = {
+	#				is_in_faction_with = CHI
+	#			}
+	#		}
+	#	}
+	#	CHI = {
+	#		add_to_faction = VIC
+	#	}
+	#}
+	
+	if = {
+		limit = {
+			LAO = {
+				NOT = {
+					is_in_faction_with = CHI
+				}
+			}
+		}
+		LAO = {
+			drop_cosmetic_tag = yes
+			leave_faction = yes
+
+            #移除经济圈
+            econ_leave_sphere = yes
+			econ_recompile_all_spheres = yes
+			recalculate_world_trade_influence = yes
+
+            #移除成员国精神
+            remove_ideas = Sphere_Core_Member
+            remove_ideas = Sphere_Coequal
+            remove_ideas = Sphere_Economic_Dependent
+            remove_ideas = Sphere_Fully_Dependent
+            remove_ideas = Sphere_Imp_Protectorate
+            remove_ideas = Sphere_Corporate_Dependency
+            remove_ideas = Sphere_Observer
+
+            #添加新成员国精神
+            add_ideas = TNOLAR_PALA_Member
+		}
+		CHI = {
+			add_to_faction = LAO
+		}
+		LAO = {
+			set_politics = {
+				ruling_party = liberalism
+			}
+			add_country_leader_role = {
+				character = LAO_Souvanna_Phouma
+				promote_leader = yes
+				country_leader = {
+					ideology = liberalism_subtype
+					expire = "1999.1.1.1"
+				}
+			}
+			promote_character = {
+				character = LAO_Souvanna_Phouma
+				ideology = liberalism_subtype
+			}
+		}
+	}
+	if = {
+		limit = {
+			CAM = {
+				NOT = {
+					is_in_faction_with = CHI
+				}
+			}
+		}
+		CAM = {
+			drop_cosmetic_tag = yes
+			leave_faction = yes
+
+            #移除经济圈
+            econ_leave_sphere = yes
+			econ_recompile_all_spheres = yes
+			recalculate_world_trade_influence = yes
+
+            #移除成员国精神
+            remove_ideas = Sphere_Core_Member
+            remove_ideas = Sphere_Coequal
+            remove_ideas = Sphere_Economic_Dependent
+            remove_ideas = Sphere_Fully_Dependent
+            remove_ideas = Sphere_Imp_Protectorate
+            remove_ideas = Sphere_Corporate_Dependency
+            remove_ideas = Sphere_Observer
+
+            #添加新成员国精神
+            add_ideas = TNOLAR_PALA_Member
+		}
+		CHI = {
+			add_to_faction = CAM
+		}
+		CAM = {
+			set_politics = {
+				ruling_party = paternalism
+			}
+			add_country_leader_role = {
+				character = CAM_Norodom_Sihanouk
+				promote_leader = yes
+				country_leader = {
+					ideology = paternalism_national_conservatism_subtype
+					expire = "1999.1.1.1"
+				}
+			}
+			promote_character = {
+				character = CAM_Norodom_Sihanouk
+				ideology = paternalism_national_conservatism_subtype
+			}
+		}
+	}
+	if = {
+		limit = {
+			BUR = {
+				NOT = {
+					is_in_faction_with = CHI
+				}
+			}
+		}
+		BUR = {
+			drop_cosmetic_tag = yes
+			leave_faction = yes
+
+            #移除经济圈
+            econ_leave_sphere = yes
+			econ_recompile_all_spheres = yes
+			recalculate_world_trade_influence = yes
+
+            #移除成员国精神
+            remove_ideas = Sphere_Core_Member
+            remove_ideas = Sphere_Coequal
+            remove_ideas = Sphere_Economic_Dependent
+            remove_ideas = Sphere_Fully_Dependent
+            remove_ideas = Sphere_Imp_Protectorate
+            remove_ideas = Sphere_Corporate_Dependency
+            remove_ideas = Sphere_Observer
+
+            #添加新成员国精神
+            add_ideas = TNOLAR_PALA_Member
+		}
+		CHI = {
+			add_to_faction = BUR
+		}
+		BUR = {
+			set_politics = {
+				ruling_party = paternalism
+			}
+			add_country_leader_role = {
+				character = BUR_Thakin_Nu
+				promote_leader = yes
+				country_leader = {
+					ideology = paternalism_social_nationalism_subtype
+					expire = "1999.1.1.1"
+				}
+			}
+			promote_character = {
+				character = BUR_Thakin_Nu
+				ideology = paternalism_social_nationalism_subtype
+			}
+		}
+	}
+	if = {
+		limit = {
+			THA = {
+				NOT = {
+					is_in_faction_with = CHI
+				}
+			}
+		}
+		THA = {
+			drop_cosmetic_tag = yes
+			leave_faction = yes
+
+            #移除经济圈
+            econ_leave_sphere = yes
+			econ_recompile_all_spheres = yes
+			recalculate_world_trade_influence = yes
+
+            #移除成员国精神
+            remove_ideas = Sphere_Core_Member
+            remove_ideas = Sphere_Coequal
+            remove_ideas = Sphere_Economic_Dependent
+            remove_ideas = Sphere_Fully_Dependent
+            remove_ideas = Sphere_Imp_Protectorate
+            remove_ideas = Sphere_Corporate_Dependency
+            remove_ideas = Sphere_Observer
+
+            #添加新成员国精神
+            add_ideas = TNOLAR_PALA_Member
+		}
+		CHI = {
+			add_to_faction = THA
+		}
+	}
+	THA = {
+		set_politics = {
+			ruling_party = despotism
+		}
+		add_country_leader_role = {
+			character = THA_Sang_Phathanothai
+			promote_leader = yes
+			country_leader = {
+				ideology = despotism_civilian_dictatorship_subtype
+				expire = "1999.1.1.1"
+			}
+		}
+		promote_character = {
+			character = THA_Sang_Phathanothai
+			ideology = despotism_civilian_dictatorship_subtype
+		}
+	}
+	if = {
+		limit = {
+			SHO = {
+				NOT = {
+					is_in_faction_with = CHI
+				}
+			}
+		}
+		SHO = {
+			drop_cosmetic_tag = yes
+			leave_faction = yes
+
+            #移除经济圈
+            econ_leave_sphere = yes
+			econ_recompile_all_spheres = yes
+			recalculate_world_trade_influence = yes
+
+            #移除成员国精神
+            remove_ideas = Sphere_Core_Member
+            remove_ideas = Sphere_Coequal
+            remove_ideas = Sphere_Economic_Dependent
+            remove_ideas = Sphere_Fully_Dependent
+            remove_ideas = Sphere_Imp_Protectorate
+            remove_ideas = Sphere_Corporate_Dependency
+            remove_ideas = Sphere_Observer
+
+            #添加新成员国精神
+            add_ideas = TNOLAR_PALA_Member
+		}
+		CHI = {
+			add_to_faction = SHO
+		}
+		SHO = {
+			set_politics = {
+				ruling_party = paternalism
+			}
+			add_country_leader_role = {
+				character = SHO_Li_Guangyao
+				country_leader = {
+					ideology = paternalism_paternalistic_developmentalism_subtype
+					expire = "1999.1.1.1"
+				}
+			}
+			retire_country_leader = yes
+		}
+	}
+	if = {
+		limit = {
+			country_exists = MLY
+			MLY = {
+				NOT = {
+					is_in_faction_with = CHI
+				}
+			}
+		}
+		MLY = {
+			drop_cosmetic_tag = yes
+			leave_faction = yes
+
+            #移除经济圈
+            econ_leave_sphere = yes
+			econ_recompile_all_spheres = yes
+			recalculate_world_trade_influence = yes
+
+            #移除成员国精神
+            remove_ideas = Sphere_Core_Member
+            remove_ideas = Sphere_Coequal
+            remove_ideas = Sphere_Economic_Dependent
+            remove_ideas = Sphere_Fully_Dependent
+            remove_ideas = Sphere_Imp_Protectorate
+            remove_ideas = Sphere_Corporate_Dependency
+            remove_ideas = Sphere_Observer
+
+            #添加新成员国精神
+            add_ideas = TNOLAR_PALA_Member
+		}
+		CHI = {
+			add_to_faction = MLY
+		}
+		MLY = {
+			set_politics = {
+				ruling_party = conservatism
+			}
+			add_country_leader_role = {
+				character = MLY_Tun_Abdul_Razak
+				country_leader = {
+					ideology = conservatism_paternalistic_conservatism_subtype
+					expire = "1999.1.1.1"
+				}
+			}
+		}
+	}
+
+	#韩国占领区
+	every_state = {
+		limit = {
+			is_core_of = KOR
+		}
+		transfer_state_to = KOR
+	}
+	KOR = {
+		#设置占领区名字
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = KOR_CHI_military_occupation_zone
+
+		#设置阵营成员
+		add_ideas = TNOLAR_AIA_Military_occupation
+
+		add_country_leader_role = {
+			character = KOR_ROC_Interim_Committee_Korea
+			promote_leader = yes
+			country_leader = {
+				ideology = paternalism_provisional_government_subtype
+				expire = "1999.1.1.1"
+			}
+		}
+		set_politics = {
+			ruling_party = paternalism
+			long_name = KOR_CHI_military_occupation_zone_paternalism_party_long
+    		name = KOR_CHI_military_occupation_zone_paternalism_party
+		}
+
+		set_popularities = {
+			communist = 0
+			ultranationalism = 0
+			socialist = 0
+			progressivism = 0
+			liberalism = 0
+			conservatism = 0
+			paternalism = 100
+			despotism = 0
+			fascism = 0
+		}
+
+		set_capital = { state = 962 }
+	}
+	CHI = {
+		add_to_faction = KOR
+		#puppet = KOR
+	}
+
+	#LAR地块-台湾加中国核心/移除日本核心
+	524 = { add_core_of = CHI }
+	1850 = { add_core_of = CHI }
+	1854 = { add_core_of = CHI }
+	1851 = { add_core_of = CHI }
+	1855 = { add_core_of = CHI }
+	1852 = { add_core_of = CHI }
+	1853 = { add_core_of = CHI }
+	1856 = { add_core_of = CHI }
+
+	524 = { remove_core_of = JAP }
+	1850 = { remove_core_of = JAP }
+	1854 = { remove_core_of = JAP }
+	1851 = { remove_core_of = JAP }
+	1855 = { remove_core_of = JAP }
+	1852 = { remove_core_of = JAP }
+	1853 = { remove_core_of = JAP }
+	1856 = { remove_core_of = JAP }
+
+
+
+	#韩人老李回家了
+	country_event = {
+		id = tnolar_chi_flavor.19
+		days = 30
+		random_days = 2
+	}
+
+	963 = {
+		set_demilitarized_zone = yes
+	}
+	639 = {
+		set_demilitarized_zone = yes
+	}
+
+	log = "[GetDateText]: CHI: [From.GetName] JAP: [Root.GetName] on_capitulation"
+	set_global_flag = show_peace_popup_alert
+
+	CHI = {
+		save_global_event_target_as = winning_country
+	}
+	JAP = {
+		save_global_event_target_as = losing_country
+	}
+
+	set_global_flag = losing_country_multiple
+	set_global_flag = winning_country_multiple
+
+	CHI = {
+		# winner simply gets GDP recalculated :)
+		recalculate_GDP_and_PUs_on_demand = yes
+	}
+
+	log = "war_won"
+	set_global_flag = war_won
+	CHI = {
+		set_country_flag = TNOLAR_GAW_win_peace_popup
+	}
+}

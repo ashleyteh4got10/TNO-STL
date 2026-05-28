@@ -1,9 +1,6 @@
 on_actions = {
     on_startup = {
-        effect = {
-            BRY = {
-                apply_russian_war_buff_with_5_divisions = yes
-            }
+        effect = {	
 			if = {
 				limit = {
 					has_game_rule = {
@@ -21,25 +18,135 @@ on_actions = {
                 }
             }
 			}
+			if = {
+				every_country = {
+					limit = {
+						is_ai = no
+					}
+					country_event = {
+						id = STL_support.98
+					}
+				}
+			}
+
         }
     }
 
-	on_yearly_MGI = {
+	on_capitulation = {
 		effect = {
 			if = {
 				limit = {
-					OMS = { exists = no }
+					FROM = {
+						original_tag = CPC
+					}
+					ROOT = {
+						original_tag = GER
+					}
+				}
+				CPC ={ white_peace = GER }
+			}
+			if = {
+				limit = {
+					FROM = {
+						original_tag = MGI
+					}
+					ROOT = {
+						original_tag = USA
+					}
+				}
+				every_country = {
+					limit = {
+						is_in_faction_with = USA
+					}
 					MGI = {
-						exists = yes
-						NOT = {
-							has_country_flag = MGI_TGWT_started
+						annex_country = {
+							target = PREV
+							transfer_troops = no
 						}
 					}
 				}
-				MGI = {
-					load_oob = MGI_radiosilence_RUS
-				}
+				set_global_flag = skip_default_capitulation
 			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = MGI
+					}
+					ROOT = {
+						original_tag = CAO
+					}
+				}
+				every_country = {
+					limit = {
+						is_in_faction_with = CAO
+					}
+					MGI = {
+						annex_country = {
+							target = PREV
+							transfer_troops = no
+						}
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = MGI
+					}
+					ROOT = {
+						original_tag = JAP
+					}
+				}
+				every_country = {
+					limit = {
+						is_in_faction_with = JAP
+					}
+					MGI = {
+						annex_country = {
+							target = PREV
+							transfer_troops = no
+						}
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = MGI
+					}
+					ROOT = {
+						original_tag = GER
+					}
+				}
+				every_country = {
+					limit = {
+						is_in_faction_with = GER
+					}
+					MGI = {
+						annex_country = {
+							target = PREV
+							transfer_troops = no
+						}
+					}
+				}
+				set_global_flag = skip_default_capitulation
+			}
+		}
+	}
+
+	on_weekly_MGI = {
+		effect = {
+			every_country = {
+					limit = {
+						has_war_with = MGI
+						NOT = {
+							has_idea = MGI_Magical_Factor
+						}
+					}
+					add_ideas = MGI_Magical_Factor
+				}
 		}
 	}
 
@@ -55,11 +162,6 @@ on_actions = {
 						}
 					}
 				}
-				MGI = {
-					country_event = {
-						id = STL_april_fools.2
-					}
-				}
 			}
 			if = {
 				limit = {
@@ -69,19 +171,6 @@ on_actions = {
 						has_country_flag = MGI_TGWT_started
 					}
 
-				}
-				every_country = {
-					limit = {
-						is_neighbor_of = MGI
-						NOT = { has_war_with = MGI }
-					}
-					set_country_flag = TNO_nuke_disabled
-					MGI = {
-						declare_war_on = {
-							target = PREV
-							type = annex_everything
-						}
-					}
 				}
 
 				every_country = {
@@ -124,39 +213,6 @@ on_actions = {
 						load_oob = MGI_radiosilence_JAP
 					}
 				}
-				if = {
-					limit = {
-						JAP = { exists = no }
-						CPC = { exists = no }
-						ENG = { exists = no }
-						GER = { exists = no }
-						ITA = { exists = no }
-						USA = { exists = no }
-						BRA = { exists = no }
-						OMS = { exists = no }
-					    MGI = { 
-						exists = yes
-						has_country_flag = MGI_TGWT_started
-					    }
-					}
-					every_country = {
-						limit = {
-							NOT = {
-								tag = MGI
-							}
-						}
-						MGI = {
-							annex_country = {
-								target = PREV
-							}
-					        clr_country_flag = MGI_TGWT_started
-					        country_event = {
-						        id = STL_april_fools.3
-					        }
-			
-						}
-					}
-				}
 			}
 			MGI = {
 				every_controlled_state = {
@@ -166,6 +222,29 @@ on_actions = {
 						}
 					 }
 					MGI = { add_state_core = PREV }
+				}
+			}
+		}
+	}
+	on_weekly_LAO = {
+		effect = {
+			every_country = {
+					limit = {
+						has_war_with = LAO
+						LAO = {
+							has_cosmetic_tag =  LAO_LPDR
+						}
+						NOT = {
+							CPC = {
+								OR ={
+									has_war_with = JAP
+									has_war_with = CHI
+								}
+						    }
+					    }
+					every_country = {
+						white_peace = LAO
+					}
 				}
 			}
 		}

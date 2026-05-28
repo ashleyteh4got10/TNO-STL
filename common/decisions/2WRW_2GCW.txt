@@ -832,7 +832,18 @@ SWRW_GMA_category = {
 				add_state_core = 75
 				add_state_core = 67
 				add_state_core = 9
-				create_faction = PKT_faction
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = PKT_faction template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = PKT_faction
+}
 				remove_ideas = {
 					GMA_a_nation_in_flames
 					GMA_the_second_german_civil_war
@@ -1347,7 +1358,18 @@ SWRW_Commie_category = {
 					REV_Member
 				}
 				remove_from_faction = RPR
-				create_faction = volksfront_europa
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = volksfront_europa template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = volksfront_europa
+}
 				add_ideas = {
 					VFE_Member
 					GER_Reconstruction_of_Germany
@@ -1715,7 +1737,18 @@ SWRW_REG_category = {
 				add_state_core = 75
 				add_state_core = 67
 				add_state_core = 9
-				create_faction = wierderaufbaupakt
+	if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = wierderaufbaupakt template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = wierderaufbaupakt
+}
 				add_ideas = {
 					DPKT_Member
 					GER_Reconstruction_of_Germany
@@ -2192,7 +2225,18 @@ SWRW_GER_category = {
 		}
 		complete_effect = {
 			GER = {
-				create_faction = PKT_faction
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = PKT_faction template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = PKT_faction
+}
 				add_ideas = {
 					PKT_Member
 					GER_Reconstruction_of_Germany

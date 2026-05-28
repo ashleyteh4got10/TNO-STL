@@ -1,0 +1,979 @@
+### China-Exclusive Debug Begin ###
+TNOLAR_global_debug_decisions = {
+
+	# ██████╗██╗  ██╗██╗     ██╗ ██████╗  █████╗  ██████╗ ██╗     ██████╗ ███████╗██████╗ ██╗   ██╗ ██████╗ 
+	#██╔════╝██║  ██║██║    ██╔╝██╔════╝ ██╔══██╗██╔═══██╗╚██╗   ██╔══██╗██╔════╝██╔══██╗██║   ██║██╔════╝ 
+	#██║     ███████║██║    ██║ ██║  ███╗███████║██║   ██║ ██║    ██║  ██║█████╗  ██████╔╝██║   ██║██║  ███╗
+	#██║     ██╔══██║██║    ██║ ██║   ██║██╔══██║██║   ██║ ██║    ██║  ██║██╔══╝  ██╔══██╗██║   ██║██║   ██║
+	#╚██████╗██║  ██║██║    ╚██╗╚██████╔╝██║  ██║╚██████╔╝██╔╝   ██████╔╝███████╗██████╔╝╚██████╔╝╚██████╔╝
+	#
+	# 高宗武/中华民国调试决议
+	#
+
+	TNOLAR_CHI_show_hide_debug_decisions_1 = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = CHI
+		}
+
+		complete_effect = {
+			if = {
+				limit = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_1 }
+				clr_country_flag = TNOLAR_CHI_hide_debug_decisions_1
+			}
+			else = {
+				set_country_flag = TNOLAR_CHI_hide_debug_decisions_1
+			}
+		}
+	}
+
+	#启动国防部
+	TNOLAR_debug_enable_MND = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_1 }
+		}
+		complete_effect = {
+			#这些效果最终是要写在history文件里的，放在这里方便管理
+			set_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 1 } #军事页面按钮帧变量		#2为选中，1为未选中
+			set_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 } #募兵页面按钮帧变量
+
+			set_variable = { CHI_MND_GUI_modernization_progress_var = 0 } #现代化进度
+			set_variable = { CHI_MND_GUI_modernization_progress_month_var = 1.5 } #每月现代化进度
+			set_variable = { CHI_MND_GUI_real_modernization_progress_month_var = 0 } #经过军队忠诚度修正过后的现代化进度
+			set_variable = { CHI_MND_GUI_Military_level_var = 1 } #军事化等级
+			set_variable = { CHI_MND_GUI_Military_general_loyalty_var = 0 } #总体忠诚度
+
+			set_variable = { CHI_MND_GUI_nationalists_influences_var = 15 } #民族派影响力
+			set_variable = { CHI_MND_GUI_conservatives_influences_var = 50 } #中央派影响力
+			set_variable = { CHI_MND_GUI_japanophiles_influences_var = 25 } #华北派影响力
+			set_variable = { CHI_MND_GUI_nationalists_loyalty_var = 0.7 } #民族派忠诚度
+			set_variable = { CHI_MND_GUI_conservatives_loyalty_var = 0.5 } #中央派忠诚度
+			set_variable = { CHI_MND_GUI_japanophiles_loyalty_var = 0.3 } #华北派忠诚度
+
+			set_variable = { CHI_MND_GUI_army_limit = 90 } #军队数量限制，最高35
+			set_variable = { CHI_MND_GUI_current_army_number = CHI.num_armies } #当前军队数量
+
+			set_variable = { CHI_MND_GUI_JapanAlert_level = 30 } #日本警惕，1-100，共九级
+			set_variable = { CHI_MND_GUI_JapanAlert_level_lowerlimit = 20 } #日本警惕下限，与军队数量挂钩
+			#（日本警惕下限仅在setup阶段如此，请确保之后不会出现相同的赋值语句。）当增减军队时会根据增减的数量更改，应该不会影响此前的变动。
+
+			CHI_MND_faction_value_change = yes #计算各项互相影响的数值
+		}
+	}
+
+	#开始石油危机
+	TNOLAR_debug_start_oil_crisis = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_1 }
+		}
+		complete_effect = {
+			set_country_flag = CHI_Oil_Crisis
+			set_country_flag = CHI_Social_Reform
+
+			set_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = 73 } #农业改革进度
+			set_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = 85 }	#工业改革进度
+			set_variable = { CHI_Oil_Crisis_GUI_government_prestige = 27 } #政府声望
+
+			set_variable = { CHI_Oil_Crisis_gears_turning_agriculture_var = 5 } #齿轮在转动决议中 每周降低的农业数值
+			set_variable = { CHI_Oil_Crisis_gears_turning_industry_var = 5 } #齿轮在转动决议中 每周降低的工业数值
+			set_variable = { CHI_Oil_Crisis_Japanophiles_is_in_action_invalid_probability_var = 0 } #华北派在行动决议中 无事发生的可能性
+			
+
+			set_variable = { CHI_LAR_oil_crisis_agriculture_dynamic_modifiers_var = -0.365 } #各项改革数值的影响_农业
+			set_variable = { CHI_LAR_oil_crisis_industry_dynamic_modifiers_var = -0.425 } #各项改革数值的影响_工业
+
+			add_dynamic_modifier = { modifier = CHI_LAR_oil_crisis_agriculture_dynamic_modifier }
+			add_dynamic_modifier = { modifier = CHI_LAR_oil_crisis_industry_dynamic_modifier }
+
+			custom_effect_tooltip = CHI_The_Oil_Crisis_tt_desc
+			TNO_Oil_Crisis_apply_modifier = yes
+			add_dynamic_modifier = { modifier = CHI_oilcrisis_status_modifier }
+			CHI_calc_oilcrisis_cost_change = yes
+			CHI_reload_tree = yes
+		}
+	}
+
+	#开始西北战争
+	TNOLAR_debug_trigger_Northwest_War = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_1 }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			country_event = tnolar_chi.400
+			set_country_flag = CHI_Northwest_War
+			set_variable = { CHI_Northwest_War_GUI_progressbar_var = 0 }
+			set_variable = { Northwest_War_timeleft = 1 }
+			set_variable = { CHI_current_number_volunteers = 0 }
+			set_variable = { CHI_NWW_EQ_firearms = 0 }
+			set_variable = { CHI_NWW_EQ_artillery = 0 }
+			set_variable = { CHI_NWW_EQ_armor = 0 }
+		}
+	}
+
+	#开始共荣圈博弈
+	TNOLAR_debug_start_big_game = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_1 }
+		}
+		complete_effect = {
+			leave_faction = yes
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = TNOLAR_Pan_Asian_Liberation_Alliance template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = TNOLAR_Pan_Asian_Liberation_Alliance
+}
+			set_global_flag = TNOLAR_GAW_diplomatic_games
+			set_country_flag = TNOLAR_country_has_gui
+			set_country_flag = gui_alert_visible
+			set_country_flag = gui_alert_visible_2
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_VS_progressbar_var = 25 } #底部实力对比进度条变量
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var = 20 } #战备状态变量-中国
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var = 85 } #战备状态变量-日本
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_points = 0 } #分数暂存/显示变量-中国 55分封顶
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_points_add = 0 } #分数计算缓存变量
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_bonuspoints = 0 } #奖励分数暂存/显示变量-中国
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_points = 0 } #分数显示变量-日本
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 1 } #小回合进行指示器变量-左
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_round_var = 1 } #小回合进行指示器变量-右
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var = 1 } #主界面地区倾向-中国 共6帧，第一帧为未选中
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var = 1 } #主界面地区倾向-日本 共6帧，第一帧为未选中
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_game_token_var = 1 } #中国可视筹码
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_game_token_var = 1 } #日本可视筹码
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 } #顶部博弈历史指示器变量，1透明 2进行中 3胜利 4失败 5平局
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 } #同上
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_time_progressbar_var = 0 } #所在小回合的剩余时间变量
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var = 100 } #（选国家界面）控制等级变量 #81-100，平等成员 #45-80，经济依附 #19-44，政治傀儡 #0-19，军事占领
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_cn_progressbar_var = 0 } #（选国家界面）对中国倾向
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_jp_progressbar_var = 100 } #（选国家界面）对日本倾向
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var = 0 } #（选国家界面）用于计算中日变量的差的变量，主要用在动态本地化
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 0 } #（选国家界面）用于检测目前选择的国家，按照TNOLAR_CHI_GUI.txt中的国家顺序依次对应，0则视为未选中
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 0 } #顶部指示条的检测数值
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 0 } #同上
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 0 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_1_var = 1 } #游戏按钮变量，1正常 2选中/锁定 3透明
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_2_var = 1 } #同上
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_3_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_4_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_B_5_var = 1 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_1_var = 1 } #同理，但是破坏决议
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_2_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_3_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_4_var = 1 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_R_5_var = 1 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_game_button_selected_quantity = 0 } #当前选中决议数量，用于限制每回合决议数量
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 0 } #外交决议第一个按钮所含分数
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 0 } #第二个
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 0 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 0 } #破坏决议第一个按钮所含分数
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 0 } #第二个
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 0 }
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 0 }
+
+			set_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_access_denied_var = 3 } #拒绝访问封条帧变量 1悬棋落子 2时机已定 3空白
+
+			CHI_TMCAT_diposelect_check = yes		#两个自定义提醒检查
+			CHI_TMCAT_dipogame_check = yes
+
+			#annex_country = {
+			#	target = SHX
+			#	transfer_troops = no
+			#}
+			#annex_country = {
+			#	target = QIN
+			#	transfer_troops = no
+			#}
+			#annex_country = {
+			#	target = XIK
+			#	transfer_troops = no
+			#}
+			#annex_country = {
+			#	target = TIB
+			#	transfer_troops = no
+			#}
+			#annex_country = {
+			#	target = XIN
+			#	transfer_troops = no
+			#}
+			#annex_country = {
+			#	target = GUZ
+			#	transfer_troops = no
+			#}
+			#annex_country = {
+			#	target = YUN
+			#	transfer_troops = no
+			#}
+			#annex_country = {
+			#	target = GUX
+			#	transfer_troops = no
+			#}
+			605 = {
+				set_demilitarized_zone = no
+			}
+			1962 = {
+				set_demilitarized_zone = no
+			}
+			1963 = {
+				set_demilitarized_zone = no
+			}
+			1964 = {
+				set_demilitarized_zone = no
+			}
+			1961 = {
+				set_demilitarized_zone = no
+			}
+
+			add_to_array = {
+				global.Table_GUI_faction_member_CHI = CHI
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = CHI
+					NOT = {
+						tag = CHI
+					}
+				}
+				add_to_array = {
+					global.Table_GUI_faction_member_CHI = THIS
+				}
+			}
+
+			add_to_array = {
+				global.Table_GUI_faction_member_JAP = JAP
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = JAP
+					NOT = {
+						tag = JAP
+					}
+				}
+				add_to_array = {
+					global.Table_GUI_faction_member_JAP = THIS
+				}
+			}
+
+			if = {
+				limit = {
+					GAN = {
+						has_full_control_of_state = 906		#LAR地块-青海
+					}
+				}
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_GAN_var = 1 }
+			}
+			else_if = {
+				limit = {
+					GAN = {
+						has_full_control_of_state = 1302	#LAR地块-兰州
+					}
+				}
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_GAN_var = 2 }
+			}
+			else = {
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_GAN_var = 3 }
+			}
+
+			if = {
+				limit = {
+					MAN = {
+						has_full_control_of_state = 657		#LAR地块-纽勒们河
+					}
+				}
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_MAN_var = 1 }
+			}
+			else = {
+				set_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_MAN_var = 2 }
+			}
+		}
+	}
+
+	#启动大东亚战争GUI
+	TNOLAR_debug_start_GAW_GUI = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_1 }
+		}
+		complete_effect = {
+			set_global_flag = TNOLAR_GAW_in_progress
+			set_country_flag = gui_alert_visible	#政治界面显示提示
+			set_country_flag = gui_alert_visible_2
+
+			set_country_flag = TNOLAR_country_has_gui	#右下角与政治界面显示
+
+			### GAW GUI General ###
+
+			### GAW map GUI ###
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var = 1 }					#各地块的占领状态
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var = 1 }	#1敌方 2争夺中 3己方
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var = 1 }
+
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Korean_var = 1 }						#各地块的计划状态
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Southern_OuterNortheast_var = 1 }		#1没有 2进攻 3防御 4轰炸
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Northern_OuterNortheast_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilin_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Heilongjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Rehe_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Liaoning_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilu_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jinshan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Suwanzhe_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Yuxiange_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sichuan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Ganmin_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Taiwan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Dianqiangui_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Guangdong_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xibei_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xizang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xinjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Eastern_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Vietnam_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Laos_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Cambodian_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Thailand_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Burma_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Malaya_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sumatra_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sunda_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Borneo_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sulawesi_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_New_Guinea_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Philippine_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Japan_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Pacific_var = 1 }
+
+			CHI_initialization_Great_Asian_map = yes				#初始化地图检测
+			CHI_Update_Great_Asian_War_map_GUI_whole_map = yes		#首次地图检测
+
+			set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Suwanzhe_clear	#开局设定南京地区有计划
+
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Korean
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Northern_OuterNortheast
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Jilin
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Heilongjiang
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Rehe
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Liaoning
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Jilu
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Jinshan
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			#for_each_scope_loop = {
+			#	array = CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe
+			#	add_dynamic_modifier = {
+			#		modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+			#	}
+			#}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Yuxiange
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Sichuan
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Ganmin
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Taiwan
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Guangdong
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Xibei
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Xizang
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Xinjiang
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Vietnam
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Laos
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Cambodian
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Thailand
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Burma
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Malaya
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Sumatra
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Sunda
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Borneo
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Sulawesi
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_New_Guinea
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Philippine
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Japan
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+
+
+			### GAW wargoal GUI ###
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 1 }	#各地区战争目标是否达成
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 1 }	#1未达成 2已达成
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 1 }
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 1 }
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 1 }
+			set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 1 }
+			CHI_Update_Great_Asian_War_wargoal_GUI = yes
+
+			### GAW warplan GUI ###
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 1 }	#三个计划槽位状态
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }	#1空计划 2计划 3轰炸 4进攻 5防御
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 1 }
+
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 1 }		#三个计划槽位的背景
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 1 }		#1没有计划 2计划进行中
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 1 }
+
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = 60 }		#三个计划槽位的倒计时
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = 60 }		#从60开始
+			set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = 60 }
+
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var			#清除三个计划槽的时间以避免它们出现
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+			clear_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+
+
+			### GAW stateinfo GUI ###
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Korean_var = 3 }						#各地块的补给生产
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Southern_OuterNortheast_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Northern_OuterNortheast_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilin_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Heilongjiang_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Rehe_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Liaoning_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilu_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jinshan_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Suwanzhe_var = 4 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Yuxiange_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sichuan_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Ganmin_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Taiwan_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Dianqiangui_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Guangdong_var = 4 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xibei_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xizang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xinjiang_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Eastern_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Mongolia_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Vietnam_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Laos_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Cambodian_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Thailand_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Burma_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Malaya_var = 2 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sumatra_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sunda_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Borneo_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sulawesi_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_New_Guinea_var = 1 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Philippine_var = 3 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Japan_var = 6 }
+			set_variable = { CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Pacific_var = 1 }
+
+			### GAW stateaction GUI ###
+
+			### GAW warconfidence GUI ###
+			set_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 150 }	#中国补给 0-300
+			set_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = 150 }	#日本补给 0-300
+
+			set_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var = 50 }	#中国战争信心 0-100
+			set_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var = 50 }	#日本战争信心 0-100
+
+			CHI_calc_Great_Asian_War_GUI_cn_confidencesupply = yes	#计算物资变化/影响
+			CHI_calc_Great_Asian_War_GUI_jp_confidencesupply = yes
+
+			CHI = {
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_cn_confidence_dynamic_modifier
+				}
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_cn_supply_dynamic_modifier
+				}
+			}
+
+			JAP = {
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_jp_confidence_dynamic_modifier
+				}
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_Great_Asian_War_GUI_jp_supply_dynamic_modifier
+				}
+			}
+
+
+
+
+
+
+			### GAW boot GUI ###
+			set_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 0 }		#启动界面启动阶段，共四个，0为等待输入
+
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 2 }	#启动界面四个解锁按钮状态，1解锁 2锁定
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 2 }
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 2 }
+			set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 2 }
+
+			### GAW frame GUI ###
+		}
+	}
+
+	#封锁立法院
+	TNOLAR_debug_lock_legyuan = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_1 }
+		}
+		complete_effect = {
+			set_country_flag = TNOLAR_CHI_LegYuan_locked
+		}
+	}
+
+	TNOLAR_CHI_show_hide_debug_decisions_2 = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = CHI
+		}
+
+		complete_effect = {
+			if = {
+				limit = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_2 }
+				clr_country_flag = TNOLAR_CHI_hide_debug_decisions_2
+			}
+			else = {
+				set_country_flag = TNOLAR_CHI_hide_debug_decisions_2
+			}
+		}
+	}
+	
+	#主权现代化国策树
+	TNOLAR_debug_load_remaining_modernization_tree = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_2 }
+		}
+		complete_effect = {
+			set_country_flag = CHI_Sovereignty_Reunification
+			clr_global_flag = CHI_Western_Insurrection_Crisis
+			clr_country_flag = CHI_show_western_tree_hidden_middle
+			clr_country_flag = CHI_show_western_tree_hidden_japan
+			clr_country_flag = CHI_Nanjing_Crisis
+			clr_country_flag = CHI_war_with_japan
+
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+
+	#加载GAW预热国策树
+	TNOLAR_debug_load_china_war_prepare_tree = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_2 }
+		}
+		complete_effect = {
+			load_focus_tree = TNOLAR_china_war_prepare_tree
+			set_country_flag = CHI_war_prepare
+			clr_country_flag = CHI_Sovereignty_Reunification
+			clr_country_flag = CHI_Modernization
+			clr_global_flag = CHI_Western_Insurrection_Crisis
+			clr_country_flag = CHI_show_western_tree_hidden_middle
+			clr_country_flag = CHI_show_western_tree_hidden_japan
+			clr_country_flag = CHI_Nanjing_Crisis
+			clr_country_flag = CHI_war_with_japan
+
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+
+	#加载战时国策树
+	TNOLAR_debug_load_china_war_tree = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_2 }
+		}
+		complete_effect = {
+			load_focus_tree = TNOLAR_china_war_tree
+			set_country_flag = CHI_war_with_japan
+			clr_country_flag = CHI_war_prepare
+			clr_country_flag = CHI_Sovereignty_Reunification
+			clr_country_flag = CHI_Modernization
+			clr_global_flag = CHI_Western_Insurrection_Crisis
+			clr_country_flag = CHI_show_western_tree_hidden_middle
+			clr_country_flag = CHI_show_western_tree_hidden_japan
+			clr_country_flag = CHI_Nanjing_Crisis
+
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+
+	#加载战后衔接国策树
+	TNOLAR_debug_load_china_post_war_transition_tree = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_2 }
+		}
+		complete_effect = {
+			load_focus_tree = TNOLAR_china_post_war_Transition_tree
+			clr_country_flag = CHI_war_with_japan
+			clr_country_flag = CHI_war_prepare
+			clr_country_flag = CHI_Sovereignty_Reunification
+			clr_country_flag = CHI_Modernization
+			clr_global_flag = CHI_Western_Insurrection_Crisis
+			clr_country_flag = CHI_show_western_tree_hidden_middle
+			clr_country_flag = CHI_show_western_tree_hidden_japan
+			clr_country_flag = CHI_Nanjing_Crisis
+
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+
+	TNOLAR_CHI_show_hide_debug_decisions_3 = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = CHI
+		}
+
+		complete_effect = {
+			if = {
+				limit = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_3 }
+				clr_country_flag = TNOLAR_CHI_hide_debug_decisions_3
+			}
+			else = {
+				set_country_flag = TNOLAR_CHI_hide_debug_decisions_3
+			}
+		}
+	}
+
+	#触发GAW超事件
+	TNOLAR_debug_fire_GAW_superevent = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_3 }
+		}
+		complete_effect = {
+			set_temp_variable = { TNO_temp_super_event = token:SE_GREAT_ASIAN_WAR_RGOC }
+			TNO_fire_super_event = yes
+		}
+	}
+
+	#跳过四川之争
+	TNOLAR_debug_skip_sichuan = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_3 }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			add_days_mission_timeout = {
+				mission = CHI_WI_Sichuan_tick
+				days = -111
+			}
+			set_variable = { global.GUI_SIC_RGOC_Influence = 100 }
+			set_variable = { global.GUI_SIC_NPA_Influence = -1 }
+		}
+	}
+
+	#跳过前三个现代化
+	TNOLAR_debug_tech_edu_mil_modern = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_3 }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_variable = { edu_efficiency = 5 }
+			set_variable = { edu_modernisation = 1 }
+			set_variable = { tech_self_sufficiency = 5 }
+		}
+	}
+
+	#秘密军队
+	TNOLAR_debug_secret_army_skip = {
+		icon = GFX_decision_generic_industry_indent
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			NOT = { has_country_flag = TNOLAR_CHI_hide_debug_decisions_3 }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_temp_variable = { tempSARecruitment = 100 }
+			CHI_change_sa_recruitment = yes
+			set_temp_variable = { tempSAWeaponry = 100 }
+			CHI_change_sa_weaponry = yes
+			set_temp_variable = { tempSATraining = 100 }
+			CHI_change_sa_training = yes
+		}
+	}
+}

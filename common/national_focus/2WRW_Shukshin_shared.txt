@@ -1531,7 +1531,18 @@ shared_focus = {
 		}
 		army_funding_maximal_increase_low = yes
 		add_war_support = 0.05
-		create_faction = collective_security_treaty_organization
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = collective_security_treaty_organization template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = collective_security_treaty_organization
+}
 		hidden_effect = {
 			add_ideas = CSTO_Guardian_of_Eurasia
 			econ_leave_sphere = yes
@@ -2904,6 +2915,9 @@ shared_focus = {
 shared_focus = {
 	id = NOV_contact_the_partisans
 	icon = GFX_NOV_Rally_the_Partisans
+	bypass = {
+		MAN = { exists = no }
+	}
 	cost = 2
 	available_if_capitulated = no
 	ai_will_do = { factor = 1 }
@@ -2952,8 +2966,12 @@ shared_focus = {
 	id = NOV_raise_hell_in_manchuria
 	icon = GFX_KHA_anarchy_to_vladivostok
 	cost = 1
+	
 	available_if_capitulated = no
 	ai_will_do = { factor = 1 }
+	bypass = {
+		MAN = { exists = no }
+	}
 	prerequisite = {
 		focus = NOV_contact_the_partisans
 	}
@@ -2969,12 +2987,13 @@ shared_focus = {
 			id = NOV_reunification.40
 			days = 1
 		}
-		MAN = {
-			swap_ideas = {
-				remove_idea = RUS_outer_manchurian_partisans
-				add_idea = RUS_outer_manchurian_partisans_two
+			MAN = {
+				swap_ideas = {
+					remove_idea = RUS_outer_manchurian_partisans
+					add_idea = RUS_outer_manchurian_partisans_two
+				}
 			}
-		}
+		
 	}
 }
 

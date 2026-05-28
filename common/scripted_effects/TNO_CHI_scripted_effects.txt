@@ -830,10 +830,6 @@ WI_Japan_is_angry = {
 			}
 			transfer_state_to = JAP
 			remove_core_of = CHI
-			clear_variable = TNO_assoc_region
-			clear_variable = TNO_sub_admin_title
-			clear_variable = TNO_admin_title
-			set_variable = { 810.TNO_admin_title = 31 }
 		}
 	}
 	NCC = {
@@ -978,9 +974,6 @@ WI_Japan_is_angry = {
 			if = {
 				limit = { is_core_of = GNG }
 				transfer_state_to = GNG
-				clear_variable = TNO_assoc_region
-				clear_variable = TNO_sub_admin_title
-				clear_variable = TNO_admin_title
 			}
 		}
 		GNG = { #Guangdong spawns again
@@ -1005,9 +998,6 @@ WI_Japan_is_angry = {
 					NOT = { state = 810 }
 				}
 				transfer_state_to = MAN
-				clear_variable = TNO_assoc_region
-				clear_variable = TNO_sub_admin_title
-				clear_variable = TNO_admin_title
 			}
 		}
 	}
@@ -1219,6 +1209,11 @@ CHI_calc_research_income_change = {
 CHI_calc_edu_cost_change = {
 	add_to_variable = { CHI_edu_misc_costs = CHI_calc_cost }
 	custom_effect_tooltip = CHI_edu_cost_change_tt
+}
+CHI_calc_industry_cost_change_mult = {
+	multiply_temp_variable = { CHI_calc_cost = GDP }
+	add_to_variable = { CHI_industry_misc_costs = CHI_calc_cost }
+	custom_effect_tooltip = CHI_industry_cost_change_tt
 }
 CHI_calc_industry_cost_change = {
 	add_to_variable = { CHI_industry_misc_costs = CHI_calc_cost }

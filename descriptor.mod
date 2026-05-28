@@ -12,5 +12,5 @@ replace_path="localisation/simp_chinese/TNO_Country_Info_Screen_l_simp_chinese.y
 replace_path="localisation/simp_chinese/TNO_Kamchatka_l_simp_chinese.yml"
 replace_path="events/TNO_South_africa.txt"
 supported_version="1.18.*"
-path="D:/Documents/Paradox Interactive/Hearts of Iron IV/mod/2wrw_ter"
+path="C:/Program Files (x86)/Steam/steamapps/workshop/content/3532278099"
 remote_file_id="3532278099"

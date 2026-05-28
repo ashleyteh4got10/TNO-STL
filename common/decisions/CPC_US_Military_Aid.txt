@@ -1,0 +1,845 @@
+US_Military_Aid_category = {
+	CPC_Send_Rifles = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { infantry_equipment > 1999 }
+			}
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+					producer = USA
+				}
+			}
+		}
+	}
+
+	CPC_Send_Support_Equipment = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { support_equipment_1 > 599 }
+			}
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				add_equipment_to_stockpile = {
+					type = support_equipment_1
+					amount = 200
+					producer = USA
+				}
+			}
+		}
+	}
+
+	CPC_Send_AT = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { anti_tank_equipment > 999 }
+			}
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				add_equipment_to_stockpile = {
+					type = anti_tank_equipment
+					amount = 250
+					producer = USA
+				}
+			}
+		}
+	}
+
+	CPC_Send_Arty = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { artillery_equipment > 399 }
+			}
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				add_equipment_to_stockpile = {
+					type = artillery_equipment
+					amount = 180
+					producer = USA
+				}
+			}
+		}
+	}
+
+	CPC_Send_SPG = {
+		visible = {
+			always = yes
+		}
+		available = {
+			USA = {
+				OR = {
+					has_equipment = { MBT_artillery_chassis > 1 }
+					has_equipment = { MBT_artillery_equipment > 1 }
+				}
+            }
+		}
+
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_equipment = { MBT_artillery_chassis > 180 }
+					has_equipment = { MBT_artillery_equipment > 180 }
+				}
+			}
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				if = {
+					limit = {
+						has_dlc = "No Step Back"
+					}
+					add_equipment_to_stockpile = {
+						type = MBT_artillery_chassis
+						amount = 60
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = MBT_artillery_equipment
+						amount = 60
+						producer = USA
+					}
+				}
+			}
+		}
+	}
+
+	CPC_Send_AAA = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { anti_air_equipment > 199 }
+			}
+		}
+
+		cost = 50
+		days_remove = 15
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				add_equipment_to_stockpile = {
+					type = anti_air_equipment
+					amount = 90
+					producer = USA
+				}
+			}
+		}
+	}
+
+	CPC_Send_motor = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { motorized_equipment > 799 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				add_equipment_to_stockpile = {
+					type = motorized_equipment
+					amount = 375
+					producer = USA
+				}
+			}
+		}
+	}
+
+	CPC_Send_AC = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { armored_car_chassis > 99 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				if = {
+					limit = {
+						has_dlc = "No Step Back"
+					}
+					add_equipment_to_stockpile = {
+						type = armored_car_chassis_2
+						amount = 150
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = armored_car_equipment_2
+						amount = 150
+						producer = USA
+					}
+				}
+			}
+		}
+	}
+
+	CPC_Send_APC = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { APC_chassis > 299 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				if = {
+					limit = {
+						has_dlc = "No Step Back"
+					}
+					add_equipment_to_stockpile = {
+						type = APC_chassis_2
+						amount = 100
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = APC_equipment_2
+						amount = 100
+						producer = USA
+					}
+				}
+			}
+		}
+	}
+
+	CPC_Send_IFV = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { IFV_chassis > 229 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				if = { 
+					limit = { 
+						has_dlc = "No Step Back"
+					}
+					add_equipment_to_stockpile = {
+						type = IFV_chassis_2
+						amount = 75
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = IFV_equipment_2
+						amount = 75
+						producer = USA
+					}
+				}
+			}
+		}
+	}
+
+	CPC_Send_MBT = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { MBT_chassis > 149 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				if = { 
+					limit = { 
+						has_dlc = "No Step Back"
+					}
+					add_equipment_to_stockpile = {
+						type = MBT_chassis_2
+						amount = 50
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = MBT_equipment_2
+						amount = 50
+						producer = USA
+					}
+				}
+			}
+		}
+	}
+
+	CPC_Send_Fighters = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { fighter_equipment > 100 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				if = { 
+					limit = {
+						OR = {
+							USA = { has_tech = fighter_1970 }
+							CPC = { has_tech = fighter_1960 }
+						}
+					}
+					add_equipment_to_stockpile = {
+						type = jet_fighter_equipment_2
+						amount = 50
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = jet_fighter_equipment_1
+						amount = 50
+						producer = USA
+					}
+				}
+			}
+		}
+	}
+
+	CPC_Send_Tac_Bombers = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { tac_bomber_equipment > 100 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				if = { 
+					limit = { 
+						OR = {
+							USA = { has_tech = tac_air_1970 }
+							CPC = { has_tech = tac_air_1960 }
+						}
+					}
+					add_equipment_to_stockpile = {
+						type = jet_tac_bomber_equipment_2
+						amount = 50
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = jet_tac_bomber_equipment_1
+						amount = 50
+						producer = CAN
+					}
+				}
+			}
+		}
+	}
+
+	CPC_Send_Heli = {
+		visible = {
+			always = yes
+		}
+		available = {
+			OR = {
+				has_tech = paratroopers
+				has_tech = early_helicopter
+			}
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { transport_helicopter_equipment > 100 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+
+		remove_effect = {
+			CPC = {
+				if = { 
+					limit = { 
+						has_tech = attack_helicopter_1960
+					}
+					add_equipment_to_stockpile = {
+						type = attack_helicopter_equipment_1
+						amount = 30
+						producer = USA
+					}
+					add_equipment_to_stockpile = {
+						type = transport_helicopter_equipment_1
+						amount = 60
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = transport_helicopter_equipment_1
+						amount = 60
+						producer = USA
+					}
+				}
+			}
+		}
+	}
+
+	CPC_New_Toy = {
+		visible = {
+			USA = { has_tech = infantry_aa2 }
+		}
+		available = {
+			USA = { has_tech = infantry_aa2 }
+		}
+		ai_will_do = {
+			base = 0
+            modifier = {
+				add = 10
+				num_of_factories > 35
+			}
+		}
+
+		cost = 0
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = TER_MOD_CPC.2
+			CPC = {
+				set_technology = { infantry_aa2 = 1 }
+				add_equipment_to_stockpile = {
+						type = anti_air_shoulder_equipment_1
+						amount = 200
+						producer = USA
+				}
+			}
+		}
+	}
+
+	CPC_Send_MANPADS = {
+		visible = {
+			CPC = { has_tech = infantry_aa2 }
+		}
+		available = {
+			USA = { has_tech = infantry_aa2 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				has_equipment = { anti_air_shoulder_equipment > 149 }
+			}
+		}
+
+		cost = 50
+		days_remove = 30
+		days_re_enable = 60
+		complete_effect = {
+		}
+		remove_effect = {
+			CPC = {
+				add_equipment_to_stockpile = {
+						type = anti_air_shoulder_equipment_1
+						amount = 200
+						producer = USA
+				}
+			}
+		}
+	}
+
+	CPC_M50ontos_NSB = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 0
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = TER_MOD_CPC.3
+			set_technology = { NSB_IFV_1960 = 1 }
+			create_equipment_variant = {
+				name = "[IFV]M50 Ontos"
+				type = IFV_chassis_2
+				parent_version = 0
+				modules = {
+					main_armament_slot = TER_unique_106_M40x6
+					turret_type_slot = IFV_fixed_superstructure_turret
+					suspension_type_slot = tank_torsion_bar_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_gasoline_engine
+					special_type_slot_1 = expanded_fuel_capacity
+					special_type_slot_2 = additional_machine_guns
+				}
+				icon = GFX_CPC_M50_Ontos_medium
+				upgrades = {
+					tank_nsb_engine_upgrade = 5
+					tank_nsb_armor_upgrade = 0
+				}
+			}	
+		}
+	}
+
+	CPC_MBT60_NSB = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 0
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+		}
+		remove_effect = {
+			set_technology = { NSB_MBT_1960 = 1 }
+			#create_equipment_variant = {
+			#	name = "[MBT]M95A1 Thomas"
+			#	type = MBT_chassis_2
+			#	parent_version = 0
+			#	modules = {
+			#		main_armament_slot = TER_unique_90_T208
+			#		turret_type_slot = MBT_three_man_tank_turret
+			#		suspension_type_slot = tank_torsion_bar_suspension
+			#		armor_type_slot = tank_cast_armor
+			#		engine_type_slot = tank_diesel_engine
+			#		special_type_slot_1 = tank_radio_1
+			#		special_type_slot_2 = command_optics
+			#		special_type_slot_3 = secondary_turret_hmg
+			#	}
+			#	icon = GFX_USA_MBT_1960_medium
+			#	upgrades = {
+			#		tank_nsb_engine_upgrade = 10
+			#		tank_nsb_armor_upgrade = 10
+			#	}
+			#}
+			create_equipment_variant = {
+				name = "[MBT]M47M"
+				type = MBT_chassis_2
+				parent_version = 1
+				modules = {
+					main_armament_slot = TER_unique_90_M41
+					turret_type_slot = MBT_three_man_tank_turret
+					suspension_type_slot = tank_torsion_bar_suspension
+					armor_type_slot = tank_cast_armor
+					engine_type_slot = tank_diesel_engine
+					special_type_slot_1 = tank_radio_1
+					special_type_slot_2 = additional_machine_guns
+				}
+				icon = GFX_CPC_MBT_1960_Alt_medium
+				upgrades = {
+					tank_nsb_engine_upgrade = 7
+					tank_nsb_armor_upgrade = 4
+				}
+			}
+		}
+	}
+
+	CPC_Fly_Tigers_Reborn = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 0
+		days_remove = 180
+		fire_only_once = yes
+		complete_effect = {
+		}
+		remove_effect = {
+			country_event = TER_MOD_CPC.1
+			CPC = {
+				if = { 
+					limit = { 
+						OR = {
+							USA = { has_tech = fighter_1970 }
+							CPC = { has_tech = fighter_1960 }
+						}
+					}
+					add_equipment_to_stockpile = {
+						type = jet_fighter_equipment_2
+						amount = 120
+						producer = USA
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = jet_fighter_equipment_1
+						amount = 120
+						producer = USA
+					}
+				}
+			}
+		}
+	}
+
+	CPC_Air_Assault_Unlock = {
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		ai_will_do = {
+			factor = 100
+		}
+
+		cost = 0
+		days_remove = 360
+		fire_only_once = yes
+		complete_effect = {
+			add_manpower = -1000
+		}
+		remove_effect = {
+			set_technology = { paratroopers = 1 }
+			set_technology = { paratroopers2 = 1 }
+			add_manpower = 1000
+			add_equipment_to_stockpile = {
+				type = transport_helicopter_equipment_1
+				amount = 60
+				producer = USA
+			}
+		}
+	}
+}
+
+TER_USA_ai_dec_category = {
+	USA_AI_dec_inf_aa1 = { #AI自动解锁MANPADS
+		ai_will_do = {
+			base = 100
+		}
+		visible = {
+			always = yes
+		}
+		available = {
+		}
+		days_remove = 7
+		fire_only_once = yes
+		complete_effect = {
+			set_technology = { infantry_aa1 = 1 }
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = anti_air_shoulder_equipment_0
+				amount = 1200
+				producer = USA
+			}
+		}
+	}
+	USA_AI_dec_inf_aa2 = { #AI自动解锁MANPADS
+		ai_will_do = {
+			base = 100
+		}
+		visible = {
+			always = yes
+		}
+		available = {
+			date > 1965.1.1
+		}
+		days_remove = 7
+		fire_only_once = yes
+		complete_effect = {
+			set_technology = { infantry_aa2 = 1 }
+		}
+		remove_effect = {
+			add_equipment_to_stockpile = {
+				type = anti_air_shoulder_equipment_1
+				amount = 1200
+				producer = USA
+			}
+		}
+	}
+}

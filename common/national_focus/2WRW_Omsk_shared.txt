@@ -5712,11 +5712,34 @@ shared_focus = {
 	completion_reward = {
 		add_political_power = 50
 		log = "[GetDateText]: [Root.GetName]: Focus OMS_sacrifices_made" 
-		create_faction = Postnuke_OMSK_faction
+
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = Postnuke_OMSK_faction template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = Postnuke_OMSK_faction
+}
 		add_ideas = OMSK_faction_omsk_leader
 		hidden_effect = {
 			WRS = {
-				create_faction = Postnuke_ANTI_OMSK_faction
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = Postnuke_ANTI_OMSK_faction template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = Postnuke_ANTI_OMSK_faction
+}
 				add_ideas = ANTI_OMSK_faction_member
 				transfer_state = 868
 				transfer_state = 397

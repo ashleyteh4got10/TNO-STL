@@ -1,0 +1,845 @@
+CHI_Arms_Trade_category = {
+    CHI_buy_JAP_inf = {
+        available = {
+            JAP = {
+                has_equipment = {
+                        infantry_equipment > 1999
+                }
+            }
+        }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				add = 10
+				stockpile_ratio = {
+					archetype = infantry_equipment
+					ratio > 0.1
+				}
+			}
+			modifier = {
+				add = 6
+				stockpile_ratio = {
+					archetype = infantry_equipment
+					ratio > 0.2
+				}
+			}
+			modifier = {
+				add = 4
+				stockpile_ratio = {
+					archetype = infantry_equipment
+					ratio > 0.3
+				}
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 15
+        days_re_enable = 30
+
+        complete_effect = {
+            set_temp_variable = { money_reserves_temp = -0.15 }
+            econ_money_reserves_change_raw_money = yes
+        }
+        remove_effect = {
+            add_equipment_to_stockpile = {
+                    type = infantry_equipment
+                    amount = 2000
+                    producer = JAP
+                }
+            # TNO_worsen_industrial_expertise_low = yes
+            add_to_variable = { industrial_equipment_counter = -5 }
+            add_to_variable = { industrial_expertise_counter = -5 }
+            add_to_variable = { admin_efficiency_counter = -5 }
+            JAP = {
+                set_temp_variable = { money_reserves_temp = 0.1 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+    }
+
+    CHI_buy_JAP_Support_Equipment = {
+        available = {
+            JAP = {
+                has_equipment = {
+                        support_equipment_1 > 399
+                }
+            }
+        }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				add = 10
+				stockpile_ratio = {
+					archetype = support_equipment_1
+					ratio > 0.1
+				}
+			}
+			modifier = {
+				add = 6
+				stockpile_ratio = {
+					archetype = support_equipment_1
+					ratio > 0.2
+				}
+			}
+			modifier = {
+				add = 4
+				stockpile_ratio = {
+					archetype = support_equipment_1
+					ratio > 0.3
+				}
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 15
+        days_re_enable = 30
+
+        complete_effect = {
+            set_temp_variable = { money_reserves_temp = -0.1 }
+            econ_money_reserves_change_raw_money = yes
+        }
+        remove_effect = {
+            add_equipment_to_stockpile = {
+                    type = support_equipment_1
+                    amount = 200
+                    producer = JAP
+            }
+            # TNO_worsen_industrial_expertise_low = yes
+            add_to_variable = { industrial_equipment_counter = -5 }
+            add_to_variable = { industrial_expertise_counter = -5 }
+            add_to_variable = { admin_efficiency_counter = -5 }
+            JAP = {
+                set_temp_variable = { money_reserves_temp = 0.075 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+    }
+
+    CHI_buy_JAP_mot = {
+        available = {
+            JAP = {
+                has_equipment = {
+                        motorized_equipment > 399
+                }
+            }
+        }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				add = 10
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.1
+				}
+			}
+			modifier = {
+				add = 6
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.2
+				}
+			}
+			modifier = {
+				add = 4
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.3
+				}
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 15
+        days_re_enable = 30
+
+        complete_effect = {
+            set_temp_variable = { money_reserves_temp = -0.2 }
+            econ_money_reserves_change_raw_money = yes
+        }
+        remove_effect = {
+            add_equipment_to_stockpile = {
+                    type = motorized_equipment
+                    amount = 200
+                    producer = JAP
+            }
+            # TNO_worsen_industrial_expertise_low = yes
+            add_to_variable = { industrial_equipment_counter = -5 }
+            add_to_variable = { industrial_expertise_counter = -5 }
+            add_to_variable = { admin_efficiency_counter = -5 }
+            JAP = {
+                set_temp_variable = { money_reserves_temp = 0.15 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+    }
+
+    CHI_buy_JAP_at = {
+        available = {
+           BUR = { exists = no }
+           CAM = { exists = no }
+           VIN = { exists = no }
+        }
+        visible = {
+            BUR = { exists = no }
+            CAM = { exists = no }
+            VIN = { exists = no }
+        }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				add = 10
+                stockpile_ratio = {
+                    archetype = Anti_tank_equipment
+                    ratio > 0.1
+                }
+			}
+			modifier = {
+				add = 6
+				stockpile_ratio = {
+                    archetype = Anti_tank_equipment
+                    ratio > 0.2
+                }
+			}
+			modifier = {
+				add = 4
+                stockpile_ratio = {
+                    archetype = Anti_tank_equipment
+                    ratio > 0.3
+                }
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 15
+        days_re_enable = 30
+
+        complete_effect = {
+            set_temp_variable = { money_reserves_temp = -0.3 }
+            econ_money_reserves_change_raw_money = yes
+        }
+        remove_effect = {
+            add_equipment_to_stockpile = {
+                    type = Anti_tank_equipment
+                    amount = 500
+                    producer = JAP
+                }
+            # TNO_worsen_industrial_expertise_low = yes
+            add_to_variable = { industrial_equipment_counter = -5 }
+            add_to_variable = { industrial_expertise_counter = -5 }
+            add_to_variable = { admin_efficiency_counter = -5 }
+            JAP = {
+                set_temp_variable = { money_reserves_temp = 0.2 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+    }
+
+    CHI_buy_JAP_arty = {
+        available = {
+           BUR = { exists = no }
+           CAM = { exists = no }
+           VIN = { exists = no }
+        }
+        visible = {
+            BUR = { exists = no }
+            CAM = { exists = no }
+            VIN = { exists = no }
+        }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				add = 10
+                stockpile_ratio = {
+                    archetype = artillery_equipment
+                    ratio > 0.1
+                }
+			}
+			modifier = {
+				add = 6
+				stockpile_ratio = {
+                    archetype = artillery_equipment
+                    ratio > 0.2
+                }
+			}
+			modifier = {
+				add = 4
+                stockpile_ratio = {
+                    archetype = artillery_equipment
+                    ratio > 0.3
+                }
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 15
+        days_re_enable = 30
+
+        complete_effect = {
+            set_temp_variable = { money_reserves_temp = -0.2 }
+            econ_money_reserves_change_raw_money = yes
+        }
+        remove_effect = {
+            add_equipment_to_stockpile = {
+                    type = artillery_equipment
+                    amount = 150
+                    producer = JAP
+                }
+            # TNO_worsen_industrial_expertise_low = yes
+            add_to_variable = { industrial_equipment_counter = -5 }
+            add_to_variable = { industrial_expertise_counter = -5 }
+            add_to_variable = { admin_efficiency_counter = -5 }
+            JAP = {
+                set_temp_variable = { money_reserves_temp = 0.15 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+    }
+
+    CHI_buy_JAP_APC = {
+        available = {
+           BUR = { exists = no }
+           CAM = { exists = no }
+           VIN = { exists = no }
+        }
+        visible = {
+            BUR = { exists = no }
+            CAM = { exists = no }
+            VIN = { exists = no }
+        }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				add = 10
+                OR = {
+                    stockpile_ratio = {
+                        archetype = APC_equipment
+                        ratio > 0.1
+                    }
+                    stockpile_ratio = {
+                        archetype = APC_chassis
+                        ratio > 0.1
+                    }
+                }    
+			}
+			modifier = {
+				add = 6
+				OR = {
+                    stockpile_ratio = {
+                        archetype = APC_equipment
+                        ratio > 0.2
+                    }
+                    stockpile_ratio = {
+                        archetype = APC_chassis
+                        ratio > 0.2
+                    }
+                } 
+			}
+			modifier = {
+				add = 4
+				OR = {
+                    stockpile_ratio = {
+                        archetype = APC_equipment
+                        ratio > 0.3
+                    }
+                    stockpile_ratio = {
+                        archetype = APC_chassis
+                        ratio > 0.3
+                    }
+                } 
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 15
+        days_re_enable = 30
+
+        complete_effect = {
+            set_temp_variable = { money_reserves_temp = -0.2 }
+            econ_money_reserves_change_raw_money = yes
+        }
+        remove_effect = {
+            if = { 
+					limit = { 
+						has_dlc = "No Step Back"
+					}
+					add_equipment_to_stockpile = {
+						type = APC_chassis_2
+						amount = 200
+						producer = JAP
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = APC_equipment_2
+						amount = 200
+						producer = JAP
+					}
+				}
+            # TNO_worsen_industrial_expertise_low = yes
+            add_to_variable = { industrial_equipment_counter = -5 }
+            add_to_variable = { industrial_expertise_counter = -5 }
+            add_to_variable = { admin_efficiency_counter = -5 }
+            JAP = {
+                set_temp_variable = { money_reserves_temp = 0.15 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+    }
+
+    CHI_buy_JAP_MBT = {
+        available = {
+           BUR = { exists = no }
+           CAM = { exists = no }
+           VIN = { exists = no }
+        }
+        visible = {
+            BUR = { exists = no }
+            CAM = { exists = no }
+            VIN = { exists = no }
+        }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				add = 10
+                OR = {
+                    stockpile_ratio = {
+                        archetype = MBT_equipment
+                        ratio > 0.1
+                    }
+                    stockpile_ratio = {
+                        archetype = mbt_chassis
+                        ratio > 0.1
+                    }
+                }    
+			}
+			modifier = {
+				add = 6
+				OR = {
+                    stockpile_ratio = {
+                        archetype = MBT_equipment
+                        ratio > 0.2
+                    }
+                    stockpile_ratio = {
+                        archetype = mbt_chassis
+                        ratio > 0.2
+                    }
+                } 
+			}
+			modifier = {
+				add = 4
+				OR = {
+                    stockpile_ratio = {
+                        archetype = MBT_equipment
+                        ratio > 0.3
+                    }
+                    stockpile_ratio = {
+                        archetype = mbt_chassis
+                        ratio > 0.3
+                    }
+                } 
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 15
+        days_re_enable = 30
+
+        complete_effect = {
+            set_temp_variable = { money_reserves_temp = -0.2 }
+            econ_money_reserves_change_raw_money = yes
+        }
+        remove_effect = {
+            if = { 
+					limit = { 
+						has_dlc = "No Step Back"
+					}
+					add_equipment_to_stockpile = {
+						type = MBT_chassis_2
+						amount = 75
+						producer = JAP
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = MBT_equipment_2
+						amount = 75
+						producer = JAP
+					}
+				}
+            # TNO_worsen_industrial_expertise_low = yes
+            add_to_variable = { industrial_equipment_counter = -5 }
+            add_to_variable = { industrial_expertise_counter = -5 }
+            add_to_variable = { admin_efficiency_counter = -5 }
+            JAP = {
+                set_temp_variable = { money_reserves_temp = 0.15 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+    }
+
+}    
+
+CPC_Black_Market_category = {
+    CPC_smuggle_CHI_inf = {
+        available = {
+            CHI = {
+                has_equipment = {
+                        infantry_equipment > 2000
+                }
+            }
+        }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				factor = 0
+				check_variable = { debt_to_GDP_ratio > 0.1 }
+			}
+            modifier = {
+				add = 5
+				stockpile_ratio = {
+					archetype = infantry_equipment
+					ratio > 0.2
+				}
+			}
+			modifier = {
+				add = 3
+				stockpile_ratio = {
+					archetype = infantry_equipment
+					ratio > 0.4
+				}
+			}
+			modifier = {
+				add = 0
+				stockpile_ratio = {
+					archetype = infantry_equipment
+					ratio > 0.6
+				}
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 30
+        days_re_enable = 150
+        cost = 25
+
+        complete_effect = {
+            #CPC = {
+            #    set_temp_variable = { money_reserves_temp = -0.1 }
+            #    econ_money_reserves_change_raw_money = yes
+            #}
+            CHI = {
+                add_equipment_to_stockpile = {
+				    type = infantry_equipment
+				    amount = -2000
+			    }
+                add_to_variable = { admin_efficiency_counter = -15 }
+                add_to_variable = { army_professionalism_counter = -15 }
+            }
+        }
+
+        remove_effect = {
+            CPC = {
+                add_equipment_to_stockpile = {
+				    type = infantry_equipment
+				    amount = 1500
+                    producer = CHI
+                }
+            }
+        }
+    }
+
+    CPC_smuggle_CHI_at = {
+        available = {
+            CHI = {
+                has_equipment = {
+                        Anti_tank_equipment > 501
+                }
+            }
+        }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				factor = 0
+				check_variable = { debt_to_GDP_ratio > 0.1 }
+			}
+            modifier = {
+				add = 5
+				stockpile_ratio = {
+					archetype = Anti_tank_equipment
+					ratio > 0.2
+				}
+			}
+			modifier = {
+				add = 3
+				stockpile_ratio = {
+					archetype = Anti_tank_equipment
+					ratio > 0.4
+				}
+			}
+			modifier = {
+				add = 0
+				stockpile_ratio = {
+					archetype = Anti_tank_equipment
+					ratio > 0.6
+				}
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 30
+        days_re_enable = 150
+        cost = 25
+
+        complete_effect = {
+            #CPC = {
+            #    set_temp_variable = { money_reserves_temp = -0.15 }
+            #    econ_money_reserves_change_raw_money = yes
+            #}
+            CHI = {
+                add_equipment_to_stockpile = {
+				    type = Anti_tank_equipment
+				    amount = -500
+			    }
+                add_to_variable = { admin_efficiency_counter = -15 }
+                add_to_variable = { army_professionalism_counter = -15 }
+            }
+        }
+
+        remove_effect = {
+            CPC = {
+                add_equipment_to_stockpile = {
+				    type = Anti_tank_equipment
+				    amount = 400
+                    producer = CHI
+                }
+            }
+        }
+    }
+
+    CPC_smuggle_CHI_mot = {
+        available = {
+            CHI = {
+                has_equipment = {
+                        motorized_equipment > 501
+                }
+            }
+        }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				factor = 0
+				check_variable = { debt_to_GDP_ratio > 0.1 }
+			}
+            modifier = {
+				add = 5
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.2
+				}
+			}
+			modifier = {
+				add = 3
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.4
+				}
+			}
+			modifier = {
+				add = 0
+				stockpile_ratio = {
+					archetype = motorized_equipment
+					ratio > 0.6
+				}
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 30
+        days_re_enable = 150
+        cost = 25
+
+        complete_effect = {
+            #CPC = {
+            #    set_temp_variable = { money_reserves_temp = -0.2 }
+            #    econ_money_reserves_change_raw_money = yes
+            #}
+            CHI = {
+                add_equipment_to_stockpile = {
+				    type = motorized_equipment
+				    amount = -500
+			    }
+                add_to_variable = { admin_efficiency_counter = -15 }
+                add_to_variable = { army_professionalism_counter = -15 }
+            }
+        }
+
+        remove_effect = {
+            CPC = {
+                add_equipment_to_stockpile = {
+				    type = motorized_equipment
+				    amount = 300
+                    producer = CHI
+                }
+            }
+        }
+    }
+
+    CPC_smuggle_CHI_Support_Equipment = {
+        available = {
+            CHI = {
+                has_equipment = {
+                        support_equipment_1 > 200
+                }
+            }
+        }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 0
+            modifier = {
+				factor = 0
+				check_variable = { debt_to_GDP_ratio > 0.1 }
+			}
+            modifier = {
+				add = 5
+				stockpile_ratio = {
+					archetype = support_equipment
+					ratio > 0.2
+				}
+			}
+			modifier = {
+				add = 3
+				stockpile_ratio = {
+					archetype = support_equipment
+					ratio > 0.4
+				}
+			}
+			modifier = {
+				add = 0
+				stockpile_ratio = {
+					archetype = support_equipment
+					ratio > 0.6
+				}
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 30
+        days_re_enable = 150
+        cost = 25
+
+        complete_effect = {
+            #CPC = {
+            #    set_temp_variable = { money_reserves_temp = -0.1 }
+            #    econ_money_reserves_change_raw_money = yes
+            #}
+            CHI = {
+                add_equipment_to_stockpile = {
+				    type = support_equipment_1
+				    amount = -200
+			    }
+                add_to_variable = { admin_efficiency_counter = -15 }
+                add_to_variable = { army_professionalism_counter = -15 }
+            }
+        }
+
+        remove_effect = {
+            CPC = {
+                add_equipment_to_stockpile = {
+				    type = support_equipment_1
+				    amount = 150
+                    producer = CHI
+                }
+            }
+        }
+    }
+
+    CPC_invite_CHI_Scholar = {
+        available = { always = yes }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 1
+            modifier = {
+				factor = 0
+				check_variable = { debt_to_GDP_ratio > 0.1 }
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 120
+        days_re_enable = 60
+        cost = 50
+
+        complete_effect = {
+            CPC = {
+                set_temp_variable = { money_reserves_temp = -0.005 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+
+        remove_effect = {
+            CPC = {
+                TNO_improve_research_facilities_low = yes
+				add_to_variable = { research_facilities_counter = 5 }
+				add_to_variable = { academic_base_counter = 5 }
+            }
+            CHI = {
+                # TNO_worsen_research_facilities_low = yes
+                add_to_variable = { research_facilities_counter = -15 }
+            }
+        }
+    }
+
+    CPC_invite_CHI_Workers = {
+        available = { always = yes }
+        visible = { always = yes }
+
+        ai_will_do = {
+			base = 1
+            modifier = {
+				factor = 0
+				check_variable = { debt_to_GDP_ratio > 0.1 }
+			}
+		}
+
+	    fire_only_once = no
+        days_remove = 120
+        days_re_enable = 60
+        cost = 75
+
+        complete_effect = {
+            CPC = {
+                set_temp_variable = { money_reserves_temp = -0.003 }
+                econ_money_reserves_change_raw_money = yes
+            }
+        }
+
+        remove_effect = {
+            CPC = {
+                TNO_improve_industrial_expertise_low = yes
+				add_to_variable = { industrial_expertise_counter = 5 }
+            }
+            CHI = {
+                # TNO_worsen_industrial_expertise_low = yes
+                add_to_variable = { industrial_expertise_counter = -15 }
+            }
+        }
+    }
+}    

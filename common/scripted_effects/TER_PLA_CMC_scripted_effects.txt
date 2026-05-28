@@ -19,7 +19,7 @@ TER_PLA_CMC_initialization = {
 
 	set_variable = { CPC_PLA_army_ad_factor = -0.05 }
 	set_variable = { CPC_PLA_army_speed_factor = 0 }
-	set_variable = { CPC_PLA_supply_factor = 0 }
+	set_variable = { CPC_PLA_supply_consumption_factor = 0 }
 	set_variable = { CPC_PLA_breakthrough_factor = 0 }
 	set_variable = { CPC_PLAAF_dummy_num = 0.4 }
 
@@ -158,7 +158,7 @@ TER_PLA_CMC_reform_proj_complete_effect = {
 			set_temp_variable = { CMC_xp_gain_tmp = 0.05 }
 			set_temp_variable = { CMC_xp_loss_tmp = -0.1 }
 			set_temp_variable = { CMC_lrr_tmp = 0.1 }
-			set_temp_variable = { CMC_sf_tmp = 0.05 }
+			set_temp_variable = { CMC_scf_tmp = -0.05 }
 			set_temp_variable = { money_reserves_temp = -0.5 }
 			econ_money_reserves_change_raw_money = yes
 		}
@@ -177,7 +177,7 @@ TER_PLA_CMC_reform_proj_complete_effect = {
 				category = motorized_equipment 
 			}
 			set_temp_variable = { CMC_army_s_tmp = 0.15 }
-			set_temp_variable = { CMC_sf_tmp = 0.05 }
+			set_temp_variable = { CMC_scf_tmp = -0.05 }
 			set_temp_variable = { money_reserves_temp = -0.1 }
 			econ_money_reserves_change_raw_money = yes
 		}
@@ -189,7 +189,7 @@ TER_PLA_CMC_reform_proj_complete_effect = {
 				category = motorized_equipment 
 			}
 			set_temp_variable = { CMC_army_ad_tmp = 0.05 }
-			set_temp_variable = { CMC_sf_tmp = 0.05 }
+			set_temp_variable = { CMC_scf_tmp = -0.05 }
 			set_temp_variable = { money_reserves_temp = -0.1 }
 			econ_money_reserves_change_raw_money = yes
 		}
@@ -270,7 +270,7 @@ TER_PLA_CMC_reform_proj_complete_effect = {
 				category = APC 
 			}
 			set_temp_variable = { CMC_army_s_tmp = 0.05 }
-			set_temp_variable = { CMC_sf_tmp = 0.1 }
+			set_temp_variable = { CMC_scf_tmp = -0.1 }
 			set_temp_variable = { money_reserves_temp = -0.5 }
 			econ_money_reserves_change_raw_money = yes
 		}
@@ -287,7 +287,7 @@ TER_PLA_CMC_reform_proj_complete_effect = {
 				category = APC_art 
 			}
 			set_temp_variable = { CMC_army_ad_tmp = 0.075 }
-			set_temp_variable = { CMC_sf_tmp = 0.025 }
+			set_temp_variable = { CMC_scf_tmp = -0.025 }
 			set_temp_variable = { money_reserves_temp = -0.2 }
 			econ_money_reserves_change_raw_money = yes
 		}
@@ -374,8 +374,8 @@ TER_PLA_CMC_add_modifier_effect = {
 		custom_effect_tooltip = "TER_CMC_army_s_tt"
 	}
 	if = { 
-		limit = { NOT = { check_variable = { CMC_sf_tmp = 0 } } }
-		add_to_variable = { CPC_PLA_supply_factor = CMC_sf_tmp }
+		limit = { NOT = { check_variable = { CMC_scf_tmp = 0 } } }
+		add_to_variable = { CPC_PLA_supply_consumption_factor = CMC_scf_tmp }
 		custom_effect_tooltip = "TER_CMC_sf_tt"
 	}
 	if = { 
@@ -703,7 +703,7 @@ TER_NADT_complete_sp_tech_proj = {
 	}
 	else_if = {
 		limit = { check_variable = { proj_name_tmp = token:NADT_proj_6_left } }
-		set_technology = { ter_air_assault_tech = 1 }
+		set_technology = { paratroopers = 1 }
 		set_temp_variable = { CMC_training_time_tmp = -0.1 }
 		TER_PLA_CMC_add_modifier_effect = yes
 	}
@@ -838,7 +838,7 @@ TER_NADT_complete_sp_tech_proj = {
 				}
 			}
 		}
-		set_temp_variable = { CMC_sf_tmp = 0.05 }
+		set_temp_variable = { CMC_scf_tmp = -0.05 }
 		TER_PLA_CMC_add_modifier_effect = yes
 		add_equipment_to_stockpile = {
 			type = motorized_equipment

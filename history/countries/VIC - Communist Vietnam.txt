@@ -7,15 +7,15 @@ recruit_character = VIC_Generic_Vacant
 
 recruit_character = VIC_Ho_Chi_Minh
 recruit_character = VIC_Truong_Chinh
-recruit_character = VIC_Pham_Van_Dong 
-recruit_character = VIC_Vo_Nguyen_Giap 
-recruit_character = VIC_Do_Muoi 
+recruit_character = VIC_Pham_Van_Dong
+recruit_character = VIC_Vo_Nguyen_Giap
+recruit_character = VIC_Do_Muoi
 recruit_character = VIC_Dang_Viet_Chau
 recruit_character = VIC_Nguyen_Yen_Sa
 
 
 oob = "VIC_1962"
-
+set_country_flag = TNO_eliminate_military_spending
 set_politics = {
 	ruling_party = socialist
 	last_election = "1960.11.11"
@@ -40,7 +40,7 @@ set_technology = {
 	##INFANTRY##
 	infantry_weapons_1 = 1
 	night_vision_1 = 1
-	
+
 	infantry_kit_1 = 1
 	infantry_weapons_2 = 1
 	night_vision_2 = 1
@@ -64,19 +64,19 @@ set_technology = {
 	tech_recon = 1
 	tech_recon2 = 1
 	##ARTY##
-	
-	
+	artillery_1945 = 1
+	antiair_1945 = 1
 	##ARMOR##
-	
-	
-	
+	IFV_1945 = 1
+	MBT_1945 = 1
+	APC_1945 = 1
 
 	APC_1950 = 1
 	APC_1950_basic_turret = 1
 	#APC_1950_basic_engine = 1
 
 	IFV_1950 = 1
-	
+
 	MBT_1950 = 1
 
 	AC_1945 = 1
@@ -110,6 +110,42 @@ set_technology = {
 	military_construction_1 = 1
 }
 
+# NSB tech #
+
+if = {
+    limit = {
+        NOT = { has_dlc = "No Step Back" }
+    }
+    set_technology = {
+         AC_1945 = 1
+		 AC_1950 = 1        
+         APC_1945 = 1
+         APC_1950 = 1
+		 IFV_1945 = 1
+         IFV_1950 = 1
+		 MBT_1945 = 1
+         
+         artillery_1950 = 1
+    }
+}
+if = {
+    limit = {
+        has_dlc = "No Step Back"
+    }
+    set_technology = {
+        NSB_AC_1945 = 1
+		NSB_AC_1950 = 1
+		NSB_APC_1945 = 1
+        NSB_APC_1950 = 1
+        NSB_IFV_1945 = 1
+        NSB_IFV_1950 = 1        
+        NSB_MBT_1945 = 1
+
+        NSB_artillery_1945 = 1
+        NSB_artillery_1950 = 1
+    }
+}
+
 add_ideas = {
 	#Ideas
 	Member_of_the_United_Front_international
@@ -117,22 +153,22 @@ add_ideas = {
 	VIC_20_years_of_resistance
 	VIC_victory_in_lang_son
 	VIC_comrades_from_the_north
-	
+
 	#Ministers
 	VIC_Truong_Chinh_hog
 	VIC_Pham_Van_Dong_for
 	VIC_Do_Muoi_eco
 	VIC_Vo_Nguyen_Giap_sec
-	
+
 	#POLITICAL
-	tno_political_parties_multiparty_system
+	tno_political_parties_one_party_state
 	tno_religious_rights_pluralism
 	tno_trade_unions_nonsocialist_allowed
 	tno_immigration_closed_borders
 	tno_slavery_penal_labor
 	tno_public_meetings_regulated
 	tno_press_rights_censored_press
-	tno_vote_franchise_registered_voting
+	tno_vote_franchise_no_voting
 	#MILITARY
 	tno_conscription_limited_conscription
 	tno_military_supervision_rules_of_engagement
@@ -207,3 +243,185 @@ set_variable = { tno_conscription_effectiveness = 45 }
 set_variable = { tno_military_supervision_effectiveness = 30 }
 set_variable = { tno_training_effectiveness = 70 }
 set_variable = { tno_draft_exemptions_effectiveness = 65 }
+
+# NSB #
+if = {
+	limit = {
+		has_dlc = "No Step Back"
+	}
+	create_equipment_variant = {
+		name = "Type 49A"
+		type = armored_car_chassis_1
+		parent_version = 0
+		modules = {
+			main_armament_slot = tank_heavy_machine_gun
+			turret_type_slot = AC_two_man_tank_turret
+			suspension_type_slot = tank_wheeled_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = additional_machine_guns
+		}
+		icon = GFX_CPC_AC_1950_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 56 APC"
+		type = APC_chassis_1
+		parent_version = 0
+		modules = {
+			APC_designation_slot = APC_infantry
+			APC_armament_slot = APC_infantry_weapon_2
+			suspension_type_slot = tank_half_track_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = expanded_fuel_capacity
+		}		
+		icon = GFX_CPC_APC_1950_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 4
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 56 AFV"
+		type = IFV_chassis_1
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_37_Type100
+			turret_type_slot = IFV_two_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+		}
+		icon = GFX_CPC_IFV_1950_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 4
+			tank_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 47"
+		type = MBT_chassis_0
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_unique_47_Type1
+			turret_type_slot = MBT_two_man_tank_turret
+			suspension_type_slot = tank_bogie_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = additional_machine_guns
+		}
+		icon = GFX_CPC_MBT_1945_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 5
+			tank_nsb_armor_upgrade = 2
+		}
+	}
+
+	create_equipment_variant = {
+		name = "Type 58"
+		type = MBT_chassis_1
+		parent_version = 0
+		modules = {
+			main_armament_slot = MBT_cannon
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+		}
+		icon = GFX_CPC_MBT_1950_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 6
+			tank_nsb_armor_upgrade = 6
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 49A2"
+		type = armored_car_chassis_2
+		parent_version = 0
+		modules = {
+			main_armament_slot = tank_heavy_machine_gun
+			turret_type_slot = AC_two_man_tank_turret
+			suspension_type_slot = tank_wheeled_suspension
+			armor_type_slot = tank_riveted_armor
+			engine_type_slot = tank_gasoline_engine
+			special_type_slot_1 = additional_machine_guns
+			special_type_slot_2 = tank_radio_1
+		}
+		icon = GFX_CPC_AC_1960_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 66 APC"
+		type = APC_chassis_2
+		parent_version = 0
+		modules = {
+			APC_designation_slot = APC_infantry
+			APC_armament_slot = APC_infantry_weapon_2
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = additional_machine_guns
+		}		
+		icon = GFX_CPC_APC_1960_medium
+		upgrades = {
+			ac_nsb_engine_upgrade = 6
+			ac_nsb_armor_upgrade = 6
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 66 AFV"
+		type = IFV_chassis_2
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_Unique_IFV_76_D56T
+			turret_type_slot = IFV_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = tank_radio_1
+			special_type_slot_2 = stabilizer
+		}
+		icon = GFX_CPC_IFV_1960_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 4
+			tank_nsb_armor_upgrade = 2
+		}
+	}
+	create_equipment_variant = {
+		name = "Type 68"
+		type = MBT_chassis_2
+		parent_version = 0
+		modules = {
+			main_armament_slot = TER_Unique_MBT_100_D10T
+			turret_type_slot = MBT_three_man_tank_turret
+			suspension_type_slot = tank_torsion_bar_suspension
+			armor_type_slot = tank_welded_armor
+			engine_type_slot = tank_diesel_engine
+			special_type_slot_1 = additional_machine_guns
+			special_type_slot_2 = expanded_fuel_capacity
+			special_type_slot_3 = smoke_launchers
+		}
+		icon = GFX_CPC_MBT_1960_medium
+		upgrades = {
+			tank_nsb_engine_upgrade = 7
+			tank_nsb_armor_upgrade = 7
+		}
+	}
+}	
+
+set_grand_doctrine = unconventional_warfare
+set_sub_doctrine = light_infantry_primacy
+set_sub_doctrine = alternative_artillery_firepower
+set_sub_doctrine = armored_car_support
+set_sub_doctrine = guerrilla_operational_doctrine
+add_mastery = {
+	amount = 100
+}

@@ -105,7 +105,7 @@ country_event = { #Secret Army that will make Japan cry to the old fart Hirohito
 		custom_effect_tooltip = chi.5.a.tt
 		hidden_effect = {
 			country_event = { id = chi.6 days = 1 }
-			CHI_secret_army_load_template_archetypes = yes
+			#CHI_secret_army_load_template_archetypes = yes
 		}
 	}
 }
@@ -268,6 +268,7 @@ country_event = { #Education reform
 
 	option = {
 		name = chi.12.a
+		TNO_improve_education_policy_effectiveness_monthly_med = yes
 	}
 }
 
@@ -283,6 +284,7 @@ country_event = { #Literacy Programs
 
 	option = {
 		name = chi.13.a
+		TNO_improve_academic_base_low = yes
 	}
 }
 
@@ -297,6 +299,8 @@ country_event = { #Teach Japanese
 
 	option = {
 		name = chi.14.a
+		add_political_power = -5
+		TNO_improve_education_policy_effectiveness_low = yes
 	}
 }
 
@@ -325,6 +329,7 @@ country_event = { #start teaching the rural areas
 
 	option = {
 		name = chi.16.a
+		TNO_improve_education_policy_effectiveness_low = yes
 	}
 }
 
@@ -367,6 +372,7 @@ country_event = { #Night Schools
 
 	option = {
 		name = chi.19.a
+		TNO_improve_education_policy_effectiveness_low = yes
 	}
 }
 
@@ -1085,7 +1091,7 @@ country_event = { #Gold mines of Henan
 					country_event = { id = chi.162 days = 2 random_hours = 72 }
 				}
 
-				50 ={
+				50 = {
 					country_event = { id = chi.163 days = 2 random_hours = 72 }
 				}
 			}
@@ -1353,6 +1359,9 @@ country_event = { #Faster Industrialisation
 
 	option = {
 		name = chi.70.a
+		TNO_improve_agriculture_high = yes
+		set_temp_variable = { temp_econ_spending_amount = 0.075 }
+		econ_spend_money_once_effect_raw_money = yes
 		hidden_effect = {
 			random_list = {
 				50 = {
@@ -1380,6 +1389,7 @@ country_event = { #A Hardworking People
 
 	option = {
 		name = chi.71.a
+		TNO_improve_industrial_expertise_med = yes
 		hidden_effect = {
 			random_list = {
 				50 = {
@@ -1406,6 +1416,7 @@ country_event = { #Center of Production
 
 	option = {
 		name = chi.72.a
+		TNO_improve_industrial_equipment_low = yes
 		hidden_effect = {
 			random_list = {
 				50 = {
@@ -1436,6 +1447,7 @@ country_event = { #The Sphere relies On Us
 
 	option = {
 		name = chi.73.a
+		add_political_power = 35
 	}
 }
 
@@ -1452,6 +1464,8 @@ country_event = { #Made in China
 
 	option = {
 		name = chi.74.a
+		add_political_power = 10
+		TNO_improve_industrial_equipment_med = yes
 	}
 }
 
@@ -1580,6 +1594,7 @@ country_event = { #Promote Higher Education
 
 	option = {
 		name = chi.82.a
+		TNO_improve_education_policy_effectiveness_low = yes
 	}
 }
 
@@ -1660,6 +1675,7 @@ country_event = { #nationalism in learning
 
 	option = {
 		name = chi.90.a
+		TNO_improve_academic_base_low = yes
 	}
 }
 
@@ -1724,6 +1740,7 @@ country_event = { #Breakthrough in the sciences
 
 	option = {
 		name = chi.94.a
+		add_political_power = 1
 	}
 }
 
@@ -1740,6 +1757,7 @@ country_event = { #Evolution of Culture
 
 	option = {
 		name = chi.95.a
+		add_political_power = 10
 	}
 }
 
@@ -1756,6 +1774,8 @@ country_event = { #chinese_scholarship
 
 	option = {
 		name = chi.96.a
+		add_political_power = 5
+		TNO_improve_academic_base_low = yes
 	}
 }
 
@@ -2172,7 +2192,7 @@ country_event = {#New Excavation Equipment - Positive Flavour
 
 	option = {
 		name = chi.158.a
-		hidden_effect = { set_country_flag = CHI_exc_equ_good } 
+		hidden_effect = { set_country_flag = CHI_exc_equ_good }
 	}
 }
 
@@ -2998,6 +3018,7 @@ country_event = {#Attract Workers - Positive
 
 	option = {
 		name = chi.203.a
+		add_political_power = 1
 	}
 }
 
@@ -3014,6 +3035,7 @@ country_event = {#Attract Workers - Negative
 
 	option = {
 		name = chi.204.a
+		add_political_power = -1
 	}
 }
 
@@ -3030,6 +3052,9 @@ country_event = {#New Production Tools - Positive
 
 	option = {
 		name = chi.205.a
+		add_political_power = 25
+		set_temp_variable = { gdp_growth_temp = 01 }
+		econ_gdp_growth_change = yes
 	}
 }
 
@@ -3683,6 +3708,7 @@ country_event = { #CHI_The_Future_is_Now
 
 	option = {
 		name = chi.329.a
+		add_political_power = 10
 	}
 }
 
@@ -4390,7 +4416,7 @@ country_event = { #warlord refused construction equipment
 	}
 }
 
-# chi.409-412 inflitration events
+# chi.409-412 infiltration events
 
 country_event = { #warlord accepted construction equipment
 	id = chi.413
@@ -4413,7 +4439,7 @@ country_event = { #warlord accepted teachers
 
 	is_triggered_only = yes
 
-	immediate = { log = "[GetDateText]: [Root.GetName]: event chi.413" }
+	immediate = { log = "[GetDateText]: [Root.GetName]: event chi.414" }
 
 	option = {
 		name = chi.414.a
@@ -4542,7 +4568,10 @@ country_event = {#fully automated Nanjing Paper Leak
 		name = chi.455.a
 		hidden_effect = {
 			every_country = {
-				limit = { is_ai = no }
+				limit = {
+					is_ai = no
+					HasSphereInterest = yes
+				}
 				news_event = {
 					id = WORLD.2061
 				}
@@ -4555,9 +4584,9 @@ country_event = {#fully automated Nanjing Paper Leak
 		set_variable = { CHI_nanjing_fallout_consumer_goods = 0.3 }
 		set_variable = { CHI_nanjing_shockwave_pol = -1.25 }
 		custom_effect_tooltip = chi.455.a.tt
-		set_temp_variable = { interest_rates_temp = 2 }
+		set_temp_variable = { interest_rates_temp = 1 }
 		econ_interest_rates_change = yes
-		set_temp_variable = { temp_econ_GDP_boost_percentage = -0.1 }
+		set_temp_variable = { temp_econ_GDP_boost_percentage = -0.065 }
 		econ_GDP_boost_once_percentage = yes
 		set_temp_variable = { gdp_growth_temp = -2 }
 		econ_gdp_growth_change = yes
@@ -4607,7 +4636,7 @@ country_event = {#what will Gao do?
 				has_game_rule = { rule = CHI_NANJING_CRISIS_OUTCOME option = CHI_NANJING_CRISIS_OUTCOME_BALANCED }
 			}
 		}
-		
+
 		set_country_flag = CHI_Let_Fester
 		custom_effect_tooltip = chi.456.a_tt
 	}
@@ -4659,9 +4688,9 @@ country_event = {#Investors pull out
 		name = chi.457.a
 		set_temp_variable = { interest_rates_temp = 1 }
 		econ_interest_rates_change = yes
-		set_temp_variable = { temp_econ_GDP_boost_percentage = -0.03 }
+		set_temp_variable = { temp_econ_GDP_boost_percentage = -0.015 }
 		econ_GDP_boost_once_percentage = yes
-		set_temp_variable = { gdp_growth_temp = -1 }
+		set_temp_variable = { gdp_growth_temp = -2 }
 		econ_gdp_growth_change = yes
 	}
 }
@@ -5263,138 +5292,6 @@ country_event = { #
 	}
 }
 
-#Gongbo Focus Tree Events
-
-country_event = {#Gongbo Tree - New Order
-	id = chi.500
-	immediate = {log = "[GetDateText]: [Root.GetName]: event chi.500"}
-	title = chi.500.t
-	desc = chi.500.d
-	picture = GFX_report_event_generic_novel
-
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	option = {
-		name = chi.500.a
-	}
-}
-
-country_event = {#Gongbo Tree - Heal the Nation
-	id = chi.501
-	immediate = {log = "[GetDateText]: [Root.GetName]: event chi.501"}
-	title = chi.501.t
-	desc = chi.501.d
-	picture = GFX_report_event_generic_novel
-
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	option = {
-		name = chi.501.a
-	}
-}
-
-country_event = {#Gongbo Tree - Re-Educate the Nation
-	id = chi.502
-	immediate = {log = "[GetDateText]: [Root.GetName]: event chi.502"}
-	title = chi.502.t
-	desc = chi.502.d
-	picture = GFX_report_event_generic_novel
-
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	option = {
-		name = chi.502.a
-		hidden_effect = {
-			country_event = {
-				id = chi.503
-				days = 2
-			}
-		}
-	}
-}
-
-country_event = {#Gongbo Tree - Save the Country
-	id = chi.503
-	immediate = {log = "[GetDateText]: [Root.GetName]: event chi.503"}
-	title = chi.503.t
-	desc = chi.503.d
-	picture = GFX_report_event_generic_novel
-
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	option = {
-		name = chi.503.a
-		retire_country_leader = yes
-		add_country_leader_role = {
-			character = CHI_zhou_fohai
-			country_leader = {
-				desc = "POLITICS_ZHOU_FOHAI_DESC"
-				expire = "2000.1.1"
-				ideology = despotism_civilian_dictatorship_subtype
-			}
-		}
-		promote_character = CHI_zhou_fohai
-		set_politics = {
-			ruling_party = despotism
-		}
-		hidden_effect = {
-			load_focus_tree = { tree = china_modernization }
-			JAP = {
-				country_event = {
-					id = chi.504
-					days = 1
-				}
-			}
-		}
-	}
-}
-
-country_event = {#Gongbo Tree - Japan's Reaction
-	id = chi.504
-	immediate = {log = "[GetDateText]: [Root.GetName]: event chi.504"}
-	title = chi.504.t
-	desc = chi.504.d
-	picture = GFX_report_event_generic_novel
-
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	option = {
-		name = chi.504.a
-		hidden_effect = {
-			CHI = {
-				country_event = {
-					id = chi.505
-					days = 2
-				}
-			}
-		}
-	}
-}
-
-country_event = {#Gongbo Tree - boi he bout to do it
-	id = chi.505
-	immediate = {log = "[GetDateText]: [Root.GetName]: event chi.505"}
-	title = chi.505.t
-	desc = chi.505.d
-	picture = GFX_report_event_generic_novel
-
-	fire_only_once = yes
-	is_triggered_only = yes
-
-	option = {
-		name = chi.505.a
-		country_event = {
-			id = chi.506
-			days = 4
-		}
-	}
-}
-
 #Legislative Yuan
 
 country_event = {#morning walk redux
@@ -5669,8 +5566,8 @@ country_event = {#research Coop reply
 		name = chi.2010.a
 		set_variable = { CHI_coop_research_speed = 0.01 }
 		set_variable = { CHI_coop_econ_build = 0.015 }
-		multiply_variable = { CHI_coop_research_speed = CHI_coop_research_accepted } 
-		multiply_variable = { CHI_coop_research_build = CHI_coop_research_accepted } 
+		multiply_variable = { CHI_coop_research_speed = CHI_coop_research_accepted }
+		multiply_variable = { CHI_coop_research_build = CHI_coop_research_accepted }
 		hidden_effect = {
 			add_dynamic_modifier = {
 				modifier = CHI_coop_research_dynamic_modifier
@@ -5710,8 +5607,8 @@ country_event = {#Econ Coop reply
 		name = chi.2011.a
 		set_variable = { CHI_coop_econ_resources = 0.02 }
 		set_variable = { CHI_coop_econ_congoods = 0.02 }
-		multiply_variable = { CHI_coop_econ_resources = CHI_coop_econ_accepted } 
-		multiply_variable = { CHI_coop_econ_congoods = CHI_coop_econ_accepted } 
+		multiply_variable = { CHI_coop_econ_resources = CHI_coop_econ_accepted }
+		multiply_variable = { CHI_coop_econ_congoods = CHI_coop_econ_accepted }
 		hidden_effect = {
 			add_dynamic_modifier = {
 				modifier = CHI_coop_econ_dynamic_modifier
@@ -6181,7 +6078,7 @@ country_event = { #OIL CRISIS
 	option = {
 		name = chi.5500.a
 		custom_effect_tooltip = CHI_The_Oil_Crisis_tt_desc
-
+		
 		#TNOLAR 石油危机与社会改革
 		add_dynamic_modifier = { modifier = CHI_oilcrisis_status_modifier }
 		set_country_flag = CHI_Oil_Crisis
@@ -6251,53 +6148,17 @@ country_event = { #OIL CRISIS
 		}
 		#以下为原版效果
 
-		CHI_calc_oilcrisis_cost_change = yes
+		set_country_flag = CHI_Oil_Crisis
+		add_dynamic_modifier = { modifier = CHI_oilcrisis_status_modifier }
+		#KD's Notes - The Oil Crisis should not be this hard for China of all places. Sheesh. This used to be -10% GDP and -40 power
 		CHI_reload_tree = yes
-		hidden_effect = {
-			613 = {
-				remove_building = {
-					type = thermoelectric_plant
-					level = 2
-				}
-			}
-			1016 = {
-				remove_building = {
-					type = thermoelectric_plant
-					level = 2
-				}
-			}
-			608 = {
-				remove_building = {
-					type = thermoelectric_plant
-					level = 2
-				}
-			}
-			614 = {
-				remove_building = {
-					type = thermoelectric_plant
-					level = 2
-				}
-			}
-			595 = {
-				remove_building = {
-					type = thermoelectric_plant
-					level = 2
-				}
-			}
-			596 = {
-				remove_building = {
-					type = thermoelectric_plant
-					level = 2
-				}
-			}
-			set_temp_variable = { temp_econ_GDP_boost_percentage = -0.10 } #already converted to billion
-			econ_GDP_boost_once_percentage = yes
-			set_temp_variable = { gdp_growth_temp = -5.0 } #already converted to billion
-			econ_gdp_growth_change = yes
-			set_temp_variable = { inflation_temp = 10 }
-			econ_inflation_change = yes
-			add_to_variable = { CHI_industry_free_pus = -20 }
-		}
+		set_temp_variable = { temp_econ_GDP_boost_percentage = -0.04 } #already converted to billion
+		econ_GDP_boost_once_percentage = yes
+		set_temp_variable = { gdp_growth_temp = -4.0 } #already converted to billion
+		econ_gdp_growth_change = yes
+		set_temp_variable = { inflation_temp = 4 }
+		econ_inflation_change = yes
+		add_to_variable = { CHI_industry_free_pus = -10 }
 	}
 }
 
@@ -6538,7 +6399,7 @@ country_event = { #Western Insurrection Victory
 
 	option = {
 		name = chi_wi.5.a
-
+		
 		#TNOLAR 降低部队上限
 		set_variable = { CHI_MND_GUI_army_limit = 90 }
 		custom_effect_tooltip = CHI_LAR_Western_Insurrection_Victory_tt
@@ -6612,6 +6473,7 @@ country_event = { #Western Insurrection Victory
 					OR = {
 						original_tag = GUX
 						original_tag = SHX
+						original_tag = GAN
 					}
 				}
 				add_ideas = Sphere_Chinese_Warlord
@@ -6633,8 +6495,20 @@ country_event = { #Western Insurrection Victory
 				}
 				CHI_apply_pre_puppet_politics = yes
 			}
-			MEN = {
+			YUN = {
 				add_ideas = Sphere_Economic_Dependent
+				econ_join_sphere_JAP = yes
+				CHI_save_pre_puppet_politics = yes
+				CHI = {
+					set_autonomy = {
+						target = YUN
+						autonomy_state = autonomy_satellite
+					}
+				}
+				CHI_apply_pre_puppet_politics = yes
+			}
+			MEN = {
+				add_ideas = Sphere_Chinese_Warlord
 				CHI_save_pre_puppet_politics = yes
 				if = {
 					limit = {
@@ -6657,13 +6531,14 @@ country_event = { #Western Insurrection Victory
 				add_to_faction = GUX
 				add_to_faction = SHX
 				add_to_faction = GAN
+				add_to_faction = YUN
 			}
 			if = {
 				limit = {
-					XIK = { has_country_flag = WI_joins_RGOC } 
+					XIK = { has_country_flag = WI_joins_RGOC }
 				}
 				JAP = { add_to_faction = XIK }
-				XIK = { 
+				XIK = {
 					add_ideas = Sphere_Chinese_Warlord
 					econ_join_sphere_JAP = yes
 					set_cosmetic_tag = XIK_RGOC
@@ -6679,12 +6554,14 @@ country_event = { #Western Insurrection Victory
 						election_frequency = 48
 						elections_allowed = no
 					}
-				}
-				CHI = {
-					set_autonomy = {
-						target = XIK
-						autonomy_state = autonomy_china_warlord_regime
+					CHI_save_pre_puppet_politics = yes
+					CHI = {
+						set_autonomy = {
+							target = XIK
+							autonomy_state = autonomy_china_warlord_regime
+						}
 					}
+					CHI_apply_pre_puppet_politics = yes
 				}
 			}
 		}
@@ -6704,7 +6581,7 @@ country_event = { #Western Insurrection Victory with Japanese help
 
 	option = {
 		name = chi_wi.6.a
-
+		
 		#TNOLAR 降低部队上限
 		set_variable = { CHI_MND_GUI_army_limit = 90 }
 		custom_effect_tooltip = CHI_LAR_Western_Insurrection_Victory_tt
@@ -6765,6 +6642,7 @@ country_event = { #Western Insurrection Victory with Japanese help
 					OR = {
 						original_tag = GUX
 						original_tag = SHX
+						original_tag = GAN
 					}
 				}
 				add_ideas = Sphere_Chinese_Warlord
@@ -6786,14 +6664,27 @@ country_event = { #Western Insurrection Victory with Japanese help
 				}
 				CHI_apply_pre_puppet_politics = yes
 			}
+			YUN = {
+				add_ideas = Sphere_Economic_Dependent
+				econ_join_sphere_JAP = yes
+				CHI_save_pre_puppet_politics = yes
+				CHI = {
+					set_autonomy = {
+						target = YUN
+						autonomy_state = autonomy_satellite
+					}
+				}
+				CHI_apply_pre_puppet_politics = yes
+			}
 			JAP = {
 				add_to_faction = CHI
 				add_to_faction = GUX
 				add_to_faction = SHX
 				add_to_faction = GAN
+				add_to_faction = YUN
 			}
 			MEN = {
-				add_ideas = Sphere_Economic_Dependent
+				add_ideas = Sphere_Chinese_Warlord
 				CHI_save_pre_puppet_politics = yes
 				if = {
 					limit = {
@@ -6813,7 +6704,7 @@ country_event = { #Western Insurrection Victory with Japanese help
 			}
 			if = {
 				limit = {
-					XIK = { has_country_flag = WI_joins_RGOC } 
+					XIK = { has_country_flag = WI_joins_RGOC }
 				}
 				JAP = { add_to_faction = XIK }
 				XIK = {
@@ -6832,12 +6723,14 @@ country_event = { #Western Insurrection Victory with Japanese help
 						election_frequency = 48
 						elections_allowed = no
 					}
-				}
-				CHI = {
-					set_autonomy = {
-						target = XIK
-						autonomy_state = autonomy_china_warlord_regime
+					CHI_save_pre_puppet_politics = yes
+					CHI = {
+						set_autonomy = {
+							target = XIK
+							autonomy_state = autonomy_china_warlord_regime
+						}
 					}
+					CHI_apply_pre_puppet_politics = yes
 				}
 			}
 		}
@@ -7587,6 +7480,13 @@ country_event = {#Chinese reintegrating Xinan with Cores
 
 	option = {
 		name = chi.6672.a
+		add_political_power = 75
+		hidden_effect = {
+			YUN = { set_variable = { poverty_rate = 85 } }
+			set_temp_variable = { TNO_KD_Annexed_Tag = YUN.id }
+			set_temp_variable = { TNO_KD_Annexing_Tag = CHI.id }
+			TNO_KD_Consequences_of_Annexation = yes
+		}
 		YUN = {
 			every_owned_state = {
 				add_core_of = CHI
@@ -7596,6 +7496,20 @@ country_event = {#Chinese reintegrating Xinan with Cores
 		annex_country = {
 			target = YUN
 			transfer_troops = no	#TNOLAR 不要加入部队
+		}
+		hidden_effect = { #KD's Notes - Spheremaxxing my beloved
+			if = {
+				limit = {
+					AND = {
+						OR = {
+							AZH = { check_variable = { ECON_SPHERE_LEADER = JAP } }
+							IND = { check_variable = { ECON_SPHERE_LEADER = JAP } }
+						}
+						CHI = { owns_state = 964 }
+					}
+				}
+				TIB = { econ_join_sphere_JAP = yes }
+			}
 		}
 		country_event = { id = chi.6673 days = 5 }
 	}
@@ -7701,7 +7615,13 @@ country_event = {#Japan is weak
 
 	option = {
 		name = chi.10000.a
-		load_oob = JAP_GAW_army
+		if = {
+			limit = { has_dlc = "No Step Back" }
+			load_oob = JAP_GAW_army
+		}
+		else = {
+			load_oob = JAP_GAW_army_2
+		}
 	}
 }
 

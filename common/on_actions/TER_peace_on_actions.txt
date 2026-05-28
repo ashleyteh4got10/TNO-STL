@@ -18,6 +18,10 @@ on_actions = {
 						target = QIN
 						transfer_troops = no
 					}
+					country_event = {
+						id = CPC_main_story_events.13
+						days = 30
+					}
 				}
 				set_global_flag = skip_default_capitulation
 			}
@@ -40,40 +44,6 @@ on_actions = {
 				set_global_flag = skip_default_capitulation
 			}
 			###新疆内战
-			else_if = {
-				limit = {
-					FROM = {
-						OR = {
-							original_tag = HTC
-							original_tag = XIN
-							original_tag = ROS
-						}
-					}
-					ROOT = {
-						original_tag = ETR
-					}
-				}
-				FROM = {
-					every_state = {
-						limit = {
-							is_core_of = ROOT
-						}
-						add_claim_by = FROM
-					}
-					white_peace = ROOT
-					annex_country = {
-						target = ROOT
-						transfer_troops = no
-					}
-				}
-				CPC = {
-					country_event = {
-						id = CPC_main_story_events.13
-						days = 5
-					}
-				}
-				set_global_flag = skip_default_capitulation
-			}
 			else_if = {
 				limit = {
 					FROM = {
@@ -102,10 +72,8 @@ on_actions = {
 			else_if = {
 				limit = {
 					FROM = {
-						OR = {
-							original_tag = ETR
-							original_tag = XIN
-						}
+						original_tag = XIN
+					
 					}
 					ROOT = {
 						original_tag = ROS
@@ -129,10 +97,7 @@ on_actions = {
 			else_if = {
 				limit = {
 					FROM = {
-						OR = {
-							original_tag = XIN
-							original_tag = ETR
-						}
+						original_tag = XIN
 					}
 					ROOT = {
 						original_tag = HTC
@@ -886,6 +851,7 @@ on_actions = {
 					annex_country = { target = LOY }
 					annex_country = { target = KIS }
 					annex_country = { target = SHX }
+					annex_country = { target = MEN }
 					country_event = { 
 						id = CPC_TRCW.17
 						days = 3

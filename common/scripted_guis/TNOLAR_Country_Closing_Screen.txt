@@ -1,0 +1,58 @@
+scripted_gui = {
+	TNOLAR_Country_Closing_Screen = {
+		context_type = player_context
+		window_name = "TNOLAR_Country_Closing_Screen"
+		dirty = TNOLAR_CountryClosing_dirty
+		visible = {
+			has_country_flag = TNOLAR_Country_Closing_Screen_Visible
+		}
+		dynamic_lists = {
+			credits_pages = {
+				array = TNOLAR_CountryClosing_array_credits_pages
+				index = i
+				change_scope = no
+				entry_container = TNOLAR_Country_Closing_Screen_Credits_Pages_Enry
+			}
+		}
+		triggers = {
+			epilogue_visible = { check_variable = { TNOLAR_CountryClosing_array_buttons^0 = 2 } }
+			credits_visible = { check_variable = { TNOLAR_CountryClosing_array_buttons^1 = 2 } }
+		}
+		effects = {
+			select_btn_epilogue_click = {
+				set_variable = { TNOLAR_CountryClosing_array_buttons^0 = 2 }
+				set_variable = { TNOLAR_CountryClosing_array_buttons^1 = 1 }
+				TNOLAR_Country_Closing_Screen_CreditsPages_Hide = yes
+				add_to_variable = { TNOLAR_CountryClosing_dirty = 1 }
+			}
+			select_btn_credits_click = {
+				set_variable = { TNOLAR_CountryClosing_array_buttons^0 = 1 }
+				set_variable = { TNOLAR_CountryClosing_array_buttons^1 = 2 }
+				TNOLAR_Country_Closing_Screen_CreditsPages_Show = yes
+				add_to_variable = { TNOLAR_CountryClosing_dirty = 1 }
+			}
+			page_btn_click = {
+				set_temp_variable = { neededPage = i }
+				for_each_loop = {
+					array = TNOLAR_CountryClosing_array_credits_pages
+					set_variable = { TNOLAR_CountryClosing_array_credits_pages^i = 1 }
+				}
+				set_variable = { TNOLAR_CountryClosing_array_credits_pages^neededPage = 2 }
+				add_to_variable = { TNOLAR_CountryClosing_dirty = 1 }
+			}
+			close_btn_click = {
+				clr_country_flag = TNOLAR_Country_Closing_Screen_Visible
+				clear_array = TNOLAR_CountryClosing_array_buttons
+				TNOLAR_Country_Closing_Screen_CreditsPages_Hide = yes
+				clear_variable = TNOLAR_CountryClosing_dirty
+				set_country_flag = TNO_ArcadeMode_enable
+			}
+		}
+		properties = {
+			select_btn_epilogue = { frame = TNOLAR_CountryClosing_array_buttons^0 }
+			select_btn_credits = { frame = TNOLAR_CountryClosing_array_buttons^1 }
+			page_btn = { frame = TNOLAR_CountryClosing_array_credits_pages^i }
+			picture = { image = "[Get_TNOLAR_CountryClosing_picture]" }
+		}
+	}
+}

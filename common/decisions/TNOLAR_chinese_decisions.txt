@@ -1,0 +1,4863 @@
+#China Decisions in TNOLAR
+
+TNOLAR_CHI_custom_difficulty_category = {
+	TNOLAR_CHI_easy_mode_1 = {
+		icon = GFX_decision_generic_decision
+		visible = {
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			set_temp_variable = { money_reserves_temp = 20 }
+			econ_money_reserves_change_raw_money = yes
+
+			set_temp_variable = { inflation_temp = -5 }
+			econ_inflation_change = yes
+
+			TNO_improve_army_professionalism_med = yes
+
+			add_dynamic_modifier = {
+				modifier = CHI_LAR_easy_mode_1_dynamic_modifier
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	TNOLAR_CHI_easy_mode_2 = {
+		icon = GFX_decision_generic_decision
+		visible = {
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			set_temp_variable = { money_reserves_temp = 40 }
+			econ_money_reserves_change_raw_money = yes
+
+			set_temp_variable = { inflation_temp = -5 }
+			econ_inflation_change = yes
+
+			TNO_improve_army_professionalism_high = yes
+
+			add_dynamic_modifier = {
+				modifier = CHI_LAR_easy_mode_2_dynamic_modifier
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	TNOLAR_CHI_hard_mode_1 = {
+		icon = GFX_decision_generic_decision
+		visible = {
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			set_temp_variable = { inflation_temp = 3 }
+			econ_inflation_change = yes
+
+			add_dynamic_modifier = {
+				modifier = CHI_LAR_hard_mode_1_dynamic_modifier
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	TNOLAR_CHI_hard_mode_2 = {
+		icon = GFX_decision_generic_decision
+		visible = {
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			set_temp_variable = { temp_econ_spending_amount = 5 }
+			econ_spend_money_once_effect_raw_money = yes
+
+			set_temp_variable = { inflation_temp = 3 }
+			econ_inflation_change = yes
+			
+			add_dynamic_modifier = {
+				modifier = CHI_LAR_hard_mode_2_dynamic_modifier
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	TNOLAR_CHI_show_more_difficulty_decisions = {
+		icon = {
+			key = GFX_decision_generic_visibility_closed
+			trigger = {
+				has_country_flag = CHI_show_more_difficulty_decisions
+			}
+		}
+		icon = {
+			key = GFX_decision_generic_visibility
+			trigger = {
+				NOT = { has_country_flag = CHI_show_more_difficulty_decisions }
+			}
+		}
+
+		fire_only_once = no
+		days_re_enable = 0
+
+		complete_effect = {
+			if = {
+				limit = { has_country_flag = CHI_show_more_difficulty_decisions }
+				clr_country_flag = CHI_show_more_difficulty_decisions
+			}
+			else = {
+				set_country_flag = CHI_show_more_difficulty_decisions
+			}
+		}
+	}
+
+	TNOLAR_CHI_NMD_GUI_easy_mode = {
+		icon = GFX_decision_generic_industry_indent
+		visible = {
+			has_country_flag = CHI_show_more_difficulty_decisions
+			NOT = {
+				has_country_flag = CHI_enable_harder_NMD_GUI
+			}
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = TNOLAR_CHI_NMD_GUI_easy_mode_tt
+			set_country_flag = CHI_enable_easier_NMD_GUI
+			hidden_effect = {
+				CHI_MND_JapanAlert_lower_high = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	TNOLAR_CHI_NMD_GUI_hard_mode = {
+		icon = GFX_decision_generic_industry_indent
+		visible = {
+			has_country_flag = CHI_show_more_difficulty_decisions
+			NOT = {
+				has_country_flag = CHI_enable_easier_NMD_GUI
+			}
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = TNOLAR_CHI_NMD_GUI_hard_mode_tt
+			set_country_flag = CHI_enable_harder_NMD_GUI
+			hidden_effect = {
+				CHI_MND_JapanAlert_upper_high = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	TNOLAR_CHI_socialreform_GUI_easy_mode = {
+		icon = GFX_decision_generic_industry_indent
+		visible = {
+			has_country_flag = CHI_show_more_difficulty_decisions
+			NOT = {
+				has_country_flag = CHI_enable_harder_socialreform_GUI
+			}
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = TNOLAR_CHI_socialreform_GUI_easy_mode_tt
+			set_country_flag = CHI_enable_easier_socialreform_GUI
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	TNOLAR_CHI_socialreform_GUI_hard_mode = {
+		icon = GFX_decision_generic_industry_indent
+		visible = {
+			has_country_flag = CHI_show_more_difficulty_decisions
+			NOT = {
+				has_country_flag = CHI_enable_easier_socialreform_GUI
+			}
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = TNOLAR_CHI_socialreform_GUI_hard_mode_tt
+			set_country_flag = CHI_enable_harder_socialreform_GUI
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	TNOLAR_CHI_northwestwar_GUI_easy_mode = {
+		icon = GFX_decision_generic_industry_indent
+		visible = {
+			has_country_flag = CHI_show_more_difficulty_decisions
+			NOT = {
+				has_country_flag = CHI_enable_harder_northwestwar_GUI
+			}
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = TNOLAR_CHI_northwestwar_GUI_easy_mode_tt
+			set_country_flag = CHI_enable_easier_northwestwar_GUI
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	TNOLAR_CHI_northwestwar_GUI_hard_mode = {
+		icon = GFX_decision_generic_industry_indent
+		visible = {
+			has_country_flag = CHI_show_more_difficulty_decisions
+			NOT = {
+				has_country_flag = CHI_enable_easier_northwestwar_GUI
+			}
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = TNOLAR_CHI_northwestwar_GUI_hard_mode_tt
+			set_country_flag = CHI_enable_harder_northwestwar_GUI
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	TNOLAR_CHI_GAW_GUI_easy_mode = {
+		icon = GFX_decision_generic_industry_indent
+		visible = {
+			has_country_flag = CHI_show_more_difficulty_decisions
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = TNOLAR_CHI_GAW_GUI_easy_mode_tt
+			set_country_flag = CHI_enable_easier_GAW_GUI
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	TNOLAR_CHI_GAW_GUI_hard_mode = {
+		icon = GFX_decision_generic_industry_indent
+		visible = {
+			has_country_flag = CHI_show_more_difficulty_decisions
+
+			NOT = {
+				has_dynamic_modifier = {
+					modifier = CHI_LAR_hard_mode_1_dynamic_modifier
+				}
+				has_dynamic_modifier = {
+					modifier = CHI_LAR_hard_mode_2_dynamic_modifier
+				}
+			}
+		}
+		available = {
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = {
+			custom_effect_tooltip = TNOLAR_CHI_GAW_GUI_hard_mode_tt
+			set_country_flag = CHI_enable_harder_GAW_GUI
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+
+TNOLAR_CHI_Ministry_of_National_Defense_category = {
+	#警惕度即将到达临界点
+	CHI_MND_JapanAlert_critical_point = {
+		icon = GFX_decision_GNG_IJA
+		allowed = {
+			original_tag = CHI
+		}
+
+		visible = {
+			check_variable = { CHI_MND_GUI_JapanAlert_level > 89 }
+			has_country_flag = CHI_Modernization
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			check_variable = { CHI_MND_GUI_JapanAlert_level > 89 }
+			has_country_flag = CHI_Modernization
+		}
+
+		cancel_trigger = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_MND_JapanAlert_critical_point_cancel_trigger_tt
+				check_variable = { CHI_MND_GUI_JapanAlert_level < 90 }
+			}
+        }
+
+		is_good = no
+
+		days_mission_timeout = 30
+
+		priority = 101
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_JapanAlert_critical_point mission timer elapsed"
+			country_event = {
+				id = tnolar_chi_renli.1
+				days = 4
+			}
+		}
+	}
+	
+	#月度现代化变化
+	CHI_MND_mil_modernisation_tick = {
+		icon = GFX_decision_generic_clock
+		priority = 100
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_mil_modernisation
+				}
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_mil_modernisation
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 30
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_mil_modernisation_tick mission timer elapsed"
+
+			add_to_variable = { CHI_MND_GUI_modernization_progress_var = CHI_MND_GUI_real_modernization_progress_month_var }
+			clamp_variable = {
+				var = CHI_MND_GUI_modernization_progress_var
+				min = 0
+				max = 100
+			}
+
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_flag = CHI_mil_modernisation
+						NOT = {
+							has_idea = CHI_Fang_Xianjue_sec
+						}
+					}
+					activate_mission = CHI_MND_mil_modernisation_tick
+				}
+			}
+			custom_effect_tooltip = CHI_MND_mil_modernisation_tick_tt
+		}
+	}
+
+	#月度警惕度变化
+	CHI_MND_JapanAlert_tick = {
+		icon = GFX_decision_GNG_japan
+		priority = 100
+		allowed = {
+			original_tag = CHI
+			is_ai = no
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_Modernization
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+        }
+
+		is_good = yes
+
+		days_mission_timeout = 30
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_JapanAlert_tick mission timer elapsed"
+
+			if = {
+				limit = {
+					check_variable = { CHI_MND_GUI_real_modernization_progress_month_var > 10 }
+					NOT = {
+						has_idea = CHI_Fang_Xianjue_sec
+					}
+				}
+				add_to_variable = { CHI_MND_GUI_JapanAlert_level = 2.5 }
+				clamp_variable = {
+    				var = CHI_MND_GUI_JapanAlert_level
+    				max = 100
+				}
+				custom_effect_tooltip = CHI_MND_JapanAlert_tick_1_tt
+			}
+
+
+			if = {
+				limit = {
+					check_variable = { CHI_MND_GUI_current_army_number > CHI_MND_GUI_army_limit }
+				}
+				add_to_variable = { CHI_MND_GUI_JapanAlert_level = 5 }
+				clamp_variable = {
+    				var = CHI_MND_GUI_JapanAlert_level
+    				max = 100
+				}
+				custom_effect_tooltip = CHI_MND_JapanAlert_tick_2_tt
+			}
+			else_if = {
+				limit = {
+					OR = {
+						NOT = {
+							check_variable = { CHI_MND_GUI_real_modernization_progress_month_var > 10 }
+						}
+						has_idea = CHI_Fang_Xianjue_sec
+					}
+					NOT = {
+						check_variable = { CHI_MND_GUI_current_army_number > CHI_MND_GUI_army_limit }
+					}
+				}
+				custom_effect_tooltip = CHI_MND_JapanAlert_tick_3_tt
+			}
+
+			#检查现代化速度是否超限
+			CHI_MND_Modernspeed_check = yes
+
+			#读取当前军队数量
+			set_variable = { CHI_MND_GUI_current_army_number = CHI.num_armies }
+			#检查军队是否超限
+			CHI_MND_Armylimit_check = yes
+
+			#检查是否超越临界值
+			CHI_MND_JapanAlert_check = yes
+
+			#hidden_effect = {
+			#	if = {
+			#		limit = {
+			#			has_country_flag = CHI_Modernization
+			#			NOT = {
+			#				has_idea = CHI_Fang_Xianjue_sec
+			#			}
+			#		}
+			#		activate_mission = CHI_MND_mil_modernisation_tick
+			#	}
+			#}
+		}
+	}
+
+	#提高军事化等级
+	CHI_MND_increase_Military_Efficiency = {
+		icon = GFX_decision_generic_military_hat
+		priority = 78
+		visible = {
+			hidden_trigger = {
+				has_country_flag = CHI_mil_modernisation
+				NOT = {
+					has_idea = CHI_LAR_Real_remilitarization_modernized_army_idea
+				}
+				check_variable = {
+					CHI_MND_GUI_Military_level_var < 7
+				}
+			}
+		}
+		available = {
+			hidden_trigger = {
+				NOT = {
+					has_idea = CHI_LAR_Real_remilitarization_modernized_army_idea
+				}
+			}
+			check_variable = { CHI_MND_GUI_modernization_progress_var > 99 }
+			check_variable = { CHI_MND_GUI_Military_level_var < 7 }
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 10
+
+		complete_effect = {
+			add_to_variable = { CHI_MND_GUI_Military_level_var = 1 }
+			subtract_from_variable = { CHI_MND_GUI_modernization_progress_var = 100 }
+			clamp_variable = {
+				var = CHI_MND_GUI_modernization_progress_var
+				min = 0
+				max = 100
+			}
+			TNO_improve_army_professionalism_med = yes
+
+			set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 10 }
+			set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+			set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+			CHI_MND_faction_influences_change = yes
+			if = {
+				limit = {
+					check_variable = { CHI_MND_GUI_Military_level_var = 1 }
+				}
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_1_tt
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_buff_tt
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_conscription_factor = 0.05 }#人力修正
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_attack_factor = 0.03 }#陆军进攻
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_org_factor = 0.04 }#组织度
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_defence_factor = 0.03 }#陆军防御
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_army_factor = 0.05 }#陆军经验获取修正
+			}
+			else_if = {
+				limit = {
+					check_variable = { CHI_MND_GUI_Military_level_var = 2 }
+				}
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_2_tt
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_buff_tt
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_conscription_factor = 0.05 }#人力修正
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_attack_factor = 0.03 }#陆军进攻
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_org_factor = 0.04 }#组织度
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_defence_factor = 0.03 }#陆军防御
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_army_factor = 0.05 }#陆军经验获取修正
+			}
+			else_if = {
+				limit = {
+					check_variable = { CHI_MND_GUI_Military_level_var = 3 }
+				}
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_3_tt
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_buff_tt
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_conscription_factor = 0.05 }#人力修正
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_attack_factor = 0.03 }#陆军进攻
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_org_factor = 0.04 }#组织度
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_defence_factor = 0.03 }#陆军防御
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_army_factor = 0.05 }#陆军经验获取修正
+			}
+			else_if = {
+				limit = {
+					check_variable = { CHI_MND_GUI_Military_level_var = 4 }
+				}
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_4_tt
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_buff_tt
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_conscription_factor = 0.05 }#人力修正
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_attack_factor = 0.03 }#陆军进攻
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_org_factor = 0.04 }#组织度
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_defence_factor = 0.03 }#陆军防御
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_army_factor = 0.05 }#陆军经验获取修正
+			}
+			else_if = {
+				limit = {
+					check_variable = { CHI_MND_GUI_Military_level_var = 5 }
+				}
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_5_tt
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_buff_tt
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_conscription_factor = 0.05 }#人力修正
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_attack_factor = 0.03 }#陆军进攻
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_org_factor = 0.04 }#组织度
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_army_defence_factor = 0.03 }#陆军防御
+				add_to_variable = { CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_army_factor = 0.05 }#陆军经验获取修正
+			}
+			else_if = {
+				limit = {
+					check_variable = { CHI_MND_GUI_Military_level_var > 5 }
+				}
+				custom_effect_tooltip = CHI_MND_increase_Military_Efficiency_6_tt
+				set_variable = { CHI_MND_GUI_modernization_progress_var = 100 }
+				set_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 1 }
+				set_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+				clr_country_flag = CHI_mil_modernisation
+
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+				}
+				add_ideas = {
+					CHI_LAR_remilitarization_modernized_army_idea
+				}
+
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_air_ace_generation_chance_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_air
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_naval_speed_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_navy_org_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_navy_screen_attack_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_navy_screen_defence_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_navy
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_conscription_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_army_attack_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_army_org_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_army_defence_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_experience_gain_army_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_war_support_factor
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_surrender_limit
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_max_command_power
+				clear_variable = CHI_LAR_remilitarization_status_dynamic_modifier_minimum_training_level
+
+				retire_character = CHI_xiao_shuxuan
+				add_ideas = {
+					CHI_Fang_Xianjue_sec
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+	
+	CHI_debug_supersuper_buff = {
+		priority = 77
+		#Buff
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			is_debug = yes
+			is_ai = no
+		}
+		available = {
+			#CHI_is_not_in_crisis = yes
+		}
+
+		cost = 0
+		fire_only_once = no
+		days_remove = -1
+
+		modifier = {
+    		army_attack_factor = 10
+    		army_defence_factor = 10
+			army_org_factor = 10
+			army_org_regain = 1000
+			org_loss_when_moving = -1
+			supply_consumption_factor = -1
+			out_of_supply_factor = -1
+			breakthrough_factor = 10
+			army_speed_factor = 100
+		}
+
+		complete_effect = {
+			division_template = {
+				name = "Panzer-Division"
+				division_names_group = GER_panzer
+				regiments = {
+					APC = { x = 0 y = 0 }
+					APC = { x = 0 y = 1 }
+					APC = { x = 0 y = 2 }
+					APC = { x = 0 y = 3 }
+					MBT = { x = 1 y = 0 }
+					MBT = { x = 1 y = 1 }
+					MBT = { x = 1 y = 2 }
+					MBT = { x = 2 y = 0 }
+					MBT = { x = 2 y = 1 }
+					MBT = { x = 2 y = 2 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					artillery = { x = 0 y = 1 }
+					anti_tank = { x = 0 y = 2 }
+					maintenance_company = { x = 0 y = 2 }
+				}
+			}
+			create_equipment_variant = {
+				name="Super MBT"
+				type=MBT_chassis_3
+				upgrades = {
+					tank_nsb_engine_upgrade = 14
+					tank_nsb_armor_upgrade = 8
+				}
+				modules={
+					main_armament_slot=MBT_cannon_4
+					engine_type_slot=tank_gas_turbine_engine
+					special_type_slot_1=tank_radio_2
+					special_type_slot_2=fire_protection_equipment
+					special_type_slot_3=auto_loader
+					special_type_slot_4=autocannon_turret
+					turret_type_slot=MBT_three_man_tank_turret
+					suspension_type_slot=tank_hydropneumatic_suspension
+					armor_type_slot=tank_welded_armor
+				}
+			}
+			create_equipment_variant = {
+				name="Super APC"
+				type = APC_chassis_3
+				upgrades = {
+					ac_nsb_engine_upgrade = 6
+					ac_nsb_armor_upgrade = 3
+				}
+				modules={
+					APC_armament_slot=APC_infantry_weapon_4
+					engine_type_slot=tank_gas_turbine_engine
+					special_type_slot_1=fire_protection_equipment
+					special_type_slot_2=tank_radio_2
+					special_type_slot_3=autocannon_turret
+					special_type_slot_4=expanded_toolbox
+					suspension_type_slot=tank_hydropneumatic_suspension
+					armor_type_slot=tank_welded_armor
+					APC_designation_slot=APC_infantry
+				}
+			}
+			every_owned_state = {
+				create_unit = {
+					division = "name = \"Super division\" division_template = \"Bubing Juntuan\" start_experience_factor = 1.0"
+					owner = CHI
+				}
+				create_unit = {
+					division = "name = \"Super division\" division_template = \"Bubing Juntuan\" start_experience_factor = 1.0"
+					owner = CHI
+				}
+				create_unit = {
+					division = "name = \"Super division\" division_template = \"Panzer-Division\" start_experience_factor = 1.0"
+					owner = CHI
+				}
+				create_unit = {
+					division = "name = \"Super division\" division_template = \"Panzer-Division\" start_experience_factor = 1.0"
+					owner = CHI
+				}
+			}
+			random_owned_state = {
+				add_resource = {
+					type = oil
+					amount = 1550
+				}
+				add_resource = {
+					type = power
+					amount = 555
+				}
+				add_resource = {
+					type = uranium
+					amount = 555
+				}
+				add_resource = {
+					type = consumer_goods
+					amount = 555
+				}
+				add_resource = {
+					type = chromium
+					amount = 555
+				}
+			}
+			set_equipment_fraction = 2.5
+			load_oob = "USA_1962_naval_mtg"
+			JAP = {
+				send_equipment_fraction = {
+					value = 0.8
+					target = CHI
+				}
+			}
+		}
+	}
+
+	#正在训练步兵师1
+	CHI_MND_BubingShi_training_1 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 98
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_1
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_1 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_1
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师2
+	CHI_MND_BubingShi_training_2 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 97
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_2
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_2 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_2
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师3
+	CHI_MND_BubingShi_training_3 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 96
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_3
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_3 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_3
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师4
+	CHI_MND_BubingShi_training_4 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 95
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_4
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_4 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_4
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师5
+	CHI_MND_BubingShi_training_5 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 94
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_5
+		}
+		
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_5 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_5
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师6
+	CHI_MND_BubingShi_training_6 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 93
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_6
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_6 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_6
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师7
+	CHI_MND_BubingShi_training_7 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 92
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_7
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_7 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_7
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师8
+	CHI_MND_BubingShi_training_8 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 91
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_8
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_8 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_8
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师9
+	CHI_MND_BubingShi_training_9 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 90
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_9
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_9 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_9
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+	#正在训练步兵师10
+	CHI_MND_BubingShi_training_10 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingShi
+		priority = 89
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingShi_training_10
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 120
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingShi_training_10 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Shi
+				clr_country_flag = CHI_MND_BubingShi_training_10
+			}
+			custom_effect_tooltip = CHI_MND_BubingShi_training_tt
+		}
+	}
+
+	#正在训练步兵旅1
+	CHI_MND_BubingLu_training_1 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 88
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_1
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_1 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_1
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅2
+	CHI_MND_BubingLu_training_2 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 87
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_2
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_2 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_2
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅3
+	CHI_MND_BubingLu_training_3 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 86
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_3
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_3 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_3
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅4
+	CHI_MND_BubingLu_training_4 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 85
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_4
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_4 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_4
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅5
+	CHI_MND_BubingLu_training_5 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 84
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_5
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_5 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_5
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅6
+	CHI_MND_BubingLu_training_6 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 83
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_6
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_6 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_6
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅7
+	CHI_MND_BubingLu_training_7 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 82
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_7
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_7 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_7
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅8
+	CHI_MND_BubingLu_training_8 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 81
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_8
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_8 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_8
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅9
+	CHI_MND_BubingLu_training_9 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 80
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_9
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_9 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_9
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	#正在训练步兵旅10
+	CHI_MND_BubingLu_training_10 = {
+		icon = GFX_decision_TNOLAR_CHI_MND_training_BubingLu
+		priority = 79
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_country_flag = CHI_MND_BubingLu_training_10
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Modernization
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 90
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_MND_BubingLu_training_10 mission timer elapsed"
+
+			hidden_effect = {
+				load_oob = TNOLAR_CHI_MND_Bubing_Lu
+				clr_country_flag = CHI_MND_BubingLu_training_10
+			}
+			custom_effect_tooltip = CHI_MND_BubingLu_training_tt
+		}
+	}
+	
+
+	#减少军事活动
+	CHI_reduce_military_activity = {
+		icon = GFX_decision_generic_military_hat_red
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			#has_completed_focus = CHI_Hiding_Our_Interests
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_MND_GUI_JapanAlert_Can_be_reduced_tt
+				check_variable = { CHI_MND_GUI_JapanAlert_level > CHI_MND_GUI_JapanAlert_level_lowerlimit }
+			}
+		}
+
+		days_re_enable = 45
+		cost = 50
+		fire_only_once = no
+
+		complete_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = -1 }
+			CHI_MND_modernization_progress_month_change = yes
+
+			CHI_MND_JapanAlert_lower_med = yes
+		}
+
+		ai_will_do = {
+			factor = 20
+
+			modifier = {
+				factor = 0
+				check_variable = {
+					CHI_MND_GUI_JapanAlert_level < 75
+				}
+			}
+
+			modifier = {
+				factor = 2
+				check_variable = {
+					CHI_MND_GUI_JapanAlert_level > 85
+				}
+			}
+		}
+	}
+
+	#暂缓征兵事务
+	CHI_moratorium_on_draft = {
+		icon = GFX_decision_generic_supply_red
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			#has_completed_focus = CHI_Hiding_Our_Interests
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_MND_GUI_JapanAlert_Can_be_reduced_tt
+				check_variable = { CHI_MND_GUI_JapanAlert_level > CHI_MND_GUI_JapanAlert_level_lowerlimit }
+			}
+		}
+
+		days_re_enable = 60
+		days_remove = 25
+		cost = 75
+		fire_only_once = no
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_change = -10 }
+			CHI_MND_modernization_progress_change = yes
+
+			CHI_MND_JapanAlert_lower_low = yes
+		}
+
+		ai_will_do = {
+			factor = 30
+
+			modifier = {
+				factor = 0
+				check_variable = {
+					CHI_MND_GUI_JapanAlert_level < 65
+				}
+			}
+
+			modifier = {
+				factor = 2
+				check_variable = {
+					CHI_MND_GUI_JapanAlert_level > 75
+				}
+			}
+		}
+	}
+
+	#派遣专员前往东京
+	CHI_dispatch_commissioner_to_tokyo = {
+		icon = GFX_decision_GNG_japan_representatives
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_Modernization
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_MND_GUI_JapanAlert_Can_be_reduced_tt
+				check_variable = { CHI_MND_GUI_JapanAlert_level > CHI_MND_GUI_JapanAlert_level_lowerlimit }
+			}
+		}
+
+		days_re_enable = 40
+		days_remove = 15
+		cost = 75
+		fire_only_once = no
+
+		complete_effect = {
+			CHI_MND_JapanAlert_lower_med = yes
+		}
+
+		ai_will_do = {
+			factor = 40
+
+			modifier = {
+				factor = 0
+				check_variable = {
+					CHI_MND_GUI_JapanAlert_level < 45
+				}
+			}
+
+			modifier = {
+				factor = 2
+				check_variable = {
+					CHI_MND_GUI_JapanAlert_level > 65
+				}
+			}
+		}
+	}
+	
+	#邀请宪兵队稽查组
+	CHI_invite_the_gendarmerie_inspection_team = {
+		icon = GFX_decision_GNG_kenpeitai
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_Modernization
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_MND_GUI_JapanAlert_Can_be_reduced_tt
+				check_variable = { CHI_MND_GUI_JapanAlert_level > CHI_MND_GUI_JapanAlert_level_lowerlimit }
+			}
+		}
+
+		days_re_enable = 60
+		cost = 75
+		fire_only_once = no
+
+		complete_effect = {
+			CHI_MND_JapanAlert_lower_med = yes
+		}
+
+		ai_will_do = {
+			factor = 40
+
+			modifier = {
+				factor = 0
+				check_variable = {
+					CHI_MND_GUI_JapanAlert_level < 45
+				}
+			}
+
+			modifier = {
+				factor = 2
+				check_variable = {
+					CHI_MND_GUI_JapanAlert_level > 65
+				}
+			}
+		}
+	}
+
+	#增加国防预算
+	CHI_increase_defense_budget = {
+		icon = GFX_decision_generic_money
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			NOT = {
+				check_variable = { CHI_increase_defense_budget = 5 }
+			}
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		custom_cost_trigger = {
+			always = yes
+		}
+		custom_cost_text = decision_cost_200_million
+
+		days_re_enable = 40
+		days_remove = 30
+		fire_only_once = yes
+
+		complete_effect = {
+			hidden_effect = {
+				set_temp_variable = { temp_econ_spending_amount = 0.200 }
+				econ_spend_money_once_effect_raw_money = yes
+				add_to_variable = { CHI_increase_defense_budget = 1 }
+			}
+		}
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 4 }
+			CHI_MND_modernization_progress_month_change = yes
+
+			CHI_MND_JapanAlert_upper_med = yes
+
+			if = {
+				limit = {
+					has_completed_focus = CHI_LAR_self_reliance
+					NOT = {
+						has_completed_focus = CHI_LAR_State_owned_enterprise_orders
+					}
+				}
+				custom_effect_tooltip = CHI_increase_defense_budget_1_focus_tt
+
+				set_temp_variable = { temp_CHI_MND_modernization_progress_change = 10 }
+				CHI_MND_modernization_progress_change = yes
+
+				set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+				set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 2 }
+				set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+				CHI_MND_faction_influences_change = yes
+			}
+			else_if = {
+				limit = {
+					has_completed_focus = CHI_LAR_State_owned_enterprise_orders
+				}
+				custom_effect_tooltip = CHI_increase_defense_budget_2_focus_tt
+
+				set_temp_variable = { temp_CHI_MND_modernization_progress_change = 15 }
+				CHI_MND_modernization_progress_change = yes
+
+				set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+				set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 4 }
+				set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+				CHI_MND_faction_influences_change = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				check_variable = {
+					money_reserves > 0.2
+				}
+			}
+			modifier = {
+				factor = 5
+				check_variable = {
+					money_reserves > 0.4
+				}
+			}
+			modifier = {
+				factor = 0.5
+				check_variable = {
+					GDP < national_debt
+				}
+			}
+			modifier = {
+				factor = 0
+				check_variable = { CHI_MND_GUI_real_modernization_progress_month_var > 9 }
+				has_country_flag = CHI_Modernization
+				NOT = {
+					has_idea = CHI_Fang_Xianjue_sec
+				}
+			}
+		}
+	}
+
+	#引进新装备图纸
+	CHI_new_equipment_blueprints = {
+		icon = GFX_decision_generic_tools
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			has_completed_focus = CHI_LAR_Develop_military_technology
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 14.99
+		}
+		custom_cost_text = decision_cost_50_m_15_pp
+
+		days_remove = 30
+		fire_only_once = no
+
+		days_re_enable = 120
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -15
+				set_temp_variable = { temp_econ_spending_amount = 0.050 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_change = 10 }
+			CHI_MND_modernization_progress_change = yes
+
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 2
+    			category = armor
+			}
+
+			if = {
+				limit = {
+					has_completed_focus = CHI_LAR_Technology_introduction
+				}
+				custom_effect_tooltip = CHI_new_equipment_blueprints_focus_tt
+
+				set_temp_variable = { temp_CHI_MND_modernization_progress_change = 5 }
+				CHI_MND_modernization_progress_change = yes
+
+				set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 1 }
+				set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 0 }
+				set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 1 }
+				CHI_MND_faction_influences_change = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 2
+				has_country_flag = CHI_mil_modernisation
+			}
+		}
+	}
+
+	#秘密运输微缩胶片设计图
+	CHI_secret_transportation_blueprint = {
+		icon = GFX_decision_generic_assault
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			has_completed_focus = CHI_LAR_Comprehensive_reverse_research
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_25_m_10_cp
+
+		days_remove = 30
+		fire_only_once = yes
+
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -10
+				set_temp_variable = { temp_econ_spending_amount = 0.025 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			random_list = {
+				80 = {
+					modifier = {
+            			factor = 2
+            			check_variable = { CHI_MND_GUI_JapanAlert_level < 34 }
+        			}
+					set_temp_variable = { temp_CHI_MND_modernization_progress_change = 25 }
+					CHI_MND_modernization_progress_change = yes
+
+					add_tech_bonus = {
+    					bonus = 0.5
+    					uses = 2
+    					category = infantry_weapons
+					}
+				}
+				20 = {
+					CHI_MND_JapanAlert_upper_high = yes
+					add_political_power = -100
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 4 }
+			}
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 6 }
+			}
+		}
+	}
+
+	#从三菱集团购买发动机
+	CHI_purchase_engines_from_mitsubishi = {
+		icon = GFX_decision_generic_train
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			has_completed_focus = CHI_LAR_Develop_military_technology
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+		
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_pp_150_m
+
+		days_remove = 45
+		fire_only_once = yes
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -25
+				set_temp_variable = { temp_econ_spending_amount = 0.150 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_change = 5 }
+			CHI_MND_modernization_progress_change = yes
+
+			add_equipment_to_stockpile = {
+    			type = motorized_equipment
+    			amount = 500
+    			producer = JAP
+			}
+
+			if = {
+				limit = {
+					has_completed_focus = CHI_LAR_Japanese_orders
+				}
+				custom_effect_tooltip = CHI_purchase_engines_from_mitsubishi_focus_tt
+
+				set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = 0 }
+				set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0 }
+				set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = 0.02 }
+				CHI_MND_faction_loyalty_change = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 4 }
+			}
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 6 }
+			}
+		}
+	}
+
+	#贿赂满洲公司换取设计图
+	CHI_bribery_in_exchange_for_blueprints = {
+		icon = GFX_decision_GNG_yen
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			has_completed_focus = CHI_LAR_Develop_military_technology
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+		
+		custom_cost_trigger = {
+			has_political_power > 14.99
+		}
+		custom_cost_text = decision_cost_75_m_15_pp
+
+		days_remove = 45
+		fire_only_once = yes
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -15
+				set_temp_variable = { temp_econ_spending_amount = 0.075 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_change = 10 }
+			CHI_MND_modernization_progress_change = yes
+		}
+
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 4 }
+			}
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 6 }
+			}
+		}
+	}
+
+	#逆向研究先进设计
+	CHI_reverse_engineering_advanced_designs = {
+		icon = GFX_decision_generic_research
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			has_completed_focus = CHI_LAR_Develop_military_technology
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_pp_150_m
+
+		days_remove = 100
+		fire_only_once = yes
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -25
+				set_temp_variable = { temp_econ_spending_amount = 0.150 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_change = 15 }
+			CHI_MND_modernization_progress_change = yes
+
+			add_tech_bonus = {
+    			bonus = 0.2
+    			uses = 2
+    			category = industry
+			}
+			add_tech_bonus = {
+    			bonus = 0.2
+    			uses = 2
+    			category = construction_tech
+			}
+
+			if = {
+				limit = {
+					has_completed_focus = CHI_LAR_Comprehensive_reverse_research
+				}
+				custom_effect_tooltip = CHI_reverse_engineering_advanced_designs_focus_tt
+
+				set_temp_variable = { temp_CHI_MND_GUI_nationalists_loyalty_change = 0.02 }
+				set_temp_variable = { temp_CHI_MND_GUI_conservatives_loyalty_change = 0 }
+				set_temp_variable = { temp_CHI_MND_GUI_japanophiles_loyalty_change = 0 }
+				CHI_MND_faction_loyalty_change = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 4 }
+			}
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 6 }
+			}
+		}
+	}
+
+	#修订训练项目
+	CHI_revised_training_program = {
+		icon = GFX_decision_generic_political_action
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			#has_completed_focus = CHI_Soldier
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		days_remove = 60
+		cost = 75
+		fire_only_once = no
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_change = 10 }
+			CHI_MND_modernization_progress_change = yes
+		}
+
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 4 }
+			}
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 6 }
+			}
+		}
+	}
+
+	#邀请前德军顾问
+	CHI_invite_former_german_military_advisers = {
+		icon = GFX_decision_generic_military_parade
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			#has_completed_focus = CHI_military_missions
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 50
+		fire_only_once = yes
+
+		complete_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_change = 5 }
+			CHI_MND_modernization_progress_change = yes
+
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				name = land_doc_bonus
+				cost_reduction = 0.75
+				uses = 1
+				category = cat_maneuver_warfare
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	#启动交换生计划
+	CHI_start_exchange_student_program = {
+		icon = GFX_decision_generic_invitation
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			#has_completed_focus = CHI_military_missions
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_pp_10_m
+
+		days_remove = 75
+		fire_only_once = yes
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -25
+				set_temp_variable = { temp_econ_spending_amount = 0.010 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_change = 10 }
+			CHI_MND_modernization_progress_change = yes
+
+			add_tech_bonus = {
+    			bonus = 0.5
+    			uses = 2
+    			category = land_doctrine
+			}
+		}
+
+		ai_will_do = {
+			factor = 25
+		}
+	}
+
+	#巡视军队纪律
+	CHI_Inspect_military_discipline = {
+		icon = GFX_decision_generic_humanitarian_aid_increase
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			has_completed_focus = CHI_LAR_Iron_Discipline
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 50
+		fire_only_once = no
+
+		days_re_enable = 180
+
+		complete_effect = {
+			TNO_improve_army_professionalism_low = yes
+
+			set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+			set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = -2.5 }
+			set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+			CHI_MND_faction_influences_change = yes
+		}
+
+		ai_will_do = {
+			factor = 15
+		}
+	}
+
+	#减少巡视频率
+	CHI_Reduce_inspect_frequency = {
+		icon = GFX_decision_generic_humanitarian_aid_decrease
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			has_completed_focus = CHI_LAR_Iron_Discipline
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 10
+		fire_only_once = no
+
+		days_re_enable = 180
+
+		complete_effect = {
+			TNO_worsen_army_professionalism_low = yes
+
+			set_temp_variable = { temp_CHI_MND_GUI_nationalists_influences_change = 0 }
+			set_temp_variable = { temp_CHI_MND_GUI_conservatives_influences_change = 2.5 }
+			set_temp_variable = { temp_CHI_MND_GUI_japanophiles_influences_change = 0 }
+			CHI_MND_faction_influences_change = yes
+
+			CHI_MND_JapanAlert_lower_low = yes
+		}
+
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	#增加军事行动
+	CHI_Increase_military_operations = {
+		icon = GFX_decision_generic_arms_trade_increase
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+			has_completed_focus = CHI_LAR_Rearmament
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		cost = 50
+
+		days_remove = 60
+		fire_only_once = no
+
+		days_re_enable = 120
+
+		complete_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = 1 }
+			CHI_MND_modernization_progress_month_change = yes
+
+			CHI_MND_JapanAlert_upper_med = yes
+		}
+
+		remove_effect = {
+			set_temp_variable = { temp_CHI_MND_modernization_progress_month_change = -1 }
+			CHI_MND_modernization_progress_month_change = yes
+		}
+
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 4 }
+			}
+			modifier = {
+				factor = 1.5
+				check_variable = { CHI_MND_GUI_Military_level_var < 6 }
+			}
+
+			modifier = {
+				factor = 0
+				check_variable = { CHI_MND_GUI_JapanAlert_level > 80 }
+			}
+		}
+	}
+
+	#开展军事演习
+	CHI_Conduct_military_exercises = {
+		icon = GFX_decision_generic_assault
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		custom_cost_trigger = {
+			command_power > 19.99
+			has_political_power > 9.99
+		}
+		custom_cost_text = decision_cost_20_cp_10_pp
+
+		days_remove = 30
+		fire_only_once = no
+
+		days_re_enable = 120
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -10
+				add_command_power = -20
+			}
+		}
+
+		remove_effect = {
+			random_list = {
+				33 = {
+					custom_effect_tooltip = CHI_Conduct_military_exercises_1_tt
+
+					country_event = tnolar_chi_flavor.20
+				}
+				33 = {
+					custom_effect_tooltip = CHI_Conduct_military_exercises_2_tt
+
+					country_event = tnolar_chi_flavor.21
+				}
+				33 = {
+					custom_effect_tooltip = CHI_Conduct_military_exercises_3_tt
+
+					country_event = tnolar_chi_flavor.22
+				}
+				1 = {
+					custom_effect_tooltip = CHI_Conduct_military_exercises_4_tt
+
+					country_event = tnolar_chi_flavor.23
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	#开展共荣圈联合军演
+	CHI_Conducting_CPS_joint_military_exercises = {
+		icon = GFX_decision_generic_fighter_plane
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_mil_modernisation
+		}
+		available = {
+			CHI_is_not_in_crisis = yes
+		}
+
+		custom_cost_trigger = {
+			command_power > 19.99
+			has_political_power > 49.99
+		}
+		custom_cost_text = decision_cost_20_cp_50_pp
+
+		days_remove = 30
+		fire_only_once = no
+
+		days_re_enable = 120
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -50
+				add_command_power = -20
+			}
+		}
+
+		remove_effect = {
+			random_list = {
+				25 = {
+					modifier = {
+						factor = 3
+						check_variable = { CHI_MND_GUI_Military_level_var > 3 }
+					}
+					custom_effect_tooltip = CHI_Conducting_CPS_joint_military_exercises_2_tt
+
+					country_event = tnolar_chi_flavor.24
+				}
+				75 = {
+					custom_effect_tooltip = CHI_Conducting_CPS_joint_military_exercises_1_tt
+					
+					country_event = tnolar_chi_flavor.25
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 2
+				check_variable = { CHI_MND_GUI_Military_level_var > 3 }
+			}
+		}
+	}
+}
+
+####	Oil Crisis | 石油危机	####
+TNOLAR_CHI_Oil_Crisis_Category = {
+	#CHI_Oil_Crisis_GUI_industry_progressbar_var 和 CHI_Oil_Crisis_GUI_agriculture_progressbar_var 的数值是反着的
+	#也就是说数值越大，情况越糟，100对应进度条空了，而0对应进度条满了，为了理解方便在后端你就把它看作混乱度好了
+	#别问我为什么这么写，我TM也想穿越回去问问我自己到底为什么这么写
+	#纯屎山，再也不想碰第二遍了
+
+	#你要想当个大好人重构的话，小心别弄出bug，连我自己都没信心重构
+
+
+	#援助农业改革
+	CHI_Oil_Crisis_aid_agricultur = {
+		icon = GFX_decision_generic_industrial_farm
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+		}
+		available = {
+			check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 95 }
+			check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 2.49 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 95 }
+			check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 2.49 }
+		}
+		custom_cost_text = decision_cost_5_industry_2_5_prestige
+		
+		priority = 20
+
+		fire_only_once = no
+
+		complete_effect = {
+			hidden_effect = {
+				add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = 5 }
+				clamp_variable = {
+					var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+					min = 0
+					max = 100
+				}
+				CHI_Oil_Crisis_upload_industry_effects_var = yes
+				add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = -2.5 }
+				clamp_variable = {
+					var = CHI_Oil_Crisis_GUI_government_prestige
+					min = 0
+					max = 100
+				}
+			}
+			
+			add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = -5 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+				min = 0
+				max = 100
+			}
+			CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_increase_5_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 20 }
+			}
+			modifier = {
+				factor = 3
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 80 }
+				check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 10 }
+				check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var > 50 }
+			}
+		}
+	}
+
+	#向农民让步
+	CHI_Oil_Crisis_concessions_to_farmers = {
+		icon = GFX_decision_generic_farm
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+		}
+		available = {
+			check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 100 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 100 }
+		}
+		custom_cost_text = decision_cost_1_agricultur_50_million
+		
+		priority = 20
+
+		fire_only_once = no
+		days_re_enable = 7
+
+		complete_effect = {
+			hidden_effect = {
+				add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = 1 }
+				clamp_variable = {
+					var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+					min = 0
+					max = 100
+				}
+				CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+				set_temp_variable = { temp_econ_spending_amount = 0.050 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+			modifier = {
+				factor = 2
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 70 }
+				check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 38 }
+			}
+		}
+	}
+
+	#向工业输血
+	CHI_Oil_Crisis_aid_industry = {
+		icon = GFX_decision_generic_factory_blue
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+		}
+		available = {
+			check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 95 }
+			check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 2.49 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 95 }
+			check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 2.49 }
+		}
+		custom_cost_text = decision_cost_5_agriculture_2_5_prestige
+		
+		priority = 20
+
+		fire_only_once = no
+
+		complete_effect = {
+			hidden_effect = {
+				add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = 5 }
+				clamp_variable = {
+					var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+					min = 0
+					max = 100
+				}
+				CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+				add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = -2.5 }
+			}
+			
+			add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+				min = 0
+				max = 100
+			}
+			CHI_Oil_Crisis_upload_industry_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_10_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 20 }
+			}
+			modifier = {
+				factor = 3
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 80 }
+				check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 10 }
+				check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var > 50 }
+			}
+		}
+	}
+
+	#向工人让步
+	CHI_Oil_Crisis_concessions_to_workers = {
+		icon = GFX_decision_generic_workers
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+		}
+		available = {
+			check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 100 }
+		}
+
+		custom_cost_trigger = {
+			check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 100 }
+		}
+		custom_cost_text = decision_cost_1_industry_50_million
+		
+		priority = 20
+
+		fire_only_once = no
+		days_re_enable = 7
+
+		complete_effect = {
+			hidden_effect = {
+				add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = 1 }
+				clamp_variable = {
+					var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+					min = 0
+					max = 100
+				}
+				CHI_Oil_Crisis_upload_industry_effects_var = yes
+				set_temp_variable = { temp_econ_spending_amount = 0.050 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+			modifier = {
+				factor = 2
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 70 }
+				check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 38 }
+			}
+		}
+	}
+
+	#改革濒临彻底失败
+	CHI_Oil_Crisis_reform_failed = {
+		icon = GFX_decision_generic_revolt_red
+
+		activation = {
+    	    check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 10 }
+			has_country_flag = CHI_Social_Reform
+    	}
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		cancel_trigger = {
+			check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 9 }
+        }
+
+		priority = 12
+    	is_good = no
+    	days_mission_timeout = 21
+    	selectable_mission = no
+		timeout_effect = {
+			add_stability = -1
+			add_political_power = -100
+
+			country_event = {
+				id = tnolar_chi_renli.1
+				days = 4
+			}
+		}
+	}
+
+	#齿轮在转动...
+	CHI_Oil_Crisis_gears_turning = {
+		icon = GFX_decision_TNOLAR_CHI_oilcrisis_gears_turning
+
+		activation = {
+    	    has_country_flag = CHI_Social_Reform
+    	}
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Social_Reform
+				}
+			}
+        }
+
+		priority = 11
+    	is_good = no
+    	days_mission_timeout = 14
+    	selectable_mission = no
+		timeout_effect = {
+			set_temp_variable = { temp1 = CHI_Oil_Crisis_gears_turning_agriculture_var }
+			multiply_temp_variable = { temp1 = 0.03 }
+			set_temp_variable = { temp2 = CHI_Oil_Crisis_gears_turning_industry_var }
+			multiply_temp_variable = { temp2 = 0.05 }
+			add_to_temp_variable = { temp1 = temp2 }
+			subtract_from_variable = { CHI_Oil_Crisis_GUI_government_prestige = temp1 }
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = CHI_Oil_Crisis_gears_turning_agriculture_var }
+			clamp_variable = {
+                var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+                min = 0
+                max = 100
+            }
+			CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+			
+			add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = CHI_Oil_Crisis_gears_turning_industry_var }
+			clamp_variable = {
+                var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+                min = 0
+                max = 100
+            }
+			CHI_Oil_Crisis_upload_industry_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_gears_turning_effect_tt
+		}
+	}
+
+	#华北派在行动
+	CHI_Oil_Crisis_Japanophiles_is_in_action = {
+		icon = GFX_decision_TNOLAR_CHI_oilcrisis_Japanophiles_is_in_action
+
+		activation = {
+    	    has_country_flag = CHI_Social_Reform
+    	}
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					has_country_flag = CHI_Social_Reform
+				}
+			}
+        }
+
+		priority = 10
+    	is_good = no
+    	days_mission_timeout = 21
+    	selectable_mission = no
+		timeout_effect = {
+			random_list = {
+				50 = {
+					add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = -5 }
+					clamp_variable = {
+                		var = CHI_Oil_Crisis_GUI_government_prestige
+                		min = 0
+                		max = 100
+            		}
+					custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_decrease_5_effect_tt
+				}
+				30 = {
+					add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = 5 }
+					clamp_variable = {
+            		    var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+            		    min = 0
+            		    max = 100
+            		}
+					CHI_Oil_Crisis_upload_industry_effects_var = yes
+					custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_decrease_5_effect_tt
+				}
+				20 = {
+					add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = 5 }
+					clamp_variable = {
+                		var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+                		min = 0
+                		max = 100
+            		}
+					CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+					custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_decrease_5_effect_tt
+				}
+				CHI_Oil_Crisis_Japanophiles_is_in_action_invalid_probability_var = {
+					#do nothing
+				}
+			}
+		}
+	}
+
+	#宣告改革完成
+	CHI_Oil_Crisis_reform_successful = {
+		icon = GFX_decision_TNOLAR_CHI_oilcrisis_reform_successful
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_Oil_Crisis_agricultur_successful
+				check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 40 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = CHI_Oil_Crisis_industry_successful
+				check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 40 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = CHI_Oil_Crisis_GUI_government_prestige_up_to_mark
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+
+			custom_trigger_tooltip = {
+				tooltip = CHI_oil_crisis_has_resolved_trigger_tt
+				NOT = {
+					has_dynamic_modifier = { modifier = CHI_oilcrisis_status_modifier }
+				}
+			}
+		}
+
+		cost = 0
+		fire_only_once = yes
+
+		complete_effect = { #此效果可移动至结束事件内
+			hidden_effect = {
+				clr_country_flag = CHI_Social_Reform
+				remove_dynamic_modifier = { modifier = CHI_LAR_oil_crisis_agriculture_dynamic_modifier }
+				remove_dynamic_modifier = { modifier = CHI_LAR_oil_crisis_industry_dynamic_modifier }
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_reform_successful_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 1000
+		}
+	}
+
+	#安抚民众情绪
+	CHI_Oil_Crisis_appease_the_public = {
+		icon = GFX_decision_generic_propaganda
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_pp_150_m
+		
+		fire_only_once = no
+		days_re_enable = 30
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -25
+				set_temp_variable = { temp_econ_spending_amount = 0.150 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = 1 }
+			clamp_variable = {
+                var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+                min = 0
+                max = 100
+            }
+			CHI_Oil_Crisis_upload_industry_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_decrease_1_effect_tt
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+			modifier = {
+				factor = 2
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 91 }
+			}
+		}
+	}
+	
+	#强迫工人加班
+	CHI_Oil_Crisis_force_workers_work_overtime = {
+		icon = GFX_decision_generic_forced_labor
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			
+		}
+		available = {
+			
+		}
+
+		cost = 25
+		
+		fire_only_once = no
+		days_re_enable = 10
+
+		complete_effect = {
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = -2.5 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_decrease_2_5_effect_tt
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -15 }
+			clamp_variable = {
+                var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+                min = 0
+                max = 100
+            }
+			CHI_Oil_Crisis_upload_industry_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_15_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 60 }
+			}
+			modifier = {
+				factor = 2
+				check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var > 50 }
+			}
+		}
+	}
+
+	#征收农民余粮
+	CHI_Oil_Crisis_expropriate_grain = {
+		icon = GFX_decision_generic_supply_red
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			
+		}
+		available = {
+			
+		}
+
+		cost = 25
+		
+		fire_only_once = no
+		days_re_enable = 10
+
+		complete_effect = {
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = -2.5 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_decrease_2_5_effect_tt
+			
+			add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = -15 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+				min = 0
+				max = 100
+			}
+			CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_increase_15_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 15
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 60 }
+			}
+			modifier = {
+				factor = 2
+				check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var > 50 }
+			}
+		}
+	}
+
+	#国策解锁决议（左）
+	#象征性平均地权
+	CHI_Oil_Crisis_symbolic_average_land_rights = {
+		icon = GFX_decision_generic_judge
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_Land_Redemption
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 19.99
+			check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 90.1 }
+		}
+		custom_cost_text = decision_cost_50_million_20_pp_10_agricultur
+		
+		fire_only_once = yes
+		days_remove = 30
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -20
+				add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = 10 }
+				clamp_variable = {
+					var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+					min = 0
+					max = 100
+				}
+				CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+
+				set_temp_variable = { temp_econ_spending_amount = 0.050 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+
+			add_to_variable = { CHI_Oil_Crisis_gears_turning_agriculture_var = -0.5 }
+			custom_effect_tooltip = CHI_Oil_Crisis_gears_turning_weakened_1_effect_tt
+		}
+
+		remove_effect = {
+			TNO_improve_poverty_low = yes
+			TNO_worsen_agriculture_low = yes
+			set_temp_variable = { temp_econ_GDP_boost_flat = -0.5 }
+			econ_GDP_boost_once_flat = yes
+		}
+
+		ai_will_do = {
+			factor = 30
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+		}
+	}
+
+	#小规模促进民生
+	CHI_Oil_Crisis_small_scale_improve_welfare = {
+		icon = GFX_decision_generic_consumer_goods
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_Golden_Surge
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 14.99
+			check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 90.1 }
+		}
+		custom_cost_text = decision_cost_100_million_15_pp_10_industry
+		
+		fire_only_once = yes
+		days_remove = 60
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -15
+				set_temp_variable = { temp_econ_spending_amount = 0.05 }
+				econ_spend_money_once_effect_raw_money = yes
+
+				add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = 10 }
+				clamp_variable = {
+            	    var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+            	    min = 0
+            	    max = 100
+            	}
+				CHI_Oil_Crisis_upload_industry_effects_var = yes
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+
+			add_to_variable = { CHI_Oil_Crisis_gears_turning_industry_var = -0.5 }
+			custom_effect_tooltip = CHI_Oil_Crisis_gears_turning_weakened_1_effect_tt
+		}
+
+		remove_effect = {
+			TNO_improve_poverty_med = yes
+			TNO_improve_industrial_expertise_low = yes
+			set_temp_variable = { gdp_growth_temp = -1 }
+			econ_gdp_growth_change = yes
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 12.5 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_12_5_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 30
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+		}
+	}
+
+	#出让部分利益
+	CHI_Oil_Crisis_give_up_benefits = {
+		icon = GFX_decision_GNG_yen
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_Land_To_The_Tiller
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 14.99
+		}
+		custom_cost_text = decision_cost_75_m_15_pp
+		
+		fire_only_once = yes
+		days_remove = 60
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -15
+				set_temp_variable = { temp_econ_spending_amount = 0.075 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+			
+			add_to_variable = { CHI_Oil_Crisis_Japanophiles_is_in_action_invalid_probability_var = 5 }
+			custom_effect_tooltip = CHI_Oil_Crisis_Japanophiles_is_in_action_weakened_1_effect_tt
+		}
+
+		remove_effect = {
+			TNO_improve_poverty_med = yes
+			add_to_variable = { CHI_Oil_Crisis_Japanophiles_is_in_action_invalid_probability_var = 10 }
+			custom_effect_tooltip = CHI_Oil_Crisis_Japanophiles_is_in_action_weakened_2_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 30
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+		}
+	}
+
+	#国策解锁决议（右）
+	#开荒扩土
+	CHI_Oil_Crisis_reclaim_wasteland = {
+		icon = GFX_decision_generic_infrastructure
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_Cultivating_The_Barren_Land
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 14.99
+		}
+		custom_cost_text = decision_cost_50_m_15_pp
+		
+		fire_only_once = yes
+		days_remove = 30
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -15
+				set_temp_variable = { temp_econ_spending_amount = 0.050 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+
+			add_to_variable = { CHI_Oil_Crisis_gears_turning_agriculture_var = -0.5 }
+			custom_effect_tooltip = CHI_Oil_Crisis_gears_turning_weakened_1_effect_tt
+		}
+
+		remove_effect = {
+			TNO_improve_agriculture_low = yes
+		}
+
+		ai_will_do = {
+			factor = 30
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+		}
+	}
+
+	#惩治蛇头
+	CHI_Oil_Crisis_punish_the_smuggler = {
+		icon = GFX_decision_generic_use_force
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_Grassroots_Expansion
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 49.99
+		}
+		custom_cost_text = decision_cost_50_pp_500_men
+		
+		fire_only_once = yes
+		days_remove = 30
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -50
+				add_manpower = -500
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_gears_turning_industry_var = -0.5 }
+			custom_effect_tooltip = CHI_Oil_Crisis_gears_turning_weakened_1_effect_tt
+		}
+
+		remove_effect = {
+			add_to_variable = { CHI_Oil_Crisis_gears_turning_industry_var = -0.5 }
+			custom_effect_tooltip = CHI_Oil_Crisis_gears_turning_weakened_2_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	#粉饰太平
+	CHI_Oil_Crisis_cover_up_the_facts = {
+		icon = GFX_decision_GNG_roc_backing
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_Old_Bottle_New_Wine
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_pp_25_m
+		
+		fire_only_once = yes
+		days_remove = 30
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -25
+				set_temp_variable = { temp_econ_spending_amount = 0.025 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 20 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_20_effect_tt
+		}
+
+		remove_effect = {
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = -10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_decrease_10_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 4
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 50 }
+			}
+		}
+	}
+
+	#通用决议
+	#重开工厂
+	CHI_Oil_Crisis_reopen_factories = {
+		icon = GFX_decision_generic_workers
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_Dust_Settled
+			has_completed_focus = CHI_LAR_Nothing_Happened
+		}
+		available = {
+			
+		}
+
+		cost = 15
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+			TNO_improve_industrial_expertise_low = yes
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 12.5 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_12_5_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+		}
+	}
+
+	#开仓放粮
+	CHI_Oil_Crisis_distribute_food = {
+		icon = GFX_decision_generic_supply
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			OR = {
+				has_completed_focus = CHI_LAR_Radical_Reform
+				has_completed_focus = CHI_LAR_Moderate_Reform
+			}
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 14.99
+		}
+		custom_cost_text = decision_cost_75_m_15_pp
+		
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 14
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -15
+				set_temp_variable = { temp_econ_spending_amount = 0.075 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 12.5 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_12_5_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+			}
+			modifier = {
+				factor = 4
+				check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 40 }
+			}
+		}
+	}
+	
+	#以工代赈
+	CHI_Oil_Crisis_create_jobs = {
+		icon = GFX_decision_generic_political_action
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			OR = {
+				has_completed_focus = CHI_LAR_Land_To_The_Tiller
+				has_completed_focus = CHI_LAR_Cultivating_The_Barren_Land
+			}
+		}
+		available = {
+			
+		}
+
+		cost = 25
+		
+		fire_only_once = yes
+		days_remove = 30
+
+		complete_effect = {
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+		}
+
+		remove_effect = {
+			add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = -10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+				min = 0
+				max = 100
+			}
+			CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_increase_10_effect_tt
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -10 }
+			clamp_variable = {
+                var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+                min = 0
+                max = 100
+            }
+			CHI_Oil_Crisis_upload_industry_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_10_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+	
+	#补贴企业
+	CHI_Oil_Crisis_subsidized_enterprises = {
+		icon = GFX_decision_GNG_yen
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			OR = {
+				has_completed_focus = CHI_LAR_Land_Redemption
+				has_completed_focus = CHI_LAR_Old_Bottle_New_Wine
+			}
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		custom_cost_text = decision_cost_100_m_25_pp
+		
+		fire_only_once = yes
+		days_remove = 30
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -25
+				set_temp_variable = { temp_econ_spending_amount = 0.100 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+			add_to_variable = { CHI_Oil_Crisis_GUI_government_prestige = 10 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_government_prestige
+				min = 0
+				max = 100
+			}
+			custom_effect_tooltip = CHI_Oil_Crisis_government_prestige_increase_10_effect_tt
+		}
+
+		remove_effect = {
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+
+			add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -15 }
+			clamp_variable = {
+                var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+                min = 0
+                max = 100
+            }
+			CHI_Oil_Crisis_upload_industry_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_15_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+
+	#增加基建力度
+	CHI_Oil_Crisis_increase_investment_in_infrastructure = {
+		icon = GFX_decision_generic_infrastructure
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			OR = {
+				has_completed_focus = CHI_LAR_Golden_Surge
+				has_completed_focus = CHI_LAR_Grassroots_Expansion
+			}
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 14.99
+		}
+		custom_cost_text = decision_cost_50_m_15_pp
+		
+		fire_only_once = yes
+		days_remove = 70
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -15
+				set_temp_variable = { temp_econ_spending_amount = 0.050 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			add_to_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var = -10 }
+			clamp_variable = {
+                var = CHI_Oil_Crisis_GUI_industry_progressbar_var
+                min = 0
+                max = 100
+            }
+			CHI_Oil_Crisis_upload_industry_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_industry_reform_increase_10_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 5 }
+			}
+		}
+	}
+	
+	#减少粮食出口
+	CHI_Oil_Crisis_reduce_grain_exports = {
+		icon = GFX_decision_generic_shipyard
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_The_Urgent_Reform
+		}
+		available = {
+			
+		}
+
+		cost = 50
+		
+		fire_only_once = yes
+
+		complete_effect = {
+			add_to_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var = -5 }
+			clamp_variable = {
+				var = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+				min = 0
+				max = 100
+			}
+			CHI_Oil_Crisis_upload_agriculture_effects_var = yes
+			custom_effect_tooltip = CHI_Oil_Crisis_agricultur_reform_increase_5_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+	
+	#扩大警卫部队
+	CHI_Oil_Crisis_strengthen_police_force = {
+		icon = GFX_decision_generic_riot_police
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_completed_focus = CHI_LAR_No_More_Tolerance
+		}
+		available = {
+			
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_pp_10_m
+		
+		fire_only_once = yes
+		days_remove = 7
+
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -25
+				set_temp_variable = { temp_econ_spending_amount = 0.010 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+		}
+
+		remove_effect = {
+			add_political_power = 100
+			add_to_variable = { CHI_Oil_Crisis_gears_turning_industry_var = -0.5 }
+			custom_effect_tooltip = CHI_Oil_Crisis_gears_turning_weakened_1_effect_tt
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+}
+
+####	Northwest War | 西北战争	####
+TNOLAR_CHI_Northwest_War_Category = {
+	#调试：清空时间
+	CHI_NWW_debug_end = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			is_debug = yes
+			is_ai = no
+		}
+		complete_effect = {
+			add_to_variable = {
+                Northwest_War_timeleft = 60
+            }
+            clamp_variable = {
+                var = Northwest_War_timeleft
+                min = 1
+                max = 61
+            }
+		}
+	}
+
+	#调停会议进行中
+	CHI_NWW_mediation_meeting_in_progress = {
+    	icon = GFX_decision_generic_clock
+
+		activation = {
+    	    check_variable = {
+    			Northwest_War_timeleft > 59
+			}
+    	}
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+            GAN = {
+				NOT = {
+					has_war_with = QIN
+				}
+			}
+			check_variable = {
+    			Northwest_War_timeleft < 60
+			}
+        }
+
+    	is_good = yes
+    	days_mission_timeout = 3
+    	selectable_mission = no
+    	timeout_effect = {
+    	    hidden_effect = {
+				set_country_flag = CHI_NWW_DRAW
+				GAN = {
+					white_peace = {
+    					tag = QIN
+					}
+					save_global_event_target_as = losing_country
+				}
+				QIN = {
+					save_global_event_target_as = winning_country
+				}
+				set_global_flag = war_won
+				set_global_flag = show_peace_popup_alert
+				add_to_variable = { global.peace_popup_dirty = 1 }
+				GAN = {
+					drop_cosmetic_tag = yes
+					set_cosmetic_tag = GAN_seihoku_gunseikan
+					set_politics = {
+	            	    ruling_party = despotism
+                	    elections_allowed = no
+                	}
+					set_political_party = {
+    					ideology = despotism
+    					popularity = 55
+					}
+				}
+				JAP = {
+				    add_to_faction = GAN
+		    	}
+			}
+			country_event = {
+				id = tnolar_chi.480
+				hours = 6
+			}
+			country_event = {
+				id = tnolar_chi.481
+				days = 1
+			}
+			country_event = {
+				id = tnolar_chi.466
+				days = 3
+			}
+    	}
+	}
+
+	#先利其器
+	CHI_NWW_sharpen_the_weapon = {
+		icon = GFX_decision_TNOLAR_CHI_NWW_sharpen_the_weapon
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+			has_completed_focus = CHI_LAR_Provide_War_Materiel
+		}
+		fire_only_once = no
+		days_re_enable = 0
+		complete_effect = {
+			if = {
+				limit = { has_country_flag = CHI_sharpen_the_weapon_decisions }
+				clr_country_flag = CHI_sharpen_the_weapon_decisions
+			}
+			else = {
+				set_country_flag = CHI_sharpen_the_weapon_decisions
+			}
+		}
+	}
+
+	#运送步枪
+	CHI_NWW_transport_infantry_equipment = {
+		icon = GFX_decision_market_infantry
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_sharpen_the_weapon_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		available = {
+			CHI_NWW_route_clear = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 14.99
+			command_power > 4.99
+		}
+		custom_cost_text = decision_cost_5_cp_15_pp
+		
+		fire_only_once = no
+		days_re_enable = 15
+		complete_effect = {
+			add_command_power = -5
+			add_political_power = -15
+			send_equipment = {
+				type = infantry_equipment_2
+				amount = 2000
+				target = QIN
+			}
+			send_equipment = {
+				type = anti_tank_equipment_2
+				amount = 200
+				target = QIN
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = QIN
+			}
+			add_to_variable = { CHI_NWW_EQ_firearms = 2200 }
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = -10 }
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_decrease_tooltip
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+
+	#运送重型火炮
+	CHI_NWW_transport_artillery_equipment = {
+		icon = GFX_decision_market_towed_artillery
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_sharpen_the_weapon_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		available = {
+			CHI_NWW_route_clear = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 14.99
+			command_power > 4.99
+		}
+		custom_cost_text = decision_cost_5_cp_15_pp
+		
+		fire_only_once = no
+		days_re_enable = 20
+		complete_effect = {
+			add_command_power = -5
+			add_political_power = -15
+			send_equipment = {
+				type = artillery_equipment
+				amount = 400
+				target = QIN
+			}
+			add_to_variable = { CHI_NWW_EQ_artillery = 400 }
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = -10 }
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_decrease_tooltip
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+
+	#运送机械化装备
+	CHI_NWW_transport_mechanized_equipment = {
+		icon = GFX_decision_market_motorized
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_sharpen_the_weapon_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		available = {
+			CHI_NWW_route_clear = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 19.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_20_pp
+		
+		fire_only_once = no
+		days_re_enable = 30
+		complete_effect = {
+			add_command_power = -10
+			add_political_power = -20
+			send_equipment = {
+				type = motorized_equipment_2
+				amount = 200
+				target = QIN
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				send_equipment = {
+					type = APC_chassis_2
+					amount = 80
+					target = QIN
+				}
+			}
+			else = {
+				send_equipment = {
+					type = APC_equipment_2
+					amount = 80
+					target = QIN
+				}
+			}
+			add_to_variable = { CHI_NWW_EQ_armor = 80 }
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = -15 }
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_decrease_tooltip
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+
+	#后利其事
+	CHI_NWW_lend_helping_hand = {
+		icon = GFX_decision_TNOLAR_CHI_NWW_lend_helping_hand
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+			has_completed_focus = CHI_LAR_Refugees_Move_East
+		}
+
+		fire_only_once = no
+		days_re_enable = 0
+		complete_effect = {
+			if = {
+				limit = { has_country_flag = CHI_lend_helping_hand_decisions }
+				clr_country_flag = CHI_lend_helping_hand_decisions
+			}
+			else = {
+				set_country_flag = CHI_lend_helping_hand_decisions
+			}
+		}
+	}
+
+	#提供军事顾问
+	CHI_NWW_provide_advisors = {
+		icon = GFX_decision_generic_military_parade
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_lend_helping_hand_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+			has_completed_focus = CHI_LAR_Advisers_Westbound
+		}
+		cancel_trigger = {
+            GAN = {
+				NOT = {
+					has_war_with = QIN
+				}
+			}
+        }
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		fire_only_once = no
+		days_re_enable = 5
+		days_remove = 60
+		targeted_modifier = {
+    		tag = QIN
+    		army_attack_factor = 0.15
+    		army_defence_factor = 0.2
+			breakthrough_factor = 0.15
+		}
+		targeted_modifier = {
+    		tag = CHI
+    		experience_gain_army = 0.1
+		}
+		complete_effect = {
+			add_political_power = -25
+			add_command_power = -10
+		}
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+	
+	#提供后勤补给支援
+	CHI_NWW_provide_logistical_support = {
+		icon = GFX_decision_generic_supply
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_lend_helping_hand_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		cancel_trigger = {
+            GAN = {
+				NOT = {
+					has_war_with = QIN
+				}
+			}
+        }
+
+		custom_cost_trigger = {
+			always = yes
+		}
+		custom_cost_text = decision_cost_25_million
+
+		fire_only_once = no
+		days_re_enable = 15
+		days_remove = 20
+		targeted_modifier = {
+    		tag = QIN
+    		supply_consumption_factor = -0.15
+    		attrition = -0.1
+		}
+
+		complete_effect = {
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 5 }
+			clamp_variable = {
+                var = CHI_Northwest_War_GUI_progressbar_var
+                min = 0
+                max = 100
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_increase_tooltip
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+	
+	#敞开工厂大门
+	CHI_NWW_open_factory_door = {
+		icon = GFX_decision_generic_workers
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_lend_helping_hand_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		cancel_trigger = {
+            GAN = {
+				NOT = {
+					has_war_with = QIN
+				}
+			}
+        }
+
+		custom_cost_trigger = {
+			always = yes
+		}
+		custom_cost_text = decision_cost_25_million
+
+		fire_only_once = no
+		days_re_enable = 30
+		days_remove = 25
+		targeted_modifier = {
+    		tag = QIN
+    		production_factory_start_efficiency_factor = 0.15
+		}
+
+		complete_effect = {
+			QIN = {
+				add_stability = 0.15
+			}
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 15 }
+			clamp_variable = {
+                var = CHI_Northwest_War_GUI_progressbar_var
+                min = 0
+                max = 100
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_increase_tooltip
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+
+	#保障民生稳定
+	CHI_NWW_aid_the_people = {
+		icon = GFX_decision_generic_airdrop
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_lend_helping_hand_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+
+		custom_cost_trigger = {
+			always = yes
+		}
+		custom_cost_text = decision_cost_75_million
+
+		fire_only_once = no
+		days_re_enable = 15
+
+		complete_effect = {
+			QIN = {
+				set_temp_variable = { temp_econ_GDP_boost_percentage = 0.15 }
+				econ_GDP_boost_once_percentage = yes
+				add_to_variable = { poverty_monthly_change = 1 }
+			}
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 10 }
+			clamp_variable = {
+                var = CHI_Northwest_War_GUI_progressbar_var
+                min = 0
+                max = 100
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.075 }
+			econ_spend_money_once_effect_raw_money = yes
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_increase_tooltip
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+
+	#派遣国安特工渗透
+	CHI_NWW_send_agents_infiltrate = {
+		icon = GFX_decision_generic_assault
+		cost = 25
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_lend_helping_hand_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = -10 }
+			clamp_variable = {
+                var = CHI_Northwest_War_GUI_progressbar_var
+                min = 0
+                max = 100
+			}
+			GAN = {
+				add_timed_idea = {
+    				idea = GAN_LAR_agents_infiltrate_idea
+    				days = 180
+				}
+			}
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_decrease_tooltip
+		}
+
+		ai_will_do = {
+			factor = 60
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+	
+	#折冲口舌之间
+	CHI_NWW_diplomatic_mediation = {
+		icon = GFX_decision_TNOLAR_CHI_NWW_diplomatic_mediation
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		available = {
+			QIN = {
+				has_war_with = GAN
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 0
+		complete_effect = {
+			if = {
+				limit = { has_country_flag = CHI_diplomatic_mediation_decisions }
+				clr_country_flag = CHI_diplomatic_mediation_decisions
+			}
+			else = {
+				set_country_flag = CHI_diplomatic_mediation_decisions
+			}
+		}
+	}
+
+	#派遣志愿军
+	CHI_NWW_send_volunteers = {
+		icon = GFX_decision_generic_military_hat
+		cost = 25
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_diplomatic_mediation_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		available = {
+			TNO_volunteer_cap_less_3 = yes
+			CHI_NWW_route_clear = yes
+		}
+		fire_only_once = yes
+		complete_effect = {
+			hidden_effect = {
+				set_temp_variable = { target = QIN }
+				TNO_increase_volunteer_cap_1 = yes
+				add_to_variable = { Northwest_War_timeleft = 7 }
+				clamp_variable = {
+                    var = Northwest_War_timeleft
+                    min = 1
+                    max = 61
+                }
+				add_to_variable = { CHI_current_number_volunteers = 2 }
+			}
+			
+			custom_effect_tooltip = TNO_increase_volunteers_NWW_1
+			custom_effect_tooltip = war_progress_accelerate
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_decrease_tooltip
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+		}
+	}
+
+	#向日方施加外交压力
+	CHI_NWW_apply_diplomatic_pressure = {
+		icon = GFX_decision_generic_propaganda
+		cost = 100
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_diplomatic_mediation_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 20
+		complete_effect = {
+			add_to_variable = { Northwest_War_timeleft = -15 }
+			clamp_variable = {
+                var = Northwest_War_timeleft
+                min = 1
+                max = 61
+			}
+			custom_effect_tooltip = war_progress_delay
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				factor = 0
+				check_variable = { Northwest_War_timeleft < 61 }
+			}
+			modifier = {
+				factor = 2
+				check_variable = { Northwest_War_timeleft > 40 }
+			}
+		}
+	}
+
+	#修缮西部公路
+	CHI_NWW_repair_western_road = {
+		icon = GFX_decision_generic_tools
+		cost = 20
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_diplomatic_mediation_decisions
+			check_variable = {
+				Northwest_War_timeleft < 61
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 14
+		complete_effect = {
+			add_to_variable = { CHI_Northwest_War_GUI_progressbar_var = 30 }
+			clamp_variable = {
+                var = CHI_Northwest_War_GUI_progressbar_var
+                min = 0
+                max = 100
+			}
+			custom_effect_tooltip = CHI_supply_route_smooth_rate_severe_increase_tooltip
+		}
+
+		ai_will_do = {
+			factor = 40
+			modifier = {
+				factor = 0
+				check_variable = { CHI_Northwest_War_GUI_progressbar_var > 70 }
+			}
+		}
+	}
+}
+
+TNOLAR_CHI_Great_Asian_War_category = {
+	CHI_GAW_confidencesupply_tick = {
+		icon = GFX_decision_generic_clock
+		priority = 100
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+
+		cancel_trigger = {
+			custom_trigger_tooltip = {
+				tooltip = CHI_GAW_confidencesupply_tick_trigger_tt
+				NOT = {
+					has_global_flag = TNOLAR_GAW_in_progress
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 7
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_GAW_confidencesupply_tick mission timer elapsed"
+
+			custom_effect_tooltip = CHI_GAW_confidencesupply_tick_effect_tt
+			
+			if = {
+				limit = {
+					check_variable = { CHI_Great_Asian_War_GUI_jp_supply_var > 250 }
+				}
+				set_temp_variable_to_random = {
+					var = temp1
+					min = 20
+					max = 60
+					integer = yes
+				}
+				subtract_from_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = temp1 }
+			}
+			if = {
+				limit = {
+					check_variable = { CHI_Great_Asian_War_GUI_jp_supply_var < CHI_Great_Asian_War_GUI_cn_supply_var }
+				}
+				set_temp_variable_to_random = {
+					var = temp2
+					min = 1
+					max = 3
+					integer = yes
+				}
+				subtract_from_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var = temp2 }
+			}
+			else_if = {
+				limit = {
+					check_variable = { CHI_Great_Asian_War_GUI_jp_supply_var > CHI_Great_Asian_War_GUI_cn_supply_var }
+				}
+				set_temp_variable_to_random = {
+					var = temp2
+					min = 5
+					max = 10
+					integer = yes
+				}
+				subtract_from_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var = temp2 }
+			}
+
+			CHI_Update_Great_Asian_War_map_GUI_whole_map = yes
+			CHI_Update_Great_Asian_War_wargoal_GUI = yes
+			
+			CHI_calc_Great_Asian_War_GUI_weekly_supply = yes
+			CHI_calc_Great_Asian_War_GUI_war_confidence = yes
+			CHI_calc_Great_Asian_War_GUI_cn_confidencesupply = yes
+			CHI_calc_Great_Asian_War_GUI_jp_confidencesupply = yes
+
+			#检查仓储，若已满则显示自定义提醒
+			CHI_GAW_Supplystockpile_check = yes
+		}
+	}
+
+	CHI_GAW_The_End_of_The_GAW = {
+		icon = GFX_decision_TNOLAR_CHI_oilcrisis_reform_successful
+		priority = 99
+		allowed = {
+			original_tag = CHI
+		}
+
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+
+		activation = {
+			check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 2 }
+			check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 2 }
+			check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 2 }
+			check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 2 }
+			check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 2 }
+			check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 2 }
+		}
+
+		cancel_trigger = {
+			OR = {
+				NOT = {
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 2 }
+				}
+				NOT = {
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 2 }
+				}
+				NOT = {
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 2 }
+				}
+				NOT = {
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 2 }
+				}
+				NOT = {
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 2 }
+				}
+				NOT = {
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 2 }
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_GAW_confidencesupply_tick_trigger_tt
+					NOT = {
+						has_global_flag = TNOLAR_GAW_in_progress
+					}
+				}
+			}
+		}
+
+		is_good = yes
+
+		days_mission_timeout = 60
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: CHI_GAW_The_End_of_The_GAW mission timer elapsed"
+
+			country_event = tnolar_chi.700
+		}
+	}
+
+	#提振我方信心
+	CHI_GAW_Boosting_our_confidence = {
+		icon = GFX_decision_GNG_roc_backing
+		cost = 30
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+		fire_only_once = no
+		days_remove = 35
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					has_global_flag = TNOLAR_GAW_in_progress
+				}
+				set_temp_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change = 10 }
+				CHI_Great_Asian_War_GUI_cn_confidence_change = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+	
+	#瓦解敌方舆论
+	CHI_GAW_Dissolve_enemy_opinion = {
+		icon = GFX_decision_GNG_japan_backing
+		cost = 30
+
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+		fire_only_once = no
+		days_remove = 35
+
+		complete_effect = {
+		}
+
+		remove_effect = {
+			if = {
+				limit = {
+					has_global_flag = TNOLAR_GAW_in_progress
+				}
+				set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+				CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 40
+		}
+	}
+}

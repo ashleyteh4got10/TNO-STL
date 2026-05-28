@@ -1,0 +1,2012 @@
+scripted_gui = {
+	####    The Great Asian War | 大东亚战争    ####
+	TNOLAR_CHI_Great_Asian_War_GUI_OpenButtonContainer = {
+		window_name = "TNOLAR_CHI_Great_Asian_War_GUI_AccessButton"
+		context_type = player_context
+		parent_window_token = politics_tab
+
+		visible = {
+			tag = CHI
+			has_global_flag = TNOLAR_GAW_in_progress
+			has_country_flag = TNOLAR_country_has_gui
+		}
+
+		effects = {
+			TNOLAR_CHI_Great_Asian_War_GUI_OpenButton_click = {
+				if = {
+					limit = { NOT = { has_country_flag = CHI_Show_Great_Asian_War_GUI } }
+					set_country_flag = CHI_Show_Great_Asian_War_GUI
+					CHI_Update_Great_Asian_War_map_GUI_whole_map = yes
+					CHI_Update_Great_Asian_War_wargoal_GUI = yes
+				}
+				else_if = {
+					limit = { has_country_flag = CHI_Show_Great_Asian_War_GUI }
+					clr_country_flag = CHI_Show_Great_Asian_War_GUI
+				}
+				clr_country_flag = gui_alert_visible
+			}
+		}
+
+		triggers = {
+			gui_alert_visible = {
+				has_country_flag = gui_alert_visible
+			}
+		}
+	}
+
+	TNOLAR_CHI_Great_Asian_War_GUI = {
+		context_type = player_context
+		window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+
+		visible = {
+			has_country_flag = CHI_Show_Great_Asian_War_GUI
+		}
+
+		effects = {
+			CHI_Great_Asian_War_GUI_closebutton_click = {
+				clr_country_flag = CHI_Show_Great_Asian_War_GUI
+				clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				clear_variable = CHI_Great_Asian_War_map_GUI_selected
+			}
+		}
+	}
+
+	TNOLAR_CHI_Great_Asian_War_map_GUI = {
+		context_type = player_context
+		parent_window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+		window_name = "TNOLAR_CHI_Great_Asian_War_map_GUI"
+
+		visible = {
+			NOT = {
+				has_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			}
+		}
+
+		effects = {
+			###### 地图选中显示
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Korean_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Korean }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Korean }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Southern_OuterNortheast_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Southern_OuterNortheast }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Southern_OuterNortheast }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Northern_OuterNortheast_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Northern_OuterNortheast }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Northern_OuterNortheast }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Jilin_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jilin }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jilin }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Heilongjiang_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Heilongjiang }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Heilongjiang }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Rehe_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Rehe }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Rehe }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Liaoning_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Liaoning }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Liaoning }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Jilu_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jilu }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jilu }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Jinshan_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jinshan }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jinshan }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Suwanzhe_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Suwanzhe }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Suwanzhe }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Yuxiange_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Yuxiange }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Yuxiange }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Sichuan_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sichuan }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sichuan }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Ganmin_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Ganmin }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Ganmin }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Taiwan_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Taiwan }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Taiwan }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Dianqiangui_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Dianqiangui }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Dianqiangui }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Guangdong_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Guangdong }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Guangdong }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Xibei_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xibei }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xibei }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Xizang_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xizang }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xizang }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Xinjiang_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xinjiang }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xinjiang }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Eastern_Mongolia_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Eastern_Mongolia }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Eastern_Mongolia }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Western_Mongolia_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Western_Mongolia }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Western_Mongolia }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Vietnam_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Vietnam }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Vietnam }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Laos_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Laos }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Laos }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Cambodian_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Cambodian }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Cambodian }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Thailand_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Thailand }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Thailand }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Burma_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Burma }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Burma }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Malaya_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Malaya }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Malaya }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Sumatra_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sumatra }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sumatra }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Sunda_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sunda }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sunda }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Borneo_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Borneo }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Borneo }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Sulawesi_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sulawesi }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sulawesi }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_New_Guinea_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_New_Guinea }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_New_Guinea }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Philippine_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Philippine }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Philippine }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Japan_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Japan }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Japan }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_pick_LAR_GAW_Western_Pacific_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Western_Pacific }
+					}
+					clear_variable = CHI_Great_Asian_War_map_GUI_selected
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Western_Pacific }
+				}
+			}
+		######
+		}
+
+		triggers = {
+		###### 地图战争迷雾显示
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Korean_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Korean_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Southern_OuterNortheast_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Southern_OuterNortheast_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Northern_OuterNortheast_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Northern_OuterNortheast_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jilin_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jilin_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Heilongjiang_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Heilongjiang_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Rehe_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Rehe_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Liaoning_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Liaoning_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jilu_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jilu_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jinshan_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Jinshan_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Suwanzhe_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Suwanzhe_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Yuxiange_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Yuxiange_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sichuan_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sichuan_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Ganmin_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Ganmin_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Taiwan_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Taiwan_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Dianqiangui_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Dianqiangui_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Guangdong_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Guangdong_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xibei_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xibei_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xizang_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xizang_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xinjiang_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Xinjiang_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Eastern_Mongolia_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Eastern_Mongolia_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Western_Mongolia_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Western_Mongolia_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Vietnam_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Vietnam_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Laos_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Laos_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Cambodian_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Cambodian_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Thailand_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Thailand_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Burma_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Burma_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Malaya_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Malaya_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sumatra_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sumatra_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sunda_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sunda_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Borneo_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Borneo_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sulawesi_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Sulawesi_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_New_Guinea_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_New_Guinea_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Philippine_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Philippine_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Japan_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Japan_clear
+					}
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Western_Pacific_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_LAR_GAW_Western_Pacific_clear
+					}
+				}
+			}
+		######
+
+		###### 地图选中显示
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Korean_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Korean }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Southern_OuterNortheast_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Southern_OuterNortheast }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Northern_OuterNortheast_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Northern_OuterNortheast }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Jilin_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jilin }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Heilongjiang_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Heilongjiang }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Rehe_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Rehe }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Liaoning_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Liaoning }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Jilu_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jilu }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Jinshan_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jinshan }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Suwanzhe_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Suwanzhe }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Yuxiange_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Yuxiange }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Sichuan_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sichuan }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Ganmin_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Ganmin }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Taiwan_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Taiwan }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Dianqiangui_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Dianqiangui }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Guangdong_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Guangdong }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Xibei_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xibei }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Xizang_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xizang }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Xinjiang_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xinjiang }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Eastern_Mongolia_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Eastern_Mongolia }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Western_Mongolia_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Western_Mongolia }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Vietnam_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Vietnam }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Laos_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Laos }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Cambodian_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Cambodian }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Thailand_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Thailand }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Burma_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Burma }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Malaya_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Malaya }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Sumatra_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sumatra }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Sunda_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sunda }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Borneo_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Borneo }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Sulawesi_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sulawesi }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_New_Guinea_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_New_Guinea }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Philippine_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Philippine }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Japan_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Japan }
+				}
+			}
+			CHI_Great_Asian_War_map_GUI_selected_LAR_GAW_Western_Pacific_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Western_Pacific }
+				}
+			}
+		######
+		}
+		
+
+		properties = {
+		###### 地图敌我显示
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var
+			}
+			CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific = {
+				frame = CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var
+			}
+		######
+
+		###### 地图计划显示
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Korean = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Korean_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Southern_OuterNortheast = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Southern_OuterNortheast_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Northern_OuterNortheast = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Northern_OuterNortheast_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilin = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilin_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Heilongjiang = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Heilongjiang_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Rehe = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Rehe_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Liaoning = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Liaoning_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilu = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jilu_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jinshan = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Jinshan_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Suwanzhe = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Suwanzhe_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Yuxiange = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Yuxiange_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sichuan = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sichuan_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Ganmin = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Ganmin_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Taiwan = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Taiwan_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Dianqiangui = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Dianqiangui_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Guangdong = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Guangdong_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xibei = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xibei_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xizang = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xizang_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xinjiang = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Xinjiang_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Eastern_Mongolia = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Eastern_Mongolia_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Mongolia = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Mongolia_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Vietnam = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Vietnam_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Laos = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Laos_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Cambodian = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Cambodian_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Thailand = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Thailand_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Burma = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Burma_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Malaya = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Malaya_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sumatra = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sumatra_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sunda = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sunda_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Borneo = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Borneo_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sulawesi = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Sulawesi_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_New_Guinea = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_New_Guinea_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Philippine = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Philippine_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Japan = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Japan_var
+			}
+			CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Pacific = {
+				frame = CHI_Great_Asian_War_map_GUI_Plan_LAR_GAW_Western_Pacific_var
+			}
+		######
+		}
+	}
+	
+	TNOLAR_CHI_Great_Asian_War_wargoal_GUI = {
+		context_type = player_context
+		parent_window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+		window_name = "TNOLAR_CHI_Great_Asian_War_wargoal_GUI"
+
+		visible = {
+			NOT = {
+				has_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			}
+		}
+
+		effects = {
+			CHI_Great_Asian_War_wargoal_GUI_Achieve_all_goals_demand_surrender_click = {
+				country_event = tnolar_chi.700
+				clr_country_flag = CHI_Show_Great_Asian_War_GUI
+			}
+		}
+
+		triggers = {
+			CHI_Great_Asian_War_wargoal_GUI_Achieve_all_goals_frame_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 2 }
+				}
+			}
+			CHI_Great_Asian_War_wargoal_GUI_Achieve_all_goals_demand_surrender_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 2 }
+					check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 2 }
+				}
+			}
+		}
+		
+		properties = {
+			CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN = {
+				frame = CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var
+			}
+			CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN = {
+				frame = CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var
+			}
+			CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN = {
+				frame = CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var
+			}
+			CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG = {
+				frame = CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var
+			}
+			CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR = {
+				frame = CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var
+			}
+			CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA = {
+				frame = CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var
+			}
+		}
+	}
+
+	TNOLAR_CHI_Great_Asian_War_warplan_GUI = {
+		context_type = player_context
+		parent_window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+		window_name = "TNOLAR_CHI_Great_Asian_War_warplan_GUI"
+
+		visible = {
+			NOT = {
+				has_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			}
+		}
+
+		effects = {
+			CHI_Great_Asian_War_warplan_GUI_plan_1_available_click = {
+				if = {
+					limit = {
+						has_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+					}
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_2_available_click = {
+				if = {
+					limit = {
+						has_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+					}
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_3_available_click = {
+				if = {
+					limit = {
+						has_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+					}
+					clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+				else = {
+					set_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				}
+			}
+		}
+
+		triggers = {
+			CHI_Great_Asian_War_warplan_GUI_plan_1_available_visible = {
+				hidden_trigger = {
+					#meta_trigger = {
+					#	text = {
+					#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+					#	}
+					#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					#}
+					check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 1 }
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+					}
+				}
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_2_available_visible = {
+				hidden_trigger = {
+					#meta_trigger = {
+					#	text = {
+					#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+					#	}
+					#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					#}
+					check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+					}
+				}
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_3_available_visible = {
+				hidden_trigger = {
+					#meta_trigger = {
+					#	text = {
+					#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+					#	}
+					#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					#}
+					check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 1 }
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+					NOT = {
+						has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+					}
+				}
+			}
+
+			CHI_Great_Asian_War_warplan_GUI_plan_1_progressbar_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+				}
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_2_progressbar_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+				}
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_3_progressbar_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+				}
+			}
+		}
+
+		properties = {
+			CHI_Great_Asian_War_warplan_GUI_plan_1_status = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_1_status_var
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_2_status = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_2_status_var
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_3_status = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_3_status_var
+			}
+
+			CHI_Great_Asian_War_warplan_GUI_plan_1_bg = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_2_bg = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_3_bg = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var
+			}
+
+			CHI_Great_Asian_War_warplan_GUI_plan_1_progressbar = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_2_progressbar = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+			}
+			CHI_Great_Asian_War_warplan_GUI_plan_3_progressbar = {
+				frame = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+			}
+		}
+	}
+	
+	TNOLAR_CHI_Great_Asian_War_stateinfo_GUI = {
+		context_type = player_context
+		parent_window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+		window_name = "TNOLAR_CHI_Great_Asian_War_stateinfo_GUI"
+
+		visible = {
+			NOT = {
+				has_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			}
+			NOT = {
+				has_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+			}
+		}
+
+		effects = {
+		}
+
+		triggers = {
+			CHI_Great_Asian_War_stateinfo_GUI_unselected_bg_visible = {
+				hidden_trigger = {
+					NOT = {
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+					}
+				}
+			}
+
+			CHI_Great_Asian_War_stateinfo_GUI_selected_bg_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+				}
+			}
+			CHI_Great_Asian_War_stateinfo_GUI_selected_info_1_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+				}
+			}
+			CHI_Great_Asian_War_stateinfo_GUI_selected_info_2_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+				}
+			}
+			CHI_Great_Asian_War_stateinfo_GUI_selected_info_3_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+				}
+			}
+			CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+				}
+			}
+			CHI_Great_Asian_War_stateinfo_GUI_selected_info_5_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+				}
+			}
+			CHI_Great_Asian_War_stateinfo_GUI_selected_info_6_visible = {
+				hidden_trigger = {
+					has_variable = CHI_Great_Asian_War_map_GUI_selected
+				}
+			}
+
+			CHI_Great_Asian_War_stateinfo_GUI_strategic_bombing_frame_visible = {
+				hidden_trigger = {
+					meta_trigger = {
+						text = {
+							check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 4 }
+						}
+						LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					}
+				}
+			}
+		}
+	}
+	
+	TNOLAR_CHI_Great_Asian_War_stateaction_GUI = {
+		context_type = player_context
+		parent_window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+		window_name = "TNOLAR_CHI_Great_Asian_War_stateaction_GUI"
+
+		visible = {
+			NOT = {
+				has_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			}
+			has_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+		}
+
+		effects = {
+			CHI_Great_Asian_War_stateaction_GUI_war_preparation_click = {	#战争预案
+				clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				add_political_power = -10
+				add_command_power = -15
+				add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -30 }
+
+
+				CHI_Great_Asian_War_stateaction_GUI_war_preparation_effect = yes
+
+
+				if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = 60 }
+				}
+				else_if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = 60 }
+				}
+				else_if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = 60 }
+				}
+
+				CHI_GAW_Supplystockpile_check = yes
+			}
+			CHI_Great_Asian_War_stateaction_GUI_strategic_bombing_click = {	#战略轰炸
+				clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				add_political_power = -10
+				add_command_power = -15
+				add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -30 }
+
+
+				CHI_Great_Asian_War_stateaction_GUI_strategic_bombing_effect = yes
+
+
+				if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 3 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = 60 }
+				}
+				else_if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 3 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = 60 }
+				}
+				else_if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 3 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = 60 }
+				}
+
+				CHI_GAW_Supplystockpile_check = yes
+			}
+			CHI_Great_Asian_War_stateaction_GUI_defensive_plan_click = {	#防御计划
+				clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				add_political_power = -10
+				add_command_power = -15
+				add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -30 }
+
+				
+				CHI_Great_Asian_War_stateaction_GUI_defensive_plan_effect = yes
+
+
+				if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 5 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = 60 }
+				}
+				else_if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 5 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = 60 }
+				}
+				else_if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 5 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = 60 }
+				}
+
+				CHI_GAW_Supplystockpile_check = yes
+			}
+			CHI_Great_Asian_War_stateaction_GUI_offensive_plan_click = {	#进攻计划
+				clr_country_flag = CHI_Show_Great_Asian_War_stateaction_GUI
+				add_political_power = -10
+				add_command_power = -15
+				add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -30 }
+
+				
+				CHI_Great_Asian_War_stateaction_GUI_offensive_plan_effect = yes
+
+
+				if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 4 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_time_var = 60 }
+				}
+				else_if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 4 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_time_var = 60 }
+				}
+				else_if = {
+					limit = {
+						#meta_trigger = {
+						#	text = {
+						#		check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var < 2 }
+						#	}
+						#	LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+						#}
+						check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 1 }
+						has_variable = CHI_Great_Asian_War_map_GUI_selected
+						NOT = {
+							has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+						}
+					}
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_state = CHI_Great_Asian_War_map_GUI_selected }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 4 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 2 }
+
+					set_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_time_var = 60 }
+				}
+				
+				CHI_GAW_Supplystockpile_check = yes
+			}
+		}
+
+		triggers = {
+			CHI_Great_Asian_War_stateaction_GUI_war_preparation_visible = {
+				hidden_trigger = {
+					has_political_power > 9.99
+					command_power > 14.99
+					check_variable = { CHI_Great_Asian_War_GUI_cn_supply_var > 29 }
+					meta_trigger = {
+						text = {
+							NOT = {
+								has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_[LAR_GAW_STATE]_clear
+							}
+						}
+						LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					}
+				}
+			}
+			CHI_Great_Asian_War_stateaction_GUI_strategic_bombing_visible = {
+				hidden_trigger = {
+					has_political_power > 9.99
+					command_power > 14.99
+					check_variable = { CHI_Great_Asian_War_GUI_cn_supply_var > 29 }
+					meta_trigger = {
+						text = {
+							has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_[LAR_GAW_STATE]_clear
+						}
+						LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					}
+					meta_trigger = {
+						text = {
+							OR = {
+								check_variable = { CHI_Great_Asian_War_map_GUI_Indication_[LAR_GAW_STATE]_var = 1 }
+								check_variable = { CHI_Great_Asian_War_map_GUI_Indication_[LAR_GAW_STATE]_var = 2 }
+							}
+						}
+						LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					}
+				}
+			}
+			CHI_Great_Asian_War_stateaction_GUI_defensive_plan_visible = {
+				hidden_trigger = {
+					has_political_power > 9.99
+					command_power > 14.99
+					check_variable = { CHI_Great_Asian_War_GUI_cn_supply_var > 29 }
+					meta_trigger = {
+						text = {
+							has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_[LAR_GAW_STATE]_clear
+						}
+						LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					}
+				}
+			}
+			CHI_Great_Asian_War_stateaction_GUI_offensive_plan_visible = {
+				hidden_trigger = {
+					has_political_power > 9.99
+					command_power > 14.99
+					check_variable = { CHI_Great_Asian_War_GUI_cn_supply_var > 29 }
+					meta_trigger = {
+						text = {
+							has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_[LAR_GAW_STATE]_clear
+						}
+						LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+					}
+				}
+			}
+		}
+	}
+	
+	TNOLAR_CHI_Great_Asian_War_warconfidence_GUI = {
+		context_type = player_context
+		parent_window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+		window_name = "TNOLAR_CHI_Great_Asian_War_warconfidence_GUI"
+
+		visible = {
+			NOT = {
+				has_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			}
+		}
+
+		effects = {
+		}
+
+		triggers = {
+		}
+
+		properties = {
+			CHI_Great_Asian_War_warconfidence_GUI_cn_supply_progressbar = {
+				frame = CHI_Great_Asian_War_GUI_cn_supply_var
+			}
+			CHI_Great_Asian_War_warconfidence_GUI_jp_supply_progressbar = {
+				frame = CHI_Great_Asian_War_GUI_jp_supply_var
+			}
+
+			CHI_Great_Asian_War_warconfidence_GUI_cn_confidence_progressbar = {
+				frame = CHI_Great_Asian_War_GUI_cn_confidence_var
+			}
+			CHI_Great_Asian_War_warconfidence_GUI_jp_confidence_progressbar = {
+				frame = CHI_Great_Asian_War_GUI_jp_confidence_var
+			}
+		}
+	}
+	
+	TNOLAR_CHI_Great_Asian_War_boot_GUI = {
+		context_type = player_context
+		parent_window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+		window_name = "TNOLAR_CHI_Great_Asian_War_boot_GUI"
+
+		visible = {
+			has_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+		}
+
+		effects = {
+			CHI_Great_Asian_War_boot_GUI_Authorized_Unlock_click = {
+				clr_country_flag = CHI_Show_Great_Asian_War_boot_GUI
+			}
+
+			CHI_Great_Asian_War_boot_GUI_unlock_1_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 1 }
+					}
+					set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 2 }
+					add_to_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = -1 }
+					clamp_variable = {
+						var = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+						min = 0
+						max = 4
+					}
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 1 }
+					add_to_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 1 }
+					clamp_variable = {
+						var = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+						min = 0
+						max = 4
+					}
+				}
+			}
+			CHI_Great_Asian_War_boot_GUI_unlock_2_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 1 }
+					}
+					set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 2 }
+					add_to_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = -1 }
+					clamp_variable = {
+						var = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+						min = 0
+						max = 4
+					}
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 1 }
+					add_to_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 1 }
+					clamp_variable = {
+						var = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+						min = 0
+						max = 4
+					}
+				}
+			}
+			CHI_Great_Asian_War_boot_GUI_unlock_3_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 1 }
+					}
+					set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 2 }
+					add_to_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = -1 }
+					clamp_variable = {
+						var = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+						min = 0
+						max = 4
+					}
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 1 }
+					add_to_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 1 }
+					clamp_variable = {
+						var = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+						min = 0
+						max = 4
+					}
+				}
+			}
+			CHI_Great_Asian_War_boot_GUI_unlock_4_click = {
+				if = {
+					limit = {
+						check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 1 }
+					}
+					set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 2 }
+					add_to_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = -1 }
+					clamp_variable = {
+						var = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+						min = 0
+						max = 4
+					}
+				}
+				else = {
+					set_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 1 }
+					add_to_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 1 }
+					clamp_variable = {
+						var = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+						min = 0
+						max = 4
+					}
+				}
+			}
+		}
+
+		triggers = {
+			CHI_Great_Asian_War_boot_GUI_awaiting_input_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 0 }
+				}
+			}
+			CHI_Great_Asian_War_boot_GUI_unlocking_procedure_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var > 0 }
+				}
+			}
+
+			CHI_Great_Asian_War_boot_GUI_Authorized_Unlock_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var > 3 }
+				}
+			}
+		}
+
+		properties = {
+			CHI_Great_Asian_War_boot_GUI_unlocking_procedure = {
+				frame = CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var
+			}
+			CHI_Great_Asian_War_boot_GUI_unlock_1 = {
+				frame = CHI_Great_Asian_War_boot_GUI_unlock_1_var
+			}
+			CHI_Great_Asian_War_boot_GUI_unlock_2 = {
+				frame = CHI_Great_Asian_War_boot_GUI_unlock_2_var
+			}
+			CHI_Great_Asian_War_boot_GUI_unlock_3 = {
+				frame = CHI_Great_Asian_War_boot_GUI_unlock_3_var
+			}
+			CHI_Great_Asian_War_boot_GUI_unlock_4 = {
+				frame = CHI_Great_Asian_War_boot_GUI_unlock_4_var
+			}
+		}
+	}
+
+	TNOLAR_CHI_Great_Asian_War_frame_GUI = {
+		context_type = player_context
+		parent_window_name = "TNOLAR_CHI_Great_Asian_War_GUI"
+		window_name = "TNOLAR_CHI_Great_Asian_War_frame_GUI"
+
+		visible = {
+		}
+
+		effects = {
+		}
+
+		triggers = {
+		}
+	}
+}

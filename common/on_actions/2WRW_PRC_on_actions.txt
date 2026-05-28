@@ -1,166 +1,167 @@
 on_actions = {
-	on_capitulation = {
-		effect = {
+	###STL Banned###
+	#on_capitulation = {
+		#effect = {
 				#MONGOLIAN CIVIL WAR
 				#MEN VICTORY
-				if = {
-					limit = {
-						FROM = { tag = MEN }
-						ROOT = { tag = MON }
-						date < 1970.1.1
-					}
-					MEN = {
-						annex_country = {
-							target = MON
-							transfer_troops = no
-						}
-						country_event = { id = men.1 }
-						set_capital = { state = 330 remember_old_capital = no }
-					}
-					PRC = { country_event = PRC.36 }
-					set_global_flag = Tsagaan_defeated
-					set_global_flag = skip_default_capitulation
-				}
+				#if = {
+				#	limit = {
+				#		FROM = { tag = MEN }
+				#		ROOT = { tag = MON }
+				#		date < 1970.1.1
+				#	}
+				#	MEN = {
+				#		annex_country = {
+				#			target = MON
+				#			transfer_troops = no
+				#		}
+				#		country_event = { id = men.1 }
+				#		set_capital = { state = 330 remember_old_capital = no }
+				#	}
+				#	PRC = { country_event = PRC.36 }
+				#	set_global_flag = Tsagaan_defeated
+				#	set_global_flag = skip_default_capitulation
+				#}
 				#MON VICTORY
-				else_if = {
-					limit = {
-						FROM = { tag = MON }
-						ROOT = { tag = MEN }
-						date < 1970.1.1
-					}
-					MON = {
-						annex_country = {
-							target = MEN
-							transfer_troops = no
-						}
-						JAP = {
-							country_event = { id = men.2 }
-						}
-					}
-					set_global_flag = skip_default_capitulation
-				}
-				else_if = {
-					limit = {
-						FROM = {tag = MON}
-						ROOT = {tag = MAN}
-						date < 1970.1.1
-					}
-					MON = {
-						annex_country = {
-							target = MAN
-							transfer_troops = no
-						}
-					}
-					JAP = {
-						country_event = {
-							id = men.21
-						}
-					}
-					set_global_flag = skip_default_capitulation
-				}
+				#else_if = {
+				#	limit = {
+				#		FROM = { tag = MON }
+				#		ROOT = { tag = MEN }
+				#		date < 1970.1.1
+				#	}
+				#	MON = {
+				#		annex_country = {
+				#			target = MEN
+				#			transfer_troops = no
+				#		}
+				#		JAP = {
+				#			country_event = { id = men.2 }
+				#		}
+				#	}
+				#	set_global_flag = skip_default_capitulation
+				#}
+				#else_if = {
+				#	limit = {
+				#		FROM = {tag = MON}
+				#		ROOT = {tag = MAN}
+				#		date < 1970.1.1
+				#	}
+				#	MON = {
+				#		annex_country = {
+				#			target = MAN
+				#			transfer_troops = no
+				#		}
+				#	}
+				#	JAP = {
+				#		country_event = {
+				#			id = men.21
+				#		}
+				#	}
+				#	set_global_flag = skip_default_capitulation
+				#}
 				#JAPAN FUCKS UP THOSE MONGOLS
-				else_if = {
-					limit = {
-						FROM = {
-							OR = {
-								tag = JAP
-								AND = {
-									has_war_together_with = JAP
-									has_war_with = MON
-								}
-							}
-						}
-						ROOT = { tag = MON }
-						date < 1970.1.1
-					}
-					JAP = {
-						annex_country = {
-							target = MON
-							transfer_troops = no
-						}
-						if = {
-							limit = {
-								NOT = {
-									country_exists = MAN
-								}
-							}
-							JAP = {
-								every_owned_state = {
-									limit = {
-										is_core_of = MAN
-									}
-									MAN = {
-										transfer_state = PREV
-									}
-								}
-							}
-						}
-						country_event = men.3
-					}
-					PRC = { country_event = PRC.36 }
-					set_global_flag = skip_default_capitulation
-				}
+				#else_if = {
+				#	limit = {
+				#		FROM = {
+				#			OR = {
+				#				tag = JAP
+				#				AND = {
+				#					has_war_together_with = JAP
+				#					has_war_with = MON
+				#				}
+				#			}
+				#		}
+				#		ROOT = { tag = MON }
+				#		date < 1970.1.1
+				#	}
+				#	JAP = {
+				#		annex_country = {
+				#			target = MON
+				#			transfer_troops = no
+				#		}
+				#		if = {
+				#			limit = {
+				#				NOT = {
+				#					country_exists = MAN
+				#				}
+				#			}
+				#			JAP = {
+				#				every_owned_state = {
+				#					limit = {
+				#						is_core_of = MAN
+				#					}
+				#					MAN = {
+				#						transfer_state = PREV
+				#					}
+				#				}
+				#			}
+				#		}
+				#		country_event = men.3
+				#	}
+				#	PRC = { country_event = PRC.36 }
+				#	set_global_flag = skip_default_capitulation
+				#}
 				#Organ peace deals
-				else_if = { #PRC VS MEN
-					limit = {
-						FROM = { tag = PRC }
-						ROOT = { tag = MEN }
-					}
-					FROM = {
-						country_event = PRC.9
-						white_peace = ROOT
-						white_peace = MAN
-						white_peace = JAP
-					}
-					ROOT = {
-						country_event = men.20
-						MEN_buff_mengjiang = yes
-						transfer_state = 2401
-						transfer_state = 2405
-						transfer_state = 616
-						transfer_state = 2409
-						transfer_state = 955
-						transfer_state = 2408
-						transfer_state = 621
-						transfer_state = 2422
-						transfer_state = 612
-						transfer_state = 2406
-						transfer_state = 2407
-						transfer_state = 815
-					}
-					set_global_flag = skip_default_capitulation
-				}
+				#else_if = { #PRC VS MEN
+				#	limit = {
+				#		FROM = { tag = PRC }
+				#		ROOT = { tag = MEN }
+				#	}
+				#	FROM = {
+				#		country_event = PRC.9
+				#		white_peace = ROOT
+				#		white_peace = MAN
+				#		white_peace = JAP
+				#	}
+				#	ROOT = {
+				#		country_event = men.20
+				#		MEN_buff_mengjiang = yes
+				#		transfer_state = 2401
+				#		transfer_state = 2405
+				#		transfer_state = 616
+				#		transfer_state = 2409
+				#		transfer_state = 955
+				#		transfer_state = 2408
+				#		transfer_state = 621
+				#		transfer_state = 2422
+				#		transfer_state = 612
+				#		transfer_state = 2406
+				#		transfer_state = 2407
+				#		transfer_state = 815
+				#	}
+				#	set_global_flag = skip_default_capitulation
+				#}
 
-				else_if = { #MEN VS PRC
-					limit = {
-						FROM = {
-							OR = {
-								tag = MEN
-								AND = {
-									has_war_together_with = MEN
-									has_war_with = PRC
-								}
-							}
-						}
-						ROOT = { tag = PRC }
-					}
-					ROOT = {
-						country_event = PRC.11
-						every_country = {
-							limit = { has_war_with = ROOT }
-							white_peace = ROOT
-						}
-					}
-					FROM = {
-						transfer_state = 814
-						transfer_state = 2400
-						transfer_state = 2402
-						MEN_buff_mengjiang = yes
-					}
-					set_global_flag = skip_default_capitulation
-				}
-		}
-	}
+				#else_if = { #MEN VS PRC
+				#	limit = {
+				#		FROM = {
+				#			OR = {
+				#				tag = MEN
+				#				AND = {
+				#					has_war_together_with = MEN
+				#					has_war_with = PRC
+				#				}
+				#			}
+				#		}
+				#		ROOT = { tag = PRC }
+				#	}
+				#	ROOT = {
+				#		country_event = PRC.11
+				#		every_country = {
+				#			limit = { has_war_with = ROOT }
+				#			white_peace = ROOT
+				#		}
+				#	}
+				#	FROM = {
+				#		transfer_state = 814
+				#		transfer_state = 2400
+				#		transfer_state = 2402
+				#		MEN_buff_mengjiang = yes
+				#	}
+				#	set_global_flag = skip_default_capitulation
+				#}
+		#}
+	#}
 	on_weekly_PRC = {
 		effect = {
 			if = {

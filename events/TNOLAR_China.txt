@@ -1823,7 +1823,19 @@ country_event = {
 			recalculate_world_trade_influence = yes
 
 			leave_faction = yes
-			create_faction = TNOLAR_Pan_Asian_Liberation_Alliance
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = TNOLAR_Pan_Asian_Liberation_Alliance template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = TNOLAR_Pan_Asian_Liberation_Alliance
+}
+			#create_faction = TNOLAR_Pan_Asian_Liberation_Alliance
 			remove_ideas = Sphere_Core_Member
 			add_ideas = TNOLAR_PALA_Leader
 

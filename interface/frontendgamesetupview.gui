@@ -41,7 +41,90 @@ guiTypes = {
 			format = centre
 		}
 	}
+	containerWindowType = {
+		name = "change_background"
+		size = { width = 40 height = 40 }
+		position = { x = -973 y = 122 }
+		Orientation = CENTER_DOWN
+		Origo = center
 
+		buttonType = {
+			name ="change_background_button"
+			position = { x = 466 y = -412 }
+			
+			quadTextureSprite = "GFX_background_icon"
+			pdx_tooltip = "CHANGE_BACKGROUND"
+			buttonFont = "aldrich_24_outline"
+			Orientation = center
+		}
+
+		containerWindowType = {
+			name = "background_selection"
+			size = { width = 244 height = 650 }
+			position = { x = 200 y = -750 }
+			margin = { top = 18 bottom = 0 left = 4}
+
+			background = {
+				name = "Background"
+				quadTextureSprite ="GFX_tiled_bg_uniform"
+			}
+			
+			checkboxType = {
+					name = "select_all_checkbox"
+					position = { x = 13 y = 0 }
+					quadTextureSprite ="GFX_generic_checkbox"
+					buttonText = ""
+					buttonFont = "Main_14_black"
+					clicksound = click_checkbox
+				}
+			instantTextBoxType={
+					position = {x = 53 y = 6 }
+					name = "select_all_label"
+					font = "aldrich_18_outline"
+					borderSize = {x = 0 y = 0}	
+					maxWidth = 150
+					maxHeight = 18
+					text = "SELECT_ALL"	
+					orientation = "UPPER_LEFT"
+					format = left
+					
+			}
+						
+		containerWindowType = {
+			name = "background_selection_list"
+			size = { width = 230 height = 576 }
+			position = { x = 0 y = 40 }
+			verticalScrollbar = "right_vertical_slider"
+			scroll_wheel_factor = 63
+			smooth_scrolling = yes
+			background = {
+				name = "Background"
+				quadTextureSprite ="GFX_tiled_window_transparent"
+			}
+			
+				gridBoxType = {
+					position = { x = 9 y = 0 }
+					name = "available_backgrounds"
+					size = { width = 200 height = 0 }
+					slotsize = { width = 200 height = 150 }
+					max_slots_horizontal = 1		
+				}
+
+			}
+		}
+	}
+
+	containerWindowType = {
+		name = "available_background"
+		size = { width = 190 height = 140 }
+		position = { x = 0 y = 0 }
+
+		buttonType = {
+			name = "change_background_button"
+			position = { x = 0 y = 0 }
+			spriteType = "GFX_tiled_window_1b_border"
+		}
+	}
 	containerWindowType = {
 		name = "spirit_idea_entry"
 		size = { width=60 height=66 }
@@ -156,6 +239,13 @@ guiTypes = {
 			Orientation = "UPPER_LEFT"
 			alwaystransparent = yes
 		}
+		
+		buttonType = {
+			name = "country_shine"
+			quadTextureSprite = "GFX_country_selection_entry_shine"
+			position = { x=0 y =0 }
+			clicksound = click_checkbox
+		}
 
 		instantTextBoxType = {
 			name = "country_name"
@@ -187,6 +277,13 @@ guiTypes = {
 			position = { x=0 y =0 }
 			clicksound = click_checkbox
 		}
+
+		buttonType = {
+			name = "country_shine"
+			quadTextureSprite = "GFX_minor_country_selector_shine"
+			position = { x=0 y =0 }
+			clicksound = click_checkbox
+		}
 	}
 
 	### country entry
@@ -204,6 +301,13 @@ guiTypes = {
 		buttonType = {
 			name = "country"
 			quadTextureSprite = "GFX_mini_country_selector"
+			position = { x=0 y =0 }
+			clicksound = click_checkbox
+		}
+
+		buttonType = {
+			name = "country_shine"
+			quadTextureSprite = "GFX_mini_country_selector_shine"
 			position = { x=0 y =0 }
 			clicksound = click_checkbox
 		}
@@ -608,49 +712,6 @@ guiTypes = {
 		clipping = no
 		moveable = no
 
-
-		### 2WRW ###
-		iconType = { # NOVOSIBIRSK
-			name = "country_selection_new_ugly_nov"
-			position = { x = 462 y = 49 }
-			spriteType = "GFX_country_selection_new_big_shine"
-			pdx_tooltip = "BOOKMARK_NOVOSIBIRSK_NEW"
-			pdx_tooltip_delayed = "BOOKMARK_NOVOSIBIRSK_NEW_DELAYED"
-		}
-
-
-
-		iconType = { # NOVOSIBIRSK
-			name = "country_selection_new_ugly_USA"
-			position = { x = 102 y = 49 }
-			spriteType = "GFX_country_selection_new_big_shine"
-			pdx_tooltip = "BOOKMARK_NOVOSIBIRSK_USA"
-			pdx_tooltip_delayed = "BOOKMARK_NOVOSIBIRSK_USA_DELAYED"
-		}
-		iconType = { # KAMCHATKA
-			name = "country_selection_new_ugly_kmc"
-			position = { x = 642 y = 49 }
-			spriteType = "GFX_country_selection_new_big_shine"
-			pdx_tooltip = "BOOKMARK_KAMCHATKA_NEW"
-			pdx_tooltip_delayed = "BOOKMARK_KAMCHATKA_NEW_DELAYED"
-		}
-		iconType = { # VASILEVSKY
-			name = "country_selection_new_ugly_PRC"
-			position = { x = 440 y = 355 }
-			spriteType = "GFX_country_selection_alert_shine"
-			pdx_tooltip = "BOOKMARK_VASILEVSKY_NEW"
-			pdx_tooltip_delayed = "BOOKMARK_VASILEVSKY_NEW_DELAYED"
-		}
-		iconType = { # MODERN TORDESILLAS -- IBERIA
-			name = "country_selection_new_iberia"
-			position = { x = 1003 y = 189 }
-			spriteType = "GFX_country_selection_new_big_shine"
-			pdx_tooltip = "BOOKMARK_IBERIA_INFO"
-			pdx_tooltip_delayed = "BOOKMARK_IBERIA_INFO_DELAYED"
-		}
-		
-		### END 2WRW ###
-
 		instantTextBoxType = {
 			name = "title"
 			position = { x = 435 y = 17 }
@@ -664,13 +725,23 @@ guiTypes = {
 
 		background = {
 			name = "single_player_country_bg"
-			quadTextureSprite ="GFX_country_selection_bg"
-			pdx_tooltip = "BOOKMARK_RUSSIA"
-			pdx_tooltip_delayed = "BOOKMARK_RUSSIA_DELAYED"
+			quadTextureSprite ="GFX_country_selection_bg_ter"
+		}
+		iconType = { # MODERN TORDESILLAS -- URAINE MECHANIC
+			name = "country_selection_new_ukraine"
+			position = { x = 317 y = 276 }
+			spriteType = "GFX_country_selection_new_shine"
+			pdx_tooltip = "BOOKMARK_UKRAINE_MECH_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_UKRAINE_MECH_INFO_DELAYED"
 		}
 
-
-
+		iconType = { # MODERN TORDESILLAS -- IBERIA
+			name = "country_selection_new_iberia"
+			position = { x = 1003 y = 189 }
+			spriteType = "GFX_country_selection_new_big_shine"
+			pdx_tooltip = "BOOKMARK_IBERIA_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_IBERIA_INFO_DELAYED"
+		}
 		containerWindowType = {
 			name ="countries"
 			position = { x = 15 y = 45 }
@@ -686,43 +757,6 @@ guiTypes = {
 				max_slots_horizontal = 6
 				format = "UPPER_LEFT"
 			}
-			### 2WRW ###
-			iconType = { # OMSK BLOCKED ENTRY
-				name = "countries_blocker_omsk_entry"
-				position = { x = 447 y = 73 }
-				spriteType = "GFX_country_selection_new_big_shine"
-				pdx_tooltip = "BOOKMARK_OMSK_BLOCKER_CE"
-				pdx_tooltip_delayed = "BOOKMARK_OMSK_BLOCKER_CE_DELAYED"
-			}
-			iconType = { # WRRF BLOCKED ENTRY
-				name = "countries_blocker_wrrf_entry"
-				position = { x = 627 y = 70 }
-				spriteType = "GFX_country_selection_alert_big_shine"
-				pdx_tooltip = "BOOKMARK_WRRF_BLOCKER"
-				pdx_tooltip_delayed = "BOOKMARK_WRRF_BLOCKER_DELAYED"
-			}
-			iconType = { # MAGADAN BLOCKED ENTRY
-				name = "countries_blocker_magadan_entry"
-				position = { x = 447 y = 140 }
-				spriteType = "GFX_country_selection_alert_big_shine"
-				pdx_tooltip = "BOOKMARK_MAGADAN_BLOCKER"
-				pdx_tooltip_delayed = "BOOKMARK_MAGADAN_BLOCKER_DELAYED"
-			}
-			iconType = { # SVERDLOVSK BLOCKED ENTRY
-				name = "countries_blocker_sverdlovsk_entry"
-				position = { x = 627 y = 140 }
-				spriteType = "GFX_country_selection_alert_big_shine"
-				pdx_tooltip = "BOOKMARK_SVERDLOVSK_BLOCKER"
-				pdx_tooltip_delayed = "BOOKMARK_SVERDLOVSK_BLOCKER_DELAYED"
-			}
-			#iconType = { # VYATKA BLOCKED ENTRY
-			#	name = "countries_blocker_vyatka_entry"
-			#	position = { x = 647 y = 160 }
-			#	spriteType = "GFX_country_selection_screen_blocker_big"
-			#	pdx_tooltip = "BOOKMARK_VYATKA_BLOCKER"
-			#	pdx_tooltip_delayed = "BOOKMARK_VYATKA_BLOCKER_DELAYED"
-			#}
-			### END 2WRW ###
 
 			#used for covering blank countries. increase by x = 100 per slot.
 			#iconType = {
@@ -774,7 +808,7 @@ guiTypes = {
 			}
 			iconType = { # MANCHUKUO BLOCKED ENTRY
 				name = "countries_blocker_big_sphere_3_entry"
-				position = { x = 827 y = 160 }
+				position = { x = 827 y = 90 }
 				spriteType = "GFX_country_selection_screen_blocker_big"
 				pdx_tooltip = "BOOKMARK_MANCHUKUO_BLOCKER"
 				pdx_tooltip_delayed = "BOOKMARK_MANCHUKUO_BLOCKER_DELAYED"
@@ -822,17 +856,9 @@ guiTypes = {
 		# Visual Cover
 		iconType = {
 			name = "countries_cover"
-			position = { x = 2 y = 37 }
-			spriteType = "GFX_countries_cover"
+			position = { x = 10 y = 60 }
+			spriteType = "GFX_countries_cover_ter"
 			#alwaystransparent = yes
-		}
-
-		iconType = { # SOUTH AFRICA
-			name = "country_selection_new_ugly_SAF"
-			position = { x = 180 y = 280 }
-			spriteType = "GFX_country_selection_new_shine"
-			pdx_tooltip = "BOOKMARK_SAF_NEW"
-			pdx_tooltip_delayed = "BOOKMARK_SAF_NEW_DELAYED"
 		}
 
 		## Clickability Covers
@@ -933,13 +959,6 @@ guiTypes = {
 			pdx_tooltip = "BOOKMARK_CHILE_BLOCKER"
 			pdx_tooltip_delayed = "BOOKMARK_CHILE_BLOCKER_DELAYED"
 		}
-		#iconType = { # CHILEAN ANTARCTICA BLOCKED ENTRY
-		#	name = "countries_blocker_ofn_3_1_entry"
-		#	position = { x = 76 y = 365 }
-		#	spriteType = "GFX_country_selection_screen_blocker"
-		#	pdx_tooltip = "BOOKMARK_AAC_INFO"
-		#	pdx_tooltip_delayed = "BOOKMARK_AAC_INFO_DELAYED"
-		#}
 
 		iconType = {
 			name = "countries_clickcover_ofn_2_1_entry"
@@ -967,9 +986,7 @@ guiTypes = {
 		# 	spriteType = "GFX_country_selection_clickcover_singleentry"		
 		# }
 
-
 		# Reich
-
 		iconType = { # MOSCOW BLOCKED ENTRY
 			name = "countries_blocker_pakt_3_3_entry"
 			position = { x = 376 y = 365 }
@@ -984,13 +1001,6 @@ guiTypes = {
 		# 	pdx_tooltip = "BOOKMARK_POLAND_BLOCKER"
 		# 	pdx_tooltip_delayed = "BOOKMARK_POLAND_BLOCKER_DELAYED"
 		# }
-		### 2WRW ###
-		#iconType = {
-		#	name = "countries_clickcover_russia_bigboys"
-		#	position = { x = 438 y = 53 }
-		#	spriteType = "GFX_country_selection_clickcover_bigboys"		
-		#}
-		### END 2WRW ###
 		iconType = { # OSTLAND BLOCKED ENTRY
 			name = "countries_blocker_pakt_3_2_entry"
 			position = { x = 316 y = 365 }
@@ -999,8 +1009,58 @@ guiTypes = {
 			pdx_tooltip_delayed = "BOOKMARK_OSTLAND_BLOCKER_DELAYED"
 		}
 
+		# Russia
+		iconType = {
+			name = "countries_clickcover_russia_bigboys"
+			position = { x = 438 y = 53 }
+			spriteType = "GFX_country_selection_clickcover_bigboys"		
+		}
+		iconType = { # OMSK BLOCKED ENTRY
+				name = "countries_blocker_omsk_entry"
+				position = { x = 720 y = 245 }
+				spriteType = "GFX_country_selection_new_shine"
+				pdx_tooltip = "BOOKMARK_OMSK_BLOCKER_CE"
+				pdx_tooltip_delayed = "BOOKMARK_OMSK_BLOCKER_CE_DELAYED"
+		}
+		iconType = { # MGI INFO
+			name = "country_selection_info_mgi"
+			position = { x = 736 y = 260 }
+			spriteType = "GFX_country_selection_alert_shine"
+			pdx_tooltip = "BOOKMARK_MGI_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_MGI_INFO_DELAYED"
+		}
 
 		# Sphere
+		#iconType = { # TER INFO
+		#	name = "country_selection_info_cpc"
+		#	position = { x = 463 y = 119 }
+		#	spriteType = "GFX_country_selection_new_big_shine"
+		#	pdx_tooltip = "BOOKMARK_CPC_INFO"
+		#	pdx_tooltip_delayed = "BOOKMARK_CPC_INFO_DELAYED"
+		#}
+		iconType = { # LAR INFO
+			name = "country_selection_info_roc"
+			position = { x = 645 y = 109 }
+			spriteType = "GFX_country_selection_alert_big_shine"
+			pdx_tooltip = "BOOKMARK_LAR_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_LAR_INFO_DELAYED"
+		}
+		iconType = { # GERMANY INFO
+			name = "country_selection_pre_info_cpc"
+			position = { x = 463 y = 109 }
+			spriteType = "GFX_country_selection_alert_big_shine"
+			pdx_tooltip = "BOOKMARK_CPC_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_CPC_PRE_INFO_DELAYED"
+		}
+
+		iconType = { # CHOSEN BLOCKED ENTRY
+			name = "countries_blocker_sphere_1_3_entry"
+			position = { x = 914 y = 285 }
+			spriteType = "GFX_country_selection_screen_blocker"
+			pdx_tooltip = "BOOKMARK_LMC_BLOCKER"
+			pdx_tooltip_delayed = "BOOKMARK_LMC_BLOCKER_DELAYED"
+		}
+
 		iconType = { # JAPANESE ANTARCTICA BLOCKED ENTRY
 			name = "countries_blocker_sphere_3_2_entry"
 			position = { x = 855 y = 365 }
@@ -1008,14 +1068,15 @@ guiTypes = {
 			pdx_tooltip = "BOOKMARK_AAJ_INFO"
 			pdx_tooltip_delayed = "BOOKMARK_AAJ_INFO_DELAYED"
 		}
-		iconType = { # FALSE DAWN NEW -- BRAZIL
-			name = "country_selection_new_brazil"
-			position = { x = 102 y = 189 }
-			spriteType = "GFX_country_selection_new_big_shine"
-			pdx_tooltip = "BOOKMARK_BRAZIL_INFO"
-			pdx_tooltip_delayed = "BOOKMARK_BRAZIL_INFO_DELAYED"
+		iconType = { # SOUTH AFRICA
+			name = "country_selection_new_ugly_SAF"
+			position = { x = 180 y = 280 }
+			spriteType = "GFX_country_selection_new_shine"
+			pdx_tooltip = "BOOKMARK_SAF_NEW"
+			pdx_tooltip_delayed = "BOOKMARK_SAF_NEW_DELAYED"
 		}
 
+		# Triumvirate
 		iconType = { # GREECE BLOCKED ENTRY
 			name = "countries_blocker_triumvirate_1_2_entry"
 			position = { x = 1035 y = 284 }
@@ -1029,13 +1090,6 @@ guiTypes = {
 			spriteType = "GFX_country_selection_screen_blocker"
 			pdx_tooltip = "BOOKMARK_ARGENTINA_BLOCKER"
 			pdx_tooltip_delayed = "BOOKMARK_ARGENTINA_BLOCKER_DELAYED"
-		}
-		iconType = {
-			name = "countries_clickcover_NTG"
-			position = { x = 495 y = 364 }
-			spriteType = "GFX_country_selection_screen_blocker"	
-			pdx_tooltip = "BOOKMARK_NTG_BLOCKER"	
-			pdx_tooltip_delayed = "BOOKMARK_NTG_BLOCKER_DELAYED"
 		}
 		iconType = {
 			name = "countries_clickcover_triumvirate_1"
@@ -1327,8 +1381,6 @@ guiTypes = {
 			format = centre
 		}
 	}
-
-	
 
 	################### MAP SELECTION SCREEN #############################
 

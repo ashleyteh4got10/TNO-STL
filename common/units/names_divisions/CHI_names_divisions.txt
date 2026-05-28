@@ -1,0 +1,593 @@
+﻿# Division template historical names system. Is a new method of naming the divisions based on the names-group assigned to it's template.
+# If we run out of all historical names, the names will be assigned in the old way.
+#
+# Each group has a made up tag. Use it if you want to append more, or replace existing names with the extra txt files (modding).
+#
+# for_countries - lists all countries that can use it. If empty, or entire tag is missing, all countries in the world can use it.
+#
+# can_use - is a trigger that locks/unlocks the group under specific circumstances. The trigger is in a country scope.
+#
+# division_types - is a list of tokens to corresponding unit types. A player can in fact use any group of names for a div.template
+#					however this tag is a helper for an automated choice (for AI, or if the group must switch on it's own, because
+#					for example the current one is no longer available due to the can_use trigger saying so).
+#					In automated choice, the division template must have at least 1 of the following types for it to be chosen.
+#
+# fallback_name - Is going to be used if we run out of the scripted historical names. If you want to use the old division naming
+#					mechanics to be used for fallbacks, then just skip this option.
+#
+# unordered - It's a list of historical division names that did not have a number. Regardless if such names happened in history or not
+#				this option is available here mainly for a mods.
+#
+# ordered - Is a list of all historical names.
+#			Numbers must start from 1 and up.
+#			Numbers can't repeat in one scope.
+#			If you script the name for this group, at the same number (for example in a mod in another file), the name will be override.
+#			All arguments between the brackets must be separated by spaces. Each argument is wrapped in "quotas".
+#			1st argument = The name. It must contain either:
+#							%d (for decimal number placement)
+#							%s (for string number placement - ROMAN numbers like XIV).
+#			2nd argument is optional = A localizable text describing this historical division. The text will be visible in the tooltip
+#										where you choose the historical division name.
+#			3rd argument is optional = An URL preferably pointing to the WIKI. It's a future feature that is not currently working in
+#										the current game version.
+CHI_INF_01 = {
+	name = "步兵师"
+
+	for_countries = { CHI SIC }
+
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "中华民国陆军第 %d 师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国陆军第 %d 师" }			# Chinese "corps" were division-strength units (2-3 Chinese "divisions" = 2-3 HOI4 regiments)
+		2 = { "中华民国陆军第 %d 师" }
+		3 = { "中华民国陆军第 %d 师" }
+		4 = { "中华民国陆军第 %d 师" }
+		5 = { "中华民国陆军第 %d 师" }
+		6 = { "中华民国陆军第 %d 师" }
+		7 = { "中华民国陆军第 %d 师" }
+		8 = { "中华民国陆军第 %d 师" }
+		9 = { "中华民国陆军第 %d 师" }
+		10 = { "中华民国陆军第 %d 师" }
+		11 = { "中华民国陆军第 %d 师" }
+		12 = { "中华民国陆军第 %d 师" }
+		13 = { "中华民国陆军第 %d 师" }
+		14 = { "中华民国陆军第 %d 师" }
+		15 = { "中华民国陆军第 %d 师" }
+		16 = { "中华民国陆军第 %d 师" }
+		17 = { "中华民国陆军第 %d 师" }
+		18 = { "中华民国陆军第 %d 师" }
+		19 = { "中华民国陆军第 %d 师" }
+		20 = { "中华民国陆军第 %d 师" }
+	}
+}
+
+CHI_INF_02 = {
+	name = "警卫师"
+
+	for_countries = { CHI}
+
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "中华民国第 %d 警卫师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国第 %d 警卫师" }			# Chinese "corps" were division-strength units (2-3 Chinese "divisions" = 2-3 HOI4 regiments)
+		2 = { "中华民国第 %d 警卫师" }
+		3 = { "中华民国第 %d 警卫师" }
+		4 = { "中华民国第 %d 警卫师" }
+		5 = { "中华民国第 %d 警卫师" }
+		6 = { "中华民国第 %d 警卫师" }
+		7 = { "中华民国第 %d 警卫师" }
+		8 = { "中华民国第 %d 警卫师" }
+		9 = { "中华民国第 %d 警卫师" }
+		10 = { "中华民国第 %d 警卫师" }
+		11 = { "中华民国第 %d 警卫师" }
+		12 = { "中华民国第 %d 警卫师" }
+		13 = { "中华民国第 %d 警卫师" }
+		14 = { "中华民国第 %d 警卫师" }
+		15 = { "中华民国第 %d 警卫师" }
+		16 = { "中华民国第 %d 警卫师" }
+		17 = { "中华民国第 %d 警卫师" }
+		18 = { "中华民国第 %d 警卫师" }
+		19 = { "中华民国第 %d 警卫师" }
+		20 = { "中华民国第 %d 警卫师" }
+	}
+}
+
+CHI_CAV_01 = {
+	name = "骑兵部队"
+
+	for_countries = { CHI}
+
+	can_use = { always = yes }
+
+	division_types = { "cavalry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "中华民国陆军第 %d 骑兵师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国陆军第 %d 骑兵师" }
+		2 = { "中华民国陆军第 %d 骑兵师" }
+		3 = { "中华民国陆军第 %d 骑兵师" }
+		4 = { "中华民国陆军第 %d 骑兵师" }
+		5 = { "中华民国陆军第 %d 骑兵师" }
+		6 = { "中华民国陆军第 %d 骑兵师" }
+		7 = { "中华民国陆军第 %d 骑兵师" }
+		8 = { "中华民国陆军第 %d 骑兵师" }
+		9 = { "中华民国陆军第 %d 骑兵师" }
+		10 = { "中华民国陆军第 %d 骑兵师" }
+		11 = { "中华民国陆军第 %d 骑兵师" }
+		12 = { "中华民国陆军第 %d 骑兵师" }
+		13 = { "中华民国陆军第 %d 骑兵师" }
+		14 = { "中华民国陆军第 %d 骑兵师" }
+		15 = { "中华民国陆军第 %d 骑兵师" }
+		16 = { "中华民国陆军第 %d 骑兵师" }
+		17 = { "中华民国陆军第 %d 骑兵师" }
+		18 = { "中华民国陆军第 %d 骑兵师" }
+		19 = { "中华民国陆军第 %d 骑兵师" }
+		20 = { "中华民国陆军第 %d 骑兵师" }
+	}
+}
+
+CHI_MOT_01 = {
+	name = "机动部队"
+
+	for_countries = { CHI}
+
+	can_use = { always = yes }
+
+	division_types = { "motorized" }
+
+	# Number reservation system will tie to another group.
+	link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "中华民国陆军第 %d 机动师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国陆军第 %d 机动师" }			# Chinese "corps" were division-strength units (2-3 Chinese "divisions" = 2-3 HOI4 regiments)
+		2 = { "中华民国陆军第 %d 机动师" }
+		3 = { "中华民国陆军第 %d 机动师" }
+		4 = { "中华民国陆军第 %d 机动师" }
+		5 = { "中华民国陆军第 %d 机动师" }
+		6 = { "中华民国陆军第 %d 机动师" }
+		7 = { "中华民国陆军第 %d 机动师" }
+		8 = { "中华民国陆军第 %d 机动师" }
+		9 = { "中华民国陆军第 %d 机动师" }
+		10 = { "中华民国陆军第 %d 机动师" }
+		11 = { "中华民国陆军第 %d 机动师" }
+		12 = { "中华民国陆军第 %d 机动师" }
+		13 = { "中华民国陆军第 %d 机动师" }
+		14 = { "中华民国陆军第 %d 机动师" }
+		15 = { "中华民国陆军第 %d 机动师" }
+		16 = { "中华民国陆军第 %d 机动师" }
+		17 = { "中华民国陆军第 %d 机动师" }
+		18 = { "中华民国陆军第 %d 机动师" }
+		19 = { "中华民国陆军第 %d 机动师" }
+		20 = { "中华民国陆军第 %d 机动师" }
+	}
+}
+
+CHI_MEC_01 = {
+	name = "机械化部队"
+
+	for_countries = { CHI}
+
+	can_use = { always = yes }
+
+	division_types = { "APC" }
+
+	# Number reservation system will tie to another group.
+	link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "中华民国陆军第 %d 机械化师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国陆军第 %d 机械化师" }			# Chinese "corps" were division-strength units (2-3 Chinese "divisions" = 2-3 HOI4 regiments)
+		2 = { "中华民国陆军第 %d 机械化师" }
+		3 = { "中华民国陆军第 %d 机械化师" }
+		4 = { "中华民国陆军第 %d 机械化师" }
+		5 = { "中华民国陆军第 %d 机械化师" }
+		6 = { "中华民国陆军第 %d 机械化师" }
+		7 = { "中华民国陆军第 %d 机械化师" }
+		8 = { "中华民国陆军第 %d 机械化师" }
+		9 = { "中华民国陆军第 %d 机械化师" }
+		10 = { "中华民国陆军第 %d 机械化师" }
+		11 = { "中华民国陆军第 %d 机械化师" }
+		12 = { "中华民国陆军第 %d 机械化师" }
+		13 = { "中华民国陆军第 %d 机械化师" }
+		14 = { "中华民国陆军第 %d 机械化师" }
+		15 = { "中华民国陆军第 %d 机械化师" }
+		16 = { "中华民国陆军第 %d 机械化师" }
+		17 = { "中华民国陆军第 %d 机械化师" }
+		18 = { "中华民国陆军第 %d 机械化师" }
+		19 = { "中华民国陆军第 %d 机械化师" }
+		20 = { "中华民国陆军第 %d 机械化师" }
+	}
+}
+
+CHI_ARM_01 = {
+	name = "装甲部队"
+
+	for_countries = { CHI }
+
+	can_use = { always = yes }
+
+	division_types = { "MBT" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "中华民国陆军第 %d 战车师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国陆军第 %d 战车师" }			# Chinese "corps" were division-strength units (2-3 Chinese "divisions" = 2-3 HOI4 regiments)
+		2 = { "中华民国陆军第 %d 战车师" }
+		3 = { "中华民国陆军第 %d 战车师" }
+		4 = { "中华民国陆军第 %d 战车师" }
+		5 = { "中华民国陆军第 %d 战车师" }
+		6 = { "中华民国陆军第 %d 战车师" }
+		7 = { "中华民国陆军第 %d 战车师" }
+		8 = { "中华民国陆军第 %d 战车师" }
+		9 = { "中华民国陆军第 %d 战车师" }
+		10 = { "中华民国陆军第 %d 战车师" }
+		11 = { "中华民国陆军第 %d 战车师" }
+		12 = { "中华民国陆军第 %d 战车师" }
+		13 = { "中华民国陆军第 %d 战车师" }
+		14 = { "中华民国陆军第 %d 战车师" }
+		15 = { "中华民国陆军第 %d 战车师" }
+		16 = { "中华民国陆军第 %d 战车师" }
+		17 = { "中华民国陆军第 %d 战车师" }
+		18 = { "中华民国陆军第 %d 战车师" }
+		19 = { "中华民国陆军第 %d 战车师" }
+		20 = { "中华民国陆军第 %d 战车师" }
+	}
+}
+
+CHI_ARM_02 = {
+	name = "战车旅"
+
+	for_countries = { CHI SHX GUX LOY QIN XIN }
+
+	can_use = { always = yes }
+
+	division_types = { "MBT" }
+
+	# Number reservation system will tie to another group.
+	link_numbering_with = { CHI_ARM_01 }
+
+	fallback_name = "中华民国陆军第 %d 战车旅"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国陆军第 %d 战车旅" }			# Chinese "corps" were division-strength units (2-3 Chinese "divisions" = 2-3 HOI4 regiments)
+		2 = { "中华民国陆军第 %d 战车旅" }
+		3 = { "中华民国陆军第 %d 战车旅" }
+		4 = { "中华民国陆军第 %d 战车旅" }
+		5 = { "中华民国陆军第 %d 战车旅" }
+		6 = { "中华民国陆军第 %d 战车旅" }
+		7 = { "中华民国陆军第 %d 战车旅" }
+		8 = { "中华民国陆军第 %d 战车旅" }
+		9 = { "中华民国陆军第 %d 战车旅" }
+		10 = { "中华民国陆军第 %d 战车旅" }
+		11 = { "中华民国陆军第 %d 战车旅" }
+		12 = { "中华民国陆军第 %d 战车旅" }
+		13 = { "中华民国陆军第 %d 战车旅" }
+		14 = { "中华民国陆军第 %d 战车旅" }
+		15 = { "中华民国陆军第 %d 战车旅" }
+		16 = { "中华民国陆军第 %d 战车旅" }
+		17 = { "中华民国陆军第 %d 战车旅" }
+		18 = { "中华民国陆军第 %d 战车旅" }
+		19 = { "中华民国陆军第 %d 战车旅" }
+		20 = { "中华民国陆军第 %d 战车旅" }
+	}
+}
+
+CHI_PAR_01 = {
+	name = "伞兵部队"
+
+	for_countries = { CHI }
+
+	can_use = { always = yes }
+
+	division_types = { "air_assault" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "第 %d 伞兵师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "第 %d 伞兵师" }
+		2 = { "第 %d 伞兵师" }
+		3 = { "第 %d 伞兵师" }
+		4 = { "第 %d 伞兵师" }
+		5 = { "第 %d 伞兵师" }
+		6 = { "第 %d 伞兵师" }
+		7 = { "第 %d 伞兵师" }
+		8 = { "第 %d 伞兵师" }
+		9 = { "第 %d 伞兵师" }
+		10 = { "第 %d 伞兵师" }
+	}
+}
+
+CHI_MAR_01 = {
+	name = "海军陆战队"
+
+	for_countries = { CHI }
+
+	can_use = { always = yes }
+
+	division_types = { "marine" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "第 %d 陆战队师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "第 %d 陆战队师" }
+		2 = { "第 %d 陆战队师" }
+		3 = { "第 %d 陆战队师" }
+		4 = { "第 %d 陆战队师" }
+		5 = { "第 %d 陆战队师" }
+		6 = { "第 %d 陆战队师" }
+		7 = { "第 %d 陆战队师" }
+		8 = { "第 %d 陆战队师" }
+		9 = { "第 %d 陆战队师" }
+		10 = { "第 %d 陆战队师" }
+	}
+}
+
+CHI_MNT_01 = {
+	name = "山地部队"
+
+	for_countries = { CHI }
+
+	can_use = { always = yes }
+
+	division_types = { "mountaineers" }
+
+	# Number reservation system will tie to another group.
+	link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "中华民国陆军第 %d 山地师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国陆军第 %d 山地师" }			# Chinese "corps" were division-strength units (2-3 Chinese "divisions" = 2-3 HOI4 regiments)
+		2 = { "中华民国陆军第 %d 山地师" }
+		3 = { "中华民国陆军第 %d 山地师" }
+		4 = { "中华民国陆军第 %d 山地师" }
+		5 = { "中华民国陆军第 %d 山地师" }
+		6 = { "中华民国陆军第 %d 山地师" }
+		7 = { "中华民国陆军第 %d 山地师" }
+		8 = { "中华民国陆军第 %d 山地师" }
+		9 = { "中华民国陆军第 %d 山地师" }
+		10 = { "中华民国陆军第 %d 山地师" }
+		11 = { "中华民国陆军第 %d 山地师" }
+		12 = { "中华民国陆军第 %d 山地师" }
+		13 = { "中华民国陆军第 %d 山地师" }
+		14 = { "中华民国陆军第 %d 山地师" }
+		15 = { "中华民国陆军第 %d 山地师" }
+		16 = { "中华民国陆军第 %d 山地师" }
+		17 = { "中华民国陆军第 %d 山地师" }
+		18 = { "中华民国陆军第 %d 山地师" }
+		19 = { "中华民国陆军第 %d 山地师" }
+		20 = { "中华民国陆军第 %d 山地师" }
+	}
+}
+
+CHI_GAR_01 = {
+	name = "卫戍部队"
+
+	for_countries = { CHI}
+
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "中华民国陆军第 %d 旅"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "中华民国陆军第 %d 旅" }
+		2 = { "中华民国陆军第 %d 旅" }
+		3 = { "中华民国陆军第 %d 旅" }
+		4 = { "中华民国陆军第 %d 旅" }
+		5 = { "中华民国陆军第 %d 旅" }
+		6 = { "中华民国陆军第 %d 旅" }
+		7 = { "中华民国陆军第 %d 旅" }
+		8 = { "中华民国陆军第 %d 旅" }
+		9 = { "中华民国陆军第 %d 旅" }
+		10 = { "中华民国陆军第 %d 旅" }
+		11 = { "中华民国陆军第 %d 旅" }
+		12 = { "中华民国陆军第 %d 旅" }
+		13 = { "中华民国陆军第 %d 旅" }
+		14 = { "中华民国陆军第 %d 旅" }
+		15 = { "中华民国陆军第 %d 旅" }
+		16 = { "中华民国陆军第 %d 旅" }
+		17 = { "中华民国陆军第 %d 旅" }
+		18 = { "中华民国陆军第 %d 旅" }
+		19 = { "中华民国陆军第 %d 旅" }
+		20 = { "中华民国陆军第 %d 旅" }
+	}
+}
+
+NCC_INF_01 = {
+	name = "步兵师"
+
+	for_countries = { NCC }
+
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { CHI_INF_01 }
+
+	fallback_name = "华北绥靖军第 %d 师"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "华北绥靖军第 %d 师" }
+		2 = { "华北绥靖军第 %d 师" }
+		3 = { "华北绥靖军第 %d 师" }
+		4 = { "华北绥靖军第 %d 师" }
+		5 = { "华北绥靖军第 %d 师" }
+		6 = { "华北绥靖军第 %d 师" }
+		7 = { "华北绥靖军第 %d 师" }
+		8 = { "华北绥靖军第 %d 师" }
+		9 = { "华北绥靖军第 %d 师" }
+		10 = { "华北绥靖军第 %d 师" }
+		11 = { "华北绥靖军第 %d 师" }
+		12 = { "华北绥靖军第 %d 师" }
+		13 = { "华北绥靖军第 %d 师" }
+		14 = { "华北绥靖军第 %d 师" }
+		15 = { "华北绥靖军第 %d 师" }
+		16 = { "华北绥靖军第 %d 师" }
+		17 = { "华北绥靖军第 %d 师" }
+		18 = { "华北绥靖军第 %d 师" }
+		19 = { "华北绥靖军第 %d 师" }
+		20 = { "华北绥靖军第 %d 师" }
+	}
+}
+
+CHQ_INF_01 = {
+	name = "重庆警备团"
+	for_countries = { CHQ }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "重庆警备 %d 团"
+	ordered = {
+		1 = { "重庆警备 %d 团" }
+	}
+}
+
+QIN_INF_01 = {
+	name = "步兵师"
+	for_countries = { QIN }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "人民救赎军第 %d 师"
+	ordered = {
+		1 = { "人民救赎军第 %d 师" }
+	}
+}
+QIN_CAV_01 = {
+	name = "骑兵师"
+	for_countries = { QIN}
+	can_use = { always = yes }
+	division_types = { "cavalry" }
+	fallback_name = "人民救赎军骑兵 %d 师"
+	ordered = {
+		1 = { "人民救赎军骑兵 %d 师" }
+	}
+}
+
+XIN_INF_01 = {
+	name = "步兵师"
+	for_countries = { XIN }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "新疆边防军第 %d 师"
+	ordered = {
+		1 = { "新疆边防军第 %d 师" }
+	}
+}
+
+LOY_INF_01 = {
+	name = "步兵师"
+	for_countries = { LOY }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "西南绥靖公署第 %d 师"
+	ordered = {
+		1 = { "西南绥靖公署第 %d 师" }
+		2 = { "西南绥靖公署第 %d 师" }
+		3 = { "西南绥靖公署第 %d 师" }
+		4 = { "西南绥靖公署第 %d 师" }
+		5 = { "西南绥靖公署第 %d 师" }
+		6 = { "西南绥靖公署第 %d 师" }
+		7 = { "西南绥靖公署第 %d 师" }
+		8 = { "西南绥靖公署第 %d 师" }
+		9 = { "西南绥靖公署第 %d 师" }
+		10 = { "西南绥靖公署第 %d 师" }
+		11 = { "西南绥靖公署第 %d 师" }
+		12 = { "西南绥靖公署第 %d 师" }
+		13 = { "西南绥靖公署第 %d 师" }
+		14 = { "西南绥靖公署第 %d 师" }
+		15 = { "西南绥靖公署第 %d 师" }
+		16 = { "西南绥靖公署第 %d 师" }
+		17 = { "西南绥靖公署第 %d 师" }
+		18 = { "西南绥靖公署第 %d 师" }
+		19 = { "西南绥靖公署第 %d 师" }
+		20 = { "西南绥靖公署第 %d 师" }
+	}
+}
+LOY_GAR_01 = {
+	name = "步兵旅"
+	for_countries = { LOY }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "西南绥靖公署第 %d 旅"
+	ordered = {
+		1 = { "西南绥靖公署第 %d 旅" }
+		2 = { "西南绥靖公署第 %d 旅" }
+		3 = { "西南绥靖公署第 %d 旅" }
+		4 = { "西南绥靖公署第 %d 旅" }
+		5 = { "西南绥靖公署第 %d 旅" }
+		6 = { "西南绥靖公署第 %d 旅" }
+		7 = { "西南绥靖公署第 %d 旅" }
+		8 = { "西南绥靖公署第 %d 旅" }
+		9 = { "西南绥靖公署第 %d 旅" }
+		10 = { "西南绥靖公署第 %d 旅" }
+		11 = { "西南绥靖公署第 %d 旅" }
+		12 = { "西南绥靖公署第 %d 旅" }
+		13 = { "西南绥靖公署第 %d 旅" }
+		14 = { "西南绥靖公署第 %d 旅" }
+		15 = { "西南绥靖公署第 %d 旅" }
+		16 = { "西南绥靖公署第 %d 旅" }
+		17 = { "西南绥靖公署第 %d 旅" }
+		18 = { "西南绥靖公署第 %d 旅" }
+		19 = { "西南绥靖公署第 %d 旅" }
+		20 = { "西南绥靖公署第 %d 旅" }
+	}
+}

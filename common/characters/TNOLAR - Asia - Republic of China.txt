@@ -1,0 +1,1100 @@
+characters = {
+	#########################################################
+	###########    REPUBLIC OF CHINA - 中华民国    ###########
+	#########################################################
+###### 内阁、领导人，或是剧情重要人物
+	#此类型最优先分类类型
+	CHI_gao_zongwu = {		#高宗武
+		name = CHI_gao_zongwu
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/CHI/Portrait_China_Gao_Zongwu.png"
+				small = "GFX_idea_CHI_minister_Gao_Zongwu"
+			}
+		}
+		country_leader = {
+			desc = "POLITICS_GAO_ZONGWU_DESC"
+			ideology = despotism_wang_jingwei_thought_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+
+	CHI_zhou_fohai = {		#周佛海
+		name = CHI_zhou_fohai
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/CHI/Portrait_China_Zhou_Fohai.png"
+				small = "GFX_idea_CHI_minister_Zhou_Fohai"
+			}
+		}
+
+		##TNOLAR added 周佛海的保守派阵营
+		country_leader = {
+			desc = ""
+			ideology = despotism_aristocratic_conservatism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+		country_leader = {
+			desc = ""
+			ideology = despotism_1_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+
+		advisor = {
+			slot = head_of_government
+			idea_token = CHI_Zhou_Fohai_hog
+			allowed = { original_tag = CHI }
+			traits = {
+				head_of_government
+				hog_utterly_corrupt
+			}
+			ledger = civilian
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_tao_xisheng = {		#陶希圣
+		name = CHI_tao_xisheng
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/CHI/Portrait_China_Tao_Xisheng.png"
+				small = "GFX_idea_CHI_minister_Tao_Xisheng"
+			}
+		}
+		country_leader = {
+			#desc = ""
+			ideology = paternalism_oligarchy_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+		advisor = {
+			slot = foreign_minister
+			idea_token = CHI_Tao_Xisheng_for
+			allowed = { original_tag = CHI }
+			traits = {
+				foreign_minister
+				for_apologetic_clerk
+			}
+			ledger = civilian
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+
+		##TNOLAR added 战后陶希圣的立院院长
+		advisor = {
+			slot = head_of_government
+			idea_token = CHI_Tao_Xisheng_hog
+			allowed = { original_tag = CHI }
+			traits = {
+				head_of_government
+				hog_pragmatic_statesman
+			}
+			ledger = civilian
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_zhang_renli = {		#张仁蠡
+		name = CHI_zhang_renli
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/CHI/Portrait_China_Zhang_Renli.png"
+				small = "GFX_idea_CHI_minister_Zhang_Renli"
+			}
+		}
+		country_leader = {
+			#desc = ""
+			ideology = fascism_corporate_statism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+		advisor = {
+			slot = economy_minister
+			idea_token = CHI_Zhang_Renli_eco
+			allowed = { original_tag = CHI }
+			traits = {
+				economy_minister
+				eco_political_appointment
+			}
+			ledger = civilian
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_xiao_shuxuan = {	#萧叔宣
+		name = CHI_xiao_shuxuan
+		portraits = {
+			civilian = { small = "GFX_idea_CHI_minister_Xiao_Shuxuan" }
+		}
+		advisor = {
+			slot = security_minister
+			idea_token = CHI_Xiao_Shuxuan_sec
+			allowed = { original_tag = CHI }
+			traits = {
+				security_minister
+				sec_silent_lawyer
+			}
+			ledger = civilian
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_Fang_Xianjue = {	#方先觉
+		name = CHI_Fang_Xianjue
+		portraits = {
+			civilian = {
+				large = "gfx/leaders/CHI/Portrait_China_Fang_Xianjue.dds"
+				small = "GFX_idea_CHI_minister_Fang_Xianjue"
+			}
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Fang_Xianjue.dds"
+				small = "GFX_idea_CHI_minister_Fang_Xianjue"
+			}
+		}
+		advisor = {
+			slot = security_minister
+			idea_token = CHI_Fang_Xianjue_sec
+			allowed = { original_tag = CHI }
+			traits = {
+				security_minister
+				sec_army_instructor
+			}
+			ledger = civilian
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+		field_marshal = {
+			traits = { unyielding_defender defensive_doctrine war_hero expert_delegator }
+			skill = 4
+			attack_skill = 5
+			defense_skill = 4
+			planning_skill = 5
+			logistics_skill = 5
+			legacy_id = -1
+		}
+	}
+
+	#战时及战后新内阁人物
+	CHI_Shen_Changhuan = {	#沈昌焕-外交部长
+		name = CHI_Shen_Changhuan
+		portraits = {
+			civilian = {
+				#large = "gfx/leaders/CHI/Portrait_China_Shen_Changhuan.dds"
+				small = "GFX_idea_CHI_minister_Shen_Changhuan"
+			}
+		}
+		advisor = {
+			slot = foreign_minister
+			idea_token = CHI_Shen_Changhuan_for
+			allowed = { original_tag = CHI }
+			traits = {
+				foreign_minister
+				for_ideological_crusader
+			}
+			ledger = civilian
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_Sun_Yaodong = {		#孙曜东-财政部长
+		name = CHI_Sun_Yaodong
+		portraits = {
+			civilian = {
+				#large = "gfx/leaders/CHI/Portrait_China_Sun_Yaodong.dds"
+				small = "GFX_idea_CHI_minister_Sun_Yaodong"
+			}
+		}
+		advisor = {
+			slot = economy_minister
+			idea_token = CHI_Sun_Yaodong_eco
+			allowed = { original_tag = CHI }
+			traits = {
+				economy_minister
+				eco_the_banker
+			}
+			ledger = civilian
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+	
+	CHI_dissidents = {		#异议分子
+		name = CHI_dissidents
+		portraits = {
+			civilian = { small = "GFX_leader_unknown" }
+		}
+		country_leader = {
+			#desc = ""
+			ideology = liberalism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+		country_leader = {
+			#desc = ""
+			ideology = conservatism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+	
+	CHI_wang_yintai = {		#王荫泰
+		name = CHI_wang_yintai
+		portraits = {
+			civilian = { large = "gfx/leaders/CHI/Portrait_China_Wang_Yintai.png" }
+		}
+		country_leader = {
+			desc = "POLITICS_WANG_YINTAI_DESC"
+			ideology = fascism_corporate_statism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+######
+
+####### RGOC所有将领
+	#此类型为次优先分类类型
+	#被#掉的将领都是开局不会出现，只会在游戏进行时出现的将领，在此保留方便归纳用
+	##顾问团角色
+
+	###战前顾问团
+	CHI_Bao_Wenyue = {	#鲍文樾
+		name = CHI_Bao_Wenyue
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Bao_Wenyue.dds"
+				small = "GFX_idea_CHI_minister_Bao_Wenyue"
+			}
+		}
+		corps_commander = {
+			traits = { old_guard career_officer organizer thorough_planner }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 2
+			legacy_id = -1
+		}
+		advisor = {
+			slot = army_chief
+			idea_token = CHI_Bao_Wenyue_army_chief
+			ledger = army
+			allowed = {
+				original_tag = CHI
+			}
+			traits = {
+				army_chief
+			}
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_Ye_Peng = {		#叶蓬
+		name = CHI_Ye_Peng
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Ye_Peng.png"
+				small = "GFX_idea_CHI_minister_Ye_Peng"
+			}
+		}
+		#corps_commander = {
+		#	traits = { old_guard media_personality inspirational_leader infantry_officer }
+		#	skill = 3
+		#	attack_skill = 3
+		#	defense_skill = 3
+		#	planning_skill = 2
+		#	logistics_skill = 2
+		#	legacy_id = -1
+		#}
+		advisor = {
+			slot = high_command
+			idea_token = CHI_Ye_Peng_high_command
+			ledger = army
+			allowed = {
+				original_tag = CHI
+			}
+			traits = {
+				high_command
+			}
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_Sun_Dianying = {	#孙殿英
+		name = CHI_Sun_Dianying
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Sun_Dianying.png"
+				small = "GFX_idea_CHI_minister_Sun_Dianying"
+			}
+		}
+		#corps_commander = {
+		#	traits = { old_guard desert_fox }
+		#	skill = 2
+		#	attack_skill = 2
+		#	defense_skill = 1
+		#	planning_skill = 1
+		#	logistics_skill = 3
+		#	legacy_id = -1
+		#}
+		advisor = {
+			slot = high_command
+			idea_token = CHI_Sun_Dianying_high_command
+			ledger = army
+			allowed = {
+				original_tag = CHI
+			}
+			traits = {
+				high_command
+			}
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_Pang_Bingxun = {	#庞炳勋
+		name = CHI_Pang_Bingxun
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Pang_Bingxun.png"
+				small = "GFX_idea_CHI_minister_Pang_Bingxun"
+			}
+		}
+		#corps_commander = {
+		#	traits = { trickster old_guard infantry_officer }
+		#	skill = 2
+		#	attack_skill = 1
+		#	defense_skill = 3
+		#	planning_skill = 2
+		#	logistics_skill = 1
+		#	legacy_id = -1
+		#}
+		advisor = {
+			slot = high_command
+			idea_token = CHI_Pang_Bingxun_high_command
+			ledger = army
+			allowed = {
+				original_tag = CHI
+			}
+			traits = {
+				high_command
+			}
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	###战后顾问团
+	CHI_Hao_Baicun = {		#郝柏村
+		name = CHI_Hao_Baicun
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Hao_Baicun.dds"
+				small = "GFX_idea_CHI_minister_Hao_Baicun"
+			}
+		}
+		#corps_commander = {
+		#	traits = { brilliant_strategist thorough_planner }
+		#	skill = 4
+		#	attack_skill = 4
+		#	defense_skill = 4
+		#	planning_skill = 3
+		#	logistics_skill = 3
+		#	legacy_id = -1
+		#}
+		advisor = {
+			slot = army_chief
+			idea_token = CHI_Hao_Baicun_army_chief
+			ledger = army
+			allowed = {
+				original_tag = CHI
+			}
+			traits = {
+				army_chief
+			}
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_Jiang_Zhongling = {		#蒋仲苓
+		name = CHI_Jiang_Zhongling
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Jiang_Zhongling.dds"
+				small = "GFX_idea_CHI_minister_Jiang_Zhongling"
+			}
+		}
+		#corps_commander = {
+		#	traits = { armor_officer combined_arms_expert }
+		#	skill = 4
+		#	attack_skill = 3
+		#	defense_skill = 3
+		#	planning_skill = 4
+		#	logistics_skill = 3
+		#	legacy_id = -1
+		#}
+		advisor = {
+			slot = high_command
+			idea_token = CHI_Jiang_Zhongling_high_command
+			ledger = army
+			allowed = {
+				original_tag = CHI
+			}
+			traits = {
+				high_command
+			}
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+	CHI_Luo_Benli = {		#罗本立
+		name = CHI_Luo_Benli
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Luo_Benli.dds"
+				small = "GFX_idea_CHI_minister_Luo_Benli"
+			}
+		}
+		#corps_commander = {
+		#	traits = { media_personality }
+		#	skill = 4
+		#	attack_skill = 3
+		#	defense_skill = 3
+		#	planning_skill = 5
+		#	logistics_skill = 3
+		#	legacy_id = -1
+		#}
+		advisor = {
+			slot = high_command
+			idea_token = CHI_Luo_Benli_high_command
+			ledger = army
+			allowed = {
+				original_tag = CHI
+			}
+			traits = {
+				high_command
+			}
+			cost = -1
+			can_be_fired = no
+			ai_will_do = { factor = 0 }
+		}
+	}
+
+
+	##普通将领角色
+	### 民族派 ###
+	CHI_Zhou_Qingxiang = {	#周庆祥
+		name = CHI_Zhou_Qingxiang
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Zhou_Qingxiang.dds"
+			}
+		}
+		corps_commander = {
+			traits = { skilled_staffer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+			legacy_id = -1
+		}
+	}
+	CHI_Ge_Xiancai = {	#葛先才
+		name = CHI_Ge_Xiancai
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Ge_Xiancai.dds"
+			}
+		}
+		corps_commander = {
+			traits = { brilliant_strategist }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}
+	CHI_Rao_Shaowei = {	#饶少伟
+		name = CHI_Rao_Shaowei
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_CHI_Rao_Shaowei.png"
+			}
+		}
+		corps_commander = {
+			traits = { brilliant_strategist }
+			skill = 4
+			attack_skill = 2
+			defense_skill = 4
+			planning_skill = 3
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}	
+	CHI_Rong_Youlue = {	#容有略
+		name = CHI_Rong_Youlue
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_CHI_Rong_Youlue.png"
+			}
+		}
+		corps_commander = {
+			traits = { skilled_staffer }
+			skill = 4
+			attack_skill = 3
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}	
+	CHI_Peng_Mengji = {		#彭孟缉
+		name = CHI_Peng_Mengji
+		portraits = {
+			army = { large = "gfx/leaders/CHI/Portrait_China_Peng_Mengji.dds" }
+		}
+		#corps_commander = {
+		#	traits = { commando }
+		#	skill = 4
+		#	attack_skill = 4
+		#	defense_skill = 3
+		#	planning_skill = 3
+		#	logistics_skill = 2
+		#	legacy_id = -1
+		#}
+	}
+	CHI_Chen_Daqing = {	#陈大庆
+		name = CHI_Chen_Daqing
+		portraits = {
+			army = { large = "gfx/leaders/CHI/Portrait_China_Chen_Daqing.dds" }
+		}
+		#corps_commander = {
+		#	traits = { organizer }
+		#	skill = 4
+		#	attack_skill = 4
+		#	defense_skill = 2
+		#	planning_skill = 2
+		#	logistics_skill = 3
+		#	legacy_id = -1
+		#}
+	}
+
+	### 中央派 ###
+	CHI_Ren_Yuandao = {	#任援道
+		name = CHI_Ren_Yuandao
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Ren_Yuandao.dds"
+			}
+		}
+		field_marshal = {
+			traits = { old_guard naval_liason }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 4
+			planning_skill = 2
+			logistics_skill = 3
+			legacy_id = -1
+		}
+	}
+	CHI_Xiang_Zhizhuang = {	#项致庄
+		name = CHI_Xiang_Zhizhuang
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Xiang_Zhizhuang.dds"
+			}
+		}
+		corps_commander = {
+			traits = { career_officer }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}
+	CHI_Hao_Pengju = {	#郝鹏举
+		name = CHI_Hao_Pengju
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Hao_Pengju.dds"
+			}
+		}
+		corps_commander = {
+			traits = { infantry_officer expert_improviser }
+			skill = 2
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 3
+			legacy_id = -1
+		}
+	}
+	CHI_Hu_Yukun = {	#胡毓坤
+		name = CHI_Hu_Yukun
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/CHI_Hu_Yukun.png"
+			}
+		}
+		field_marshal = {
+			traits = { old_guard career_officer }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+			legacy_id = -1
+		}
+	}
+	CHI_Xiong_Jiandong = {	#熊剑东
+		name = CHI_Xiong_Jiandong
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Xiong_Jiandong.dds"
+			}
+		}
+		corps_commander = {
+			traits = { infantry_officer scavenger }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+			legacy_id = -1
+		}
+	}
+	CHI_Shi_Yafu = {	#施亚夫
+		name = CHI_Shi_Yafu
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Shi_Yafu.dds"
+			}
+		}
+		corps_commander = {
+			traits = { adaptable organizer }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 4
+			logistics_skill = 3
+			legacy_id = -1
+		}
+	}
+	CHI_Tang_Shengming = {	#唐生明
+		name = CHI_Tang_Shengming
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Tang_Shengming.dds"
+			}
+		}
+		corps_commander = {
+			traits = { skilled_staffer }
+			skill = 3
+			attack_skill = 2
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 3
+			legacy_id = -1
+		}
+	}
+	CHI_Wang_Wenti = {	#汪文悌
+		name = CHI_Wang_Wenti
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Wang_Wenti.dds"
+			}
+		}
+		corps_commander = {
+			traits = { politically_connected engineer_officer }
+			skill = 1
+			attack_skill = 1
+			defense_skill = 2
+			planning_skill = 2
+			logistics_skill = 1
+			legacy_id = -1
+		}
+	}
+	CHI_Fu_Shuangying = {	#富双英
+		name = CHI_Fu_Shuangying
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Fu_Shuangying.dds"
+			}
+		}
+		corps_commander = {
+			traits = { old_guard career_officer politically_connected }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 3
+			planning_skill = 3
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}
+
+	### 华北派 ###
+	CHI_Zhang_Lanfeng = {	#张岚峰
+		name = CHI_Zhang_Lanfeng
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Zhang_Lanfeng.dds"
+			}
+		}
+		field_marshal = {
+			traits = { career_officer organizer }
+			skill = 4
+			attack_skill = 4
+			defense_skill = 3
+			planning_skill = 4
+			logistics_skill = 4
+			legacy_id = -1
+		}
+	}
+	CHI_Rong_Ziheng = {	#荣子恒
+		name = CHI_Rong_Ziheng
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Rong_Ziheng.dds"
+			}
+		}
+		corps_commander = {
+			traits = { engineer_officer }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 3
+			legacy_id = -1
+		}
+	}
+	CHI_Wu_Huawen = {	#吴化文
+		name = CHI_Wu_Huawen
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Wu_Huawen.dds"
+			}
+		}
+		corps_commander = {
+			traits = { infantry_officer aggressive_assaulter }
+			skill = 3
+			attack_skill = 4
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}
+	CHI_Wang_Fenggang = {	#王凤岗
+		name = CHI_Wang_Fenggang
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Wang_Fenggang.dds"
+			}
+		}
+		corps_commander = {
+			traits = { engineer_officer expert_improviser }
+			skill = 3
+			attack_skill = 3
+			defense_skill = 2
+			planning_skill = 3
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}
+	### 海军将领 ###
+	CHI_Jiang_Xiyuan = {  #姜西园
+		name = CHI_Jiang_Xiyuan
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_CHI_Jiang_Xiyuan.png"
+			}
+		}
+		navy_leader = {
+			traits = { superior_tactician  }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 2
+			planning_skill = 1
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}
+	CHI_Bao_Yimin = {	 #鲍一民
+		name = CHI_Bao_Yimin
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_CHI_Bao_Yimin.png"
+			}
+		}
+		navy_leader = {
+			traits = { inshore_fighter  }
+			skill = 2
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}	
+	CHI_Huang_Xun = {	 #黄勋
+		name = CHI_Huang_Xun
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_CHI_Huang_Xun.png"
+			}
+		}
+		navy_leader = {
+			traits = {  fleet_protector  }
+			skill = 2
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 2
+			legacy_id = -1
+		}
+	}	
+	### 战后军官 ###
+	CHI_Tong_Zhaoyang = {	#童兆阳
+		name = CHI_Tong_Zhaoyang
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Tong_Zhaoyang.dds"
+			}
+		}
+		#corps_commander = {
+		#	traits = { organizer }
+		#	skill = 3
+		#	attack_skill = 2
+		#	defense_skill = 3
+		#	planning_skill = 3
+		#	logistics_skill = 4
+		#	legacy_id = -1
+		#}
+	}
+	CHI_Chen_Zhenxiang = {	#陈镇湘
+		name = CHI_Chen_Zhenxiang
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Chen_Zhenxiang.dds"
+			}
+		}
+		#corps_commander = {
+		#	traits = { career_officer }
+		#	skill = 3
+		#	attack_skill = 3
+		#	defense_skill = 3
+		#	planning_skill = 3
+		#	logistics_skill = 3
+		#	legacy_id = -1
+		#}
+	}
+	CHI_Xie_Jiandong = {	#谢建东
+		name = CHI_Xie_Jiandong
+		portraits = {
+			army = {
+				large = "gfx/leaders/CHI/Portrait_China_Xie_Jiandong.dds"
+			}
+		}
+		#corps_commander = {
+		#	traits = { armor_officer }
+		#	skill = 3
+		#	attack_skill = 3
+		#	defense_skill = 3
+		#	planning_skill = 3
+		#	logistics_skill = 4
+		#	legacy_id = -1
+		#}
+	}
+#######
+
+###### 战后饼图中涌现政治人物
+	## 中国共产党 ##
+	CHI_CPC_unknown = {
+		name = CHI_CPC_unknown
+		portraits = {
+			civilian = { small = "GFX_leader_unknown" }
+		}
+		country_leader = {
+			#desc = ""
+			ideology = communist_mao_zedong_thought_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+
+	## 中国农工民主党 ##
+	CHI_Ji_Fang = {
+		name = CHI_Ji_Fang
+		portraits = {
+			civilian = { large = "gfx/leaders/CHI/Portrait_China_Ji_Fang.dds" }
+		}
+		country_leader = {
+			#desc = ""
+			ideology = progressivism_reformist_socialism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+
+	## 中国民主同盟 ##
+	CHI_Fei_Xiaotong = {
+		name = CHI_Fei_Xiaotong
+		portraits = {
+			civilian = { small = "GFX_leader_unknown" }
+		}
+		country_leader = {
+			#desc = ""
+			ideology = liberalism_national_liberal_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+
+	## 民主进步劳工总会 ##
+	CHI_DPLU = {
+		name = CHI_DPLU
+		portraits = {
+			civilian = { large = "gfx/leaders/CHI/Portrait_CHI_DPLU.dds" }
+		}
+		country_leader = {
+			#desc = ""
+			ideology = socialist_revolutionary_frontism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+
+	## 中国国家社会党 ##
+	CHI_Jiang_Yuntian = {
+		name = CHI_Jiang_Yuntian
+		portraits = {
+			civilian = { small = "GFX_leader_unknown" }
+		}
+		country_leader = {
+			#desc = ""
+			ideology = liberal_conservatism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+
+	## 中国国民党-保守派 ##
+	CHI_Luo_Junqiang = {
+		name = CHI_Luo_Junqiang
+		portraits = {
+			civilian = { small = "GFX_leader_unknown" }
+		}
+
+		country_leader = {
+			desc = ""
+			ideology = despotism_aristocratic_conservatism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+		country_leader = {
+			desc = ""
+			ideology = despotism_1_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+
+	## 中国国民党-民主派 ##
+	CHI_Wu_Guozhen = {
+		name = CHI_Wu_Guozhen
+		portraits = {
+			civilian = { large = "gfx/leaders/CHI/Portrait_China_Wu_Guozhen.dds" }
+		}
+		country_leader = {
+			#desc = ""
+			ideology = conservatism_paternalistic_conservatism_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+
+	## 中国青年党 ##
+	CHI_Li_Huang = {
+		name = CHI_Li_Huang
+		portraits = {
+			civilian = { large = "gfx/leaders/CHI/Portrait_China_Li_Huang.dds" }
+		}
+		#country_leader = {
+		#	#desc = ""
+		#	ideology = paternalism_national_conservatism_subtype
+		#	traits = { }
+		#	expire = "1999.1.1.1"
+		#	id = -1
+		#}
+		country_leader = {
+			#desc = ""
+			ideology = paternalism_2_subtype
+			traits = { }
+			expire = "1999.1.1.1"
+			id = -1
+		}
+	}
+######
+
+	############################################################
+	###########	    SEIHOKU GUNSEIKAN - 西北军政监    ###########
+	############################################################
+	GAN_seihoku_council = {
+		name = "GAN_seihoku_council"
+		portraits = {
+			civilian = { large = "gfx/leaders/GAN/GAN_seihoku_council.dds" }
+		}
+		country_leader = {
+			desc = "POLITICS_SEIHOKU_COUNCIL_DESC_XIBEI"
+			ideology = despotism_colonial_government_subtype
+			expire = "1999.1.1"
+			id = -1
+		}
+	}
+}

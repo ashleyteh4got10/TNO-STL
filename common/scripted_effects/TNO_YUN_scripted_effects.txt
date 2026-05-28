@@ -684,6 +684,371 @@ greater_china_provinces_initialize = {
 	}
 }
 
+greater_china_admin_japan = {
+	TNO_clear_admin_title = yes
+	TNO_clear_assoc_region = yes
+	TNO_clear_sub_admin_title = yes
+	if = {
+		limit = {
+			state = 810
+		}
+		set_temp_variable = { admin_title_temp = token:Admin_Title_Territory }
+		TNO_adjust_admin_title = yes
+	}
+	if = {
+		limit = {
+			check_variable = { china_state_ref = 37 }
+		}
+		set_temp_variable = { assoc_region_temp = token:Assoc_Region_Taiwan_Jap }
+		TNO_adjust_assoc_region = yes
+		if = {
+			limit = {
+				OR = {
+					state = 524
+					state = 1850
+					state = 1851
+					state = 1852
+					state = 1853
+					state = 1856
+				}
+			}
+			set_temp_variable = { admin_title_temp = token:Admin_Title_Prefecture_Cho }
+			TNO_adjust_admin_title = yes
+		}
+		if = {
+			limit = {
+				OR = {
+					state = 1854
+					state = 1855
+				}
+			}
+			set_temp_variable = { admin_title_temp = token:Admin_Title_Prefecture_Shu }
+			TNO_adjust_admin_title = yes
+		}
+	}
+}
+
+greater_china_admin_reset = {
+	### States
+	if = {
+		limit = { check_variable = { china_state_ref = 0 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Nanjing_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 1 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Shanghai_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 2 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Jiangsu_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 3 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Huaihai_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 4 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Zhejiang_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 5 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Ouhai_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 6 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Anhui_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 7 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Beijing_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 8 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Tianjin_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 9 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Qingdao_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 10 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Zhili_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 11 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Hebei_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 12 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Taiyue_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 13 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Shandong_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 14 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Shanxi_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 15 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Chongqing_SAR }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 16 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Chuandong_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 17 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Chuanxi_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 18 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Guizhou_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 19 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Guangxi_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 20 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Yunnan_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 21 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Xikang_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 22 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Tibet_Area }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 23 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Wuhan_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 24 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Jiangxi_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 25 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Ganjiang_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 26 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Hubei_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 27 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Hunan_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 28 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Hengnan_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 29 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Henan_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 30 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Zhongyuan_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 31 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Xiamen_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 32 } }
+		set_variable = { AssocRegion = token:Assoc_Region_PRD_SAR }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 33 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Fujian_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 34 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Xingquan_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 35 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Guangdong_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 36 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Qiongya_SAR }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 37 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Taiwan_SAR }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 38 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Shaanxi_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 39 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Hanzhong_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 40 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Longxi_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 41 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Gansu_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 42 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Qinghai_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 43 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Xinjiang_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 44 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Mukden_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 45 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Changchun_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 46 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Harbin_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 47 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Dalian_Municipality }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 48 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Liaoning_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 49 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Jilin_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 50 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Heilongjiang_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 51 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Jinghai_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 52 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Beihai_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 53 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Kuye_SAR }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 54 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Chahar_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 55 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Suiyuan_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 56 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Rehe_Province }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 57 } }
+		set_variable = { AssocRegion = token:Assoc_Region_Mongolia_Area }
+	}
+	### Regions
+	if = {
+		limit = { check_variable = { china_region_ref = 0 } }
+		set_variable = { AssocRegion2 = token:Assoc_Region_East_China }
+	}
+	else_if = {
+		limit = { check_variable = { china_region_ref = 1 } }
+		set_variable = { AssocRegion2 = token:Assoc_Region_North_China }
+	}
+	else_if = {
+		limit = { check_variable = { china_region_ref = 2 } }
+		set_variable = { AssocRegion2 = token:Assoc_Region_Southwest_China }
+	}
+	else_if = {
+		limit = { check_variable = { china_region_ref = 3 } }
+		set_variable = { AssocRegion2 = token:Assoc_Region_South_Central_China }
+	}
+	else_if = {
+		limit = { check_variable = { china_region_ref = 4 } }
+		set_variable = { AssocRegion2 = token:Assoc_Region_South_China }
+	}
+	else_if = {
+		limit = { check_variable = { china_region_ref = 5 } }
+		set_variable = { AssocRegion2 = token:Assoc_Region_Northwest_China }
+	}
+	else_if = {
+		limit = { check_variable = { china_region_ref = 6 } }
+		set_variable = { AssocRegion2 = token:Assoc_Region_Northeast_China }
+	}
+	else_if = {
+		limit = { check_variable = { china_region_ref = 7 } }
+		set_variable = { AssocRegion2 = token:Assoc_Region_Frontier }
+	}
+	### Titles
+	if = {
+		limit = { has_variable = china_city_ref }
+		set_variable = { AdminTitle = token:Admin_Title_Municipality }
+		set_variable = { SubAdminTitle = token:Admin_Title_District }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 15 }
+				check_variable = { china_state_ref = 32 }
+			}
+		}
+		set_variable = { AdminTitle = token:Admin_Title_SAR }
+		set_variable = { SubAdminTitle = token:Admin_Title_District }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 36 }
+				check_variable = { china_state_ref = 37 }
+				check_variable = { china_state_ref = 53 }
+			}
+		}
+		set_variable = { AdminTitle = token:Admin_Title_SAR }
+		set_variable = { SubAdminTitle = token:Admin_Title_County }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 22 } }
+		set_variable = { AdminTitle = token:Admin_Title_ASR }
+		set_variable = { SubAdminTitle = token:Admin_Title_Dzong }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 42 }
+				check_variable = { china_state_ref = 54 }
+				check_variable = { china_state_ref = 55 }
+			}
+		}
+		set_variable = { AdminTitle = token:Admin_Title_ASR }
+		set_variable = { SubAdminTitle = token:Admin_Title_Counties_Leagues_Banners }
+	}
+	else_if = {
+		limit = { check_variable = { china_state_ref = 57 } }
+		set_variable = { AdminTitle = token:Admin_Title_ASR }
+		set_variable = { SubAdminTitle = token:Admin_Title_Leagues_Banners }
+	}
+	else = {
+		set_variable = { AdminTitle = token:Admin_Title_ASR }
+		set_variable = { SubAdminTitle = token:Admin_Title_County }
+	}
+}
+
 YUN_Xinan_Insurgency_initialize = {
 	add_dynamic_modifier = { modifier = YUN_xinan_insurgency_dynamic_modifier }
 	set_variable = { YunNRA_Power = 60 }
@@ -1899,6 +2264,13 @@ YUN_Long_Yun_Coup_effects = {
 				logistics_skill = 3
 				legacy_id = 1228
 			}
+			set_portraits = {
+				civilian =  { large = "gfx/leaders/YUN/YUN_Long_Yun_NPA.png" }
+				army =  { 
+					large = "gfx/leaders/YUN/YUN_Long_Yun_NPA.png" 
+					small = "GFX_idea_YUN_minister_Long_Yun_NPA"
+				}
+			}
 		}
 
 		set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Military_Directed }
@@ -1960,7 +2332,10 @@ YUN_Long_Yun_Coup_effects = {
 		leave_faction = yes
 		econ_leave_sphere = yes
 		remove_faction_status = yes
-		create_faction = CHI_THE_NATIONAL_LIBERATION_FRONT
+		#create_faction_from_template = { name = CHI_THE_NATIONAL_LIBERATION_FRONT icon = GFX_NLF template = faction_template_generic }
+		add_faction_goal_slot = { category = short_term  value = -10 }
+		add_faction_goal_slot = { category = medium_term value = -10 }
+		add_faction_goal_slot = { category = long_term   value = -10 }
 
 		add_dynamic_modifier = { modifier = YUN_NPA_legitimacy_dynamic_modifier }
 		add_dynamic_modifier = { modifier = YUN_NPA_war_buff_dynamic_modifier }
@@ -2023,7 +2398,13 @@ YUN_Long_Yun_Coup_effects = {
 WI_Start_effects = {
 	log = "Western Insurrection started in [GetDateText]"
 	hidden_effect = {
-		every_country = { limit = { is_ai = no } news_event = WORLD.2062 }
+		every_country = {
+			limit = {
+				is_ai = no
+				HasSphereInterest = yes
+			}
+			news_event = WORLD.2062 
+		}
 		every_country = {
 			limit = {
 				NOT = { tag = GAN }
@@ -2043,7 +2424,18 @@ WI_Start_effects = {
 		}
 		CHI = {
 			leave_faction = yes
-			create_faction = CHI_THE_CHINESE_LEAGUE
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = CHI_THE_CHINESE_LEAGUE icon = GFX_NLF template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = CHI_THE_CHINESE_LEAGUE
+}
 			add_to_faction = GAN
 			#country_lock_all_division_template = no	#TNOLAR不要解除限制
 			set_variable = { CHI_MND_GUI_army_limit = 105 }	#TNOLAR 添加部队上限
@@ -2597,7 +2989,7 @@ YUN_WI_Victory_ROC = {
 			ruling_party = paternalism
 			last_election = "1960.11.11"
 			election_frequency = 36
-			elections_allowed = no
+			elections_allowed = yes
 		}
 		promote_character = YUN_sun_liren
 		set_party_name = {
@@ -2649,6 +3041,11 @@ YUN_WI_Victory_ROC = {
 		remove_ideas = {
 			YUN_Generic_Vacant_hog
 			YUN_army_of_the_southwest_two_brothers
+			YUN_anti_RGOC_zeal
+			YUN_production_frenzy
+			YUN_exploit_mines_0
+			YUN_exploit_mines_1
+			YUN_exploit_mines_2
 		}
 		add_ideas = {
 			YUN_Jiang_Jingguo_hog
@@ -4077,6 +4474,50 @@ YUN_NPA_fails_effects = {
 	clr_country_flag = country_has_gui
 	set_global_flag = YUN_NPA_defeated
 	load_focus_tree = { tree = YUN_post_xinan keep_completed = yes }
+}
+
+YUN_southwest_reconstruction_effects = {
+	set_party_name = {
+		ideology = despotism
+		name = YUN_despotism_XRA_party
+		long_name = YUN_despotism_XRA_party_long
+	}
+	YUN_zhou_longxiang = {
+		add_country_leader_role = {
+			country_leader = {
+				desc = "POLITICS_ZHOU_LONGXIANG_DESC"
+				ideology = despotism_interim_government_subtype
+				traits = {  }
+				expire = "1999.1.1.1"
+				id = -1
+			}
+			promote_leader = yes
+		}
+	}
+	set_politics = {
+		ruling_party = despotism
+		last_election = "1933.3.5"
+		election_frequency = 48
+		elections_allowed = no
+	}
+	set_popularities = {
+		progressivism = 0
+		liberalism = 0
+		liberal_conservatism = 0
+		despotism = 54
+		conservatism = 4
+		paternalism = 38
+		fascism = 0
+		national_socialism = 0
+		ultranationalism = 4
+	}
+	set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Dirigisme }
+	econ_subtype_change = yes
+	set_cosmetic_tag = YUN_southwest_united_reconstruction
+
+	JAP = { add_to_faction = YUN }
+	add_ideas = Sphere_Economic_Dependent
+	econ_join_sphere_JAP = yes
 }
 
 YUN_JAP_collab_effects = {

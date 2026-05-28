@@ -1,0 +1,874 @@
+scripted_gui = {
+	####	Legyuan locked | 立法院封锁	  ####
+	TNOLAR_CHI_LegYuan_GUI = { 
+		context_type = decision_category
+		window_name = "TNOLAR_CHI_LegYuan_GUI"
+		#dirty = TNOLAR_CHI_LegYuan_GUI_dirty
+		visible = {
+			tag = CHI
+		}
+		effects = {
+			CHI_LegYuan_Japanophile_interactions_click = {
+				if = {
+					limit = { check_variable = { CHI_faction_visible = 1 } }
+					clear_variable = CHI_faction_visible
+				}
+				else = {
+					set_variable = { CHI_faction_visible = 1 }
+				}
+			}
+			CHI_LegYuan_Old_Guard_interactions_click = {
+				if = {
+					limit = { check_variable = { CHI_faction_visible = 2 } }
+					clear_variable = CHI_faction_visible
+				}
+				else = {
+					set_variable = { CHI_faction_visible = 2 }
+				}
+			}
+			CHI_LegYuan_Reformist_interactions_click = {
+				if = {
+					limit = { check_variable = { CHI_faction_visible = 3 } }
+					clear_variable = CHI_faction_visible
+				}
+				else = {
+					set_variable = { CHI_faction_visible = 3 }
+				}
+			}
+			CHI_LegYuan_NSB_interactions_click = {
+				if = {
+					limit = { check_variable = { CHI_faction_visible = 4 } }
+					clear_variable = CHI_faction_visible
+				}
+				else = {
+					set_variable = { CHI_faction_visible = 4 }
+				}
+			}
+			CHI_LegYuan_GUI_decrease_pp_click = {
+				add_to_variable = { CHI_LegYuan_GUI_invest_pp = -5 }
+				add_to_variable = { TNO_CHI_LegYuan_GUI_dirty = 1 }
+			}
+			CHI_LegYuan_GUI_increase_pp_click = {
+				add_to_variable = { CHI_LegYuan_GUI_invest_pp = 5 }
+				add_to_variable = { TNO_CHI_LegYuan_GUI_dirty = 1 }
+			}
+			CHI_LegYuan_GUI_decrease_money_click = {
+				add_to_variable = { CHI_LegYuan_GUI_invest_money = -25 }
+				add_to_variable = { TNO_CHI_LegYuan_GUI_dirty = 1 }
+			}
+			CHI_LegYuan_GUI_increase_money_click = {
+				add_to_variable = { CHI_LegYuan_GUI_invest_money = 25 }
+				add_to_variable = { TNO_CHI_LegYuan_GUI_dirty = 1 }
+			}
+			CHI_LegYuan_GUI_invest_click = {
+				CHI_NSB_invest_calc = yes
+			}
+		}
+		triggers = {
+			#TNOLAR 立法院封锁显示
+			CHI_legyuan_locked_visible = {
+				hidden_trigger = {
+					has_country_flag = TNOLAR_CHI_LegYuan_locked
+				}
+			}
+			CHI_legyuan_locked_Glow_visible = {
+				hidden_trigger = {
+					has_country_flag = TNOLAR_CHI_LegYuan_locked
+				}
+			}
+
+
+			CHI_LegYuan_GUI_4_visible = {
+				hidden_trigger = {
+					has_country_flag = CHI_NSB_initialized
+				}
+			}
+			CHI_LegYuan_GUI_invest_click_enabled = {
+				hidden_trigger = {
+					set_temp_variable = { CHI_LegYuan_GUI_invest_pp_confirmed = CHI_LegYuan_GUI_invest_pp }
+					subtract_from_temp_variable = { CHI_LegYuan_GUI_invest_pp_confirmed = 0.01 }
+					has_country_flag = CHI_NSB_initialized
+					OR = {
+						AND = {
+							check_variable = { CHI_LegYuan_GUI_invest_money > 0 }
+							if = {
+								limit = { check_variable = { CHI_LegYuan_GUI_invest_pp > 0 } }
+								has_political_power > CHI_LegYuan_GUI_invest_pp_confirmed
+							}
+						}
+						AND = {
+							check_variable = { CHI_LegYuan_GUI_invest_pp > 0 }
+							has_political_power > CHI_LegYuan_GUI_invest_pp_confirmed
+						}
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = CHI_LegYuan_GUI_invest_click_enabled_2_tt
+					NOT = { has_country_flag = CHI_NSB_invest_cooldown }
+				}
+				NOT = { has_country_flag = ECON_ONGOING_FISCAL_CRISIS }
+			}
+			CHI_LegYuan_GUI_increase_pp_click_enabled = {
+				NOT = { check_variable = { CHI_LegYuan_GUI_invest_pp = 50 } }
+			}
+			CHI_LegYuan_GUI_decrease_pp_click_enabled = {
+				NOT = { check_variable = { CHI_LegYuan_GUI_invest_pp = 0 } }
+			}
+			CHI_LegYuan_GUI_increase_money_click_enabled = {
+				NOT = { check_variable = { CHI_LegYuan_GUI_invest_money = 250 } }
+			}
+			CHI_LegYuan_GUI_decrease_money_click_enabled = {
+				NOT = { check_variable = { CHI_LegYuan_GUI_invest_money = 0 } }
+			}
+		}
+		properties = {
+			CHI_LegYuan_Japanophile_Influence = {
+				frame = CHI_GUI_pro_japan_influence
+			}
+			CHI_LegYuan_Japanophile_Opinion = {
+				frame = faction_pro_japan_opinion 
+			}
+			CHI_LegYuan_Old_Guard_Influence = {
+				frame = CHI_GUI_old_guard_influence
+			}
+			CHI_LegYuan_Old_Guard_Opinion = {
+				frame = faction_old_guard_opinion 
+			}
+			CHI_LegYuan_Reformist_Influence = {
+				frame = CHI_GUI_reformist_influence
+			}
+			CHI_LegYuan_Reformist_Opinion = {
+				frame = faction_reformist_opinion 
+			}
+			CHI_LegYuan_NSB_Effectiveness = {
+				frame = CHI_GUI_NSB_effectiveness
+			}
+		}
+	}
+	
+	####	Ministry of National Defense | 国防部	####
+	TNOLAR_CHI_Ministry_of_National_Defense_GUI = {
+		context_type = decision_category
+		window_name = "TNOLAR_CHI_Ministry_of_National_Defense_GUI"
+		#dirty = TNOLAR_CHI_Ministry_of_National_Defense_GUI_dirty
+		visible = {
+			tag = CHI
+		}
+		effects = {
+			CHI_Ministry_of_National_Defense_GUI_Military_page_button_click = {
+				set_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				set_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 1 }
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_click = {
+				set_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 1 }
+				set_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+			}
+
+			CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_button_click = {
+				subtract_from_variable = { CHI_MND_GUI_current_army_number = CHI.num_armies_in_state@613 }
+				subtract_from_variable = { CHI_MND_GUI_JapanAlert_level_lowerlimit = CHI.num_armies_in_state@613 }
+				delete_unit = {
+    				state = 613
+					division_template = "Bubing Shi"
+    				disband = yes
+				}
+				delete_unit = {
+    				state = 613
+					division_template = "Bubing Lü"
+    				disband = yes
+				}
+				delete_unit = {
+    				state = 613
+					division_template = "Jingwei Shi"
+    				disband = yes
+				}
+				delete_unit = {
+    				state = 613
+					division_template = "Jingrui Jingwei Shi"
+    				disband = yes
+				}
+				delete_unit = {
+    				state = 613
+					division_template = "Qianxian Bubing Juntuan"
+    				disband = yes
+				}
+				clamp_variable = {
+					var = CHI_MND_GUI_JapanAlert_level_lowerlimit
+					min = 0
+				}
+
+				CHI_MND_Armylimit_check = yes
+			}
+
+			CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_click = {
+				if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_1
+					}
+					set_country_flag = CHI_MND_BubingShi_training_2
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_2
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_2
+					}
+					set_country_flag = CHI_MND_BubingShi_training_3
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_3
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_3
+					}
+					set_country_flag = CHI_MND_BubingShi_training_4
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_4
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_4
+					}
+					set_country_flag = CHI_MND_BubingShi_training_5
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_5
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_5
+					}
+					set_country_flag = CHI_MND_BubingShi_training_6
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_6
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_6
+					}
+					set_country_flag = CHI_MND_BubingShi_training_7
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_7
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_7
+					}
+					set_country_flag = CHI_MND_BubingShi_training_8
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_8
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_8
+					}
+					set_country_flag = CHI_MND_BubingShi_training_9
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_9
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingShi_training_9
+					}
+					set_country_flag = CHI_MND_BubingShi_training_10
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_10
+					}
+				}
+				else = {
+					set_country_flag = CHI_MND_BubingShi_training_1
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingShi_training_1
+					}
+				}
+				add_manpower = -8300
+				add_equipment_to_stockpile = {
+    				type = anti_tank_equipment
+    				amount = -110
+				}
+				add_equipment_to_stockpile = {
+    				type = artillery_equipment
+    				amount = -24
+				}
+				add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -755
+				}
+				add_equipment_to_stockpile = {
+    				type = support_equipment
+    				amount = -45
+				}
+				add_equipment_to_stockpile = {
+    				type = APC_chassis
+    				amount = -50
+				}
+
+				add_command_power = -10
+
+				add_to_variable = { CHI_MND_GUI_current_army_number = 1 }
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_click = {
+				if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_1
+					}
+					set_country_flag = CHI_MND_BubingLu_training_2
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_2
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_2
+					}
+					set_country_flag = CHI_MND_BubingLu_training_3
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_3
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_3
+					}
+					set_country_flag = CHI_MND_BubingLu_training_4
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_4
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_4
+					}
+					set_country_flag = CHI_MND_BubingLu_training_5
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_5
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_5
+					}
+					set_country_flag = CHI_MND_BubingLu_training_6
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_6
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_6
+					}
+					set_country_flag = CHI_MND_BubingLu_training_7
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_7
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_7
+					}
+					set_country_flag = CHI_MND_BubingLu_training_8
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_8
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_8
+					}
+					set_country_flag = CHI_MND_BubingLu_training_9
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_9
+					}
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_MND_BubingLu_training_9
+					}
+					set_country_flag = CHI_MND_BubingLu_training_10
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_10
+					}
+				}
+				else = {
+					set_country_flag = CHI_MND_BubingLu_training_1
+					hidden_effect = {
+						activate_mission = CHI_MND_BubingLu_training_1
+					}
+				}
+				add_manpower = -5500
+				add_equipment_to_stockpile = {
+    				type = anti_tank_equipment
+    				amount = -75
+				}
+				add_equipment_to_stockpile = {
+    				type = infantry_equipment
+    				amount = -540
+				}
+				add_equipment_to_stockpile = {
+    				type = support_equipment
+    				amount = -15
+				}
+
+				add_command_power = -10
+
+				add_to_variable = { CHI_MND_GUI_current_army_number = 1 }
+			}
+		}
+		triggers = {
+			#现代化面板可见性控制
+			CHI_Ministry_of_National_Defense_GUI_Military_page_button_blocked_visible = {
+				hidden_trigger = {
+					OR = {
+						NOT = {
+							has_completed_focus = CHI_LAR_Military
+						}
+						has_idea = CHI_Fang_Xianjue_sec
+					}
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Military_Interface_bg_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Military_info_2_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Military_info_3_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Modernisation_progressbar_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Modernisation_progressbar_improving_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+					check_variable = { CHI_MND_GUI_real_modernization_progress_month_var > 0 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Modernisation_progressbar_worsening_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+					check_variable = { CHI_MND_GUI_real_modernization_progress_month_var < 0 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Military_info_4_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Military_info_5_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_conservatives_progressbar_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_nationalists_progressbar_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_japanophiles_progressbar_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_nationalists_tooltip_hitbox_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_conservatives_tooltip_hitbox_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_japanophiles_tooltip_hitbox_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+				}
+			}
+
+			#募兵面板可见性控制
+			CHI_Ministry_of_National_Defense_GUI_Conscription_Interface_bg_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_army_limit_progressbar_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_current_army_number_progressbar_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_info_2_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_unavailable_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_button_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+					check_variable = { CHI.num_armies_in_state@613 > 0 }
+
+					set_temp_variable = { temp1 = CHI_MND_GUI_current_army_number }
+            		set_temp_variable = { temp2 = CHI.num_armies_in_state@613 }
+            		subtract_from_temp_variable = { temp1 = temp2 }
+            
+            		check_variable = { temp1 > 14 }
+
+					check_variable = { CHI.command_power > 19.99 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_unavailable_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+
+					check_variable = { CHI.manpower_k > 8.3 }
+					check_variable = { CHI.num_equipment@anti_tank_equipment > 109 }
+					check_variable = { CHI.num_equipment@artillery_equipment > 23 }
+					check_variable = { CHI.num_equipment@infantry_equipment > 754 }
+					check_variable = { CHI.num_equipment@support_equipment > 44 }
+					check_variable = { CHI.num_equipment@APC_chassis > 49 }
+
+					check_variable = { CHI.command_power > 9.99 }
+					check_variable = { CHI_MND_GUI_current_army_number < CHI_MND_GUI_army_limit }
+
+					NOT = {
+						count_triggers = {
+                			amount = 1
+                			1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_1
+								}
+							}
+                			1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_2
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_3
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_4
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_5
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_6
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_7
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_8
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_9
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingShi_training_10
+								}
+							}
+            			}
+					}
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_unavailable_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+
+					check_variable = { CHI.manpower_k > 5.5 }
+					check_variable = { CHI.num_equipment@anti_tank_equipment > 74 }
+					check_variable = { CHI.num_equipment@infantry_equipment > 539 }
+					check_variable = { CHI.num_equipment@support_equipment > 14 }
+
+					check_variable = { CHI.command_power > 9.99 }
+					check_variable = { CHI_MND_GUI_current_army_number < CHI_MND_GUI_army_limit }
+
+					NOT = {
+						count_triggers = {
+                			amount = 1
+                			1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_1
+								}
+							}
+                			1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_2
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_3
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_4
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_5
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_6
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_7
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_8
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_9
+								}
+							}
+							1 = {
+								CHI = {
+									has_country_flag = CHI_MND_BubingLu_training_10
+								}
+							}
+            			}
+					}
+				}
+			}
+
+			#警惕度指示灯可见性控制
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_1_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 0 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_2_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 12 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_3_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 23 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_4_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 34 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_5_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 45 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_6_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 56 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_7_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 67 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_8_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 78 }
+				}
+			}
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_Light_9_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_MND_GUI_JapanAlert_level > 89 }
+				}
+			}
+		}
+		properties = {
+			CHI_Ministry_of_National_Defense_GUI_Military_page_button = {
+				frame = CHI_Ministry_of_National_Defense_GUI_Military_page_button_var
+			}
+			CHI_Ministry_of_National_Defense_GUI_Conscription_page_button = {
+				frame = CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var
+			}
+			CHI_Ministry_of_National_Defense_GUI_Modernisation_progressbar = {
+				frame = CHI_MND_GUI_modernization_progress_var
+			}
+			CHI_Ministry_of_National_Defense_GUI_nationalists_progressbar = {
+				frame = CHI_MND_GUI_nationalists_influences_var
+			}
+			CHI_Ministry_of_National_Defense_GUI_japanophiles_progressbar = {
+				frame = CHI_MND_GUI_japanophiles_influences_var
+			}
+
+
+			CHI_Ministry_of_National_Defense_GUI_army_limit_progressbar = {
+				frame = CHI_MND_GUI_army_limit
+			}
+			CHI_Ministry_of_National_Defense_GUI_current_army_number_progressbar = {
+				frame = CHI_MND_GUI_current_army_number
+			}
+
+
+			CHI_Ministry_of_National_Defense_GUI_JapanAlert_progressbar = {
+				frame = CHI_MND_GUI_JapanAlert_level
+			}
+		}
+	}
+
+	####	Oil Crisis | 石油危机	####
+	TNOLAR_CHI_Oil_Crisis_GUI = {
+		context_type = decision_category
+		window_name = "TNOLAR_CHI_Oil_Crisis_GUI"
+		visible = {
+			tag = CHI
+		}
+		effects = {
+			CHI_Oil_Crisis_GUI_agriculture_button_click = {
+				if = {
+					limit = {
+						has_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+					}
+					clr_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+					set_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+					}
+					clr_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+				}
+				else = {
+					set_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+				}
+			}
+			CHI_Oil_Crisis_GUI_industry_button_click = {
+				if = {
+					limit = {
+						has_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+					}
+					clr_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+					set_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+					}
+					clr_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+				}
+				else = {
+					set_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+				}
+			}
+		}
+		triggers = {
+			CHI_Oil_Crisis_GUI_agriculture_progressbar_checkbox_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 40 }
+				}
+			}
+			CHI_Oil_Crisis_GUI_industry_progressbar_checkbox_visible = {
+				hidden_trigger = {
+					check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 40 }
+				}
+			}
+		}
+		properties = {
+			CHI_Oil_Crisis_GUI_agriculture_progressbar = {
+				frame = CHI_Oil_Crisis_GUI_agriculture_progressbar_var
+			}
+			CHI_Oil_Crisis_GUI_industry_progressbar = {
+				frame = CHI_Oil_Crisis_GUI_industry_progressbar_var
+			}
+		}
+	}
+
+	####	Northwest War | 西北战争	####
+	TNOLAR_CHI_Northwest_War_GUI = {
+		context_type = decision_category
+		window_name = "TNOLAR_CHI_Northwest_War_GUI"
+		visible = {
+			tag = CHI
+		}
+		effects = {
+			
+		}
+		triggers = {
+			CHI_Northwest_War_GUI_time_running_out_visible = {
+				hidden_trigger = {
+					check_variable = {
+    					Northwest_War_timeleft > 60
+					}
+				}
+			}
+		}
+		properties = {
+			CHI_Northwest_War_GUI_progressbar = {
+				frame = CHI_Northwest_War_GUI_progressbar_var
+			}
+			CHI_Northwest_War_GUI_clock1 = {
+				frame = Northwest_War_timeleft
+			}
+		}
+	}
+}

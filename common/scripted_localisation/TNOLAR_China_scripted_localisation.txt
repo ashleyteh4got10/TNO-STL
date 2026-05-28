@@ -1,0 +1,4309 @@
+
+#██████╗  ██████╗  ██████╗  ██████╗
+#██╔══██╗██╔════╝ ██╔═══██╗██╔════╝
+#██████╔╝██║  ███╗██║   ██║██║     
+#██╔══██╗██║   ██║██║   ██║██║     
+#██║  ██║╚██████╔╝╚██████╔╝╚██████╗
+#╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝                                  
+# Scripted Localisation
+#################################################
+##=|        RGOC Scripted Localisation       |=##
+##======================| |====================##
+#################################################
+
+#目录，用ctrl+F搜索相关封装效果，或是使用“数字+)”切换
+#	1) 国防部GUI
+#
+#   2) 西北战争GUI
+#
+#   3) 共荣圈外交GUI
+#
+#   4) 大东亚战争GUI
+#       4.1) 解锁界面，四个按钮tooltip变换
+#            解锁界面，四个按钮上下的文字变色
+#
+#       4.2) 战争目标界面，几个战争目标的完成与否
+#
+#       4.3) 战区计划界面，各槽位的名称计划变化
+#
+#       4.4) 战区信息界面，地块的控制权变化
+#            战区信息界面，地块是否制订战争预案
+#            战区信息界面，当前地块的战争计划
+#
+#       4.5) 战区行动界面，是否满足计划需求
+#
+#
+#   5) 立法院封锁GUI
+#
+#   6) 杂项法律
+#
+#   7) 杂项
+#       7.1) 共荣圈峰会-台北峰会变换
+#       7.2) GAW国策树，精神效果变换
+#
+#
+#
+#
+#
+#
+#
+#####################################################
+# 1) Ministry of National Defense GUI  |  国防部GUI #
+#####################################################
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIMilitaryinfo1
+    text = {
+        trigger = {
+            OR = {
+                NOT = {
+                    has_completed_focus = CHI_LAR_Military
+                }
+                has_idea = CHI_Fang_Xianjue_sec
+            }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_1_unavailable_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Ministry_of_National_Defense_GUI_Military_page_button_var = 2 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_1_selected_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_1_not_selected_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptioninfo1
+    text = {
+        trigger = {
+            check_variable = { CHI_Ministry_of_National_Defense_GUI_Conscription_page_button_var = 2 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_info_1_selected_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_info_1_not_selected_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIMilitaryinfo3
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_Military_level_var = 1 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_3_lv1_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_Military_level_var = 2 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_3_lv2_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_Military_level_var = 3 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_3_lv3_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_Military_level_var = 4 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_3_lv4_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_Military_level_var = 5 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_3_lv5_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_Military_level_var = 6 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_3_lv6_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_Military_level_var = 7 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_3_lv7_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIMilitaryinfo5
+    text = {
+        trigger = {
+            has_country_flag = CHI_MND_GUI_nationalists_dominate
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_5_nationalists_localization_key
+    }
+    text = {
+        trigger = {
+            has_country_flag = CHI_MND_GUI_conservatives_dominate
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_5_conservatives_localization_key
+    }
+    text = {
+        trigger = {
+            has_country_flag = CHI_MND_GUI_japanophiles_dominate
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_info_5_japanophiles_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUInationalistsprogressbartt
+    text = {
+        trigger = {
+            has_country_flag = CHI_MND_GUI_nationalists_dominate
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_nationalists_progressbar_tt_0_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_nationalists_progressbar_tt_1_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIconservativesprogressbartt
+    text = {
+        trigger = {
+            has_country_flag = CHI_MND_GUI_conservatives_dominate
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_conservatives_progressbar_tt_0_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_conservatives_progressbar_tt_1_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIjapanophilesprogressbartt
+    text = {
+        trigger = {
+            has_country_flag = CHI_MND_GUI_japanophiles_dominate
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_japanophiles_progressbar_tt_0_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_japanophiles_progressbar_tt_1_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptiondisarmamentttunitdetermination
+    text = {
+        trigger = {
+            check_variable = { CHI.num_armies_in_state@613 > 0 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_tt_unit_determination_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_tt_unit_determination_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptiondisarmamentttnumdeterminationyeslocalizationkey
+    text = {
+        trigger = {
+            set_temp_variable = { temp1 = CHI_MND_GUI_current_army_number }
+            set_temp_variable = { temp2 = CHI.num_armies_in_state@613 }
+            subtract_from_temp_variable = { temp1 = temp2 }
+            
+            check_variable = { temp1 > 34 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_tt_num_determination_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_tt_num_determination_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptiondisarmamentttcpdetermination
+    text = {
+        trigger = {
+            check_variable = { CHI.command_power > 19.99 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_tt_cp_determination_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_disarmament_tt_cp_determination_no_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingShibuttonttmanpower
+    text = {
+        trigger = {
+            check_variable = { CHI.manpower_k > 8.3 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_manpower_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_manpower_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingShibuttonttAT
+    text = {
+        trigger = {
+            check_variable = { CHI.num_equipment@anti_tank_equipment > 109 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_AT_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_AT_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingShibuttonttartillery
+    text = {
+        trigger = {
+            check_variable = { CHI.num_equipment@artillery_equipment > 23 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_artillery_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_artillery_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingShibuttonttinfantry
+    text = {
+        trigger = {
+            check_variable = { CHI.num_equipment@infantry_equipment > 754 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_infantry_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_infantry_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingShibuttonttsupport
+    text = {
+        trigger = {
+            check_variable = { CHI.num_equipment@support_equipment > 44 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_support_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_support_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingShibuttonttAPC
+    text = {
+        trigger = {
+            check_variable = { CHI.num_equipment@APC_chassis > 49 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_APC_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_APC_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingShibuttontttrainingnum
+    text = {
+        trigger = {
+            NOT = {
+                count_triggers = {
+                    amount = 1
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_1
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_2
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_3
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_4
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_5
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_6
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_7
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_8
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_9
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingShi_training_10
+                        }
+                    }
+                }
+            }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_training_num_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_training_num_no_localization_key
+    }
+}
+
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingLubuttonttmanpower
+    text = {
+        trigger = {
+            check_variable = { CHI.manpower_k > 5.5 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_tt_manpower_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_tt_manpower_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingLubuttonttAT
+    text = {
+        trigger = {
+            check_variable = { CHI.num_equipment@anti_tank_equipment > 74 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_tt_AT_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_tt_AT_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingLubuttonttinfantry
+    text = {
+        trigger = {
+            check_variable = { CHI.num_equipment@infantry_equipment > 539 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_tt_infantry_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_tt_infantry_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingLubuttonttsupport
+    text = {
+        trigger = {
+            check_variable = { CHI.num_equipment@support_equipment > 14 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_support_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Shi_button_tt_support_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingLubuttontttrainingnum
+    text = {
+        trigger = {
+            NOT = {
+                count_triggers = {
+                    amount = 1
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_1
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_2
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_3
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_4
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_5
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_6
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_7
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_8
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_9
+                        }
+                    }
+                    1 = {
+                        CHI = {
+                            has_country_flag = CHI_MND_BubingLu_training_10
+                        }
+                    }
+                }
+            }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_Lu_button_tt_training_num_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_LU_button_tt_training_num_no_localization_key
+    }
+}
+
+
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingbuttonttcp
+    text = {
+        trigger = {
+            check_variable = { CHI.command_power > 9.99 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_button_tt_cp_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_button_tt_cp_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIConscriptionBubingbuttonttarmynum
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_current_army_number < CHI_MND_GUI_army_limit }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_button_tt_armynum_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Conscription_Bubing_button_tt_armynum_no_localization_key
+    }
+}
+
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIJapanAlertinfo2
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_JapanAlert_level > 0 }
+            check_variable = { CHI_MND_GUI_JapanAlert_level < 13 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv1_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_JapanAlert_level > 12 }
+            check_variable = { CHI_MND_GUI_JapanAlert_level < 24 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv2_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_JapanAlert_level > 23 }
+            check_variable = { CHI_MND_GUI_JapanAlert_level < 35 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv3_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_JapanAlert_level > 34 }
+            check_variable = { CHI_MND_GUI_JapanAlert_level < 46 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv4_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_JapanAlert_level > 45 }
+            check_variable = { CHI_MND_GUI_JapanAlert_level < 57 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv5_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_JapanAlert_level > 56 }
+            check_variable = { CHI_MND_GUI_JapanAlert_level < 68 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv6_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_JapanAlert_level > 67 }
+            check_variable = { CHI_MND_GUI_JapanAlert_level < 79 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv7_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_MND_GUI_JapanAlert_level > 78 }
+            check_variable = { CHI_MND_GUI_JapanAlert_level < 90 }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv8_localization_key
+    }
+    text = {
+        localization_key = CHI_Ministry_of_National_Defense_GUI_JapanAlert_info_2_lv9_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIMinistryofNationalDefenseGUIMilitarypagebuttonblockedtt
+    text = {
+        trigger = {
+            NOT = {
+                has_completed_focus = CHI_LAR_Military
+            }
+            NOT = {
+                has_idea = CHI_Fang_Xianjue_sec
+            }
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_page_button_blocked_tt_1
+    }
+    text = {
+        trigger = {
+            has_completed_focus = CHI_LAR_Military
+            has_idea = CHI_Fang_Xianjue_sec
+        }
+        localization_key = CHI_Ministry_of_National_Defense_GUI_Military_page_button_blocked_tt_2
+    }
+}
+
+defined_text = {
+    name = GetCHIremilitarizationstatusdynamicmodifier
+    text = {
+        trigger = {
+            has_dynamic_modifier = {
+                modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+            }
+            check_variable = { CHI_MND_GUI_Military_level_var < 3 }
+        }
+        localization_key = CHI_LAR_remilitarization_status_dynamic_modifier_1_localization_key
+    }
+    text = {
+        trigger = {
+            has_dynamic_modifier = {
+                modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+            }
+            check_variable = { CHI_MND_GUI_Military_level_var < 5 }
+            check_variable = { CHI_MND_GUI_Military_level_var > 2 }
+        }
+        localization_key = CHI_LAR_remilitarization_status_dynamic_modifier_2_localization_key
+    }
+    text = {
+        trigger = {
+            has_dynamic_modifier = {
+                modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+            }
+            check_variable = { CHI_MND_GUI_Military_level_var > 4 }
+        }
+        localization_key = CHI_LAR_remilitarization_status_dynamic_modifier_3_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIremilitarizationstatusdynamicmodifierdesc
+    text = {
+        trigger = {
+            has_dynamic_modifier = {
+                modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+            }
+            check_variable = { CHI_MND_GUI_Military_level_var < 3 }
+        }
+        localization_key = CHI_LAR_remilitarization_status_dynamic_modifier_desc_1_localization_key
+    }
+    text = {
+        trigger = {
+            has_dynamic_modifier = {
+                modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+            }
+            check_variable = { CHI_MND_GUI_Military_level_var < 5 }
+            check_variable = { CHI_MND_GUI_Military_level_var > 2 }
+        }
+        localization_key = CHI_LAR_remilitarization_status_dynamic_modifier_desc_2_localization_key
+    }
+    text = {
+        trigger = {
+            has_dynamic_modifier = {
+                modifier = CHI_LAR_remilitarization_status_dynamic_modifier
+            }
+            check_variable = { CHI_MND_GUI_Military_level_var > 4 }
+        }
+        localization_key = CHI_LAR_remilitarization_status_dynamic_modifier_desc_3_localization_key
+    }
+}
+
+
+##################################
+# Oil Crisis GUI  |  石油危机GUI #
+##################################
+defined_text = {
+    name = GetCHIOilCrisisGUIcurrentselectioninfo
+    text = {
+        trigger = {
+            has_country_flag = CHI_Oil_Crisis_GUI_industry_selected
+        }
+        localization_key = CHI_Oil_Crisis_GUI_current_selection_info_industry_selected_localization_key
+    }
+    text = {
+        trigger = {
+            has_country_flag = CHI_Oil_Crisis_GUI_agriculture_selected
+        }
+        localization_key = CHI_Oil_Crisis_GUI_current_selection_info_agriculture_selected_localization_key
+    }
+    text = {
+        localization_key = CHI_Oil_Crisis_GUI_current_selection_info_none_selected_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIOilCrisisGUIgovernmentprestigeinfo
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 1 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_government_prestige_info_0_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 0 }
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 26 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_government_prestige_info_1_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 25 }
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 51 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_government_prestige_info_2_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 50 }
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige < 76 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_government_prestige_info_3_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige > 75 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_government_prestige_info_4_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_government_prestige = 100 }
+            NOT = {
+                has_country_flag = CHI_Social_Reform
+            }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_government_prestige_info_5_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIOilCrisisGUIagricultureinfo
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var > 79 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_reform_status_1_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var > 59 }
+            check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 80 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_reform_status_2_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var > 39 }
+            check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 60 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_reform_status_3_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_agriculture_progressbar_var < 40 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_reform_status_4_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIOilCrisisGUIindustryinfo
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var > 79 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_reform_status_1_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var > 59 }
+            check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 80 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_reform_status_2_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var > 39 }
+            check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 60 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_reform_status_3_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Oil_Crisis_GUI_industry_progressbar_var < 40 }
+        }
+        localization_key = CHI_Oil_Crisis_GUI_reform_status_4_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIOilCrisisreformsuccessfuleffecttt
+    text = {
+        trigger = {
+            has_completed_focus = CHI_LAR_Moderate_Reform
+        }
+        localization_key = CHI_Oil_Crisis_reform_successful_effect_tt_2_localization_key
+    }
+    text = {
+        localization_key = CHI_Oil_Crisis_reform_successful_effect_tt_1_localization_key
+    }
+}
+
+
+
+#######################################
+# 2) NorthwestWar GUI  |  西北战争GUI #
+#######################################
+defined_text = {
+    name = GetCHINorthwestWarGUIclockdesctt
+    text = {
+        trigger = {
+            QIN = {
+                has_war_with = GAN
+            }
+        }
+        localization_key = CHI_Northwest_War_GUI_clock_desc_tt_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHINorthwestWarGUIclockdescdelaytt
+    text = {
+        trigger = {
+            QIN = {
+                has_war_with = GAN
+            }
+        }
+        localization_key = CHI_Northwest_War_GUI_clock_desc_delay_tt_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHINorthwestWarGUIregionalphase
+    text = {
+        trigger = {
+            QIN = {
+                has_war_with = GAN
+            }
+        }
+        localization_key = CHI_Northwest_War_GUI_regionalphase_2_localization_key
+    }
+    text = {
+        localization_key = CHI_Northwest_War_GUI_regionalphase_1_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHINorthwestWarGUIinfo1
+    text = {
+        trigger = {
+            country_exists = XIK
+        }
+        localization_key = CHI_Northwest_War_GUI_info1_XIKexist_localization_key
+    }
+    text = {
+        localization_key = CHI_Northwest_War_GUI_info1_XIKNOTexist_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHINorthwestWarGUIprogressbardesctt
+    text = {
+        trigger = {
+            country_exists = XIK
+        }
+        localization_key = CHI_Northwest_War_GUI_progressbar_desc_tt_XIKexist_localization_key
+    }
+    text = {
+        localization_key = CHI_Northwest_War_GUI_progressbar_desc_tt_XIKNOTexist_localization_key
+    }
+}
+
+####################################################
+# 3) Ministry Chinese Affairs GUI  |  共荣圈外交GUI #
+####################################################
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIcndefconprogressbartt
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var > 0 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var < 34 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_tt_defcon4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var > 33 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var < 65 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_tt_defcon3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var > 64 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_var < 95 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_tt_defcon2_localization_key
+    }
+    text = {
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_defcon_progressbar_tt_defcon1_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIjpdefconprogressbartt
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var < 100 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var > 66 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_tt_defcon4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var < 67 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var > 35 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_tt_defcon3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var < 36 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_var > 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_tt_defcon2_localization_key
+    }
+    text = {
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_defcon_progressbar_tt_defcon1_localization_key
+    }
+}
+
+defined_text = { #? 这一堆重复代码谁见谁流泪
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonB1info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_1_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points9_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonB2info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_2_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points9_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonB3info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_3_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points9_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonB4info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_4_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points9_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonB5info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_5_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_B_info_points9_localization_key
+    }
+}
+
+
+defined_text = { #?
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonR1info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_1_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points9_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonR2info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_2_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points9_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonR3info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_3_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points9_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonR4info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_4_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points9_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIbuttonR5info
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points6_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points7_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points8_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_5_points = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_button_R_info_points9_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIcountryinfo1
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MEN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GNG_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_VIN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_LAO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_CAM_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_THA_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_BUR_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_AZH_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_SHO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 10 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_NRB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 11 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_PHI-FGB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 12 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_INS_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 13 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 14 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_1 = 0 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_none_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIcountryinfo2
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MEN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GNG_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_VIN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_LAO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_CAM_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_THA_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_BUR_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_AZH_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_SHO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 10 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_NRB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 11 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_PHI-FGB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 12 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_INS_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 13 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 14 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_2 = 0 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_none_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIcountryinfo3
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MEN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GNG_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_VIN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_LAO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_CAM_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_THA_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_BUR_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_AZH_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_SHO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 10 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_NRB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 11 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_PHI-FGB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 12 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_INS_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 13 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 14 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_3 = 0 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_none_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIcountryinfo4
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MEN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GNG_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_VIN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_LAO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_CAM_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_THA_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_BUR_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_AZH_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_SHO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 10 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_NRB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 11 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_PHI-FGB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 12 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_INS_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 13 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 14 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_4 = 0 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_none_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIcountryinfo5
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MEN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GNG_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_VIN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_LAO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_CAM_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_THA_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_BUR_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_AZH_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_SHO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 10 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_NRB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 11 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_PHI-FGB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 12 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_INS_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 13 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 14 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_5 = 0 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_none_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIcountryinfo6
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MEN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GNG_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_VIN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_LAO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_CAM_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_THA_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 7 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_BUR_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 8 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_AZH_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 9 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_SHO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 10 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_NRB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 11 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_PHI-FGB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 12 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_INS_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 13 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_GAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 14 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_MAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_6 = 0 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_info_none_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIinfo1
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MEN
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_MEN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GNG
+            }   
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_GNG_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_VIN
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_VIN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_LAO
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_LAO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_CAM
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_CAM_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_THA
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_THA_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_BUR
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_BUR_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_AZH
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_AZH_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_SHO
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_SHO_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_NRB
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_NRB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_PHI
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_PHI_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_FGB
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_FGB_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_INS
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_INS_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_GAN
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_GAN_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                has_country_flag = CHI_The_Ministry_Chinese_Affairs_Table_GUI_country_selected_MAN
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_MAN_localization_key
+    }
+    text = {
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_info1_default_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIcnattitude
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_var = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_attitude_6_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIjpattitude
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var = 2 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var = 3 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var = 4 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_4_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var = 5 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_5_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_var = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_jp_attitude_6_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIaccessdeniedtt
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 1 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_access_denied_tt_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_cn_round_var = 6 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_access_denied_tt_2_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsGEACPSinfoGUIcontrollevel
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var = 100 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_0_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var < 100 } #81-100，平等成员
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var > 80 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var < 81 } #45-80，经济依附
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var > 44 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var < 45 } #19-44，政治傀儡
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var > 18 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_progressbar_var < 19 } #0-19，军事占领
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_control_level_4_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsGEACPSinfoGUIattitude
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var = 0 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_0_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var < 0 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var > -26 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_-1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var < -25 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var > -51 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_-2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var < -50 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var > -76 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_-3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var < -75 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_-4_localization_key
+    }
+
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var > 0 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var < 26 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var > 25 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var < 51 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var > 50 }
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var < 76 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_3_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_var > 75 }
+            }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_attitude_4_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIprogressindicator1tt
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 1 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_none_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 2 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_inprogress_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 3 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_win_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 4 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_lose_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator1_var = 5 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_draw_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIprogressindicator2tt
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 1 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_none_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 2 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_inprogress_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 3 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_win_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 4 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_lose_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator2_var = 5 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_draw_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIprogressindicator3tt
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 1 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_none_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 2 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_inprogress_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 3 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_win_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 4 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_lose_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator3_var = 5 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_draw_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIprogressindicator4tt
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 1 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_none_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 2 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_inprogress_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 3 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_win_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 4 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_lose_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator4_var = 5 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_draw_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIprogressindicator5tt
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 1 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_none_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 2 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_inprogress_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 3 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_win_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 4 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_lose_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator5_var = 5 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_draw_localization_key
+    }
+}
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsTableGUIprogressindicator6tt
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 1 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_none_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 2 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_inprogress_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 3 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_win_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 4 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_lose_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator6_var = 5 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_Table_GUI_progress_indicator_tt_draw_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheMinistryChineseAffairsGEACPSinfoGUIcountryflag
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 1 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_MEN_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 2 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_GNG_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 3 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_VIN_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 4 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_LAO_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 5 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_CAM_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 6 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_THA_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 7 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_BUR_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 8 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_AZH_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 9 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_SHO_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 10 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_NRB_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 11 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_PHI_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 12 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_FGB_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 13 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_INS_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 14 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_GAN_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_map_var = 15 }
+        }
+        localization_key = CHI_The_Ministry_Chinese_Affairs_GEACPS_info_GUI_countryflag_MAN_localization_key
+    }
+}
+
+###########################################
+# 4) Great Asian War GUI  |  大东亚战争GUI #
+###########################################
+#   4.1) 解锁界面，四个按钮tooltip变换
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock1tt
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 1 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocked_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 0 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_0_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 1 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 3 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_3_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock2tt
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 1 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocked_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 0 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_0_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 1 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 3 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_3_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock3tt
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 1 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocked_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 0 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_0_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 1 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 3 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_3_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock4tt
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 1 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocked_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 0 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_0_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 1 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_1_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_2_localization_key
+    }
+    text = {
+        trigger = {
+            CHI = {
+                NOT = {
+                    check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 1 }
+                }
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlocking_procedure_var = 3 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_tt_unlocking_procedure_3_localization_key
+    }
+}
+
+#   4.1) 解锁界面，四个按钮上下的文字变色
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock1infotop
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_1_info_top_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_1_info_top_unlocked_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock1infobottom
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_1_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_info_bottom_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_info_bottom_unlocked_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock2infotop
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_2_info_top_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_2_info_top_unlocked_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock2infobottom
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_2_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_info_bottom_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_info_bottom_unlocked_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock3infotop
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_3_info_top_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_3_info_top_unlocked_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock3infobottom
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_3_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_info_bottom_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_info_bottom_unlocked_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock4infotop
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_4_info_top_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_4_info_top_unlocked_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarbootGUIunlock4infobottom
+    text = {
+        trigger = {
+            CHI = {
+                check_variable = { CHI_Great_Asian_War_boot_GUI_unlock_4_var = 2 }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_info_bottom_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_boot_GUI_unlock_info_bottom_unlocked_localization_key
+    }
+}
+
+#   4.2) 战争目标界面，几个战争目标的完成与否
+defined_text = {
+    name = GetCHIGreatAsianWarwargoalGUIwargoal1GANd
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_no_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarwargoalGUIwargoal2MENd
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_no_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarwargoalGUIwargoal3MANd
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_no_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarwargoalGUIwargoal4GNGd
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_no_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarwargoalGUIwargoal5KORd
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_no_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGreatAsianWarwargoalGUIwargoal6MSAd
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_wargoal_GUI_wargoal_no_localization_key
+    }
+}
+
+#   4.3) 战区计划界面，各槽位的名称计划变化
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan1infoa
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_a_has_plan_1_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_bg_var = 1 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_a_no_plan_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan1infob
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_war_preparation_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 3 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_strategic_bombing_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 4 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_offensive_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_1_status_var = 5 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_defensive_plan_localization_key
+    }
+    text = {
+        trigger = {
+            NOT = {
+                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_1_in_CD
+            }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_no_plan_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_in_CD_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan1infoc
+    text = {
+        trigger = {
+            has_variable = CHI_Great_Asian_War_warplan_GUI_plan_1_time_var
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_1_info_c_has_plan_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_c_no_plan_localization_key
+    }
+}
+
+
+#################
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan2infoa
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_a_has_plan_2_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_bg_var = 1 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_a_no_plan_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan2infob
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_war_preparation_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 3 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_strategic_bombing_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 4 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_offensive_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 5 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_defensive_plan_localization_key
+    }
+    text = {
+        trigger = {
+            NOT = {
+                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_2_in_CD
+            }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_no_plan_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_in_CD_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan2infoc
+    text = {
+        trigger = {
+            has_variable = CHI_Great_Asian_War_warplan_GUI_plan_2_time_var
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_2_info_c_has_plan_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_c_no_plan_localization_key
+    }
+}
+
+
+
+#################
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan3infoa
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_a_has_plan_3_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_bg_var = 1 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_a_no_plan_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan3infob
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 2 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_war_preparation_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 3 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_strategic_bombing_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 4 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_offensive_plan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_3_status_var = 5 }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_defensive_plan_localization_key
+    }
+    text = {
+        trigger = {
+            NOT = {
+                has_country_flag = CHI_Great_Asian_War_warplan_GUI_plan_3_in_CD
+            }
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_no_plan_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_b_in_CD_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarwarplanGUIplan3infoc
+    text = {
+        trigger = {
+            has_variable = CHI_Great_Asian_War_warplan_GUI_plan_3_time_var
+        }
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_3_info_c_has_plan_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_warplan_GUI_plan_info_c_no_plan_localization_key
+    }
+}
+
+
+
+#   4.4) 战区信息界面，地块的控制权变化
+defined_text = {
+    name = GetCHIGreatAsianWarstateinfoGUIselectedinfo3
+    text = {
+        trigger = {
+            meta_trigger = {
+				text = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_Indication_[LAR_GAW_STATE]_var = 1 }
+				}
+				LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+			}
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_3_jap_localization_key
+    }
+    text = {
+        trigger = {
+            meta_trigger = {
+				text = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_Indication_[LAR_GAW_STATE]_var = 2 }
+				}
+				LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+			}
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_3_draw_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_3_chi_localization_key
+    }
+}
+
+#   4.4) 战区信息界面，地块的可生产物资数量
+defined_text = {
+    name = GetCHIGreatAsianWarstateinfoGUIselectedinfo4
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Korean }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Korean_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Southern_OuterNortheast }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Southern_OuterNortheast_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Northern_OuterNortheast }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Northern_OuterNortheast_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jilin }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Jilin_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Heilongjiang }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Heilongjiang_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Rehe }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Rehe_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Liaoning }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Liaoning_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jilu }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Jilu_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Jinshan }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Jinshan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Suwanzhe }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Suwanzhe_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Yuxiange }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Yuxiange_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sichuan }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Sichuan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Ganmin }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Ganmin_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Taiwan }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Taiwan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Dianqiangui }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Dianqiangui_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Guangdong }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Guangdong_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xibei }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Xibei_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xizang }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Xizang_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Xinjiang }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Xinjiang_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Eastern_Mongolia }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Eastern_Mongolia_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Western_Mongolia }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Western_Mongolia_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Vietnam }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Vietnam_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Laos }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Laos_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Cambodian }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Cambodian_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Thailand }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Thailand_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Burma }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Burma_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Malaya }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Malaya_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sumatra }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Sumatra_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sunda }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Sunda_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Borneo }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Borneo_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Sulawesi }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Sulawesi_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_New_Guinea }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_New_Guinea_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Philippine }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Philippine_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Japan }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Japan_localization_key
+    }
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_map_GUI_selected = token:LAR_GAW_Western_Pacific }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_4_LAR_GAW_Western_Pacific_localization_key
+    }
+}
+
+#   4.4) 战区信息界面，地块是否制订战争预案
+defined_text = {
+    name = GetCHIGreatAsianWarstateinfoGUIselectedinfo5
+    text = {
+        trigger = {
+            meta_trigger = {
+				text = {
+					has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_[LAR_GAW_STATE]_clear
+				}
+				LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+			}
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_5_clear_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_5_unclear_localization_key
+    }
+}
+
+#   4.4) 战区信息界面，当前地块的战争计划
+defined_text = {
+    name = GetCHIGreatAsianWarstateinfoGUIselectedinfo6
+    text = {
+        trigger = {
+            meta_trigger = {
+				text = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 1 }
+				}
+				LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+			}
+			check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_6_none_localization_key
+    }
+    text = {
+        trigger = {
+            meta_trigger = {
+				text = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 2 }
+				}
+				LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+			}
+			check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_6_atk_localization_key
+    }
+    text = {
+        trigger = {
+            meta_trigger = {
+				text = {
+					check_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 3 }
+				}
+				LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+			}
+			check_variable = { CHI_Great_Asian_War_warplan_GUI_plan_2_status_var = 1 }
+        }
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_6_def_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateinfo_GUI_selected_info_6_bomb_localization_key
+    }
+}
+
+#   4.5) 战区行动界面，是否满足计划需求
+defined_text = {
+    name = GetCHIGreatAsianWarstateactionGUI10pptrigger
+    text = {
+        trigger = {
+            has_political_power > 9.99
+        }
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_10_pp_trigger_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_10_pp_trigger_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarstateactionGUI15cptrigger
+    text = {
+        trigger = {
+            command_power > 14.99
+        }
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_15_cp_trigger_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_15_cp_trigger_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarstateactionGUI10supplytrigger
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_GUI_cn_supply_var > 9 }
+        }
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_10_supply_trigger_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_10_supply_trigger_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarstateactionGUI30supplytrigger
+    text = {
+        trigger = {
+            check_variable = { CHI_Great_Asian_War_GUI_cn_supply_var > 29 }
+        }
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_30_supply_trigger_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_30_supply_trigger_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarstateactionGUIenemytrigger
+    text = {
+        trigger = {
+            NOT = {
+                meta_trigger = {
+                    text = {
+                        OR = {
+                            check_variable = { CHI_Great_Asian_War_map_GUI_Indication_[LAR_GAW_STATE]_var = 1 }
+                            check_variable = { CHI_Great_Asian_War_map_GUI_Indication_[LAR_GAW_STATE]_var = 2 }
+                        }
+                    }
+                    LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+                }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_enemy_trigger_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_enemy_trigger_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarstateactionGUIwarpreparationtrigger
+    text = {
+        trigger = {
+            meta_trigger = {
+                text = {
+                    has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_[LAR_GAW_STATE]_clear
+                }
+                LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+            }
+        }
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_war_preparation_trigger_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_war_preparation_trigger_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGreatAsianWarstateactionGUIreversewarpreparationtrigger
+    text = {
+        trigger = {
+            NOT = {
+                meta_trigger = {
+                    text = {
+                        has_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_[LAR_GAW_STATE]_clear
+                    }
+                    LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+                }
+            }
+        }
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_reverse_war_preparation_trigger_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_Great_Asian_War_stateaction_GUI_reverse_war_preparation_trigger_no_localization_key
+    }
+}
+
+
+########################################
+# 5) legyuan lock GUI  |  立法院封锁GUI #
+########################################
+defined_text = {
+    name = GetCHIgovlegitimacycategoryname
+    text = {
+        trigger = {
+            has_country_flag = TNOLAR_CHI_LegYuan_locked
+        }
+        localization_key = CHI_gov_legitimacy_category_name_locked_localization_key
+    }
+    text = {
+        localization_key = CHI_gov_legitimacy_category_name_localization_key
+    }
+}
+
+############################
+# 6) Misc Laws  |  杂项法律 #
+############################
+#6.1) 
+
+defined_text = {
+    name = GetAssortedLawsCHI
+    text = {
+        trigger = {
+            check_variable = { v = 1 }
+        }
+        localization_key = CHI_LAR_The_Constitution_law
+    }
+    text = {
+        trigger = {
+            check_variable = { v = 2 }
+        }
+        localization_key = CHI_LAR_japchi_relations_agreement_law
+    }
+    text = {
+        trigger = {
+            check_variable = { v = 3 }
+        }
+        localization_key = CHI_LAR_land_reform_law
+    }
+    text = {
+        trigger = {
+            check_variable = { v = 4 }
+        }
+        localization_key = CHI_LAR_GNG_Autonomy_Agreement_law
+    }
+}
+
+defined_text = {
+    name = GetAssortedLawsDescCHI
+    text = {
+        trigger = {
+            check_variable = { v = 1 }
+        }
+        localization_key = CHI_LAR_The_Constitution_law_desc
+    }
+    text = {
+        trigger = {
+            check_variable = { v = 2 }
+        }
+        localization_key = CHI_LAR_japchi_relations_agreement_law_desc
+    }
+    text = {
+        trigger = {
+            check_variable = { v = 3 }
+        }
+        localization_key = CHI_LAR_land_reform_law_desc
+    }
+    text = {
+        trigger = {
+            check_variable = { v = 4 }
+        }
+        localization_key = CHI_LAR_GNG_Autonomy_Agreement_law_desc
+    }
+}
+
+###########################
+# 7) Otherthings  |  杂项 #
+###########################
+#7.1) 共荣圈峰会-台北峰会变换
+defined_text = {
+    name = GetCHITheConference
+    text = {
+        trigger = {
+            NOT = {
+                has_country_flag = CHI_The_Conference_Taipei
+            }
+        }
+        localization_key = CHI_The_Conference_Taipei_localization_key
+    }
+    text = {
+        localization_key = CHI_The_Conference_Nanjing_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheConferencedesc
+    text = {
+        trigger = {
+            NOT = {
+                has_country_flag = CHI_The_Conference_Taipei
+            }
+        }
+        localization_key = CHI_The_Conference_desc_Taipei_localization_key
+    }
+    text = {
+        localization_key = CHI_The_Conference_desc_Nanjing_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHITheConferencett
+    text = {
+        trigger = {
+            NOT = {
+                has_country_flag = CHI_The_Conference_Taipei
+            }
+        }
+        localization_key = CHI_The_Conference_tt_Taipei_localization_key
+    }
+    text = {
+        localization_key = CHI_The_Conference_tt_Nanjing_localization_key
+    }
+}
+
+#7.2) GAW国策树，精神效果变换
+defined_text = {
+    name = GetCHIGAWOperationsunsetdynamicmodifiertt1
+    text = {
+        trigger = {
+            CHI = {
+                has_completed_focus = CHI_LAR_A_tooth_for_a_tooth
+            }
+        }
+        localization_key = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_1_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_1_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGAWOperationsunsetdynamicmodifiertt2
+    text = {
+        trigger = {
+            CHI = {
+                has_completed_focus = CHI_LAR_Sabotage_by_force
+            }
+        }
+        localization_key = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_2_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_2_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGAWOperationsunsetdynamicmodifiertt3
+    text = {
+        trigger = {
+            CHI = {
+                has_completed_focus = CHI_LAR_Golden_Crow_lift_wings
+            }
+        }
+        localization_key = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_3_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_LAR_GAW_Operation_sun_set_dynamic_modifier_tt_3_no_localization_key
+    }
+}
+
+defined_text = {
+    name = GetCHIGAWLiberationAlliancebaseidea1tt
+    text = {
+        trigger = {
+            CHI = {
+                has_completed_focus = CHI_LAR_Diplomatic_cooperation
+            }
+        }
+        localization_key = CHI_LAR_GAW_Liberation_Alliance_base_idea_tt_1_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_LAR_GAW_Liberation_Alliance_base_idea_tt_1_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGAWLiberationAlliancebaseidea2tt
+    text = {
+        trigger = {
+            CHI = {
+                has_completed_focus = CHI_LAR_Intelligence_sharing
+            }
+        }
+        localization_key = CHI_LAR_GAW_Liberation_Alliance_base_idea_tt_2_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_LAR_GAW_Liberation_Alliance_base_idea_tt_2_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGAWLiberationAlliancebaseidea3tt
+    text = {
+        trigger = {
+            CHI = {
+                has_completed_focus = CHI_LAR_The_Chinese_Expeditionary_Force
+            }
+        }
+        localization_key = CHI_LAR_GAW_Liberation_Alliance_base_idea_tt_3_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_LAR_GAW_Liberation_Alliance_base_idea_tt_3_no_localization_key
+    }
+}
+defined_text = {
+    name = GetCHIGAWLiberationAlliancebaseidea4tt
+    text = {
+        trigger = {
+            CHI = {
+                has_completed_focus = CHI_LAR_At_dusk
+            }
+        }
+        localization_key = CHI_LAR_GAW_Liberation_Alliance_base_idea_tt_4_yes_localization_key
+    }
+    text = {
+        localization_key = CHI_LAR_GAW_Liberation_Alliance_base_idea_tt_4_no_localization_key
+    }
+}

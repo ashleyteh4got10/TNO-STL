@@ -1,0 +1,4590 @@
+#██████╗  ██████╗  ██████╗  ██████╗
+#██╔══██╗██╔════╝ ██╔═══██╗██╔════╝
+#██████╔╝██║  ███╗██║   ██║██║     
+#██╔══██╗██║   ██║██║   ██║██║     
+#██║  ██║╚██████╔╝╚██████╔╝╚██████╗
+#╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝                                  
+# Scripted Effects
+#################################################
+##=|      RGOC GAW GUI Scripted Effects      |=##
+##======================| |====================##
+#################################################
+
+#目录，用ctrl+F搜索相关封装效果
+#	GAW机制相关效果
+#		CHI_Update_Great_Asian_War_wargoal_GUI		#更新战争目标达成显示
+#		CHI_initialization_Great_Asian_map			#初始化各地图array
+#		
+#
+#		CHI_calc_Great_Asian_War_GUI_weekly_supply				#计算每周补给生产
+#		CHI_calc_Great_Asian_War_GUI_war_confidence				#计算每周战争信心
+#		CHI_Great_Asian_War_GUI_cn_supply_change				#中国单次物资变化
+#		CHI_Great_Asian_War_GUI_jp_supply_change				#日本单次物资变化
+#		CHI_Great_Asian_War_GUI_cn_confidence_change			#中国单次信心变化
+#		CHI_Great_Asian_War_GUI_jp_confidence_change			#日本单次信心变化
+#		CHI_calc_Great_Asian_War_GUI_cn_confidencesupply		#计算中国信心/物资影响
+#		CHI_calc_Great_Asian_War_GUI_jp_confidencesupply		#计算日本信心/物资影响
+#
+#
+#
+#		CHI_Great_Asian_War_stateaction_GUI_war_preparation_effect		#战略计划相关效果-战争预案
+#		CHI_Great_Asian_War_stateaction_GUI_strategic_bombing_effect	#战略计划相关效果-战略轰炸
+#		CHI_Great_Asian_War_stateaction_GUI_defensive_plan_effect		#战略计划相关效果-防御计划
+#		CHI_Great_Asian_War_stateaction_GUI_offensive_plan_effect		#战略计划相关效果-进攻计划
+#
+#
+#
+#############################################
+# The Great Asian War  |  大东亚战争相关效果 #
+#############################################
+
+CHI_Update_Great_Asian_War_wargoal_GUI = { #更新战争目标达成显示
+	#西北方面军/西北军政监/宁夏军政监
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var = 3 }
+		}
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 2 }
+	}
+	else = {
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_1_GAN_var = 1 }
+	}
+
+	#蒙疆联合自治政府
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var = 3 }
+		}
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 2 }
+	}
+	else = {
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_2_MEN_var = 1 }
+	}
+
+	#大满洲帝国
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var = 3 }
+		}
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 2 }
+	}
+	else = {
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_3_MAN_var = 1 }
+	}
+
+	#广东国
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var = 3 }
+		}
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 2 }
+	}
+	else = {
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_4_GNG_var = 1 }
+	}
+
+	#韩国
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var = 3 }
+		}
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 2 }
+	}
+	else = {
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_5_KOR_var = 1 }
+	}
+	
+	#中南半岛
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var = 3 }
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var = 3 }
+		}
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 2 }
+	}
+	else = {
+		set_variable = { CHI_Great_Asian_War_wargoal_GUI_wargoal_6_MSA_var = 1 }
+	}
+}
+
+CHI_initialization_Great_Asian_map = {
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Korean
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Northern_OuterNortheast
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Jilin
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Heilongjiang
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Rehe
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Liaoning
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Jilu
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Jinshan
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Yuxiange
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Sichuan
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Ganmin
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Taiwan
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Guangdong
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Xibei
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Xizang
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Xinjiang
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Vietnam
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Laos
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Cambodian
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Thailand
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Burma
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Malaya
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Sumatra
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Sunda
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Borneo
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Sulawesi
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_New_Guinea
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Philippine
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Japan
+	clear_array = CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific
+
+######朝鲜
+	963 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	655 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	1818 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	1816 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	1819 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	525 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	962 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	1018 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	1817 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	527 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	560 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	1024 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+	1820 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Korean = THIS } }
+
+######南外东北
+	809 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast = THIS } }
+	408 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast = THIS } }
+	409 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast = THIS } }
+	1644 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast = THIS } }
+
+######北外东北
+	657 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Northern_OuterNortheast = THIS } }
+	1646 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Northern_OuterNortheast = THIS } }
+	1364 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Northern_OuterNortheast = THIS } }
+
+######吉林
+	717 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilin = THIS } }
+	328 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilin = THIS } }
+	1637 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilin = THIS } }
+	1638 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilin = THIS } }
+	1639 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilin = THIS } }
+
+######黑龙江
+	714 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Heilongjiang = THIS } }
+	715 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Heilongjiang = THIS } }
+	1643 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Heilongjiang = THIS } }
+	
+######热河
+	610 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Rehe = THIS } }
+	1641 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Rehe = THIS } }
+	1642 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Rehe = THIS } }
+
+######辽宁
+	1640 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Liaoning = THIS } }
+	716 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Liaoning = THIS } }
+	1265 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Liaoning = THIS } }
+	1636 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Liaoning = THIS } }
+	810 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Liaoning = THIS } }
+
+######冀鲁
+	609 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	2346 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	2325 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	2365 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	608 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	614 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	2435 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	1023 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	2364 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	2367 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	1020 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	1021 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	2366 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	597 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	1022 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	811 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	812 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+	2441 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jilu = THIS } }
+
+######晋陕
+	615 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	622 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	956 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	1438 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	615 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2421 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2419 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2420 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2417 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2416 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	622 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2410 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }	
+	2415 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	956 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2413 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2414 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2411 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }
+	2412 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Jinshan = THIS } }	
+
+######苏皖浙
+	598 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2339 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2331 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2338 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2340 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2330 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	606 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	613 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2327 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2328 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2329 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2342 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2341 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	959 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	596 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	813 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2336 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2335 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2332 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2332 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2333 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2337 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+	2334 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe = THIS } }
+		
+
+######豫湘鄂
+	607 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2362 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	1014 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2361 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	1015 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2363 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2350 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	1016 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2434 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2352 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2351 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	620 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2353 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2360 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2388 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	961 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2389 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2356 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2355 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	602 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }
+	2357 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }	
+	2439 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Yuxiange = THIS } }		
+
+######四川
+	964 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2374 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2375 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	905 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2372 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	605 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2369 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2368 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }	
+	2373 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2371 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2370 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	1538 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2438 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2369 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	1537 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }
+	2358 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }	
+	2359 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sichuan = THIS } }			
+
+######闽赣
+	2440 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	1019 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	600 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	2345 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	2346 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	595 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }	
+	2347 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	2326 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	2348 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	2349 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }	
+	2344 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }
+	2343 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Ganmin = THIS } }			
+
+######台湾
+	524 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Taiwan = THIS } }
+	1850 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Taiwan = THIS } }
+	1854 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Taiwan = THIS } }
+	1851 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Taiwan = THIS } }
+	1855 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Taiwan = THIS } }
+	1852 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Taiwan = THIS } }
+	1853 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Taiwan = THIS } }
+	1856 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Taiwan = THIS } }
+
+######滇黔桂
+	960 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2382 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2381 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2380 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2378 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	325 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2379 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2377 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2376 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2386 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }	
+	2385 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	603 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2387 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2383 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2384 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2393 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2394 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	594 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2390 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	599 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }	
+	2392 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }
+	2391 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui = THIS } }		
+
+######广东
+	2472 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	1464 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	591 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	2474 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	2475 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	2473 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	1017 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	1438 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	1439 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	593 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	592 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	729 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }
+	326 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Guangdong = THIS } }	
+
+######西北
+	604 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	2429 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	906 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	2427 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	764 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	616 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	1302 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	2426 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	2425 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	2424 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	283 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }
+	2423 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xibei = THIS } }	
+
+######西藏
+	601 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	2396 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	2395 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	2397 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	1962 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	1963 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	2209 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	2398 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	765 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+	322 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xizang = THIS } }
+
+######新疆
+	2399 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	618 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	957 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	617 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	2432 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	2430 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	2433 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	2431 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	619 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	958 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	1964 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }
+	2428 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Xinjiang = THIS } }	
+
+######东部蒙古
+	2405 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }
+	2409 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }
+	955 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }
+	2408 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }
+	2422 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }
+	621 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }
+	2406 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }
+	612 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }
+	2407 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia = THIS } }	
+
+######西部蒙古
+	330 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia = THIS } }
+	814 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia = THIS } }
+	2400 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia = THIS } }
+	2401 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia = THIS } }
+	2402 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia = THIS } }
+	2403 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia = THIS } }
+	2404 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia = THIS } }
+	815 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia = THIS } }				
+
+######越南
+	1738 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1737 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1939 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	287 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1740 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	728 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1741 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1742 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	671 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1743 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1744 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1745 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1746 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1748 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1747 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	286 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	878 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	1749 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+	611 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Vietnam = THIS } }
+
+######老挝
+	670 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Laos = THIS } }
+	877 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Laos = THIS } }
+
+######柬埔寨
+	741 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Cambodian = THIS } }
+	876 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Cambodian = THIS } }
+	1535 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Cambodian = THIS } }
+
+######泰国
+	843 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	875 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	840 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	874 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	289 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	873 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	841 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	724 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	800 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+	802 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Thailand = THIS } }
+
+######缅甸
+	762 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	872 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	640 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	1319 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	1308 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	1311 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	1307 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	1309 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	1313 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	288 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	1310 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+	842 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Burma = THIS } }
+
+######马来亚
+	1452 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }
+	803 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }
+	1453 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }
+	336 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }
+	1454 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }
+	805 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }
+	804 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }
+	806 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }
+	#751 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Malaya = THIS } }	#新加坡不要来了，检测太严格
+
+######苏门答腊
+	817 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	1764 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	1765 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	1766 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	818 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	1767 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	1768 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	1769 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	1770 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	819 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+	672 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sumatra = THIS } }
+
+######巽他群岛
+	1754 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	1753 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	795 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	799 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	796 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	1755 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	1756 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	335 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	797 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	1757 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	667 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	798 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+	721 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sunda = THIS } }
+
+######婆罗洲
+	334 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Borneo = THIS } }
+	816 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Borneo = THIS } }
+	794 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Borneo = THIS } }
+	808 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Borneo = THIS } }
+	333 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Borneo = THIS } }
+	807 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Borneo = THIS } }
+
+######苏拉威西
+	783 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+	823 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+	821 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+	673 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+	820 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+	1557 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+	822 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+	668 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+	824 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Sulawesi = THIS } }
+
+#####新几内亚
+	669 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_New_Guinea = THIS } }
+	523 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_New_Guinea = THIS } }
+	737 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_New_Guinea = THIS } }
+
+######菲律宾
+	1455 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	1456 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	623 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	1457 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	327 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	626 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	624 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	1458 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	625 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	628 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	627 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	1463 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	1462 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	1460 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+	1459 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Philippine = THIS } }
+
+######日本
+	536 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	555 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1822 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	533 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1821 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1823 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	534 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	642 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1825 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1826 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1824 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1827 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1234 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	282 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1828 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1830 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1831 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1833 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	532 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1834 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1832 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	535 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1829 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1835 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	531 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	631 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1837 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1838 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	630 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1836 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1840 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	529 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1842 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	530 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1844 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1843 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1839 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	650 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1841 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1845 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1846 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	639 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1848 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1847 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	1849 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	528 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+	526 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Japan = THIS } }
+
+######西太平洋
+	647 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific = THIS } }
+	684 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific = THIS } }
+	638 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific = THIS } }
+	646 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific = THIS } }
+	645 = { add_to_array = { CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific = THIS } }
+}
+
+CHI_Update_Great_Asian_War_map_GUI_whole_map = {
+	CHI_Update_Great_Asian_War_map_GUI_Korean = yes
+	CHI_Update_Great_Asian_War_map_GUI_Southern_OuterNortheast = yes
+	CHI_Update_Great_Asian_War_map_GUI_Northern_OuterNortheast = yes
+	CHI_Update_Great_Asian_War_map_GUI_Jilin = yes
+	CHI_Update_Great_Asian_War_map_GUI_Heilongjiang = yes
+	CHI_Update_Great_Asian_War_map_GUI_Rehe = yes
+	CHI_Update_Great_Asian_War_map_GUI_Liaoning = yes
+	CHI_Update_Great_Asian_War_map_GUI_Jilu = yes
+	CHI_Update_Great_Asian_War_map_GUI_Jinshan = yes
+	CHI_Update_Great_Asian_War_map_GUI_Suwanzhe = yes
+	CHI_Update_Great_Asian_War_map_GUI_Yuxiange = yes
+	CHI_Update_Great_Asian_War_map_GUI_Sichuan = yes
+	CHI_Update_Great_Asian_War_map_GUI_Ganmin = yes
+	CHI_Update_Great_Asian_War_map_GUI_Taiwan = yes
+	CHI_Update_Great_Asian_War_map_GUI_Dianqiangui = yes
+	CHI_Update_Great_Asian_War_map_GUI_Guangdong = yes
+	CHI_Update_Great_Asian_War_map_GUI_Xibei = yes
+	CHI_Update_Great_Asian_War_map_GUI_Xizang = yes
+	CHI_Update_Great_Asian_War_map_GUI_Xinjiang = yes
+	CHI_Update_Great_Asian_War_map_GUI_Eastern_Mongolia = yes
+	CHI_Update_Great_Asian_War_map_GUI_Western_Mongolia = yes
+	CHI_Update_Great_Asian_War_map_GUI_Vietnam = yes
+	CHI_Update_Great_Asian_War_map_GUI_Laos = yes
+	CHI_Update_Great_Asian_War_map_GUI_Cambodian = yes
+	CHI_Update_Great_Asian_War_map_GUI_Thailand = yes
+	CHI_Update_Great_Asian_War_map_GUI_Burma = yes
+	CHI_Update_Great_Asian_War_map_GUI_Malaya = yes
+	CHI_Update_Great_Asian_War_map_GUI_Sumatra = yes
+	CHI_Update_Great_Asian_War_map_GUI_Sunda = yes
+	CHI_Update_Great_Asian_War_map_GUI_Borneo = yes
+	CHI_Update_Great_Asian_War_map_GUI_Sulawesi = yes
+	CHI_Update_Great_Asian_War_map_GUI_New_Guinea = yes
+	CHI_Update_Great_Asian_War_map_GUI_Philippine = yes
+	CHI_Update_Great_Asian_War_map_GUI_Japan = yes
+	CHI_Update_Great_Asian_War_map_GUI_Western_Pacific = yes
+}
+
+CHI_Update_Great_Asian_War_map_GUI_Korean = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Korean
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var = 1 }
+		log = "[GetDateText]: [Root.GetName]: Korean calc jap control"
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var = 2 }
+		log = "[GetDateText]: [Root.GetName]: Korean calc draw"
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var = 3 }
+		log = "[GetDateText]: [Root.GetName]: Korean calc chi control"
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Southern_OuterNortheast = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Southern_OuterNortheast
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Northern_OuterNortheast = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Northern_OuterNortheast
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Jilin = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Jilin
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Heilongjiang = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Heilongjiang
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Rehe = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Rehe
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Liaoning = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Liaoning
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Jilu = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Jilu
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Jinshan = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Jinshan
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Suwanzhe = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Suwanzhe
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Yuxiange = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Yuxiange
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Sichuan = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Sichuan
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Ganmin = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Ganmin
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Taiwan = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Taiwan
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Dianqiangui = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Dianqiangui
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Guangdong = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Guangdong
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Xibei = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Xibei
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Xizang = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Xizang
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Xinjiang = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Xinjiang
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Eastern_Mongolia = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Eastern_Mongolia
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Western_Mongolia = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Western_Mongolia
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Vietnam = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Vietnam
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Laos = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Laos
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Cambodian = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Cambodian
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Thailand = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Thailand
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Burma = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Burma
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Malaya = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Malaya
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Sumatra = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Sumatra
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Sunda = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Sunda
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Borneo = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Borneo
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Sulawesi = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Sulawesi
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_New_Guinea = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_New_Guinea
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Philippine = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Philippine
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Japan = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Japan
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var = 3 }
+	}
+}
+CHI_Update_Great_Asian_War_map_GUI_Western_Pacific = {
+	set_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+	set_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+	
+	for_each_scope_loop = {
+		array = CHI.Great_Asian_states_map_LAR_GAW_Western_Pacific
+		if = {
+			limit = {
+				OR = {
+					is_controlled_by = JAP
+					controller = { is_in_faction_with = JAP }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_JAP = 1 }
+			}
+		}
+		else_if = {
+			limit = {
+				OR = {
+					is_controlled_by = CHI
+					controller = { is_in_faction_with = CHI }
+				}
+			}
+			CHI = {
+				add_to_variable = { Great_Asian_states_map_Calc_CHI = 1 }
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI < 1 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var = 1 }
+	}
+	else_if = {
+		limit = {
+			check_variable = { Great_Asian_states_map_Calc_JAP > 0 }
+			check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var = 2 }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP < 1 }
+					check_variable = { Great_Asian_states_map_Calc_CHI > 0 }
+				}
+				AND = {
+					check_variable = { Great_Asian_states_map_Calc_JAP = 0 }
+					check_variable = { Great_Asian_states_map_Calc_CHI = 0 }
+				}
+			}
+		}
+		set_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var = 3 }
+	}
+}
+
+CHI_calc_Great_Asian_War_GUI_weekly_supply = {	#计算每周补给生产
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Korean_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Korean_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Korean_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Southern_OuterNortheast_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Southern_OuterNortheast_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Southern_OuterNortheast_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Northern_OuterNortheast_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Northern_OuterNortheast_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Northern_OuterNortheast_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilin_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilin_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilin_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Heilongjiang_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Heilongjiang_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Heilongjiang_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Rehe_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Rehe_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Rehe_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Liaoning_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Liaoning_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Liaoning_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilu_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jilu_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jilu_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jinshan_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Jinshan_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Jinshan_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Suwanzhe_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Suwanzhe_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Suwanzhe_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Yuxiange_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Yuxiange_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Yuxiange_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sichuan_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sichuan_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sichuan_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Ganmin_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Ganmin_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Ganmin_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Taiwan_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Taiwan_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Taiwan_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Dianqiangui_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Dianqiangui_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Dianqiangui_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Guangdong_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Guangdong_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Guangdong_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xibei_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xibei_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xibei_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xizang_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xizang_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xizang_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xinjiang_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Xinjiang_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Xinjiang_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Eastern_Mongolia_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Eastern_Mongolia_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Eastern_Mongolia_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Mongolia_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Mongolia_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Mongolia_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Vietnam_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Vietnam_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Vietnam_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Laos_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Laos_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Laos_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Cambodian_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Cambodian_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Cambodian_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Thailand_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Thailand_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Thailand_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Burma_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Burma_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Burma_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Malaya_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Malaya_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Malaya_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sumatra_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sumatra_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sumatra_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sunda_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sunda_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sunda_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Borneo_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Borneo_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Borneo_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sulawesi_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Sulawesi_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Sulawesi_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_New_Guinea_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_New_Guinea_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_New_Guinea_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Philippine_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Philippine_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Philippine_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Japan_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Japan_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Japan_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var = 1 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Pacific_var }
+	}
+	else_if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_map_GUI_Indication_LAR_GAW_Western_Pacific_var = 3 }
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = CHI_Great_Asian_War_map_GUI_Supply_LAR_GAW_Western_Pacific_var }
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Acquisition_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Forcible_collection_of_materials
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 2 }
+		}
+
+		if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Protecting_basic_livelihoods
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = -1 }
+		}
+		else_if = {
+			limit = {
+				has_completed_focus = CHI_LAR_Overall_resource_orientation
+			}
+			add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 1 }
+		}
+	}
+
+	clamp_variable = {
+		var = CHI_Great_Asian_War_GUI_cn_supply_var
+		min = 0
+		max = 300
+	}
+	clamp_variable = {
+		var = CHI_Great_Asian_War_GUI_jp_supply_var
+		min = 0
+		max = 300
+	}
+}
+
+CHI_calc_Great_Asian_War_GUI_war_confidence = {	#计算每周战争信心
+	#计算中国战争信心
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_cn_supply_var }
+	add_to_temp_variable = { temp_calc = -150 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	multiply_temp_variable = { temp_calc = 3 }
+	add_to_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var = temp_calc }
+
+	#计算日本战争信心
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_jp_supply_var }
+	add_to_temp_variable = { temp_calc = -150 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	multiply_temp_variable = { temp_calc = 3 }
+	add_to_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var = temp_calc }
+
+	if = {
+		limit = {
+			has_completed_focus = CHI_LAR_The_will_to_win
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var = 2 }
+	}
+	if = {
+		limit = {
+			has_completed_focus = CHI_LAR_Sabotage_by_psychological
+		}
+		add_to_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var = -2 }
+	}
+
+	clamp_variable = {
+		var = CHI_Great_Asian_War_GUI_cn_confidence_var
+		min = 0
+		max = 100
+	}
+	clamp_variable = {
+		var = CHI_Great_Asian_War_GUI_jp_confidence_var
+		min = 0
+		max = 100
+	}
+
+	#数值取整
+	round_variable = CHI_Great_Asian_War_GUI_cn_confidence_var
+	round_variable = CHI_Great_Asian_War_GUI_jp_confidence_var
+}
+
+CHI_Great_Asian_War_GUI_cn_supply_change = { #中国单次物资变化
+	#下方是对应的临时变量，在应用这个效果之前，先设定你要变化的数值
+	#temp_CHI_Great_Asian_War_GUI_cn_supply_change
+
+	add_to_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = temp_CHI_Great_Asian_War_GUI_cn_supply_change }
+	clamp_variable = {
+		var = CHI_Great_Asian_War_GUI_cn_supply_var
+		min = 0
+		max = 300
+	}
+
+	if = {
+		limit = {
+			check_variable = { temp_CHI_Great_Asian_War_GUI_cn_supply_change < 0 }
+		}
+		multiply_temp_variable = {
+			var = temp_CHI_Great_Asian_War_GUI_cn_supply_change
+			value = -1
+		}
+		custom_effect_tooltip = CHI_Great_Asian_War_GUI_cn_supply_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = CHI_Great_Asian_War_GUI_cn_supply_increase_tt
+	}
+}
+CHI_Great_Asian_War_GUI_jp_supply_change = { #日本单次物资变化
+	#下方是对应的临时变量，在应用这个效果之前，先设定你要变化的数值
+	#temp_CHI_Great_Asian_War_GUI_jp_supply_change
+
+	add_to_variable = { CHI_Great_Asian_War_GUI_jp_supply_var = temp_CHI_Great_Asian_War_GUI_jp_supply_change }
+	clamp_variable = {
+		var = CHI_Great_Asian_War_GUI_jp_supply_var
+		min = 0
+		max = 300
+	}
+
+	if = {
+		limit = {
+			check_variable = { temp_CHI_Great_Asian_War_GUI_jp_supply_change < 0 }
+		}
+		multiply_temp_variable = {
+			var = temp_CHI_Great_Asian_War_GUI_jp_supply_change
+			value = -1
+		}
+		custom_effect_tooltip = CHI_Great_Asian_War_GUI_jp_supply_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = CHI_Great_Asian_War_GUI_jp_supply_increase_tt
+	}
+}
+
+CHI_Great_Asian_War_GUI_cn_confidence_change = { #中国单次信心变化
+	#下方是对应的临时变量，在应用这个效果之前，先设定你要变化的数值
+	#temp_CHI_Great_Asian_War_GUI_cn_confidence_change
+
+	add_to_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var = temp_CHI_Great_Asian_War_GUI_cn_confidence_change }
+	clamp_variable = {
+		var = CHI_Great_Asian_War_GUI_cn_confidence_var
+		min = 0
+		max = 300
+	}
+
+	if = {
+		limit = {
+			check_variable = { temp_CHI_Great_Asian_War_GUI_cn_confidence_change < 0 }
+		}
+		multiply_temp_variable = {
+			var = temp_CHI_Great_Asian_War_GUI_cn_confidence_change
+			value = -1
+		}
+		custom_effect_tooltip = CHI_Great_Asian_War_GUI_cn_confidence_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = CHI_Great_Asian_War_GUI_cn_confidence_increase_tt
+	}
+}
+CHI_Great_Asian_War_GUI_jp_confidence_change = { #日本单次信心变化
+	#下方是对应的临时变量，在应用这个效果之前，先设定你要变化的数值
+	#temp_CHI_Great_Asian_War_GUI_jp_confidence_change
+
+	add_to_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var = temp_CHI_Great_Asian_War_GUI_jp_confidence_change }
+	clamp_variable = {
+		var = CHI_Great_Asian_War_GUI_jp_confidence_var
+		min = 0
+		max = 300
+	}
+
+	if = {
+		limit = {
+			check_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change < 0 }
+		}
+		multiply_temp_variable = {
+			var = temp_CHI_Great_Asian_War_GUI_jp_confidence_change
+			value = -1
+		}
+		custom_effect_tooltip = CHI_Great_Asian_War_GUI_jp_confidence_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = CHI_Great_Asian_War_GUI_jp_confidence_increase_tt
+	}
+}
+
+
+CHI_calc_Great_Asian_War_GUI_cn_confidencesupply = {	#计算中国数值影响
+	##计算战争信心影响
+	#核心攻防
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_cn_confidence_var }
+	add_to_temp_variable = { temp_calc = -50 }
+	multiply_temp_variable = { temp_calc = 0.5 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var_army_core_attack_factor = temp_calc }
+	set_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var_army_core_defence_factor = temp_calc }
+
+	#战争支持度
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_cn_confidence_var }
+	add_to_temp_variable = { temp_calc = -50 }
+	multiply_temp_variable = { temp_calc = 0.3 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_cn_confidence_var_war_support_factor = temp_calc }
+
+
+	##计算战争补给影响
+	#适役人口
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_cn_supply_var }
+	add_to_temp_variable = { temp_calc = -200 }
+	multiply_temp_variable = { temp_calc = 0.15 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_cn_supply_var_conscription_factor = temp_calc }
+
+	#陆军组织度
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_cn_supply_var }
+	add_to_temp_variable = { temp_calc = -200 }
+	multiply_temp_variable = { temp_calc = 0.10 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_cn_supply_var_army_org_factor = temp_calc }
+
+	#补给耗尽惩罚
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_cn_supply_var }
+	add_to_temp_variable = { temp_calc = -200 }
+	multiply_temp_variable = { temp_calc = -0.15 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_cn_supply_var_out_of_supply_factor = temp_calc }
+}
+
+CHI_calc_Great_Asian_War_GUI_jp_confidencesupply = {	#计算日本数值影响
+	##计算战争信心影响
+	#核心攻防
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_jp_confidence_var }
+	add_to_temp_variable = { temp_calc = -50 }
+	multiply_temp_variable = { temp_calc = 0.5 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var_army_core_attack_factor = temp_calc }
+	set_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var_army_core_defence_factor = temp_calc }
+
+	#战争支持度
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_jp_confidence_var }
+	add_to_temp_variable = { temp_calc = -50 }
+	multiply_temp_variable = { temp_calc = 0.3 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_jp_confidence_var_war_support_factor = temp_calc }
+
+
+	##计算战争补给影响
+	#适役人口
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_jp_supply_var }
+	add_to_temp_variable = { temp_calc = -200 }
+	multiply_temp_variable = { temp_calc = 0.15 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_jp_supply_var_conscription_factor = temp_calc }
+
+	#陆军组织度
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_jp_supply_var }
+	add_to_temp_variable = { temp_calc = -200 }
+	multiply_temp_variable = { temp_calc = 0.10 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_jp_supply_var_army_org_factor = temp_calc }
+
+	#补给耗尽惩罚
+	set_temp_variable = { temp_calc = CHI_Great_Asian_War_GUI_jp_supply_var }
+	add_to_temp_variable = { temp_calc = -200 }
+	multiply_temp_variable = { temp_calc = -0.15 }
+	multiply_temp_variable = { temp_calc = 0.01 }
+	set_variable = { CHI_Great_Asian_War_GUI_jp_supply_var_out_of_supply_factor = temp_calc }
+}
+
+CHI_GAW_Supplystockpile_check = {
+	if = {
+		limit = {
+			check_variable = { CHI_Great_Asian_War_GUI_cn_supply_var = 300 }
+			has_global_flag = TNOLAR_GAW_in_progress
+		}
+		set_temp_variable = { alert_id = token:LAR_Alert_CHI_Stockpilefull }
+		add_TNO_alert_unless_exists = yes
+	}
+	else = {
+		set_temp_variable = { alert_id = token:LAR_Alert_CHI_Stockpilefull }
+		remove_TNO_alert = yes
+	}
+}
+
+
+
+
+
+#战略计划相关效果
+CHI_Great_Asian_War_stateaction_GUI_war_preparation_effect = {
+	meta_effect = {	#清除所选地区的战争迷雾
+		text = {
+			set_country_flag = CHI_Great_Asian_War_map_GUI_Fog_of_war_[LAR_GAW_STATE]_clear
+		}
+		LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+	}
+
+	#清除地区debuff
+	meta_effect = {
+		text = {
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+				remove_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_Lack_of_war_preparations_dynamic_modifier
+				}
+			}
+		}
+		LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+	}
+}
+
+CHI_Great_Asian_War_stateaction_GUI_strategic_bombing_effect = {
+	meta_effect = {	#设置所选地区的计划显示
+		text = {
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 4 }
+		}
+		LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+	}
+
+	#减少10点战争信心
+	set_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -10 }
+	if = {
+		limit = {
+			has_completed_focus = CHI_LAR_High_frequency_bombing
+		}
+		add_to_temp_variable = { temp_CHI_Great_Asian_War_GUI_jp_confidence_change = -5 }
+	}
+	CHI_Great_Asian_War_GUI_jp_confidence_change = yes
+
+	#加入省份debuff，省份地区破坏
+	meta_effect = {
+		text = {
+			for_each_scope_loop = {
+				array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+				add_dynamic_modifier = {
+					modifier = CHI_LAR_STATE_strategic_cn_bombing_dynamic_modifier
+				}
+
+				random_list = {
+					10 = {
+						damage_building = {
+							type = infrastructure
+							damage = 1
+						}
+					}
+					10 = {
+						damage_building = {
+							type = infrastructure
+							damage = 2
+						}
+					}
+					10 = {
+						damage_building = {
+							type = arms_factory
+							damage = 1
+						}
+					}
+					10 = {
+						damage_building = {
+							type = barracks
+							damage = 1
+						}
+					}
+					10 = {
+						damage_building = {
+							type = offices
+							damage = 1
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_completed_focus = CHI_LAR_Wide_area_bombardment
+					}
+					random_list = {
+						10 = {
+							damage_building = {
+								type = infrastructure
+								damage = 1
+							}
+						}
+						10 = {
+							damage_building = {
+								type = infrastructure
+								damage = 2
+							}
+						}
+					}
+				}
+			}
+		}
+		LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+	}
+}
+
+CHI_Great_Asian_War_stateaction_GUI_defensive_plan_effect = {
+	meta_effect = {	#设置所选地区的计划显示
+		text = {
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 3 }
+		}
+		LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+	}
+
+	#添加防御计划buff
+	if = {
+		limit = {
+			CHI = {
+				has_completed_focus = CHI_LAR_Detailed_Plan
+			}
+		}
+		meta_effect = {
+			text = {
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_defensive_plan_enhanced_dynamic_modifier
+					}
+				}
+			}
+			LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+		}
+	}
+	else = {
+		meta_effect = {
+			text = {
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_defensive_plan_dynamic_modifier
+					}
+				}
+			}
+			LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+		}
+	}
+}
+
+CHI_Great_Asian_War_stateaction_GUI_offensive_plan_effect = {
+	meta_effect = {	#设置所选地区的计划显示
+		text = {
+			set_variable = { CHI_Great_Asian_War_map_GUI_Plan_[LAR_GAW_STATE]_var = 2 }
+		}
+		LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+	}
+
+	#添加进攻计划buff
+	if = {
+		limit = {
+			CHI = {
+				has_completed_focus = CHI_LAR_Detailed_Plan
+			}
+		}
+		meta_effect = {
+			text = {
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_offensive_plan_enhanced_dynamic_modifier
+					}
+				}
+			}
+			LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+		}
+	}
+	else = {
+		meta_effect = {
+			text = {
+				for_each_scope_loop = {
+					array = CHI.Great_Asian_states_map_[LAR_GAW_STATE]
+					add_dynamic_modifier = {
+						modifier = CHI_LAR_STATE_offensive_plan_dynamic_modifier
+					}
+				}
+			}
+			LAR_GAW_STATE = "[?CHI_Great_Asian_War_map_GUI_selected.GetTokenKey]"
+		}
+	}
+}

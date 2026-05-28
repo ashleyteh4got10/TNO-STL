@@ -3,6 +3,8 @@ add_namespace = STL_PRC_main_story
 add_namespace = STL_CPC_main_story
 add_namespace = STL_CHI_main_story
 add_namespace = STL_april_fools
+add_namespace = STL_MGI_main_story
+add_namespace = STL_support
 
 country_event = {
 	id = STL_april_fools.1
@@ -23,7 +25,7 @@ country_event = {
 			}
 			load_oob = OMS_1962
 			every_controlled_state = {
-				add_core_of = MGI
+				add_core_of = OMS
 			}
 			change_tag_from = ROOT
 			#inherit_technology = GER
@@ -58,66 +60,59 @@ country_event = {
 }
 
 country_event = {
-	id = STL_april_fools.2
+	id = STL_MGI_main_story.2
 
-	title = STL_april_fools.2.t
-	desc = STL_april_fools.2.desc
+	title = STL_MGI_main_story.2.t
+	desc = STL_MGI_main_story.2.desc
 	#picture = #CHIS9
 	
 	is_triggered_only = yes
 	
 	option = {
-		name = STL_april_fools.2.o
+		name = STL_MGI_main_story.2.o
 
-		every_country = {
-			limit = {
-				is_neighbor_of = MGI
-				NOT = { has_war_with = MGI }
-			}
-			MGI = {
-				declare_war_on = {
-					target = PREV
-					type = annex_everything
-				}
-			}
+		country_event = {
+			id = STL_MGI_main_story.3
 		}
 
-		MGI = {
-							load_oob = MGI_radiosilence_RUS
-		}
-
-		every_country = {
-			limit = {
-				is_ai = no
-			}
-			news_event = {
-				id = WORLD_2WRWTER.114514
-			}
-		}
-		set_country_flag = MGI_TGWT_started
+		retire_character = MGI_Hikami_Meruru
+		clr_country_flag = MGI_TGWT_started
+		clr_country_flag = MGI_russia_reunified
 		ai_chance = {
 			factor = 50
 		}
 	}
-  }
+}
+
 
 country_event = {
-	id = STL_april_fools.3
+	id = STL_MGI_main_story.3
 
-	title = STL_april_fools.3.t
-	desc = STL_april_fools.3.desc
+	title = STL_MGI_main_story.3.t
+	desc = STL_MGI_main_story.3.desc
 	#picture = #CHIS9
 	
 	is_triggered_only = yes
 	
 	option = {
-		name = STL_april_fools.3.o
+		name = STL_MGI_main_story.3.o
 		TNO_Country_Closing_Screen_Show = yes
 		custom_effect_tooltip = MGI_the_end_tt
 
 		retire_character = MGI_Tsukishiro_Yuki
+		
+		hidden_effect = {
+			MGI = {
+				set_cosmetic_tag = ZZZ
+				add_manpower = -1000000000
+				destroy_unit = yes
+				play_song = "bloom"
+			}
+			
+
 		ai_chance = {
 			factor = 50
+		}
 		}
 	}
 }
@@ -604,7 +599,7 @@ country_event = {
 
         custom_effect_tooltip = STL_AnYing_LFB_tt
         hidden_effect = {
-        XXX = {
+        KAZ = {
             KAZ_Mao_Anying = {
                 set_nationality = CPC
             }
@@ -617,6 +612,46 @@ country_event = {
 	}
 }
 
+#支援远东
+country_event = {
+	id = STL_support.98
+	immediate = { log = { "[GetDateText] :[GetName]: event STL_support.98" } }
+	title = STL_support.98.t
+	desc = STL_support.98.desc
 
+	is_triggered_only = yes
+	trigger = {
+		every_country = {
+			limit = {
+				is_ai = no
+			}
+		}
+	}
+
+	option = {
+		name = STL_support.98.oa
+		BRY = {
+                apply_russian_war_buff_with_5_divisions = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	option = {
+		name = STL_support.98.ob
+		IRK = {
+			apply_russian_war_buff_with_5_divisions = yes
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	option = {
+		name = STL_support.98.oc
+		ai_will_do = {
+			factor = 100
+		}
+	}
+}
 
 

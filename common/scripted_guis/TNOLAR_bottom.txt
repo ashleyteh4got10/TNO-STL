@@ -1,0 +1,80 @@
+
+scripted_gui = {
+
+	TNOLAR_bottom_gui = {
+		context_type = player_context
+		parent_window_token = top_bar
+		window_name = "TNOLAR_bottom_gui"
+
+		visible = {
+			has_country_flag = TNOLAR_country_has_gui
+		}
+
+		triggers = {
+			TNOLAR_CHI_Table_crt_icon_visible = {
+				original_tag = CHI
+				has_global_flag = TNOLAR_GAW_diplomatic_games
+			}
+
+			TNOLAR_CHI_GAW_crt_icon_visible = {
+				original_tag = CHI
+				has_global_flag = TNOLAR_GAW_in_progress
+			}
+		}
+
+		effects = {
+			TNOLAR_CHI_Table_crt_icon_click = {
+				if = {
+					limit = {
+						OR = {
+							has_country_flag = CHI_Show_The_GEACPS_info_POST_interface_animation
+							has_country_flag = CHI_Show_The_GEACPS_info_interface_GUI
+						}
+					}
+					#啥也不干
+				}
+				else_if = {
+					limit = { NOT = { has_country_flag = CHI_Show_The_Ministry_Chinese_Affairs_Table_GUI } }
+					set_country_flag = CHI_Show_The_Ministry_Chinese_Affairs_Table_GUI
+				}
+				else_if = {
+					limit = { has_country_flag = CHI_Show_The_Ministry_Chinese_Affairs_Table_GUI }
+					clr_country_flag = CHI_Show_The_Ministry_Chinese_Affairs_Table_GUI
+				}
+
+				clr_country_flag = gui_alert_visible_2
+			}
+
+			TNOLAR_CHI_GAW_crt_icon_click = {
+				if = {
+					limit = { NOT = { has_country_flag = CHI_Show_Great_Asian_War_GUI } }
+					set_country_flag = CHI_Show_Great_Asian_War_GUI
+					CHI_Update_Great_Asian_War_map_GUI_whole_map = yes
+					CHI_Update_Great_Asian_War_wargoal_GUI = yes
+				}
+				else_if = {
+					limit = { has_country_flag = CHI_Show_Great_Asian_War_GUI }
+					clr_country_flag = CHI_Show_Great_Asian_War_GUI
+				}
+
+				clr_country_flag = gui_alert_visible_2
+			}
+		}
+	}
+
+	TNOLAR_arrows_alert = {
+		context_type = player_context
+		parent_window_token = top_bar
+		window_name = "TNOLAR_arrows_alert"
+
+		visible = {
+			has_country_flag = country_has_gui
+		}
+
+		triggers = {
+			TNOLAR_gui_alert_visible = {
+				has_country_flag = gui_alert_visible_2
+			}
+		}
+	}
+}

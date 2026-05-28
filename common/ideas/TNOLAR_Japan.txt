@@ -1,0 +1,62 @@
+#     ██╗ █████╗ ██████╗  █████╗ ███╗   ██╗
+#     ██║██╔══██╗██╔══██╗██╔══██╗████╗  ██║
+#     ██║███████║██████╔╝███████║██╔██╗ ██║
+#██   ██║██╔══██║██╔═══╝ ██╔══██║██║╚██╗██║
+#╚█████╔╝██║  ██║██║     ██║  ██║██║ ╚████║
+# ╚════╝ ╚═╝  ╚═╝╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝
+# Naional ideas
+#################################################
+##=|            Japan Naional ideas          |=##
+##======================| |====================##
+#################################################
+
+#目录，用ctrl+F搜索相关封装效果
+#	1)昭和天皇相关精神
+#		JAP_LAR_showa_emperor_GAW_idea		#战时天皇
+#		JAP_LAR_showa_emperor_postwar_idea	#战后天皇
+#
+ideas = {
+	country = {
+		###########################################
+		# 1) SHOWA EMPEROR IDEA - 昭和天皇相关精神 #
+		###########################################
+		JAP_LAR_showa_emperor_GAW_idea = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea JAP_LAR_showa_emperor_GAW_idea" }
+
+			allowed = {
+				original_tag = JAP
+				always = no
+			}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			picture = JAP_showa_emperor
+			modifier = {
+				war_support_factor = 0.15
+				political_power_gain = 0.1
+			}
+		}
+
+		JAP_LAR_showa_emperor_postwar_idea = {
+			on_add = { log = "[GetDateText]: [Root.GetName]: add idea JAP_LAR_showa_emperor_postwar_idea" }
+
+			allowed = {
+				original_tag = JAP
+				always = no
+			}
+			allowed_civil_war = { always = yes }
+			removal_cost = -1
+
+			picture = JAP_showa_emperor
+			modifier = {
+				#stability_factor = 0.05
+				#political_power_gain = 0.1
+				custom_modifier_tooltip = JAP_LAR_showa_emperor_postwar_idea_tt
+			}
+		}
+	}
+}
+
+
+
+

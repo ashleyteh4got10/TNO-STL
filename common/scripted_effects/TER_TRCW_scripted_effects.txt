@@ -3179,7 +3179,18 @@ CPC_dem_riot_congress_effect = {
 			news_event = WORLD_TER.28
 		}
 		BJC = { 
-			create_faction = CHI_liberty_front
+			if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = CHI_liberty_front template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = CHI_liberty_front
+}
 			add_to_faction = WHC
 			add_to_faction = LZD
 		}

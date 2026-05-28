@@ -2197,7 +2197,18 @@ SWRW_start_west_georgia_conflict = {
 			type = annex_everything
 		}
 		promote_character = ARM_Gurgen_Arutjunovic_Dalibaltajan
-		create_faction = caucasian_liberation_front
+if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = caucasian_liberation_front template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = caucasian_liberation_front
+}
 		set_variable = { TNO_economy_type = token:Econ_Type_Planned }
 		set_variable = { TNO_economy_subtype = token:Econ_Subtype_Military_Directed }
 		TNO_startup_nation = yes
@@ -2500,7 +2511,18 @@ HUS_internationale = {
 	HUS = {
 		set_country_flag = HAS_ECON_SPHERE
 		econ_join_sphere_HUS = yes
-		create_faction = balkan_internationale
+		if = {
+	limit = {
+		has_dlc = "No Compromise, No Surrender"
+	}
+	create_faction_from_template = { name = balkan_internationale template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
+}
+else = {
+	create_faction = balkan_internationale
+}
 		add_ideas = BI_Member
 		set_global_flag = BI_formed
 	}

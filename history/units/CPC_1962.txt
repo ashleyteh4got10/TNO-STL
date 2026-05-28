@@ -1,21 +1,26 @@
 division_template = {
 	name = "精锐师"				
-	division_names_group = CPC_MOT_01
+	division_names_group = CPC_INF_01
 	regiments = {					
-	infantry = { x = 0 y = 0 }
-    	infantry = { x = 1 y = 0 }
-    	infantry = { x = 0 y = 1 }
-    	infantry = { x = 1 y = 1 }
-    	infantry = { x = 2 y = 0 }
-    	infantry = { x = 2 y = 1 }
-	infantry = { x = 3 y = 0 }
-    	infantry = { x = 3 y = 1 }
-	IFV = { x = 4 y = 0}
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+		artillery_brigade = { x = 3 y = 0}
+		artillery_brigade = { x = 3 y = 1}
+		artillery_brigade = { x = 3 y = 2}
+		IFV = { x = 4 y = 0 }
 	}
     support = {
 		engineer = { x = 0 y = 0 }
         recon = { x = 0 y = 1 }
-	    artillery = { x = 0 y = 2 }
+	    anti_tank = { x = 0 y = 2 }
+		field_hospital = { x = 0 y = 3 }
     }
 }
 
@@ -24,17 +29,37 @@ division_template = {
 	division_names_group = CPC_INF_01
 	regiments = {					
 		infantry = { x = 0 y = 0 }
-    	infantry = { x = 1 y = 0 }
-    	infantry = { x = 0 y = 1 }
-    	infantry = { x = 1 y = 1 }
-    	infantry = { x = 2 y = 0 }
-    	infantry = { x = 2 y = 1 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+		artillery_brigade = { x = 3 y = 0 }
 	}
     support = {
 		engineer = { x = 0 y = 0 }
         recon = { x = 0 y = 1 }
-	    artillery = { x = 0 y = 2 }
+	    anti_tank = { x = 0 y = 2 }
     }
+}
+
+division_template = {
+	name = "应急机动旅"
+	division_names_group = CPC_MOT_02
+	regiments = {
+		IFV = { x = 0 y = 0 }
+		APC = { x = 1 y = 0 }
+		APC = { x = 1 y = 1 }
+		APC = { x = 1 y = 2 }
+		APC = { x = 1 y = 3 }
+	}
+	support = {
+		IFV_recon = { x = 0 y = 0 }
+		artillery = { x = 0 y = 1 }
+	}
 }
 
 division_template = {
@@ -269,6 +294,16 @@ units = {
 		name = "中央警卫第一师"
 		location = 16941
 		division_template = "精锐师"
+		start_experience_factor = 0.75
+		start_equipment_factor = 1.0
+	}
+	division= {	
+		division_name = {
+            is_name_ordered = yes
+            name_order = 1
+        }
+		location = 16941
+		division_template = "应急机动旅"
 		start_experience_factor = 0.75
 		start_equipment_factor = 1.0
 	}

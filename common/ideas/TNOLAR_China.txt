@@ -1,0 +1,935 @@
+#██████╗  ██████╗  ██████╗  ██████╗
+#██╔══██╗██╔════╝ ██╔═══██╗██╔════╝
+#██████╔╝██║  ███╗██║   ██║██║     
+#██╔══██╗██║   ██║██║   ██║██║     
+#██║  ██║╚██████╔╝╚██████╔╝╚██████╗
+#╚═╝  ╚═╝ ╚═════╝  ╚═════╝  ╚═════╝                                  
+# Naional ideas
+#################################################
+##=|             RGOC Naional ideas          |=##
+##======================| |====================##
+#################################################
+
+#目录，用ctrl+F搜索相关封装效果
+#	1)军事现代化相关精神
+#		CHI_LAR_remilitarization_modernized_army_idea		#现代化的军队
+#		CHI_LAR_Real_remilitarization_modernized_army_idea	#退出CPS后的现代化的军队
+#
+#	2)主权统一相关精神
+#		CHI_LAR_guangxi_arsenal_idea		#广西兵工厂
+#		QIN_LAR_chinese_advisors_idea		#马家军顾问
+#		GAN_LAR_agents_infiltrate_idea		#西北间谍渗透
+#		CHI_LAR_Camouflage_Volunteers_idea	#伪装志愿军
+#		CHI_LAR_war_zone_plan_idea			#重划战区
+#		CHI_LAR_Transfer_Officer_idea		#调任官员
+#		CHI_LAR_Autonomous_Tibet_idea		#西藏自治
+#
+#	3)GAW预热相关精神
+#		CHI_LAR_Victims_of_diplomatic_games_idea			#外交博弈的牺牲品
+#		CHI_LAR_Operation_sun_set_0_idea					#落日行动
+#		CHI_LAR_Operation_sun_set_1_idea
+#		CHI_LAR_Operation_sun_set_2_idea
+#		CHI_LAR_Operation_sun_set_3_idea
+#		CHI_LAR_Operation_sun_set_4_idea
+#		CHI_LAR_Operation_sun_set_5_idea
+#
+#	4)GAW相关精神
+#
+#
+#
+#	5)战后导入相关精神
+#		CHI_LAR_Victor_of_GAW_idea						#大东亚战争的胜利者
+#		CHI_LAR_The_fruits_of_modernization_idea		#现代化之成果
+#		CHI_LAR_Uninhibited_frontier_idea				#不羁边疆
+#		CHI_LAR_Elegy_of_War_idea						#败枝枯梗
+#		CHI_LAR_Uncontrollable_army_idea				#桀骜之军
+#		CHI_LAR_Shadows_of_the_Past_idea				#往日之影
+#
+#
+#	隐藏精神
+#	w)GAW相关隐藏精神
+#		CHI_LAR_GAW_Operation_sun_set_base_idea		#GAW预热的精神中继承过来的效果
+#		CHI_LAR_GAW_Operation_sun_set_1_idea		#国策：血债血偿
+#		CHI_LAR_GAW_Operation_sun_set_2_idea		#国策：上谋其兵
+#		CHI_LAR_GAW_Operation_sun_set_3_idea		#国策：赤乌解羽
+#
+#		CHI_LAR_GAW_Liberation_Alliance_base_idea	#泛亚解放同盟
+#		CHI_LAR_GAW_Liberation_Alliance_1_idea		#国策：合纵求于外
+#		CHI_LAR_GAW_Liberation_Alliance_2_idea		#国策：情报共享
+#		CHI_LAR_GAW_Liberation_Alliance_3_idea		#国策：中国远征军
+#		CHI_LAR_GAW_Liberation_Alliance_4_idea		#国策：黄昏时分
+#
+#
+#	999)海空军限制相关
+#
+#
+ideas = {
+	country = {
+		########################################
+		# 1) MILITARY IDEA - 军事现代化相关精神 #
+		########################################
+		CHI_LAR_remilitarization_modernized_army_idea = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_remilitarization_modernized_army_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_remilitarization_modernized_army
+
+			modifier = {
+				custom_modifier_tooltip = CHI_LAR_remilitarization_modernized_army_idea_tt
+				air_ace_generation_chance_factor = 0.25	#王牌飞行员
+				experience_gain_air = 0.20	#空军经验
+				naval_speed_factor = 0.05	#海军速度
+				navy_org_factor = 0.05	#海军组织度
+				navy_screen_attack_factor = 0.1	#屏卫舰攻击
+				navy_screen_defence_factor = 0.1	#屏卫舰防御
+				experience_gain_navy = 0.10	#海军经验
+				#人力修正消除
+				army_attack_factor = 0.1	#进攻
+				army_org_factor = 0.15	#组织度
+				army_defence_factor = 0.1	#陆军防御
+				experience_gain_army_factor = 0.10	#经验获取修正
+				war_support_factor = 0.1	#战争支持度
+				surrender_limit = 0.1	#投降倾向
+				max_command_power = 30	#最大指挥点
+				minimum_training_level = -0.05	#训练程度下限
+			}
+		}
+
+		CHI_LAR_Real_remilitarization_modernized_army_idea = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Real_remilitarization_modernized_army_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_remilitarization_modernized_army
+
+			modifier = {
+				air_ace_generation_chance_factor = 0.25	#王牌飞行员
+				experience_gain_air = 0.20	#空军经验
+				naval_speed_factor = 0.05	#海军速度
+				navy_org_factor = 0.05	#海军组织度
+				navy_screen_attack_factor = 0.1	#屏卫舰攻击
+				navy_screen_defence_factor = 0.1	#屏卫舰防御
+				experience_gain_navy = 0.10	#海军经验
+				#人力修正消除
+				army_attack_factor = 0.1	#进攻
+				army_org_factor = 0.15	#组织度
+				army_defence_factor = 0.1	#陆军防御
+				experience_gain_army_factor = 0.10	#经验获取修正
+				war_support_factor = 0.1	#战争支持度
+				surrender_limit = 0.1	#投降倾向
+				max_command_power = 30	#最大指挥点
+				minimum_training_level = -0.05	#训练程度下限
+			}
+		}
+
+		#########################################
+		# 2) SOVEREIGNTY IDEA - 主权统一相关精神 #
+		#########################################
+		CHI_LAR_guangxi_arsenal_idea = {
+
+			allowed = {
+				original_tag = CHI
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_guangxi_arsenal_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_guangxi_arsenal
+
+			equipment_bonus = {
+				infantry_equipment = {
+					instant = yes
+					build_cost_ic = -0.05
+				}
+				anti_air_equipment = {
+					instant = yes
+					build_cost_ic = -0.05
+				}
+				anti_tank_equipment = {
+					instant = yes
+					build_cost_ic = -0.05
+				}
+			}
+		}
+		QIN_LAR_chinese_advisors_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea QIN_LAR_chinese_advisors_idea"
+			}
+			removal_cost = -1
+
+			picture = QIN_chinese_advisors
+
+			modifier = {
+				experience_gain_army_factor = 0.2
+				army_attack_factor = 0.05
+				army_defence_factor = 0.05
+			}
+		}
+		GAN_LAR_agents_infiltrate_idea = {
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea QIN_agents_infiltrate_idea"
+			}
+			removal_cost = -1
+
+			picture = GAN_agents_infiltrate
+
+			modifier = {
+				supply_consumption_factor = 0.1
+				army_attack_factor = -0.2
+				army_defence_factor = -0.2
+				forced_surrender_limit = -0.4
+			}
+		}
+		CHI_LAR_Camouflage_Volunteers_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Camouflage_Volunteers_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Camouflage_Volunteers
+
+			modifier = {
+				send_volunteer_size = 1
+			}
+		}
+		CHI_LAR_war_zone_plan_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_war_zone_plan_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_war_zone_plan
+
+			modifier = {
+				max_planning_factor = 0.05
+			}
+		}
+		CHI_LAR_Transfer_Officer_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Transfer_Officer_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Transfer_Officer
+
+			modifier = {
+				command_power_gain_mult = -0.5
+				experience_gain_army_factor = -0.5
+			}
+		}
+		CHI_LAR_Autonomous_Tibet_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Autonomous_Tibet_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Autonomous_Tibet
+
+			modifier = {
+				stability_factor = -0.15
+			}
+		}
+
+
+		###################################
+		# 3) WARMUP IDEA - GAW预热相关精神 #
+		###################################
+		CHI_LAR_Victims_of_diplomatic_games_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Victims_of_diplomatic_games_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Victims_of_diplomatic_games
+
+			modifier = {	
+				encryption_factor = -0.25
+				max_surrender_limit_offset = -0.1
+				stability_factor = -0.1
+				army_org_factor = -0.05
+			}
+		}
+		
+		CHI_LAR_Operation_sun_set_0_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Operation_sun_set_0_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Operation_sun_set
+
+			modifier = {	
+				max_dig_in_factor = 0.1								#最大堑壕
+			}
+		}
+
+		CHI_LAR_Operation_sun_set_1_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Operation_sun_set_1_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Operation_sun_set
+
+			modifier = {	
+				max_dig_in_factor = 0.1								#最大堑壕
+			}
+			equipment_bonus = {		#空军制造成本下降
+				fighter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				CAS_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				attack_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				transport_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+		CHI_LAR_Operation_sun_set_2_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Operation_sun_set_2_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Operation_sun_set
+
+			modifier = {	
+				max_dig_in_factor = 0.1								#最大堑壕
+				amphibious_invasion_defence = 0.1					#防御登陆加成
+			}
+		}
+
+		CHI_LAR_Operation_sun_set_3_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Operation_sun_set_3_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Operation_sun_set
+
+			modifier = {	
+				max_dig_in_factor = 0.1								#最大堑壕
+				amphibious_invasion_defence = 0.1					#防御登陆加成
+			}
+			equipment_bonus = {		#空军制造成本下降
+				fighter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				CAS_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				attack_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				transport_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+		CHI_LAR_Operation_sun_set_4_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Operation_sun_set_4_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Operation_sun_set
+
+			modifier = {	
+				max_dig_in_factor = 0.1								#最大堑壕
+				amphibious_invasion_defence = 0.1					#防御登陆加成
+				production_factory_max_efficiency_factor = 0.05		#生产效率上限
+			}
+			equipment_bonus = {		#空军制造成本下降
+				fighter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				CAS_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				attack_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				transport_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+		CHI_LAR_Operation_sun_set_5_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Operation_sun_set_5_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Operation_sun_set
+
+			modifier = {	
+				max_dig_in_factor = 0.1								#最大堑壕
+				amphibious_invasion_defence = 0.1					#防御登陆加成
+				production_factory_max_efficiency_factor = 0.05		#生产效率上限
+				army_core_attack_factor = 0.1						#核心攻击
+			}
+			equipment_bonus = {		#空军制造成本下降
+				fighter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				CAS_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				attack_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				transport_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+		#########################################
+		# 4) GREAT ASIAN WAR IDEA - GAW相关精神 #
+		#########################################
+
+
+
+		############################################
+		# 5) POST WAR INTRODUCE IDEA - 战后导入相关 #
+		############################################
+
+		CHI_LAR_Victor_of_GAW_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Victor_of_GAW_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Victor_of_GAW
+
+			modifier = {
+				political_power_gain = 0.5
+				stability_factor = 0.20
+			}
+		}
+
+		CHI_LAR_The_fruits_of_modernization_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_The_fruits_of_modernization_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_The_fruits_of_modernization
+
+			modifier = {
+				#教育
+				stability_factor = 0.20
+				war_support_factor = 0.15
+				political_power_gain = 0.30
+				gdp_growth_modifier = 0.02
+				schools_coverage_modifier = 0.15
+				schools_PE_modifier = 0.15
+
+				#科技
+				research_speed_factor = 0.10
+				research_facilities_monthly_rate = 5.00
+				offices_coverage_modifier = 0.20
+				offices_PE_modifier = 0.15
+
+				#工业
+				production_factory_max_efficiency_factor = 0.15
+				production_factory_efficiency_gain_factor = 0.20
+				industrial_capacity_factory = 0.30
+				consumer_goods_production_factor = 0.10
+
+				#军事
+				air_ace_generation_chance_factor = 0.25
+				experience_gain_air = 0.20
+				naval_speed_factor = 0.05
+				navy_org_factor = 0.05
+				navy_screen_attack_factor = 0.1
+				navy_screen_defence_factor = 0.1
+				experience_gain_navy = 0.10
+				army_attack_factor = 0.10
+				army_org_factor = 0.15
+				army_defence_factor = 0.10
+				experience_gain_army_factor = 0.10
+				surrender_limit = 0.10
+				max_command_power = 30
+				minimum_training_level = -0.05
+			}
+		}
+
+		CHI_LAR_Uninhibited_frontier_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Uninhibited_frontier_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Uninhibited_frontier
+
+			modifier = {
+				stability_factor = -0.1
+				local_resources_factor = -0.1
+				barracks_coverage_modifier = -0.15
+			}
+		}
+
+		CHI_LAR_Elegy_of_War_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Elegy_of_War_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Elegy_of_War
+
+			modifier = {
+				poverty_monthly_rate = -0.05
+				production_speed_buildings_factor = -0.1
+				production_factory_start_efficiency_factor = -0.1
+				production_factory_efficiency_gain_factor = -0.1
+			}
+		}
+
+		CHI_LAR_Uncontrollable_army_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Uncontrollable_army_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Uncontrollable_army
+
+			modifier = {
+				war_support_factor = 0.1
+				max_planning_factor = -0.1
+				military_industry_cost_modifier = 0.05
+			}
+		}
+
+		CHI_LAR_Shadows_of_the_Past_idea = {
+
+			allowed = {
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = no
+			}
+
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: added idea CHI_LAR_Elegy_of_War_idea"
+			}
+			removal_cost = -1
+
+			picture = CHI_Shadows_of_the_Past
+
+			modifier = {
+				political_power_factor = -0.15
+			}
+		}
+	}
+
+	hidden_ideas = {
+		###################################################
+		# w) GREAT ASIAN WAR HIDDEN IDEA - GAW相关隐藏精神 #
+		###################################################
+		CHI_LAR_GAW_Operation_sun_set_base_idea = {	#GAW预热的精神中继承过来的效果
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			equipment_bonus = {
+				fighter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				CAS_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				attack_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+				transport_helicopter_equipment = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+
+		CHI_LAR_GAW_Operation_sun_set_1_idea = {	#国策：血债血偿
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			targeted_modifier = {
+				tag = GNG
+				attack_bonus_against = 0.05
+				defense_bonus_against = 0.05
+			}
+			targeted_modifier = {
+				tag = MAN
+				attack_bonus_against = 0.05
+				defense_bonus_against = 0.05
+			}
+		}
+
+		CHI_LAR_GAW_Operation_sun_set_2_idea = {	#国策：上谋其兵
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			targeted_modifier = {
+				tag = JAP
+				attack_bonus_against = 0.05
+				defense_bonus_against = 0.05
+			}
+		}
+
+		CHI_LAR_GAW_Operation_sun_set_3_idea = {	#国策：赤乌解羽
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			targeted_modifier = {
+				tag = JAP
+				attack_bonus_against = 0.10
+				defense_bonus_against = 0.10
+			}
+		}
+
+		CHI_LAR_GAW_Liberation_Alliance_1_idea = {	#国策：合纵求于外
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			modifier = {
+				war_support_factor = 0.05
+			}
+		}
+		CHI_LAR_GAW_Liberation_Alliance_2_idea = {	#国策：情报共享
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			targeted_modifier = {
+				tag = JAP
+				breakthrough_bonus_against = 0.05
+			}
+		}
+		CHI_LAR_GAW_Liberation_Alliance_3_idea = {	#国策：中国远征军
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			modifier = {
+				experience_gain_army = 0.2
+			}
+		}
+		CHI_LAR_GAW_Liberation_Alliance_4_idea = {	#国策：黄昏时分
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			targeted_modifier = {
+				tag = JAP
+				attack_bonus_against = 0.05
+				defense_bonus_against = 0.05
+			}
+		}
+		
+
+		#####################################################
+		# 999) LIMIT NAVY AND AIRFORCE IDEA - 海空军限制相关 #
+		#####################################################
+		CHI_LAR_limit_navy_and_airforce_idea = {
+			allowed = {
+				always = no
+			}
+			
+			allowed_civil_war = {
+				always = no
+			}
+			removal_cost = -1
+			modifier = {
+				industrial_capacity_dockyard = -1
+			}
+			equipment_bonus = {
+				fighter_equipment = {
+					build_cost_ic = 1
+					instant = yes
+				}
+				CAS_equipment = {
+					build_cost_ic = 1
+					instant = yes
+				}
+				tac_bomber_equipment = {
+					build_cost_ic = 1
+					instant = yes
+				}
+				strat_bomber_equipment = {
+					build_cost_ic = 1
+					instant = yes
+				}
+				attack_helicopter_equipment = {
+					build_cost_ic = 1
+					instant = yes
+				}
+				transport_helicopter_equipment = {
+					build_cost_ic = 1
+					instant = yes
+				}
+				scout_helicopter_equipment = {
+					build_cost_ic = 1
+					instant = yes
+				}
+				asw_helicopter_equipment = {
+					build_cost_ic = 1
+					instant = yes
+				}
+			}
+		}
+	}
+}
+
+
+
+

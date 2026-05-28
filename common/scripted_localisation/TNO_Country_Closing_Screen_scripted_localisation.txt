@@ -63,6 +63,10 @@ defined_text = {
 		localization_key = "[Get_TNO_CountryClosing_picture_AAG]"
 	}
 	text = {
+		trigger = { original_tag = AAC }
+		localization_key = "[Get_TNO_CountryClosing_picture_AAC]"
+	}
+	text = {
 		trigger = {
 			OR = {
 				original_tag = BRA
@@ -72,8 +76,24 @@ defined_text = {
 		localization_key = "[Get_TNO_CountryClosing_picture_BRA]"
 	}
 	text = {
-		trigger = { original_tag = CPC }
-		localization_key = "[Get_TNO_CountryClosing_picture_CPC]"
+		trigger = { original_tag = MAR }
+		localization_key = "[Get_TNO_CountryClosing_picture_MAR]"
+	}
+	text = {
+		trigger = { original_tag = GCZ }
+		localization_key = "[Get_TNO_CountryClosing_picture_GCZ]"
+	}
+	text = {
+		trigger = { original_tag = GWF }
+		localization_key = "[Get_TNO_CountryClosing_picture_GWF]"
+	}
+	text = {
+		trigger = {
+			is_german_unifier = yes 
+			NOT = { original_tag = GWF }
+			NOT = { original_tag = GCZ }
+		}
+		localization_key = "[Get_TNO_CountryClosing_picture_PostGER]"
 	}
 	text = {
 		localization_key = "GFX_TNO_CountryClosing_picture_generic"
@@ -133,6 +153,10 @@ defined_text = {
 		localization_key = "[Get_TNO_CountryClosing_epilogue_AAG]"
 	}
 	text = {
+		trigger = { original_tag = AAC }
+		localization_key = "[Get_TNO_CountryClosing_epilogue_AAC]"
+	}
+	text = {
 		trigger = {
 			OR = {
 				original_tag = BRA
@@ -142,52 +166,11 @@ defined_text = {
 		localization_key = "[Get_TNO_CountryClosing_epilogue_BRA]"
 	}
 	text = {
-		trigger = { original_tag = CPC }
-		localization_key = "[Get_TNO_CountryClosing_epilogue_CPC]"
-	}
-	text = {
-		trigger = { original_tag = ZXB }
-		localization_key = "TNO_CountryClosing_epilogue_CPC_end_all_gone"
-	}
-	text = {
-		trigger = { original_tag = HTC
-					has_global_flag = CPC_TRCW_CHI_COLLAPSE	}
-		localization_key = "TNO_CountryClosing_epilogue_CPC_end_collapse"
-	}
-	text = {
-		trigger = { original_tag = TWN
-					has_global_flag = CPC_TRCW_RGOC_WINS }
-		localization_key = "TNO_CountryClosing_epilogue_CPC_end_RGOC"
+		trigger = { original_tag = GWF }
+		localization_key = "[Get_TNO_CountryClosing_epilogue_GWF]"
 	}
 	text = {
 		localization_key = TNO_CountryClosing_epilogue_generic
-	}
-}
-
-defined_text = {
-	name = Get_TNO_CountryClosing_epilogue_CPC
-	##TER Shit
-	text = {
-		trigger = { CPC_ending_good_trigger = yes }
-		localization_key = "TNO_CountryClosing_epilogue_CPC_end_people_dem"
-	}
-	text = {
-		trigger = { 
-			has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype
-			CPC_ending_normal_trigger = yes 
-		}
-		localization_key = "TNO_CountryClosing_epilogue_CPC_end_party_mao"
-	}
-	text = {
-		trigger = { 
-			has_country_leader_ideology = communist_liu_shaoqi_thought_subtype
-			CPC_ending_normal_trigger = yes
-		}
-		localization_key = "TNO_CountryClosing_epilogue_CPC_end_party_liu"
-	}
-	text = {
-		trigger = { CPC_ending_bad_trigger = yes }
-		localization_key = "TNO_CountryClosing_epilogue_CPC_end_lin_coup"
 	}
 }
 
@@ -210,39 +193,6 @@ defined_text = {
 		localization_key = "GFX_TNO_CountryClosing_picture_generic"
 	}
 }
-
-defined_text = {
-	name = Get_TNO_CountryClosing_picture_CPC
-	text = {
-		trigger = { original_tag = CPC
-					CPC = { 
-						CPC_ending_good_trigger = yes
-					} }
-		localization_key = "GFX_CountryClosing_picture_CPC_People_Dem_Ending"
-	}
-	text = {
-		trigger = { original_tag = CPC
-					CPC = { 
-						has_country_leader_ideology = communist_mao_zedong_thought_TER_subtype
-						CPC_ending_normal_trigger = yes
-					} }
-		localization_key = "GFX_CountryClosing_picture_CPC_Party_Mao_Ending"
-	}
-	text = {
-		trigger = { original_tag = CPC
-					CPC = { 
-						has_country_leader_ideology = communist_liu_shaoqi_thought_subtype
-						CPC_ending_normal_trigger = yes
-					} }
-		localization_key = "GFX_CountryClosing_picture_CPC_Party_Liu_Ending"
-	}
-	text = {
-		trigger = { original_tag = CPC
-					CPC_ending_bad_trigger = yes }
-		localization_key = "GFX_CountryClosing_picture_CPC_Lin_Coup_Ending"
-	}
-}
-
 defined_text = {
 	name = Get_TNO_CountryClosing_picture_IRE
 	text = {
@@ -609,6 +559,47 @@ defined_text = {
 	}
 }
 defined_text = {
+	name = Get_TNO_CountryClosing_picture_AAC
+	text = {
+		trigger = {
+			has_country_leader = {
+				character = AAC_Julio_Escudero_Guzman
+				ruling_only = yes
+			}
+			has_country_flag = AAC_Marine_Mission_Success
+		}
+		localization_key = "GFX_CountryClosing_picture_AAC_guzman_success"
+	}
+	text = {
+		trigger = {
+			has_country_leader = {
+				character = AAC_Julio_Escudero_Guzman
+				ruling_only = yes
+			}
+		}
+		localization_key = "GFX_CountryClosing_picture_AAC_guzman_failure"
+	}
+	text = {
+		trigger = {
+			has_country_leader = {
+				character = AAC_Jose_Toribio_Merino
+				ruling_only = yes
+			}
+			has_country_flag = AAC_Marine_Mission_Success
+		}
+		localization_key = "GFX_CountryClosing_picture_AAC_merino_success"
+	}
+	text = {
+		trigger = {
+			has_country_leader = {
+				character = AAC_Jose_Toribio_Merino
+				ruling_only = yes
+			}
+		}
+		localization_key = "GFX_CountryClosing_picture_AAC_merino_failure"
+	}
+}
+defined_text = {
 	name = Get_TNO_CountryClosing_picture_BRA
 	text = {
 		trigger = {
@@ -810,6 +801,115 @@ defined_text = {
 	}
 }
 
+
+defined_text = {
+	name = Get_TNO_CountryClosing_picture_MAR
+	text = {
+		trigger = { 
+			has_country_flag = MAR_Good_Ending
+		}
+		localization_key = "GFX_CountryClosing_picture_MAR_WRW_Victory"
+	}
+	text = {
+		trigger = { 
+			has_country_flag = MAR_Good_Ending
+			NOT = { has_global_flag = TaS_WRW2_Russian_victory } 
+		}
+		localization_key = "GFX_CountryClosing_picture_MAR_WRW_Armstice"
+	}
+	text = {
+		trigger = { 
+			has_country_flag = MAR_Good_Ending
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			} 
+		}
+		localization_key = "GFX_CountryClosing_picture_MAR_WRW_Victory_Beloozersky"
+	}
+	text = {
+		trigger = { 
+			has_country_flag = MAR_Good_Ending
+			has_country_leader = {
+				character = MAR_advisor_Kosygin
+				ruling_only = yes
+			}
+		}
+		localization_key = "GFX_CountryClosing_picture_MAR_WRW_Victory_Kosygin"
+	}
+	text = {
+		trigger = { 
+			has_country_flag = MAR_Bad_Ending
+			has_country_flag = MAR_collapsed
+		}
+		localization_key = "GFX_CountryClosing_picture_MAR_Third_Smuta"
+	}
+	text = {
+		trigger = { 
+			has_country_flag = MAR_Bad_Ending
+			is_in_faction_with = JAP
+		}
+		localization_key = "GFX_CountryClosing_picture_MAR_Kosygin_JAP"
+	}
+	text = {
+		trigger = { 
+			has_country_flag = MAR_Bad_Ending
+			has_country_flag = MAR_Kosygin_KGB
+		}
+		localization_key = "GFX_CountryClosing_picture_MAR_Kosygin_KGB"
+	}
+	text = {
+		trigger = { 
+			has_country_flag = MAR_Path_not_done
+		}
+		localization_key = "GFX_CountryClosing_picture_MAR_path_is_not_done_you_silly"
+	}
+	text = {
+		localization_key = "GFX_TNO_CountryClosing_picture_generic"
+	}
+}
+defined_text = {
+	name = Get_TNO_CountryClosing_picture_GCZ
+	text = {
+		localization_key = "GFX_CountryClosing_picture_GCZ_reunification"
+	}
+}
+defined_text = {
+	name = Get_TNO_CountryClosing_picture_GWF
+	text = {
+		trigger = {
+			NOT = {
+				has_game_rule = {
+					rule = april_fools_content_status
+					option = APRIL_FOOLS_ENABLED
+				}
+			}
+		}
+		localization_key = "GFX_CountryClosing_picture_GWF_reunification"
+	}
+	text = {
+		trigger = { has_global_flag = GWF_good_end }
+		localization_key = "GFX_CountryClosing_picture_GWF_good_end"
+	}
+	text = {
+		trigger = { has_country_flag = GWF_neutral_good_end }
+		localization_key = "GFX_CountryClosing_picture_GWF_neutral_good_end"
+	}
+	text = {
+		trigger = { has_country_flag = GWF_neutral_bad_end }
+		localization_key = "GFX_CountryClosing_picture_GWF_neutral_bad_end"
+	}
+	text = {
+		trigger = { has_global_flag = GWF_bad_end }
+		localization_key = "GFX_CountryClosing_picture_GWF_bad_end"
+	}
+}
+defined_text = {
+	name = Get_TNO_CountryClosing_picture_PostGER
+	text = {
+		localization_key = "GFX_CountryClosing_picture_GER_reunification"
+	}
+}
 # / Tag-Specific Text
 defined_text = {
 	name = Get_TNO_CountryClosing_epilogue_USA
@@ -1101,6 +1201,47 @@ defined_text = {
 	}
 }
 defined_text = {
+	name = Get_TNO_CountryClosing_epilogue_AAC
+	text = {
+		trigger = {
+			has_country_leader = {
+				character = AAC_Julio_Escudero_Guzman
+				ruling_only = yes
+			}
+			has_country_flag = AAC_Marine_Mission_Success
+		}
+		localization_key = TNO_CountryClosing_epilogue_AAC_Guzman_Success
+	}
+	text = {
+		trigger = {
+			has_country_leader = {
+				character = AAC_Julio_Escudero_Guzman
+				ruling_only = yes
+			}
+		}
+		localization_key = TNO_CountryClosing_epilogue_AAC_Guzman_Failure
+	}
+	text = {
+		trigger = {
+			has_country_leader = {
+				character = AAC_Jose_Toribio_Merino
+				ruling_only = yes
+			}
+			has_country_flag = AAC_Marine_Mission_Success
+		}
+		localization_key = TNO_CountryClosing_epilogue_AAC_Merino_Success
+	}
+	text = {
+		trigger = {
+			has_country_leader = {
+				character = AAC_Jose_Toribio_Merino
+				ruling_only = yes
+			}
+		}
+		localization_key = TNO_CountryClosing_epilogue_AAC_Merino_Failure
+	}
+}
+defined_text = {
 	name = Get_TNO_CountryClosing_epilogue_BRA
 
 	# SOUTH ATLANTIC WAR
@@ -1308,6 +1449,38 @@ defined_text = {
 	# GENERIC
 	text = {
 		localization_key = TNO_CountryClosing_epilogue_generic
+	}
+}
+
+
+defined_text = {
+	name = Get_TNO_CountryClosing_epilogue_GWF
+	text = {
+		trigger = {
+			NOT = {
+				has_game_rule = {
+					rule = april_fools_content_status
+					option = APRIL_FOOLS_ENABLED
+				}
+			}
+		}
+		localization_key = TNO_CountryClosing_epilogue_generic
+	}
+	text = {
+		trigger = { has_global_flag = GWF_good_end }
+		localization_key = TNO_CountryClosing_epilogue_generic_GWF_good_end
+	}
+	text = {
+		trigger = { has_country_flag = GWF_neutral_good_end }
+		localization_key = TNO_CountryClosing_epilogue_generic_GWF_neutral_good_end
+	}
+	text = {
+		trigger = { has_country_flag = GWF_neutral_bad_end }
+		localization_key = TNO_CountryClosing_epilogue_generic_GWF_neutral_bad_end
+	}
+	text = {
+		trigger = { has_global_flag = GWF_bad_end }
+		localization_key = TNO_CountryClosing_epilogue_generic_GWF_bad_end
 	}
 }
 

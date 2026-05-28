@@ -1,0 +1,760 @@
+RUS_Connection_category = {
+	RUS_academic_coop = {
+		icon = GFX_decision_generic_building_school
+		visible = {
+			always = yes
+		}
+		available = {
+			always = yes
+		}
+
+		days_remove = 240
+		days_re_enable = 60
+		fire_only_once = no
+
+		modifier = {
+			consumer_goods_production_factor = 0.05
+		}
+
+		remove_effect = {
+			CPC = {
+				TNO_improve_academic_base_low = yes
+				add_to_variable = { academic_base_counter = 5 }
+				TNO_improve_education_policy_effectiveness_low = yes
+			}	
+		}
+		complete_effect = {
+		}
+		cost = 10
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_academic_base_mass_illiteracy
+					has_idea = tno_academic_base_basic_literacy
+				}
+			}
+		}
+	}
+
+	RUS_research_coop = {
+		icon = GFX_decision_generic_research
+		visible = {
+			always = yes
+		}
+		available = {
+			always = yes
+		}
+
+		days_remove = 240
+		days_re_enable = 60
+		fire_only_once = no
+
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			CPC = {
+				research_speed_factor = 0.05
+			}
+		}
+
+		remove_effect = {
+			CPC = {
+				TNO_improve_research_facilities_low = yes
+				add_to_variable = { research_facilities_counter = 5 }
+			}	
+		}
+		complete_effect = {
+		}
+		cost = 10
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_research_facilities_makeshift
+					has_idea = tno_research_facilities_basic
+				}
+			}
+		}
+	}
+
+	RUS_industrial_equipment_coop = {
+		icon = GFX_decision_generic_supply
+		visible = {
+			always = yes
+		}
+		available = {
+			always = yes
+		}
+
+		days_remove = 240
+		days_re_enable = 60
+		fire_only_once = no
+
+		modifier = {
+			consumer_goods_production_factor = 0.05
+		}
+
+		remove_effect = {
+			CPC = {
+				TNO_improve_industrial_equipment_low = yes
+				add_to_variable = { industrial_equipment_counter = 5 }
+			}	
+		}
+		complete_effect = {
+		}
+		cost = 10
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_industrial_equipment_hand_tools
+					has_idea = tno_industrial_equipment_power_tools
+				}
+			}
+		}
+	}
+
+	RUS_industrial_expertise_coop = {
+		icon = GFX_decision_generic_workers
+		visible = {
+			always = yes
+		}
+		available = {
+			always = yes
+		}
+
+		days_remove = 240
+		days_re_enable = 60
+		fire_only_once = no
+
+		modifier = {
+			consumer_goods_production_factor = 0.05
+		}
+
+		remove_effect = {
+			CPC = {
+				TNO_improve_industrial_expertise_low = yes
+				add_to_variable = { industrial_expertise_counter = 5 }
+			}	
+		}
+		complete_effect = {
+		}
+		cost = 10
+		ai_will_do = {
+			base = 5
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_industrial_expertise_pre_industrial
+					has_idea = tno_industrial_expertise_incompetent
+				}
+			}
+		}
+	}
+
+	RUS_agriculture_coop = {
+		icon = GFX_decision_generic_industrial_farm
+		visible = {
+			always = yes
+		}
+		available = {
+			always = yes
+		}
+
+		days_remove = 240
+		days_re_enable = 60
+		fire_only_once = no
+
+		modifier = {
+			consumer_goods_production_factor = 0.05
+		}
+
+		remove_effect = {
+			CPC = {
+				TNO_improve_agriculture_low = yes
+				add_to_variable = { agriculture_counter = 5 }
+			}	
+		}
+		complete_effect = {
+		}
+		cost = 10
+		ai_will_do = {
+			base = 10
+			modifier = {
+				factor = 2
+				OR = {
+					has_idea = tno_agriculture_subsistence
+					has_idea = tno_agriculture_centralized
+				}
+			}
+		}
+	}
+
+	RUS_training_coop = {
+		icon = GFX_decision_generic_assault
+		visible = {
+			always = yes
+		}
+		available = {
+			always = yes
+		}
+
+		days_remove = 240
+		days_re_enable = 60
+		fire_only_once = no
+
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			CPC = {
+				experience_gain_army_factor = 0.05
+			}
+		}
+
+		remove_effect = {
+			army_experience = 30
+			CPC = {
+				TNO_improve_army_professionalism_low = yes
+				TNO_improve_training_policy_effectiveness_low = yes
+			}	
+		}
+		complete_effect = {
+		}
+		cost = 25
+		ai_will_do = {
+			base = 5
+		}
+	}
+	
+}
+
+CPC_Labor_category = {
+	CPC_Labor_to_BRY = {
+		visible = {
+			BRY = { 
+				exists = yes 
+				NOT = {
+					has_country_flag = is_warlord
+				}
+			}
+		}
+		available = {
+			OR = {
+					NOT = { has_war_with = JAP }
+					NOT = { has_war_with = CHI }
+				}
+		}
+
+		days_remove = 300
+		days_re_enable = 60
+		fire_only_once = no
+
+		modifier = {
+			BRY = { 
+				consumer_goods_production_factor = 0.1
+				production_speed_buildings_factor = 0.1
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				industry_repair_factor = 0.1
+			}
+		}
+
+		remove_effect = {
+			TNO_improve_industrial_expertise_med = yes
+			add_to_variable = { industrial_expertise_counter = 15 }
+			random_list = {
+				10 = {
+					add_tech_bonus = {
+						name = industry
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 10000
+					BRY = { 
+						add_tech_bonus = {
+							name = industry
+							bonus = 0.25
+							uses = 1
+							category = industry
+						}
+					}
+				}
+				20 = {
+					add_tech_bonus = {
+						name = industry
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_manpower = 9000
+				}
+				70 = {
+					add_manpower = 9000
+				}
+			}	
+		}
+		complete_effect = {
+			add_manpower = -10000
+		}
+		cost = 50
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0
+				has_manpower > 500000
+			}
+		}
+	}
+
+	CPC_Labor_to_IRK = {
+		visible = {
+			IRK = { 
+				exists = yes 
+				NOT = {
+					has_country_flag = is_warlord
+				}
+			}
+		}
+		available = {
+			OR = {
+					NOT = { has_war_with = JAP }
+					NOT = { has_war_with = CHI }
+				}
+		}
+
+		days_remove = 300
+		days_re_enable = 60
+		fire_only_once = no
+
+		modifier = {
+			IRK = { 
+				production_speed_buildings_factor = 0.15
+				industry_repair_factor = 0.15
+			}
+		}
+
+		remove_effect = {
+			TNO_improve_industrial_expertise_low = yes
+			TNO_improve_industrial_equipment_low = yes
+			add_to_variable = { industrial_expertise_counter = 5 }
+			add_to_variable = { industrial_equipment_counter = 5 }
+			random_list = {
+				10 = {
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 10000
+				}
+				20 = {
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 9000
+				}
+				70 = {
+					add_manpower = 8000
+				}
+			}	
+		}
+		complete_effect = {
+			add_manpower = -10000
+		}
+		cost = 50
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0
+				has_manpower > 500000
+			}
+		}
+	}
+
+	CPC_Labor_to_PRC = {
+		visible = {
+			PRC = { 
+				exists = yes 
+				NOT = {
+					has_country_flag = is_warlord
+				}
+			}
+		}
+		available = {
+			OR = {
+					NOT = { has_war_with = JAP }
+					NOT = { has_war_with = CHI }
+				}
+		}
+
+		days_remove = 300
+		days_re_enable = 100
+		fire_only_once = no
+
+		modifier = {
+			PRC = { 
+				consumer_goods_production_factor = 0.05
+				production_speed_buildings_factor = 0.1
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				industry_repair_factor = 0.1
+			}
+			CPC = {
+				experience_gain_army_factor = 0.05
+			}
+		}
+
+		remove_effect = {
+			TNO_improve_army_professionalism_low = yes
+			add_to_variable = { industrial_expertise_counter = 5 }
+			TNO_improve_training_policy_effectiveness_low = yes
+			random_list = {
+				10 = {
+					add_tech_bonus = {
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_manpower = 9900
+					army_experience = 50
+				}
+				20 = {
+					add_tech_bonus = {
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_manpower = 9000
+					army_experience = 30
+				}
+				70 = {
+					add_manpower = 8500
+					army_experience = 10
+				}
+			}	
+		}
+		complete_effect = {
+			add_manpower = -10000
+		}
+		cost = 50
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0
+				has_manpower > 500000
+			}
+		}
+	}
+
+	CPC_Labor_to_TYM = {
+		visible = {
+			TYM = { 
+				exists = yes 
+				NOT = {
+					has_country_flag = is_warlord
+				}
+			}
+		}
+		available = {
+			OR = {
+					NOT = { has_war_with = JAP }
+					NOT = { has_war_with = CHI }
+				}
+		}
+
+		days_remove = 300
+		days_re_enable = 80
+		fire_only_once = no
+
+		modifier = {
+			TYM = { 
+				consumer_goods_production_factor = 0.15
+				production_speed_buildings_factor = 0.05
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				industry_repair_factor = 0.05
+			}
+		}
+
+		remove_effect = {
+			TNO_improve_industrial_expertise_med = yes
+			TNO_improve_industrial_equipment_low = yes
+			TNO_improve_agriculture_low = yes
+			add_to_variable = { industrial_expertise_counter = 10 }
+			add_to_variable = { industrial_equipment_counter = 5 }
+			add_to_variable = { agriculture_counter = 5 }
+			random_list = {
+				5 = {
+					add_tech_bonus = {
+						name = armor
+						bonus = 0.25
+						uses = 1
+						category = armor
+					}
+					add_tech_bonus = {
+						name = infantry_weapons
+						bonus = 0.25
+						uses = 1
+						category = infantry_weapons
+					}
+					add_manpower = 9000
+				}
+				15 = {
+					add_tech_bonus = {
+						name = industry
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_tech_bonus = {
+						name = electronics
+						bonus = 0.25
+						uses = 1
+						category = electronics
+					}
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 10000
+				}
+				30 = {
+					add_tech_bonus = {
+						name = industry
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 9000
+				}
+				50 = {
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 7500
+				}
+			}	
+		}
+		complete_effect = {
+			add_manpower = -10000
+		}
+		cost = 50
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0
+				has_manpower > 500000
+			}
+		}
+	}
+
+	CPC_Labor_to_WRS = {
+		visible = {
+			WRS = { 
+				exists = yes 
+				NOT = {
+					has_country_flag = is_warlord
+				}
+			}
+		}
+		available = {
+			OR = {
+					NOT = { has_war_with = JAP }
+					NOT = { has_war_with = CHI }
+				}
+		}
+
+		days_remove = 300
+		days_re_enable = 100
+		fire_only_once = no
+
+		modifier = {
+			WRS = { 
+				consumer_goods_production_factor = 0.05
+				production_speed_buildings_factor = 0.1
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				industry_repair_factor = 0.1
+			}
+			CPC = {
+				experience_gain_army_factor = 0.05
+			}
+		}
+
+		remove_effect = {
+			TNO_improve_industrial_expertise_low = yes
+			add_to_variable = { industrial_expertise_counter = 5 }
+			TNO_improve_training_policy_effectiveness_low = yes
+			random_list = {
+				10 = {
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 9900
+					army_experience = 10
+				}
+				20 = {
+					TNO_improve_army_professionalism_low = yes
+					add_manpower = 9000
+					army_experience = 30
+				}
+				70 = {
+					add_manpower = 8500
+					army_experience = 50
+				}
+			}	
+		}
+		complete_effect = {
+			add_manpower = -10000
+		}
+		cost = 50
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0
+				has_manpower > 500000
+			}
+		}
+	}
+
+	CPC_Labor_to_KOM = {
+		visible = {
+			KOM = { 
+				exists = yes 
+				OR = {
+					has_government = communist
+					has_government = socialist
+				}
+				NOT = {
+					has_country_flag = is_warlord
+				}
+			}
+		}
+		available = {
+			OR = {
+					NOT = { has_war_with = JAP }
+					NOT = { has_war_with = CHI }
+				}
+		}
+
+		days_remove = 300
+		days_re_enable = 100
+		fire_only_once = no
+
+		modifier = {
+			KOM = { 
+				consumer_goods_production_factor = 0.2
+				production_speed_buildings_factor = 0.05
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				industry_repair_factor = 0.05
+			}
+			CPC = {
+				research_speed_factor = 0.05
+			}
+		}
+
+		remove_effect = {
+			TNO_improve_academic_base_low = yes
+			add_to_variable = { academic_base_counter = 5 }
+			TNO_improve_research_facilities_low = yes
+			add_to_variable = { research_facilities_counter = 5 }
+			TNO_improve_industrial_expertise_med = yes
+			add_to_variable = { industrial_expertise_counter = 5 }
+			random_list = {
+				5 = {
+					add_tech_bonus = {
+						name = industry
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_tech_bonus = {
+						name = electronics
+						bonus = 0.25
+						uses = 1
+						category = electronics
+					}
+					add_manpower = 10000
+				}
+				15 = {
+					add_tech_bonus = {
+						name = industry
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 9000
+				}
+				25 = {
+					add_tech_bonus = {
+						name = industry
+						bonus = 0.25
+						uses = 1
+						category = industry
+					}
+					add_tech_bonus = {
+						name = construction_tech
+						bonus = 0.25
+						uses = 1
+						category = construction_tech
+					}
+					add_manpower = 9000
+				}
+				55 = {
+					add_manpower = 8000
+				}
+			}	
+		}
+		complete_effect = {
+			add_manpower = -10000
+		}
+		cost = 50
+		ai_will_do = {
+			base = 0
+			modifier = {
+				factor = 0
+				has_manpower > 500000
+			}
+		}
+	}
+}	

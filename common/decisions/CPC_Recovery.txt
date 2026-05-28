@@ -1,0 +1,524 @@
+CPC_Recovery_category = {
+	Chongqing_recovery_ac60 = {
+		visible = { CHQ = { exists = no } }
+		available = { CHQ = { exists = no } }
+		ai_will_do = {
+			factor = 100
+		}
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+		}
+		remove_effect = {
+			set_technology = { NSB_AC_1960 = 1 }
+			create_equipment_variant = {
+				name = "[AC]Chongqing-13"
+				type = armored_car_chassis_2
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_auto_cannon_2
+					turret_type_slot = AC_two_man_tank_turret
+					suspension_type_slot = tank_wheeled_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_diesel_engine
+					special_type_slot_1 = command_optics
+					special_type_slot_2 = smoke_launchers
+					special_type_slot_3 = tank_radio_1
+				}
+				icon = GFX_CPC_AC_60_chongqing_medium
+				upgrades = {
+					ac_nsb_engine_upgrade = 5
+					ac_nsb_armor_upgrade = 1
+				}
+			}	
+		}
+	}
+
+	Chongqing_recovery_apc50 = {
+		visible = { always = no }
+		available = { always = no }
+		ai_will_do = {
+			factor = 100
+		}
+		fire_only_once = yes
+		complete_effect = {
+			create_equipment_variant = {
+				name = "[APC]Chongqing-10"
+				type = APC_chassis_1
+				parent_version = 0
+				modules = {
+					APC_designation_slot = APC_infantry
+					APC_armament_slot = APC_infantry_weapon
+					suspension_type_slot = tank_torsion_bar_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_diesel_engine
+					special_type_slot_1 = tank_radio_1
+				}
+				icon = GFX_CPC_APC_50_chongqing_medium
+				upgrades = {
+					ac_nsb_engine_upgrade = 7
+					ac_nsb_armor_upgrade = 1
+				}
+			}	
+		}
+	}
+
+	Chongqing_recovery_apc60 = {
+		visible = { CHQ = { exists = no } }
+		available = { CHQ = { exists = no } }
+		ai_will_do = {
+			factor = 100
+		}
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+		}
+		remove_effect = {
+			set_technology = { NSB_APC_1960 = 1 }
+			create_equipment_variant = {
+				name = "[APC]Chongqing-20"
+				type = APC_chassis_2
+				parent_version = 0
+				modules = {
+					APC_designation_slot = APC_infantry
+					APC_armament_slot = APC_infantry_weapon_2
+					suspension_type_slot = tank_torsion_bar_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_diesel_engine
+					special_type_slot_1 = tank_radio_1
+					special_type_slot_2 = additional_machine_guns
+				}		
+				icon = GFX_CPC_APC_60_chongqing_medium
+				upgrades = {
+					ac_nsb_engine_upgrade = 6
+					ac_nsb_armor_upgrade = 6
+				}
+			}	
+		}
+	}
+
+	Chongqing_recovery_equipments = {
+		visible = { 
+			CHQ = { exists = no }
+		}
+		available = { CHQ = { exists = no } }
+		ai_will_do = {
+			factor = 100
+		}
+		days_remove = 30
+		fire_only_once = yes
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_2
+				amount = 1000
+				producer = GNG
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 200
+				producer = GNG
+			}
+		}
+		remove_effect = {
+			CPC = {
+				add_tech_bonus = {
+					bonus = 0.4
+					uses = 2
+					category = infantry_weapons
+				}
+				if = { 
+					limit = { 
+						has_dlc = "No Step Back"
+					}
+					add_equipment_to_stockpile = {
+						type = APC_chassis_2
+						amount = 150
+						producer = GNG
+					}
+				}
+				else = {
+					add_equipment_to_stockpile = {
+						type = APC_equipment_2
+						amount = 150
+						producer = GNG
+					}
+				}
+			}
+		}
+	}
+
+	Guangdong_recovery_alltechs = {		
+		visible = { GNG = { exists = no } }
+		available = { GNG = { exists = no } }
+		ai_will_do = {
+			base = 100
+		}
+		days_remove = 100
+		fire_only_once = yes
+		remove_effect = {
+			hidden_effect = {
+				set_technology = {
+					basic_train = 1
+
+					##INFANTRY##
+					# infantry_equipment_0 = 1
+					infantry_weapons_1 = 1
+					night_vision_1 = 1
+
+					infantry_kit_1 = 1
+					infantry_weapons_2 = 1
+					night_vision_2 = 1
+					infantry_kit_2 = 1
+					infantry_weapons_improvements_mine_1 = 1
+					infantry_kit_3 = 1
+					infantry_weapons_improvements_ammo_1 = 1
+					infantry_weapons_improvements_grenade_1 = 1
+					#
+					infantry_weapons_3 = 1
+					night_vision_3 = 1
+					infantry_kit_4 = 1
+					infantry_weapons_improvements_mine_2 = 1
+					infantry_weapons_improvements_ammo_2 = 1
+					infantry_weapons_improvements_grenade_2 = 1
+					infantry_weapons_4 = 1
+					basic_infantry_equipment = 1
+					support_weapons = 1
+					support_weapons_hmg_1 = 1
+					combat_support_equipment_1 = 1
+
+					support_weapons_arty_1 = 1
+					support_weapons_hmg_2 = 1
+					combat_support_equipment_2 = 1
+					support_weapons_arty_2 = 1
+					combat_support_equipment_3 = 1
+
+					infantry_at = 1
+					infantry_at_upgrade_1 = 1
+					#
+					infantry_at2 = 1
+					infantry_at_upgrade_2
+					infantry_at3 = 1
+
+					motorized_infantry = 1
+					motorized_rocket_unit = 1
+					motorized_infantry_1 = 1
+					motorized_infantry_2 = 1
+					marines = 1
+					#
+					tech_special_forces = 1
+					marines2 = 1
+					tech_mountaineers = 1
+					#
+					tech_mountaineers2 = 1
+					tech_mountaineers3 = 1
+					paratroopers = 1
+					paratroopers2 = 1
+					paratroopers3 = 1
+
+					##SUPPORT##
+					tech_support = 1
+					tech_engineers = 1
+					assault_weapons_1 = 1
+					tech_engineers2 = 1
+					assault_weapons_2 = 1
+					tech_engineers3 = 1
+					assault_weapons_3 = 1
+					tech_recon = 1
+					tech_recon2 = 1
+					tech_military_police = 1
+					tech_military_police2 = 1
+					tech_military_police3 = 1
+					tech_maintenance_company = 1
+					tech_maintenance_company2 = 1
+					tech_field_hospital = 1
+					tech_field_hospital2 = 1
+					tech_logistics_company = 1
+					tech_signal_company = 1
+					tech_signal_company2 = 1
+
+					##HELICOPTERS##
+					very_early_helicopter = 1
+					early_helicopter = 1
+					transport_helicopter_1960 = 1
+					attack_helicopter_1960 = 1
+					scout_helicopter_1960 = 1
+
+					##LIGHT AIR##
+					early_fighter = 1
+					interceptor_1945 = 1
+					interceptor_1950 = 1
+					interceptor_1960 = 1
+					fighter_1945 = 1
+					fighter_1950 = 1
+					fighter_1960 = 1
+					cv_1945_fighter = 1
+					cv_1950_fighter = 1
+					cv_1960_fighter = 1
+
+					CAS_1945 = 1
+					CAS_1950 = 1
+					CAS_1960 = 1
+					cv_1945_CAS = 1
+					cv_1950_CAS = 1
+
+					##HEAVY AIR##
+					tac_bomber1 = 1
+					tac_air_1945 = 1
+					tac_air_1950 = 1
+					tac_air_1960 = 1
+					strategic_bomber1 = 1
+					heavy_air_1945 = 1
+					heavy_air_1950 = 1
+					heavy_air_1960 = 1
+					transport_air1 = 1
+					transport_air_1945 = 1
+					transport_air_1950 = 1
+					transport_air_1960 = 1
+
+					##ENGINEERING##
+					electronic_mechanical_engineering = 1
+					radio = 1
+					radio_detection = 1
+					decimetric_radar = 1
+					centimetric_radar = 1
+					radar_1950 = 1
+					radar_1960 = 1
+					mechanical_computing = 1
+					computing_machine = 1
+					basic_encryption = 1
+					basic_decryption = 1
+					improved_computing_machine = 1
+					improved_encryption = 1
+					improved_decryption = 1
+					advanced_computing_machine = 1
+					advanced_encryption = 1
+					advanced_decryption = 1
+					computing_machine_1950 = 1
+					encryption_1950 = 1
+					encryption_1960 = 1
+					decryption_1950 = 1
+					decryption_1960 = 1
+					computing_machine_1960 = 1
+
+					helicopter_engines = 1
+					jet_engines = 1
+					jet_engines_bombers = 1
+					improved_jet_engines_bombers_1 = 1
+
+					##INDUSTRY##
+					ww2_line_production = 1
+					building_construction_1 = 1
+					consumer_goods_reduction_1 = 1
+					consumer_goods_reduction_2 = 1
+					oil_processing = 1
+					rubber_processing = 1
+					energy_technology_1 = 1
+					social_construction_1 = 1
+					resource_extraction_methods = 1
+					excavation0 = 1
+					administration_construction_1 = 1
+					army_base_construction_1 = 1
+					excavation1 = 1
+					military_construction_1 = 1
+					prison_construction_1 = 1
+					mass_production_1 = 1
+					mass_production_2 = 1
+				}
+
+				# NSB tech #
+
+				if = {
+					limit = {
+						NOT = { has_dlc = "No Step Back" }
+					}
+					set_technology = {
+						APC_1945 = 1
+						APC_1950 = 1
+						APC_1950_basic_turret = 1
+						APC_1950_basic_armor = 1
+						APC_1960 = 1
+						APC_1960_basic_armor = 1
+						APC_1960_basic_turret = 1
+						IFV_1945 = 1
+						IFV_1950 = 1
+						IFV_1950_basic_turret = 1
+						IFV_1950_basic_armor = 1
+						IFV_1960 = 1
+						IFV_1960_basic_armor = 1
+						IFV_1960_basic_turret = 1
+						MBT_1945 = 1
+						MBT_1950 = 1
+						MBT_1950_basic_turret = 1
+						MBT_1950_basic_armor = 1
+						MBT_1960 = 1
+						MBT_1960_basic_armor = 1
+						MBT_1960_basic_turret = 1
+						AC_1945 = 1
+						AC_1950 = 1
+						AC_1960 = 1
+
+						antiair_1945 = 1
+						antiair_1950 = 1
+						SPAA_1950 = 1
+						SPAA_1950_armor = 1
+						SPAA_1950_air_attack = 1
+						SPAA_1950_armor_2 = 1
+						SPAA_1950_air_attack_2 = 1
+						SPAA_1950_armor_3 = 1
+						SPAA_1950_air_attack_3 = 1
+						SPAA_1960 = 1
+						artillery_1945 = 1
+						artillery_1950 = 1
+						artillery_1950_soft_attack = 1
+						artillery_1950_soft_attack_2 = 1
+						artillery_1950_soft_attack_3 = 1
+						SPART_1950 = 1
+						SPART_1950_soft_attack = 1
+						SPART_1950_soft_attack_2 = 1
+						SPART_1950_soft_attack_3 = 1
+						SPART_1950_armor = 1
+						SPART_1950_armor_2 = 1
+						SPART_1950_armor_3 = 1
+						SPART_1960 = 1
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "No Step Back"
+					}
+					set_technology = {
+						NSB_APC_1945 = 1
+						NSB_APC_1950 = 1
+						NSB_APC_1960 = 1
+						NSB_IFV_1945 = 1
+						NSB_IFV_1945_modules_1 = 1
+						NSB_IFV_1945_modules_2 = 1
+						NSB_IFV_1950 = 1
+						NSB_IFV_1950_modules_1 = 1
+						NSB_IFV_1950_modules_2 = 1
+						NSB_IFV_1960 = 1
+						NSB_IFV_1960_modules_1 = 1
+						NSB_IFV_1960_modules_2 = 1
+						NSB_MBT_1945 = 1
+						NSB_MBT_1945_modules_1 = 1
+						NSB_MBT_1945_modules_2 = 1
+						NSB_MBT_1950 = 1
+						NSB_MBT_1950_modules_1 = 1
+						NSB_MBT_1950_modules_2 = 1
+						NSB_MBT_1960 = 1
+						NSB_MBT_1960_modules_1 = 1
+						NSB_MBT_1960_modules_2 = 1
+						NSB_AC_1945 = 1
+						NSB_AC_1950 = 1
+						NSB_AC_1960 = 1
+						NSB_Armour_1 = 1
+						NSB_Armour_2 = 1
+						NSB_Armour_3 = 1
+						NSB_Engine_1 = 1
+						NSB_Engine_2 = 1
+						NSB_Engine_3 = 1
+					
+						NSB_artillery_1945 = 1
+						NSB_artillery_1950 = 1
+						NSB_artillery_MODULE = 1
+						NSB_artillery_1950_SA = 1
+						NSB_artillery_1950_SA_2 = 1
+						NSB_artillery_1950_SA_3 = 1
+					
+						NSB_antiair_1945 = 1
+						NSB_antiair_1950 = 1
+						NSB_antiair_MODULE = 1
+						NSB_antiair_1950_AA = 1
+						NSB_antiair_1950_AA_2 = 1
+						NSB_antiair_1950_AA_3 = 1
+					}
+				}
+
+				#MtG Naval Tech
+				if = {
+					limit = { has_dlc = "Man the Guns" }
+					set_technology = {
+						early_ship_hull_very_light = 1
+						basic_ship_hull_very_light = 1
+						improved_ship_hull_very_light = 1
+						early_ship_hull_more_light = 1
+						basic_ship_hull_more_light = 1
+						improved_ship_hull_more_light = 1
+						early_ship_hull_light = 1
+						basic_ship_hull_light = 1
+						improved_ship_hull_light = 1
+						early_ship_hull_cruiser = 1
+						basic_ship_hull_cruiser = 1
+						improved_ship_hull_cruiser = 1
+						early_ship_hull_heavy = 1
+						early_ship_hull_carrier = 1
+						basic_ship_hull_carrier = 1
+						improved_ship_hull_carrier = 1
+						early_ship_hull_submarine = 1
+						basic_ship_hull_submarine = 1
+						improved_ship_hull_submarine = 1
+						missile_corvette_1960 = 1
+						nuclear_cruiser_1960 = 1
+						mtg_transport = 1
+						mtg_landing_craft = 1
+						nuclear_carrier_1960 = 1
+						nuclear_battleship_1960 = 1
+						basic_naval_mines = 1
+						basic_torpedo = 1
+						improved_ship_torpedo_launcher = 1
+						basic_secondary_battery = 1
+						improved_secondary_battery = 1
+						basic_battery = 1
+						basic_light_battery = 1
+						basic_medium_battery = 1
+						basic_heavy_battery = 1
+						fire_control_methods_1 = 1
+						fire_control_methods_2 = 1
+						damage_control_1 = 1
+						basic_ship_hull_submarine_japan = 1
+						continue_battleship_development = 1
+
+						sonar = 1
+						improved_sonar = 1
+						good_sonar = 1
+
+						smoke_generator = 1
+
+						basic_depth_charges = 1
+						improved_depth_charges = 1
+						advanced_depth_charges = 1
+
+						basic_fire_control_system = 1
+						improved_fire_control_system = 1
+					}
+				}
+
+				#Non-MtG Naval Tech
+				if = {
+					limit = { NOT = { has_dlc = "Man the Guns" } }
+					set_technology = {
+						ww2_destroyer = 1
+						basic_destroyer = 1
+						improved_destroyer = 1
+						ww2_cruiser = 1
+						basic_cruiser = 1
+						improved_cruiser = 1
+						ww2_battleship = 1
+						ww2_carrier = 1
+						early_carrier = 1
+						improved_carrier = 1
+						ww2_submarine = 1
+						basic_submarine = 1
+						improved_submarine = 1
+						transport = 1
+						landing_craft = 1
+						improved_carrier_nuclear_engine = 1
+						ww2_frigate = 1
+						basic_frigate = 1
+						improved_frigate = 1
+					}
+				}
+			}
+		}
+	}
+}
