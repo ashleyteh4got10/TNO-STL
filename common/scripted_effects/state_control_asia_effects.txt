@@ -1,4 +1,221 @@
 ##SORTED BY STARTING TAG, AND THEN STATE ID NUMBER
+##TER EFFECTS##
+TER_state_control_fire_events_325 = {
+	if = {
+		limit = {
+			325 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC 
+			}
+			CPC = { has_country_flag = CPC_Yang_Yingcai_lives }
+		}
+		325 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_Yang_Yingcai_stories.325 }
+		}
+	}
+}
+
+TER_state_control_fire_events_1640 = {
+	if = {
+		limit = {
+			1640 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC 
+			}
+			CPC = { has_country_flag = CPGAC_prop_CPC_PLA_reform_R }
+		}
+		1640 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_TRCW.1640 }
+		}
+	}
+}
+
+TER_state_control_fire_events_1023 = {
+	if = {
+		limit = {
+			1023 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC
+			}
+			CPC = { has_country_flag = CPC_Yang_Yingcai_die }
+		}
+		1023 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_Yang_Yingcai_stories.1023 }
+		}
+	}
+}
+
+TER_state_control_fire_events_328 = {
+	if = {
+		limit = {
+			328 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC
+			}
+		}
+		328 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_TRCW.328 }
+		}
+	}
+}
+TER_state_control_fire_events_613 = {
+	if = {
+		limit = { 
+			613 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC
+			}
+		}
+		613 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_TRCW.613 }
+		}
+	}
+}
+
+TER_state_control_fire_events_599 = {
+	if = {
+		limit = {
+			599 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC 
+			}
+		}
+		599 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_TRCW.599 }
+		}
+	}
+}
+TER_state_control_fire_events_615 = {
+	if = {
+		limit = {
+			615 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC 
+			}
+		}
+		615 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_TRCW.615 }
+		}
+	}
+}
+TER_state_control_fire_events_813 = {
+	if = {
+		limit = {
+			813 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC 
+			}
+		}
+		813 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_TRCW.813 }
+		}
+	}
+}
+TER_state_control_fire_events_607 = {
+	if = {
+		limit = {
+			607 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC 
+			}
+		}
+		607 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_TRCW.607 }
+		}
+	}
+}
+TER_state_control_fire_events_596 = {
+	if = {
+		limit = {
+			596 = { 
+				NOT = { has_state_flag = TER_has_fired_event }
+				is_controlled_by = CPC 
+			}
+		}
+		596 = { set_state_flag = TER_has_fired_event }
+		CPC = { country_event = { id = CPC_TRCW.596 }
+		}
+	}
+}
+
+state_control_effect_330 = {
+	if = {
+		limit = {
+			has_global_flag = TNO_endonym_mode
+			is_controlled_by = MON
+		}
+		set_state_name = STATE_330_mon
+		set_province_name = { id = 4801 name = VICTORY_POINTS_4801_mon }
+	}
+	else = {
+		reset_state_name = yes
+		reset_province_name = 4801
+	}
+}
+
+#AZH
+state_control_effect_1348 = {
+	if = {
+		limit = { is_controlled_by = AZH }
+		set_state_name = STATE_1348_ind_azh
+		set_province_name = { id = 11929 name = VICTORY_POINTS_11929_azh_eng }
+		if = {
+			limit = { has_global_flag = TNO_endonym_mode }
+			set_province_name = { id = 11929 name = VICTORY_POINTS_11929_ind_azh }
+		}
+		if = {
+			limit = { has_global_flag = TNO_exonym_mode }
+			set_state_name = STATE_1348_azh_eng
+		}
+	}
+	else_if = {
+		limit = { is_controlled_by = IND }
+		reset_province_name = 11929
+		if = {
+			limit = { has_global_flag = TNO_endonym_mode }
+			set_province_name = { id = 11929 name = VICTORY_POINTS_11929_ind_azh }
+		}
+		if = {
+			limit = { has_global_flag = TNO_exonym_mode }
+			reset_state_name = yes
+		}
+	}
+	else = {
+		reset_state_name = yes
+		reset_province_name = 11929
+	}
+}
+state_control_effect_1349 = {
+	if = {
+		limit = { is_controlled_by = AZH }
+		set_state_name = STATE_1349_ind_azh
+		set_province_name = { id = 4245 name = VICTORY_POINTS_4245_azh_eng }
+		if = {
+			limit = { has_global_flag = TNO_endonym_mode }
+			set_province_name = { id = 4245 name = VICTORY_POINTS_4245_ind_azh }
+		}
+		if = {
+			limit = { has_global_flag = TNO_exonym_mode }
+			set_state_name = STATE_1349_azh_eng
+		}
+	}
+	else_if = {
+		limit = { is_controlled_by = IND }
+		reset_province_name = 4245
+		if = {
+			limit = { has_global_flag = TNO_endonym_mode }
+			set_province_name = { id = 4245 name = VICTORY_POINTS_4245_ind_azh }
+		}
+		if = {
+			limit = { has_global_flag = TNO_exonym_mode }
+			reset_state_name = yes
+		}
+	}
+	else = {
+		reset_state_name = yes
+		reset_province_name = 4245
+	}
+}
 #AFG
 state_control_effect_267 = {
 	if = {
@@ -2015,7 +2232,7 @@ state_control_effect_537 = {
 		limit = {
 			OR = {
 				is_controlled_by = CHI
-				is_controlled_by = YUN
+				is_controlled_by = CPC
 			}
 		}
 		set_province_name = { id = 12446 name = VICTORY_POINTS_12446_chi }
@@ -2101,7 +2318,7 @@ state_control_effect_809 = {
 			OR = {
 				is_controlled_by = MAN
 				is_controlled_by = CHI
-				is_controlled_by = YUN
+				is_controlled_by = CPC
 			}
 		}
 		set_state_name = STATE_809_chi
@@ -3490,140 +3707,70 @@ state_control_effect_2197 = {
 }
 
 #MEN
-#MEN
-state_control_effect_330 = {
-	if = {
-		limit = {
-			OR = {
-				controller = {
-					has_government = communist
-					has_government = socialist
-					original_tag = MON ### SWRW ###
-				}
-			}
-		}
-		set_province_name = { id = 4801 name = VICTORY_POINTS_4801_mon }
-		reset_province_name = 1728
-		reset_province_name = 1859
-		reset_province_name = 12686
-	}
-	else_if = {
-		limit = {
-			is_controlled_by = MEN
-		}
-		reset_province_name = 1728
-		reset_province_name = 1859
-		reset_province_name = 4801
-		reset_province_name = 12686
-	}
-	else_if = {
-		limit = {
-			has_global_flag = TNO_endonym_mode
-		}
-		set_province_name = { id = 1728 name = VICTORY_POINTS_1728_chi }
-		set_province_name = { id = 1859 name = VICTORY_POINTS_1859_chi }
-		set_province_name = { id = 4801 name = VICTORY_POINTS_4801_chi }
-		set_province_name = { id = 12686 name = VICTORY_POINTS_12686_chi }
-	}
-} #
 state_control_effect_612 = {
 	if = {
 		limit = {
 			is_controlled_by = MEN
 		}
-		reset_province_name = 1590
-		reset_province_name = 10372
+		set_state_name = STATE_612_men
+		set_province_name = { id = 6904 name = VICTORY_POINTS_6904_men }
+		if = {
+			limit = { has_global_flag = TNO_endonym_mode }
+			set_province_name = { id = 19727 name = VICTORY_POINTS_19727_men }
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				is_controlled_by = CHI
+				is_controlled_by = CPC
+			}
+		}
+		set_state_name = STATE_612_chi
+		reset_province_name = 6904
+		set_province_name = { id = 19727 name = VICTORY_POINTS_19727_chi }
 	}
 	else = {
-		set_province_name = { id = 1590 name = VICTORY_POINTS_1590_chi }
-		set_province_name = { id = 10372 name = VICTORY_POINTS_10372_chi }
+		reset_state_name = yes
+		reset_province_name = 6904
+		reset_province_name = 19727
 	}
 }
 state_control_effect_621 = {
 	if = {
-		limit = {
-			OR = {
-				is_controlled_by = MEN
-				is_controlled_by = MON
-				is_controlled_by = JAP #put here until we get japanese names for these
-			}
-		}
+		limit = { is_controlled_by = MEN }
+		set_state_name = STATE_621_men
+	}
+	else = {
 		reset_state_name = yes
-		reset_province_name = 10424
-		if = {
-			limit = { has_global_flag = TNO_exonym_mode }
-			reset_province_name = 12609
-		}
-		else = { set_province_name = { id = 12609 name = VICTORY_POINTS_12609_mon } }
-	}
-	else = {
-		#set_state_name = STATE_621_chi
-		set_province_name = { id = 10424 name = VICTORY_POINTS_10424_chi }
-		reset_province_name = 12609
-	}
-}
-state_control_effect_814 = {
-	if = {
-		limit = {
-			OR = {
-				is_controlled_by = MEN
-				is_controlled_by = MON
-				is_controlled_by = JAP #put here until we get japanese names for these
-				NOT = { has_global_flag = TNO_endonym_mode }
-			}
-		}
-		reset_province_name = 1834
-		reset_province_name = 4751
-		reset_province_name = 10695
-		reset_province_name = 12544
-	}
-	else = {
-		set_province_name = { id = 1834 name = VICTORY_POINTS_1834_chi }
-		set_province_name = { id = 4751 name = VICTORY_POINTS_1834_chi }
-		set_province_name = { id = 10695 name = VICTORY_POINTS_10695_chi }
-		set_province_name = { id = 12544 name = VICTORY_POINTS_12544_chi }
-	}
-}
-state_control_effect_815 = {
-	if = {
-		limit = {
-			OR = {
-				is_controlled_by = MEN
-				is_controlled_by = MON
-				is_controlled_by = JAP #put here until we get japanese names for these
-				NOT = { has_global_flag = TNO_endonym_mode }
-			}
-		}
-		reset_province_name = 4856
-		reset_province_name = 10647
-		reset_province_name = 12669
-	}
-	else = {
-		set_province_name = { id = 4856 name = VICTORY_POINTS_4856_chi }
-		set_province_name = { id = 10647 name = VICTORY_POINTS_10647_chi }
-		set_province_name = { id = 12669 name = VICTORY_POINTS_12669_chi }
 	}
 }
 state_control_effect_955 = {
 	if = {
+		limit = { is_controlled_by = MEN }
+		set_state_name = STATE_955_men
+		set_province_name = { id = 19563 name = VICTORY_POINTS_19563_men }
+		set_province_name = { id = 1959 name = VICTORY_POINTS_1959_men }
+	}
+	else_if = {
 		limit = {
 			OR = {
-				is_controlled_by = MEN
-				is_controlled_by = MON
+				is_controlled_by = CHI
+				is_controlled_by = CPC
 			}
 		}
 		reset_state_name = yes
-	}
-	else_if = {
-		limit = { is_controlled_by = JAP }
+		reset_province_name = 19563
 		if = {
-			limit = { has_global_flag = TNO_endonym_mode }
-			set_state_name = STATE_955_jap
+			limit = { has_global_flag = TNO_endonym_flag }
+			set_province_name = { id = 19563 name = VICTORY_POINTS_19563_chi }
 		}
-		else = { reset_state_name = yes }
+		reset_province_name = 1959
 	}
 	else = {
-		set_state_name = STATE_955_chi
+		reset_state_name = yes
+		reset_province_name = 19563
+		reset_province_name = 1959
 	}
 }
 state_control_effect_2406 = {
@@ -3639,7 +3786,7 @@ state_control_effect_2406 = {
 		limit = {
 			OR = {
 				is_controlled_by = CHI
-				is_controlled_by = YUN
+				is_controlled_by = CPC
 			}
 		}
 		reset_state_name = yes
@@ -3675,7 +3822,7 @@ state_control_effect_2408 = {
 		limit = {
 			OR = {
 				is_controlled_by = CHI
-				is_controlled_by = YUN
+				is_controlled_by = CPC
 			}
 		}
 		set_state_name = STATE_2408_chi
@@ -3693,7 +3840,7 @@ state_control_effect_2409 = {
 		limit = {
 			OR = {
 				is_controlled_by = CHI
-				is_controlled_by = YUN
+				is_controlled_by = CPC
 			}
 			has_global_flag = TNO_endonym_mode
 		}

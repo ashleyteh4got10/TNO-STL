@@ -22,6 +22,17 @@ CPC_RUS_debug_dec = {
 			}
 		}
 	}
+	TER2WRW_debug_dec_play_manosaba = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			MGI = {
+				every_unit_leader = {
+					set_nationality = ROOT
+				}
+			}
+		}
+	}
 	TER2WRW_debug_dec_comintern_foundation = {
 		icon = GFX_decision_generic_form_nation
 		cost = 0
@@ -115,18 +126,12 @@ CPC_RUS_debug_dec = {
 						target = VIN
 						transfer_troops = no
 					}
-if = {
-	limit = {
-		has_dlc = "No Compromise, No Surrender"
-	}
+
 	create_faction_from_template = { name = SEA_revolution_league template = faction_template_generic }
 	add_faction_goal_slot = { category = short_term  value = -10 }
     add_faction_goal_slot = { category = medium_term value = -10 }
     add_faction_goal_slot = { category = long_term   value = -10 }
-}
-else = {
-	create_faction = SEA_revolution_league
-}
+
 				add_to_faction = KPA
 				if = {
 					limit = { CPI =  { exists = yes } }
@@ -308,7 +313,7 @@ else = {
 
 CPC_Mon_Mfn_help_dec = {
 	help_with_mfn_dec = {
-		cost = 1
+		fire_only_once = yes
 		visible = {
 			MFN = { has_war_with = MEN }
 		}
@@ -319,24 +324,73 @@ CPC_Mon_Mfn_help_dec = {
 		}
 	}
 	infrastructure_construction_dec = {
-		cost = 30
+		cost = 15
+		days_remove = 20
+		days_re_enable = 10
+		custom_effect_tooltip = "CPC_infrastructure_construction_tt"
+		modifier = { consumer_goods_production_factor = 0.1 }
 		visible = {
 			MON = { has_idea = CPC_MRC_modifier_idea}
-			date > 1963.2.1
+			date < 1963.3.1
 		}
 		
 		complete_effect = {
-		  330 = {
-			  add_building_construction = {
-				 type = infrastructure
-				 level = 1 
+			TNO_improve_industrial_expertise_low = yes
+			set_temp_variable = { debt_temp = 0.01 }
+		    econ_national_debt_change = yes
+
+			random_list = {
+					50 = { limit = { infrastructure < 10 }
+						955 = { 
+							STL_add_infrastructure = yes
+						}
+					}
+					50 = { 
+						2408 = { 
+							STL_add_infrastructure = yes
+						}
+					}
+					50 = { 
+						2409 = { 
+							STL_add_infrastructure = yes
+						}
+					}
+			}
+			MON = {
+				random_owned_controlled_state = {
+					limit = {  infrastructure < 10 }
+					STL_add_infrastructure = yes
 				}
 			}
-		  
-		  955 = {
-			  add_building_construction = {
-				 type = infrastructure
-				 level = 1 
+		}
+	}
+	mine_craft_dec = {
+		cost = 20
+		days_remove = 30
+		days_re_enable = 40
+
+		modifier = { consumer_goods_production_factor = 0.1 }
+
+		visible = {
+			
+		}
+		
+		complete_effect = {
+			set_temp_variable = { debt_temp = 0.01 }
+		    econ_national_debt_change = yes
+			set_temp_variable = { gdp_growth_temp = 0.1 }
+			econ_gdp_growth_change = yes
+			MON = {
+				random_owned_controlled_state = {
+					random_list = {
+						50 = { add_resource = { type = oil amount = 1 } }
+						50 = { add_resource = { type = chromium amount = 2 } }
+						50 = { add_resource = { type = steel amount = 3 } }
+						50 = { add_resource = { type = aluminium amount = 3 } }
+						50 = { add_resource = { type = tungsten amount = 3 } }
+					}
+					give_resource_rights = { receiver = CPC state = PREV resources = { oil chromium steel aluminium tungsten } }
+					add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.1 } }
 				}
 			}
 		}

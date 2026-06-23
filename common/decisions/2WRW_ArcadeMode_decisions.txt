@@ -1,0 +1,149 @@
+TNO_ArcadeMode_category = {
+	SWRW_ArcadeMode_Dont_touch = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			has_global_flag = SGR_natsoc_collapse
+		}
+		fire_only_once = yes
+		complete_effect = {
+			hidden_effect = {
+				log = "[GetDateText]: [Root.GetName]: Decision SWRW_ArcadeMode_Dont_touch"
+				every_country = {
+					limit = { NOT = { original_tag = ZZZ } }
+					create_country_leader = {
+						name = leader_streng_geheim
+						picture = "gfx/leaders/debug/mrbeast.png"
+						desc = leader_streng_geheim_desc
+						expire = "1999.3.4"
+						ideology = national_socialism_deep_ecology_nazism_subtype
+					}
+					set_politics = {
+						ruling_party = national_socialism
+					}
+					add_popularity = {
+						ideology = national_socialism
+						popularity = 1
+					}
+				}
+			}
+		}
+	}
+	SWRW_ArcadeMode_Replace_Klopfer = {
+		available = {
+			GER = {
+				has_character = GER_gerhard_klopfer
+			}
+		}
+		icon = GFX_decision_generic_ignite_civil_war
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision SWRW_ArcadeMode_Replace_Klopfer"
+			hidden_effect = {
+				GER = {
+					GER_gerhard_klopfer = {
+						set_character_name = "Theodor Pfizer"
+						set_portraits = {
+							civilian = {
+								large = "gfx/leaders/debug/GER_Theodor_Pfizer.png"
+								small = "gfx/leaders/debug/GER_Theodor_Pfizer_minister.png"
+							}
+						}
+					}
+					set_country_leader_description = {
+						desc = ""
+					}
+				}
+			}
+		}
+	}
+	SWRW_ArcadeMode_save_britain = {
+		fire_only_once = yes
+		icon = GFX_decision_generic_ignite_civil_war
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: SWRW_ArcadeMode_save_britain"
+			hidden_effect = {
+				WRW_save_britain = yes
+			}
+		}
+	}
+	SWRW_ArcadeMode_save_america = {
+		fire_only_once = yes
+		icon = GFX_decision_generic_ignite_civil_war
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: SWRW_ArcadeMode_save_america"
+			hidden_effect = {
+				WRW_save_america = yes
+			}
+		}
+	}
+	SWRW_ArcadeMode_batov = {
+		fire_only_once = yes
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			has_global_flag = RUS_national_unification
+			RUS = {
+				has_country_leader = { character = SVR_Pavel_Batov ruling_only = yes }
+			}
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: SWRW_ArcadeMode_batov"
+			hidden_effect = {
+				random_list = {
+					50 = {
+						set_politics = {
+							ruling_party = communist
+						}
+						add_popularity = {
+							ideology = communist
+							popularity = 1
+						}
+						SVR_Pavel_Batov = {
+							add_country_leader_role = {
+								country_leader = {
+									desc = "POLITICS_PAVEL_BATOV_70S_DESC"
+									traits = {
+										the_modern_suvorov
+									}
+									expire = "1999.1.1"
+									ideology = communist_stratocratic_communism_subtype
+									id = -1
+								}
+								promote_leader = yes
+							}
+						}
+						set_cosmetic_tag = WRS_RUS_tukha
+					}
+					50 = {
+						set_party_name = {
+							ideology = esoteric_totalitarianism
+							long_name = KOM_esoteric_totalitarianism_party_long
+							name = KOM_esoteric_totalitarianism_party
+						}
+						set_politics = {
+							ruling_party = esoteric_totalitarianism
+						}
+						add_popularity = {
+							ideology = esoteric_totalitarianism
+							popularity = 1
+						}
+						SVR_Pavel_Batov = {
+							add_country_leader_role = {
+								country_leader = {
+									desc = "POLITICS_PAVEL_BATOV_70S_DESC"
+									traits = {
+										the_modern_suvorov
+									}
+									expire = "1999.1.1"
+									ideology = esoteric_totalitarianism_imperial_cult_subtype
+									id = -1
+								}
+								promote_leader = yes
+							}
+						}
+						set_cosmetic_tag = KOM_RUSSIA_TABORITSKY
+					}
+				}
+			}
+		}
+	}
+}

@@ -1099,21 +1099,14 @@ Alert_SCB_rev_enabled_remove_alerts = {
 ANRL_foundation = {
 	custom_effect_tooltip = "CPC_ANRL_foundation"
 	hidden_effect = {
-		CPC = { 			if = {
-	limit = {
-		has_dlc = "No Compromise, No Surrender"
-	}
+		CPC = { 
 	create_faction_from_template = { name = Asia_National_Revolutionary_League template = faction_template_generic }
 	add_faction_goal_slot = { category = short_term  value = -10 }
     add_faction_goal_slot = { category = medium_term value = -10 }
     add_faction_goal_slot = { category = long_term   value = -10 }
-}
-else = {
-	create_faction = Asia_National_Revolutionary_League
-}
-				add_ideas = ANRL_Leader
-				set_country_flag = HAS_ECON_SPHERE
-				econ_join_sphere_CPC = yes }
+	add_ideas = ANRL_Leader
+	set_country_flag = HAS_ECON_SPHERE
+	econ_join_sphere_CPC = yes }
 		every_country = {
 			limit = { 
 				is_puppet_of = CPC 

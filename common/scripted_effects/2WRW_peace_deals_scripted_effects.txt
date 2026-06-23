@@ -76,9 +76,22 @@ RUS_remove_wargoals = {
 
 RUS_peace_out = {
 	clr_global_flag = nukes_disabled
-	every_country = {
-		limit = { has_war_with = RUS }
-		white_peace = RUS
+	RUS = {
+		if = {
+			limit = {
+				is_faction_leader = yes
+			}
+		}
+		white_peace = GER
+	}
+	CPC = {
+		if = {
+			limit = {
+				is_faction_leader = yes
+				has_war_with = GER
+			}
+		}
+		white_peace = GER
 	}
 }
 
