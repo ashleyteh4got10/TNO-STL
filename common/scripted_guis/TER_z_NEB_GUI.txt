@@ -1,0 +1,330 @@
+scripted_gui = {
+	NEB_main_gui = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "NEB_main_GUI"
+		visible = {
+			has_country_flag = CPC_main_GUI_open
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^5 = 2 }
+		}
+
+		triggers = {
+			NEB_page_prev_click_enabled = {
+				check_variable = { NEB_history_num > 1 }
+			}
+			NEB_page_next_click_enabled = {
+				check_variable = { NEB_history_num < NEB_max_history_num }
+			}
+		}
+
+		properties = {
+			NEB_leader_icon = {
+				image = "[NEB_first_leader_icon]"
+			}
+			NEB_secondary_icon = {
+				image = "[NEB_second_leader_icon]"
+			}
+			TER_NEB_hosting_service_btn = {
+				frame = NEB_hosting_service
+			}
+		}
+		effects = {
+			TER_NEB_hosting_service_btn_click = {
+				if = {
+					limit = {
+						check_variable = { NEB_hosting_service = 1 }
+					}
+					set_variable = { NEB_hosting_service = 2 }
+					add_political_power = -10
+					country_event = { id = NEB_support.1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { NEB_hosting_service = 2 }
+					}
+					set_variable = { NEB_hosting_service = 1 }
+					add_political_power = 10
+				}
+			}
+			NEB_page_prev_click = {
+				subtract_from_variable = { NEB_history_num = 1 }
+			}
+			NEB_page_next_click = {
+				add_to_variable = { NEB_history_num = 1 }
+			}
+			NEB_button_0_click = {
+				if = {
+					limit = {
+						has_country_flag = NEB_mission_gui
+					}
+					clr_country_flag = NEB_mission_gui
+				}
+				else = {
+					set_country_flag = NEB_mission_gui
+					clr_country_flag = NEB_abstract_help_open
+				}
+			}
+			NEB_mini_map_click = {
+				clear_variable = NEB_province
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			Changchun_click = {
+				set_variable = { NEB_province = 1 }
+				set_variable = { NEB_province_frame = NEB_info_contact^1 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			HaiLanPao_click = {
+				set_variable = { NEB_province = 2 }
+				set_variable = { NEB_province_frame = NEB_info_contact^2 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			QiqiHar_click = {
+				set_variable = { NEB_province = 3 }
+				set_variable = { NEB_province_frame = NEB_info_contact^3 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			JinZhou_click = {
+				set_variable = { NEB_province = 4 }
+				set_variable = { NEB_province_frame = NEB_info_contact^4 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			ShenYang_click = {
+				set_variable = { NEB_province = 5 }
+				set_variable = { NEB_province_frame = NEB_info_contact^5 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			Dalian_click = {
+				set_variable = { NEB_province = 6 }
+				set_variable = { NEB_province_frame = NEB_info_contact^6 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			Harbin_click = {
+				set_variable = { NEB_province = 7 }
+				set_variable = { NEB_province_frame = NEB_info_contact^7 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			HaiShenWai_click = {
+				set_variable = { NEB_province = 8 }
+				set_variable = { NEB_province_frame = NEB_info_contact^8 }
+				clr_country_flag = NEB_mission_gui
+			}
+			Poli_click = {
+				set_variable = { NEB_province = 9 }
+				set_variable = { NEB_province_frame = NEB_info_contact^9 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			Hailar_click = {
+				set_variable = { NEB_province = 10 }
+				set_variable = { NEB_province_frame = NEB_info_contact^10 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+			ManZhouLi_click = {
+				set_variable = { NEB_province = 11 }
+				set_variable = { NEB_province_frame = NEB_info_contact^11 }
+				clr_country_flag = NEB_mission_gui
+				clr_country_flag = NEB_abstract_help_open
+			}
+		}
+	}
+
+	NEB_abstract_gui = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "NEB_abstract_gui"
+
+		visible = {
+			NOT = { has_country_flag = NEB_mission_gui }
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^5 = 2 }
+		}
+
+		triggers = {
+			NEB_abstract_desc_visible = { has_variable = NEB_province }
+		}
+
+		effects = {
+			NEB_help_button_click = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = NEB_abstract_help_open }
+					}
+					set_country_flag = NEB_abstract_help_open
+				}
+				else = {
+					clr_country_flag = NEB_abstract_help_open
+				}
+			}
+		}
+	}
+	NEB_abstract_content = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "NEB_abstract_content"
+		visible = {
+			NOT = {
+				has_variable = NEB_province
+				has_country_flag = NEB_mission_gui
+			}
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^5 = 2 }
+		}
+	}
+	NEB_abstract_province = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "NEB_abstract_province"
+		visible = {
+			NOT = { has_country_flag = NEB_mission_gui }
+			has_variable = NEB_province
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^5 = 2 }
+		}
+
+		triggers = {
+			NEB_abstract_prepare_visible = { has_global_flag = NEB_prepare_province }
+			NEB_import_position_visible = { check_variable = { NEB_import_position_x^NEB_province > 50 } }
+		}
+		properties = {
+			NEB_import_position = {
+				x = NEB_import_position_x^NEB_province
+				y = 160
+			}
+			NEB_city_photo = {
+				image = "[NEB_city_photo]"
+			}
+		}
+		effects = {
+			NEB_province_science_click = {
+				set_variable = { NEB_support_type = 1 }
+				set_variable = { NEB_import_position_x^NEB_province = 10 }
+				NEB_support_selected = yes
+			}
+			NEB_province_edcation_click = {
+				set_variable = { NEB_support_type = 2 }
+				set_variable = { NEB_import_position_x^NEB_province = 63 }
+				NEB_support_selected = yes
+			}
+			NEB_province_equip_click = {
+				set_variable = { NEB_support_type = 3 }
+				set_variable = { NEB_import_position_x^NEB_province = 116 }
+				NEB_support_selected = yes
+			}
+			NEB_province_industry_click = {
+				set_variable = { NEB_support_type = 4 }
+				set_variable = { NEB_import_position_x^NEB_province = 169 }
+				NEB_support_selected = yes
+			}
+			NEB_province_medic_click = {
+				set_variable = { NEB_support_type = 5 }
+				set_variable = { NEB_import_position_x^NEB_province = 222 }
+				NEB_support_selected = yes
+			}
+		}
+	}
+	NEB_abstract_help = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "NEB_abstract_help"
+		visible = {
+			has_country_flag = NEB_abstract_help_open
+		}
+	}
+
+	NEB_misson_gui = {
+		context_type = player_context
+		parent_window_name = "CPC_main_GUI"
+		window_name = "NEB_misson_gui"
+
+		visible = {
+			has_country_flag = NEB_mission_gui
+			check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			check_variable = { CPC_GUI_tab_frames^5 = 2 }
+		}
+
+		triggers = {
+			NEB_mission_1_click_enabled = { has_country_flag = NEB_mission_1 }
+			NEB_mission_2_click_enabled = {
+				OR = {
+					has_country_flag = NEB_mission_201
+					has_country_flag = NEB_mission_202
+				}
+			}
+			NEB_mission_3_click_enabled = { has_country_flag = NEB_mission_3 }
+			NEB_mission_sub_1_click_enabled = { has_variable = NEB_mission }
+			NEB_mission_sub_2_click_enabled = { has_variable = NEB_mission }
+			NEB_mission_sub_3_click_enabled = { has_variable = NEB_mission }
+			NEB_mission_bar_animation_visible = { has_country_flag = NEB_mission_active }
+			NEB_mission_bar_visible = { has_country_flag = NEB_mission_active }
+			NEB_confirm_button_click_enabled = {
+				NOT = { has_country_flag = NEB_activate_task }
+				check_variable = { NEB_mission_complete^NEB_mission_sub_num = 0 }
+			}
+		}
+		properties = {
+			NEB_mission_bar = { frame = NEB_mission_frame }
+		}
+		effects = {
+			NEB_mission_1_click = {
+				if = {
+					limit = { NOT = { has_country_flag = NEB_mission_1_complete } }
+					set_country_flag = NEB_mission_active
+				}
+				set_variable = { NEB_mission = 1 }
+				set_variable = { NEB_mission_frame = 1 }
+			}
+			NEB_mission_2_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = NEB_mission_201_complete
+							has_country_flag = NEB_mission_202_complete
+						}
+					}
+					set_country_flag = NEB_mission_active
+				}
+				NEB_mission_2_support = yes
+			}
+			NEB_mission_3_click = {
+				if = {
+					limit = {
+						has_country_flag = NEB_mission_3_complete
+					}
+					set_variable = { NEB_mission_frame = 1 }
+				}
+				else = {
+					set_country_flag = NEB_mission_active
+					set_variable = { NEB_mission_frame = 34 }
+				}
+				set_variable = { NEB_mission = 3 }
+			}
+			NEB_mission_sub_1_click = {
+				NEB_mission_sub_1 = yes
+			}
+			NEB_mission_sub_2_click = {
+				NEB_mission_sub_2 = yes
+			}
+			NEB_mission_sub_3_click = {
+				NEB_mission_sub_3 = yes
+			}
+			NEB_confirm_button_click = {
+				if = {
+					limit = {
+						NEB_mission_sub_click_trigger = yes
+					}
+					TER_NEB_activate_task = yes
+				}
+			}
+		}
+	}
+}

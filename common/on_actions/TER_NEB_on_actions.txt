@@ -1,0 +1,30 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRWTER_Northeast_Bureau_content
+						option = DEFAULT
+					}
+				}
+				1364 = {
+					reset_state_name = yes
+				}
+			}
+		}
+	}
+	on_monthly_CPC = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = NEB_mission_201
+						has_country_flag = NEB_mission_202
+					}
+				}
+				NEB_get_equip_monthly = yes
+			}
+		}
+	}
+}

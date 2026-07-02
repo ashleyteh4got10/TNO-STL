@@ -10,6 +10,7 @@ TER_CPGAC_initialization = {
 	set_variable = { CPC_GUI_tab_frames^2 = 1 }
 	set_variable = { CPC_GUI_tab_frames^3 = 1 }
 	set_variable = { CPC_GUI_tab_frames^4 = 1 }
+	set_variable = { CPC_GUI_tab_frames^5 = 1 }
 	#宪法规定政府构成
 	add_to_array = { CPGAC_gov_composition_upper_limit = 0 } #placeholder
 	add_to_array = { CPGAC_gov_composition_upper_limit = 0.7 }
@@ -1204,6 +1205,15 @@ TER_CPGAC_end_an_urgent_task = {
 			add_stability = -0.2
 			set_country_flag = CPGAC_u_recontact_NAJUA_end_1
 			custom_effect_tooltip = "CPGAC_u_recontact_NAJUA_end_1"
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRWTER_Northeast_Bureau_content
+						option = DEFAULT
+					}
+				}
+				country_event = { id = NEB_main_story_events.1 days = 7 }
+			}
 		}
 	}
 	else_if = {
@@ -1320,6 +1330,16 @@ TER_CPGAC_end_an_urgent_task = {
 			TNO_improve_admin_efficiency_low = yes
 			set_country_flag = CPGAC_u_recontact_NAJUA_end_2
 			custom_effect_tooltip = "CPGAC_u_recontact_NAJUA_end_2"
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRWTER_Northeast_Bureau_content
+						option = DEFAULT
+					}
+				}
+				set_variable = { NEB_army_num = 3 }
+				country_event = { id = NEB_main_story_events.1 days = 7 }
+			}
 		}
 	}
 	else_if = {
@@ -1359,6 +1379,16 @@ TER_CPGAC_end_an_urgent_task = {
 			add_political_power = 80
 			TNO_improve_admin_efficiency_med = yes
 			set_country_flag = CPGAC_u_recontact_NAJUA_end_3
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRWTER_Northeast_Bureau_content
+						option = DEFAULT
+					}
+				}
+				set_variable = { NEB_army_num = 5 }
+				country_event = { id = NEB_main_story_events.1 days = 7 }
+			}
 			1643 = { set_demilitarized_zone = yes }
 			custom_effect_tooltip = "CPGAC_u_recontact_NAJUA_end_3"
 		}

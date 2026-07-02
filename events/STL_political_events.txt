@@ -243,12 +243,12 @@ country_event = { #LPDR Time
 			name = LAO_PPPL_party
 		}
 		econ_leave_sphere = yes
-		limit = {
-			 if = {
-				 is_in_faction_with = jap 
-			 }
-			 leave_faction = yes
-				}
+		if = {
+			limit = {
+				is_in_faction_with = jap 
+			}
+			leave_faction = yes
+		}
 		remove_all_ministers = yes
 		remove_ideas = { 
 			LAO_King_Sisavang_Vatthana
@@ -275,7 +275,32 @@ country_event = { #LPDR Time
 			set_temp_variable = { gdp_growth_temp = -0.1 } #The Financial Community Will Remember This, but that much since Laos is nto developed
 			econ_gdp_growth_change = yes
 		}
+		CPC = {
+			country_event = {
+				id = LAO_LPDR.2
+			}
+		}
+		swap_ideas = {
+			remove_idea = LAO_Legacy_of_Operation_Issara_Unmitigated
+			add_idea = LAO_Legacy_of_Thai_Cambodian_War
+		}
 	}
+}
+country_event = { # war on Opium!
+	id = LAO_LPDR.2
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event LAO_LPDR.2"
+	}
+	title = LAO_LPDR.2.t
+	desc = LAO_LPDR.2.desc
+
+	is_triggered_only = yes
+	fire_only_once = yes 
+	option = {
+		name = LAO_LPDR.2.a
+
+	}
+
 }
 
 country_event = {
@@ -312,21 +337,16 @@ country_event = {
 			add_ideas = ANRL_Leader_SOV
 			set_country_flag = HAS_ECON_SPHERE
 			econ_join_sphere_CPC = yes
+			remove_state_core = 329
 		}
-
 		hidden_effect = {
-        every_country = {
-			news_event = {
-				id = WORLD_2WRWTER.400
+			every_country = {
+				news_event = {
+					id = WORLD_2WRWTER.400
+				}
 			}
 		}
-}  
-		SOV = {
-			remove_state_core = 329
-	      }
-		ai_chance = {
-			factor = 50
-		}
+		ai_chance = { factor = 50 }
 	}
 }
 

@@ -20,6 +20,8 @@ scripted_gui = {
 									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
 			SCB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^4 = 2 } 
 									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
+			NEB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^5 = 2 } 
+									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
 			CPGAC_entry_btn_visible = { check_variable = { CPC_GUI_tab_issue^1 = 2 } }
 			CMC_entry_btn_visible = { check_variable = { CPC_GUI_tab_issue^2 = 2 } }
 		}
@@ -129,6 +131,23 @@ scripted_gui = {
 				}
 			}
 			SWB_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open
+					TER_NWB_calc_party_members = yes 
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+			NEB_entry_btn_click = {
 				if = {
 					limit = {
 						NOT = {

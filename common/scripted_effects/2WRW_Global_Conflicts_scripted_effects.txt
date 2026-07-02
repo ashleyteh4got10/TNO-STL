@@ -3936,20 +3936,3 @@ AFG_WAR_ST_update_TAJ = {
 	add_stability = -0.02
 	add_war_support = -0.02
 }
-
-# Add/remove the SAF Reconstruction Mechanic
-
-TNO_fopo_add_saf_reconstruction_conflict_tab = {
-	set_temp_variable = { conflict_id = token:GC_SAWReconstruction }
-	TNO_add_fopo_conflict_tab = yes
-}
-TNO_fopo_remove_saf_reconstruction_conflict_tab = {
-	set_temp_variable = { conflict_id = token:GC_SAWReconstruction }
-	TNO_remove_fopo_conflict_tab = yes
-	hidden_effect = {
-		remove_mission = USA_the_african_quagmire
-		set_country_flag = USA_SAF_WAR_Insurgency_Pulled_Out
-		clr_country_flag = USA_SAF_WAR_Insurgency_Activated
-		clear_variable = USA_manpower_depletion_SAW
-	}
-}
