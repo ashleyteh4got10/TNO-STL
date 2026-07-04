@@ -157,11 +157,12 @@ guiTypes = {
 			alwaystransparent = yes
 		}
 		
-		buttonType = {
-			name = "country_shine"
-			quadTextureSprite = "GFX_country_selection_entry_shine"
-			position = { x=0 y =0 }
-			clicksound = click_checkbox
+		iconType = {
+			name = "new_content"
+			hide = yes
+			position = { x = 110 y = 180 }
+			spriteType = "GFX_unplayed_content_notification"
+			alwaystransparent = yes
 		}
 
 		instantTextBoxType = {
@@ -195,11 +196,12 @@ guiTypes = {
 			clicksound = click_checkbox
 		}
 
-		buttonType = {
-			name = "country_shine"
-			quadTextureSprite = "GFX_minor_country_selector_shine"
-			position = { x=0 y =0 }
-			clicksound = click_checkbox
+		iconType = {
+			name = "new_content"
+			hide = yes
+			position = { x = 100 y = 15 }
+			spriteType = "GFX_unplayed_content_notification"
+			alwaystransparent = yes
 		}
 	}
 
@@ -222,13 +224,31 @@ guiTypes = {
 			clicksound = click_checkbox
 		}
 
-		buttonType = {
-			name = "country_shine"
-			quadTextureSprite = "GFX_mini_country_selector_shine"
-			position = { x=0 y =0 }
-			clicksound = click_checkbox
+		iconType = {
+			name = "new_content"
+			hide = yes
+			position = { x = 42 y = 0 }
+			spriteType = "GFX_unplayed_content_notification"
+			alwaystransparent = yes
 		}
 	}
+
+	### country filter
+	containerWindowType = {
+		name = "country_filter"
+		size = { width = 149 height = 33 }
+
+		buttonType = {
+			name = "button"
+			quadTextureSprite = "GFX_country_filter_entry"
+			buttonText = "FILTER"
+			buttonFont = "hoi_16mbs"
+			clicksound = click_default
+			oversound = ui_menu_over
+			frame = 2
+		}
+	}
+
 
 
 	### LOAD GAME
@@ -532,7 +552,7 @@ guiTypes = {
 		clipping = no
 		orientation = center
 		origo = center
-		moveable = yes
+		#moveable = yes
 
 		instantTextBoxType = {
 			name = "title"
@@ -731,6 +751,13 @@ guiTypes = {
 				pdx_tooltip_delayed = "BOOKMARK_MGI_BLOCKER_DELAYED"
 			}
 		}
+		OverlappingElementsBoxType = {
+			name = "filters"
+			position = { x = 22 y = 321 }
+			size = { x = 1181 y = 32 }
+			format = center
+			spacing = 14.0
+		}
 
 		
 		#Minor countries section
@@ -771,7 +798,6 @@ guiTypes = {
 
 		### Covers
 		# Covers the many Anarchy starting menu entries to make everything look purdier : )
-
 		# Visual Cover
 		iconType = {
 			name = "countries_cover"
@@ -779,6 +805,7 @@ guiTypes = {
 			spriteType = "GFX_countries_cover_ter"
 			#alwaystransparent = yes
 		}
+
 
 		## Clickability Covers
 		# Edges
@@ -1273,6 +1300,46 @@ guiTypes = {
 			maxHeight = 210
 			format = left
 			scrollbarType = standardtext_slider
+		}
+		dropDownBoxType = {
+			name = "more_countries"
+			position = { x = 10 y = 412 }
+
+			expandButton = {
+				name = "expand_button"
+				position = { x = 1168 y = -4 }
+				quadTextureSprite = "GFX_peace_drop_down_button"
+				clicksound = click_default
+			}
+
+			expandedWindow = {
+				name = "expanded_window"
+				position = { x=0 y= -300 }
+				show_position = { x = 0 y = 25 }
+				show_animation_type = decelerated
+				hide_animation_type = accelerated
+				animation_time = 300
+				size = { width=1205 height=58 }	# dynamically resized in code using countries_mini_expanded's slot size
+				verticalScrollbar = "right_vertical_slider"
+				scroll_wheel_factor = 50
+				smooth_scrolling = yes
+				margin = { top = 7 bottom = 7 right = 6 }
+
+				background = {
+					name = "Background"
+					quadTextureSprite ="GFX_tiled_window_1b_thin_border"
+				}
+
+				gridBoxType = {
+					name = "countries_mini_expanded"
+					position = { x = 8 y = 0 }
+					size = { width = 199 height = 100%% }
+					slotsize = { width = 52 height = 38 }
+					add_horizontal = yes
+					max_slots_horizontal = 22
+					format = "UPPER_LEFT"
+				}
+			}
 		}
 	}
 
@@ -2243,8 +2310,8 @@ guiTypes = {
 			name = "very_easy_cb"
 			position = { x=17 y=42}
 			quadTextureSprite ="GFX_TNO_map_select_bottomright_defcon_5_button"
-			buttonText = "FE_DIFFICULTY_VERY_EASY"
-			buttonFont = "hoi_20b"
+			#buttonText = "FE_DIFFICULTY_VERY_EASY"
+			#buttonFont = "hoi_20b"
 			clicksound = click_checkbox
 		}
 
@@ -2252,8 +2319,8 @@ guiTypes = {
 			name = "easy_cb"
 			position = { x=133 y=42}
 			quadTextureSprite ="GFX_TNO_map_select_bottomright_defcon_4_button"
-			buttonText = "FE_DIFFICULTY_EASY"
-			buttonFont = "hoi_20b"
+			#buttonText = "FE_DIFFICULTY_EASY"
+			#buttonFont = "hoi_20b"
 			clicksound = click_checkbox
 		}
 
@@ -2262,16 +2329,17 @@ guiTypes = {
 			position = { x=249 y=42}
 			quadTextureSprite ="GFX_TNO_map_select_bottomright_defcon_3_button"
 			clicksound = click_checkbox
-			buttonText = "FE_DIFFICULTY_NORMAL"
-			buttonFont = "hoi_20b"
+			#buttonText = "FE_DIFFICULTY_NORMAL"
+			#buttonFont = "hoi_20b"
+			clicksound = click_checkbox
 		}
 
 		checkboxType = {
 			name = "hard_cb"
 			position = { x=365 y=42}
 			quadTextureSprite ="GFX_TNO_map_select_bottomright_defcon_2_button"
-			buttonText = "FE_DIFFICULTY_HARD"
-			buttonFont = "hoi_20b"
+			#buttonText = "FE_DIFFICULTY_HARD"
+			#buttonFont = "hoi_20b"
 			clicksound = click_checkbox
 		}
 
@@ -2279,8 +2347,8 @@ guiTypes = {
 			name = "very_hard_cb"
 			position = { x=481 y=42}
 			quadTextureSprite ="GFX_TNO_map_select_bottomright_defcon_1_button"
-			buttonText = "FE_DIFFICULTY_VERY_HARD"
-			buttonFont = "hoi_20b"
+			#buttonText = "FE_DIFFICULTY_VERY_HARD"
+			#buttonFont = "hoi_20b"
 			clicksound = click_checkbox
 		}
 
@@ -2291,7 +2359,7 @@ guiTypes = {
 			borderSize = {x = 0 y = 0}
 			maxWidth = 115
 			maxHeight = 16
-			text = "FE_DIFFICULTY_VERY_EASY"
+			#text = "FE_DIFFICULTY_VERY_EASY"
 			format = centre
 			alwaystransparent = yes
 		}
@@ -2303,7 +2371,7 @@ guiTypes = {
 			borderSize = {x = 0 y = 0}
 			maxWidth = 115
 			maxHeight = 16
-			text = "FE_DIFFICULTY_EASY"
+			#text = "FE_DIFFICULTY_EASY"
 			format = centre
 			alwaystransparent = yes
 		}
@@ -2315,7 +2383,7 @@ guiTypes = {
 			borderSize = {x = 0 y = 0}
 			maxWidth = 115
 			maxHeight = 16
-			text = "FE_DIFFICULTY_NORMAL"
+			#text = "FE_DIFFICULTY_NORMAL"
 			format = centre
 			alwaystransparent = yes
 		}
@@ -2327,7 +2395,7 @@ guiTypes = {
 			borderSize = {x = 0 y = 0}
 			maxWidth = 115
 			maxHeight = 16
-			text = "FE_DIFFICULTY_HARD"
+			#text = "FE_DIFFICULTY_HARD"
 			format = centre
 			alwaystransparent = yes
 		}
@@ -2339,7 +2407,7 @@ guiTypes = {
 			borderSize = {x = 0 y = 0}
 			maxWidth = 115
 			maxHeight = 16
-			text = "FE_DIFFICULTY_VERY_HARD"
+			#text = "FE_DIFFICULTY_VERY_HARD"
 			format = centre
 			alwaystransparent = yes
 		}
@@ -2353,7 +2421,7 @@ guiTypes = {
 		}
 
 		instantTextBoxType={
-			position = {x = 30 y = 148 }
+			position = {x = 30 y = 1148 }
 			name = "historical_text"
 			font = "hoi_24header"
 			maxWidth = 370
@@ -2366,10 +2434,11 @@ guiTypes = {
 
 		checkboxType = {
 			name = "historical_cb"
-			position = { x=530 y =210}
+			position = { x=530 y =1210}
 			quadTextureSprite ="GFX_generic_checkbox"
 			clicksound = click_checkbox
 		}
+
 	}
 
 	containerWindowType = {
