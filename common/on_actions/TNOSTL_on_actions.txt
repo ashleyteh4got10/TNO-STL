@@ -29,15 +29,28 @@ on_actions = {
             }
 			}
 			if = {
-				every_country = {
-					limit = {
-						is_ai = no
-					}
-					country_event = {
-						id = STL_support.98
+				limit = {
+					has_game_rule = {
+						rule = SWRWTER_lake_baikal_civil_war
+						option = SWRWTER_lake_baikal_civil_war_bry
 					}
 				}
+				BRY = {
+					apply_russian_war_buff_with_5_divisions = yes
+				}
 			}
+			else_if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRWTER_lake_baikal_civil_war
+						option = SWRWTER_lake_baikal_civil_war_irk
+					}
+				}
+				IRK = {
+					apply_russian_war_buff_with_5_divisions = yes
+				}
+			}
+		}
 		}
     }
 
