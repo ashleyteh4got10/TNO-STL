@@ -1,0 +1,187 @@
+# Division template historical names system. Is a new method of naming the divisions based on the names-group assigned to it's template.
+# If we run out of all historical names, the names will be assigned in the old way.
+#
+# Each group has a made up tag. Use it if you want to append more, or replace existing names with the extra txt files (modding).
+#
+# for_countries - lists all countries that can use it. If empty, or entire tag is missing, all countries in the world can use it.
+#
+# can_use - is a trigger that locks/unlocks the group under specific circumstances. The trigger is in a country scope.
+#
+# division_types - is a list of tokens to corresponding unit types. A player can in fact use any group of names for a div.template
+#					however this tag is a helper for an automated choice (for AI, or if the group must switch on its own, because
+#					for example the current one is no longer available due to the can_use trigger saying so).
+#					In automated choice, the division template must have at least 1 of the following types for it to be chosen.
+#
+# fallback_name - Is going to be used if we run out of the scripted historical names. If you want to use the old division naming
+#					mechanics to be used for fallbacks, then just skip this option.
+#
+# unordered - It's a list of historical division names that did not have a number. Regardless if such names happened in history or not
+#				this option is available here mainly for a mods.
+#
+# ordered - Is a list of all historical names.
+#			Numbers must start from 1 and up.
+#			Numbers can't repeat in one scope.
+#			If you script the name for this group, at the same number (for example in a mod in another file), the name will be override.
+#			All arguments between the brackets must be separated by spaces. Each argument is wrapped in "quotas".
+#			1st argument = The name. It must contain either:
+#							%d (for decimal number placement)
+#							%s (for string number placement - ROMAN numbers like XIV).
+#			2nd argument is optional = A localizable text describing this historical division. The text will be visible in the tooltip
+#										where you choose the historical division name.
+#			3rd argument is optional = An URL preferably pointing to the WIKI. It's a future feature that is not currently working in
+#										the current game version.
+MAR_Infantry = {
+	name = "Royal Division"
+
+	for_countries = { MAR }
+
+	can_use = { always = yes }
+
+	division_types = { "infantry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { AUS_INF_01 }
+
+	fallback_name = "%d-ya Diviziya Tsarskikh Zaschitnikov"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "%d-ya 'Znamenonostsi' Tsarskikh Zaschitnikov Div." }
+		2 = { "%d-ya 'Bereznikovskaya' Tsarskikh Zaschitnikov Div." }
+		3 = { "%d-ya 'Slavy Kirilla Vladimirovicha' Tsarskikh Zaschitnikov Div." }
+		4 = { "%d-ya 'Regentskaya' Tsarskikh Zaschitnikov Div." }
+		5 = { "%d-ya 'Nositely Iskry' Tsarskikh Zaschitnikov Div." }
+		6 = { "%d-ya 'Derzhavnaya' Tsarskikh Zaschitnikov Div." }
+		7 = { "%d-ya 'Revoluytsionnaya' Tsarskikh Zaschitnikov Div." }
+		8 = { "%d-ya 'Sily Dukha' Tsarskikh Zaschitnikov Div." }
+		9 = { "%d-ya 'Tsarskosovyetskaya' Tsarskikh Zaschitnikov Div." }
+		10 = { "%d-ya 'Ordenskaya' Tsarskikh Zaschitnikov Div." }
+		11 = { "%d-ya 'Svyatogo Georgiya' Tsarskikh Zaschitnikov Div." }
+		12 = { "%d-ya 'Kazem-Beka' Tsarskikh Zaschitnikov Div." }
+		13 = { "%d-ya 'Kazachya' Tsarskikh Zaschitnikov Div." }
+		14 = { "%d-ya 'Mladorosskaya' Tsarskikh Zaschitnikov Div." }
+		15 = { "%d-ya 'Molodoy Rossii' Tsarskikh Zaschitnikov Div." }
+		
+	}
+}
+
+MAR_Motorized = {
+	name = "Royal Motorized Division"
+
+	for_countries = { MAR }
+
+	can_use = { always = yes }
+
+	division_types = { "motorized" }
+
+	# Number reservation system will tie to another group.
+	link_numbering_with = { VYT_Infantry RUSS_Generic_Mech }
+
+	fallback_name = "%d-ya Motostrelkovaya Diviziya"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "%dya 'Znamenonostsi' Motostrelkovaya Div." }
+		2 = { "%dya 'Regentskaya' Motostrelkovaya Div." }
+		3 = { "%dya 'Svyatogo Georgiya' Motostrelkovaya Div." }
+		4 = { "%dya 'Derzhavnaya' Motostrelkovaya Div." }
+		5 = { "%dya 'Bereznikovskaya' Motostrelkovaya Div." }
+		6 = { "%dya 'Solikamskaya' Motostrelkovaya Div." }
+		7 = { "%dya 'Mladorosskaya' Motostrelkovaya Div." }
+		8 = { "%dya 'Molodoy Rossii' Motostrelkovaya Div." }
+		9 = { "%dya 'Slavy Kirilla Vladimirovicha' Motostrelkovaya Div." }
+		10 = { "%dya 'Uralskaya' Motostrelkovaya Div." }
+	}
+}
+
+MAR_Conscripts = {
+	name = "Peoples' Militia"
+
+	for_countries = { MAR }
+
+	can_use = { always = yes }
+
+	division_types = { "infantry" "light_infantry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { AUS_INF_01 }
+
+	fallback_name = "%d-ya Gruppa Narodnogo Opolcheniya"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "%d-ya 'Minin' Gruppa Narodnogo Opolcheniya" }
+		2 = { "%d-ya 'Pozharskiy' Gruppa Narodnogo Opolcheniya" }
+	}
+}
+
+MAR_Leib_Guard = {
+	name = "Tsar Guard"
+
+	for_countries = { MAR }
+
+	can_use = { always = yes }
+
+	division_types = { "elite_infantry" "artillery_brigade" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { AUS_INF_01 }
+
+	fallback_name = "%d-ya Tsarskaya Gvardiya"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "%dya 'Tsarskaya Slava' Tsarskaya Gvardiya" }
+		2 = { "%dya 'Ural' Tsarskaya Gvardiya" }
+	}
+}
+
+MAR_Kazaki = {
+	name = "Kazak Forces"
+
+	for_countries = { MAR }
+
+	can_use = { always = yes }
+
+	division_types = { "cavalry" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { AUS_INF_01 }
+
+	fallback_name = "%d-yi Kazackij Otryad"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "%d-yi Kazackij Otryad" }
+	}
+}
+
+MAR_GentelmensLack = {
+	name = "Mercenaries"
+
+	for_countries = { MAR }
+
+	can_use = { always = yes }
+
+	division_types = { "elite_infantry" "artillery_brigade" }
+
+	# Number reservation system will tie to another group.
+	#link_numbering_with = { AUS_INF_01 }
+
+	fallback_name = "%d-yi Otryad Nayomnikov"
+
+	# Names with numbers (only one number per entry).
+	# It's okay to have gaps in numbering.
+	ordered = {
+		1 = { "%d-yi 'Svoboda Rossii' Otryad Nayomnikov" }
+		2 = { "%d-yi 'Druzja Rossiii' Otryad Nayomnikov" }
+		3 = { "%d-yi Russkiy Dobrovolcheskiy Korpus" }
+		4 = { "%d-yi 'Letuchaya Mysh' Otryad Nayomnikov" }
+		5 = { "%d-yi 'Smert Fashistam' Otryad Nayomnikov" }
+	}
+}

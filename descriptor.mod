@@ -1,4 +1,4 @@
-name="The New Order: Sperne Tuta Limina"
+name="The New Order: 东方神堂录 (TNO:STL Dev Side)"
 version="1.2.2a"
 dependencies={
 	"The New Order: Last Days of Europe"
@@ -12,4 +12,4 @@ replace_path="localisation/simp_chinese/TNO_Country_Info_Screen_l_simp_chinese.y
 replace_path="localisation/simp_chinese/TNO_Kamchatka_l_simp_chinese.yml"
 supported_version="1.19.*"
 path="C:/Program Files (x86)/Steam/steamapps/workshop/content/3532278099"
-remote_file_id="3532278099"
+remote_file_id="3730538275"

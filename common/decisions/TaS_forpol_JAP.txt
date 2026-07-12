@@ -1,0 +1,801 @@
+	
+### FAR EASTER REVOLT ###
+JAP_BoP_category = {
+	JAP_FErebels_mission = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		allowed = {
+			tag = JAP
+		}			
+		available = {
+			always = no
+		}
+		activation = {
+			has_global_flag = MAR_fareast_proxy
+		}
+
+		days_mission_timeout = 90
+		is_good = no
+
+		timeout_effect = {
+		#	clr_global_flag = MAR_fareast_proxy
+		#	hidden_effect = {
+		#	TaS_2WRW_manchuria_start_rebelion = yes
+		#	every_country  = {
+		#			news_event = {
+		#				id = JAP_2WRW_world_news.4
+		#			}
+		#		}
+		#	}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	JAP_prepare_support_corps_effigy = { 
+		icon = GFX_decision_generic_assault
+		visible = {
+			tag = JAP
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout JAP_support_rebels_effigy"
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	JAP_send_guns_corps = {
+		icon = GFX_decision_black_market_arms_trade_increase
+		visible = {
+			tag = JAP
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAPFE_doing_stuff
+			}
+			has_equipment = {
+				infantry_equipment > 500
+			}
+			has_equipment = {
+				anti_tank_equipment > 150
+			}
+			has_equipment = {
+				support_equipment > 100
+			}
+			has_equipment = {
+				artillery_equipment > 35
+			}
+			
+		}
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		days_remove = 14
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout JAP_send_guns_corps"
+			set_country_flag = JAPFE_doing_stuff
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.005 }
+			econ_spend_money_once_effect_raw_money = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -150
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = -150
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = -35
+				producer = JAP
+			}
+		}
+		remove_effect = {
+			add_to_variable = { JAP_FErebels_infantry_weapons = 500 }
+			add_to_variable = { JAP_FErebels_support_equipment = 100 }
+			add_to_variable = { JAP_FErebels_at_equipment = 150 }
+			add_to_variable = { JAP_FErebels_artillery_equipment = 35 }
+			
+			clr_country_flag = JAPFE_doing_stuff
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	JAP_send_motorized_corps = {
+		icon = GFX_decision_black_market_arms_trade_increase
+		visible = {
+			tag = JAP
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAPFE_doing_stuff
+			}
+			has_equipment = {
+				motorized_equipment > 100
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				has_equipment = {
+					MBT_chassis > 15
+				}
+				has_equipment = {
+					APC_chassis > 35
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_dlc = "No Step Back"
+					}
+				}
+				has_equipment = {
+					MBT_equipment > 15
+				}
+				has_equipment = {
+					APC_equipment > 35
+				}
+			}
+		}
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		days_remove = 14
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout JAP_send_motorized_corps"
+			set_country_flag = JAPFE_doing_stuff
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = -100
+				producer = JAP
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = {
+					type = MBT_chassis
+					amount = -15
+					producer = JAP
+				}
+				add_equipment_to_stockpile = {
+					type = APC_chassis
+					amount = -35
+					producer = JAP
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_dlc = "No Step Back"
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = MBT_equipment
+					amount = -15
+					producer = JAP
+				}
+				add_equipment_to_stockpile = {
+					type = APC_equipment
+					amount = -45
+					producer = JAP
+				}
+			}
+		}
+		remove_effect = {
+			add_to_variable = { JAP_FErebels_motorized_equipment = 100 }
+			add_to_variable = { JAP_FErebels_apc_equipment = 45 }
+			add_to_variable = { JAP_FErebels_mbt_equipment = 15 }
+			clr_country_flag = JAPFE_doing_stuff
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	JAP_send_additional_manchu_corps = {
+		icon = decision_generic_military_hat
+		visible = {
+			tag = JAP
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAPFE_doing_stuff
+			}
+		}
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_cp
+		days_remove = 14
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout JAP_send_additional_manchu_corps"
+			set_country_flag = JAPFE_doing_stuff
+			hidden_effect = {
+				add_command_power = -25
+			}
+		}
+		remove_effect = {
+			add_to_variable = { JAP_FErebels_adddivisions = 1 }
+			clr_country_flag = JAPFE_doing_stuff
+		}
+	}
+	JAP_send_saboteurs_to_rebels = {
+		icon = GFX_decision_generic_assault
+		visible = {
+			tag = JAP
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAPFE_doing_stuff
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp
+		days_remove = 28
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout JAP_send_saboteurs_to_rebels"
+			set_country_flag = JAPFE_doing_stuff
+			hidden_effect = {
+				add_command_power = -25
+			}
+		}
+		remove_effect = {
+			add_to_variable = { JAP_FErebels_addpartisans = 1 }
+			clr_country_flag = JAPFE_doing_stuff
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	JAP_FE_increase_commitment = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			tag = JAP
+			PJP = { has_war_with = PFF }
+			TNO_fopo_far_eastern_revolt_selected = yes
+			TNO_volunteer_cap_less_5 = yes
+			check_variable = {
+				JAP_FE_volunteer_sent < 3
+			}
+		}
+
+		cost = 50
+		days_re_enable = 21
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_FE_increase_commitment"
+				add_command_power = 25
+				JAP = {
+					set_temp_variable = { target = PJP }
+					TNO_increase_volunteer_cap_1 = yes
+				}
+
+			add_to_variable = {
+				JAP_FE_volunteer_sent = 1
+			}
+
+			custom_effect_tooltip = OIL_USA_increase_volunteers_1 #reusing the usa tooltip
+		}
+			ai_will_do = {
+				factor = 20
+			}
+	}
+	JAP_FE_bomb_someone = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			PJP = { has_war_with = PFF }
+			tag = JAP
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+		days_re_enable = 21
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = PJP
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_FE_bomb_someone"
+			hidden_effect = { add_command_power = -15 }
+			PFF = {
+				if = {
+					limit = {
+						has_war_with = PJP
+					}
+					add_ideas = JAP_OC_bombing_runs
+					set_country_flag = JAP_FE_being_bombed
+					TNO_worsen_poverty_high = yes
+				}
+			}
+		}
+		remove_effect = {
+			PFF = {
+				remove_ideas = JAP_OC_bombing_runs
+				clr_country_flag = JAP_FE_being_bombed
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	JAP_FE_send_army_instructors = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			PJP = { has_war_with = PFF }
+			tag = JAP
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		days_remove = 7
+		days_re_enable = 21
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = PJP
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_Speer_FE_send_wehrmacht_instructors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+				set_country_flag = JAP_FE_sent_advisors
+			}
+		}
+		remove_effect = {
+			PJP = {
+				add_timed_idea = { idea = JAP_OC_army_advisors days = 180 }
+				TNO_improve_conscription_policy_effectiveness_high = yes
+				TNO_improve_training_policy_effectiveness_high = yes
+				TNO_improve_army_professionalism_med = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	JAP_FE_send_industrial_support = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			PJP = { has_war_with = PFF }
+			tag = JAP
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+
+		custom_cost_trigger = {
+			always = yes
+		}
+		custom_cost_text = decision_cost_50_million
+		days_remove = 21
+		fire_only_once = yes
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = PJP
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_FE_send_industrial_support"
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			PJP = {
+				add_timed_idea = { idea = JAP_OC_japanese_technicians days = 365 }
+				TNO_improve_industrial_expertise_med = yes
+				TNO_improve_industrial_equipment_med = yes
+
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1500
+					producer = JAP
+				}
+			}
+
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	JAP_FE_cold_of_the_taiga = {
+		icon = GFX_decision_generic_assault
+		visible = {
+			PJP = { has_war_with = PFF }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_25_m_10_cp
+		days_remove = 365
+		fire_only_once = yes
+
+		modifier = {
+			acclimatization_cold_climate_gain_factor = 0.2
+			heat_attrition_factor = -0.2
+			recon_factor = 0.1
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_FE_cold_of_the_taiga"
+			hidden_effect = { add_command_power = -10 }
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+###Manchurian CW
+
+JAP_BoP_category = {
+
+	JAP_meeting_with_generals_MCW = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+
+
+	JAP_bombing_runs_MCW = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_bombing_runs"
+			every_country = {
+				limit = { has_war_with = MJP }
+				add_timed_idea = {
+					idea = JAP_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+	}
+
+	JAP_supply_freedom_fighters_MCW = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = MJP
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = MJP
+			}
+		}
+	}
+
+
+	JAP_send_military_advisors_MCW = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			MJP = {
+				add_timed_idea = { idea = JAP_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	JAP_technician_aid_MCW = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_technician_aid"
+			MJP = {
+				add_timed_idea = { idea = JAP_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	JAP_sabotage_effort_MCW = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = { has_war_with = MJP }
+				add_timed_idea = { idea = JAP_sabotage_effort days = 90 }
+			}
+		}
+	}
+}
+JAP_BoP_category = {
+	JAP_meeting_with_generals_ACW = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+
+
+	JAP_bombing_runs_ACW = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_bombing_runs"
+			every_country = {
+				limit = { has_war_with = MUJ }
+				add_timed_idea = {
+					idea = JAP_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+	}
+
+	JAP_supply_freedom_fighters_ACW = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = MUJ
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = MUJ
+			}
+		}
+	}
+
+
+	JAP_send_military_advisors_ACW = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			MUJ = {
+				add_timed_idea = { idea = JAP_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	JAP_technician_aid_ACW = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_technician_aid"
+			MUJ = {
+				add_timed_idea = { idea = JAP_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	JAP_sabotage_effort_ACW = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = { has_war_with = MUJ }
+				add_timed_idea = { idea = JAP_sabotage_effort days = 90 }
+			}
+		}
+	}
+}
+

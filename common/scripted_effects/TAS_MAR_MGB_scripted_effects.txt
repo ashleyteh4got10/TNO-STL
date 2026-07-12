@@ -1,0 +1,224 @@
+MAR_MGB_setup_the_variables = { 
+	#setting the connection value
+	set_temp_variable = { MAR_connections_start_temp = 1 }
+	IF = {
+		limit = {
+			has_country_flag = MAR_MGB_adv_start
+		}
+		randomize_temp_variable = {
+			var = MAR_connections_start_temp
+			distribution = uniform
+			min = 75
+			max = 85
+		}
+	}
+	ELSE = {
+		randomize_temp_variable = {
+			var = MAR_connections_start_temp
+			distribution = uniform
+			min = 70
+			max = 75
+		}
+	}
+	round_temp_variable = MAR_connections_start_temp
+	set_variable = { MAR_Okhranka_connections = MAR_connections_start_temp }
+	
+	#setting the start agents
+	set_temp_variable = { MAR_agents_start_temp = 1 }
+	IF = {
+		limit = {
+			has_country_flag = MAR_MGB_adv_start
+		}
+		randomize_temp_variable = {
+			var = MAR_agents_start_temp
+			distribution = uniform
+			min = 700
+			max = 750
+		}
+	}
+	ELSE = {
+		randomize_temp_variable = {
+			var = MAR_agents_start_temp
+			distribution = uniform
+			min = 750
+			max = 850
+		}
+	}
+	round_temp_variable = MAR_agents_start_temp
+	set_variable = { MAR_Okhranka_agents = MAR_agents_start_temp }
+	
+	#setting up the okranka power	
+	set_temp_variable = { MAR_power_temp = MAR_Okhranka_agents }
+	divide_temp_variable = { MAR_power_temp = 10 }
+	set_variable = { MAR_Okhranka_power = MAR_power_temp }
+	round_variable = MAR_Okhranka_power
+	MAR_decision_cost_recount = yes
+	
+	#setting initial thresholds
+	set_variable = { MAR_MGB_var_liberation_threshold = 20 }
+	IF = {
+		limit = {
+			has_country_flag = MAR_MGB_adv_start
+		}
+		set_variable = { MAR_MGB_var_resources_threshold = 45 }
+		set_variable = { MAR_MGB_var_resources_second_threshold = 25 }
+		set_variable = { MAR_MGB_var_advisors_threshold = 50 }
+		set_variable = { MAR_MGB_var_advisors_second_threshold = 30 }
+	}
+	ELSE = {
+		set_variable = { MAR_MGB_var_resources_threshold = 50 }
+		set_variable = { MAR_MGB_var_resources_second_threshold = 30 }
+		set_variable = { MAR_MGB_var_advisors_threshold = 45 }
+		set_variable = { MAR_MGB_var_advisors_second_threshold = 25 }
+	}
+	set_variable = { MAR_MGB_var_yurla_threshold = 40 }
+	set_variable = { MAR_MGB_var_yurla_second_threshold = 20 }
+	set_variable = { MAR_MGB_var_double_agents_count = 0 }
+	set_variable = { MAR_MGB_var_double_agents_pp = -0.1 }
+}
+
+MAR_liberation_threshold_change = {
+	set_temp_variable = { temp_lib_tr_gained_txt = temp_lib_tr_gained }
+	custom_effect_tooltip = MAR_MGB_liberation_threshold_growth_tt
+	add_to_variable = { MAR_MGB_var_liberation_threshold = temp_lib_tr_gained }
+}
+
+MAR_liberation_threshold_decrease = {
+	set_temp_variable = { temp_lib_tr_gained_txt = temp_lib_tr_lowered }
+	custom_effect_tooltip = MAR_MGB_liberation_threshold_decrease_tt
+	subtract_from_variable = { MAR_MGB_var_liberation_threshold = temp_lib_tr_lowered }
+}
+
+MAR_resources_threshold_change = {
+	set_temp_variable = { temp_res_tr_gained_txt = temp_res_tr_gained }
+	custom_effect_tooltip = MAR_MGB_resources_threshold_growth_tt
+	add_to_variable = { MAR_MGB_var_resources_threshold = temp_res_tr_gained }
+	add_to_variable = { MAR_MGB_var_resources_second_threshold = temp_res_tr_gained }
+	
+}
+
+MAR_advisors_threshold_change = {
+	set_temp_variable = { temp_adv_tr_gained_txt = temp_adv_tr_gained }
+	custom_effect_tooltip = MAR_MGB_advisors_threshold_growth_tt
+	add_to_variable = { MAR_MGB_var_advisors_threshold = temp_adv_tr_gained }
+	add_to_variable = { MAR_MGB_var_advisors_second_threshold = temp_adv_tr_gained }
+}
+
+MAR_yurla_threshold_change = {
+	set_temp_variable = { temp_yrl_tr_gained_txt = temp_yrl_tr_gained }
+	custom_effect_tooltip = MAR_MGB_yurla_threshold_growth_tt
+	add_to_variable = { MAR_MGB_var_yurla_threshold = temp_yrl_tr_gained }
+	add_to_variable = { MAR_MGB_var_yurla_second_threshold = temp_yrl_tr_gained }
+}
+
+MAR_Okhranka_connections_change = { 
+	set_temp_variable = { temp_connections_gained_txt = temp_connections_gained }
+	add_to_variable = { MAR_Okhranka_connections = temp_connections_gained }
+	
+	clamp_variable = {
+		var = MAR_Okhranka_connections
+		min = 0
+		max = 100
+	}
+	if = {
+		limit = { check_variable = { temp_connections_gained < 0 } }
+		multiply_temp_variable = { temp_connections_gained_txt = -1 }
+		custom_effect_tooltip = MAR_MGB_connections_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = MAR_MGB_connections_growth_tt	 
+	}
+	MAR_Okhranka_recount = yes
+	MAR_decision_cost_recount = yes
+}
+
+MAR_Okhranka_agents_change = { 
+	set_temp_variable = { temp_agents_gained_txt = temp_agents_gained }
+	add_to_variable = { MAR_Okhranka_agents = temp_agents_gained }
+	
+	clamp_variable = {
+		var = MAR_Okhranka_agents
+		min = 0
+		max = 1000
+	}
+	if = {
+		limit = { check_variable = { temp_agents_gained < 0 } }
+		multiply_temp_variable = { temp_agents_gained_txt = -1 }
+		custom_effect_tooltip = MAR_MGB_agents_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = MAR_MGB_agents_growth_tt
+	}
+	MAR_Okhranka_recount = yes
+}
+
+MAR_Okhranka_recount = { 
+	#recountring power
+	set_temp_variable = { MAR_agents_temp_agents = MAR_Okhranka_agents }
+	divide_temp_variable = { MAR_agents_temp_agents = 100 }
+	
+	set_temp_variable = { MAR_power_temp = MAR_agents_temp_agents }
+	multiply_temp_variable = { MAR_power_temp = 10 }
+	set_variable = { MAR_Okhranka_power = MAR_power_temp }
+	round_variable = MAR_Okhranka_power
+}
+
+MAR_decision_cost_recount = { 
+	set_variable = { MAR_decision_cost_one = 5 }
+	set_temp_variable = { MAR_decision_cost_add_one = MAR_Okhranka_connections }
+	multiply_temp_variable = { MAR_decision_cost_add_one = 0.2 }
+	add_to_variable = { MAR_decision_cost_one = MAR_decision_cost_add_one }
+	
+	set_variable = { MAR_decision_cost_two = 15 }
+	set_temp_variable = { MAR_decision_cost_add_two = MAR_Okhranka_connections }
+	multiply_temp_variable = { MAR_decision_cost_add_two = 0.35 }
+	add_to_variable = { MAR_decision_cost_two = MAR_decision_cost_add_two }
+	
+	set_variable = { MAR_decision_cost_three = 25 }
+	set_temp_variable = { MAR_decision_cost_add_three = MAR_Okhranka_connections }
+	multiply_temp_variable = { MAR_decision_cost_add_three = 0.5 }
+	add_to_variable = { MAR_decision_cost_three = MAR_decision_cost_add_three }
+}
+
+MAR_MGB_shake_the_souverinity = {
+	add_to_variable = { MAR_MGB_vyatka_angry  = 1}
+	clamp_variable = {
+		var = MAR_MGB_vyatka_angry
+		min = 0
+		max = 2
+	}
+	custom_effect_tooltip = MAR_MGB_shake_the_souverinity_tt
+	set_temp_variable = { temp_lib_tr_lowered = 10 }
+	MAR_liberation_threshold_decrease = yes
+	hidden_effect = {
+		if = {
+			limit = { has_idea = MAR_souverinity_fail_2 }
+			country_event = {
+				id = 53
+				days = 0
+			}
+		}
+		else = {
+			if = {
+				limit = { has_idea = MAR_souverinity_fail_1 }
+				swap_ideas = {
+					remove_idea = MAR_souverinity_fail_1
+					add_idea = MAR_souverinity_fail_2
+				}
+			}
+			else = {
+				add_ideas = MAR_souverinity_fail_1
+			}
+		}
+	}
+}
+
+MAR_MGB_clear_flags = {
+	clr_country_flag = MAR_MGB_available
+	clr_country_flag = MAR_MGB_adv_start
+	clr_country_flag = MAR_MGB_resources_operation_success_flag
+	clr_country_flag = MAR_MGB_resources_operation_complete_flag
+	clr_country_flag = MAR_MGB_advisors_operation_complete_flag
+	clr_country_flag = MAR_MGB_advisors_operation_success_flag
+	clr_country_flag = MAR_MGB_yurla_operation_complete_flag
+}

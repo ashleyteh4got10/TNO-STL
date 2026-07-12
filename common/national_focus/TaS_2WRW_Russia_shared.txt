@@ -1,0 +1,1193 @@
+###WAR PREP###
+shared_focus = {
+	id = MAR_warprep_calm_before_the_storm
+	icon = GFX_MAR_warprep_calm_before_the_storm
+	cost = 3.58
+	#allow_branch = { has_country_flag = TaSWRW2_War_Prep_Tree_Load }
+	x = 3
+	y = 0
+	completion_reward = {
+		country_event = { id = RUS_SWRW_preparation.1 }
+		custom_effect_tooltip = MAR_warprep_calm_before_the_storm_tt
+		hidden_effect = {
+			set_temp_variable = { TabName = token:BoP_Tab_SWRW }
+			TNO_BoP_AddTab = yes
+		}
+		set_variable = { TaS_swrw_stage = 1 }
+		set_variable = { swrw_preparation_category = 1 }
+		set_variable = { SWRW_suspicion_gain = -5 }
+		if = {
+			limit = { is_ai = yes }
+			hidden_effect = { #заставляю ИИ переключитm
+				for_each_loop = {
+					array = TNO_BoP_Tabs_Frames
+					set_variable = { TNO_BoP_Tabs_Frames^i = 0 }
+				}
+				set_variable = { TNO_BoP_Tabs_Frames^Tab_i = 2 }
+
+				# Set tab decision
+				meta_effect = {
+					text = {
+						remove_power_balance = { id = [OLD_TAB]_[TAG] }
+						set_power_balance = { id = BoP_Tab_SWRW_MAR }
+					}
+					TAG = MAR
+					OLD_TAB = "[?TNO_BoP_SelectedTab.GetTokenKey]"
+					TAB_TYPE = "[?Tab_v.GetTokenKey]"
+				}
+
+				# Set tab GUI
+				set_variable = { TNO_BoP_SelectedTab = token:BoP_Tab_SWRW }
+			}
+		}
+		SWRW_add_army_size_modifier = yes
+		add_ideas = MAR_Anatoly_Vavilov_high_command
+		add_ideas = MAR_Valentin_Ardashev_high_command
+		add_ideas = MAR_Joseph_Beyrle_high_command
+		hidden_effect = { add_ideas = MAR_Joseph_Beyrle_army_chief }
+		add_ideas = MAR_Alexander_Rutskoj_air_chief
+		if = {
+			limit = { has_government = despotism }
+			add_ideas = MAR_Sergey_Belozerskiy_theorist
+		}
+	}
+}
+shared_focus = {
+	id = MAR_warprep_rise_up_people_of_russia
+	icon = GFX_MAR_warprep_rise_up_people_of_russia
+	cost = 3.58
+	prerequisite = {focus = MAR_warprep_calm_before_the_storm }
+	x = 3
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = SWRW_decisions_mobilisation_tt
+		#set_country_flag = SWRW_decisions_mobilisation
+		country_event = { id = RUS_SWRW_preparation.2 }
+		add_manpower = 100000
+		add_war_support = 0.1
+	}
+}
+shared_focus = {
+	id = MAR_warprep_leviathan_of_eurasia
+	icon = GFX_MAR_warprep_leviathan_of_eurasia
+	cost = 3.58
+	prerequisite = {focus = MAR_warprep_calm_before_the_storm }
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = SWRW_decisions_leviathan_tt
+		#set_country_flag = SWRW_decisions_leviathan
+		add_political_power = 150
+		add_command_power = 50
+		set_temp_variable = { pus_temp = 4 }
+		econ_pus_change = yes
+	}
+}
+shared_focus = {
+	id = MAR_warprep_prepare_for_the_worst
+	icon = GFX_MAR_warprep_prepare_for_the_worst
+	cost = 3.58
+	prerequisite = {focus = MAR_warprep_leviathan_of_eurasia }
+	x = 0
+	y = 2
+	completion_reward = {
+		country_event = { id = RUS_SWRW_preparation.3 }
+		custom_effect_tooltip = SWRW_decisions_bunkers_tt
+		#set_country_flag = SWRW_decisions_bunkers
+		TNO_improve_military_supervision_policy_effectiveness_monthly_high = yes
+		TNO_improve_military_supervision_policy_effectiveness_med = yes
+		TNO_improve_training_policy_effectiveness_monthly_high = yes
+		TNO_improve_training_policy_effectiveness_med = yes
+		tno_draft_exemptions_clear = yes
+		add_ideas = { tno_draft_exemptions_none }
+		TNO_improve_draft_exemptions_policy_effectiveness_low = yes		
+	}
+}
+shared_focus = {
+	id = MAR_warprep_modern_warfare_logistics
+	icon = GFX_MAR_warprep_modern_warfare_logistics
+	cost = 3.58
+	prerequisite = {focus = MAR_warprep_leviathan_of_eurasia }
+	x = 2
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = SWRW_decisions_logistics_tt
+		#set_country_flag = SWRW_decisions_logistics
+		hidden_effect = {
+			set_technology = { trains_1955 = 1 }
+			set_technology = { trains_1965 = 1 }
+			set_technology = { trains_1975 = 1 }
+			set_technology = { military_infrastructure1 = 1 }
+			set_technology = { military_infrastructure2 = 1 }
+			set_technology = { military_infrastructure3 = 1 }
+			set_technology = { command_and_control1 = 1 }
+			set_technology = { command_and_control2 = 1 }
+			set_technology = { command_and_control3 = 1 }
+		}
+	}
+}
+shared_focus = {
+	id = MAR_warprep_friends_around_the_world
+	icon = GFX_MAR_warprep_friends_around_the_world
+	cost = 3.58
+	prerequisite = {focus = MAR_warprep_calm_before_the_storm }
+	x = 5
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = SWRW_decisions_fopo_tt
+		#set_country_flag = SWRW_decisions_fopo
+		#if = {
+		#	limit = { NOT = { SWE = { has_idea = Pakt_Observer } } }
+		#	SWE = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { ITA = { is_in_faction_with = GER } } }
+		#	ITA = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { IBR = { is_in_faction_with = GER } } }
+		#	IBR = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { FEN = { is_in_faction_with = GER } } }
+		#	ENG = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { BRA = { is_in_faction_with = GER } } }
+		#	BRA = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { MEX = { is_in_faction_with = GER } } }
+		#	MEX = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { BUL = { is_in_faction_with = GER } } }
+		#	BUL = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { FIN = { is_in_faction_with = GER } } }
+		#	FIN = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { BUL = { is_in_faction_with = GER } } }
+		#	BUL = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { SER = { is_in_faction_with = GER } } }
+		#	SER = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { AST = { is_in_faction_with = GER } } }
+		#	AST = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { CAN = { is_in_faction_with = GER } } }
+		#	CAN = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { SAF = { is_in_faction_with = GER } } }
+		#	SAF = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { SPA = { exists = yes } }
+		#	SPA = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { IRE = { has_idea = Pakt_Observer } } }
+		#	IRE = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { GRE = { is_in_faction_with = GER } } }
+		#	GRE = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { NOT = { SWI = { is_in_faction_with = GER } } }
+		#	SWI = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { SPR = { exists = yes } }
+		#	SPR = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { CTL = { exists = yes } }
+		#	CTL = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { GAL = { exists = yes } }
+		#	GAL = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = { IND = { exists = yes } }
+		#	IND = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = {
+		#	    NOT = {
+		#		    OR = {
+		#	            POR = {
+		#			        is_in_faction_with = GER 
+		#					has_idea = Pakt_Observer
+		#					exists = no
+		#				}
+		#		    }
+		#		} 
+		#	}
+		#	POR = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = {
+		#	    NOT = {
+		#		    OR = {
+		#	            ARG = {
+		#			        is_in_faction_with = GER 
+		#					has_idea = Pakt_Observer
+		#					has_government = national_socialism
+		#				}
+		#		    }
+		#		}
+		#		exists = yes 
+		#	}
+		#	ARG = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = {
+		#	    NOT = {
+		#		    OR = {
+		#				NZL = {
+		#					is_in_faction_with = GER 
+		#					has_idea = Pakt_Observer
+		#					has_government = paternalism
+		#				}
+		#			}
+		#		}
+		#		exists = yes 
+		#	}
+		#	NZL = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+		#if = {
+		#	limit = {
+		#	    NOT = {
+		#		    OR = {
+		#	            TUR = {
+		#			        is_in_faction_with = GER 
+		#					has_idea = Pakt_Observer
+		#				}
+		#		    }
+		#		}
+		#		exists = yes 
+		#	}
+		#	TUR = {
+		#		add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner
+		#		}
+		#		reverse_add_opinion_modifier = {
+		#			target = RUS
+		#			modifier = MAR_SWRW_partner	
+		#		}
+		#		set_temp_variable = { target = RUS }
+		#		TNO_increase_volunteer_cap_2 = yes
+		#	}
+		#}
+	}
+}
+shared_focus = {
+	id = MAR_warprep_better_call_sam
+	icon = GFX_MAR_warprep_better_call_sam
+	cost = 3.58
+	prerequisite = {focus = MAR_warprep_friends_around_the_world }
+	mutually_exclusive = { focus = MAR_warprep_chrysanthemum_friendship }
+	available = {
+		OR = {
+			AND = {
+				has_country_leader = {
+					character = MAR_advisor_Kosygin
+					ruling_only = yes
+				}
+				has_country_flag = MAR_Kosygin_choose_USA
+			}
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			}
+		}
+	}
+	x = 4
+	y = 2
+	completion_reward = {
+		country_event = { id = RUS_SWRW_preparation.4 }
+		add_to_variable = { MAR_USA_relations_focus = 1 }
+		custom_effect_tooltip = SWRW_decisions_usa_tt
+		#set_country_flag = SWRW_decisions_usa
+		USA = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = MAR_SWRW_partner
+			}
+			reverse_add_opinion_modifier = {
+				target = RUS
+				modifier = MAR_SWRW_partner	
+			}
+		}
+	}
+}
+shared_focus = {
+	id = MAR_warprep_chrysanthemum_friendship
+	icon = GFX_MAR_warprep_chrysanthemum_friendship
+	cost = 3.58
+	prerequisite = {focus = MAR_warprep_friends_around_the_world }
+	mutually_exclusive = { focus = MAR_warprep_better_call_sam }
+	available = {
+		has_country_leader = {
+			character = MAR_advisor_Kosygin
+			ruling_only = yes
+		}
+		has_country_flag = MAR_Kosygin_choose_JAP
+	}
+	x = 6
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = SWRW_decisions_jap_tt
+		add_to_variable = { MAR_JAP_relations_focus = 1 }
+		#set_country_flag = SWRW_decisions_jap
+		country_event = { id = RUS_SWRW_preparation.5 }
+		JAP = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = MAR_SWRW_partner
+			}
+			reverse_add_opinion_modifier = {
+				target = RUS
+				modifier = MAR_SWRW_partner	
+			}
+		}
+
+	}
+}
+shared_focus = {
+	id = MAR_warprep_dance_on_the_ravaged_land
+	icon = GFX_MAR_warprep_dance_on_the_ravaged_land
+	prerequisite = {focus = MAR_warprep_prepare_for_the_worst }
+	prerequisite = {focus = MAR_warprep_modern_warfare_logistics }
+	prerequisite = {focus = MAR_warprep_rise_up_people_of_russia }
+	prerequisite = {
+		focus = MAR_warprep_better_call_sam
+		focus = MAR_warprep_chrysanthemum_friendship
+	}
+	cost = 3.58
+	x = 3
+	y = 3
+	completion_reward = {
+		custom_effect_tooltip = SWRW_decisions_ger_tt
+		#set_country_flag = SWRW_decisions_ger
+		264 = {
+			remove_core_of = MCW
+		}
+		246 = {
+			remove_core_of = MCW
+		}
+		238 = {
+			remove_core_of = MCW
+		}
+		263 = {
+			remove_core_of = MCW
+		}
+		1436 = {
+			remove_core_of = MCW
+		}
+		245 = {
+			remove_core_of = MCW
+		}
+		217 = {
+			remove_core_of = MCW
+		}
+		MCW = {
+			add_manpower = -50000
+			add_war_support = -0.3
+			add_stability = -0.3
+		}	
+		country_event = { id = RUS_SWRW_preparation.6 }
+	}
+}
+shared_focus = {
+	id = MAR_warprep_so_kill_him
+	icon = GFX_MAR_warprep_so_kill_him
+	cost = 3.58
+	prerequisite = {focus = MAR_warprep_dance_on_the_ravaged_land }
+	available = {
+		GER = {
+			custom_trigger_tooltip = {
+				tooltip = GER_SWRW_alldone_tt
+				OR ={
+					has_completed_focus = SGR_koalition_der_nationen
+					has_completed_focus = BOR_autumn_in_germany
+					has_country_flag = SGR_oberlander_takeover
+				}
+			}
+		}
+		OR = {
+			custom_trigger_tooltip = {
+				tooltip = SWRW_readiness_tt
+				check_variable = { SWRW_readiness_var > 74.99 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = SWRW_skip_preparation_tt
+				has_game_rule = {
+					rule = april_fools_content_status
+					option = APRIL_FOOLS_ENABLED
+				}
+			}
+		}
+		custom_trigger_tooltip = {
+			tooltip = SWRW_issues_done_tt
+			OR = {
+				has_country_flag = MAR_has_turkestan
+				has_country_flag = MAR_Turkestan_German
+				has_country_flag = MAR_Turkestan_cucked
+			}
+		}
+	}
+	x = 3
+	y = 5
+	completion_reward = {
+		#set_country_flag = TaSWRW2_War_Prep_Tree_Complete
+		set_country_flag = TaS_starting_war
+		custom_effect_tooltip = MAR_warprep_so_kill_him_tt
+		country_event = { id = RUS_SWRW_preparation.7 }
+		if = {
+			limit = {
+				has_game_rule = {
+					rule = april_fools_content_status
+					option = APRIL_FOOLS_ENABLED
+				}
+			}
+			hidden_effect = {
+				every_country = {
+					limit = { is_ai = no }
+					news_event = { id = AprilFools_news.3 days = 45 }
+				}
+			}
+		}
+		GER = {
+			add_war_support = -0.15
+			add_stability = -0.15
+		}	
+	}
+}
+
+shared_focus = {
+	id = MAR_the_second_patriotic_war
+	icon = GFX_MAR_the_second_patriotic_war
+	cost = 1
+	x = 8
+	y = 0
+	bypass = {
+		has_war_with = GER
+	}
+	completion_reward = {
+	
+	}
+}
+shared_focus = {
+	id = MAR_the_last_fight
+	icon = GFX_MAR_the_last_fight
+	cost = 1
+	prerequisite = {focus = MAR_the_second_patriotic_war}
+	relative_position_id = MAR_the_second_patriotic_war
+	x = 0
+	y = 1
+	completion_reward = {
+		add_stability = 0.1
+		add_war_support = 0.15
+		country_event = { id = RUS_SWRW.1 }
+	}
+}
+shared_focus = {
+	id = MAR_white_are_we
+	icon = GFX_MAR_white_are_we
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_the_last_fight}
+	relative_position_id = MAR_the_last_fight
+	x = -3
+	y = 1
+	completion_reward = {
+		add_manpower = 150000
+	}
+}
+shared_focus = {
+	id = MAR_red_are_we
+	icon = GFX_MAR_red_are_we
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_the_last_fight}
+	relative_position_id = MAR_the_last_fight
+	x = 3
+	y = 1
+	completion_reward = {
+		set_temp_variable = { pus_temp = 6 }
+		econ_pus_change = yes
+	}
+}
+shared_focus = {
+	id = MAR_russians_are_we
+	icon = GFX_MAR_russians_are_we
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_the_last_fight}
+	relative_position_id = MAR_the_last_fight
+	x = 0
+	y = 3
+	completion_reward = {
+		add_stability = 0.1
+		add_political_power = 150
+		set_temp_variable = { temp_devastation_gained = -7.5 }
+		TaS_WRW2_change_devastation = yes
+	}
+}
+shared_focus = {
+	id = MAR_imperial_nostalgia
+	icon = GFX_MAR_imperial_nostalgia
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_white_are_we}
+	relative_position_id = MAR_white_are_we
+	x = -1
+	y = 1
+	completion_reward = {
+		country_event = { id = RUS_SWRW.2 }
+		set_temp_variable = { inflation_temp = -3 }
+		econ_inflation_change = yes
+	}
+}
+shared_focus = {
+	id = MAR_for_our_grandfathers
+	icon = GFX_MAR_for_our_grandfathers
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_white_are_we}
+	relative_position_id = MAR_white_are_we
+	x = 1
+	y = 1
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 15000
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 5000
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 2500
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 3000
+			producer = MAR
+		}
+	}
+}
+shared_focus = {
+	id = MAR_onwards_bogatyrs
+	icon = GFX_MAR_onwards_bogatyrs
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_imperial_nostalgia}
+	prerequisite = {focus = MAR_for_our_grandfathers}
+	relative_position_id = MAR_white_are_we
+	x = 0
+	y = 2
+	completion_reward = {
+		TNO_improve_army_professionalism_high = yes
+		#TNO_improve_army_professionalism_high = yes
+		country_event = { id = RUS_SWRW.3 }
+	}
+}
+shared_focus = {
+	id = MAR_and_our_fathers
+	icon = GFX_MAR_and_our_fathers
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_red_are_we}
+	relative_position_id = MAR_red_are_we
+	x = -1
+	y = 1
+	completion_reward = {
+		if = { 
+			limit = { 
+				has_dlc = "No Step Back"
+			}
+			add_equipment_to_stockpile = {
+				type = MBT_chassis
+				amount = 1000
+				producer = MAR
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = MBT_equipment
+				amount = 1000
+				producer = MAR
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = jet_fighter_equipment_2
+			amount = 200
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = jet_CAS_equipment_2
+			amount = 200
+			producer = MAR
+		}
+	}
+}
+shared_focus = {
+	id = MAR_antifascist_brigades
+	icon = GFX_MAR_antifascist_brigades
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_red_are_we}
+	relative_position_id = MAR_red_are_we
+	x = 1
+	y = 1
+	completion_reward = {
+		TaS_2WRW_spawn_antifascists = yes
+	}
+}
+shared_focus = {
+	id = MAR_germans_did_that
+	icon = GFX_MAR_germans_did_that
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_antifascist_brigades}
+	prerequisite = {focus = MAR_and_our_fathers}
+	relative_position_id = MAR_red_are_we
+	x = 0
+	y = 2
+	completion_reward = {
+		every_controlled_state = {
+			limit = {
+				has_resistance = yes
+			}
+			add_compliance = 30
+			add_resistance = -15
+		}
+		country_event = { id = RUS_SWRW.4 }
+	}
+}
+shared_focus = {
+	id = MAR_german_free_army
+	icon = GFX_MAR_german_free_army
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_onwards_bogatyrs}
+	prerequisite = {focus = MAR_russians_are_we}
+	relative_position_id = MAR_russians_are_we
+	x = -1
+	y = 1
+	completion_reward = {
+		TaS_2WRW_spawn_germans = yes
+		country_event = { id = RUS_SWRW.7 }
+	}
+}
+shared_focus = {
+	id = MAR_arise_ye_downtrodden
+	icon = GFX_MAR_arise_ye_downtrodden
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_germans_did_that}
+	prerequisite = {focus = MAR_russians_are_we}
+	relative_position_id = MAR_russians_are_we
+	x = 1
+	y = 1
+	completion_reward = {
+		GER = {
+			add_timed_idea = {
+				idea = SWRW_mass_strikes
+				days = 180
+			}
+		}
+	}
+}
+shared_focus = {
+	id = MAR_break_the_german_machine
+	icon = GFX_MAR_break_the_german_machine
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_onwards_bogatyrs}
+	prerequisite = {focus = MAR_german_free_army}
+	relative_position_id = MAR_russians_are_we
+	x = -2
+	y = 2
+	completion_reward = {
+		add_timed_idea = {
+			idea = SWRW_offensive_against_ger
+			days = 180
+		}
+	}
+}
+shared_focus = {
+	id = MAR_patchwork_chimera
+	icon = GFX_MAR_patchwork_chimera
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	prerequisite = {focus = MAR_germans_did_that}
+	prerequisite = {focus = MAR_arise_ye_downtrodden}
+	relative_position_id = MAR_russians_are_we
+	x = 2
+	y = 2
+	completion_reward = {
+		set_temp_variable = { temp_devastation_gained = -5 }
+		TaS_WRW2_change_devastation = yes
+		GER = {
+			random_owned_controlled_state = {
+			damage_building = {
+				type = infrastructure
+				damage = 2
+			}
+				add_manpower = -139
+			}
+			random_owned_controlled_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				add_manpower = -64
+			}
+			random_owned_controlled_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				add_manpower = -112
+			}
+		}
+		#country_event = { id = RUS_SWRW.5 }
+	}
+}
+shared_focus = {
+	id = MAR_we_have_won
+	icon = GFX_MAR_we_have_won
+	cost = 2
+	available = {
+		has_war = no
+		1442 = { is_owned_by = MAR }
+	}
+	prerequisite = {focus = MAR_patchwork_chimera}
+	prerequisite = {focus = MAR_break_the_german_machine}
+	relative_position_id = MAR_russians_are_we
+	x = 0
+	y = 3
+	completion_reward = {
+		country_event = { id = RUS_SWRW.6 }
+	}
+}
+
+### FAIL ###
+
+shared_focus = {
+	id = MAR_cold_world
+	icon = GFX_MAR_cold_world
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	x = 4
+	y = 0
+	completion_reward = {
+		tno_trade_laws_clear = yes
+		add_ideas = { tno_trade_laws_closed_economy }
+		tno_minimum_wage_clear = yes
+		add_ideas = { tno_minimum_wage_no_minimum_wage }
+		tno_max_workhours_clear = yes
+		add_ideas = { tno_max_workhours_unlimited_work_day }
+		tno_safety_clear = yes
+		add_ideas = { tno_safety_no_regulations	}
+		tno_pollution_clear = yes
+		add_ideas = { tno_pollution_no_controls	}
+		tno_child_labor_clear = yes
+		add_ideas = { tno_child_labor_legal }
+		tno_pensions_clear = yes
+		add_ideas = { tno_pensions_no_pensions }
+		tno_unemployment_clear = yes
+		add_ideas = { tno_unemployment_no_subsidies }
+	}
+}
+shared_focus = {
+	id = MAR_avesta_of_black_and_white
+	icon = GFX_MAR_avesta_of_black_and_white
+	prerequisite = {focus = MAR_cold_world}
+	relative_position_id = MAR_cold_world
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	x = 0
+	y = 1
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 25000
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = 10000
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 6000
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 5000
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_0
+			amount = 2000
+			producer = MAR
+		}
+		if = { 
+			limit = { 
+				has_dlc = "No Step Back"
+			}
+			add_equipment_to_stockpile = {
+				type = MBT_chassis_0
+				amount = 1000
+				producer = MAR
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = MBT_equipment_0
+				amount = 1000
+				producer = MAR
+			}
+		}
+	}
+}
+shared_focus = {
+	id = MAR_golden_fantasia
+	icon = GFX_MAR_golden_fantasia
+	prerequisite = {focus = MAR_cold_world}
+	relative_position_id = MAR_cold_world
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	x = -2
+	y = 2
+	completion_reward = {
+		tno_conscription_clear = yes
+		add_ideas = { tno_conscription_all_adults_serve }			
+		tno_military_supervision_clear = yes 
+		add_ideas = { tno_military_supervision_no_supervision }			
+		tno_training_clear = yes
+		add_ideas = { tno_training_none }			
+		tno_draft_exemptions_clear = yes
+		add_ideas = { tno_draft_exemptions_none }	
+		country_event = { id = RUS_SWRW.12 days = 3 }
+	}
+}
+shared_focus = {
+	id = MAR_melty_blood
+	icon = GFX_MAR_melty_blood
+	prerequisite = {focus = MAR_cold_world}
+	relative_position_id = MAR_cold_world
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	x = 2
+	y = 2
+	completion_reward = {
+		add_timed_idea = {
+			idea = SWRW_last_stand
+			days = 120
+		}
+		country_event = { id = RUS_SWRW.13 days = 3 }
+	}
+}
+shared_focus = {
+	id = MAR_we_shall_all_go_to_heaven
+	icon = GFX_MAR_we_shall_all_go_to_heaven
+	available = { #нет, ИИ не будет устраивать ядерный апокалипсис
+		is_ai = no
+	}
+	prerequisite = {focus = MAR_melty_blood}
+	prerequisite = {focus = MAR_golden_fantasia}
+	prerequisite = {focus = MAR_avesta_of_black_and_white}
+	relative_position_id = MAR_cold_world
+	cost = 1.45
+	bypass = { NOT = { has_war_with = GER } }
+	x = 0
+	y = 3
+	completion_reward = {
+		country_event = { id = nuclearwar.1 }
+		load_focus_tree = ZZZ_blank_focus
+	}
+}

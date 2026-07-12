@@ -1,0 +1,462 @@
+GER_Panic_strat = {
+	allowed = {
+		OR = { 
+			tag = GER
+			tag = MCW
+			is_in_faction_with = GER
+		}
+	}
+	enable = {
+		MAR = {
+			OR = {
+				has_active_mission = TaS_SWRW_germs_panick
+				has_country_flag = TaS_starting_war
+				focus_progress = {
+					focus = MAR_warprep_so_kill_him
+					progress > 0
+				}
+			}
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = MAR
+		value = 1000
+	}
+}
+MAR_zapad_71 = {
+	allowed = {
+		tag = MAR
+	}
+	enable = {
+		date > 1971.9.01
+		date < 1971.11.01
+		has_decision = TaS_WRW2_zapad_excersices
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.4
+		states = {
+			400
+			399
+			752
+			753
+			864
+		}
+	}
+}
+MAR_sever_72 = {
+	allowed = {
+		tag = MAR
+	}
+	enable = {
+		date > 1972.9.01
+		date < 1972.12.01
+		has_decision = TaS_WRW2_sever_excersices
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.4
+		states = {
+			262
+			863
+			844
+			579
+			756
+		}
+	}
+}
+MAR_vostok_73 = {
+	allowed = {
+		tag = MAR
+	}
+	enable = {
+		date > 1973.6.01
+		date < 1973.8.01
+		has_decision = TaS_WRW2_vostok_excersices
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.4
+		states = {
+			567
+			566
+			565
+			564
+			890
+			759
+			563
+		}
+	}
+}
+MAR_volga_74 = {
+	allowed = {
+		tag = MAR
+	}
+	enable = {
+		date > 1973.3.01
+		date < 1973.6.01
+		has_decision = TaS_WRW2_volga_excersices
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = put_unit_buffers
+		ratio = 0.4
+		states = {
+			252
+			256
+			250
+			251
+			755
+		}
+	}
+}
+GER_war_strat = {
+	allowed = {
+		OR = {
+			tag = GER
+			tag = MCW
+		}
+	}
+	enable = {
+		MAR = {
+			has_war_with = GER
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = MAR
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MAR
+		value = 1000
+	}
+}
+
+GER_allies_war_strat = {
+	allowed = {
+		is_in_faction_with = GER
+	}
+	enable = {
+		MAR = {
+			has_war_with = GER
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = front_unit_request
+		tag = MAR
+		value = 100
+	}
+
+	ai_strategy = {
+		type = spare_unit_factor
+		value = 100
+	}
+}
+
+
+USA_invastion_strat = {
+	allowed = {
+		tag = USA
+	}
+	enable = {
+		USA = {
+			has_war_with = GER
+		}
+		has_global_flag = TaS_SWRW_democracy_time
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = GER
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = GER
+		value = 1000
+	}
+}
+
+FRA_invastion_strat = {
+	allowed = {
+		tag = FRA
+	}
+	enable = {
+		FRA = {
+			has_war_with = GER
+		}
+		#has_global_flag = TaS_SWRW_democracy_time
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = FRA
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = FRA
+		value = 1000
+	}
+}
+
+MUJ_civil_war_strat = {
+	allowed = {
+		tag = MUJ
+	}
+	enable = {
+		MUJ = {
+			has_war_with = AFG
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = AFG
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = AFG
+		value = 1000
+	}
+}
+
+NAL_civil_war_strat = {
+	allowed = {
+		tag = NAL
+	}
+	enable = {
+		NAL = {
+			has_war_with = AFG
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = AFG
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = AFG
+		value = 1000
+	}
+}
+
+AFG_civil_war_strat = {
+	allowed = {
+		tag = AFG
+	}
+	enable = {
+		AFG = {
+			has_war_with = NAL
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = NAL
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = NAL
+		value = 1000
+	}
+}
+
+PFF_rebellion_preparation_strat = {
+	allowed = {
+		tag = PFF
+	}
+	enable = {
+		RUS = {
+			has_active_mission = MAR_FErebels_mission
+		}	
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = PJP
+		value = 1000
+	}
+	
+	ai_strategy = {
+		type = front_unit_request
+		id = RUS
+		value = -200
+	}
+}
+
+PJP_rebellion_preparation_strat = {
+	allowed = {
+		tag = PJP
+	}
+	enable = {
+		RUS = {
+			has_active_mission = MAR_FErebels_mission
+		}	
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = PFF
+		value = 1000
+	}
+	
+	ai_strategy = {
+		type = front_unit_request
+		id = MAN
+		value = -200
+	}
+}
+
+PFF_rebellion_strat = {
+	allowed = {
+		tag = PFF
+	}
+	enable = {
+		PFF = {
+			has_war_with = PJP
+		}	
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = NAL
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = NAL
+		value = 1000
+	}
+}
+
+PFF_manchucw_strat = {
+	allowed = {
+		tag = PFF
+	}
+	enable = {
+		PFF = {
+			has_war_with = MAN
+		}	
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = MAN
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MAN
+		value = 1000
+	}
+}
+
+MJP_manchucw_strat = {
+	allowed = {
+		tag = MJP
+	}
+	enable = {
+		MJP = {
+			has_war_with = MAN
+		}	
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = MAN
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MAN
+		value = 1000
+	}
+}
+
+HAN_manchucw_strat = {
+	allowed = {
+		tag = HAN
+	}
+	enable = {
+		HAN = {
+			has_war_with = MAN
+		}	
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = MAN
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MAN
+		value = 1000
+	}
+}
+
+MTR_centralasianwar_strat = {
+	allowed = {
+		tag = MTR
+	}
+	enable = {
+		MKZ = {
+			has_war_with = MTR
+		}	
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = consider_weak
+		id = MKZ
+		value = 1000
+	}
+
+	ai_strategy = {
+		type = conquer
+		id = MKZ
+		value = 1000
+	}
+}

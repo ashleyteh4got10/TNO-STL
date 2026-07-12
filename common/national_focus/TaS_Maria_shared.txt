@@ -1,0 +1,250 @@
+shared_focus = {
+	id = MAR_apocalypse_now
+	icon = GFX_generic_aprilfools
+	cost = 1
+	x = 8
+	y = 0
+	completion_reward = {
+		add_stability = -0.1
+	}
+}
+
+shared_focus = {
+	id = MAR_end_the_smuta
+	icon = GFX_generic_aprilfools
+	cost = 2
+	prerequisite = {focus = MAR_apocalypse_now}
+	relative_position_id = MAR_apocalypse_now
+	x = 1
+	y = 1
+	completion_reward = {
+		add_political_power = 50
+		set_temp_variable = { temp_econ_spending_amount = 0.005 }
+		econ_spend_money_once_effect_raw_money = yes
+		country_event = { id = maria_magica.101 }
+	}
+}	
+
+shared_focus = {
+	id = MAR_end_the_rebellion
+	icon = GFX_generic_aprilfools
+	cost = 2
+	prerequisite = {focus = MAR_end_the_smuta}
+	relative_position_id = MAR_end_the_smuta
+	x = -2
+	y = 1
+	completion_reward = {
+		add_war_support = 0.1
+		country_event = { id = maria_magica.102 }
+	}
+}	
+
+shared_focus = {
+	id = MAR_emergency_sobor
+	icon = GFX_generic_aprilfools
+	cost = 2
+	prerequisite = {focus = MAR_end_the_rebellion}
+	relative_position_id = MAR_end_the_rebellion
+	x = 3
+	y = 1
+	completion_reward = {
+		add_stability = 0.1
+		country_event = { id = maria_magica.103 days = 3 }
+	}
+}	
+
+shared_focus = {
+	id = MAR_the_true_heir
+	icon = GFX_MAR_the_true_heir
+	cost = 3
+	x = 8
+	y = 0
+	completion_reward = {
+		add_political_power = 50
+		country_event = { id = MAR_maria.5 days = 3 }
+	}
+}	
+shared_focus = {
+	id = MAR_golden_cage
+	icon = GFX_MAR_golden_cage
+	cost = 2
+	prerequisite = {focus = MAR_the_true_heir}
+	relative_position_id = MAR_the_true_heir
+	x = -1
+	y = 1
+	completion_reward = {
+		add_political_power = 50
+		set_temp_variable = { temp_econ_spending_amount = 0.005 }
+		econ_spend_money_once_effect_raw_money = yes
+		country_event = { id = MAR_maria.6 days = 3 }
+	}
+}	
+shared_focus = {
+	id = MAR_and_the_keybearer
+	icon = GFX_MAR_and_the_keybearer
+	cost = 2
+	prerequisite = {focus = MAR_the_true_heir}
+	relative_position_id = MAR_the_true_heir
+	x = 1
+	y = 1
+	completion_reward = {
+		TNO_improve_admin_efficiency_low = yes
+		country_event = { id = MAR_maria.7 days = 3 }
+	}
+}	
+shared_focus = {
+	id = MAR_all_royal_court
+	icon = GFX_MAR_all_royal_court
+	cost = 3
+	prerequisite = {focus = MAR_golden_cage}
+	prerequisite = {focus = MAR_and_the_keybearer}
+	relative_position_id = MAR_the_true_heir
+	x = 0
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = MAR_russian_kartenhouse_mech_activate_tt
+		MAR_maria_gui_setup = yes
+		set_variable = { MAR_card_array^0 = 1 }
+		add_to_variable = { MAR_Maria_GUI_dirty_var = 1 }
+		RUS_decrease_administrative_strain = yes
+	}
+}	
+shared_focus = {
+	id = MAR_kazembeks_people
+	icon = GFX_MAR_kazembeks_people
+	cost = 2
+	prerequisite = {focus = MAR_all_royal_court}
+	relative_position_id = MAR_all_royal_court
+	x = -1
+	y = 1
+	completion_reward = {
+		add_political_power = 25
+		custom_effect_tooltip = MAR_russian_kartenhouse_mech_add_gil_and_belozersky_tt
+		set_variable = { MAR_card_array^2 = 1 }
+		set_variable = { MAR_card_array^3 = 1 }
+		add_to_variable = { MAR_Maria_GUI_dirty_var = 1 }
+		hidden_effect = {
+			country_event = { id = MAR_maria.8 days = 3 }
+			country_event = { id = MAR_maria.9 days = 7 }
+		}
+	}
+}	
+shared_focus = {
+	id = MAR_old_bosses
+	icon = GFX_MAR_old_bosses
+	cost = 2
+	prerequisite = {focus = MAR_all_royal_court}
+	relative_position_id = MAR_all_royal_court
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = MAR_russian_kartenhouse_mech_add_shulgin_smyslovsky_and_solzhenitsyn_tt
+		set_variable = { MAR_card_array^6 = 1 }
+		set_variable = { MAR_card_array^7 = 1 }
+		set_variable = { MAR_card_array^8 = 1 }
+		add_to_variable = { MAR_Maria_GUI_dirty_var = 1 }
+		hidden_effect = {
+			country_event = { id = MAR_maria.13 days = 4 }
+			country_event = { id = MAR_maria.14 days = 9 }
+			country_event = { id = MAR_maria.15 days = 9 }
+		}
+	}
+}
+shared_focus = {
+	id = MAR_the_functionary
+	icon = GFX_MAR_the_functionary
+	cost = 2
+	prerequisite = {focus = MAR_kazembeks_people}
+	relative_position_id = MAR_kazembeks_people
+	x = -1
+	y = 1
+	completion_reward = {
+		add_ideas = MAR_Pyotr_Demichev_for
+		custom_effect_tooltip = MAR_russian_kartenhouse_mech_add_demichev_tt
+		set_variable = { MAR_card_array^1 = 1 }
+		add_to_variable = { MAR_Maria_GUI_dirty_var = 1 }
+		hidden_effect = {
+			country_event = { id = MAR_maria.10 days = 5 }
+		}
+	}
+}	
+shared_focus = {
+	id = MAR_vox_populi
+	icon = GFX_MAR_vox_populi
+	cost = 2
+	prerequisite = {focus = MAR_all_royal_court}
+	relative_position_id = MAR_all_royal_court
+	x = 0
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = MAR_russian_kartenhouse_mech_add_brodsky_and_talantov_tt
+		set_variable = { MAR_card_array^4 = 1 }
+		set_variable = { MAR_card_array^9 = 1 }
+		add_to_variable = { MAR_Maria_GUI_dirty_var = 1 }
+		add_popularity = {
+			ideology = liberalism
+			popularity = 0.12
+		}
+		add_popularity = {
+			ideology = conservatism
+			popularity = 0.15
+		}
+		add_popularity = {
+			ideology = progressivism
+			popularity = 0.04
+		}
+		hidden_effect = {
+			country_event = { id = MAR_maria.11 days = 4 }
+			country_event = { id = MAR_maria.12 days = 9 }
+		}
+	}
+}
+shared_focus = {
+	id = MAR_judas_will_be_in_heaven
+	icon = GFX_MAR_judas_will_be_in_heaven
+	cost = 2
+	prerequisite = {focus = MAR_old_bosses}
+	relative_position_id = MAR_old_bosses
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = MAR_russian_kartenhouse_mech_add_vladimir_tt
+		set_variable = { MAR_card_array^5 = 1 }
+		add_to_variable = { MAR_Maria_GUI_dirty_var = 1 }
+		add_popularity = {
+			ideology = despotism
+			popularity = 0.05
+		}
+		hidden_effect = {
+			country_event = { id = MAR_maria.16 days = 3 }
+		}
+	}
+}	
+
+shared_focus = {
+	id = MAR_to_urgent_matters
+	icon = GFX_MAR_to_urgent_matters
+	cost = 10
+	prerequisite = {focus = MAR_the_functionary}
+	prerequisite = {focus = MAR_vox_populi }
+	prerequisite = {focus = MAR_judas_will_be_in_heaven }
+	relative_position_id = MAR_all_royal_court
+	x = 0
+	y = 3
+	completion_reward = { ##starting maria early teenager depression arc  ／人◕ ‿‿ ◕人＼
+		if = {
+			limit = {
+				has_completed_focus = MAR_the_functionary
+				has_completed_focus = MAR_vox_populi
+				has_completed_focus = MAR_judas_will_be_in_heaven
+			}
+			custom_effect_tooltip = MAR_somethings_is_wrong_i_can_feel_it_tt
+		}
+		else = {
+			custom_effect_tooltip = MAR_russian_kartenhouse_mech_now_the_figures_is_placed_tt
+		}
+		hidden_effect = {
+			country_event = { id = MAR_maria.17 }
+		}
+	}
+}			

@@ -1,0 +1,196 @@
+TaS_WRW2_territorial_reclamation = {
+	icon = GFX_MAR_Reclamation_category_icon
+	picture = GFX_MAR_RECLAMATION_category
+	
+	allowed = {
+		tag = MAR
+	}
+	
+	visible = {
+		#has_global_flag = RUS_national_unification
+		has_country_flag = RUS_postreunification_tree_completed
+		NOT = { has_global_flag = SWRW_GER_victory }
+	}
+	
+	visible_when_empty = no
+	
+	priority = {
+		base = 40
+	}
+}
+
+TaS_SWRW_far_eastern_negotiations = {
+	icon = generic_document
+	picture = GFX_MAR_RECLAMATION_category
+	scripted_gui = TaS_FE_GUI
+	allowed = { original_tag = MAR }
+	visible = { has_global_flag = FE_negotiations_start }
+	visible_when_empty = yes
+	priority = { base = 1000 }
+}
+
+TaS_WRW2_fate_and_coring_of_territories = {
+	icon = GFX_generic_category_border_war
+	picture = GFX_generic_political_fighting
+	
+	allowed = {
+		tag = MAR
+	}
+	
+	visible = {
+		has_global_flag = RUS_national_unification
+		NOT = { has_global_flag = SWRW_GER_victory }
+	}
+	on_map_area = {
+		target_array = owned_states
+		target_trigger = {
+			any_owned_state = {
+				NOT = { is_core_of = ROOT }
+			}
+		}
+		name = coring_mar_map_category_name
+		zoom = 1000
+	}
+	visible_when_empty = no
+	
+	priority = {
+		base = 40
+	}
+}
+TaS_WRW2_ost_territories_GER_braindead = {
+	icon = GFX_decision_generic_ignite_civil_war
+	picture = GFX_MAR_FINAL_BATTLE_category
+	
+	allowed = {
+		tag = MAR
+	}
+	
+	visible = {
+		has_global_flag = RUS_national_unification
+		OR = {
+			GER = {
+				has_country_leader = {
+					character = GER_ferdinand_schorner 
+					ruling_only = yes
+				}
+			}
+			has_global_flag = TNO_Heydrich_Anarchy
+		}		
+	}
+	
+	visible_when_empty = yes
+	
+	priority = {
+		base = 40
+	}
+}
+TaS_WRW2_GER_epilogue = {
+	icon = GFX_Postger_epilogue_category
+	picture = GFX_MAR_GER_EPILOGUE_category
+	
+	allowed = {
+		OR = {
+			tag = MAR
+			tag = BRL
+			tag = ZNE
+			tag = GWS
+			tag = GRH
+			tag = GBW
+			tag = GBV
+			tag = GCZ
+			tag = GAU
+			tag = GWF
+			tag = GRA
+			tag = GSU
+		}
+	}
+	
+	visible = {
+		has_global_flag = WRW2_german_collapse
+		NOT = { has_global_flag = PostGER_kosygin_epilogue }
+		NOT = { 
+			has_game_rule = {
+				rule = april_fools_content_status
+				option = APRIL_FOOLS_ENABLED
+			}
+		}
+	}
+	
+	visible_when_empty = yes
+	
+	priority = {
+		base = 40
+	}
+}
+TaS_WRW2_RUS_post_collapse = {
+	icon = GFX_decision_category_generic_formable_nations
+	picture = GFX_MAR_GER_EPILOGUE_category
+	
+	allowed = {
+		OR = {
+			tag = MAR
+			tag = WRS
+			tag = TAR
+			tag = SVR
+			tag = OMS
+			tag = KEM
+			tag = IRK
+			tag = MAG
+			tag = YAK
+			tag = NPL
+			tag = PAV
+			tag = MTV
+		}
+	}
+	
+	visible = {
+		has_global_flag = WRW2_russian_collapse
+	}
+	
+	visible_when_empty = yes
+	
+	priority = {
+		base = 40
+	}
+}
+TaS_WRW2_the_final_battle_legacy = {
+	icon = GFX_decision_category_generic_political_actions
+	picture = GFX_RUS_placeholder
+
+	allowed = {
+		tag = MAR
+	}
+	visible = {
+		is_debug = yes
+		is_ai = no
+	}
+
+	visible_when_empty = yes
+	priority = {
+		base = 150
+	}
+}
+
+RUS_nuke_development_category_facelift = {
+	icon = GFX_decision_category_generic_nuclear
+	picture = GFX_decision_category_nuke_pic
+	
+	allowed = {
+		is_russian_nation = yes
+
+	}
+	visible = {
+		NOT = { has_global_flag = AFTER_MIDNIGHT_COMMENCED }
+		NOT = { has_global_flag = SWRW_GER_victory }
+		OR = {
+			has_country_flag = RUS_started_nukes_new
+			has_country_flag = RUS_finished_nukes_new
+		}	
+	}
+	
+	visible_when_empty = yes
+	
+	priority = {
+		base = 40
+	}
+}

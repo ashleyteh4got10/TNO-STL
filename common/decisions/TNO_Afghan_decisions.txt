@@ -1,0 +1,205 @@
+AFG_russian_invasion = {
+	AFG_offer_ceasefire = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			OR = {
+				casualties > 10000
+				surrender_progress > 0.05
+				RUS = {
+					casualties > 10000
+				}
+			}
+			NOT = { surrender_progress > 0.20 }
+			NOT = { has_country_flag = AFG_WAR_TIMEOUT }
+			OR = {
+				TAJ = { exists = no }
+				KYR = { exists = no }
+			}
+		}
+
+		visible = {
+			OR = {
+				has_war_with = RUS
+			}
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		days_re_enable = 90
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FIN_offer_ceasefire"
+			RUS = {
+				country_event = {
+					id = MAR_AFG.1
+					days = 3
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_PARTWIN
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_WIN
+				}
+			}
+		}
+	}
+
+	AFG_offer_limited_surrender = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			surrender_progress > 0.20
+			NOT = { surrender_progress > 0.50 }
+			NOT = { has_country_flag = AFG_WAR_TIMEOUT }
+		}
+
+		visible = {
+			OR = {
+				has_war_with = RUS
+			}
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		days_re_enable = 90
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FIN_pull_assets_from_germany"
+			RUS = {
+				country_event = {
+					id = MAR_AFG.2
+					days = 3
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_QUO
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_WIN
+				}
+			}
+		}
+	}
+
+	AFG_offer_unconditional_surrender = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			surrender_progress > 0.50
+			NOT = { has_country_flag = AFG_WAR_TIMEOUT }
+		}
+
+		visible = {
+			OR = {
+				has_war_with = RUS
+			}
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		days_re_enable = 90
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision FIN_pull_assets_from_germany"
+			RUS = {
+				country_event = {
+					id = MAR_AFG.3
+					days = 3
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_QUO
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_PARTWIN
+				}
+			}
+		}
+	}
+}
+
+TUR_russian_invasion = {
+	TUR_offer_limited_surrender = {
+
+		icon = GFX_decision_generic_form_nation
+
+		available = {
+			surrender_progress > 0.10
+			NOT = { surrender_progress > 0.50 }
+			RUS = {
+				casualties > 25000
+			}
+			NOT = { has_country_flag = TUR_WAR_TIMEOUT }
+		}
+
+		visible = {
+			OR = {
+				has_war_with = RUS
+			}
+		}
+
+		custom_cost_trigger = { always = yes } #no cost
+
+		days_re_enable = 90
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TUR_offer_limited_surrender"
+			RUS = {
+				country_event = {
+					id = MAR_ultimatums.111
+					days = 3
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 200
+		}
+	}
+}

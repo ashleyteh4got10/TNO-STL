@@ -1,0 +1,806 @@
+shared_focus = {
+	id = GER_battle_of_civilizations
+	icon = GFX_GER_battle_of_civilizations
+	cost = 1.45
+	x = 6
+	y = 0
+	bypass = {
+		has_war_with = MAR
+	}
+	completion_reward = {
+
+	}
+}
+shared_focus = {
+	id = GER_their_bestial_nature
+	icon = GFX_GER_their_bestial_nature
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_battle_of_civilizations}
+	relative_position_id = GER_battle_of_civilizations
+	x = -2
+	y = 1
+	completion_reward = {
+		add_war_support = 0.15
+		country_event = { id = GER_SWRW.1 days = 3 }
+	}
+}
+shared_focus = {
+	id = GER_collosus_with_feet_of_clay
+	icon = GFX_GER_collosus_with_feet_of_clay
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_their_bestial_nature}
+	relative_position_id = GER_their_bestial_nature
+	x = -3
+	y = 1
+	completion_reward = {
+		country_event = { id = GER_SWRW.3 }
+		add_timed_idea = {
+			idea = SWRW_offensive_against_rus
+			days = 120
+		}
+	}
+}
+shared_focus = {
+	id = GER_for_our_existence
+	icon = GFX_GER_for_our_existence
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_battle_of_civilizations}
+	relative_position_id = GER_battle_of_civilizations
+	x = 2
+	y = 1
+	completion_reward = {
+		every_controlled_state = {
+			limit = {
+				has_resistance = yes
+			}
+			add_compliance = 5
+			add_resistance = -15
+		}
+	}
+}
+shared_focus = {
+	id = GER_arbeit_macht_frei
+	icon = GFX_GER_arbeit_macht_frei
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_for_our_existence}
+	relative_position_id = GER_for_our_existence
+	x = 3
+	y = 1
+	completion_reward = {
+		set_temp_variable = { pus_temp = 4 }
+		econ_pus_change = yes
+	}
+}
+shared_focus = {
+	id = GER_european_brotherhood
+	icon = GFX_GER_european_brotherhood
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_battle_of_civilizations}
+	relative_position_id = GER_battle_of_civilizations
+	x = 0
+	y = 1
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 10000
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 1500
+			producer = GER
+		}
+		set_temp_variable = { gdp_growth_temp = 1 }
+		econ_gdp_growth_change = yes
+	}
+}
+shared_focus = {
+	id = GER_united_in_blood
+	icon = GFX_GER_united_in_blood
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_european_brotherhood}
+	relative_position_id = GER_european_brotherhood
+	x = 0
+	y = 2
+	completion_reward = {
+		add_manpower = 15000
+		add_political_power = 150
+	}
+}
+shared_focus = {
+	id = GER_gott_mit_uns
+	icon = GFX_GER_gott_mit_uns
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_united_in_blood}
+	relative_position_id = GER_united_in_blood
+	x = -2
+	y = 1
+	completion_reward = {
+		add_stability = 0.1
+		set_temp_variable = { temp_devastation_gained = -5 }
+		TaS_WRW2_change_devastation = yes
+	}
+}
+shared_focus = {
+	id = GER_subjugate_the_zeitgeist
+	icon = GFX_GER_subjugate_the_zeitgeist
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_collosus_with_feet_of_clay}
+	prerequisite = {focus = GER_gott_mit_uns}
+	relative_position_id = GER_gott_mit_uns
+	x = -3
+	y = 1
+	completion_reward = {
+		if = { 
+			limit = { 
+				has_dlc = "No Step Back"
+			}
+			add_equipment_to_stockpile = {
+				type = MBT_chassis
+				amount = 1000
+				producer = GER
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = MBT_equipment
+				amount = 1000
+				producer = GER
+			}
+		}
+		add_equipment_to_stockpile = {
+			type = jet_fighter_equipment_2
+			amount = 200
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = jet_CAS_equipment_2
+			amount = 200
+			producer = GER
+		}
+		set_temp_variable = { temp_devastation_gained = -5 }
+		TaS_WRW2_change_devastation = yes
+	}
+}
+shared_focus = {
+	id = GER_european_volunteers
+	icon = GFX_GER_european_volunteers
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_united_in_blood}
+	relative_position_id = GER_united_in_blood
+	x = 2
+	y = 1
+	completion_reward = {
+		every_country = {
+			limit = {	
+				check_variable = { ECON_SPHERE_LEADER = GER }
+				NOT = { has_war_with = RUS }
+			}
+			set_temp_variable = { target = GER }
+			TNO_increase_volunteer_cap_2 = yes
+		}
+		if = {
+			limit = { DOM = { has_government = fascism } }
+			DOM = {
+				set_temp_variable = { target = GER }
+				TNO_increase_volunteer_cap_2 = yes
+			}
+		}
+		if = {
+			limit = { IBR = { has_completed_focus = IBR_under_the_shadow_of_the_hugemon } }
+			IBR = {
+				set_temp_variable = { target = GER }
+				TNO_increase_volunteer_cap_2 = yes
+			}
+		}
+		if = {
+			limit = { PAR = { has_idea = Pakt_Observer } }
+			PAR = {
+				set_temp_variable = { target = GER }
+				TNO_increase_volunteer_cap_2 = yes
+			}
+		}
+		if = {
+			limit = { BRA = { has_idea = Pakt_Observer } }
+			BRA = {
+				set_temp_variable = { target = GER }
+				TNO_increase_volunteer_cap_2 = yes
+			}
+		}
+		country_event = { id = GER_SWRW.4 }
+	}
+}
+shared_focus = {
+	id = GER_blood_for_the_machine
+	icon = GFX_GER_blood_for_the_machine
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_arbeit_macht_frei}
+	prerequisite = {focus = GER_european_volunteers}
+	relative_position_id = GER_european_volunteers
+	x = 3
+	y = 1
+	completion_reward = {
+		country_event = { id = GER_SWRW.2 }
+		every_possible_country = {
+			limit = {
+				is_subject_of = GER
+			}
+			add_manpower = -50000
+		}
+		GER = { 
+			add_manpower = -100000 
+		}
+		set_temp_variable = { pus_temp = 4 }
+		econ_pus_change = yes
+	}
+}
+shared_focus = {
+	id = GER_united_in_purpose
+	icon = GFX_GER_united_in_purpose
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	prerequisite = {focus = GER_united_in_blood}
+	relative_position_id = GER_united_in_blood
+	x = 0
+	y = 1
+	completion_reward = {
+		RUS = {
+			random_owned_controlled_state = {
+			damage_building = {
+				type = infrastructure
+				damage = 2
+			}
+				add_manpower = -139
+			}
+			random_owned_controlled_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				add_manpower = -64
+			}
+			random_owned_controlled_state = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				add_manpower = -112
+			}
+		}
+	}
+}
+shared_focus = {
+	id = GER_ultimate_victory
+	icon = GFX_GER_ultimate_victory
+	cost = 1.45
+	available = {
+		has_war = no
+		214 = { is_owned_by = MCW }
+	}
+	prerequisite = {focus = GER_united_in_purpose}
+	prerequisite = {focus = GER_blood_for_the_machine}
+	prerequisite = {focus = GER_subjugate_the_zeitgeist}
+	relative_position_id = GER_united_in_purpose
+	x = 0
+	y = 2
+	completion_reward = {
+		country_event = { id = GER_SWRW.5 days = 3 }
+	}
+}
+
+shared_focus = {
+	id = GER_fire_in_the_east
+	icon = GFX_GER_fire_in_the_east
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	x = 16
+	y = 0
+	completion_reward = {
+		custom_effect_tooltip = G_SWRW_need_to_choose_tt
+		country_event = { id = GER_SWRW.6 }
+	}
+}
+shared_focus = {
+	id = GER_graveyard_of_the_empires
+	icon = GFX_GER_graveyard_of_the_empires
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			MCW = { surrender_progress > 0.85 }
+		}
+	}
+	prerequisite = {focus = GER_fire_in_the_east}
+	relative_position_id = GER_fire_in_the_east
+	x = 0
+	y = 1
+	completion_reward = { 
+		if = {
+			limit = { has_country_flag = GER_SWRW_defence_focus }
+			set_global_flag = MCW_germans_gone
+			country_event = { id = GER_SWRW.7 }
+		}
+		else_if = { 
+			limit = { has_country_flag = GER_SWRW_destruction_focus }
+			country_event = { id = GER_SWRW.7 }
+		}
+		else = {
+			custom_effect_tooltip = G_SWRW_effect_depends_of_event_tt
+		}
+	}
+}
+shared_focus = {
+	id = GER_mountains_of_madness
+	icon = GFX_GER_mountains_of_madness
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			CAU = { surrender_progress > 0.85 }
+		}
+	}
+	prerequisite = {focus = GER_graveyard_of_the_empires }
+	relative_position_id = GER_graveyard_of_the_empires
+	x = -2
+	y = 1
+	completion_reward = {
+		if = {
+			limit = { has_country_flag = GER_SWRW_defence_focus }
+			country_event = { id = GER_SWRW.11 }
+		}
+		else_if = { 
+			limit = { has_country_flag = GER_SWRW_destruction_focus }
+			country_event = { id = GER_SWRW.18 }
+		}
+		else = {
+			custom_effect_tooltip = G_SWRW_effect_depends_of_event_tt
+		}
+	}
+}
+shared_focus = {
+	id = GER_burning_breadbasket
+	icon = GFX_GER_burning_breadbasket
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			UKR = { surrender_progress > 0.85 }
+		}
+	}
+	prerequisite = {focus = GER_graveyard_of_the_empires }
+	relative_position_id = GER_graveyard_of_the_empires
+	x = 0
+	y = 1
+	completion_reward = {
+		if = {
+			limit = { has_country_flag = GER_SWRW_defence_focus }
+			country_event = { id = GER_SWRW.12 }
+		}
+		else_if = { 
+			limit = { has_country_flag = GER_SWRW_destruction_focus }
+			country_event = { id = GER_SWRW.20 }
+		}
+		else = {
+			custom_effect_tooltip = G_SWRW_effect_depends_of_event_tt
+		}
+	}
+}
+shared_focus = {
+	id = GER_baltic_citadel
+	icon = GFX_GER_baltic_citadel
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	available = {
+		NOT = {
+			OST = { surrender_progress > 0.85 }
+		}
+	}
+	prerequisite = {focus = GER_graveyard_of_the_empires }
+	relative_position_id = GER_graveyard_of_the_empires
+	x = 2
+	y = 1
+	completion_reward = {	
+		if = {
+			limit = { has_country_flag = GER_SWRW_defence_focus }
+			country_event = { id = GER_SWRW.13 }
+			if = {
+				limit = { OST = { exists = yes } }
+				OST = {
+					add_manpower = 35000
+					division_template = {
+						name = "Volkssturm"
+						priority = 2
+						regiments = {
+							light_infantry = { x = 0 y = 0 }
+							light_infantry = { x = 0 y = 1 }
+							light_infantry = { x = 1 y = 0}
+							light_infantry = { X = 1 y = 1}
+							light_infantry = { X = 1 y = 2}
+						}
+						support = {
+							recon = { x = 0 y = 0 }
+							artillery = { x = 0 y = 1 }
+							logistics_company = { x = 0 y = 2 }
+						}	
+					}
+					13 = {
+						create_unit = {
+							division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+							owner = OST
+							count = 6
+						}
+						add_building_construction = {
+							type = bunker
+							level = 1
+							instant_build = yes
+							province = {
+								all_provinces = no
+								limit_to_victory_point > 3
+							}
+						}
+					}
+					1397 = {
+						create_unit = {
+							division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+							owner = OST
+							count = 6
+						}
+						add_building_construction = {
+							type = bunker
+							level = 1
+							instant_build = yes
+							province = {
+								all_provinces = no
+								limit_to_victory_point > 3
+							}
+						}
+					}
+					79 = {
+						create_unit = {
+							division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+							owner = OST
+							count = 6
+						}
+						add_building_construction = {
+							type = bunker
+							level = 1
+							instant_build = yes
+							province = {
+								all_provinces = no
+								limit_to_victory_point > 3
+							}
+						}
+					}
+					if = {
+						limit = { BLR = { exists = yes } }
+						add_manpower = 35000
+						division_template = {
+							name = "Volkssturm"
+							priority = 2
+							regiments = {
+								light_infantry = { x = 0 y = 0 }
+								light_infantry = { x = 0 y = 1 }
+								light_infantry = { x = 1 y = 0}
+								light_infantry = { X = 1 y = 1}
+								light_infantry = { X = 1 y = 2}
+							}
+							support = {
+								recon = { x = 0 y = 0 }
+								artillery = { x = 0 y = 1 }
+								logistics_company = { x = 0 y = 2 }
+							}	
+						}
+						1404 = {
+							create_unit = {
+								division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+								owner = BLR
+								count = 6
+							}
+							add_building_construction = {
+								type = bunker
+								level = 1
+								instant_build = yes
+								province = {
+									all_provinces = no
+									limit_to_victory_point > 3
+								}
+							}
+						}
+					}
+					else = {
+						1404 = {
+							create_unit = {
+								division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+								owner = OST
+								count = 6
+							}
+							add_building_construction = {
+								type = bunker
+								level = 1
+								instant_build = yes
+								province = {
+									all_provinces = no
+									limit_to_victory_point > 3
+								}
+							}
+						}
+					}
+				}
+			}
+			else = {
+				division_template = {
+					name = "Volkssturm"
+					priority = 2
+					regiments = {
+						light_infantry = { x = 0 y = 0 }
+						light_infantry = { x = 0 y = 1 }
+						light_infantry = { x = 1 y = 0}
+						light_infantry = { X = 1 y = 1}
+						light_infantry = { X = 1 y = 2}
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						artillery = { x = 0 y = 1 }
+						logistics_company = { x = 0 y = 2 }
+					}	
+				}
+				13 = {
+					create_unit = {
+						division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+						owner = GER
+						count = 4
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1
+						instant_build = yes
+						province = {
+							all_provinces = no
+							limit_to_victory_point > 3
+						}
+					}
+				}
+				1397 = {
+					create_unit = {
+						division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+						owner = GER
+						count = 4
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1
+						instant_build = yes
+						province = {
+							all_provinces = no
+							limit_to_victory_point > 3
+						}
+					}
+				}
+				79 = {
+					create_unit = {
+						division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+						owner = GER
+						count = 4
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1
+						instant_build = yes
+						province = {
+							all_provinces = no
+							limit_to_victory_point > 3
+						}
+					}
+				}
+				1404 = {
+					create_unit = {
+						division = "division_template = \"Volkssturm\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+						owner = GER
+						count = 4
+					}
+					add_building_construction = {
+						type = bunker
+						level = 1
+						instant_build = yes
+						province = {
+							all_provinces = no
+							limit_to_victory_point > 3
+						}
+					}
+				}
+			}
+		}
+		else_if = { 
+			limit = { has_country_flag = GER_SWRW_destruction_focus }
+			#country_event = { id = GER_SWRW.21 }
+			241 = {
+				add_dynamic_modifier = {
+					modifier = SWRW_scorched_earth_modifier
+				}
+			}
+			206 = {
+				add_dynamic_modifier = {
+					modifier = SWRW_scorched_earth_modifier
+				}
+			}
+			194 = {
+				add_dynamic_modifier = {
+					modifier = SWRW_scorched_earth_modifier
+				}
+			}
+			204 = {
+				add_dynamic_modifier = {
+					modifier = SWRW_scorched_earth_modifier
+				}
+			}
+		}
+		else = {
+			custom_effect_tooltip = G_SWRW_effect_depends_of_event_tt
+		}
+	}
+}
+
+### FAIL ###
+
+shared_focus = {
+	id = GER_daseinkampf
+	icon = GFX_GER_daseinkampf
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	x = 4
+	y = 0
+	completion_reward = {
+		tno_trade_laws_clear = yes
+		add_ideas = { tno_trade_laws_closed_economy }
+		tno_minimum_wage_clear = yes
+		add_ideas = { tno_minimum_wage_no_minimum_wage }
+		tno_max_workhours_clear = yes
+		add_ideas = { tno_max_workhours_unlimited_work_day }
+		tno_safety_clear = yes
+		add_ideas = { tno_safety_no_regulations	}
+		tno_pollution_clear = yes
+		add_ideas = { tno_pollution_no_controls	}
+		tno_child_labor_clear = yes
+		add_ideas = { tno_child_labor_legal }
+		tno_pensions_clear = yes
+		add_ideas = { tno_pensions_no_pensions }
+		tno_unemployment_clear = yes
+		add_ideas = { tno_unemployment_no_subsidies }
+	}
+}
+shared_focus = {
+	id = GER_dies_irae
+	icon = GFX_GER_dies_irae
+	prerequisite = {focus = GER_daseinkampf}
+	relative_position_id = GER_daseinkampf
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	x = 0
+	y = 1
+	completion_reward = {
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_1
+			amount = 35000
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = 10000
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 6000
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = artillery_equipment
+			amount = 5000
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment_0
+			amount = 2000
+			producer = GER
+		}
+		if = { 
+			limit = { 
+				has_dlc = "No Step Back"
+			}
+			add_equipment_to_stockpile = {
+				type = MBT_chassis_0
+				amount = 1000
+				producer = GER
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = MBT_equipment_0
+				amount = 1000
+				producer = GER
+			}
+		}
+	}
+}
+shared_focus = {
+	id = GER_when_they_cry
+	icon = GFX_GER_when_they_cry
+	prerequisite = {focus = GER_daseinkampf}
+	relative_position_id = GER_daseinkampf
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	x = -2
+	y = 2
+	completion_reward = {
+		tno_conscription_clear = yes
+		add_ideas = { tno_conscription_all_adults_serve }			
+		tno_military_supervision_clear = yes 
+		add_ideas = { tno_military_supervision_no_supervision }			
+		tno_training_clear = yes
+		add_ideas = { tno_training_none }			
+		tno_draft_exemptions_clear = yes
+		add_ideas = { tno_draft_exemptions_none }	
+		country_event = { id = GER_SWRW.22 days = 3}
+	}
+}
+shared_focus = {
+	id = GER_stay_night
+	icon = GFX_GER_stay_night
+	prerequisite = {focus = GER_daseinkampf}
+	relative_position_id = GER_daseinkampf
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	x = 2
+	y = 2
+	completion_reward = {
+		add_timed_idea = {
+			idea = SWRW_last_stand
+			days = 120
+		}
+	}
+}
+shared_focus = {
+	id = GER_GOTTERDAMMERUNG
+	icon = GFX_GER_GOTTERDAMMERUNG
+	available = { #нет, ИИ не будет устраивать ядерный апокалипсис
+		is_ai = no
+	}
+	prerequisite = {focus = GER_stay_night}
+	prerequisite = {focus = GER_when_they_cry}
+	prerequisite = {focus = GER_dies_irae}
+	relative_position_id = GER_daseinkampf
+	cost = 1.45
+	bypass = { NOT = { has_war_with = RUS } }
+	x = 0
+	y = 3
+	completion_reward = {
+		country_event = { id = nuclearwar.1 }
+		load_focus_tree = ZZZ_blank_focus
+	}
+}

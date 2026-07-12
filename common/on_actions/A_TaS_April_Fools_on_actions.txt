@@ -1,0 +1,332 @@
+on_actions = {
+	#### PEACE/WAR VICTORY ON_CAPITULATION BLOCK ####
+	#### PUT YOUR SHIT HERE
+	# At the end of each global block, set the skip_default_capitulation GLOBAL flag
+	# Otherwise shit will just get annexed
+	# Really
+	# It will.
+
+	# FROM = winner
+	# ROOT = country being capitulated/loser
+	
+	# Anytime y'all are triggering the popup manually, please add 1 to the dirty variable, `global.peace_popup_dirty`
+	
+	#See TNO_economy_scripted_effects regarding how transfer_GDP works
+
+	on_capitulation = {
+		effect = {
+			log = "[GetDateText]: FROM: [From.GetName] ROOT: [Root.GetName] on_capitulation"
+
+			set_global_flag = show_peace_popup_alert
+			FROM = {
+				save_global_event_target_as = winning_country
+			}
+			ROOT = {
+				save_global_event_target_as = losing_country
+			}
+
+			log = "[GetDateText]: winner/loser: FROM: [winning_country.GetName] ROOT: [losing_country.GetName] on_capitulation"
+
+			if = {
+				limit = {
+					event_target:losing_country = {
+						any_allied_country = {
+							has_war_together_with = event_target:losing_country
+						}
+					}
+				}
+				set_global_flag = losing_country_multiple
+			}
+
+			if = {
+				limit = {
+					event_target:winning_country = {
+						any_allied_country = {
+							has_war_together_with = event_target:winning_country
+						}
+					}
+				}
+				set_global_flag = winning_country_multiple
+			}
+			add_to_variable = { global.peace_popup_dirty = 1 }
+
+			FROM = { # winner simply gets GDP recalculated :)
+				recalculate_GDP_and_PUs_on_demand = yes
+			}
+
+			#Annexation block
+			#This if block will only fire if FROM (capitulator) and ROOT (country being capitulated)
+			#That is to say, if one side has completely lost (nobody left to fight on)
+
+			if = {
+				limit = {
+					OR = {
+						ROOT = { is_in_faction = no }
+						ROOT = {
+							all_allied_country = {
+								has_capitulated = yes
+							}
+						}
+					}
+				}
+				log = "war_won"
+				set_global_flag = war_won
+
+				#GDP is no longer transferred.
+				# every_country = {
+				# 	limit = {
+				# 		OR = {
+				# 			is_in_faction_with = ROOT
+				# 			original_tag = ROOT
+				# 		}
+				# 	}
+				# 	FROM = {
+				# 		#transfer_GDP = yes
+				# 	}
+				# }
+
+				if = {
+					limit = {
+						FROM = {
+							OR = {
+								original_tag = APF
+								original_tag = GNR
+							}
+						}
+						ROOT = { 
+							OR = {
+								original_tag = APF
+								original_tag = GNR
+							}
+						}
+					}
+					FROM = {
+						annex_country = {
+							target = ROOT
+							transfer_troops = no
+						}
+						every_owned_state = {
+							add_core_of = FROM
+							remove_core_of = ROOT
+						}	
+						country_event = { id = GER_AF_skeleton.2 days = 30 }
+					}
+					set_global_flag = skip_default_capitulation
+				}
+				else_if = {
+					limit = {
+						FROM = {
+							OR = {
+								original_tag = APF
+								original_tag = GNR
+							}
+						}
+						ROOT = { 
+							original_tag = ISS
+						}
+					}
+					FROM = {
+						annex_country = {
+							target = ROOT
+							transfer_troops = no
+						}
+						every_owned_state = {
+							add_core_of = FROM
+							remove_core_of = ROOT
+						}	
+						country_event = { id = GER_AF_skeleton.3 days = 30 }
+					}
+					set_global_flag = skip_default_capitulation
+				}
+				else_if = {
+					limit = {
+						FROM = {
+							OR = {
+								original_tag = GWS
+								original_tag = GRH
+							}
+						}
+						ROOT = { 
+							OR = {
+								original_tag = GWS
+								original_tag = GRH
+							}
+						}
+					}
+					FROM = {
+						annex_country = {
+							target = ROOT
+							transfer_troops = no
+						}
+						every_owned_state = {
+							add_core_of = FROM
+							remove_core_of = ROOT
+						}	
+						country_event = { id = GER_AF_skeleton.8 days = 30 }
+					}
+					set_global_flag = GWS_GRH_war_ended
+					set_global_flag = skip_default_capitulation
+				}
+				else_if = {
+					limit = {
+						FROM = {
+							OR = {
+								original_tag = BRL
+								original_tag = ZNE
+							}
+						}
+						ROOT = { 
+							OR = {
+								original_tag = BRL
+								original_tag = ZNE
+							}
+						}
+					}
+					FROM = {
+						annex_country = {
+							target = ROOT
+							transfer_troops = no
+						}
+						every_owned_state = {
+							add_core_of = FROM
+							remove_core_of = ROOT
+						}	
+						country_event = { id = GER_AF_skeleton.9 days = 30 }
+					}
+					set_global_flag = BRL_ZNE_war_ended
+					set_global_flag = skip_default_capitulation
+				}
+				else_if = {
+					limit = {
+						FROM = {
+							OR = {
+								original_tag = GCZ
+								original_tag = GSI
+							}
+						}
+						ROOT = { 
+							OR = {
+								original_tag = GCZ
+								original_tag = GSI
+							}
+						}
+					}
+					FROM = {
+						annex_country = {
+							target = ROOT
+							transfer_troops = no
+						}
+						every_owned_state = {
+							add_core_of = FROM
+							remove_core_of = ROOT
+						}
+					}
+					set_global_flag = GSI_GCZ_war_ended
+					set_global_flag = skip_default_capitulation
+				}
+				else_if = {
+					limit = {
+						FROM = {
+							OR = {
+								original_tag = BRL
+								original_tag = ZNE
+								original_tag = GSI
+								original_tag = GCZ
+							}
+						}
+						ROOT = { 
+							OR = {
+								original_tag = BRL
+								original_tag = ZNE
+								original_tag = GSI
+								original_tag = GCZ
+							}
+						}
+						has_global_flag = BRL_ZNE_war_ended
+						has_global_flag = GSI_GCZ_war_ended
+					}
+					FROM = {
+						annex_country = {
+							target = ROOT
+							transfer_troops = no
+						}
+						every_owned_state = {
+							add_core_of = FROM
+						}	
+						country_event = { id = GER_AF_skeleton.10 days = 30 }
+					}
+					set_global_flag = skip_default_capitulation
+				}
+				else_if = {
+					limit = {
+						FROM = {
+							OR = {
+								original_tag = NGE
+								original_tag = NDN
+							}
+						}
+						ROOT = { 
+							OR = {
+								original_tag = NGE
+								original_tag = NDN
+							}
+						}
+					}
+					FROM = {
+						annex_country = {
+							target = ROOT
+							transfer_troops = no
+						}
+						every_owned_state = {
+							add_core_of = FROM
+							remove_core_of = ROOT
+						}	
+						WGE = {
+							declare_war_on = {
+								target = NGE
+								type = annex_everything
+							}
+						}
+					}
+					set_global_flag = skip_default_capitulation
+				}
+				else_if = {
+					limit = {
+						FROM = {
+							OR = {
+								original_tag = NGE
+								original_tag = WGE
+							}
+						}
+						ROOT = { 
+							OR = {
+								original_tag = NGE
+								original_tag = WGE
+							}
+						}
+					}
+					FROM = {
+						annex_country = {
+							target = ROOT
+							transfer_troops = no
+						}
+						every_owned_state = {
+							add_core_of = FROM
+							remove_core_of = ROOT
+						}
+					}
+					set_global_flag = skip_default_capitulation
+				}
+				#Capitulation block
+				set_global_flag = war_continuing
+			}
+			clr_global_flag = skip_default_capitulation
+		}
+	}
+	#don't mind me just logging wars
+	on_declare_war = {
+		effect = {
+			log="[GetDateText]: [Root.GetName] declared war on [From.GetName]"
+		}
+	}
+}

@@ -1,0 +1,576 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			MAR = {
+				set_country_flag = TaS_MARIA_NOT_DONE
+				set_variable = { RUS_integration_cost_days = 70 }
+				set_variable = { RUS_admin_efficiency_debuff = 6 }
+				give_resource_rights = {
+					receiver = VYT
+					state = 398
+					resources = { oil aluminium rubber tungsten steel chromium uranium }
+				}
+				give_resource_rights = {
+					receiver = VYT
+					state = 866
+					resources = { oil aluminium rubber tungsten steel chromium uranium }
+				}
+				
+				add_to_array = { CountryInfo_array_main = 101 }
+				add_to_array = { CountryInfo_array_main = 1 }
+				add_to_array = { CountryInfo_array_main = 2 }
+				add_to_array = { CountryInfo_array_main = 3 }
+				
+				add_to_array = { CountryInfo_folder_country_101 = 1 }
+				add_to_array = { CountryInfo_folder_country_101 = 2 }
+				add_to_array = { CountryInfo_folder_country_101 = 3 }
+
+				add_to_array = { CountryInfo_array_main = 102 }
+				add_to_array = { CountryInfo_array_main = 4 }
+				add_to_array = { CountryInfo_array_main = 5 }
+				add_to_array = { CountryInfo_array_main = 6 }
+				
+				add_to_array = { CountryInfo_folder_country_102 = 4 }
+				add_to_array = { CountryInfo_folder_country_102 = 5 }
+				add_to_array = { CountryInfo_folder_country_102 = 6 }
+				set_country_flag = CountryInfo_HasCustomCloseButton
+			}
+			if = {
+				limit = {	
+					has_game_rule = {
+						rule = april_fools_content_status
+						option = APRIL_FOOLS_ENABLED
+					}
+				}
+				every_country = {
+					news_event = { 
+						id = AprilFools_news.1
+						days = 30 
+					}
+					news_event = { 
+						id = AprilFools_news.11
+						days = 124
+					}
+					news_event = {
+						id = AprilFools_news.12 
+						days = 211
+					}
+					news_event = {
+						id = AprilFools_news.13
+						days = 303
+					}
+					news_event = {
+						id = AprilFools_news.14
+						days = 384
+					}
+					news_event = {
+						id = AprilFools_news.15
+						days = 489
+					}
+					news_event = {
+						id = AprilFools_news.16
+						days = 590 
+					}
+					news_event = {
+						id = AprilFools_news.17
+						days = 664 
+					}
+					news_event = {
+						id = AprilFools_news.18
+						days = 734
+					}
+					news_event = {
+						id = AprilFools_news.19
+						days = 630
+					}
+				}
+			}
+		}
+	}
+	on_declare_war = {
+		effect = {
+			if = {#PRM vs MAR
+				limit = {
+					OR = {
+						AND = {
+							ROOT = { tag = PRM }
+							FROM = { tag = MAR }
+						}
+						AND = {
+							FROM = { tag = PRM }
+							ROOT = { tag = MAR }
+						}
+					}
+
+				}
+				MAR = {
+					if = {
+						limit = { has_country_flag = MAR_ab_plan_one }
+						add_timed_idea = { idea = MAR_attack_only_aria days = 90 }
+					}
+					if = {
+						limit = { has_country_flag = MAR_ab_plan_two }
+						add_timed_idea = { idea = MAR_defence_only_aria days = 90 }
+					}
+					if = {
+						limit = { has_country_flag = MAR_ab_plan_three }
+						add_timed_idea = { idea = MAR_def_and_attack days = 90 }
+					}
+				}
+			}
+		}
+	}
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = GER
+							is_subject_of = GER
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 1442
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = {
+								every_country  = {
+									news_event = {
+										id = MAR_2WRW_world_news.7
+									}
+								}
+								ROOT = { country_event = { id = RUS_SWRW_mech.10 } }
+							}
+							
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 195
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = { 
+								country_event = { id = RUS_SWRW_mech.1 }
+								if = {
+									limit = {	
+										has_game_rule = {
+											rule = april_fools_content_status
+											option = APRIL_FOOLS_ENABLED
+										}
+									}
+									country_event = { id = SWRW_april_fools.1 days = 3 }
+								}	
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 243
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = {
+								if = {
+									limit = { has_government = despotism }
+									country_event = { id = RUS_SWRW_mech.11 }
+								}
+								else = {
+									country_event = { id = RUS_SWRW_mech.2 }
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 234
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = { country_event = { id = RUS_SWRW_mech.3 } }
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 1552
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = { 
+								if = {
+									limit = { has_government = despotism }
+									country_event = { id = RUS_SWRW_mech.12 }
+								}
+								else = {
+									country_event = { id = RUS_SWRW_mech.4 }
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 221
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = {
+								if = {
+									limit = { has_government = despotism }
+									country_event = { id = RUS_SWRW_mech.14 }
+								}
+								else = {
+									country_event = { id = RUS_SWRW_mech.5 }
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 1428
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = {
+								if = {
+									limit = { has_government = despotism }
+									country_event = { id = RUS_SWRW_mech.15 }
+								}
+								else = {
+									country_event = { id = RUS_SWRW_mech.6 }
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 1404
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = {
+								if = {
+									limit = { has_government = despotism }
+									country_event = { id = RUS_SWRW_mech.16 }
+								}
+								else = {
+									country_event = { id = RUS_SWRW_mech.7 }
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 1532
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = { 
+								if = {
+									limit = { has_government = despotism }
+									country_event = { id = RUS_SWRW_mech.13 }
+								}
+								else = {
+									country_event = { id = RUS_SWRW_mech.8 }
+								}
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 1397
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = { country_event = { id = RUS_SWRW_mech.9 } }
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 64
+						}
+						has_global_flag = GER_its_joever
+					}
+					ROOT = {
+						if = {
+							limit = {
+								is_russian_nation = yes
+							}
+							hidden_effect = {
+								ROOT = { country_event = { id = MAR_2WRW.6 } }
+								if = {
+									limit = { MAR = { has_government = despotism } }
+									every_country  = {
+										news_event = {
+											id = MAR_2WRW_world_news.8
+										}
+									}
+								}
+								else_if = {
+									limit = { MAR = { has_government = socialist } }
+									every_country  = {
+										news_event = {
+											id = MAR_2WRW_world_news.14
+										}
+									}
+								}
+								
+							}
+						}
+						if = {
+							limit = {
+								tag = USA
+								has_global_flag = TaS_SWRW_democracy_time
+							}
+							FROM = {
+								white_peace = ROOT
+							}
+							TaS_SWRW_american_germany = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							OR = {
+								state = 1811
+								state = 42
+								state = 8
+								state = 51
+								state = 35
+								state = 74
+								state = 1809
+								state = 72
+							}
+						}
+						
+					}
+					ROOT = {
+						if = {
+							limit = {
+								tag = FRA
+							}
+							set_global_flag = POSTGER_FRANCE
+							FROM = {
+								white_peace = ROOT
+							}
+							FRA = {
+								transfer_state = 15
+								transfer_state = 16
+								transfer_state = 788
+								transfer_state = 1625
+								transfer_state = 1626
+								transfer_state = 1635
+								transfer_state = 17
+								transfer_state = 18
+								transfer_state = 29
+								transfer_state = 1733
+								transfer_state = 34
+								transfer_state = 1812
+								transfer_state = 28
+								transfer_state = 1994
+								if = {
+									limit = { has_country_flag = FRA_in_OFN }
+									USA = { add_to_faction = FRA }
+								}
+								if = {
+									limit = { has_country_flag = FRA_in_CPS }
+									JAP = { add_to_faction = FRA }
+								}
+								if = {
+									limit = { has_country_flag = FRA_in_RMP }
+									JAP = { add_to_faction = FRA }
+								}
+								if = {
+									limit = { has_country_flag = FRA_in_ECN }
+									MAR = { add_to_faction = FRA }
+								}
+								every_owned_state = {
+									add_core_of = FRA
+								}
+							}
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						OR = {
+							original_tag = RUS
+							original_tag = GEO
+							original_tag = MCS
+						}
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 214
+						}
+					}
+					ROOT = {
+						if = {
+							limit = {
+								original_tag = FIN
+							}
+							hidden_effect = {
+								#every_country  = {
+								#	news_event = {
+								#		id = MAR_2WRW_world_news.7
+								#	}
+								#}
+								SWRW_finland_fail_peacedeal = yes
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						FROM.FROM = {
+							state = 231
+						}
+					}
+					ROOT = {
+						if = {
+							limit = {
+								original_tag = TUR	
+							}
+							hidden_effect = {
+								#every_country  = {
+								#	news_event = {
+								#		id = MAR_2WRW_world_news.7
+								#	}
+								#}
+								SWRW_turkey_fail_peacedeal = yes
+							}
+						}
+					}
+				}
+			}
+			else_if = {
+				limit = {
+					FROM = {
+						original_tag = AFG
+					}
+				}
+				if = {
+					limit = {
+						FROM.FROM = {
+							state = 267
+						}
+					}
+					ROOT = {
+						if = {
+							limit = {
+								original_tag = NAL
+							}
+							hidden_effect = {
+								set_cosmetic_tag = NAL_Kabul
+							}
+							
+						}
+						if = {
+							limit = {
+								original_tag = MUJ
+							}
+							hidden_effect = {
+								set_cosmetic_tag = MUJ_Kabul
+							}
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	on_monthly_XYZ = {
+		effect = {
+			first_every_month_script_TaS = yes
+		}
+	}
+	on_daily_XYZ = {
+		effect = {
+			first_every_day_script_TaS = yes
+		}
+	}
+	on_weekly_GWF = {
+		effect = {
+			weekly_script_GWF = yes
+		}
+	}
+}

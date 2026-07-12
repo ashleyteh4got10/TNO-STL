@@ -1,0 +1,6061 @@
+MAR_debug_category = {
+	#ya pokakal	
+	MAR_load_initial_decisions = {
+		icon = GFX_decision_generic_visibility
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			NOT = { check_variable = { MAR_debug_cat > 1 } }
+		}
+		fire_only_once = yes
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_initial_decisions"
+			set_variable = { MAR_debug_cat = 1 }
+		}
+	}
+	MAR_initial_focus_tree_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_initial_focus_tree_effigy"
+		}
+	}
+	MAR_initial_tree_load = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_starting_tree"
+			load_focus_tree = {	tree = MAR_start_tree_new keep_completed = no }
+		}
+	}
+
+	MAR_afterbomb_tree_load = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_load_bombing_ot_AB"
+			load_focus_tree = {	tree = MAR_postbomb_tree keep_completed = no }
+		}
+	}
+	MAR_smuta_tree_load = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_load_smuta"
+			load_focus_tree = {	tree = MAR_smuta_tree keep_completed = no }
+		}
+	}
+	MAR_initial_mgb_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_initial_mgb_effigy"
+		}
+	}
+	MAR_mgb_reload = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_mgb_reload"
+			country_event = { id = MAR_initial.7 }
+		}
+	}
+	MAR_mgb_force_rotation = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_mgb_force_rotation"
+			custom_effect_tooltip = MAR_rotation_random_tt
+			hidden_effect = { 
+				set_temp_variable = { temp_connections_gained = 1 }
+				randomize_temp_variable = {
+					var = temp_connections_gained
+					distribution = uniform
+					min = 2
+					max = 6
+				}
+				round_temp_variable = temp_connections_gained
+				MAR_Okhranka_connections_change = yes
+				set_temp_variable = { temp_agents_gained = 1 }
+				randomize_temp_variable = {
+					var = temp_agents_gained
+					distribution = uniform
+					min = 20
+					max = 60
+				}
+				round_temp_variable = temp_agents_gained
+				MAR_Okhranka_agents_change = yes
+			}
+		}
+	}
+	MAR_mgb_decrease_influence = {
+		icon = GFX_decision_generic_industry
+		
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+		
+		complete_effect = {
+			set_temp_variable = { temp_agents_gained = -120 }
+			set_temp_variable = { temp_connections_gained = -5 }
+			MAR_Okhranka_agents_change = yes
+			MAR_Okhranka_connections_change = yes
+		}
+	}
+	MAR_mgb_increase_influence = {
+		icon = GFX_decision_generic_industry
+		
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+		
+		complete_effect = {
+			set_temp_variable = { temp_agents_gained = 120 }
+			set_temp_variable = { temp_connections_gained = 5 }
+			MAR_Okhranka_agents_change = yes
+			MAR_Okhranka_connections_change = yes
+		}
+	}
+	MAR_mgb_do_the_fuck_up = {
+		icon = GFX_decision_generic_industry
+		
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+		
+		complete_effect = {
+			add_popularity = {
+				ideology = paternalism
+				popularity = 0.1
+			}
+			set_temp_variable = { temp_connections_gained = 10 }
+			set_temp_variable = { temp_agents_gained = 60 }
+			MAR_Okhranka_connections_change = yes
+			MAR_Okhranka_agents_change = yes
+			add_to_variable = { MAR_MGB_vyatka_angry = 1}
+			clamp_variable = {
+				var = MAR_MGB_vyatka_angry
+				min = 0
+				max = 2
+			}
+			swap_ideas = {
+				add_idea = MAR_direct_influence_of_vyatka
+				remove_idea = MAR_military_instructors_of_vyatka
+			}
+			if = {
+				limit = { has_idea = MAR_souverinity_fail_1 }
+				swap_ideas = {
+					remove_idea = MAR_souverinity_fail_1
+					add_idea = MAR_souverinity_fail_2
+				}
+			}
+			else = {
+				add_ideas = MAR_souverinity_fail_1
+			}
+		}
+	}
+	MAR_mgb_let_my_people_go = {
+		icon = GFX_decision_generic_industry
+		
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+		
+		complete_effect = {
+			if = {
+				limit = { check_variable = { MAR_MGB_vyatka_angry = 2 } }
+				if = {
+					limit = { check_variable = { MAR_Okhranka_power < 15 } }
+					country_event = { id = MAR_initial.52 days = 2 }
+				}
+				else = {
+					country_event = { id = MAR_initial.53 days = 2 }
+				}
+			}
+			if = {
+				limit = { check_variable = { MAR_MGB_vyatka_angry = 1 } }
+				if = {
+					limit = { check_variable = { MAR_Okhranka_power < 35 } }
+					country_event = { id = MAR_initial.52 days = 2 }
+				}
+				else = {
+					country_event = { id = MAR_initial.53 days = 2 }
+				}
+			}
+			if = {
+				limit = { check_variable = { MAR_MGB_vyatka_angry = 0 } }
+				if = {
+					limit = { check_variable = { MAR_Okhranka_power < 60 } }
+					country_event = { id = MAR_initial.52 days = 2 }
+				}
+				else = {
+					country_event = { id = MAR_initial.53 days = 2 }
+				}
+			}
+			clr_country_flag = MAR_MGB_available
+		}
+	}
+	MAR_mgb_yurla = {
+		icon = GFX_decision_generic_industry
+		
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 1 }
+		}
+		fire_only_once = no
+		
+		complete_effect = {
+			custom_effect_tooltip = MAR_MGB_yurla_operation_tt
+			random_list = {
+				1 = {
+					custom_effect_tooltip = MAR_MGB_yurla_operation_success_tt
+					transfer_state = 865
+					add_state_core = 865
+					set_temp_variable = { temp_econ_GDP_boost_flat = 0.015 }
+					econ_GDP_boost_once_flat = yes
+				}
+				2 = {
+					custom_effect_tooltip = MAR_MGB_yurla_operation_fail_tt
+					add_stability = -0.02
+					add_manpower = -231
+				}
+			}
+		}
+	}
+		
+	MAR_load_belozersky_decisions = {
+		icon = GFX_decision_generic_visibility
+	
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			NOT = { check_variable = { MAR_debug_cat > 2 } }
+		}
+		fire_only_once = yes
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_initial_decisions"
+			set_variable = { MAR_debug_cat = 2 }
+			country_event = { id = MAR_zemsky_sobor.22 }
+		}
+	}
+	MAR_beloozersky_focus_tree_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_debug_cat = 2 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_initial_focus_tree_effigy"
+		}
+	}
+	MAR_load_Belozerski_tree = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 2 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_load_voina"
+			load_focus_tree = {	tree = MAR_Belozerski_tree keep_completed = no }
+		}
+	}
+	MAR_load_Belozerski_supertree = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 2 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_load_voina"
+			load_focus_tree = {	tree = MAR_Belozerski_Super_reg keep_completed = no }
+		}
+	}
+	MAR_load_Belozerski_post_unification_tree = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 2 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = no
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_starting_tree"
+			load_focus_tree = {	tree = MAR_Belozerski_post_unification_tree keep_completed = no }
+		}
+	}
+	MAR_beloozersky_specific_mechs_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_debug_cat = 2 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_initial_focus_tree_effigy"
+		}
+	}
+	MAR_load_kosygin_decisions = {
+		icon = GFX_decision_generic_visibility
+
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = yes
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_kosygin_decisions"
+			set_variable = { MAR_debug_cat = 3 }
+			country_event = { id = MAR_zemsky_sobor.24 }
+		}
+	}
+	MAR_kosygin_focus_tree_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_kosygin_focus_tree_effigy"
+		}
+	}
+	MAR_load_Kosygin_regional = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+ 
+		complete_effect = {
+			load_focus_tree = MAR_Kosygin_Regional
+		}
+	}
+	MAR_load_Kosygin_superregional = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			load_focus_tree = MAR_Kosygin_Superregional
+		}
+	}
+	MAR_load_Kosygin_post_unification = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_WRW2_End_the_germany_decision"
+			load_focus_tree = MAR_Kosygin_post_unification
+		}
+	}
+	MAR_kosygin_specific_mechs_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_initial_focus_tree_effigy"
+		}
+	}
+	MAR_blew_up_kosygin = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			country_event = { id = MAR_Kosygin.14 }
+		}
+	}
+	MAR_ogas_debug = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+			set_country_flag = MAR_ogas_dev_started
+			MAR_OGAS_setup = yes
+		}
+	}
+	MAR_ogas_debug_add_all = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+			has_country_flag = MAR_ogas_dev_started
+		}
+		allowed = {
+			original_tag = MAR
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+			for_each_loop = {
+				array = MAR_ogas_stages_status_array
+				add_to_variable = { MAR_ogas_stages_status_array^i = 0.05 }
+			}
+			for_each_loop = {
+				array = MAR_ogas_characteristics_array
+				add_to_variable = { MAR_ogas_characteristics_array^i = 0.05 }
+			}
+		}
+	}
+	
+	MAR_ogas_debug_add_specifically = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_debug_cat = 3 }
+			has_country_flag = MAR_ogas_dev_started
+		}
+		allowed = {
+			original_tag = MAR
+		}
+		
+		fire_only_once = no
+
+		complete_effect = {
+			set_temp_variable = { temp_char_gained = 0.05 }
+			set_temp_variable = { MAR_ogas_char_to_change = 1 }
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { temp_char_gained = 0.03 }
+			set_temp_variable = { MAR_ogas_char_to_change = 3 }
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_show_hide_forpol_debug_decisions = {
+		icon = {
+			key = GFX_decision_generic_visibility_closed
+			trigger = {
+				has_country_flag = MAR_debug_fopo
+			}
+		}
+		icon = {
+			key = GFX_decision_generic_visibility
+			trigger = {
+				NOT = { has_country_flag = MAR_debug_fopo }
+			}
+		}
+		days_re_enable = 0
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_show_hide_forpol_debug_decisions"
+			if = {
+				limit = { has_country_flag = MAR_debug_fopo }
+				clr_country_flag = MAR_debug_fopo
+				clr_country_flag = conflict_debug_decisions
+				clr_country_flag = MAR_started_volunteer_sending
+			}
+			else = {
+				set_country_flag = MAR_debug_fopo
+				set_country_flag = conflict_debug_decisions
+				set_country_flag = MAR_started_volunteer_sending
+			}
+		}
+	}
+	
+	MAR_load_forpol_tab = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_fopo
+		}
+		fire_only_once = yes
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_initial_decisions"
+			TaS_Global_Conflicts_Initalize = yes
+		}
+	}
+	MAR_load_all_proxies_wo_wars = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_fopo
+		}
+		fire_only_once = no
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_initial_decisions"
+			country_event = { id = MAR_forpol.1 }
+			country_event = { id = MAR_forpol.4 }
+			country_event = { id = MAR_forpol.5 }
+			country_event = { id = MAR_forpol.6 }
+			country_event = { id = MAR_forpol.7 }
+		}
+	}
+	MAR_boost_OC_participation = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_fopo
+			has_global_flag = OC_Oman_CW
+		}
+		fire_only_once = no
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_initial_decisions"
+			set_variable = { MAR_OC_participation = 150 }
+		}
+	}
+	MAR_boost_supported_faction = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_fopo
+		}
+		fire_only_once = no
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_initial_decisions"
+			if = {
+				limit = { has_global_flag = OC_Oman_CW }
+				for_each_scope_loop = {
+					array = global.OIL_supported_by_MAR
+					add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 }
+				}
+			}
+			else_if = {
+				limit = { has_global_flag = IBW_CONFLICT }
+				SPS = { add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 } }
+				POR = { add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 } }
+			}
+			else_if = {
+				limit = { has_global_flag = CONGO_PW_HAPPENING }
+				if = {
+					limit = { has_government = socialist }
+					CPR = { add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 } }
+				}
+				else = {
+					KSI = { add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 } }	
+				}
+			}
+			else_if = {
+				limit = { has_global_flag = Iranian_Civil_War }
+				if = {
+					limit = { has_government = socialist }
+					IRA = { add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 } }
+				}
+				else = {
+					IRC = { add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 } }	
+				}
+			}
+			else_if = {
+				limit = { has_global_flag = FFR_reclamation_civil_war_happening }
+				if = {
+					limit = { has_government = socialist }
+					FRV = { add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 } }
+				}
+				else = {
+					FRM = { add_timed_idea = { idea = MAR_cheat_boost_debug days = 180 } }	
+				}
+			}
+		}
+	}
+	MAR_force_UAR_fight = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_fopo
+		}
+		fire_only_once = yes
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_initial_decisions"
+			country_event = { id = MAR_Kosygin_UAR.1 }
+		}
+	}
+	MAR_UAR_add_ru_score = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_fopo
+		}
+		fire_only_once = no
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_initial_decisions"
+			set_temp_variable = { InfluenceChangeTemp = 100 }
+			set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+			UAR_Influence_Change = yes
+		}
+	}
+	MAR_show_hide_2WRW_debug_decisions = {
+		icon = {
+			key = GFX_decision_generic_visibility_closed
+			trigger = {
+				has_country_flag = MAR_debug_2wrw
+			}
+		}
+		icon = {
+			key = GFX_decision_generic_visibility
+			trigger = {
+				NOT = { has_country_flag = MAR_debug_2wrw }
+			}
+		}
+		days_re_enable = 0
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision show_hide_debug_decisions"
+			if = {
+				limit = { has_country_flag = MAR_debug_2wrw }
+				clr_country_flag = MAR_debug_2wrw
+			}
+			else = {
+				set_country_flag = MAR_debug_2wrw
+			}
+		}
+	}
+	
+	MAR_load_fareast_gui = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_fareast_gui"
+			set_global_flag = FE_negotiations_start
+			set_variable = { fe_round = 1 }
+			
+			set_variable = { blagoveshensk_status = 2 }
+			set_variable = { khabarovsk_status = 1 }
+			set_variable = { primorie_status = 1 }
+			set_variable = { vladivostok_status = 1 }
+			
+			set_variable = { swrw_diplo_jap = 55 }
+			set_variable = { swrw_corpo_jap = 45 }
+			set_variable = { SWRW_round_timeout = 60 }
+		}
+	}
+	
+	MAR_take_RUS_tag = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+
+		complete_effect = { 
+			save_global_event_target_as = RUS_total_unifier
+			save_global_event_target_as = RUS_russian_unifier
+			save_global_event_target_as = RUS_siberian_unifier
+ 			save_global_event_target_as = RUS_western_unifier
+ 			save_global_event_target_as = RUS_west_siberia_unifier
+			save_global_event_target_as = RUS_central_siberia_unifier
+			save_global_event_target_as = RUS_far_east_unifier
+			save_global_event_target_as = RUS_southern_urals_unifier
+		}
+	}	
+	MAR_load_bop = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+
+		complete_effect = { 
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_load_bop"
+			set_temp_variable = { TabName = token:BoP_Tab_SWRW }
+			TNO_BoP_AddTab = yes
+			set_variable = { TaS_swrw_stage = 1 }
+			set_variable = { swrw_preparation_category = 1 }
+			set_variable = { SWRW_suspicion_gain = -1 }
+			GER = {
+				set_temp_variable = { TabName = token:BoP_Tab_SWRW }
+				TNO_BoP_AddTab = yes
+			}
+		}
+	}
+	
+	TaS_2WRW_load_Russia_preparation_focus_tree = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_2WRW_load_focus_tree"
+			
+			load_focus_tree = { tree = MAR_war_preparation_tree keep_completed = no }
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	TaS_2WRW_load_Russia_focus_tree = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_2WRW_load_focus_tree"
+			
+			load_focus_tree = MAR_second_patriotic_war
+		}
+	}
+	TaS_2WRW_load_Russia_fail_focus_tree = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_2WRW_load_focus_tree"
+			
+			load_focus_tree = MAR_second_patriotic_war_fail
+		}
+	}
+	TaS_2WRW_load_Germany_focus_tree = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_2WRW_load_focus_tree"
+			
+			load_focus_tree = GER_second_patriotic_war
+		}
+	}
+	TaS_2WRW_load_Germany_fail_focus_tree = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_2WRW_load_focus_tree"
+			
+			load_focus_tree = GER_second_patriotic_war_fail
+		}
+	}
+	TaS_2WRW_activate_war = {
+		icon = GFX_decision_generic_industry
+		
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_Turkestan_gov"
+			
+			declare_war_on = {
+				target = GER
+				type = annex_everything
+			}
+			add_ideas = { SWRW_RUS_oper_zero }
+			set_variable = { RUS.WRW2_devastation_gain = 1.5 }
+			set_variable = { GER.WRW2_devastation_gain = 1 }
+			set_country_flag = RUS_2WRW_ongoing
+			set_global_flag = TaS_2WRW_started
+			GER = { add_ideas = { TaS_2WRW_north_sea_problems } }
+			hidden_effect = {
+				every_country  = {
+					news_event = {
+						id = MAR_2WRW_world_news.6
+					}
+				}
+			}
+		}
+	}
+	TaS_2WRW_devastatation_add = {
+		icon = GFX_decision_generic_industry
+		
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_Turkestan_gov"
+			add_to_variable = { RUS_devastation = 20 }
+			add_to_variable = { GER_devastation = 20 }	
+		}  
+	}
+	TaS_2WRW_activate_germancw = {
+		icon = GFX_decision_generic_industry
+		
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_2WRW_activate_germancw"
+
+			set_variable = { global.postgervisits = 11 }
+		}
+	}	
+	TaS_WRW2_End_the_germany_decision = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_WRW2_End_the_germany_decision"
+			TaS_WRW2_German_Collapse_Beloozersky = yes
+		}
+	}
+	TaS_WRW2_manchuria_start_rebelion_decision = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_WRW2_End_the_germany_decision"
+			TaS_2WRW_manchuria_start_rebelion = yes
+		}
+	}
+	TaS_WRW2_second_cw_guot_invastion = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_WRW2_End_the_germany_decision"
+			TaS_2WRW_start_guot_invasion = yes
+		}
+	}
+	TaS_WRW2_rus_ultimatums_enable = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_WRW2_rus_ultimatums_enable"
+			set_global_flag = TaS_WRW2_Russian_victory
+		}
+	}
+	TaS_2WRW_remove_schnitzel_dec = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_WRW2_End_the_germany_decision"
+			TaS_2WRW_remove_schnitzel = yes
+		}
+	}
+	TaS_2WRW_czech_ssr_dec = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			has_country_flag = MAR_debug_2wrw
+		}
+		allowed = {
+			original_tag = MAR
+		}
+
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: TaS_WRW2_End_the_germany_decision"
+			TaS_2WRW_czech_ssr = yes
+		}
+	}
+	
+	MAR_load_MAR_Kazembek = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		visible = {
+			check_variable = { MAR_debug_cat = 4 }
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_load_MAR_Kazembek"
+			#load_focus_tree = {	tree = MAR_Kazembek keep_completed = no }
+		}
+	}
+	
+	MAR_load_Maria = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			#check_variable = { MAR_debug_cat = 3 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+ 
+		complete_effect = {
+			load_focus_tree = MAR_Maria_Regional
+		}
+	}
+	
+	MAR_Maria_say_sike = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			#check_variable = { MAR_debug_cat = 3 }
+		}
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+ 
+		complete_effect = {
+			#load_focus_tree = MAR_Maria_Regional
+		}
+	}
+	
+	MAR_waiter_send_me_to_stuttgart_please = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = MAR
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_waiter_send_me_to_stuttgart_please"
+			GWF = {
+				change_tag_from = ROOT
+			}
+			GWF_initiate = yes
+		}
+	}
+	
+}
+
+
+MAR_experiments_category = {
+	MAR_EXP_seameese_twins_dec = {
+		icon = GFX_decision_generic_decision
+		
+		fire_only_once = yes
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_exp_condition_tt
+				NOT = { has_country_flag = MAR_EXP_ongoing }
+			}
+		}
+		
+		visible = {
+			has_country_flag = MAR_started_experiments
+		}
+		
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		
+		cost = 50
+		
+		complete_effect = {
+			clr_country_flag = MAR_EXP_FL_SS_NOT_STARTED
+			set_country_flag = MAR_EXP_FL_SS_STARTED
+			set_country_flag = MAR_EXP_ongoing
+			set_temp_variable = { temp_econ_spending_amount = 0.75 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		
+		days_remove = 120
+		
+		remove_effect = {
+			hidden_effect = {
+				random_list = {
+					20 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.1 days = 0
+						}
+					}
+					60 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_PARTIAL_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.2 days = 0
+						}
+					}
+					20 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_FAIL
+							}
+						}
+						country_event = {
+							id = berez_exper.3 days = 0
+						}
+					}
+				}
+				clr_country_flag = MAR_EXP_ongoing
+			}
+			custom_effect_tooltip = MAR_EXP_RESULTS_IN_TT
+		}
+	}
+	
+	MAR_EXP_third_eye_dec = {
+		icon = GFX_decision_generic_decision
+		
+		fire_only_once = yes
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_exp_condition_tt
+				NOT = { has_country_flag = MAR_EXP_ongoing }
+			}
+		}
+		
+		visible = {
+			has_country_flag = MAR_started_experiments
+		}
+		
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		
+		cost = 75
+		
+		complete_effect = {
+			clr_country_flag = MAR_EXP_FL_TE_NOT_STARTED
+			set_country_flag = MAR_EXP_FL_TE_STARTED
+			set_country_flag = MAR_EXP_ongoing
+			set_temp_variable = { temp_econ_spending_amount = 0.5 }
+			econ_spend_money_once_effect_raw_money = yes
+	
+		}
+		
+		days_remove = 180
+		
+		remove_effect = {
+			hidden_effect = {
+				random_list = {
+					15 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.4 days = 0
+						}
+					}
+					65 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_PARTIAL_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.5 days = 0
+						}
+					}
+					20 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_FAIL
+							}
+						}
+						country_event = {
+							id = berez_exper.6 days = 0
+						}
+					}
+				}
+				clr_country_flag = MAR_EXP_ongoing
+			}
+			custom_effect_tooltip = MAR_EXP_RESULTS_IN_TT
+		}
+	}
+	
+	MAR_EXP_flying_cabin_dec = {
+		icon = GFX_decision_generic_decision
+		
+		fire_only_once = yes
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_exp_condition_tt
+				NOT = { has_country_flag = MAR_EXP_ongoing }
+			}
+		}
+		
+		visible = {
+			has_country_flag = MAR_started_experiments
+		}
+		
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		
+		cost = 75
+		
+		complete_effect = {
+			clr_country_flag = MAR_EXP_FL_FC_NOT_STARTED
+			set_country_flag = MAR_EXP_FL_FC_STARTED
+			set_country_flag = MAR_EXP_ongoing
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		
+		days_remove = 200
+		
+		remove_effect = {
+			hidden_effect = {
+				random_list = {
+					30 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_SUCCESS
+							}
+						}
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_PARTIAL_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.7 days = 0
+						}
+					}
+					70 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_FAIL
+							}
+						}
+						country_event = {
+							id = berez_exper.8 days = 0
+						}
+					}
+				}
+				clr_country_flag = MAR_EXP_ongoing
+			}
+			custom_effect_tooltip = MAR_EXP_RESULTS_IN_TT
+		}
+	}
+	
+	MAR_EXP_low_start_dec = {
+		icon = GFX_decision_generic_decision
+		
+		fire_only_once = yes
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_exp_condition_tt
+				NOT = { has_country_flag = MAR_EXP_ongoing }
+			}
+		}
+		
+		visible = {
+			has_country_flag = MAR_started_experiments
+		}
+		
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		
+		cost = 100
+		
+		complete_effect = {
+			clr_country_flag = MAR_EXP_FL_LS_NOT_STARTED
+			set_country_flag = MAR_EXP_FL_LS_STARTED
+			set_country_flag = MAR_EXP_ongoing
+			set_temp_variable = { temp_econ_spending_amount = 0.35 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		
+		days_remove = 200
+		
+		remove_effect = {
+			hidden_effect = {
+				random_list = {
+					30 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_SUCCESS
+							}
+						}
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_PARTIAL_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.9 days = 0
+						}
+					}
+					70 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_FAIL
+							}
+						}
+						country_event = {
+							id = berez_exper.10 days = 0
+						}
+					}
+				}
+				clr_country_flag = MAR_EXP_ongoing
+			}
+			custom_effect_tooltip = MAR_EXP_RESULTS_IN_TT
+		}
+	}
+	
+	MAR_EXP_thunder_fury_dec = {
+		icon = GFX_decision_generic_decision
+		
+		fire_only_once = yes
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_exp_condition_tt
+				NOT = { has_country_flag = MAR_EXP_ongoing }
+			}
+		}
+		
+		visible = {
+			has_country_flag = MAR_started_experiments
+		}
+		
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		
+		cost = 150
+		
+		complete_effect = {
+			clr_country_flag = MAR_EXP_FL_TF_NOT_STARTED
+			set_country_flag = MAR_EXP_FL_TF_STARTED
+			set_country_flag = MAR_EXP_ongoing
+			set_temp_variable = { temp_econ_spending_amount = 0.75 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		
+		days_remove = 300
+		
+		remove_effect = {
+			hidden_effect = {
+				random_list = {
+					5 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.11 days = 0
+						}
+					}
+					15 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_PARTIAL_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.12 days = 0
+						}
+					}
+					80 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_FAIL
+							}
+						}
+						country_event = {
+							id = berez_exper.13 days = 0
+						}
+					}
+				}
+				clr_country_flag = MAR_EXP_ongoing
+			}
+			custom_effect_tooltip = MAR_EXP_RESULTS_IN_TT
+		}
+	}
+	
+	MAR_EXP_edem_dec = {
+		icon = GFX_decision_generic_decision
+		
+		fire_only_once = yes
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_exp_condition_tt
+				NOT = { has_country_flag = MAR_EXP_ongoing }
+			}
+		}
+		
+		visible = {
+			has_country_flag = MAR_started_experiments
+		}
+		
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		
+		cost = 75
+		
+		complete_effect = {
+			clr_country_flag = MAR_EXP_FL_ED_NOT_STARTED
+			set_country_flag = MAR_EXP_FL_ED_STARTED
+			set_country_flag = MAR_EXP_ongoing
+			set_temp_variable = { temp_econ_spending_amount = 0.5 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		
+		days_remove = 300
+		
+		remove_effect = {
+			hidden_effect = {
+				random_list = {
+					10 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.14 days = 0
+						}
+					}
+					30 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_PARTIAL_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.15 days = 0
+						}
+					}
+					60 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_FAIL
+							}
+						}
+						country_event = {
+							id = berez_exper.16 days = 0
+						}
+					}
+				}
+				clr_country_flag = MAR_EXP_ongoing
+			}
+			custom_effect_tooltip = MAR_EXP_RESULTS_IN_TT
+		}
+	}
+	
+	MAR_EXP_Nine_lives_dec = {
+		icon = GFX_decision_generic_decision
+		
+		fire_only_once = yes
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_exp_condition_tt
+				NOT = { has_country_flag = MAR_EXP_ongoing }
+			}
+		}
+		
+		visible = {
+			has_country_flag = MAR_started_experiments
+		}
+		
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		
+		cost = 25
+		
+		complete_effect = {
+			clr_country_flag = MAR_EXP_FL_NL_NOT_STARTED
+			set_country_flag = MAR_EXP_FL_NL_STARTED
+			set_country_flag = MAR_EXP_ongoing
+			set_temp_variable = { temp_econ_spending_amount = 0.35 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		
+		days_remove = 120
+		
+		remove_effect = {
+			hidden_effect = {
+				random_list = {
+					15 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_SUCCESS
+							}
+						}
+						country_event = {
+							id = berez_exper.17 days = 0
+						}
+					}
+					85 = {
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_PARTIAL_SUCCESS
+							}
+						}
+						modifier = {
+							factor = 20
+							has_game_rule = {
+								rule = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS
+								option = BELOZERSKY_MILITARY_EXPERIMENTS_STATUS_FAIL
+							}
+						}
+						country_event = {
+							id = berez_exper.18 days = 0
+						}
+					}
+				}
+				clr_country_flag = MAR_EXP_ongoing
+			}
+			custom_effect_tooltip = MAR_EXP_RESULTS_IN_TT
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+MAR_Order_category = {
+	MAR_Order_Helping_Hand = {
+		icon = GFX_decision_generic_shake_hands
+		fire_only_once = yes
+		visible = {
+			always = yes
+		}
+	
+		ai_will_do = {
+			factor = 20
+		}
+		cost = 30
+		
+		days_remove = 5
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_political_power_factor
+				value = 0.2
+			}
+			custom_effect_tooltip = MAR_Order_Helping_Hand_tt
+			hidden_effect = {
+				country_event = {id = MAR_smuta.23 days = 14 }
+			}
+		}
+	}
+	MAR_Order_Army_Integration = {
+		icon = GFX_order_army
+		fire_only_once = yes
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		
+		days_remove = 5
+		complete_effect = { add_command_power = -10 }
+		remove_effect = {
+			hidden_effect = {
+				every_possible_country = {
+					limit = { has_character = GAY_Frol_Vaskin }
+					random_character = {
+						limit = { is_character = GAY_Frol_Vaskin }
+						set_nationality = MAR
+						set_portraits = {
+							army = {
+								large = "gfx/leaders/MAR/Portrait_Gayny_Frol_Vaskin1.dds"
+							}
+						}
+					}
+				}
+				every_possible_country = {
+					limit = { has_character = GAY_Ilya_Limonov }
+					random_character = {
+						limit = { is_character = GAY_Ilya_Limonov }
+						set_nationality = MAR
+						set_portraits = {
+							army = {
+								large = "gfx/leaders/MAR/Portrait_Gayny_Ilya_Limonov1.dds"
+							}
+						}
+					}
+				}
+				every_possible_country = {
+					limit = { has_character = GAY_ONG_Zosim_Makarov }
+					random_character = {
+						limit = { is_character = GAY_ONG_Zosim_Makarov }
+						set_nationality = MAR
+						set_portraits = {
+							army = {
+								large = "gfx/leaders/MAR/Portrait_Udmurtia_Zosim_Makarov1.dds"
+							}
+						}
+					}
+				}
+			}
+			custom_effect_tooltip = MAR_Order_Army_Integration_tt
+			add_manpower = 1000
+		}
+	}
+	MAR_Order_New_Church = {
+		icon = GFX_new_mladorossi_church
+		fire_only_once = yes
+		visible = {
+			always = yes
+		}
+		cost = 50
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		days_remove = 5
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_political_power_factor
+				value = 0.03
+			}
+			add_to_variable = {
+				var = MAR_ord_land_reinforce_rate
+				value = 0.02
+			}
+			add_to_variable = {
+				var = MAR_ord_army_org_factor
+				value = 0.03
+			}
+			hidden_effect = {
+				country_event = {id = MAR_smuta.24 days = 14 }
+			}
+			custom_effect_tooltip = MAR_Order_New_Church_tt
+		}
+	}
+	###Belozerskiy unique stuff###
+	MAR_Order_Expand_Order = {
+		icon = GFX_generic_church
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		cost = 50
+		
+		days_remove = 5
+		complete_effect = { country_event = {id = berez_belozerski.45 days = 90} }
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_recruitable_population_factor
+				value = 0.1
+			}
+			custom_effect_tooltip = MAR_Order_Expand_Order_tt
+		}
+	}
+	MAR_Order_Military_Squads = {
+		icon = GFX_order_squads
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		cost = 75
+		
+		days_remove = 5
+		remove_effect = {
+			add_stability = -0.08
+			add_to_variable = {
+				var = MAR_ord_required_garrison_factor
+				value = -0.15
+			}
+			RUS_integration_cost_days_decrease = yes
+			custom_effect_tooltip = MAR_Order_Military_Squads_tt
+		}
+	}
+	MAR_Order_Best_Among_Best = {
+		icon = GFX_best_amonst_best
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		days_remove = 5
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		complete_effect = { add_command_power = -5 }
+		remove_effect = {
+			add_war_support = 0.1
+			TNO_improve_army_professionalism_low = yes
+		}
+	}
+	
+	MAR_Order_Forges = {
+		icon = GFX_order_forges
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		days_remove = 5
+		cost = 40
+		complete_effect = { country_event = {id = berez_belozerski.43 days = 90} }
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_production_factory_start_efficiency_factor
+				value = 0.05
+			}
+			add_to_variable = {
+				var = MAR_ord_industrial_capacity_factory
+				value = 0.025
+			}
+			custom_effect_tooltip = MAR_Order_Forges_tt
+		}
+	}
+	
+	MAR_Order_South_Ural_Special_Zone = {
+		icon = GFX_south_ural_order
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_must_control_all_of_Southern_Urals
+				controls_state = 652
+				controls_state = 849
+				controls_state = 852
+				controls_state = 846
+				controls_state = 582
+				controls_state = 847
+				controls_state = 848
+			}
+		}
+		days_remove = 5
+		cost = 150
+		complete_effect = { 
+			hidden_effect = {
+				country_event = {id = berez_belozerski.44 days = 120}
+				country_event = {id = berez_belozerski.46 days = 86}
+			}
+		}
+		remove_effect = {
+			hidden_effect = {
+				652 = {
+					add_province_modifier = {
+						static_modifiers = { TaS_South_Ural_Special_Zone }
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+				849 = {
+					add_province_modifier = {
+						static_modifiers = { TaS_South_Ural_Special_Zone }
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+				852 = {
+					add_province_modifier = {
+						static_modifiers = { TaS_South_Ural_Special_Zone }
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+				846 = {
+					add_province_modifier = {
+						static_modifiers = { TaS_South_Ural_Special_Zone }
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+				582 = {
+					add_province_modifier = {
+						static_modifiers = { TaS_South_Ural_Special_Zone }
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+				847 = {
+					add_province_modifier = {
+						static_modifiers = { TaS_South_Ural_Special_Zone }
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+				848 = {
+					add_province_modifier = {
+						static_modifiers = { TaS_South_Ural_Special_Zone }
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+				add_to_variable = {
+					var = MAR_ord_taxable_population_modifier
+					value = 0.05
+				}
+			}
+			custom_effect_tooltip = MAR_Order_South_Ural_Special_Zone_tt
+		}
+	}
+	
+	MAR_Order_templar_factories = {
+		icon = GFX_order_forges
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			}
+			has_country_flag = RUS_RUSSIA_UNIFIED
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		days_remove = 5
+		cost = 50
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_production_speed_buildings_factor
+				value = 0.1
+			}
+			add_to_variable = {
+				var = MAR_ord_industrial_capacity_factory
+				value = 0.025
+			}
+			custom_effect_tooltip = MAR_Order_templar_factories_tt
+		}
+	}
+	MAR_Order_battle_priests = {
+		icon = GFX_decision_holy_icons
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_Sergey_Belozerskiy
+				ruling_only = yes
+			}
+			has_country_flag = RUS_RUSSIA_UNIFIED
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		days_remove = 5
+		cost = 50
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_army_attack_factor
+				value = 0.03
+			}
+			add_to_variable = {
+				var = MAR_ord_army_defence_factor
+				value = 0.03
+			}
+			custom_effect_tooltip = MAR_Order_battle_priests_tt
+		}
+	}
+	
+	MAR_Order_kazakh_mission = {
+		icon = GFX_kazakh_order
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = MAR_return_to_steppe
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_KAZ_ours
+				OR = {
+					406 = { 
+						is_owned_and_controlled_by = MAR
+					}
+					406 = { 
+						is_owned_and_controlled_by = MKZ
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		
+		days_remove = 5
+		cost = 50
+		remove_effect = {
+			add_manpower = 50000
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+	###Kosygin unique
+	MAR_Order_new_purpose = {
+		icon = GFX_generic_church
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_advisor_Kosygin
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+			has_country_flag = MAR_order_Kosygin
+		}
+		cost = 50
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		days_remove = 5
+		remove_effect = {
+			add_stability = 0.025
+			add_war_support = -0.1
+			country_event = { id = MAR_Kosygin.66 }
+			custom_effect_tooltip = MAR_Order_open_new_decision
+			set_country_flag = MAR_order_Kosygin_two
+			swap_ideas = {
+				remove_idea = tno_religious_rights_state_religion
+				add_idea = tno_religious_rights_pluralism	
+			}
+		}
+	}
+	
+	MAR_Order_forgive_and_be_forgiven = {
+		icon = GFX_decision_generic_shake_hands
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_advisor_Kosygin
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+			has_country_flag = MAR_order_Kosygin_two
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		cost = 100
+		
+		days_remove = 5
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_monthly_population
+				value = 0.1
+			}
+			add_to_variable = {
+				var = MAR_ord_stability_factor
+				value = 0.025
+			}
+			add_to_variable = {
+				var = MAR_ord_taxable_population_modifier
+				value = 0.025
+			}
+			RUS_integration_cost_days_decrease = yes
+			country_event = { id = MAR_Kosygin.68 }
+			custom_effect_tooltip = MAR_Order_forgive_and_be_forgiven_tt
+		}
+	}
+	MAR_Order_allseeing_eye = {
+		icon = GFX_decision_generic_cctv
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_advisor_Kosygin
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+			has_country_flag = MAR_order_Kosygin_two
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		cost = 75
+		
+		days_remove = 5
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_political_power_factor
+				value = 0.15
+			}
+			add_to_variable = {
+				var = MAR_ord_taxable_population_modifier
+				value = 0.025
+			}
+			country_event = { id = MAR_Kosygin.69 }
+			custom_effect_tooltip = MAR_Order_allseeing_eye_tt
+		}
+	}
+	MAR_Order_medical_order = {
+		icon = GFX_decision_generic_building_hospital
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_advisor_Kosygin
+				ruling_only = yes
+			}
+			has_country_flag = W_RUSSIA_UNIFIED
+			has_country_flag = MAR_order_Kosygin_two
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		cost = 50
+		
+		days_remove = 5
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_land_reinforce_rate
+				value = 0.1
+			}
+			add_to_variable = {
+				var = MAR_ord_experience_loss_factor
+				value = -0.075
+			}
+			custom_effect_tooltip = MAR_Order_medical_order_tt
+		}
+	}
+	MAR_Order_we_are_all_brothers = {
+		icon = GFX_decision_generic_russia
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_advisor_Kosygin
+				ruling_only = yes
+			}
+			has_country_flag = RUS_RUSSIA_UNIFIED
+			has_country_flag = MAR_order_Kosygin_two
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		cost = 25
+		
+		days_remove = 5
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_taxable_population_modifier
+				value = 0.05
+			}
+			add_to_variable = {
+				var = MAR_ord_monthly_population
+				value = 0.025
+			}
+			RUS_integration_cost_days_decrease = yes
+			custom_effect_tooltip = MAR_Order_we_are_all_brothers_tt
+		}
+	}
+	
+	MAR_Order_cooperation_with_locals = {
+		icon = GFX_kazakh_order
+		fire_only_once = yes
+		visible = {
+			has_country_leader = {
+				character = MAR_advisor_Kosygin
+				ruling_only = yes
+			}
+			has_country_flag = RUS_RUSSIA_UNIFIED
+			has_country_flag = MAR_order_Kosygin_two
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_KAZ_ours
+				OR = {
+					406 = { 
+						is_owned_and_controlled_by = MAR
+					}
+					406 = { 
+						is_owned_and_controlled_by = MKZ
+					}
+				}
+			}
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		
+		cost = 40
+		
+		days_remove = 5
+		remove_effect = {
+			add_to_variable = {
+				var = MAR_ord_land_reinforce_rate
+				value = 0.05
+			}
+			add_to_variable = {
+				var = MAR_ord_stability_factor
+				value = 0.025
+			}
+			custom_effect_tooltip = MAR_Order_cooperation_with_locals_tt
+		}
+	}
+}
+#prestol
+MAR_category_prestol_terrorists = {
+
+	MAR_debug_drop_to_fifteen = {
+		icon = GFX_decision_generic_shake_hands
+		visible = {
+			is_debug = yes
+		}
+		cost = 5
+		complete_effect = {
+			262 = {
+				add_to_variable = { insurgency_strength = -0.6 }
+			}
+			214 = {
+				add_to_variable = { insurgency_strength = -0.6 }
+			}
+			397 = {
+				add_to_variable = { insurgency_strength = -0.6 }
+			}
+			753 = {
+				add_to_variable = { insurgency_strength = -0.6 }
+			}
+			252 = {
+				add_to_variable = { insurgency_strength = -0.6 }
+			}
+			850 = {
+				add_to_variable = { insurgency_strength = -0.6 }
+			}
+			
+		}
+	}
+	MAR_AI_prestol_decision_one = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		available = {
+			has_manpower > 10000
+			has_equipment = { infantry_equipment > 1500 }
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		cost = 5
+		days_remove = 7
+
+		days_re_enable = 7
+
+		fire_only_once = no
+		complete_effect = {
+			add_manpower = -3000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_one"
+			for_each_loop = {
+				array = MAR_map_grid_array
+				value = v
+				if = {
+					limit = {
+						check_variable = { v:kosygin_reception = 1 }
+					}
+					var:v = {
+						set_temp_variable = { change_strenghth_temp = -0.02 }
+						add_to_variable = { insurgency_strength = change_strenghth_temp }
+						
+						custom_effect_tooltip = MAR_prestol_power_change
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { v:kosygin_reception > 1 }
+					}
+					var:v = {
+						set_temp_variable = { change_strenghth_temp = -0.05 }
+						set_temp_variable = { change_strenghth_trend_temp = 0.001 }
+						
+						add_to_variable = { insurgency_strengthTrend = change_strenghth_trend_temp }
+						add_to_variable = { insurgency_strength = change_strenghth_temp }
+						
+						custom_effect_tooltip = MAR_prestol_power_change
+						custom_effect_tooltip = MAR_prestol_power_trend_change_negative
+					}
+				}
+			}
+		}
+	}
+	MAR_AI_prestol_decision_two = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 50
+		days_remove = 7
+
+		days_re_enable = 7
+
+		fire_only_once = no
+		
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_one"
+			for_each_loop = {
+				array = MAR_map_grid_array
+				value = v
+				if = {
+					limit = {
+						check_variable = { v:kosygin_reception = 1 }
+					}
+					var:v = {
+						set_temp_variable = { change_strenghth_temp = -0.01 }
+						add_to_variable = { insurgency_strength = change_strenghth_temp }
+						
+						custom_effect_tooltip = MAR_prestol_power_change
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { v:kosygin_reception > 1 }
+					}
+					var:v = {
+						set_temp_variable = { change_strenghth_temp = -0.005 }
+						set_temp_variable = { change_strenghth_trend_temp = -0.005 }
+						
+						add_to_variable = { insurgency_strengthTrend = change_strenghth_trend_temp }
+						add_to_variable = { insurgency_strength = change_strenghth_temp }
+						
+						custom_effect_tooltip = MAR_prestol_power_change
+						custom_effect_tooltip = MAR_prestol_power_trend_change
+					}
+				}
+			}
+		}
+	}
+	MAR_AI_prestol_decision_three = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 50
+		
+		days_remove = 7
+
+		days_re_enable = 7
+
+		fire_only_once = no
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_one"
+			for_each_loop = {
+				array = MAR_map_grid_array
+				value = v
+				if = {
+					limit = {
+						check_variable = { v:kosygin_reception = 1 }
+					}
+					var:v = {
+						set_temp_variable = { change_strenghth_temp = -0.02 }
+						add_to_variable = { insurgency_strength = change_strenghth_temp }
+						
+						custom_effect_tooltip = MAR_prestol_power_change
+						custom_effect_tooltip = MAR_prestol_power_trend_change
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { v:kosygin_reception > 1 }
+					}
+					var:v = {
+						set_temp_variable = { change_strenghth_temp = -0.03 }
+						set_temp_variable = { change_strenghth_trend_temp = -0.003 }
+						
+						add_to_variable = { insurgency_strengthTrend = change_strenghth_trend_temp }
+						add_to_variable = { insurgency_strength = change_strenghth_temp }
+						
+						custom_effect_tooltip = MAR_prestol_power_change
+						custom_effect_tooltip = MAR_prestol_power_trend_change
+					}
+				}
+			}
+		}
+	}
+	MAR_AI_prestol_decision_onega = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = onega_control_tt
+				controls_state = 859
+			}
+			214 = {
+				check_variable = { insurgency_strength < 0.15 }
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 30
+		
+		days_remove = 15
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_AI_prestol_decision_onega"
+			set_variable = { insurgency_state_selected = 214 }
+			MAR_Prestol_set_the_event_one = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_onega"
+			set_variable = { insurgency_state_selected = 214 } 
+			MAR_Prestol_set_the_event_two = yes
+		}
+	}
+	MAR_AI_prestol_decision_naryanmar = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		available = {
+			262 = {
+				check_variable = { insurgency_strength < 0.15 }
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 30
+		
+		days_remove = 15
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_AI_prestol_decision_naryanmar"
+			set_variable = { insurgency_state_selected = 262 }
+			MAR_Prestol_set_the_event_one = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_naryanmar"
+			set_variable = { insurgency_state_selected = 262 } 
+			MAR_Prestol_set_the_event_two = yes
+		}
+	}
+	MAR_AI_prestol_decision_komi = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		available = {
+			397 = {
+				check_variable = { insurgency_strength < 0.15 }
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 30
+		
+		days_remove = 15
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_AI_prestol_decision_komi"
+			set_variable = { insurgency_state_selected = 397 }
+			MAR_Prestol_set_the_event_one = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_komi"
+			set_variable = { insurgency_state_selected = 397 } 
+			MAR_Prestol_set_the_event_two = yes
+		}
+	}
+	MAR_AI_prestol_decision_gorky = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		available = {
+			252 = {
+				check_variable = { insurgency_strength < 0.15 }
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 30
+		
+		days_remove = 15
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_AI_prestol_decision_komi"
+			set_variable = { insurgency_state_selected = 252 }
+			MAR_Prestol_set_the_event_one = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_komi"
+			set_variable = { insurgency_state_selected = 252 } 
+			MAR_Prestol_set_the_event_two = yes
+		}
+	}
+	MAR_AI_prestol_decision_perm = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		available = {
+			753 = {
+				check_variable = { insurgency_strength < 0.15 }
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 30
+		
+		days_remove = 15
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_AI_prestol_decision_komi"
+			set_variable = { insurgency_state_selected = 753 }
+			MAR_Prestol_set_the_event_one = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_komi"
+			set_variable = { insurgency_state_selected = 753 } 
+			MAR_Prestol_set_the_event_two = yes
+		}
+	}
+	MAR_AI_prestol_decision_samara = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+		}
+		available = {
+			850 = {
+				check_variable = { insurgency_strength < 0.15 }
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 30
+		
+		days_remove = 15
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_AI_prestol_decision_komi"
+			set_variable = { insurgency_state_selected = 850 }
+			MAR_Prestol_set_the_event_one = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_komi"
+			set_variable = { insurgency_state_selected = 850 } 
+			MAR_Prestol_set_the_event_two = yes
+		}
+	}
+	MAR_AI_prestol_decision_berezniki = {
+		icon = GFX_decision_revolt
+		visible = {
+			OR = {
+				is_ai = yes
+				is_debug = yes
+			}
+			398 = {
+				check_variable = { operation_available = 1 }
+			}
+		}
+		available = {
+			398 = {
+				check_variable = { operation_available = 1 }
+			}
+		}
+		ai_will_do = {
+			factor = 1000
+		}
+		
+		cost = 15
+		
+		days_remove = 7
+		fire_only_once = yes
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_AI_prestol_decision_berezniki"
+			set_variable = { insurgency_state_selected = 398 } 
+			MAR_Prestol_set_the_event_two = yes
+		}
+	}
+}
+#ogas
+MAR_ogas_deccat = {
+	#first stage
+	MAR_ogas_first_stage_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 1 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_ogas_first_stage_effigy"
+		}
+	}
+	
+	MAR_ogas_first_spying_for_superpowers = {
+		icon = GFX_spying
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 1 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 45
+		fire_only_once = no
+		days_re_enable = 90
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_first_spying_for_superpowers"
+			custom_effect_tooltip = MAR_ogas_first_stage_spies_tt
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_first_spying_for_superpowers"
+			random_list = {
+			15 = {
+				custom_effect_tooltip = MAR_OGAS_beeg_growth_spy_tt
+				set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+				set_temp_variable = { temp_char_gained = 0.07 } 
+				MAR_OGAS_char_change = yes
+			
+				set_temp_variable = { MAR_ogas_char_to_change = 2 } 
+				set_temp_variable = { temp_char_gained = 0.07 } 
+				MAR_OGAS_char_change = yes
+				
+				set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+				set_temp_variable = { temp_char_gained = 0.06 } 
+				MAR_OGAS_char_change = yes
+				
+				set_temp_variable = { temp_progress_gained = 0.1 } 
+				MAR_OGAS_progress_change = yes
+				add_political_power = 75
+			}
+			45 = {
+				custom_effect_tooltip = MAR_OGAS_mid_spy_tt
+				set_temp_variable = { temp_progress_gained = 0.05 } 
+				MAR_OGAS_progress_change = yes
+				
+				set_temp_variable = { MAR_ogas_char_to_change = 2 } 
+				set_temp_variable = { temp_char_gained = 0.05 } 
+				MAR_OGAS_char_change = yes
+				add_political_power = 50
+			}
+			25 = {
+				set_temp_variable = { temp_progress_gained = 0.05 } 
+				MAR_OGAS_progress_change = yes
+				add_political_power = 25
+			}
+			15 = {
+			
+			}
+		}
+			
+		}
+	}
+	
+	MAR_ogas_first_trip_to_guandong = {
+		icon = GFX_trip_to_guandong
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 1 }
+			has_country_flag = MAR_Kosygin_choose_JAP
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 45
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_first_trip_to_guandong"
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_first_trip_to_guandong"
+			set_temp_variable = { MAR_ogas_char_to_change = 2 } 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { temp_progress_gained = 0.06 } 
+			MAR_OGAS_progress_change = yes
+			GNG = {
+				add_opinion_modifier = {
+					target = MAR
+					modifier = MAR_GNG_ties
+				}
+				reverse_add_opinion_modifier = {
+					target = MAR
+					modifier = MAR_GNG_ties	
+				}
+			}
+			country_event = { id = MAR_Kosygin_OGAS.1 days = 1 }
+		}
+	}
+	
+	MAR_ogas_first_imperial_academy = {
+		icon = GFX_build_a_academy
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 1 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 90
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_first_imperial_academy"
+			set_temp_variable = { temp_econ_spending_amount = 0.45 }  
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_first_imperial_academy"
+			TNO_improve_research_facilities_high = yes
+			capital_scope = {
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				set_temp_variable = { state_value_multiplier_temp = 1.08 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.10
+					}
+				}
+			}
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			add_to_variable = { MAR_ogas_gain = 0.01 }
+			country_event = { id = MAR_Kosygin_OGAS.2 days = 1 }
+		}
+	}  
+	 
+	MAR_ogas_first_our_previous_ideas = {
+		icon = GFX_decision_category_KOM_ultravisionary_socialism
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 1 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}		
+		cost = 25
+		days_remove = 45
+		fire_only_once = no
+		days_re_enable = 90
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_first_our_previous_ideas"
+			set_temp_variable = { temp_econ_spending_amount = 0.35 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_first_our_previous_ideas"
+			TNO_improve_research_facilities_med = yes
+			set_temp_variable = { temp_progress_gained = 0.06 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.07 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_first_sort_the_designs = {
+		icon = GFX_decision_GNG_data
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 1 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 60
+		fire_only_once = no
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_first_sort_the_designs"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_first_sort_the_designs"
+			TNO_improve_research_facilities_med = yes
+			set_temp_variable = { temp_progress_gained = 0.07 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.06 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	###second stage
+	MAR_ogas_second_stage_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 2 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_ogas_first_stage_effigy"
+		}
+	}
+	
+	MAR_ogas_second_talk_with_ibm = {
+		icon = GFX_ibm
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 2 }
+			has_country_flag = MAR_Kosygin_choose_USA
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 45
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_second_talk_with_ibm"
+			set_temp_variable = { temp_econ_spending_amount = 0.35 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_second_talk_with_ibm"
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+				set_temp_variable = { state_value_multiplier_temp = 1.08 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.10
+					}
+				}
+			}
+			set_temp_variable = { pus_temp = 1 }
+			econ_pus_change = yes
+			TNO_improve_industrial_expertise_med = yes
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.02 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			country_event = { id = MAR_Kosygin_OGAS.3 days = 1 }
+		}
+	}
+	
+	MAR_ogas_second_get_all_the_nerds_in_the_one_place = {
+		icon = GFX_nerd
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 2 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 90
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_second_get_all_the_nerds_in_the_one_place"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_second_get_all_the_nerds_in_the_one_place"
+			TNO_improve_research_facilities_high = yes
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { temp_progress_gained = 0.07 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_second_math_analyze = {
+		icon = GFX_decision_generic_document
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 2 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 60
+		fire_only_once = no
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_second_math_analyze"
+			set_temp_variable = { temp_econ_spending_amount = 0.35 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_second_math_analyze"
+			add_political_power = 50
+			set_temp_variable = { temp_progress_gained = 0.08 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2 } 
+			set_temp_variable = { temp_char_gained = -0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = -0.02 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_second_cybernetics_cult = {
+		icon = GFX_decision_generic_propaganda_off
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 2 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 45
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_second_cybernetics_cult"
+			set_temp_variable = { temp_econ_spending_amount = 0.175 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_second_cybernetics_cult"
+			TNO_improve_education_policy_effectiveness_high = yes
+			TNO_improve_education_policy_effectiveness_monthly_high = yes
+			TNO_improve_academic_base_high = yes
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = -0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			add_to_variable = { MAR_ogas_gain = 0.01 }
+		}
+	}
+	
+	MAR_ogas_second_glushkovs_seminars = {
+		icon = GFX_glushkov
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 2 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 30
+		fire_only_once = no
+		days_re_enable = 75
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_second_glushkovs_seminars"
+			set_temp_variable = { temp_econ_spending_amount = 0.15 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_second_glushkovs_seminars"
+			
+			set_temp_variable = { temp_progress_gained = 0.05 } 
+			MAR_OGAS_progress_change = yes
+			TNO_improve_academic_base_high = yes
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.01 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	###third
+	MAR_ogas_third_stage_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 3 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_ogas_first_stage_effigy"
+		}
+	}
+		
+	MAR_ogas_third_cybergrad_kazan = {
+		icon = GFX_decision_terrain_urban
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 3 }	
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 180
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_third_cybergrad_kazan"
+			set_temp_variable = { temp_econ_spending_amount = 0.75 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_third_cybergrad_kazan"
+			set_temp_variable = { temp_progress_gained = 0.15 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.07 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.08 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.07 } 
+			MAR_OGAS_char_change = yes
+			add_victory_points = {
+				province = 11339
+				value = 5
+			}
+			851 = {
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = schools
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = hospitals
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 4
+				set_temp_variable = { state_value_multiplier_temp = 1.15 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.18
+					}
+				}
+			}
+			
+			add_to_variable = { MAR_ogas_gain = 0.01 }
+			country_event = { id = MAR_Kosygin_OGAS.4 days = 1 }
+		}
+	}
+	
+	MAR_ogas_third_tsars_financing = {
+		icon = GFX_decision_generic_investors
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 3 }	
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 45
+		fire_only_once = no
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_third_cybergrad_kazan"
+			set_temp_variable = { temp_econ_spending_amount = 0.45 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_third_cybergrad_kazan"
+			TNO_improve_education_policy_effectiveness_high = yes
+			capital_scope = {
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+			}
+			set_temp_variable = { temp_progress_gained = 0.07 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.02 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = -0.04 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_third_kibersin = {
+		icon = GFX_decision_generic_handshake
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 3 }	
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 90
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_third_kibersin"
+			set_temp_variable = { temp_econ_spending_amount = 0.35 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_third_kibersin"
+			set_temp_variable = { temp_econ_GDP_boost_flat = 0.15 }
+			econ_GDP_boost_once_flat = yes
+			set_temp_variable = { econ_centralization_temp = -5 }
+			econ_centralization_change = yes
+			set_temp_variable = { temp_progress_gained = 0.06 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.06 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_third_expand_the_institutions = {
+		icon = GFX_decision_generic_power
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 3 }	
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 60
+		fire_only_once = no
+		days_re_enable = 45
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_third_expand_the_institutions"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_third_expand_the_institutions"
+			TNO_improve_research_facilities_high = yes
+			set_temp_variable = { temp_progress_gained = 0.08 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.02 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_third_prepare_the_places = {
+		icon = GFX_decision_generic_supply
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 3 }	
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 45
+		fire_only_once = no
+		days_re_enable = 45
+		complete_effect = {
+			set_temp_variable = { temp_econ_spending_amount = 0.275 } 
+			econ_spend_money_once_effect_raw_money = yes
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_third_prepare_the_places"
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_third_prepare_the_places"
+			set_temp_variable = { temp_progress_gained = 0.06 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = -0.01 } 
+			MAR_OGAS_char_change = yes
+			every_owned_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.05
+					}
+				}
+			}
+			country_event = { id = MAR_Kosygin_OGAS.5 days = 1 }
+		}
+	}
+	
+	###fourth
+	MAR_ogas_fourth_stage_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 4 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_ogas_first_stage_effigy"
+		}
+	}
+	
+	MAR_ogas_foutrh_stress_test_kazan = {
+		icon = GFX_decision_generic_building_offices
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 4 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 90
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_foutrh_stress_test_kazan"
+			set_temp_variable = { temp_econ_spending_amount = 0.45 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_foutrh_stress_test_kazan"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.02 } 
+			MAR_OGAS_char_change = yes
+			249 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.15
+					}
+				}
+			}
+			set_temp_variable = { pus_temp = 1 }
+			econ_pus_change = yes
+			country_event = { id = MAR_Kosygin_OGAS.6 days = 1 }
+		}
+	}
+	
+	MAR_ogas_foutrh_test_the_factory = {
+		icon = GFX_decision_generic_factory_inspection
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 4 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 60
+		fire_only_once = no
+		days_re_enable = 60
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_foutrh_test_the_factory"
+			set_temp_variable = { temp_econ_spending_amount = 0.1 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_foutrh_test_the_factory"
+			set_temp_variable = { pus_temp = 2 }
+			econ_pus_change = yes
+			set_temp_variable = { temp_progress_gained = 0.07 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.02 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.02 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			country_event = { id = MAR_Kosygin_OGAS.7 days = 1 }
+		}
+	}
+	
+	MAR_ogas_foutrh_develop_army_verison = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 4 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 75
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_foutrh_develop_army_verison"
+			set_temp_variable = { temp_econ_spending_amount = 0.5 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_foutrh_develop_army_verison"
+			TNO_improve_research_facilities_high = yes
+			set_temp_variable = { temp_progress_gained = 0.07 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.1 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_foutrh_test_it_in_sgvuz = {
+		icon = GFX_build_a_academy
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 4 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 60
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_foutrh_test_it_in_sgvuz"
+			set_temp_variable = { temp_econ_spending_amount = 0.1 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_foutrh_test_it_in_sgvuz"
+			TNO_improve_research_facilities_high = yes
+			set_temp_variable = { temp_progress_gained = 0.07 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.02 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.01 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			add_to_variable = { MAR_ogas_gain = 0.01 }
+			country_event = { id = MAR_Kosygin_OGAS.8 days = 1 }
+		}
+	}
+	
+	MAR_ogas_foutrh_do_the_debug = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 4 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 30
+		fire_only_once = no
+		days_re_enable = 30
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_foutrh_do_the_debug"
+			set_temp_variable = { temp_econ_spending_amount = 0.35 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_foutrh_do_the_debug"
+			TNO_improve_research_facilities_high = yes
+			TNO_improve_research_facilities_high = yes
+			set_temp_variable = { temp_progress_gained = 0.05 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = 0.07 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	###fifth
+	MAR_ogas_fifth_stage_effigy = {
+		icon = GFX_decision_research_generic
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 5 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_ogas_first_stage_effigy"
+		}
+	}
+	
+	MAR_ogas_intergrate_into_civil_economics = {
+		icon = GFX_decision_generic_heavy_industry
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 30
+		fire_only_once = no
+		days_re_enable = 60
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_intergrate_into_civil_economics"
+			set_temp_variable = { temp_econ_spending_amount = 0.6 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_intergrate_into_civil_economics"
+			set_temp_variable = { pus_temp = 4 }
+			econ_pus_change = yes
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = -0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.06 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = -0.02 } 
+			MAR_OGAS_char_change = yes
+
+			country_event = { id = MAR_Kosygin_OGAS.9 days = 1 }
+		}
+	}
+	
+	MAR_ogas_intergrate_into_millitary_economics = {
+		icon = GFX_decision_factory_generic_blue
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 75
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_intergrate_into_millitary_economics"
+			set_temp_variable = { temp_econ_spending_amount = 0.35 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_intergrate_into_millitary_economics"
+			set_temp_variable = { temp_econ_GDP_boost_percentage = 0.04 }
+			econ_GDP_boost_once_percentage = yes
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = -0.01 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_intergrate_into_army = {
+		icon = GFX_decision_generic_military_hat
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		cost = 25
+		days_remove = 90
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_intergrate_into_army"
+			set_temp_variable = { temp_econ_spending_amount = 0.3 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_intergrate_into_army"
+			TNO_improve_army_professionalism_high = yes
+			army_experience	= 25
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = -0.03 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_fifth_integrate_into_education = {
+		icon = GFX_decision_generic_education
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 45
+		fire_only_once = no
+		days_re_enable = 45
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_fifth_integrate_into_education"
+			set_temp_variable = { temp_econ_spending_amount = 0.15 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_fifth_integrate_into_education"
+			TNO_improve_academic_base_high = yes
+			TNO_improve_academic_base_high = yes
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.03 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.04 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = -0.02 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	
+	MAR_ogas_fifth_semiconductor_valley = {
+		icon = GFX_decision_generic_building
+		visible = {
+			check_variable = { MAR_ogas_current_stage = 5 }
+		}
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		cost = 25
+		days_remove = 120
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: MAR_ogas_fifth_semiconductor_valley"
+			set_temp_variable = { temp_econ_spending_amount = 1 } 
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		modifier = {
+			research_speed_factor = -0.05
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_ogas_fifth_semiconductor_valley"
+			add_victory_points = {
+				province = 11339
+				value = 5
+			}
+			851 = {
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				set_temp_variable = { state_value_multiplier_temp = 1.15 }
+				econ_state_value_change_multiply_specified_state = yes
+				add_state_modifier = {
+					modifier = {
+						state_GDP_growth_factor_modifier = 0.2
+					}
+				}
+			}
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			MAR_OGAS_progress_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 1 } 
+			set_temp_variable = { temp_char_gained = 0.06 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 2} 
+			set_temp_variable = { temp_char_gained = 0.05 } 
+			MAR_OGAS_char_change = yes
+			
+			set_temp_variable = { MAR_ogas_char_to_change = 3 } 
+			set_temp_variable = { temp_char_gained = -0.02 } 
+			MAR_OGAS_char_change = yes
+		}
+	}
+	###rip sixth###
+	MAR_ogas_tick = {
+    	available = {
+			NOT = {
+				MAR = { has_country_flag = MAR_ogas_dev_started }
+			}
+    	}
+	
+    	activation = {
+    		has_country_flag = MAR_ogas_dev_started
+    	}
+		
+    	is_good = yes
+	
+    	days_mission_timeout = 30
+	
+		timeout_effect = { 
+    		log = "[GetDateText]: [Root.GetName]: MAR_ogas_tick mission timer elapsed" 
+			custom_effect_tooltip = MAR_OGAS_increase_progress_tt
+			custom_effect_tooltip = MAR_OGAS_increase_stats_tt
+			hidden_effect = {
+				set_temp_variable = { temp_progress_gained = MAR_ogas_gain } 
+				MAR_OGAS_progress_change = yes
+				if = {
+					limit = {
+						has_game_rule = {
+							rule = KOSYGIN_OGAS_CHEAT
+							option = KOSYGIN_OGAS_CHEAT_SOVIET_MAGIC
+						}
+					}
+					set_temp_variable = { temp_progress_gained = 1 } 
+					MAR_OGAS_progress_change = yes
+					MAR_OGAS_switch_to_the_next_stage = yes
+				}
+			}
+			
+			for_each_loop = {
+				array = MAR_ogas_characteristics_array
+				add_to_variable = { MAR_ogas_characteristics_array^i = MAR_ogas_char_gain }
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = KOSYGIN_OGAS_CHEAT
+						option = KOSYGIN_OGAS_CHEAT_SOVIET_MAGIC
+					}
+				}
+				set_variable = { MAR_ogas_characteristics_array^1 = 1 }
+				set_variable = { MAR_ogas_characteristics_array^2 = 1 }
+				set_variable = { MAR_ogas_characteristics_array^3 = 0 }
+			}	
+			MAR_OGAS_switch_to_the_next_stage = yes
+			hidden_effect = {
+    			if = {
+    				limit = {
+    					has_country_flag = MAR_ogas_dev_started
+    				}
+    				activate_mission = MAR_ogas_tick
+    			}
+    		}
+    	}
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission MAR_ogas_tick Completed (Should never happen for this mission, please report if you see this in the log.)"
+    	}
+  	}
+	
+}
+MAR_dolina_primirenya_category = {
+	MAR_build_the_dolina = {
+		icon = GFX_decision_generic_shake_hands
+		fire_only_once = yes
+		visible = {
+			has_country_flag = MAR_dolina_primireniya
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		days_remove = 120
+		cost = 100
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_build_the_dolina"
+			set_temp_variable = { temp_econ_spending_amount = 0.005 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			country_event = {
+				id = MAR_Kosygin.100 days = 0
+			}
+			RUS_integration_cost_days_decrease = yes
+		}
+	}
+}
+
+MAR_greater_good_category = {
+	MAR_greater_good_help_the_poor = {
+
+		icon = GFX_decision_generic_political_discourse
+
+		available = {
+		}
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+
+		days_remove = 365
+
+		fire_only_once = yes
+
+		cost = 45
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_instate_poverty_relief_programs"
+			set_temp_variable = { temp_econ_spending_amount = 0.95 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_instate_poverty_relief_programs"
+			
+			tno_minimum_wage_improve = yes
+			tno_pensions_improve = yes
+			tno_unemployment_improve = yes
+			
+			TNO_improve_income_taxation_policy_effectiveness_high = yes
+			TNO_improve_unemployment_policy_effectiveness_high = yes
+			TNO_improve_trade_unions_policy_effectiveness_high = yes
+			TNO_improve_minimum_wage_policy_effectiveness_high = yes
+
+			TNO_improve_poverty_high = yes
+			TNO_improve_poverty_high = yes
+			
+			set_temp_variable = { gdp_growth_temp = 0.5 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { inflation_temp = 0.1 }
+			econ_inflation_change = yes
+		}
+	}
+
+	MAR_greater_good_create_universal_healthcare = {
+
+		icon = GFX_decision_generic_building_hospital
+
+		available = {
+		}
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+
+		days_remove = 365
+
+		fire_only_once = yes
+
+		cost = 45
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_improve_healthcare_network"
+			set_temp_variable = { temp_econ_spending_amount = 0.45 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_improve_healthcare_network"
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospitals
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospitals
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospitals
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospitals
+					level = 1
+					instant_build = yes
+				}
+			}
+			
+			random_owned_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = hospitals
+					level = 1
+					instant_build = yes
+				}
+			}
+			TNO_improve_healthcare_high = yes
+			
+			tno_health_care_improve = yes
+			TNO_improve_health_care_policy_effectiveness_high = yes
+		}
+	}
+	
+	MAR_greater_good_invest_in_scientific_research = {
+
+		icon = GFX_decision_generic_research
+		available = {
+		}
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+			research_speed_factor = 0.1
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+
+		days_remove = 365
+		
+		fire_only_once = yes
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_invest_in_scientific_research"
+			set_temp_variable = { temp_econ_spending_amount = 0.75 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_invest_in_scientific_research"
+			
+			TNO_improve_academic_base_high = yes
+			TNO_improve_agriculture_high = yes
+			TNO_improve_industrial_expertise_high = yes
+			TNO_improve_research_facilities_high = yes
+			
+			hidden_effect = { #Double the fun!
+				TNO_improve_academic_base_high = yes
+				TNO_improve_agriculture_high = yes
+				TNO_improve_industrial_expertise_high = yes
+				TNO_improve_research_facilities_high = yes
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = offices
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+			}
+		}
+	}
+	
+	MAR_greater_good_allocate_education_funding = {
+
+		icon = GFX_decision_generic_education
+
+		available = {
+		}
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+			research_speed_factor = 0.04
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+
+		days_remove = 365
+
+		fire_only_once = yes
+
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_increase_education_funding"
+			set_temp_variable = { temp_econ_spending_amount = 0.375 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_increase_education_funding"
+
+			tno_education_improve = yes
+			
+			TNO_improve_research_facilities_low = yes
+			TNO_improve_agriculture_low = yes
+			TNO_improve_industrial_expertise_low = yes
+
+
+			TNO_improve_academic_base_high = yes
+			TNO_improve_academic_base_high = yes
+			
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = schools
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.02 }
+				econ_state_value_change_multiply = yes
+			}
+		}
+	}
+	
+	MAR_greater_good_please_veterans = {
+
+		icon = GFX_decision_generic_military_parade
+
+		available = {
+		}
+		visible = {
+			always = yes
+		}
+
+		modifier = {
+			political_power_gain = -0.15
+			experience_gain_army_factor = 0.05
+		}
+
+		ai_will_do = {
+			factor = 20
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+
+		days_remove = 365
+
+		fire_only_once = yes
+
+		cost = 75
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision regional_hire_foreign_instructors"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision remove regional_hire_foreign_instructors"
+			army_experience = 15
+			
+			tno_improve_army_professionalism = yes
+			
+			TNO_improve_army_professionalism_high = yes
+			
+			TNO_improve_training_policy_effectiveness_high = yes
+			TNO_improve_military_supervision_policy_effectiveness_high = yes
+			TNO_improve_conscription_policy_effectiveness_high = yes
+			TNO_improve_draft_exemptions_policy_effectiveness_high = yes
+		}
+	}
+}
+
+MAR_yug_excersices_category = {
+	MAR_yug_do_excersices = {
+		icon = GFX_decision_revolt
+		activation = { always = no }
+		available = {
+			has_equipment = {
+				infantry_equipment > 1500
+			}
+			has_equipment = {
+				anti_tank_equipment > 300
+			}
+			has_equipment = {
+				support_equipment > 300
+			}
+			has_equipment = {
+				artillery_equipment > 100
+			}
+			divisions_in_state = {
+				state = 572
+				size > 3
+			}
+			divisions_in_state = {
+				state = 571
+				size > 3
+			}
+			divisions_in_state = {
+				state = 754
+				size > 3
+			}
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+		priority = 300
+		days_mission_timeout = 21
+		is_good = no
+
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Timeout MAR_yug_do_excersices"
+			custom_effect_tooltip = MAR_KAZ_talks_decrease_tt
+			add_to_variable = { MAR_KAZ_talks_fail = 1 }
+			TNO_worsen_army_professionalism_low = yes
+			country_event = { id = berez_kazahk.16 days = 3 }
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_yug_do_excersices"
+			custom_effect_tooltip = MAR_KAZ_talks_increase_tt
+			add_to_variable = { MAR_KAZ_talks_success = 1 }
+			clr_country_flag = MAR_yug_70_excercises
+			TNO_improve_army_professionalism_med = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1100
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -200
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = -215
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = -55
+				producer = MAR
+			}
+			country_event = { id = berez_kazahk.16 days = 7 }
+			country_event = { id = berez_kazahk.20 days = 3 }
+		}
+	}
+}
+
+RUS_nuke_development_category_facelift = {
+	
+	RUS_NEW_nukes_effigy = {
+		icon = GFX_decision_generic_nuclear_radiation
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase > 0 }
+		}
+		fire_only_once = yes
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout RUS_NEW_nukes_effigy"
+		}
+	}
+	
+	### STAGE ONE ###
+
+	RUS_NEW_nukes_theory_develop_physics_institutes = {
+		icon = GFX_build_a_academy
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 1 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 25
+
+		days_remove = 180
+
+		fire_only_once = yes
+		
+		modifier = {
+			civilian_expenditures_factor = 0.1
+			political_power_gain = -0.1
+			research_speed_factor = -0.1
+			misc_costs_modifier = 0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_theory_develop_physics_institutes"
+			set_temp_variable = { temp_econ_spending_amount = 0.3 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_theory_develop_physics_institutes"
+			TNO_improve_academic_base_med = yes
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.02 } 
+			TaS_nuke_development_monthly_progress_change = yes
+		}
+			
+	}
+	RUS_NEW_nukes_theory_issue_research_grants = {
+		icon = GFX_decision_generic_research_increase
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 1 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 50
+
+		days_remove = 90
+
+		fire_only_once = yes
+
+		modifier = {
+			civilian_expenditures_factor = 0.05
+			misc_costs_modifier = 0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_theory_issue_research_grants"
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_theory_issue_research_grants"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+		}
+	}
+	RUS_NEW_nukes_theory_approach_emigre_scientists = {
+		icon = GFX_decision_generic_phone_call
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 1 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_remove = 90
+
+		fire_only_once = yes
+	
+		modifier = {
+			misc_costs_modifier = 0.15
+			weekly_manpower = 300
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_theory_approach_emigre_scientists"
+			set_temp_variable = { temp_econ_spending_amount = 0.1 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_theory_approach_emigre_scientists"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			TNO_improve_education_policy_effectiveness_med = yes
+		}
+	}
+	RUS_NEW_nukes_theory_study_foreign_developments = {
+		icon = GFX_decision_generic_document_building
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 1 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 50
+
+		days_remove = 90
+
+		days_re_enable = 90
+
+		fire_only_once = no
+		
+		modifier = {
+			research_speed_factor = -0.1
+			misc_costs_modifier = 0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_theory_study_foreign_developments"
+			set_temp_variable = { temp_econ_spending_amount = 0.075 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_theory_study_foreign_developments"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.02 } 
+			TaS_nuke_development_monthly_progress_change = yes
+			TNO_improve_research_facilities_low = yes
+		}
+	}
+
+	### STAGE TWO ###
+
+	RUS_NEW_nukes_mats_develop_material_extraction_techniques = {
+		icon = GFX_decision_generic_building
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 2 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 25
+
+		days_remove = 180
+
+		fire_only_once = yes
+		
+		modifier = {
+			research_speed_factor = -0.05
+			misc_costs_modifier = 0.1
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_mats_develop_material_extraction_techniques"
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_mats_develop_material_extraction_techniques"
+			set_temp_variable = { temp_progress_gained = 0.15 } 
+			TaS_nuke_development_progress_change = yes
+			add_tech_bonus = {
+				name = excavation_tech
+				bonus = 1
+				uses = 2
+				category = excavation_tech
+			}
+		}
+	}
+
+	RUS_NEW_nukes_mats_assemble_processing_facilities = {
+		icon = GFX_decision_generic_factory_blue
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 2 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 50
+
+		days_remove = 210
+
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_buildings_factor = -0.1
+			misc_costs_modifier = 0.15
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_mats_assemble_processing_facilities"
+			set_temp_variable = { temp_econ_spending_amount = 0.45 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_mats_assemble_processing_facilities"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.025 }
+				econ_state_value_change_multiply_specified_state = yes
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.025 }
+				econ_state_value_change_multiply_specified_state = yes
+			}
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.025 }
+				econ_state_value_change_multiply_specified_state = yes
+			}
+		}
+	}
+
+	RUS_NEW_nukes_mats_expand_uranium_mining = {
+		icon = GFX_decision_generic_mining
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 2 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 35
+
+		days_remove = 180
+
+		days_re_enable = 180
+
+		fire_only_once = no
+		
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			local_resources_factor = -0.025
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_mats_expand_uranium_mining"
+			set_temp_variable = { temp_econ_spending_amount = 0.5 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_mats_expand_uranium_mining"
+			set_temp_variable = { temp_progress_gained = 0.15 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.03 } 
+			TaS_nuke_development_monthly_progress_change = yes
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 4
+					has_resources_amount = {
+						resource = uranium
+						amount > 1
+					}
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = uranium
+					amount = 15
+				}
+			}
+		}
+	}
+
+	RUS_NEW_nukes_mats_incentivize_skilled_laborers = {
+		icon = GFX_decision_generic_workers
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 2 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 25
+
+		days_remove = 90
+
+		days_re_enable = 180
+
+		fire_only_once = no
+		
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			production_speed_buildings_factor = -0.05
+			production_factory_max_efficiency_factor = -0.05
+			weekly_manpower = -150
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_mats_incentivize_skilled_laborers"
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_mats_incentivize_skilled_laborers"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.01 } 
+			TaS_nuke_development_monthly_progress_change = yes
+			TNO_improve_industrial_expertise_med = yes
+			set_temp_variable = { gdp_growth_temp = 0.01 }
+			econ_gdp_growth_change = yes
+			
+		}
+	}
+
+	### STAGE THREE ###
+
+	RUS_NEW_nukes_infra_accelerate_plant_approval_processes = {
+		icon = GFX_decision_generic_political_action
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 3 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 50
+
+		days_remove = 45
+
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_buildings_factor = -0.05
+			stability_weekly = -0.0025
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_infra_accelerate_plant_approval_processes"
+			set_temp_variable = { temp_econ_spending_amount = 0.075 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_infra_accelerate_plant_approval_processes"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			TNO_improve_industrial_expertise_med = yes
+		}
+	}
+
+	RUS_NEW_nukes_infra_fund_power_station_construction = {
+		icon = GFX_decision_generic_investors
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 3 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 50
+
+		days_remove = 210
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_infra_fund_power_station_construction"
+			set_temp_variable = { temp_econ_spending_amount = 0.4 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		
+		modifier = {
+			production_speed_buildings_factor = -0.1
+			misc_costs_modifier = 0.15
+		}
+		
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_infra_fund_power_station_construction"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.02 } 
+			TaS_nuke_development_monthly_progress_change = yes
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.025 }
+				econ_state_value_change_multiply_specified_state = yes
+			}
+		}
+	}
+
+	RUS_NEW_nukes_infra_commission_additional_research_reactors = {
+		icon = GFX_decision_generic_power
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 3 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_re_enable = 180
+
+		days_remove = 180
+
+		fire_only_once = no
+		
+		modifier = {
+			production_speed_buildings_factor = -0.05
+			misc_costs_modifier = 0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_theory_study_foreign_developments"
+			set_temp_variable = { temp_econ_spending_amount = 0.5 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_theory_study_foreign_developments"
+			set_temp_variable = { temp_progress_gained = 0.05 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.01 } 
+			TaS_nuke_development_monthly_progress_change = yes
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.025 }
+				econ_state_value_change_multiply_specified_state = yes
+			}
+		}
+	}
+
+	RUS_NEW_nukes_infra_study_foreign_reactor_designs = {
+		icon = GFX_decision_generic_political_discourse
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 3 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_remove = 90
+
+		days_re_enable = 90
+
+		fire_only_once = no
+		
+		modifier = {
+			research_speed_factor = -0.1
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_theory_study_foreign_developments"
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_theory_study_foreign_developments"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.01 } 
+			TaS_nuke_development_monthly_progress_change = yes
+		}
+	}
+
+	### STAGE FOUR ###
+
+	RUS_NEW_nukes_refine_construct_additional_centrifuges = {
+		icon = GFX_decision_generic_research
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 4 }
+		}
+		
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_remove = 210
+
+		fire_only_once = yes
+		
+		modifier = {
+			production_speed_buildings_factor = -0.05
+			misc_costs_modifier = 0.15
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_refine_construct_additional_centrifuges"
+			set_temp_variable = { temp_econ_spending_amount = 0.5 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_theory_incentivize_atomic_science"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.02 } 
+			TaS_nuke_development_monthly_progress_change = yes
+		}
+	}
+
+	RUS_NEW_nukes_refine_develop_isotope_separation_theory = {
+		icon = GFX_decision_generic_document
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 4 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_remove = 180
+
+		modifier = {
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_refine_develop_isotope_separation_theory"
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_refine_develop_isotope_separation_theory"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+		}
+	}
+
+	RUS_NEW_nukes_refine_expand_nuclear_reprocessing_infrastructure = {
+		icon = GFX_decision_generic_infrastructure
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 4 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_remove = 180
+
+		days_re_enable = 210
+
+		fire_only_once = no
+
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			local_resources_factor = -0.025
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_refine_expand_nuclear_reprocessing_infrastructure"
+			set_temp_variable = { temp_econ_spending_amount = 0.4 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_refine_expand_nuclear_reprocessing_infrastructure"
+			set_temp_variable = { temp_progress_gained = 0.15 } 
+			TaS_nuke_development_progress_change = yes
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 3
+					has_resources_amount = {
+						resource = uranium
+						amount > 1
+					}
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = uranium
+					amount = 10
+				}
+			}
+		}
+	}
+	
+	RUS_NEW_nukes_refine_create_first_actual_nuclear_power_plant = {
+		icon = GFX_decision_generic_reactor
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 4 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_remove = 210
+
+		modifier = {
+			production_speed_buildings_factor = -0.05
+			misc_costs_modifier = 0.25
+			free_production_units_modifier = -2
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_create_first_actual_nuclear_power_plant"
+			set_temp_variable = { temp_econ_spending_amount = 0.5 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_create_first_actual_nuclear_power_plant"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.01 } 
+			TaS_nuke_development_monthly_progress_change = yes
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 5      
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.10 }
+				econ_state_value_change_multiply = yes
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = nuclear_reactor
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+
+	### STAGE FIVE ###
+	
+	RUS_NEW_nukes_creation_test_the_bomb = {
+		icon = GFX_decision_generic_nuke
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 5 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = RUS_NEW_nukes_creation_test_the_bomb_tt
+				check_variable = { TaS_nuke_development_array^TaS_RUS_nuclear_program_phase = 1 }
+			}
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 50
+
+		days_remove = 15
+
+		fire_only_once = yes
+		
+		modifier = {
+			research_speed_factor = -0.1
+			misc_costs_modifier = 0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_creation_test_the_bomb"
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_creation_test_the_bomb"
+			set_variable = { TaS_RUS_nuclear_program_phase = 6 }
+			set_variable = { TaS_nuke_development_array^TaS_RUS_nuclear_program_phase = 0 }
+			TNO_improve_research_facilities_low = yes
+			MAR_nuke = yes
+			hidden_effect = {
+				clr_country_flag = RUS_started_nukes_new
+				set_country_flag = RUS_finished_nukes_new
+				set_variable = { nuclear_stockpile = 2 }
+				set_variable = { nuclear_global_coverage = 0.15 }
+				add_to_variable = { nuclear_stockpile_change = 2 }
+				calculate_strike_capability = yes
+				set_technology = {
+					ICBM = 1
+					MRBM = 1
+					SRBM = 1
+					nuclear_reactors = 1
+					nuclear_weapons = 1
+					popup = no
+				}
+			}
+		}
+	}
+	
+	RUS_NEW_nukes_creation_expand_npps = {
+		icon = GFX_decision_generic_reactor
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 5 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_remove = 210
+
+		modifier = {
+			production_speed_buildings_factor = -0.15
+			misc_costs_modifier = 0.45
+			research_speed_factor = -0.1
+			free_production_units_modifier = -4
+		}
+
+		fire_only_once = yes
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_weapon_expand_npps"
+			set_temp_variable = { temp_econ_spending_amount = 0.7 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_weapon_expand_npps"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			set_temp_variable = { temp_monthly_progress_gained = 0.01 } 
+			TaS_nuke_development_monthly_progress_change = yes
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 4
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.10 }
+				econ_state_value_change_multiply = yes
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = nuclear_reactor
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 4
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.10 }
+				econ_state_value_change_multiply = yes
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = nuclear_reactor
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 4
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.10 }
+				econ_state_value_change_multiply = yes
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = nuclear_reactor
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	RUS_NEW_nukes_creation_expand_infrastructure = {
+		icon = GFX_decision_generic_mining
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 5 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 15
+
+		days_remove = 210
+
+		fire_only_once = yes
+
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			local_resources_factor = -0.025
+			free_production_units_modifier = -2
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_expand_infrastructure"
+			set_temp_variable = { temp_econ_spending_amount = 0.4 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_expand_infrastructure"
+			set_temp_variable = { temp_progress_gained = 0.15 } 
+			TaS_nuke_development_progress_change = yes
+			random_owned_controlled_state = {
+				limit = {
+					infrastructure > 3
+					has_resources_amount = {
+						resource = uranium
+						amount > 1
+					}
+				}
+				set_temp_variable = { state_value_multiplier_temp = 1.05 }
+				econ_state_value_change_multiply = yes
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+				add_resource = {
+					type = uranium
+					amount = 15
+				}
+			}
+		}
+	}
+	
+	RUS_NEW_nukes_creation_finalize_studies = {
+		icon = GFX_decision_generic_research_increase
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 5 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 50
+
+		days_remove = 90
+
+		days_re_enable = 90
+
+		fire_only_once = no
+		
+		modifier = {
+			research_speed_factor = -0.1
+			misc_costs_modifier = 0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_creation_finalize_studies"
+			set_temp_variable = { temp_econ_spending_amount = 0.075 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_creation_finalize_studies"
+			set_temp_variable = { temp_progress_gained = 0.1 } 
+			TaS_nuke_development_progress_change = yes
+			TNO_improve_research_facilities_low = yes
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = enrichment_plant
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	### STAGE SIX ###
+	RUS_NEW_nukes_expansion_make_rockets = {
+		icon = GFX_decision_generic_rockets
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 6 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 25
+
+		days_remove = 60
+
+		days_re_enable = 90
+
+		fire_only_once = no
+		
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			production_speed_buildings_factor = -0.05
+			production_factory_max_efficiency_factor = -0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_expansion_make_rockets"
+			set_temp_variable = { temp_econ_spending_amount = 0.5 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_expansion_make_rockets"
+			add_equipment_to_stockpile = {
+				type = ICBM_equipment
+				amount = 50
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = MRBM_equipment
+				amount = 100
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = SRBM_equipment
+				amount = 200
+				producer = MAR
+			}
+			
+			hidden_effect = {
+				#set_variable = { nuclear_stockpile = 2 }
+				#set_variable = { nuclear_global_coverage = 0.15 }
+				#add_to_variable = { nuclear_stockpile_change = 2 }
+				calculate_strike_capability = yes
+			}
+		}
+	}
+	
+	RUS_NEW_nukes_expansion_make_warheads = {
+		icon = GFX_decision_generic_nuclear_bomb_delivery
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 6 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 25
+
+		days_remove = 60
+
+		days_re_enable = 90
+
+		fire_only_once = no
+		
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			production_speed_buildings_factor = -0.05
+			production_factory_max_efficiency_factor = -0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_expansion_make_warheads"
+			set_temp_variable = { temp_econ_spending_amount = 0.5 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_expansion_make_warheads"
+			custom_effect_tooltip = RUS_NEW_nukes_expansion_make_warheads_tt
+			hidden_effect = {
+				add_to_variable = { nuclear_stockpile = 10 }
+				add_to_variable = { nuclear_stockpile_change = 2 }
+				calculate_strike_capability = yes
+			}
+		}
+	}
+	
+	RUS_NEW_nukes_expansion_make_bombers = {
+		icon = GFX_decision_generic_bombing
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 6 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 25
+
+		days_remove = 90
+
+		days_re_enable = 60
+
+		fire_only_once = no
+		
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			production_speed_buildings_factor = -0.05
+			production_factory_max_efficiency_factor = -0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_expansion_make_bombers"
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_expansion_make_bombers"
+			add_equipment_to_stockpile = {
+				type = tac_bomber_equipment
+				amount = 100
+				producer = RUS
+			}
+			add_equipment_to_stockpile = {
+				type = strat_bomber_equipment
+				amount = 50
+				producer = RUS
+			}
+			hidden_effect = {
+				#set_variable = { nuclear_stockpile = 2 }
+				#set_variable = { nuclear_global_coverage = 0.15 }
+				#add_to_variable = { nuclear_stockpile_change = 2 }
+				calculate_strike_capability = yes
+			}
+		}
+	}
+	
+	RUS_NEW_nukes_expansion_make_aa_bunekers = {
+		icon = GFX_decision_generic_fort
+
+		visible = {
+			check_variable = { TaS_RUS_nuclear_program_phase = 6 }
+		}
+
+		ai_will_do = {
+			factor = 20
+		}
+
+		cost = 25
+
+		days_remove = 60
+
+		days_re_enable = 120
+
+		fire_only_once = no
+		
+		modifier = {
+			consumer_goods_production_factor = 0.05
+			production_speed_buildings_factor = -0.05
+			production_factory_max_efficiency_factor = -0.05
+		}
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_NEW_nukes_expansion_make_aa_bunekers"
+			set_temp_variable = { temp_econ_spending_amount = 0.35 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_NEW_nukes_expansion_make_aa_bunekers"
+			random_owned_controlled_state = {
+				limit = {
+					has_state_category = city
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = no
+						limit_to_victory_point > 1
+					}
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					has_state_category = city
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 1
+					instant_build = yes
+					province = {
+						all_provinces = no
+						limit_to_victory_point > 1
+					}
+				}
+			}
+		}
+	}
+	
+	##
+	RUS_NEW_nukes_tick = {
+    	available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_nuclear_program_finished
+				NOT = {
+					MAR = { has_country_flag = RUS_started_nukes_new }
+				}
+			}
+    	}
+	
+    	activation = {
+    		has_country_flag = RUS_started_nukes_new
+			NOT = {
+				AND = {
+					check_variable = { TaS_RUS_nuclear_program_phase = 5 }
+					check_variable = { TaS_nuke_development_array^TaS_RUS_nuclear_program_phase = 1 }
+				}
+			}
+    	}
+		
+    	is_good = yes
+	
+    	days_mission_timeout = 30
+	
+		timeout_effect = { 
+    		log = "[GetDateText]: [Root.GetName]: RUS_NEW_nukes_tick mission timer elapsed" 
+			set_temp_variable = { temp_progress_gained = TaS_nuke_dev_monthly_gain } 
+			TaS_nuke_development_progress_change = yes
+			 
+			TaS_nuke_development_switch_to_the_next_stage = yes
+			hidden_effect = {
+    			if = {
+    				limit = {
+    					has_country_flag = RUS_started_nukes_new
+    				}
+    				activate_mission = RUS_NEW_nukes_tick
+    			}
+				if = {
+					limit = {
+						has_game_rule = {
+							rule = SWRW_NUKE_CHEAT
+							option = SWRW_NUKE_CHEAT_SOVIET_MAGIC
+						}
+					}
+					set_variable = { TaS_nuke_development_array^TaS_RUS_nuclear_program_phase = 1 }
+					TaS_nuke_development_switch_to_the_next_stage = yes
+				}	
+    		}
+    	}
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission RUS_NEW_nukes_tick Completed (Should never happen for this mission, please report if you see this in the log.)"
+    	}
+  	}
+}
+
+MAR_intervention_category = {
+
+	MAR_intervention_in_conglese_civil_war = {
+	
+		icon = GFX_decision_generic_prepare_civil_war
+				
+		visible = {
+			if = {
+				limit = { has_government = socialist }
+				country_exists = CPR
+			}
+			else_if = {
+				limit = { has_government = despotism }
+				OR = {
+					country_exists = KSI
+					country_exists = KTG
+				}
+			}
+			has_global_flag = Iranian_Civil_War
+		}
+		
+		available = {
+			command_power > 4.99
+		}
+		
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Russia(Berezniki) Intervenes in Congo"
+			set_country_flag = RUS_entered_war
+			country_event = { id = MAR_forpol.5 }
+		}
+	}
+	
+	MAR_intervention_in_french_civil_war = {
+	
+		icon = GFX_decision_generic_prepare_civil_war
+				
+		visible = {
+			if = {
+				limit = { has_government = socialist }
+				country_exists = FRV
+			}
+			else_if = {
+				limit = { has_government = despotism }
+				country_exists = FRM
+			}
+			OR = {
+				has_global_flag = FRA_civil_war_sidos
+				has_global_flag = FRA_civil_war_poujade
+			}
+		}
+		
+		available = {
+			command_power > 4.99
+		}
+		
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Russia(Berezniki) Intervenes in France"
+			set_country_flag = RUS_entered_war
+			if = {
+				limit = { has_government = socialist }
+				country_event = { id = MAR_forpol.710 }
+			}	
+			else_if = {
+				limit = { has_government = despotism }
+				country_event = { id = MAR_forpol.700 }
+			}
+		}
+	}
+	
+	MAR_intervention_in_iranian_civil_war = {
+	
+		icon = GFX_decision_generic_prepare_civil_war
+				
+		visible = {
+			if = {
+				limit = { has_government = socialist }
+				country_exists = IRA
+			}
+			else_if = {
+				limit = { has_government = despotism }
+				country_exists = IRC
+			}
+			has_global_flag = Iranian_Civil_War
+		}
+		
+		available = {
+			command_power > 4.99
+		}
+		
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Russia(Berezniki) Intervenes in Iran"
+			set_country_flag = RUS_entered_war
+			country_event = { id = MAR_forpol.1 }
+		}
+	}
+	
+	MAR_intervention_in_oil_crisis = {
+	
+		icon = GFX_decision_generic_prepare_civil_war
+				
+		visible = {
+			has_global_flag = OC_Yemen_CW
+		}
+		
+		available = {
+			command_power > 4.99
+		}
+		
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		
+		ai_will_do = {
+			factor = 100
+		}
+		
+		fire_only_once = yes
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Russia(Berezniki) Intervenes in Oil Crisis"
+			set_country_flag = RUS_entered_war
+			country_event = { id = MAR_forpol.4 }
+		}
+	}
+}

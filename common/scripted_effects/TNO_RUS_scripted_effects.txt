@@ -5959,6 +5959,81 @@ RUS_select_regional_news_event = {
 			}
 		}
 	}
+		if = {
+		limit = {
+			original_tag = MAR
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Sergey_Belozerskiy
+						ruling_only = yes
+					}
+				}
+				every_country  = {
+				limit = {
+					is_ai = no
+					HasEurasiaInterest = yes
+				}
+					news_event = {
+						id = berez_world_news.1
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Vladimir_Gil
+						ruling_only = yes
+					}
+				}
+				every_country  = {
+									limit = {
+					is_ai = no
+					HasEurasiaInterest = yes
+				}
+					news_event = {
+						id = berez_world_news.1
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Maria_Romanova
+						ruling_only = yes
+					}
+				}
+				every_country  = {
+									limit = {
+					is_ai = no
+					HasEurasiaInterest = yes
+				}
+					news_event = {
+						id = berez_world_news.2
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_advisor_Kosygin
+						ruling_only = yes
+					}
+				}
+				every_country  = {
+									limit = {
+					is_ai = no
+					HasEurasiaInterest = yes
+				}
+					news_event = {
+						id = berez_world_news.3
+					}
+				}
+			}
+		}
+		}
 }
 
 RUS_select_regional_cosmetic_tag = {
@@ -6223,6 +6298,49 @@ RUS_select_regional_cosmetic_tag = {
 			original_tag = CHT
 		}
 		set_cosmetic_tag = CHT_regional_unifier
+	}
+	if = {
+		limit = {
+			original_tag = MAR
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Sergey_Belozerskiy
+						ruling_only = yes
+					}
+				}
+				set_cosmetic_tag = MAR_ser_bel
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Vladimir_Gil
+						ruling_only = yes
+					}
+				}
+				set_cosmetic_tag = MAR_Gil_reg
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Maria_Romanova
+						ruling_only = yes
+					}
+				}
+				set_cosmetic_tag = MAR_Maria_I_reg
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_advisor_Kosygin
+						ruling_only = yes
+					}
+				}
+				set_cosmetic_tag = MAR_Kosygin_reg
+			}
+		}
 	}
 }
 
@@ -6539,6 +6657,31 @@ RUS_select_superregional_cosmetic_tag = {
 			OMO_2022_aprilfools_gamerule_active = yes
 		}
 		set_cosmetic_tag = OMO_Harmonious_State_SIB # Same as Regional
+	}
+	if = {
+		limit = {
+			original_tag = MAR
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Sergey_Belozerskiy
+						ruling_only = yes
+					}
+				}
+				set_cosmetic_tag = MAR_ser_bel_RUS
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_advisor_Kosygin
+						ruling_only = yes
+					}
+				}
+				set_cosmetic_tag = MAR_Kosygin_superreg
+			}
+		}
 	}
 }
 
@@ -7018,6 +7161,31 @@ RUS_select_superregional_focus_tree = {
 		hidden_effect = {
 			clr_country_flag = OMO_2022_regional_phase_2
 			load_focus_tree = OMO_april_fools_superregional
+		}
+	}
+	if = {
+		limit = {
+			original_tag = MAR
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Sergey_Belozerskiy
+						ruling_only = yes
+					}
+				}
+				load_focus_tree = { tree = MAR_Belozerski_Super_reg keep_completed = no }
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_advisor_Kosygin
+						ruling_only = yes
+					}
+				}
+				load_focus_tree = { tree = MAR_Kosygin_Superregional keep_completed = no }
+			}
 		}
 	}
 }
@@ -7781,6 +7949,49 @@ RUS_select_final_news_event = {
 			}
 		}
 	}
+	if = {
+		limit = {
+			original_tag = MAR
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Sergey_Belozerskiy
+						ruling_only = yes
+					}
+				}
+				every_country  = {
+					news_event = {
+						id = berez_world_news.4
+					}
+				}
+				MAR = {
+					country_event = {
+						id = MAR_epilogue.1 days = 3
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_advisor_Kosygin
+						ruling_only = yes
+					}
+				}
+				every_country  = {
+					news_event = {
+						id = berez_world_news.6
+					}
+				}
+				MAR = {
+					country_event = {
+						id = MAR_Kosygin.57 days = 7
+					}
+				}
+			}
+		}
+	}
 }
 
 RUS_select_final_cosmetic_tag = {
@@ -8094,6 +8305,31 @@ RUS_select_final_cosmetic_tag = {
 			OMO_2022_aprilfools_gamerule_active = yes
 		}
 		set_cosmetic_tag = OMO_Harmonious_State_RUS
+	}
+	if = {
+		limit = {
+			original_tag = MAR
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_Sergey_Belozerskiy
+						ruling_only = yes
+					}
+				}
+				set_cosmetic_tag = MAR_ser_bel_RUS
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAR_advisor_Kosygin
+						ruling_only = yes
+					}
+				}
+				set_cosmetic_tag = MAR_Kosygin_RUS
+			}
+		}
 	}
 }
 

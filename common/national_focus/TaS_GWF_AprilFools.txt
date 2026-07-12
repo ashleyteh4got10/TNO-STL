@@ -1,0 +1,2219 @@
+#####################
+### Starting Tree ###
+#####################
+
+###intro tree
+###fopo tree
+###pol tree
+###mil tree
+
+
+###intro tree
+shared_focus = {
+	id = GWF_start_from_scratch
+	icon = GFX_GWF_start_from_scratch
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	
+	x = 9
+	y = 0
+	completion_reward = {
+		country_event = { id = GWF.1 }
+		add_political_power = 50
+		custom_effect_tooltip = GWF_start_from_scratch_tt
+		set_country_leader_description = {
+			desc = "AprilFools_Akemi_Homura_DESC_actual"
+		}
+	}
+}
+
+shared_focus = { 
+	id = GWF_asses_situation
+	icon = GFX_GWF_asses_situation
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_start_from_scratch
+	}
+	relative_position_id = GWF_start_from_scratch
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_asses_situation_tt	
+		add_stability = -0.025
+		add_war_support = -0.025
+	}
+}
+
+shared_focus = {
+	id = GWF_to_find_exit
+	icon = GFX_GWF_to_find_exit
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_asses_situation
+	}
+	relative_position_id = GWF_asses_situation
+	x = -1
+	y = 1
+	completion_reward = {
+		country_event = { id = GWF.2 }
+		add_political_power = 50
+		custom_effect_tooltip = GWF_to_find_exit_tt
+		hidden_effect = {
+			GWF_start_homura_gui = yes
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_contact_incubator
+	icon = GFX_GWF_contact_incubator
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_asses_situation
+	}
+	relative_position_id = GWF_asses_situation
+	x = 1
+	y = 1
+	completion_reward = {
+		country_event = { id = GWF.3 }
+		custom_effect_tooltip = GWF_contact_incubator_tt
+		add_ideas = GWF_Kyubey_hog
+	}
+}
+
+###pol tree
+shared_focus = {
+	id = GWF_look_inside
+	icon = GFX_GWF_look_inside
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_to_find_exit
+	}
+	prerequisite = {
+		focus = GWF_contact_incubator
+	}
+	relative_position_id = GWF_start_from_scratch
+	x = -7
+	y = 3
+	completion_reward = {
+		country_event = { id = GWF.4 }
+		custom_effect_tooltip = GWF_look_inside_tt
+		set_temp_variable = { gdp_growth_temp = 0.50 }
+        econ_gdp_growth_change = yes
+		hidden_effect = { 
+			GWF_start_oppo_gui = yes
+		}
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = -0.5 }
+		GWF_homura_change_weekly_stats = yes
+	}
+}
+
+shared_focus = {
+	id = GWF_only_my_struggle
+	icon = GFX_GWF_only_my_struggle
+	cost = 4
+	available_if_capitulated = no
+	mutually_exclusive = {
+		focus = GWF_one_cant_do_all_the_job
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_inside
+	}
+	relative_position_id = GWF_look_inside
+	x = -2
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_only_my_struggle_tt
+		custom_effect_tooltip = GWF_add_evil_tt
+		set_country_flag = GWF_lone_warrior
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = 2.5 }
+		GWF_homura_change_stats = yes
+		set_temp_variable = { opp_to_change = 2 }
+		set_temp_variable = { temp_stat_gained = 2.5 }
+		GWF_homura_change_stats = yes
+		country_event = { id = GWF.5 }
+		add_to_variable = { GWF_evil_flags = 1 }
+    }
+}
+
+shared_focus = {
+	id = GWF_humanity_aside
+	icon = GFX_GWF_humanity_aside
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_only_my_struggle
+	}
+	relative_position_id = GWF_only_my_struggle
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_humanity_aside_tt
+		TNO_worsen_admin_efficiency_med = yes
+		add_political_power = 100
+		set_temp_variable = { inflation_temp = -2 }
+		econ_inflation_change = yes
+		set_temp_variable = { money_reserves_temp = 0.45 } 
+		econ_money_reserves_change_raw_money = yes
+    }
+}
+
+shared_focus = {
+	id = GWF_controllable_chaos
+	icon = GFX_GWF_controllable_chaos
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_humanity_aside
+	}
+	relative_position_id = GWF_humanity_aside
+	x = -1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_controllable_chaos_tt
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		set_temp_variable = { money_reserves_temp = 0.5 } 
+		econ_money_reserves_change_raw_money = yes
+		add_ideas = GWF_Contollable_Chaos_for
+		add_ideas = GWF_Contollable_Chaos_eco
+		#add_ideas = GWF_Contollable_Chaos_sec
+		
+		if = {
+			limit = { has_country_flag = GWF_Opposition_gui_active }
+			if = { 
+				limit = { NOT = { has_country_flag = GWF_gim_shattered } }
+				set_temp_variable = { opp_to_change = 2 }
+				set_temp_variable = { temp_stat_gained = -5 }
+				GWF_opposition_change_stats = yes
+			}
+			if = { 
+				limit = { NOT = { has_country_flag = GWF_raf_shattered } }
+				set_temp_variable = { opp_to_change = 3 }
+				set_temp_variable = { temp_stat_gained = -5 }
+				GWF_opposition_change_stats = yes
+			}
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -5 }
+			GWF_opposition_change_stats = yes
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_security_forces
+	icon = GFX_GWF_security_forces
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_humanity_aside
+	}
+	relative_position_id = GWF_humanity_aside
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_security_forces_tt
+		set_temp_variable = { money_reserves_temp = 0.25 } 
+		econ_money_reserves_change_raw_money = yes
+		TNO_improve_security_policy_effectiveness_high = yes
+		
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = 2.5 }
+		GWF_homura_change_stats = yes
+		set_temp_variable = { opp_to_change = 2 }
+		set_temp_variable = { temp_stat_gained = 2.5 }
+		GWF_homura_change_stats = yes
+		add_ideas = GWF_Wilhelm_Mohnke_sec
+		if = {
+			limit = { has_country_flag = GWF_Opposition_gui_active }
+			if = { 
+				limit = { NOT = { has_country_flag = GWF_gim_shattered } }
+				set_temp_variable = { opp_to_change = 2 }
+				set_temp_variable = { temp_stat_gained = -5 }
+				GWF_opposition_change_stats = yes
+			}
+			if = { 
+				limit = { NOT = { has_country_flag = GWF_raf_shattered } }
+				set_temp_variable = { opp_to_change = 3 }
+				set_temp_variable = { temp_stat_gained = -5 }
+				GWF_opposition_change_stats = yes
+			}
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -5 }
+			GWF_opposition_change_stats = yes
+		}
+		
+		country_event = { id = GWF.6 }
+    }
+}
+
+shared_focus = {
+	id = GWF_one_cant_do_all_the_job
+	icon = GFX_GWF_one_cant_do_all_the_job
+	cost = 4
+	available_if_capitulated = no
+	mutually_exclusive = {
+		focus = GWF_only_my_struggle
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_inside
+	}
+	relative_position_id = GWF_look_inside
+	x = 2
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_one_cant_do_all_the_job_tt
+		custom_effect_tooltip = GWF_no_evil_tt
+		set_country_flag = GWF_madoka_church
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = -2.5 }
+		GWF_homura_change_stats = yes
+		set_temp_variable = { opp_to_change = 2 }
+		set_temp_variable = { temp_stat_gained = -2.5 }
+		GWF_homura_change_stats = yes
+		
+		add_stability = 0.05
+		swap_ideas = {
+			remove_idea = tno_political_parties_nonpartisan_system
+			add_idea = tno_political_parties_dominant_party_system
+		}
+		hidden_effect = {
+			GWF_Akemi_Homura = {
+				remove_country_leader_role = { ideology = accelerationism_madoka_cult_subtype }
+				add_country_leader_role = {
+					country_leader = {
+						desc = "AprilFools_Akemi_Homura_DESC_actual"
+						expire = "1999.1.1"
+						ideology = accelerationism_church_of_ring_subtype
+						id = -1
+						traits = { lucifier }
+					}
+					promote_leader = yes
+				}	
+			}
+			set_party_name = {
+				ideology = accelerationism
+				long_name = GWF_AprilFools_party_two_long
+				name = GWF_AprilFools_party_two
+			}
+		}
+		country_event = { id = GWF.7 }
+    }
+}
+
+shared_focus = {
+	id = GWF_administrative_business
+	icon = GFX_GWF_administrative_business
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_one_cant_do_all_the_job
+	}
+	relative_position_id = GWF_one_cant_do_all_the_job
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_administrative_business_tt
+		
+		TNO_improve_admin_efficiency_med = yes
+		set_temp_variable = { inflation_temp = 0.25 }
+		econ_inflation_change = yes
+		set_temp_variable = { gdp_growth_temp = 0.75 }
+        econ_gdp_growth_change = yes
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		country_event = { id = GWF.8 }
+		add_ideas = GWF_Hans_Filbinger_for
+		
+		swap_ideas = {
+			remove_idea = tno_trade_unions_illegal
+			add_idea = tno_trade_unions_all_allowed
+		}
+		swap_ideas = {
+			remove_idea = tno_political_parties_nonpartisan_system
+			add_idea = tno_political_parties_dominant_party_system
+		}
+		swap_ideas = {
+			remove_idea = tno_press_rights_propaganda_press
+			add_idea = tno_press_rights_censored_press
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_church_of_ring
+	icon = GFX_GWF_church_of_ring
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_administrative_business
+	}
+	relative_position_id = GWF_administrative_business
+	x = -1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_church_of_ring_tt
+		
+		add_stability = 0.05
+		add_political_power = 50
+		country_event = { id = GWF.9 }
+		TNO_improve_religious_rights_policy_effectiveness_monthly_high = yes
+		TNO_improve_religious_rights_policy_effectiveness_high = yes
+		swap_ideas = {
+			remove_idea = tno_religious_rights_suppression_of_churches
+			add_idea = tno_religious_rights_state_religion
+		}
+		
+		if = {
+			limit = { has_country_flag = GWF_Opposition_gui_active }
+			if = { 
+				limit = { NOT = { has_country_flag = GWF_gim_shattered } }
+				set_temp_variable = { opp_to_change = 2 }
+				set_temp_variable = { temp_stat_gained = -5 }
+				GWF_opposition_change_stats = yes
+			}
+			if = { 
+				limit = { NOT = { has_country_flag = GWF_raf_shattered } }
+				set_temp_variable = { opp_to_change = 3 }
+				set_temp_variable = { temp_stat_gained = -5 }
+				GWF_opposition_change_stats = yes
+			}
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -5 }
+			GWF_opposition_change_stats = yes
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_support_from_outside
+	icon = GFX_GWF_support_from_outside
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_administrative_business
+	}
+	relative_position_id = GWF_administrative_business
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_support_from_outside_tt
+		add_popularity = {
+			ideology = communist
+			popularity = 0.03
+		}
+		add_popularity = {
+			ideology = national_socialism
+			popularity = 0.02
+		}
+		set_temp_variable = { money_reserves_temp = 0.25 } 
+		econ_money_reserves_change_raw_money = yes
+		TNO_improve_political_parties_policy_effectiveness_high = yes
+		TNO_improve_trade_unions_policy_effectiveness_high = yes
+		TNO_improve_poverty_low = yes
+    }
+}
+
+shared_focus = {
+	id = GWF_operation_umbra
+	icon = GFX_GWF_operation_umbra
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_inside
+	}
+	relative_position_id = GWF_look_inside
+	x = 0
+	y = 2
+	completion_reward = {
+		hidden_effect = {
+			if = {
+				limit = {
+					check_variable = {
+						GWF.GWF_Homura_mental > GWF.GWF_umbra_treshold
+					}
+				}
+				country_event = { id = GWF.11 }
+			}
+			else = {
+				country_event = { id = GWF.13 }
+			}
+		}
+		custom_effect_tooltip = GWF_operation_umbra_tt
+	}
+}
+
+shared_focus = {
+	id = GWF_my_own_realm
+	icon = GFX_GWF_my_own_realm
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_controllable_chaos
+		focus = GWF_support_from_outside
+	}
+	prerequisite = {
+		focus = GWF_church_of_ring
+		focus = GWF_humanity_aside
+	}
+	prerequisite = {
+		focus = GWF_operation_umbra
+	}
+	relative_position_id = GWF_operation_umbra
+	x = 0
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = GWF_my_own_realm_tt
+		add_political_power = 100
+		if = {
+			limit = { has_country_flag = GWF_madoka_church } 
+			add_stability = 0.025
+			country_event = { id = GWF.10 }
+		}
+		else_if = {
+			limit = { has_country_flag = GWF_lone_warrior } 
+			add_stability = -0.025
+			country_event = { id = GWF.12 }
+		}
+		else = {
+			custom_effect_tooltip = GWF_my_own_realm_tt
+		}
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = -0.5 }
+		GWF_homura_change_weekly_stats = yes
+	}
+}
+
+###fopo tree
+shared_focus = {
+	id = GWF_look_outside
+	icon = GFX_GWF_look_outside
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_to_find_exit
+	}
+	prerequisite = {
+		focus = GWF_contact_incubator
+	}
+	relative_position_id = GWF_start_from_scratch
+	x = 0
+	y = 3
+	completion_reward = {
+		custom_effect_tooltip = GWF_look_outside_tt
+		create_faction_from_template = { name = Homura_Alliance template = faction_template_generic }
+		add_faction_goal_slot = { category = short_term  value = -10 }
+		add_faction_goal_slot = { category = medium_term value = -10 }
+		add_faction_goal_slot = { category = long_term   value = -10 }
+		add_ideas = Homura_Alliance_Member
+		hidden_effect = {
+			GWF_start_great_game = yes
+			LHH = { 
+				create_faction_from_template = { name = Speer_Alliance template = faction_template_generic }
+				add_faction_goal_slot = { category = short_term  value = -10 }
+				add_faction_goal_slot = { category = medium_term value = -10 }
+				add_faction_goal_slot = { category = long_term   value = -10 }
+				add_ideas = Speer_Alliance_Member
+			} 
+		}
+		country_event = { id = GWF.14 }
+	}
+}
+
+shared_focus = {
+	id = GWF_visit_vienna
+	icon = GFX_GWF_visit_vienna
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_outside
+	}
+	relative_position_id = GWF_look_outside
+	x = -2
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_visit_vienna_tt
+		country_event = { id = GWF.15 }
+		add_political_power = 25
+		GAU = {
+			set_variable = { gui_display_frame = 3000 }
+			add_ideas = Homura_Alliance_Member
+			GWF = { add_to_faction = GAU }
+		}
+		hidden_effect = {
+			DSH = {
+				set_variable = { gui_display_frame = 2000 }
+				add_ideas = Speer_Alliance_Member
+				LHH = { add_to_faction = DSH }
+			}	
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_attack_italians
+	icon = GFX_GWF_attack_italians
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_visit_vienna
+	}
+	relative_position_id = GWF_visit_vienna
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_attack_italians_tt
+		DSH = {
+			add_stability = -0.05
+			add_war_support = -0.05
+			add_manpower = -1500
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1750
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = -500
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_union_of_samefaced
+	icon = GFX_GWF_union_of_samefaced
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_outside
+	}
+	relative_position_id = GWF_look_outside
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_union_of_samefaced_tt
+		country_event = { id = GWF.16 }
+		add_command_power = 15
+		GRA = {
+			set_variable = { gui_display_frame = 3000 }
+			add_ideas = Homura_Alliance_Member
+			GWF = { add_to_faction = GRA }
+		}
+		hidden_effect = {
+			GSU = {
+				set_variable = { gui_display_frame = 2000 }
+				add_ideas = Speer_Alliance_Member
+				LHH = { add_to_faction = GSU }
+			}	
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_can_cern_answer
+	icon = GFX_GWF_can_cern_answer
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_union_of_samefaced
+	}
+	relative_position_id = GWF_union_of_samefaced
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_can_cern_answer_tt
+		GSU = {
+			set_temp_variable = { temp_econ_spending_amount = 0.45 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = 2.5 }
+		GWF_homura_change_stats = yes
+	}
+}
+
+shared_focus = {
+	id = GWF_unholy_alliance
+	icon = GFX_GWF_unholy_alliance
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_outside
+	}
+	relative_position_id = GWF_look_outside
+	x = 2
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_unholy_alliance_tt
+		country_event = { id = GWF.17 }
+		OKL = {
+			set_variable = { gui_display_frame = 3000 }
+			add_ideas = Homura_Alliance_Member
+			GWF = { add_to_faction = OKL }
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_redbus_luxembourg
+	icon = GFX_GWF_redbus_luxembourg
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_unholy_alliance
+	}
+	relative_position_id = GWF_unholy_alliance
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_redbus_luxembourg_tt
+		country_event = { id = GWF.18 }
+		OKL = {
+			add_manpower = 15000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 500
+			}
+		}
+		LHH = {
+			add_manpower = -15000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -500
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_stuttgart_convention
+	icon = GFX_GWF_stuttgart_convention
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_can_cern_answer
+	}
+	prerequisite = {
+		focus = GWF_attack_italians
+	}
+	prerequisite = {
+		focus = GWF_redbus_luxembourg
+	}
+	relative_position_id = GWF_can_cern_answer
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_stuttgart_convention_tt
+		country_event = { id = GWF.19 }
+		every_country = {
+			limit = { is_in_faction_with = GWF }
+			add_war_support = 0.05
+		}
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = -0.5 }
+		GWF_homura_change_weekly_stats = yes
+		set_temp_variable = { opp_to_change = 2 }
+		set_temp_variable = { temp_stat_gained = -0.5 }
+		GWF_homura_change_weekly_stats = yes
+	}
+}
+
+shared_focus = {
+	id = GWF_operations_in_bavaria
+	icon = GFX_GWF_operations_in_bavaria
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_stuttgart_convention
+	}
+	relative_position_id = GWF_stuttgart_convention
+	x = -1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_operations_in_bavaria_tt
+		GBV = {
+			if = { 
+				limit = { is_in_faction_with = GWF }
+				add_manpower = 15000
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1000
+				}
+				add_equipment_to_stockpile = {
+					type = anti_tank_equipment
+					amount = 500
+				}
+			}
+			else = {
+				add_manpower = -15000
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -1000
+				}
+				add_equipment_to_stockpile = {
+					type = anti_tank_equipment
+					amount = -500
+				}
+			}
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_plan_b
+	icon = GFX_GWF_plan_b
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_stuttgart_convention
+	}
+	relative_position_id = GWF_stuttgart_convention
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_plan_b_tt
+		50 = {
+			set_building_level = {
+				type = bunker
+				level = 2
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+					level < 2
+				}
+			}
+		}
+		68 = {
+			set_building_level = {
+				type = bunker
+				level = 2
+				province = {
+					all_provinces = yes
+					limit_to_border = yes
+					level < 2
+				}
+			}
+		}
+	}
+}
+
+###mil tree
+shared_focus = {
+	id = GWF_look_at_powers
+	icon = GFX_GWF_look_at_powers
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_to_find_exit
+	}
+	prerequisite = {
+		focus = GWF_contact_incubator
+	}
+	relative_position_id = GWF_start_from_scratch
+	x = 7
+	y = 3
+	completion_reward = {
+		custom_effect_tooltip = GWF_look_at_powers_tt
+		country_event = { id = GWF.21 }
+		add_war_support = 0.025
+	}
+}
+
+shared_focus = {
+	id = GWF_magical_girl_army
+	icon = GFX_GWF_magical_girl_army
+	cost = 4
+	available_if_capitulated = no
+	mutually_exclusive = {
+		focus = GWF_human_army
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_at_powers
+	}
+	relative_position_id = GWF_look_at_powers
+	x = -2
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_magical_girl_army_tt
+		custom_effect_tooltip = GWF_add_evil_tt
+		set_country_flag = GWF_army_deccat_active
+		set_technology = { magical_infantry_technologies = 1 }
+		add_ideas = GWF_meguca_army
+		hidden_effect = {
+			add_manpower = -100000
+			set_variable = { GWF_meguca_manpower = 100 }
+			set_variable = { GWF_meguca_weekly_manpower = 50 }
+			division_template = {
+				name = "Lichtmagie-Division"
+				regiments = {
+					magical_girls = { x = 0 y = 0 }
+					magical_girls = { x = 0 y = 1 }
+					magical_girls = { x = 0 y = 2 }
+				}
+			}
+			division_template = {
+				name = "Magie-Division"
+				regiments = {
+					magical_girls = { x = 0 y = 0 }
+					magical_girls = { x = 0 y = 1 }
+					magical_girls = { x = 1 y = 0 }
+					magical_girls = { x = 1 y = 1 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					artillery = { x = 0 y = 1 }
+				}
+				priority = 1
+			}
+		}
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"Magie-Division\" start_experience_factor = 0.7 start_equipment_factor = 1"
+				owner = GWF
+				count = 1
+			}	
+		}
+		add_field_marshal_role = {
+			character = GWF_Akemi_Homura
+			traits = {
+				politically_connected
+			}
+			skill = 1
+			attack_skill = 1
+			defense_skill = 1
+			planning_skill = 2
+			logistics_skill = 1
+		}
+		country_event = { id = GWF.22 }
+		add_to_variable = { GWF_evil_flags = 1 }
+    }
+}
+
+shared_focus = {
+	id = GWF_its_good_to_lie
+	icon = GFX_GWF_its_good_to_lie
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_magical_girl_army
+	}
+	relative_position_id = GWF_magical_girl_army
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_its_good_to_lie_tt	
+		country_event = { id = GWF.23 }
+		set_temp_variable = { Y = 450 }
+		custom_effect_tooltip = GWF_meguca_manpower_increase_tt
+		add_to_variable = { GWF_meguca_manpower = Y }
+		
+		set_temp_variable = { Y = 100 }
+		custom_effect_tooltip = GWF_meguca_manpower_weekly_decrease_tt
+		add_to_variable = { GWF_meguca_weekly_manpower = Y }
+			
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"Magie-Division\" start_experience_factor = 0.7 start_equipment_factor = 1"
+				owner = GWF
+				count = 2
+			}	
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_control_witch_problem
+	icon = GFX_GWF_control_witch_problem
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_its_good_to_lie
+	}
+	relative_position_id = GWF_its_good_to_lie
+	x = -1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_control_witch_problem_tt	
+		set_temp_variable = { Y = -50 }
+		custom_effect_tooltip = GWF_meguca_manpower_decrease_tt
+		add_to_variable = { GWF_meguca_manpower = Y }
+		
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"Lichtmagie-Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = GWF
+				count = 1
+			}	
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_inarmy_concurention
+	icon = GFX_GWF_inarmy_concurention
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_its_good_to_lie
+	}
+	relative_position_id = GWF_its_good_to_lie
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_inarmy_concurention_tt	
+		
+		country_event = { id = GWF.24 }
+		set_temp_variable = { Y = -50 }
+		custom_effect_tooltip = GWF_meguca_manpower_decrease_tt
+		add_to_variable = { GWF_meguca_manpower = Y }
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"Lichtmagie-Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = GWF
+				count = 1
+			}	
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_human_army
+	icon = GFX_GWF_human_army
+	cost = 4
+	available_if_capitulated = no
+	mutually_exclusive = {
+		focus = GWF_magical_girl_army
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_at_powers
+	}
+	relative_position_id = GWF_look_at_powers
+	x = 2
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_human_army_tt	
+		custom_effect_tooltip = GWF_add_evil_tt
+		country_event = { id = GWF.25 }
+		country_lock_all_division_template = no
+		add_ideas = GWF_human_army
+		add_field_marshal_role = {
+			character = GWF_Otto_Tetsurstamm
+			traits = {
+				politically_connected
+				commando
+			}
+			skill = 2
+			attack_skill = 3
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 2
+		}
+		add_corps_commander_role = {
+			character = GWF_Arthur_Juz
+			traits = {
+				politically_connected
+				commando
+			}
+			skill = 1
+			attack_skill = 2
+			defense_skill = 1
+			planning_skill = 1
+			logistics_skill = 1
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_play_from_shadows
+	icon = GFX_GWF_play_from_shadows
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_human_army
+	}
+	relative_position_id = GWF_human_army
+	x = 0
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_play_from_shadows_tt	
+		TNO_improve_army_professionalism_med = yes
+		TNO_improve_training_policy_effectiveness_high = yes
+		add_doctrine_cost_reduction = {
+			cost_reduction = 1
+			uses = 2
+			category = land_doctrine
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_peoples_milita
+	icon = GFX_GWF_peoples_milita
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_play_from_shadows
+	}
+	relative_position_id = GWF_play_from_shadows
+	x = -1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_peoples_milita_tt
+		country_event = { id = GWF.26 }
+		add_manpower = 15000
+		capital_scope = {
+			create_unit = {
+				division = "division_template = \"Militärpolizei-Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = GWF
+				count = 2
+			}	
+			create_unit = {
+				division = "division_template = \"Infanterie-Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+				owner = GWF
+				count = 1
+			}
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_from_shit_and_sticks
+	icon = GFX_GWF_from_shit_and_sticks
+	cost = 4
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_play_from_shadows
+	}
+	relative_position_id = GWF_play_from_shadows
+	x = 1
+	y = 1
+	completion_reward = {
+		custom_effect_tooltip = GWF_from_shit_and_sticks_tt
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		add_equipment_to_stockpile = {
+			type = infantry_equipment_0
+			amount = 2500
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment_0
+			amount = 1000
+		}
+    }
+}
+
+shared_focus = {
+	id = GWF_operation_rapinam
+	icon = GFX_GWF_operation_rapinam
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_look_at_powers
+	}
+	relative_position_id = GWF_look_at_powers
+	x = 0
+	y = 2
+	completion_reward = {
+		hidden_effect = {
+			if = {
+				limit = { check_variable = { GWF.GWF_Homura_physics > GWF.GWF_rapinam_treshold } }
+				country_event = { id = GWF.28 }
+			}
+			else = {
+				country_event = { id = GWF.30 }
+			}
+		}
+		custom_effect_tooltip = GWF_operation_rapinam_tt	
+	}
+}
+
+shared_focus = {
+	id = GWF_hounds_pack
+	icon = GFX_GWF_hounds_pack
+	cost = 3
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_inarmy_concurention
+		focus = GWF_from_shit_and_sticks
+	}
+	prerequisite = {
+		focus = GWF_control_witch_problem
+		focus = GWF_peoples_milita
+	}
+	prerequisite = {
+		focus = GWF_operation_rapinam
+	}
+	relative_position_id = GWF_operation_rapinam
+	x = 0
+	y = 2
+	completion_reward = {
+		custom_effect_tooltip = GWF_hounds_pack_tt
+		if = {
+			limit = { has_idea = GWF_human_army } 
+			TNO_improve_training_policy_effectiveness_monthly_med = yes
+			country_event = { id = GWF.27 }
+		}
+		else_if = {
+			limit = { has_idea = GWF_meguca_army } 
+			TNO_improve_training_policy_effectiveness_monthly_high = yes
+			country_event = { id = GWF.29 }
+		}
+		else = {
+			custom_effect_tooltip = GWF_hounds_pack_tt
+		}
+		TNO_improve_army_professionalism_med = yes
+	}
+}
+
+shared_focus = {
+	id = GWF_operation_occasus
+	icon = GFX_GWF_operation_occasus
+	cost = 3
+	available_if_capitulated = no
+	available = {
+		custom_trigger_tooltip = {
+			tooltip = GWF_operation_occasus_trigger_tt
+			NOT = { has_country_flag = GWF_Opposition_gui_active }
+			NOT = { has_country_flag = GWF_BigGame_gui_active }
+		}
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_my_own_realm
+	}
+	prerequisite = {
+		focus = GWF_operations_in_bavaria
+	}
+	prerequisite = {
+		focus = GWF_plan_b
+	}
+	prerequisite = {
+		focus = GWF_hounds_pack
+	}
+	relative_position_id = GWF_stuttgart_convention
+	x = 0
+	y = 2
+	completion_reward = {
+		country_event = { id = GWF.31 }
+		add_war_support = 0.05
+	}
+}
+
+###WAR TREE
+shared_focus = {
+	id = GWF_our_time_has_come
+	icon = GFX_GWF_our_time_has_come
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	x = 6
+	y = 0
+	completion_reward = {
+		country_event = { id = GWF.32 }
+		add_war_support = 0.05
+		set_country_flag = GWF_Homura_gui_dontcare_already
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = -0.5 }
+		GWF_homura_change_weekly_stats = yes
+		set_temp_variable = { opp_to_change = 2 }
+		set_temp_variable = { temp_stat_gained = -0.5 }
+		GWF_homura_change_weekly_stats = yes
+	}
+}
+
+shared_focus = {
+	id = GWF_embrace_troops
+	icon = GFX_focus_generic_black_ops
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_our_time_has_come
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = -3
+	y = 1
+	completion_reward = {
+		if = {
+			limit = { has_idea = GWF_meguca_army }
+			custom_effect_tooltip = GWF_meguca_army_focus_tt
+			set_temp_variable = { Y = 1200 }
+			custom_effect_tooltip = GWF_meguca_manpower_increase_tt
+		}
+		else = {
+			custom_effect_tooltip = GWF_human_army_focus_tt
+			add_manpower = 35000
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_allies_help
+	icon = GFX_focus_generic_building_a_stockpile
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_our_time_has_come
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = -1
+	y = 1
+	completion_reward = {
+		every_country = {
+			limit = { is_in_faction_with = GWF }
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 150
+				target = GWF
+			}
+			send_equipment = {
+				equipment = anti_tank_equipment
+				amount = 50
+				target = GWF
+			}
+		}
+		if = {
+			limit = { has_idea = GWF_meguca_army }
+			custom_effect_tooltip = GWF_meguca_army_focus_tt
+			set_temp_variable = { Y = 1200 }
+			custom_effect_tooltip = GWF_meguca_manpower_increase_tt
+		}
+		else = {
+			custom_effect_tooltip = GWF_human_army_focus_tt
+			add_manpower = 35000
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_sabotage_enemies
+	icon = GFX_focus_generic_burning_house_village
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_our_time_has_come
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = 1
+	y = 1
+	completion_reward = {
+		every_country = {
+			limit = { is_in_faction_with = LHH }
+			add_manpower = -1500
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -250
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -35
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = -100
+			}
+		}
+		if = {
+			limit = { has_idea = GWF_meguca_army }
+			custom_effect_tooltip = GWF_meguca_army_focus_tt
+			set_temp_variable = { Y = 250 }
+			custom_effect_tooltip = GWF_meguca_manpower_increase_tt
+		}
+		else = {
+			custom_effect_tooltip = GWF_human_army_focus_tt
+			add_manpower = 5000
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_expand_industry
+	icon = GFX_focus_generic_factories_smoking
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_our_time_has_come
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = 3
+	y = 1
+	completion_reward = {
+		set_temp_variable = { pus_temp = 2 }
+		econ_pus_change = yes
+		set_temp_variable = { temp_econ_spending_amount = 0.25 }
+		econ_spend_money_once_effect_raw_money = yes
+		if = {
+			limit = { has_country_flag = GWF_lone_warrior }
+			custom_effect_tooltip = GWF_mein_kampf_focus_tt
+			add_manpower = -5000
+			TNO_worsen_unemployment_policy_effectiveness_med = yes
+			TNO_worsen_regulations_policy_effectiveness_high = yes
+		}
+		else = {
+			custom_effect_tooltip = GWF_onecantdoalljob_focus_tt
+			set_temp_variable = { inflation_temp = 0.75 }
+			econ_inflation_change = yes
+		}		
+	}
+}
+
+shared_focus = {
+	id = GWF_carrot_and_stick
+	icon = GFX_focus_generic_begin_the_trials
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_embrace_troops
+	}
+	relative_position_id = GWF_embrace_troops
+	x = 1
+	y = 1
+	completion_reward = {
+		TNO_worsen_army_professionalism_low = yes
+		TNO_improve_training_policy_effectiveness_monthly_med = yes
+		add_war_support = -0.075
+		if = {
+			limit = { has_idea = GWF_meguca_army }
+			custom_effect_tooltip = GWF_meguca_army_focus_tt
+			set_temp_variable = { Y = 500 }
+			custom_effect_tooltip = GWF_meguca_manpower_increase_tt
+		}
+		else = {
+			custom_effect_tooltip = GWF_human_army_focus_tt
+			add_manpower = 15000
+		}
+		
+	}
+}
+
+shared_focus = {
+	id = GWF_capital_attacks
+	icon = GFX_GWF_capital_attacks
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_allies_help
+	}
+	prerequisite = {
+		focus = GWF_sabotage_enemies
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = 0
+	y = 2
+	completion_reward = {
+		country_event = { id = GWF.34 }
+		every_country = {
+			limit = { is_in_faction_with = LHH }
+			capital_scope = {
+				damage_building = {
+					type = infrastructure
+					damage = 2
+				}
+				add_manpower = -5000
+			}
+			add_war_support = -0.05
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_work_or_die
+	icon = GFX_focus_generic_german_factory_darkness
+	cost = 2
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_expand_industry
+	}
+	relative_position_id = GWF_expand_industry
+	x = -1
+	y = 1
+	completion_reward = {
+		country_event = { id = GWF.35 }
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1500
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 250
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 250
+		}
+		set_temp_variable = { pus_temp = 1 }
+		econ_pus_change = yes
+		TNO_worsen_max_workhours_policy_effectiveness_high = yes
+		if = {
+			limit = { has_country_flag = GWF_lone_warrior }
+			custom_effect_tooltip = GWF_mein_kampf_focus_tt
+			add_manpower = -5000
+			TNO_worsen_poverty_low = yes
+			TNO_worsen_minimum_wage_policy_effectiveness_high = yes
+			TNO_worsen_regulations_policy_effectiveness_high = yes
+			set_temp_variable = { pus_temp = 1 }
+			econ_pus_change = yes
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		else = {
+			custom_effect_tooltip = GWF_onecantdoalljob_focus_tt
+			set_temp_variable = { inflation_temp = 1.0 }
+			econ_inflation_change = yes
+			TNO_worsen_unemployment_policy_effectiveness_med = yes
+			TNO_worsen_regulations_policy_effectiveness_high = yes
+			set_temp_variable = { pus_temp = 1 }
+			econ_pus_change = yes
+			set_temp_variable = { temp_econ_spending_amount = 0.25 }
+			econ_spend_money_once_effect_raw_money = yes
+		}	
+	}
+}
+
+shared_focus = {
+	id = GWF_personal_involvement
+	icon = GFX_GWF_personal_involvement
+	cost = 2
+	available_if_capitulated = no
+	mutually_exclusive = {
+		focus = GWF_total_mobilisation
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_carrot_and_stick
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = -3
+	y = 3
+	completion_reward = {
+		country_event = { id = GWF.36 }
+		custom_effect_tooltip = GWF_add_evil_tt
+		custom_effect_tooltip = GWF_focus_not_required_tt
+		
+		add_timed_idea = {
+			idea = GWF_Homura_personal
+			days = 45
+		}
+		add_to_variable = { GWF_evil_flags = 1 }
+	}
+}
+
+shared_focus = {
+	id = GWF_total_mobilisation
+	icon = GFX_GWF_total_mobilisation
+	cost = 2
+	available_if_capitulated = no
+	mutually_exclusive = {
+		focus = GWF_personal_involvement
+	}
+	available = {
+		has_idea = GWF_human_army
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_carrot_and_stick
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = -1
+	y = 3
+	completion_reward = {
+		custom_effect_tooltip = GWF_add_evil_tt
+		custom_effect_tooltip = GWF_focus_not_required_tt
+		country_event = { id = GWF.37 }
+		tno_conscription_clear = yes
+		add_ideas = { tno_conscription_service_by_requirement }
+		add_manpower = 10000
+		TNO_improve_conscription_policy_effectiveness_low = yes
+		add_to_variable = { GWF_evil_flags = 1 }
+	}
+}
+
+shared_focus = {
+	id = GWF_release_witches
+	icon = GFX_GWF_release_witches
+	cost = 2
+	available_if_capitulated = no
+	mutually_exclusive = {
+		focus = GWF_second_sun
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_work_or_die
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = 1
+	y = 3
+	completion_reward = {
+		custom_effect_tooltip = GWF_add_evil_tt
+		custom_effect_tooltip = GWF_focus_not_required_tt
+		country_event = { id = GWF.38 }
+		every_country = {
+			limit = { is_in_faction_with = LHH }
+			capital_scope = {
+				add_manpower = -50000
+			}
+			add_ideas = GWF_apocalypse
+			add_stability = -0.25
+			set_temp_variable = { gdp_growth_temp = -2.5 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { gdp_growth_temp = -1.5 }
+		econ_gdp_growth_change = yes
+		add_to_variable = { GWF_evil_flags = 1 }
+	}
+}
+
+shared_focus = {
+	id = GWF_second_sun
+	icon = GFX_GWF_second_sun
+	cost = 2
+	available_if_capitulated = no
+	mutually_exclusive = {
+		focus = GWF_release_witches
+	}
+	ai_will_do = {
+		factor = 1
+	}
+	bypass = { has_war = no }
+	prerequisite = {
+		focus = GWF_work_or_die
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = 3
+	y = 3
+	completion_reward = {
+		custom_effect_tooltip = GWF_add_evil_tt
+		custom_effect_tooltip = GWF_focus_not_required_tt
+		country_event = { id = GWF.39 }
+		every_country = {
+			limit = { is_in_faction_with = LHH }
+			capital_scope = {
+				add_manpower = -50000
+			}
+			add_ideas = GWF_apocalypse
+			add_stability = -0.25
+			set_temp_variable = { gdp_growth_temp = -2.5 }
+			econ_gdp_growth_change = yes
+		}
+		set_temp_variable = { gdp_growth_temp = -1.5 }
+		econ_gdp_growth_change = yes
+		add_to_variable = { GWF_evil_flags = 1 }
+	}
+}
+
+shared_focus = {
+	id = GWF_great_betrayal
+	icon = GFX_GWF_great_betrayal
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_release_witches
+		focus = GWF_second_sun
+	}
+	prerequisite = {
+		focus = GWF_personal_involvement
+		focus = GWF_total_mobilisation
+	}
+	relative_position_id = GWF_our_time_has_come
+	x = 0
+	y = 4
+	completion_reward = {
+		if = {
+			limit = { check_variable = { GWF_evil_flags > 2 } }
+			country_event = { id = GWF.40 }
+		}
+		else = {
+			country_event = { id = GWF.41 }
+		}
+		hidden_effect = {
+			NGE = { add_ideas = GER_NGE_div_spam }
+		}
+	}
+}
+
+###LAST TREE
+
+shared_focus = {
+	id = GWF_burned_field
+	icon = GFX_GWF_burned_field
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	
+	x = 9
+	y = 0
+	completion_reward = {
+		#country_event = { id = GWF.42 }
+		add_stability = -0.075
+		every_owned_state = {
+			GWF = {
+				add_state_core = PREV
+			}
+		}
+		if = {
+			limit = { has_idea = GWF_chaos_in_stuttgart_1 }
+			remove_ideas = GWF_chaos_in_stuttgart_1
+		}
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = -0.5 }
+		GWF_homura_change_weekly_stats = yes
+		set_temp_variable = { opp_to_change = 2 }
+		set_temp_variable = { temp_stat_gained = -0.5 }
+		GWF_homura_change_weekly_stats = yes
+	}
+}
+
+shared_focus = {
+	id = GWF_end_the_surviours
+	icon = GFX_GWF_end_the_surviours
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_burned_field
+	}
+	relative_position_id = GWF_burned_field
+	x = -1
+	y = 1
+	completion_reward = {
+		add_manpower = -15000
+		TNO_worsen_political_parties_policy_effectiveness_med = yes
+		TNO_worsen_trade_unions_policy_effectiveness_med = yes
+		country_event = { id = GWF.43 }
+	}
+}
+
+shared_focus = {
+	id = GWF_close_the_curtains
+	icon = GFX_GWF_close_the_curtains
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_burned_field
+	}
+	relative_position_id = GWF_burned_field
+	x = 1
+	y = 1
+	completion_reward = {
+		country_event = { id = GWF.44 }
+	}
+}
+
+
+shared_focus = {
+	id = GWF_prepare_everything
+	icon = GFX_GWF_prepare_everything
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_end_the_surviours
+	}
+	prerequisite = {
+		focus = GWF_close_the_curtains
+	}
+	relative_position_id = GWF_burned_field
+	x = 0
+	y = 2
+	completion_reward = {
+		add_stability = -0.1
+	}
+}
+
+shared_focus = {
+	id = GWF_end_the_unloyal
+	icon = GFX_GWF_end_the_unloyal
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_prepare_everything
+	}
+	relative_position_id = GWF_prepare_everything
+	x = -2
+	y = 1
+	completion_reward = {
+		if = {
+			limit = { check_variable = { GWF_evil_flags > 2 } }
+			TNO_improve_security_policy_effectiveness_monthly_high = yes
+			add_stability = 0.05
+			country_event = { id = GWF.45 }
+		}
+		else = {
+			TNO_improve_political_parties_policy_effectiveness_monthly_high = yes
+			tno_press_rights_improve = yes
+			tno_vote_franchise_improve = yes
+			country_event = { id = GWF.46 }
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_subdue_the_useful
+	icon = GFX_GWF_subdue_the_useful
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_end_the_unloyal
+	}
+	relative_position_id = GWF_end_the_unloyal
+	x = 0
+	y = 1
+	completion_reward = {
+		country_event = { id = GWF.47 }
+	}
+}
+
+shared_focus = {
+	id = GWF_useless_instruments
+	icon = GFX_GWF_useless_instruments
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_prepare_everything
+	}
+	relative_position_id = GWF_prepare_everything
+	x = 2
+	y = 1
+	completion_reward = {
+		if = {
+			limit = { check_variable = { GWF_evil_flags > 2 } }
+			country_event = { id = GWF.48 }
+		}
+		else = {
+			country_event = { id = GWF.49 }
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_incubator_free_zone
+	icon = GFX_GWF_incubator_free_zone
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_useless_instruments
+	}
+	relative_position_id = GWF_useless_instruments
+	x = 0
+	y = 1
+	completion_reward = {
+		country_event = { id = GWF.50 }
+		remove_ideas = GWF_Kyubey_hog
+		add_ideas = GWF_Generic_Vacant_hog
+	}
+}
+
+shared_focus = {
+	id = GWF_total_expansion
+	icon = GFX_GWF_total_expansion
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_prepare_everything
+	}
+	relative_position_id = GWF_prepare_everything
+	x = 0
+	y = 1
+	completion_reward = {
+		add_war_support = 0.1
+		declare_war_on = {
+			target = APF
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GNR
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = ISS
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = DEN
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GWS
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GRH
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GDN
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = ZNE
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = BRL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GSI
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GCZ
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GHL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = BEL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = SSN
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = SSL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = PUS
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = LIT
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GPL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = GSV
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = MBL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = MUK
+			type = annex_everything
+		}
+	}
+}
+
+shared_focus = {
+	id = GWF_my_own_universe
+	icon = GFX_GWF_my_own_universe
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_total_expansion
+	}
+	relative_position_id = GWF_total_expansion
+	x = 0
+	y = 1
+	completion_reward = {
+		TNO_improve_security_policy_effectiveness_high = yes
+		TNO_worsen_political_parties_policy_effectiveness_med = yes
+	}
+}
+
+shared_focus = {
+	id = GWF_break_the_celling
+	icon = GFX_GWF_break_the_celling
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_subdue_the_useful
+	}
+	prerequisite = {
+		focus = GWF_my_own_universe
+	}
+	prerequisite = {
+		focus = GWF_incubator_free_zone
+	}
+	relative_position_id = GWF_my_own_universe
+	x = -1
+	y = 1
+	completion_reward = {
+		country_event = { id = GWF.52 }
+	}
+}
+
+shared_focus = {
+	id = GWF_search_everywhere
+	icon = GFX_GWF_search_everywhere
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_subdue_the_useful
+	}
+	prerequisite = {
+		focus = GWF_my_own_universe
+	}
+	prerequisite = {
+		focus = GWF_incubator_free_zone
+	}
+	relative_position_id = GWF_my_own_universe
+	x = 1
+	y = 1
+	completion_reward = {
+		country_event = { id = GWF.53 }
+	}
+}
+
+shared_focus = {
+	id = GWF_this_isnt_working
+	icon = GFX_GWF_this_isnt_working
+	cost = 1
+	available_if_capitulated = no
+	available = { has_war = no }
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_search_everywhere
+	}
+	prerequisite = {
+		focus = GWF_break_the_celling
+	}
+	relative_position_id = GWF_my_own_universe
+	x = 0
+	y = 2
+	completion_reward = {
+		country_event = { id = GWF.54 }
+	}
+}
+
+shared_focus = {
+	id = GWF_fateful_meeting
+	icon = GFX_GWF_fateful_meeting
+	cost = 1
+	available_if_capitulated = no
+	ai_will_do = {
+		factor = 1
+	}
+	prerequisite = {
+		focus = GWF_this_isnt_working
+	}
+	allow_branch = {
+		OR = {
+			has_country_flag = GWF_Homura_almost_the_end
+			is_debug = yes
+		}
+	}
+	relative_position_id = GWF_this_isnt_working
+	x = 0
+	y = 2
+	completion_reward = {
+		if = {
+			limit = { check_variable = { GWF_evil_flags > 2 } }
+			country_event = { id = GWF.57 }
+		}
+		else = {
+			country_event = { id = GWF.55 }
+		}
+	}
+}

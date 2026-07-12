@@ -1,0 +1,98 @@
+GWF_debug_deccat = {
+	icon = GFX_decision_category_generic_political_actions
+	picture = GFX_GWF_decision_category_debug_picture
+	allowed = {	tag = GWF }
+	visible = {
+		is_debug = yes
+		is_ai = no
+	}
+	visible_when_empty = yes
+	priority = {
+		base = 150
+	}
+}
+
+GWF_Homura_deccat = {
+	icon = GFX_decision_category_homura_icon
+	scripted_gui = GWF_Homura_GUI
+	allowed = { tag = GWF }       
+	visible = { has_country_flag = GWF_Homura_gui_active } 
+	visible_when_empty = yes
+	priority = { base = 20 }
+}
+
+GWF_Opposition_deccat = {
+	icon = GFX_decision_category_opposition_icon
+	scripted_gui = GWF_Opposition_GUI
+	allowed = { tag = GWF }
+	visible = { has_country_flag = GWF_Opposition_gui_active }
+	visible_when_empty = yes
+	priority = { base = 20 }
+}
+
+GWF_BigGame_deccat = { ###########№###################№
+	icon = GFX_decision_category_generic_chess
+	picture = GFX_decision_category_biggame_pic
+	scripted_gui = GWF_BigGame_GUI
+	allowed = { tag = GWF }
+	visible = { has_country_flag = GWF_BigGame_gui_active }
+	visible_when_empty = yes
+	priority = { base = 20 }
+}
+
+GWF_SGW_deccat = {
+	icon = GFX_decision_category_generic_border_war
+	picture = GFX_decision_category_ogas_pic
+	allowed = { tag = GWF }
+	visible = { has_country_flag = GWF_SGW_deccat_active }
+	visible_when_empty = yes
+	priority = { base = 20 }
+}
+
+GWF_army_deccat = {
+	icon = GFX_decision_category_generic_army_reform
+	picture = GFX_GWF_army_deccat_picture
+	allowed = { tag = GWF }
+	visible = { has_country_flag = GWF_army_deccat_active }
+	visible_when_empty = yes
+	priority = { base = 20 }
+}
+
+GER_trvthnuke_deccat = {
+	icon = GFX_decision_category_generic_formable_nations
+	picture = GFX_MAR_GER_EPILOGUE_category
+	
+	allowed = {
+		OR = {
+			is_NDN_nation = yes
+			is_NGE_nation = yes
+			is_WGE_nation = yes
+			is_EGE_nation = yes
+		}
+	}
+	
+	visible = {
+		has_country_flag = country_has_trvthnuked
+	}
+	
+	visible_when_empty = yes
+	
+	priority = {
+		base = 40
+	}
+}
+GER_trvthnuke_deccat_player = {
+	icon = GFX_decision_category_generic_formable_nations
+	picture = GFX_MAR_GER_EPILOGUE_category
+	
+	visible = {
+		has_country_flag = country_has_trvthnuked
+		is_ai = no
+		NOT = { has_country_flag = GER_trvthnuke_deccat_player_hide }
+	}
+	visible_when_empty = no
+	
+	priority = {
+		base = 1000
+	}
+}
