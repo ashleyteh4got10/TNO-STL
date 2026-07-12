@@ -1,5 +1,5 @@
-name="The New Order: 东方神堂录 (TNO:STL Dev Side)"
-version="1.2.2a"
+name="The New Order: Sperne Tuta Limina"
+version="1.2.2c"
 dependencies={
 	"The New Order: Last Days of Europe"
 	"The New Order: Last Days of Europe(CN.Ver)"
