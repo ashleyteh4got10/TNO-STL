@@ -1,0 +1,901 @@
+MAR_MGB_Okhranka_category = { 
+	MAR_MGB_Mission_monthly_agents_rotation = {
+		icon = GFX_decision_generic_assault
+		activation = { has_country_flag = MAR_MGB_available }
+		available = { hidden_trigger = { always = no } }
+		is_good = no
+		days_mission_timeout = 30
+		timeout_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission Timeout MAR_MGB_Mission_monthly_agents_rotation"
+			custom_effect_tooltip = MAR_rotation_random_tt
+			hidden_effect = { 
+				set_temp_variable = { temp_connections_gained = 1 }
+				randomize_temp_variable = {
+					var = temp_connections_gained
+					distribution = uniform
+					min = 1
+					max = 3
+				}
+				round_temp_variable = temp_connections_gained
+				MAR_Okhranka_connections_change = yes
+				set_temp_variable = { temp_agents_gained = 1 }
+				randomize_temp_variable = {
+					var = temp_agents_gained
+					distribution = uniform
+					min = 20
+					max = 40
+				}
+				round_temp_variable = temp_agents_gained
+				MAR_Okhranka_agents_change = yes
+				MAR_adjust_okhranka_to_game_rules = yes
+			}
+		}
+		cancel_trigger = { hidden_trigger = { NOT = { country_exists = VYT } } }
+	}
+	MAR_MGB_mission_collapsing_souverinity = {
+		icon = GFX_collapsing_souverenity
+		activation = { 
+			check_variable = { MAR_Okhranka_power > 94.99 }
+			has_country_flag = MAR_MGB_available
+		}
+		available = { hidden_trigger = { always = no } }
+		is_good = no
+		days_mission_timeout = 14
+		cancel_trigger = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = MAR_MGB_mission_collapsing_souverinity_cancel_tt
+					check_variable = { MAR_Okhranka_power < 95 }
+				}
+				is_subject = no
+			}
+		}
+		timeout_effect = {
+			MAR_MGB_shake_the_souverinity = yes
+			set_temp_variable = { temp_agents_gained = -200 }
+			MAR_Okhranka_agents_change = yes
+		}
+	}
+	MAR_MGB_mission_collapsing_network = {
+		icon = GFX_decision_generic_document_burn
+		activation = {
+			check_variable = { MAR_Okhranka_power < 1 }
+			has_country_flag = MAR_MGB_available
+			NOT = { has_country_flag = MAR_MGB_network_collapsed }
+		}
+		available = { hidden_trigger = { always = no } }
+		is_good = yes
+		days_mission_timeout = 5
+		cancel_trigger = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = MAR_MGB_mission_collapsing_network_cancel_tt
+					check_variable = { MAR_Okhranka_power > 0.99 }
+				}
+				is_subject = no
+			}
+		}
+		timeout_effect = {
+			VYT = {
+				country_event = {
+					id = MAR_initial.56
+					days = 0
+				}
+			}
+			custom_effect_tooltip = MAR_MGB_mission_collapsing_network_tt
+			hidden_effect = {
+				set_temp_variable = { temp_agents_gained = 500 }
+				set_temp_variable = { temp_connections_gained = 10 }
+				MAR_Okhranka_agents_change = yes
+				MAR_Okhranka_connections_change = yes
+			}
+			set_country_flag = MAR_MGB_network_collapsed
+		}
+	}
+	MAR_MGB_mission_collapsing_connections = {
+		icon = GFX_decision_generic_document_burn
+		activation = {
+			check_variable = { MAR_Okhranka_connections < 1 }
+			has_country_flag = MAR_MGB_available
+		}
+		available = { hidden_trigger = { always = no } }
+		is_good = yes
+		days_mission_timeout = 14
+		cancel_trigger = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = MAR_MGB_mission_collapsing_connections_cancel_tt
+					check_variable = { MAR_Okhranka_connections > 0.99 }
+				}
+				is_subject = no
+			}
+		}
+		timeout_effect = {
+			set_temp_variable = { temp_agents_gained = -150 }
+			set_temp_variable = { temp_connections_gained = 40 }
+			MAR_Okhranka_agents_change = yes
+			MAR_Okhranka_connections_change = yes
+		}
+	}
+	MAR_MGB_mission_overwhelming_connections = {
+		icon = GFX_decision_generic_document_concessions
+		activation = {
+			check_variable = { MAR_Okhranka_connections > 98.99 }
+			has_country_flag = MAR_MGB_available
+		}
+		available = { hidden_trigger = { always = no } }
+		is_good = no
+		days_mission_timeout = 14
+		cancel_trigger = {
+			OR = {
+				custom_trigger_tooltip = {
+					tooltip = MAR_MGB_mission_overwhelming_connections_cancel_tt
+					check_variable = { MAR_Okhranka_connections < 99 }
+				}
+				is_subject = no
+			}
+		}
+		timeout_effect = {
+			set_temp_variable = { temp_agents_gained = 150 }
+			set_temp_variable = { temp_connections_gained = -20 }
+			MAR_Okhranka_agents_change = yes
+			MAR_Okhranka_connections_change = yes
+		}
+	}
+	MAR_MGB_operation_status_info = { #Empty decision to show operations
+		icon = GFX_decision_generic_document_target
+		visible = {
+			always = yes
+		}
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		complete_effect = {
+			custom_effect_tooltip = MAR_MGB_operation_status_info_tt
+		}
+	}
+	MAR_MGB_yurla_operation = { #Operation Gray Falcon
+		icon = GFX_yurla
+		 
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				factor = 200
+				check_variable = {
+					MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_second_threshold
+				}
+			}
+			modifier = {
+				factor = 30
+				NOT = {
+					check_variable = {
+						MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_second_threshold
+					}
+				}
+				check_variable = {
+					MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_threshold
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = {
+					check_variable = {
+						MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_threshold
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		cost = var:MAR_decision_cost_three	
+		days_remove = 21
+		remove_effect = {
+			hidden_effect = {
+				IF = {
+					limit = {
+						check_variable = {
+							MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_second_threshold
+						}
+					}
+					country_event = {
+						id = MAR_initial.57
+						days = 0
+					}
+				}
+				IF = {
+					limit = {
+						NOT = {
+							check_variable = {
+								MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_second_threshold
+							}
+						}
+						check_variable = {
+							MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_threshold
+						}
+					}
+					country_event = {
+						id = MAR_initial.58
+						days = 0
+					}
+				}
+				IF = {
+					limit = {
+						NOT = {
+							check_variable = {
+								MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_threshold
+							}
+						}
+					}
+					country_event = {
+						id = MAR_initial.59
+						days = 0
+					}
+				}
+			}
+			custom_effect_tooltip = MAR_MGB_yurla_operation_status_tt
+			set_country_flag = MAR_MGB_yurla_operation_complete_flag
+		}
+	}
+	MAR_MGB_direct_action_separator = {
+		icon = GFX_decision_generic_assault
+		visible = {
+			always = yes
+		}
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	MAR_MGB_fight_agents_small = {
+		icon = GFX_decision_generic_investigate
+		
+		#available = {
+		#	has_country_flag = MAR_started_fighting_Vyatka
+		#}
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 20
+		cost = var:MAR_decision_cost_one	
+		
+		complete_effect = {
+			set_temp_variable = { temp_agents_gained = -35 }
+			set_temp_variable = { temp_connections_gained = 2 }
+			MAR_Okhranka_agents_change = yes
+			MAR_Okhranka_connections_change = yes
+		}
+		
+		remove_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_reenable_tt
+		}
+	}
+	MAR_MGB_fight_agents_medium = {
+		icon = GFX_decision_generic_assassination
+		
+		#available = {
+		#	has_country_flag = MAR_started_fighting_Vyatka
+		#}
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 35
+		cost = var:MAR_decision_cost_two	
+		
+		complete_effect = {
+			set_temp_variable = { temp_agents_gained = -75 }
+			set_temp_variable = { temp_connections_gained = 5 }
+			MAR_Okhranka_agents_change = yes
+			MAR_Okhranka_connections_change = yes
+		}
+		
+		remove_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_reenable_tt
+		}
+	}
+	
+	MAR_MGB_fight_agents_huge = {
+		icon = GFX_decision_generic_riot_police
+		
+		#available = {
+		#	has_country_flag = MAR_started_fighting_Vyatka
+		#}
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 75
+		cost = var:MAR_decision_cost_three	
+		
+		complete_effect = {
+			set_temp_variable = { temp_agents_gained = -120 }
+			set_temp_variable = { temp_connections_gained = 8 }
+			MAR_Okhranka_agents_change = yes
+			MAR_Okhranka_connections_change = yes
+		}
+		
+		remove_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_reenable_tt
+		}
+	}
+	
+	MAR_MGB_raid_okhranka_cells = {
+		icon = GFX_decision_generic_barracks_burning
+		visible = {
+			always = yes
+		}
+		available = {
+			has_completed_focus = MAR_break_okhranka_network
+		}
+		
+		ai_will_do = {
+			factor = 75
+		}
+		fire_only_once = yes
+		cost = var:MAR_decision_cost_two
+		
+		complete_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_single_tt
+			set_temp_variable = { temp_agents_gained = -100 }
+			MAR_Okhranka_agents_change = yes
+		}
+	}
+	
+	MAR_MGB_covert_action_separator = {
+		icon = GFX_decision_generic_break_treaty
+		visible = {
+			always = yes
+		}
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	MAR_MGB_general_staff_rotation = {
+		icon = GFX_decision_generic_police_redeployment
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 35
+		custom_cost_trigger = {
+			command_power > 19.99
+		}
+		custom_cost_text = decision_cost_20_cp
+		
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -20
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_completed_focus = MAR_homeland_expirience
+						has_completed_focus = MAR_old_collegues
+					}
+				}
+				set_temp_variable = { temp_connections_gained = -9 }
+			}
+			ELSE = {
+				set_temp_variable = { temp_connections_gained = -6 }
+			}
+			MAR_Okhranka_connections_change = yes
+		}
+		
+		remove_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_reenable_tt
+		}
+	}
+	
+	MAR_MGB_military_trainings = {
+		icon = GFX_decision_generic_military_guns_blue
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 35
+		custom_cost_trigger = {
+			has_army_experience > 4.99
+		}
+		custom_cost_text = decision_cost_5_army_xp
+		
+		complete_effect = {
+			hidden_effect = {
+				army_experience = -5
+			}
+			IF = {
+				limit = {
+					OR = {
+						has_completed_focus = MAR_homeland_expirience
+						has_completed_focus = MAR_old_collegues
+					}
+				}
+				set_temp_variable = { temp_connections_gained = -5 }
+			}
+			ELSE = {
+				set_temp_variable = { temp_connections_gained = -3 }
+			}
+			MAR_Okhranka_connections_change = yes
+		}
+		
+		remove_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_reenable_tt
+		}
+	}
+	
+	MAR_MGB_reorganize_ministries = {
+		icon = GFX_decision_generic_building_offices
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+			modifier = { 
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+		}
+		days_remove = 35
+		custom_cost_trigger = {
+			set_temp_variable = { t_pp_check = 5 }
+			set_temp_variable = { t_m_check = 25 }
+			check_variable = { political_power > 4.99 }
+		}
+		custom_cost_text = decision_cost_pp_m_dynamic
+		
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -5
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+			IF = {
+				limit = {
+					OR = {
+						has_completed_focus = MAR_peoples_love
+						has_completed_focus = MAR_we_and_the_proletariat
+					}
+				}
+				set_temp_variable = { temp_connections_gained = -9 }
+			}
+			ELSE = {
+				set_temp_variable = { temp_connections_gained = -6 }
+			}
+			MAR_Okhranka_connections_change = yes
+		}
+		
+		remove_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_reenable_tt
+		}
+	}
+	
+	MAR_MGB_civillian_reorganisation = {
+		icon = GFX_decision_generic_reassurance
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 35
+		custom_cost_trigger = {
+			check_variable = { loot_amount > 0 }
+		}
+		custom_cost_text = decision_cost_loot_1
+		
+		complete_effect = {
+			subtract_from_variable = { loot_amount = 1 }
+			IF = {
+				limit = {
+					OR = {
+						has_completed_focus = MAR_peoples_love
+						has_completed_focus = MAR_we_and_the_proletariat
+					}
+				}
+				set_temp_variable = { temp_connections_gained = -5 }
+			}
+			ELSE = {
+				set_temp_variable = { temp_connections_gained = -3 }
+			}
+			MAR_Okhranka_connections_change = yes
+		}
+		
+		remove_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_reenable_tt
+		}
+	}
+	
+	MAR_MGB_double_agents = {
+		icon = GFX_decision_generic_insider_attack
+		
+		visible = {
+			always = yes
+		}
+		
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_MGB_double_agent_count_tt
+				check_variable = { MAR_MGB_var_double_agents_count < 3 }
+			}
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 100
+		
+		complete_effect = {
+			IF = {
+				limit = { check_variable = { MAR_MGB_var_double_agents_count < 3 } }
+				set_temp_variable = { temp_agents_gained = 75 }
+				MAR_Okhranka_agents_change = yes
+				hidden_effect = {
+					add_dynamic_modifier = {
+						modifier = MAR_MGB_double_agents_modifier
+						days = 100
+					}
+				}
+				custom_effect_tooltip = MAR_MGB_double_agent_modifier_tt
+			}
+		}
+		
+		remove_effect = {
+			IF = {
+				limit = { check_variable = { MAR_MGB_var_double_agents_count < 3 } }
+				set_temp_variable = { temp_connections_gained = -10 }
+				add_to_variable = { MAR_MGB_var_double_agents_count = 1 }
+				add_to_variable = { MAR_MGB_var_double_agents_pp = -0.1 }
+				MAR_Okhranka_connections_change = yes
+				IF = {
+					limit = { check_variable = { MAR_MGB_var_double_agents_count < 2 } }
+					custom_effect_tooltip = MAR_MGB_decision_reenable_tt
+					custom_effect_tooltip = MAR_MGB_double_agent_remove_tt
+				}
+			}
+		}
+	}
+	
+	
+	MAR_MGB_collaboration_action_separator = {
+		icon = GFX_vytmar_coop
+		visible = {
+			always = yes
+		}
+		available = {
+			hidden_trigger = {
+				always = no
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	MAR_MGB_resource_deals = {
+		icon = GFX_decision_generic_oil_extraction
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				factor = 0
+				check_variable = {
+					MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_liberation_threshold
+				}
+			}
+		}
+		days_remove = 30
+		days_re_enable = 60
+		cost = 25
+		
+		modifier = {
+			industrial_capacity_factory = -0.1
+		}
+		
+		cancel_trigger = {
+			hidden_trigger = {
+				is_subject = no
+			}
+		}
+		
+		cancel_effect = {
+			IF = {
+				limit = { has_country_flag = MAR_MGB_resources_operation_success_flag }
+				hidden_effect = {
+					VYT = {
+						remove_resource_rights = 398
+						remove_resource_rights = 866
+					}
+				}
+			}
+		}
+		
+		complete_effect = {
+			IF = {
+				limit = { has_country_flag = MAR_MGB_resources_operation_success_flag }
+				hidden_effect = {
+					give_resource_rights = {
+						receiver = VYT
+						state = 398
+						resources = { oil aluminium rubber tungsten steel chromium uranium }
+					}
+					give_resource_rights = {
+						receiver = VYT
+						state = 866
+						resources = { oil aluminium rubber tungsten steel chromium uranium }
+					}
+				}
+				custom_effect_tooltip = MAR_MGB_resource_deals_concessions_reenable_tt
+			}
+		}
+		
+		remove_effect = {
+			IF = {
+				limit = { has_country_flag = MAR_MGB_resources_operation_success_flag }
+				VYT = {
+					remove_resource_rights = 398
+					remove_resource_rights = 866
+				}
+			}
+			IF = {
+				limit = { has_country_flag = MAR_MGB_resources_operation_complete_flag }
+				set_temp_variable = { temp_lib_tr_gained = 3 }
+				MAR_liberation_threshold_change = yes
+			}
+			ELSE = {
+				set_temp_variable = { temp_res_tr_gained = 5 }
+				MAR_resources_threshold_change = yes
+			}
+			custom_effect_tooltip = MAR_MGB_decision_reenable_60_days_tt
+		}
+	}
+	
+	MAR_MGB_military_cooperation = {
+		icon = GFX_decision_generic_military_hat
+		
+		visible = {
+			always = yes
+		}
+		
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = {
+						MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_advisors_second_threshold
+					}
+					check_variable = {
+						MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_liberation_threshold
+					}
+				}
+			}
+		}
+		days_remove = 30
+		days_re_enable = 60
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp
+		
+		modifier = {
+			command_power_gain_mult = -0.15
+		}
+		
+		cancel_trigger = {
+			hidden_trigger = {
+				is_subject = no
+			}
+		}
+		
+		cancel_effect = {
+			IF = {
+				limit = { has_country_flag = MAR_MGB_advisors_operation_success_flag }
+				hidden_effect = {
+					remove_ideas = MAR_military_instructors_of_vyatka
+				}
+			}
+		}
+		
+		complete_effect = {
+			IF = {
+				limit = { has_country_flag = MAR_MGB_advisors_operation_success_flag }
+				add_ideas = MAR_military_instructors_of_vyatka
+			}
+		}
+		
+		remove_effect = {
+			IF = {
+				limit = { has_country_flag = MAR_MGB_advisors_operation_success_flag }
+				remove_ideas = MAR_military_instructors_of_vyatka
+			}
+			IF = {
+				limit = { has_country_flag = MAR_MGB_advisors_operation_complete_flag }
+				set_temp_variable = { temp_lib_tr_gained = 3 }
+				MAR_liberation_threshold_change = yes
+			}
+			ELSE = {
+				set_temp_variable = { temp_adv_tr_gained = 5 }
+				MAR_advisors_threshold_change = yes
+			}
+			custom_effect_tooltip = MAR_MGB_decision_reenable_60_days_tt
+		}
+	}
+	
+	MAR_MGB_buy_yurla_assets = {
+		icon = GFX_decision_generic_corruption
+		
+		visible = {
+			NOT = { has_country_flag = MAR_MGB_yurla_operation_complete_flag }
+		}
+		
+		ai_will_do = {
+			factor = 200
+			modifier = {
+				check_variable = { debt_to_GDP_ratio > 0.95 }
+				factor = 0
+			}
+			modifier = {
+				factor = 0
+				check_variable = {
+					MAR.MAR_Okhranka_power < MAR.MAR_MGB_var_yurla_second_threshold
+				}
+			}
+		}
+		days_remove = 30
+		days_re_enable = 60
+		custom_cost_trigger = {
+			set_temp_variable = { t_pp_check = 10 }
+			set_temp_variable = { t_m_check = 15 }
+			check_variable = { political_power > 9.99 }
+		}
+		custom_cost_text = decision_cost_pp_m_dynamic
+		
+		cancel_trigger = {
+			hidden_trigger = {
+				OR = {
+					is_subject = no
+					controls_state = 865
+				}
+			}
+		}
+		
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -10
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.015 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		
+		remove_effect = {
+			set_temp_variable = { temp_yrl_tr_gained = 5 }
+			MAR_yurla_threshold_change = yes
+			custom_effect_tooltip = MAR_MGB_decision_reenable_60_days_tt
+		}
+	}
+	
+	MAR_MGB_visit_vyatka_court = {
+		icon = GFX_decision_generic_invitation
+		visible = {
+			always = yes
+		}
+		available = {
+			has_completed_focus = MAR_children_can_redeem
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		days_remove = 14
+		days_re_enable = 60
+		
+		modifier = {
+			political_power_gain = -0.2
+		}
+		
+		remove_effect = {
+			set_temp_variable = { temp_lib_tr_gained = 2 }
+			MAR_liberation_threshold_change = yes
+			custom_effect_tooltip = MAR_MGB_decision_reenable_90_days_tt
+		}
+	}
+	
+	MAR_MGB_southern_wall = {
+		icon = GFX_decision_generic_destroy_fort
+		visible = {
+			always = yes
+		}
+		available = {
+			has_completed_focus = MAR_defend_the_people
+		}
+		
+		ai_will_do = {
+			factor = 200
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			has_army_experience > 24.99
+		}
+		custom_cost_text = decision_cost_25_army_xp
+		
+		complete_effect = {
+			custom_effect_tooltip = MAR_MGB_decision_single_tt
+			set_temp_variable = { temp_lib_tr_gained = 10 }
+			MAR_liberation_threshold_change = yes
+			IF = {
+				limit = { has_country_flag = MAR_ab_plan_one }
+				VYT = {
+					add_timed_idea = { idea = MAR_attack_only_aria days = 720 }
+				}
+			}
+			IF = {
+				limit = { has_country_flag = MAR_ab_plan_two }
+				VYT = {
+					add_timed_idea = { idea = MAR_defence_only_aria days = 720 }
+				}
+			}
+			IF = {
+				limit = { has_country_flag = MAR_ab_plan_three }
+				VYT = {
+					add_timed_idea = { idea = MAR_def_and_attack days = 720 }
+				}
+			}
+			IF = {
+				limit = {
+					NOT = {
+						has_country_flag = MAR_ab_plan_one
+						has_country_flag = MAR_ab_plan_two
+						has_country_flag = MAR_ab_plan_three
+					}
+				}
+				custom_effect_tooltip = MAR_MGB_southern_wall_vyt_plan_tt
+			}
+		}
+	}
+} 

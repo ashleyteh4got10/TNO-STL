@@ -1,0 +1,325 @@
+scripted_gui = {
+
+	MAR_Prestol_GUI_Opener = {
+		context_type = player_context
+		parent_window_token = politics_tab
+		window_name = "MAR_Prestol_GUI_Opener"
+
+		visible = {
+			tag = MAR
+		}
+
+		triggers = {
+			gui_alert_visible = {
+				NOT = { has_country_flag = MAR_Prestol_GUI_Opener_Clear }
+				has_country_flag = MAR_prestol_active
+			}
+			MAR_Prestol_GUI_Opener_visible = {
+				has_country_flag = MAR_prestol_active
+			}
+		}
+
+		effects = {
+			MAR_Prestol_GUI_Opener_click = {
+				if = {
+					limit = { has_country_flag = MAR_Prestol_GUI_visible }
+					clr_country_flag = MAR_Prestol_GUI_visible
+				}
+				else = { set_country_flag = MAR_Prestol_GUI_visible }
+				set_country_flag = MAR_Prestol_GUI_Opener_Clear
+				set_temp_variable = { alert_id = token:Alert_PrestolTimeoutSoon }
+				remove_TNO_alert = yes
+				set_temp_variable = { alert_id = token:Alert_PrestolActionAvailable }
+				remove_TNO_alert = yes
+			}
+		}
+
+	}
+	
+	MAR_Prestol_GUI = {
+		context_type = player_context
+		window_name = "MAR_Prestol_GUI"
+		dirty = MAR_prestol_dirty_var
+		visible = {
+			has_country_flag = MAR_Prestol_GUI_visible
+		}
+		dynamic_lists = {
+			prestol_map_gridbox = {
+				array = MAR_map_grid_array
+				index = idx
+				value = MAR_map_value
+				entry_container = "MAR_map_entry"
+			}
+		}
+		properties = {
+			prestol_map_state = {
+				image = "GFX_MAR_insurgency_map_state_[?MAR_map_grid_array^idx]"
+				frame = MAR_map_value:kosygin_reception
+				x = MAR_map_x^idx
+				y = MAR_map_y^idx
+			} 
+			top_bar_strength_bar = { frame = ROOT.insurgency_strength }
+			
+			gui_clock = {
+				image = "[MAR_PRESTOL_GET_CLOCK]"
+			}
+		}
+		triggers = {
+			map_state_850_selected_visible = { check_variable = { insurgency_state_selected = 850 } }
+			map_state_252_selected_visible = { check_variable = { insurgency_state_selected = 252 } }
+			map_state_249_selected_visible = { check_variable = { insurgency_state_selected = 249 } }
+			map_state_853_selected_visible = { check_variable = { insurgency_state_selected = 853 } }
+			map_state_854_selected_visible = { check_variable = { insurgency_state_selected = 854 } }
+			map_state_753_selected_visible = { check_variable = { insurgency_state_selected = 753 } }
+			map_state_400_selected_visible = { check_variable = { insurgency_state_selected = 400 } }
+			map_state_752_selected_visible = { check_variable = { insurgency_state_selected = 752 } }
+			map_state_398_selected_visible = { check_variable = { insurgency_state_selected = 398 } }
+			map_state_397_selected_visible = { check_variable = { insurgency_state_selected = 397 } }
+			map_state_857_selected_visible = { check_variable = { insurgency_state_selected = 857 } }
+			map_state_262_selected_visible = { check_variable = { insurgency_state_selected = 262 } }
+			map_state_214_selected_visible = { check_variable = { insurgency_state_selected = 214 } }
+			map_state_214_onega_lock_visible = { MAR = { NOT = { owns_state = 859 } } }
+			map_backgroundhelper_visible = { is_debug = yes }
+		}
+		effects = {
+			gui_close_button_click = {
+				if = {
+					limit = { has_country_flag = MAR_Prestol_GUI_visible }
+					clr_country_flag = MAR_Prestol_GUI_visible
+				}
+				else = { set_country_flag = MAR_Prestol_GUI_visible }
+				set_country_flag = MAR_Prestol_GUI_Opener_Clear
+			}
+			prestol_map_state_click = {			
+				if = {
+					limit = { 
+						has_country_flag = MAR_state_interaction_open
+						check_variable = { MAR_map_grid_array^idx = insurgency_state_selected }
+						check_variable = { idx = insurgency_state_selected_i }
+					}
+					clr_country_flag = MAR_state_interaction_open
+				}
+				else_if = {
+					limit = {
+						has_country_flag = MAR_state_interaction_open
+					}
+					set_variable = { insurgency_state_selected = MAR_map_grid_array^idx }
+					set_variable = { insurgency_state_selected_i = idx }
+						
+					add_to_variable = { MAR_prestol_dirty_var = 1 }
+				}
+				else = {
+					set_variable = { insurgency_state_selected = MAR_map_grid_array^idx }
+					set_variable = { insurgency_state_selected_i = idx }
+						
+					add_to_variable = { MAR_prestol_dirty_var = 1 }
+					set_country_flag = MAR_state_interaction_open 
+				}
+				
+				log = "[?insurgency_state_selected]"
+			}
+		}
+	}
+	MAR_Prestol_GUI_state_interaction = {
+		context_type = player_context
+		window_name = "MAR_Prestol_regional_interaction_menu"
+		
+		visible = {
+			tag = MAR
+			NOT = {
+				has_global_flag = AFTER_MIDNIGHT_COMMENCED
+			}
+			has_country_flag = MAR_state_interaction_open
+		}
+		triggers = {
+			MAR_antiprestol_decision_one_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = recent_action_prestol_tt
+					var:insurgency_state_selected = {
+						check_variable = { MAR_Had_RecentAction = 0 }
+					}
+				}
+				has_manpower > 1000
+				has_equipment = { infantry_equipment > 150 }
+				
+			}
+			MAR_antiprestol_decision_two_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = recent_action_prestol_tt
+					var:insurgency_state_selected = {
+						check_variable = { MAR_Had_RecentAction = 0 }
+					}
+				}
+				has_political_power > 24.99
+				
+			}
+			MAR_antiprestol_decision_three_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = recent_action_prestol_tt
+					var:insurgency_state_selected = {
+						check_variable = { MAR_Had_RecentAction = 0 }
+					}
+				}
+				command_power > 4.99
+			}
+			MAR_antiprestol_decision_operation_one_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = recent_action_prestol_tt
+					var:insurgency_state_selected = {
+						check_variable = { MAR_Had_RecentAction = 0 }
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = power_check_prestol_one_tt
+					var:insurgency_state_selected = {
+						check_variable = { insurgency_strength < 0.2 }
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = we_can_search_here_prestol_tt
+					var:insurgency_state_selected = {
+						check_variable = { kosygin_reception > 1 }
+					}
+				}
+				command_power > 4.99
+			}
+			MAR_antiprestol_decision_operation_two_click_enabled = {
+				custom_trigger_tooltip = {
+					tooltip = recent_action_prestol_tt
+					var:insurgency_state_selected = {
+						check_variable = { MAR_Had_RecentAction = 0 }
+					}
+				}
+				custom_trigger_tooltip = {
+					tooltip = power_check_prestol_two_tt
+					var:insurgency_state_selected = {
+						check_variable = { insurgency_strength < 0.15 }
+					}
+				}
+				if = {
+					limit = { check_variable = { var:insurgency_state_selected = 214 } }
+					custom_trigger_tooltip = {
+						tooltip = onega_control_tt
+						controls_state = 859
+					}
+				}
+				command_power > 9.99
+			}
+			MAR_antiprestol_decision_operation_one_visible = {
+				var:insurgency_state_selected = {
+					check_variable = { operation_available = 0 }
+					check_variable = { kosygin_reception > 1 }
+				}
+				NOT = { check_variable = { var:insurgency_state_selected = 857 } }
+			}
+			MAR_antiprestol_decision_operation_two_visible = {
+				var:insurgency_state_selected = {
+					check_variable = { operation_available = 1 }
+					check_variable = { kosygin_reception > 1 }
+				}
+			}
+			MAR_Prestol_KGB_Cover_visible = {
+				OR = {
+					var:insurgency_state_selected = {
+						check_variable = { kosygin_reception = 1 }
+						#check_variable = { operation_available = 0 }
+					}
+					check_variable = { var:insurgency_state_selected = 857 }
+				}
+			}
+			MAR_Prestol_Taboritsky_Cover_visible = {
+				check_variable = { var:insurgency_state_selected = 398 }
+				var:insurgency_state_selected = {
+					check_variable = { operation_available = 1 }
+				}
+			}
+		}
+		effects = {
+			close_button_click = {
+				if = {
+					limit = { has_country_flag = MAR_state_interaction_open }
+					clr_country_flag = MAR_state_interaction_open
+				}
+				else = { set_country_flag = MAR_state_interaction_open }
+				add_to_variable = { MAR_prestol_dirty_var = 1 }
+			}
+			MAR_antiprestol_decision_one_click = {
+				var:insurgency_state_selected = {
+					set_temp_variable = { change_strenghth_temp = -0.05 }
+					set_temp_variable = { change_strenghth_trend_temp = 0.001 }
+					
+					add_to_variable = { insurgency_strengthTrend = change_strenghth_trend_temp }
+					add_to_variable = { insurgency_strength = change_strenghth_temp }
+					
+					custom_effect_tooltip = MAR_prestol_power_change
+					custom_effect_tooltip = MAR_prestol_power_trend_change_negative
+					
+					add_to_variable = { MAR_Had_RecentAction = 1 }
+					MAR_clamp_insurgency_strength = yes
+				}
+				add_manpower = -500
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -100
+				}
+				add_to_variable = { MAR_prestol_dirty_var = 1 }
+			}
+			MAR_antiprestol_decision_two_click = {
+				var:insurgency_state_selected = {
+					set_temp_variable = { change_strenghth_temp = 0.01 }
+					set_temp_variable = { change_strenghth_trend_temp = -0.005 }
+					
+					add_to_variable = { insurgency_strengthTrend = change_strenghth_trend_temp }
+					add_to_variable = { insurgency_strength = change_strenghth_temp }
+					add_to_variable = { MAR_Had_RecentAction = 1 }
+					
+					custom_effect_tooltip = MAR_prestol_power_change_negative
+					custom_effect_tooltip = MAR_prestol_power_trend_change
+					MAR_clamp_insurgency_strength = yes
+				}
+				add_political_power = -25
+				add_to_variable = { MAR_prestol_dirty_var = 1 }
+			}
+			MAR_antiprestol_decision_three_click = {
+				var:insurgency_state_selected = {
+					set_temp_variable = { change_strenghth_temp = -0.03 }
+					set_temp_variable = { change_strenghth_trend_temp = -0.003 }
+					
+					add_to_variable = { insurgency_strengthTrend = change_strenghth_trend_temp }
+					add_to_variable = { insurgency_strength = change_strenghth_temp }
+					add_to_variable = { MAR_Had_RecentAction = 1 }
+					
+					custom_effect_tooltip = MAR_prestol_power_change
+					custom_effect_tooltip = MAR_prestol_power_trend_change
+					MAR_clamp_insurgency_strength = yes
+				}
+				add_command_power = -5
+				add_to_variable = { MAR_prestol_dirty_var = 1 }
+			}
+			MAR_antiprestol_decision_operation_one_click = {
+				MAR_Prestol_set_the_event_one = yes
+				add_command_power = -5
+				var:insurgency_state_selected = {
+					add_to_variable = { MAR_Had_RecentAction = 1 }
+				}
+				add_to_variable = { MAR_prestol_dirty_var = 1 }
+			}
+			MAR_antiprestol_decision_operation_two_click = {
+				MAR_Prestol_set_the_event_two = yes				
+				add_command_power = -10
+				var:insurgency_state_selected = {
+					add_to_variable = { MAR_Had_RecentAction = 1 }
+				}
+				add_to_variable = { MAR_prestol_dirty_var = 1 }
+			}
+		}
+		properties = {
+			MAR_enemies_flag_image = {
+				image = "[MAR_PRESTOL_GET_ENEMY_FLAG]"
+			}
+			MAR_enemies_leader_image = {
+				image = "[MAR_PRESTOL_GET_ENEMY_LEADER]"
+			}
+		}
+	}
+}

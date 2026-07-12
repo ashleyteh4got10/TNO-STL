@@ -1,0 +1,1629 @@
+GWF_debug_deccat = {
+	GWF_initial_tree_load = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = GWF
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: GWF_initial_tree_load"
+			load_focus_tree = {	tree = GWF_Homura_Initial keep_completed = no }
+		}
+	}
+	GWF_war_tree_load = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = GWF
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: GWF_war_tree_load"
+			load_focus_tree = {	tree = GWF_Homura_War keep_completed = no }
+		}
+	}
+	GWF_final_tree_load = {
+		icon = GFX_decision_generic_industry
+
+		allowed = {
+			original_tag = GWF
+		}
+		fire_only_once = no
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: GWF_final_tree_load"
+			load_focus_tree = {	tree = GWF_Homura_Final keep_completed = no }
+		}
+	}
+}	
+
+GWF_Homura_deccat = { ####
+	#mind
+	GWF_Homura_mind_effigy = {        
+		icon = GFX_soulgem
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+		}
+		fire_only_once = yes
+		
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision complete GWF_Homura_mind_effigy... wait that's wrong"
+		}
+	}
+	
+	GWF_Homura_witchifying_imminent = {   ##
+		icon = generic_red_skull 
+    	available = {
+			check_variable = { GWF_Homura_mental > 5 }
+    	}
+	
+    	activation = {
+    		check_variable = { GWF_Homura_mental < 5.01 }
+			has_country_flag = GWF_Homura_gui_active
+			NOT = { has_country_flag = GWF_Homura_gui_dontcare_already }
+    	}
+		
+    	is_good = no
+	
+    	days_mission_timeout = 14
+		timeout_effect = {
+    		log = "[GetDateText]: [Root.GetName]: GWF_Homura_witchifying_imminent mission timer elapsed" 
+			custom_effect_tooltip = GWF_Homura_witchifying_imminent_tt
+			hidden_effect = {
+				country_event = { id = GWF.65 }
+			}
+    	}
+		complete_effect = {
+			
+    	}
+  	}
+	
+	GWF_Homura_mind_make_a_speech = {
+		icon = generic_reassurance
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 5
+		days_re_enable = 10
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			add_political_power = 50
+			add_command_power = 5
+		}
+	}
+	GWF_Homura_help_with_researches = {
+		icon = generic_research
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 90
+		days_re_enable = 10
+		cost = 15
+		modifier = {
+			research_speed_factor = 0.15
+		}
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2 }
+			GWF_homura_change_stats = yes
+			
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -0.5 }
+			GWF_homura_change_weekly_stats = yes
+			
+		}
+		remove_effect = {
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 0.5 }
+			GWF_homura_change_weekly_stats = yes
+		}
+	}
+	
+	GWF_Homura_rally_the_troops = {
+		icon = generic_military_parade
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 60
+		days_re_enable = 10
+		cost = 10
+		modifier = {
+			weekly_manpower = 500
+		}
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+			
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -0.25 }
+			GWF_homura_change_weekly_stats = yes
+			
+		}
+		remove_effect = {
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 0.25 }
+			GWF_homura_change_weekly_stats = yes
+		}
+	}
+	
+	GWF_Homura_fix_the_economy = {
+		icon = generic_money
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 60
+		days_re_enable = 10
+		cost = 10
+		modifier = {
+			free_production_units_modifier = 5
+		}
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -5 }
+			GWF_homura_change_stats = yes		
+		}
+		remove_effect = {
+			set_temp_variable = { gdp_growth_temp = 1 }
+			econ_gdp_growth_change = yes
+		}
+	}
+	
+	GWF_Homura_chill = {
+		icon = generic_bus
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+		}
+		available = {
+			set_temp_variable = { Y = 3 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 35
+		days_re_enable = 10
+		cost = 30
+		modifier = {
+			weekly_manpower = 500
+		}
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 2.5 }
+			GWF_homura_change_stats = yes
+			
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 2 }
+			GWF_homura_change_weekly_stats = yes
+			
+			add_stability = -0.05
+		}
+		remove_effect = {
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2 }
+			GWF_homura_change_weekly_stats = yes
+			
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = 1.5 }
+			GWF_homura_change_stats = yes
+		}
+	}
+	
+	GWF_Homura_i_dont_care = {
+		icon = generic_phone_call
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+			has_country_flag = GWF_lone_warrior
+		}
+		available = {
+			set_temp_variable = { Y = 3 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 30
+		days_re_enable = 10
+		cost = 25
+		modifier = {
+			free_production_units_modifier = 5
+		}
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 5 }
+			GWF_homura_change_stats = yes
+
+			set_temp_variable = { gdp_growth_temp = -0.25 }
+			econ_gdp_growth_change = yes
+			
+			add_stability = -0.05
+		}
+		remove_effect = {
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = 1}
+			GWF_homura_change_stats = yes
+		}
+	}
+	
+	GWF_Homura_go_to_ratenhaus = {
+		icon = generic_building_offices
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+			has_country_flag = GWF_madoka_church
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 30
+		days_re_enable = 10
+		cost = 5
+		modifier = {
+			political_power_gain = 0.25
+		}
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.05
+			TNO_improve_admin_efficiency_low = yes
+		}
+	}
+	
+	GWF_Homura_help_with_church = {
+		icon = generic_podium
+		visible = {
+			check_variable = { GWF_Homura_cat = 1 } 
+			has_country_flag = GWF_madoka_church
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 14
+		days_re_enable = 10
+		cost = 35
+		modifier = {
+			political_power_gain = 0.1
+		}
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 1.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+		}
+	}
+	#powers
+	GWF_Homura_coup_imminent = {
+		icon = generic_red_skull 
+    	available = {
+			check_variable = { GWF_Homura_physics > 5 }
+    	}
+	
+    	activation = {
+    		check_variable = { GWF_Homura_physics < 5.01 }
+			has_country_flag = GWF_Homura_gui_active
+			NOT = { has_country_flag = GWF_Homura_gui_dontcare_already }
+    	}
+		
+    	is_good = no
+	
+    	days_mission_timeout = 14
+		timeout_effect = {
+    		log = "[GetDateText]: [Root.GetName]: GWF_Homura_witchifying_imminent mission timer elapsed" 
+			custom_effect_tooltip = GWF_Homura_coup_imminent_tt
+			hidden_effect = {
+				country_event = { id = GWF.66 }
+			}
+    	}
+		complete_effect = {
+			
+    	}
+  	}
+	
+	GWF_Homura_powers_effigy = {
+		icon = GFX_timeshield
+		visible = {
+			check_variable = { GWF_Homura_cat = 2 }
+		}
+		fire_only_once = yes
+		
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision complete GWF_Homura_powers_effigy... wait that's wrong"
+		}
+	}
+	GWF_Homura_hunt_witches = {
+		icon = generic_assassination
+		visible = {
+			check_variable = { GWF_Homura_cat = 2 } 
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 14
+		days_re_enable = 10
+		cost = 15
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 2.5 }
+			GWF_homura_change_stats = yes
+		}
+	}
+	GWF_Homura_find_weapons = {
+		icon = generic_arms_trade_increase
+		visible = {
+			check_variable = { GWF_Homura_cat = 2 } 
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 21
+		days_re_enable = 10
+		cost = 15
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 250
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = 75
+			}
+		}
+	}
+	GWF_Homura_scavange_for_loot = {
+		icon = generic_investors
+		visible = {
+			check_variable = { GWF_Homura_cat = 2 } 
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 60
+		days_re_enable = 10
+		cost = 20
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -7.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			set_temp_variable = { gdp_growth_temp = 0.25 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { pus_temp = 1 }
+			econ_pus_change = yes
+		}
+	}
+	GWF_Homura_stay_where_stay = {
+		icon = generic_decrease
+		visible = {
+			check_variable = { GWF_Homura_cat = 2 } 
+		}
+		available = {
+			set_temp_variable = { Y = 3 }
+			GWF_Homura_physics_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 60
+		days_re_enable = 10
+		cost = 40
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = 2.5 }
+			GWF_homura_change_stats = yes
+			
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = 2 }
+			GWF_homura_change_weekly_stats = yes
+			
+			add_war_support = -0.05
+		}
+		remove_effect = {
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2 }
+			GWF_homura_change_weekly_stats = yes
+		}
+	}
+	
+	GWF_Homura_kill_some_bandits = {
+		icon = generic_assault
+		visible = {
+			check_variable = { GWF_Homura_cat = 2 } 
+			has_country_flag = GWF_lone_warrior
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 14
+		days_re_enable = 10
+		cost = 40
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 1.5 }
+			GWF_homura_change_stats = yes
+			
+			add_manpower = -25
+		}
+	}
+	
+	GWF_Homura_beat_raiders = {
+		icon = generic_defend
+		visible = {
+			check_variable = { GWF_Homura_cat = 2 } 
+			has_country_flag = GWF_madoka_church
+		}
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 14
+		days_re_enable = 10
+		cost = 40
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = 1.5 }
+			GWF_homura_change_stats = yes
+			
+			add_stability = 0.025
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 100
+			}
+			
+			add_manpower = -25
+		}
+	}
+}
+
+GWF_Opposition_deccat = {
+	GWF_current_opposition_effigy = {
+		icon = generic_defend
+		visible = {
+			always = yes
+		}
+		fire_only_once = yes
+		
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision complete GWF_current_opposition_effigy... wait that's wrong"
+		}
+	}
+	GWF_opposition_final_attack_raf = {
+		icon = generic_assault
+		visible = {
+			check_variable = { GWF_oppo_cat = 3 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GWF_opposition_final_attack_available_tt
+				check_variable = { raf_strength < 15 }
+			}
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 14
+		fire_only_once = yes
+		cost = 15
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			if = {
+				limit = { has_country_flag = GWF_lone_warrior }
+				country_event = { id = GWF.71 } 
+			}	
+			else = {
+				country_event = { id = GWF.70 } 
+			}
+		}
+	}
+	GWF_opposition_final_attack_gim = {
+		icon = generic_assault
+		visible = {
+			check_variable = { GWF_oppo_cat = 2 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GWF_opposition_final_attack_available_tt
+				check_variable = { gim_strength < 15 }
+			}
+			
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 14
+		fire_only_once = yes
+		cost = 15
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			if = {
+				limit = { has_country_flag = GWF_lone_warrior }
+				country_event = { id = GWF.69 } 
+			}	
+			else = {
+				country_event = { id = GWF.68 } 
+			}
+		}
+	}
+	GWF_opposition_final_attack_endezeit = {
+		icon = generic_assault
+		visible = {
+			check_variable = { GWF_oppo_cat = 1 }
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GWF_opposition_final_attack_available_tt
+				check_variable = { endezeit_strength < 15 }
+			}
+			custom_trigger_tooltip = {
+				tooltip = GWF_opposition_final_attack_available_endezeit_tt
+				has_country_flag = GWF_gim_shattered
+				has_country_flag = GWF_raf_shattered
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 14
+		fire_only_once = yes
+		cost = 15
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			if = {
+				limit = { has_country_flag = GWF_lone_warrior }
+				country_event = { id = GWF.73 } 
+			}	
+			else = {
+				country_event = { id = GWF.72 } 
+			}
+		}
+	}
+	GWF_opposition_attack_cells = { ###########
+		icon = generic_use_force
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 21
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		complete_effect = { 
+			add_command_power = -5
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -3.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { opp_to_change = GWF_oppo_cat }
+			set_temp_variable = { temp_stat_gained = -7.5 }
+			GWF_opposition_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			custom_effect_tooltip = GWF_oppo_decision_again_tt
+		}
+	}
+	GWF_opposition_anti_propagranda = {
+		icon = generic_propaganda
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 21
+		cost = 25
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -3.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { opp_to_change = GWF_oppo_cat }
+			set_temp_variable = { temp_stat_gained = -5 }
+			GWF_opposition_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			custom_effect_tooltip = GWF_oppo_decision_again_tt
+		}
+	}
+	GWF_opposition_attack_logistics = {
+		icon = generic_supply
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 21
+		custom_cost_trigger = { command_power > 2.99 }
+		custom_cost_text = decision_cost_3_cp
+		complete_effect = { 
+			add_command_power = -3
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -1.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { opp_to_change = GWF_oppo_cat }
+			set_temp_variable = { temp_stat_gained = -5 }
+			GWF_opposition_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			custom_effect_tooltip = GWF_oppo_decision_again_tt
+		}
+	}
+	GWF_opposition_send_spies = {
+		icon = generic_prepare_civil_war
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 21
+		cost = 15
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -1 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { opp_to_change = GWF_oppo_cat }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_opposition_change_stats = yes
+		}
+		remove_effect = {
+			add_stability = 0.025
+			custom_effect_tooltip = GWF_oppo_decision_again_tt
+		}
+	}
+}
+
+GWF_BigGame_deccat = {
+	GWF_current_round_effigy = {
+		icon = GFX_GWF_current_round_effigy
+		visible = {
+			always = yes
+		}
+		fire_only_once = yes
+		
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision complete GWF_current_round_effigy... wait that's wrong"
+		}
+	}
+	GWF_BigGame_mission = { ##
+		icon = generic_clock
+		priority = 300
+		allowed = {
+			tag = GWF
+		}			
+		available = {
+			always = no
+		}				
+		activation = {
+			has_country_flag = GWF_BigGame_gui_active
+		}
+		days_mission_timeout = BigGame_round_timeout
+		is_good = no 
+
+		timeout_effect = {
+			custom_effect_tooltip = GWF_BigGame_mission_tt
+			hidden_effect = {
+				GWF_great_game_to_the_next_round = yes
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	GWF_biggame_diplomatic_meeting = {
+		icon = generic_shake_hands
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+			custom_trigger_tooltip = {
+				tooltip = GWF_biggame_dont_doing_more
+				NOT = { has_country_flag = GWF_action_active }
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 7
+		cost = 25
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+			
+			set_country_flag = GWF_action_active
+		}
+		remove_effect = {
+			randomize_temp_variable = {
+				var = GWFBiggameAddition
+				distribution = uniform
+				min = 3
+				max = 7
+			}
+			GWF_great_game_change_support = yes
+			custom_effect_tooltip = GWF_biggame_diplomatic_meeting_tt
+			clr_country_flag = GWF_action_active
+		}
+	}
+	GWF_biggame_financial_help = {
+		icon = generic_corruption
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GWF_biggame_dont_doing_more
+				NOT = { has_country_flag = GWF_action_active }
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 7
+		cost = 15
+		complete_effect = { 
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+			
+			set_country_flag = GWF_action_active
+		}
+		remove_effect = {
+			randomize_temp_variable = {
+				var = GWFBiggameAddition
+				distribution = uniform
+				min = 2
+				max = 5
+			}
+			GWF_great_game_change_support = yes
+			custom_effect_tooltip = GWF_biggame_financial_help_tt
+			clr_country_flag = GWF_action_active
+		}
+	}
+	GWF_biggame_promise_mil_help = {
+		icon = generic_military_parade
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GWF_biggame_dont_doing_more
+				NOT = { has_country_flag = GWF_action_active }
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 7
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		complete_effect = { 
+			add_command_power = -5
+			add_war_support = -0.005
+			set_temp_variable = { temp_econ_spending_amount = 0.015 }
+			econ_spend_money_once_effect_raw_money = yes
+			
+			set_country_flag = GWF_action_active
+		}
+		remove_effect = {
+			randomize_temp_variable = {
+				var = GWFBiggameAddition
+				distribution = uniform
+				min = 3
+				max = 5
+			}
+			GWF_great_game_change_support = yes
+			custom_effect_tooltip = GWF_biggame_promise_mil_help_tt
+			clr_country_flag = GWF_action_active
+		}
+	}
+	GWF_biggame_sabotage_enemy = {
+		icon = generic_border_war
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+			custom_trigger_tooltip = {
+				tooltip = GWF_biggame_dont_doing_more
+				NOT = { has_country_flag = GWF_action_active }
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 7
+		cost = 20
+		complete_effect = { 
+			add_stability = -0.005
+			set_temp_variable = { opp_to_change = 2 }
+			set_temp_variable = { temp_stat_gained = -1.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { temp_econ_spending_amount = 0.01 }
+			econ_spend_money_once_effect_raw_money = yes
+			
+			set_country_flag = GWF_action_active
+		}
+		remove_effect = {
+			randomize_temp_variable = {
+				var = GWFBiggameAddition
+				distribution = uniform
+				min = -3
+				max = 3
+			}
+			GWF_great_game_change_support = yes
+			custom_effect_tooltip = GWF_biggame_sabotage_enemy_tt
+			clr_country_flag = GWF_action_active
+		}
+	}
+	GWF_biggame_threaten_diplomats = {
+		icon = generic_civil_support	
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+			custom_trigger_tooltip = {
+				tooltip = GWF_biggame_dont_doing_more
+				NOT = { has_country_flag = GWF_action_active }
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 7
+		custom_cost_trigger = { command_power > 2.99 }
+		custom_cost_text = decision_cost_3_cp
+		complete_effect = { 
+			add_command_power = -3
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -1.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { temp_econ_spending_amount = 0.005 }
+			econ_spend_money_once_effect_raw_money = yes
+			
+			set_country_flag = GWF_action_active
+		}
+		remove_effect = {
+			randomize_temp_variable = {
+				var = GWFBiggameAddition
+				distribution = uniform
+				min = -5
+				max = 5
+			}
+			GWF_great_game_change_support = yes
+			custom_effect_tooltip = GWF_biggame_threaten_diplomats_tt
+			clr_country_flag = GWF_action_active
+		}
+	}
+	GWF_biggame_direct_actions = {
+		icon = generic_document_burn	
+		available = {
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_mental_more_than_Y = yes
+			set_temp_variable = { Y = 10 }
+			GWF_Homura_physics_more_than_Y = yes
+			custom_trigger_tooltip = {
+				tooltip = GWF_biggame_dont_doing_more
+				NOT = { has_country_flag = GWF_action_active }
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 7
+		cost = 30
+		complete_effect = { 
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+			set_temp_variable = { opp_to_change = 1 }
+			set_temp_variable = { temp_stat_gained = -2.5 }
+			GWF_homura_change_stats = yes
+			
+			set_country_flag = GWF_action_active
+		}
+		remove_effect = {
+			randomize_temp_variable = {
+				var = GWFBiggameAddition
+				distribution = uniform
+				min = -3
+				max = -2
+			}
+			GWF_great_game_change_support = yes
+			custom_effect_tooltip = GWF_biggame_direct_actions_tt
+			clr_country_flag = GWF_action_active
+			set_country_flag = skip_enemy_turn
+		}
+	}
+	GWF_biggame_tick = {
+		icon = generic_timer	
+    	allowed = {
+			tag = GWF
+		}			
+		available = {
+			always = no
+		}	
+		activation = {
+			has_country_flag = GWF_BigGame_gui_active
+		}
+    	is_good = no
+	
+    	days_mission_timeout = 7
+	
+		timeout_effect = { 
+    		log = "[GetDateText]: [Root.GetName]: GWF_biggame_tick mission timer elapsed" 
+			if = {
+				limit = { not = { has_country_flag = skip_enemy_turn } }
+				randomize_temp_variable = {
+					var = GWFBiggameAddition
+					distribution = uniform
+					min = -5
+					max = -1
+				}
+				GWF_great_game_change_support = yes
+				custom_effect_tooltip = GWF_biggame_tick_tt
+				if = {
+					limit = { has_country_flag = GWF_BigGame_gui_active }
+					activate_mission = GWF_biggame_tick
+				}
+			}
+			else = {
+				custom_effect_tooltip = GWF_biggame_tick_skipped_tt
+				if = {
+					limit = { has_country_flag = GWF_BigGame_gui_active }
+					activate_mission = GWF_biggame_tick
+				}
+			}
+    	}
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission GWF_biggame_tick Completed (Should never happen for this mission, please report if you see this in the log.)"
+    	}
+  	}
+}
+
+GWF_SGW_deccat = {
+	GWF_sgw_effigy = {
+		icon = GFX_GWF_sgw_effigy
+		visible = {
+			always = yes
+		}
+		fire_only_once = yes
+		
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision complete GWF_sgw_effigy... wait that's wrong"
+		}
+	}
+}
+
+GWF_army_deccat = {
+	GWF_army_train_light_meguca_division = {
+		icon = generic_military_hat_simple
+		visible = {
+			
+		}
+		available = {
+			set_temp_variable = { Y = 400 }
+			GWF_meguca_manpower_more_than_Y = yes 
+			has_equipment = { infantry_equipment > 600 }
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 15
+		days_re_enable = 10
+		cost = 20
+		modifier = {
+			political_power_gain = -0.15
+			experience_gain_army_factor = 0.05
+		}
+		complete_effect = { 
+			set_temp_variable = { Y = -400 }
+			custom_effect_tooltip = GWF_meguca_manpower_increase_tt
+			add_to_variable = { GWF_meguca_manpower = Y }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -600
+			}
+		}
+		remove_effect = {
+			capital_scope = {
+				create_unit = {
+					division = "division_template = \"Lichtmagie-Division\" start_experience_factor = 0.3 start_equipment_factor = 1"
+					owner = GWF
+					count = 1
+				}	
+			}
+		}
+	}
+	GWF_army_train_normal_meguca_division = {
+		icon = generic_military_hat
+		visible = {
+			
+		}
+		available = {
+			set_temp_variable = { Y = 500 }
+			GWF_meguca_manpower_more_than_Y = yes 
+			has_equipment = { infantry_equipment > 600 }
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 25
+		days_re_enable = 10
+		cost = 40
+		modifier = {
+			political_power_gain = -0.2
+			experience_gain_army_factor = 0.1
+		}
+		complete_effect = { 
+			set_temp_variable = { Y = -500 }
+			custom_effect_tooltip = GWF_meguca_manpower_increase_tt
+			add_to_variable = { GWF_meguca_manpower = Y }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -600
+			}
+		}
+		remove_effect = {
+			capital_scope = {
+				create_unit = {
+					division = "division_template = \"Magie-Division\" start_experience_factor = 0.7 start_equipment_factor = 1"
+					owner = GWF
+					count = 1
+				}	
+			}
+			army_experience = 5
+		}
+	}
+	GWF_army_increase_recruitment = {
+		icon = generic_military_parade
+		visible = {
+			
+		}
+		available = {
+			has_manpower > 1000
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 25
+		modifier = {
+			weekly_manpower = -100
+			experience_gain_army_factor = -0.025
+		}
+		complete_effect = { 
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			econ_spend_money_once_effect_raw_money = yes
+			TNO_worsen_army_professionalism_low = yes
+		}
+		remove_effect = {
+			set_temp_variable = { Y = 75 }
+			custom_effect_tooltip = GWF_meguca_manpower_increase_tt
+			add_to_variable = { GWF_meguca_manpower = Y }
+			
+			set_temp_variable = { Y = 25 }
+			custom_effect_tooltip = GWF_meguca_manpower_weekly_increase_tt
+			add_to_variable = { GWF_meguca_weekly_manpower = Y }
+		}
+	}
+	GWF_army_increase_quality  = {
+		icon = generic_military_parade
+		visible = {
+			
+		}
+		available = {
+			set_temp_variable = { Y = 100 }
+			GWF_meguca_manpower_more_than_Y = yes 
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 25
+		modifier = {
+			command_power_gain = 0.15
+			experience_gain_army_factor = 0.025
+		}
+		complete_effect = { 
+			set_temp_variable = { temp_econ_spending_amount = 0.1 }
+			set_temp_variable = { Y = -10 }
+			custom_effect_tooltip = GWF_meguca_manpower_weekly_decrease_tt
+			add_to_variable = { GWF_meguca_weekly_manpower = Y }
+			set_temp_variable = { Y = -50 }
+			custom_effect_tooltip = GWF_meguca_manpower_decrease_tt
+			add_to_variable = { GWF_meguca_manpower = Y }
+		}
+		remove_effect = {
+			TNO_improve_training_policy_effectiveness_high = yes
+			TNO_improve_army_professionalism_med = yes
+			army_experience = 10
+		}
+	}
+	GWF_expand_human_manpower = {
+		icon = generic_assault
+		visible = {
+			
+		}
+		available = {
+			has_army_experience > 4.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 28
+		days_re_enable = 28
+		cost = 25
+		modifier = {
+			command_power_gain = -0.1
+		}
+		complete_effect = { 
+			set_temp_variable = { temp_econ_spending_amount = 0.15 }
+			TNO_worsen_training_policy_effectiveness_low = yes
+			army_experience = -5
+		}
+		remove_effect = {
+			add_manpower = 5000
+			army_experience = 2.5
+		}
+	}
+	GWF_army_create_human_division = {
+		icon = generic_building_army_base
+		visible = {
+			
+		}
+		available = {
+			has_manpower > 5000
+			has_equipment = { infantry_equipment > 1000 }
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_remove = 35
+		days_re_enable = 35
+		cost = 40
+		modifier = {
+			political_power_gain = -0.2
+			experience_gain_army_factor = 0.1
+		}
+		complete_effect = { 
+			add_manpower = -5000
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+			}
+		}
+		remove_effect = {
+			capital_scope = {
+				create_unit = {
+					division = "division_template = \"Militärpolizei-Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = GWF
+					count = 1
+				}	
+			}
+			army_experience = 5
+		}
+	}
+}
+
+GER_trvthnuke_deccat = {
+	GER_trvthnuke_form_NDN_ai = {
+		icon = generic_military_parade
+		visible = {
+			is_NDN_nation = yes
+		}	
+		available = {
+			can_form_NDN = yes
+		}
+		ai_will_do = { factor = 100 }
+		fire_only_once = yes
+		complete_effect = {
+			every_owned_state = { add_core_of = ROOT }	
+			save_global_event_target_as = GER_AprilFools_Norwegian_Unifier
+		}
+	}
+	GER_trvthnuke_form_NGE_ai = {
+		icon = generic_military_parade
+		visible = {
+			is_NGE_nation = yes
+		}	
+		available = {
+			can_form_NGE = yes
+		}
+		ai_will_do = { factor = 100 }
+		fire_only_once = yes
+		complete_effect = {
+			every_owned_state = { add_core_of = ROOT }
+			save_global_event_target_as = GER_AprilFools_Northern_Unifier
+			country_event = { id = GER_AF_skeleton.11 days = 30	}
+		}
+	}
+	GER_trvthnuke_form_WGE_ai = {
+		icon = generic_military_parade
+		visible = {
+			is_WGE_nation = yes
+		}	
+		available = {
+			can_form_WGE = yes
+		}
+		ai_will_do = { factor = 100 }
+		fire_only_once = yes
+		complete_effect = {
+			every_owned_state = { add_core_of = ROOT }	
+			save_global_event_target_as = GER_AprilFools_Western_Unifier
+		}
+	}
+	GER_trvthnuke_form_EGE_ai = {
+		icon = generic_military_parade
+		visible = {
+			is_EGE_nation = yes
+		}	
+		available = {
+			can_form_EGE = yes
+		}
+		ai_will_do = { factor = 100 }
+		fire_only_once = yes
+		complete_effect = {
+			every_owned_state = { add_core_of = ROOT }		
+			save_global_event_target_as = GER_AprilFools_Eastern_Unifier
+		}
+	}
+	
+}
+
+GER_trvthnuke_deccat_player = {
+	GER_close_that_shit = {
+		icon = GFX_decision_point
+		available = {
+			always = yes
+		} 	
+		fire_only_once = yes		
+		complete_effect = {
+			custom_effect_tooltip = GER_trvthnuke_stay_as_gwf_tt
+			set_country_flag = GER_trvthnuke_deccat_player_hide
+		}
+	}
+	
+	GER_trvthnuke_play_someone = {
+		icon = GFX_decision_point
+		target_array = global.Germany_Trvthnuke_states
+		target_trigger = {
+			FROM = {
+				exists = yes
+			}
+		}
+		visible = {
+			FROM = {
+				exists = yes
+			}
+		}
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_trvthnuke_play_someone"
+			FROM = {
+				change_tag_from = ROOT
+			}
+			GWF = {
+				set_country_flag = GER_trvthnuke_deccat_player_hide
+				load_focus_tree = ZZZ_blank_focus
+			}
+		}
+	}
+	GER_trvthnuke_show_hide_wars = {
+		icon = {
+			key = GFX_decision_generic_visibility_closed
+			trigger = {
+				has_country_flag = GER_show_wars
+			}
+		}
+		icon = {
+			key = GFX_decision_generic_visibility
+			trigger = {
+				NOT = { has_country_flag = GER_show_wars }
+			}
+		}
+		visible = {
+			NOT = { original_tag = GWF }
+		}
+		days_re_enable = 0
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_trvthnuke_show_hide_wars"
+			if = {
+				limit = { has_country_flag = GER_show_wars }
+				clr_country_flag = GER_show_wars
+			}
+			else = {
+				set_country_flag = GER_show_wars
+			}
+		}
+	}
+	GER_trvthnuke_declare_war_someone = {
+		icon = GFX_decision_generic_bombing
+		target_array = global.Germany_Trvthnuke_states
+		target_trigger = {
+			FROM = {
+				exists = yes
+			}
+			NOT = { is_SGE_nation = yes }
+		}
+		visible = {
+			FROM = {
+				exists = yes
+				is_neighbor_of = ROOT
+			}
+			has_country_flag = GER_show_wars
+			NOT = { original_tag = GWF }
+		}
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_trvthnuke_declare_war_someone"
+			declare_war_on = {
+				target = FROM
+				type = annex_everything
+			}
+		}
+	}
+	GER_trvthnuke_form_NDN = {
+		icon = generic_military_parade
+		visible = {
+			is_NDN_nation = yes
+		}	
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = can_form_scandinavia_tt
+				can_form_NDN = yes
+			}
+		}
+		ai_will_do = { factor = 100 }
+		fire_only_once = yes
+		complete_effect = {
+			every_owned_state = { add_core_of = ROOT }	
+			save_global_event_target_as = GER_AprilFools_Norwegian_Unifier
+		}
+	}
+	GER_trvthnuke_form_NGE = {
+		icon = generic_military_parade
+		visible = {
+			is_NGE_nation = yes
+		}	
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = can_form_northern_germany_tt
+				can_form_NGE = yes
+			}
+		}
+		ai_will_do = { factor = 100 }
+		fire_only_once = yes
+		complete_effect = {
+			every_owned_state = { add_core_of = ROOT }
+			save_global_event_target_as = GER_AprilFools_Northern_Unifier
+			country_event = { id = GER_AF_skeleton.11 days = 30	}
+		}
+	}
+	GER_trvthnuke_form_WGE = {
+		icon = generic_military_parade
+		visible = {
+			is_WGE_nation = yes
+		}	
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = can_form_western_germany_tt
+				can_form_WGE = yes
+			}
+		}
+		ai_will_do = { factor = 100 }
+		fire_only_once = yes
+		complete_effect = {
+			every_owned_state = { add_core_of = ROOT }	
+			save_global_event_target_as = GER_AprilFools_Western_Unifier
+		}
+	}
+	GER_trvthnuke_form_EGE = {
+		icon = generic_military_parade
+		visible = {
+			is_EGE_nation = yes
+		}	
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = can_form_east_germany_tt
+				can_form_EGE = yes
+			}
+		}
+		ai_will_do = { factor = 100 }
+		fire_only_once = yes
+		complete_effect = {
+			every_owned_state = { add_core_of = ROOT }		
+			save_global_event_target_as = GER_AprilFools_Eastern_Unifier
+		}
+	}
+	GER_trvthnuke_german_reunification = {
+		icon = GFX_decision_category_generic_russia
+		available = {
+			has_war = no
+			custom_trigger_tooltip = {
+				tooltip = can_form_east_germany_tt
+				can_form_EGE = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_northern_germany_tt
+				can_form_NGE = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_western_germany_tt
+				can_form_WGE = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_scandinavia_tt
+				can_form_NDN = yes
+			}
+		}
+		visible = {
+			NOT = { original_tag = GWF }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_trvthnuke_german_reunification"
+			set_global_flag = GER_trvthnuke_reunification
+			add_research_slot = 1
+			custom_effect_tooltip = GER_trvthnuke_unification_tt
+			hidden_effect = {
+				add_manpower = 150000
+			}
+			every_controlled_state = {
+				add_core_of = ROOT
+			}
+			#RUS_select_re_reunified_cosmotag = yes
+			every_country = {
+				limit = { is_ai = no }
+				news_event = { id = AprilFools_news.20 }
+			}
+			TNO_Country_Closing_Screen_Show = yes
+		}
+	}
+}

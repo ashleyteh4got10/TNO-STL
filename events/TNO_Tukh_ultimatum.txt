@@ -1,0 +1,228 @@
+add_namespace = tukha_ultimatum 
+
+country_event = { #Berezniki - WHITE FLAG
+	id = tukha_ultimatum.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tukha_ultimatum.29"}
+	title = tukha_ultimatum.29.t
+	desc = tukha_ultimatum.29.d
+	picture = GFX_report_event_russia_red_army_march
+
+	is_triggered_only = yes
+
+	option = {
+		name = tukha_ultimatum.29.a 
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = WRS ratio > 1.5 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = WRS ratio > 3 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = WRS ratio > 5 }
+			}
+		}
+		WRS = {
+			country_event = {
+				id = tukha_ultimatum.31
+				days = 2
+			}
+		}
+	}
+	option = {
+		name = tukha_ultimatum.29.b
+		ai_chance = {
+			factor = 200
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = WRS ratio < 1 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = WRS ratio < 0.5 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = WRS ratio < 0.2 }
+			}
+		}
+		WRS = {
+			country_event = {
+				id = tukha_ultimatum.30
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { #Berezniki - refuse white flag
+	id = tukha_ultimatum.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tukha_ultimatum.30"}
+	title = tukha_ultimatum.30.t
+	desc = tukha_ultimatum.30.d
+	picture = GFX_report_event_Generic_Papers
+
+	is_triggered_only = yes
+
+	option = {
+		name = tukha_ultimatum.30.a
+		MAR = {
+			country_event = {
+				id = tukha_ultimatum.32
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { #Berezniki - accept white flag
+	id = tukha_ultimatum.31
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tukha_ultimatum.31"}
+	title = tukha_ultimatum.31.t
+	desc = tukha_ultimatum.31.d
+	picture = GFX_report_event_generic_sign_treaty1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tukha_ultimatum.31.a
+		add_manpower = 5000
+		WRS = {
+			annex_country = {
+				target = MAR
+				transfer_troops = no 
+			}
+		}
+		WRS = {
+			change_tag_from = MAR
+		}
+	}
+}
+
+country_event = { #Berezniki - RED FLAG
+	id = tukha_ultimatum.32
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tukha_ultimatum.32"}
+	title = tukha_ultimatum.32.t
+	desc = tukha_ultimatum.32.d
+	picture = GFX_report_event_russia_soldier_weapon_1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tukha_ultimatum.32.a
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = WRS ratio > 1.5 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = WRS ratio > 3 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = WRS ratio > 5 }
+			}
+		}
+		WRS = {
+			country_event = {
+				id = tukha_ultimatum.34
+				days = 2
+			}
+		}
+	}
+	option = {
+		name = tukha_ultimatum.32.b
+		ai_chance = {
+			factor = 180
+			modifier = {
+				factor = 0.5
+				strength_ratio = { tag = WRS ratio < 1 }
+			}
+			modifier = {
+				factor = 0.2
+				strength_ratio = { tag = WRS ratio < 0.5 }
+			}
+			modifier = {
+				factor = 0
+				strength_ratio = { tag = WRS ratio < 0.2 }
+			}
+		}
+		WRS = {
+			country_event = {
+				id = tukha_ultimatum.33
+				days = 2
+			}
+		}
+	}
+}
+
+country_event = { #Berezniki - refuse red flag
+	id = tukha_ultimatum.33
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tukha_ultimatum.33"}
+	title = tukha_ultimatum.33.t
+	desc = tukha_ultimatum.33.d
+	picture = GFX_report_event_Generic_Papers
+
+	is_triggered_only = yes
+
+	option = {
+		name = tukha_ultimatum.33.a
+		hidden_effect = {
+			MAR= {
+				country_event = {
+					id = tukha_ultimatum.35
+					days = 2
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Berezniki - accept red flag
+	id = tukha_ultimatum.34
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tukha_ultimatum.34"}
+	title = tukha_ultimatum.34.t
+	desc = tukha_ultimatum.34.d
+	picture = GFX_report_event_generic_sign_treaty1
+
+	is_triggered_only = yes
+
+	option = {
+		name = tukha_ultimatum.34.a
+		WRS = {
+			annex_country = {
+				target = MAR
+				transfer_troops = no 
+			}
+		}
+		WRS = {
+			change_tag_from = MAR
+		}
+	}
+}
+
+country_event = { #Berezniki - BLACK FLAG
+	id = tukha_ultimatum.35
+	immediate = {log = "[GetDateText]: [Root.GetName]: event tukha_ultimatum.35"}
+	title = tukha_ultimatum.35.t
+	desc = tukha_ultimatum.35.d
+	picture = GFX_report_event_russia_soldiers_bombed_city
+
+	is_triggered_only = yes
+
+	option = {
+		name = tukha_ultimatum.35.a
+		WRS = {
+			declare_war_on = {
+				target = MAR
+				type = annex_everything
+			}
+		}
+	}
+}

@@ -1,0 +1,3321 @@
+TaS_fopo_add_far_eastern_revolt_tab = {
+	set_temp_variable = { conflict_id = token:GC_FarEasternRevolt }
+	TNO_add_fopo_conflict_tab = yes
+}
+TaS_fopo_remove_far_eastern_revolt_tab = {
+	set_temp_variable = { conflict_id = token:GC_FarEasternRevolt }
+	TNO_remove_fopo_conflict_tab = yes
+}
+
+TaS_fopo_add_manchurian_civil_war_tab = {
+	set_temp_variable = { conflict_id = token:GC_ManchurianCivilWar }
+	TNO_add_fopo_conflict_tab = yes
+}
+TaS_fopo_remove_manchurian_civil_war_tab = {
+	set_temp_variable = { conflict_id = token:GC_ManchurianCivilWar }
+	TNO_remove_fopo_conflict_tab = yes
+}
+TaS_fopo_add_iranian_civil_war_tab = {
+	set_temp_variable = { conflict_id = token:GC_IranCW }
+	TNO_add_fopo_conflict_tab = yes
+}
+TaS_fopo_remove_iranian_civil_war_tab = {
+	set_temp_variable = { conflict_id = token:GC_IranCW }
+	TNO_remove_fopo_conflict_tab = yes
+}
+TaS_fopo_add_oil_crisis_tab = {
+	set_temp_variable = { conflict_id = token:GC_OilCrisis }
+	TNO_add_fopo_conflict_tab = yes
+}
+TaS_fopo_remove_oil_crisis_tab = {
+	set_temp_variable = { conflict_id = token:GC_OilCrisis }
+	TNO_remove_fopo_conflict_tab = yes
+}
+TaS_fopo_add_congo_cw_tab = {
+	set_temp_variable = { conflict_id = token:GC_CongoCW }
+	TNO_add_fopo_conflict_tab = yes
+}
+TaS_fopo_remove_congo_cw_tab = {
+	set_temp_variable = { conflict_id = token:GC_CongoCW }
+	TNO_remove_fopo_conflict_tab = yes
+	set_temp_variable = { target = CPR }
+	TNO_clear_num_volunteers = yes
+	set_temp_variable = { target = KTG }
+	TNO_clear_num_volunteers = yes
+	set_temp_variable = { target = KSI }
+	TNO_clear_num_volunteers = yes			
+}
+TaS_fopo_add_iberian_wars_tab = {
+	set_temp_variable = { conflict_id = token:GC_IberianWars }
+	TNO_add_fopo_conflict_tab = yes
+}
+TaS_fopo_remove_iberian_wars_tab = {
+	set_temp_variable = { conflict_id = token:GC_IberianWars }
+	TNO_remove_fopo_conflict_tab = yes
+}
+TaS_fopo_add_france_civil_war_tab = {
+	set_temp_variable = { conflict_id = token:GC_FranceCW }
+	TNO_add_fopo_conflict_tab = yes
+}
+TaS_fopo_remove_france_civil_war_tab = {
+	set_temp_variable = { conflict_id = token:GC_FranceCW }
+	TNO_remove_fopo_conflict_tab = yes
+}
+TaS_fopo_add_afghanistan_civil_war_tab = {
+	set_temp_variable = { conflict_id = token:GC_AfghanistanCivilWar }
+	TNO_add_fopo_conflict_tab = yes
+}
+TaS_fopo_remove_afghanistan_civil_war_tab = {
+	set_temp_variable = { conflict_id = token:GC_AfghanistanCivilWar }
+	TNO_remove_fopo_conflict_tab = yes
+}
+TaS_OIL_get_supported_factions = {
+	if = {
+		limit = { MAR = { NOT = { has_government = socialist } } }
+		add_to_array = { global.OIL_supported_by_MAR = OMI }
+		add_to_array = { global.OIL_supported_by_MAR = EGQ }
+		add_to_array = { global.OIL_supported_by_MAR = SDF }
+		add_to_array = { global.OIL_supported_by_MAR = AZA }
+		add_to_array = { global.OIL_supported_by_MAR = SAU }
+		if = {
+			limit = {
+				IRQ = { has_country_flag = IRQ_kurds_in_the_IraqCW }
+			}
+			add_to_array = { global.OIL_supported_by_MAR = KUR }
+		}
+		else = {
+			add_to_array = { global.OIL_supported_by_MAR = SNI }
+		}
+	}
+	else = {
+		add_to_array = { global.OIL_supported_by_MAR = NYM }
+		add_to_array = { global.OIL_supported_by_MAR = OMB }
+		add_to_array = { global.OIL_supported_by_MAR = BIR }
+		add_to_array = { global.OIL_supported_by_MAR = EGB }
+		add_to_array = { global.OIL_supported_by_MAR = SDS }
+		add_to_array = { global.OIL_supported_by_MAR = AYA }
+	}
+	for_each_scope_loop = {
+		array = global.OIL_supported_by_MAR
+
+		meta_effect = {
+			text = {
+				add_ai_strategy = {
+					id = "[Target_tag]"
+					type = send_volunteers_desire
+					value = 500
+				}
+			}
+			Target_tag = "[FROM.GetTag]"
+		}
+	}
+}
+TaS_2WRW_manchuria_spawn_states = {
+	custom_effect_tooltip = TaS_2WRW_manchuria_spawn_states_tt
+	PFF = {
+		transfer_state = 1364
+		add_state_core = 1364
+		transfer_state = 657
+		add_state_core = 657
+		transfer_state = 1646
+		add_state_core = 1646
+		transfer_state = 409
+		add_state_core = 409
+		hidden_effect = {
+			inherit_technology = MAR
+			load_oob = PFF_revolt
+			every_owned_state = {
+				set_demilitarized_zone = no
+			}
+		}
+		TNO_startup_nation = yes
+	}	
+	PJP = {
+		promote_character = PJP_Hiromichi_Yahara
+		transfer_state = 1644
+		add_state_core = 1644
+		transfer_state = 408
+		add_state_core = 408
+		transfer_state = 809
+		add_state_core = 809
+		hidden_effect = {
+			809 = {
+				set_state_name = STATE_809
+				set_province_name = { id = 957 name = VICTORY_POINTS_957 }
+			}
+			408 = {
+				set_state_name = STATE_408
+				set_province_name = { id = 6961 name = VICTORY_POINTS_6961 }
+				set_province_name = { id = 11750 name = VICTORY_POINTS_11750_man }
+			}
+			1644 = {
+				set_state_name = STATE_1644
+				set_province_name = { id = 9604 name = VICTORY_POINTS_9604 }
+				set_province_name = { id = 7868 name = VICTORY_POINTS_7868 }
+				set_province_name = { id = 11575 name = VICTORY_POINTS_11575 }
+			}
+			inherit_technology = JAP
+			load_oob = MJP_revolt
+			every_owned_state = {
+				set_demilitarized_zone = no
+			}
+		}
+		TNO_startup_nation = yes
+	}	
+}
+TaS_2WRW_manchuria_start_rebelion = {
+	custom_effect_tooltip = TaS_2WRW_manchuria_start_rebelion_tt	
+	PJP = {
+		if = {
+			limit = {
+				check_variable = { JAP.JAP_FErebels_infantry_weapons  > 0 }
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = JAP.JAP_FErebels_infantry_weapons
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = JAP.JAP_FErebels_support_equipment
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = JAP.JAP_FErebels_at_equipment
+				producer = JAP
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = JAP.JAP_FErebels_artillery_equipment
+				producer = JAP
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { JAP.JAP_FErebels_motorized_equipment > 0 }
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = JAP.JAP_FErebels_motorized_equipment
+				producer = JAP
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = {
+					type = MBT_chassis
+					amount = JAP.JAP_FErebels_mbt_equipment
+					producer = JAP
+				}
+				add_equipment_to_stockpile = {
+					type = APC_chassis
+					amount = JAP.JAP_FErebels_apc_equipment
+					producer = JAP
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_dlc = "No Step Back"
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = MBT_equipment
+					amount = JAP.JAP_FErebels_mbt_equipment
+					producer = JAP
+				}
+				add_equipment_to_stockpile = {
+					type = APC_equipment
+					amount = JAP.JAP_FErebels_apc_equipment
+					producer = JAP
+				}
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { JAP.JAP_FErebels_adddivisions > 0 }
+			}
+			hidden_effect = {
+			capital_scope = {
+					create_unit = {
+						division = "division_template = \"Kei Fuhyōshidan\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+						owner = PJP
+						count = JAP.JAP_FErebels_adddivisions
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { MAR.MAR_FErebels_addpartisans > 0 }
+			}
+			add_ideas = {
+				TaS_war_partisans
+			}
+		}
+		if = {
+			limit = {
+				has_game_rule = {
+					rule = BELOZERSKY_FE_REBELLION_RESULT
+					option = BELOZERSKY_FE_REBELLION_RESULT_PJP
+				}
+			}
+			apply_war_buff_with_15_divisions = yes
+			add_timed_idea = {
+				idea = war_cheat
+				days = 90
+			}
+		}
+	}
+	PFF = {
+		if = {
+			limit = {
+				check_variable = { MAR.MAR_FErebels_infantry_weapons  > 0 }
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = MAR.MAR_FErebels_infantry_weapons
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = MAR.MAR_FErebels_support_equipment
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = MAR.MAR_FErebels_at_equipment
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = MAR.MAR_FErebels_artillery_equipment
+				producer = MAR
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { MAR.MAR_FErebels_motorized_equipment > 0 }
+			}
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = MAR.MAR_FErebels_motorized_equipment
+				producer = MAR
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = {
+					type = MBT_chassis
+					amount = MAR.MAR_FErebels_mbt_equipment
+					producer = MAR
+				}
+				add_equipment_to_stockpile = {
+					type = APC_chassis
+					amount = MAR.MAR_FErebels_apc_equipment
+					producer = MAR
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_dlc = "No Step Back"
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = MBT_equipment
+					amount = MAR.MAR_FErebels_mbt_equipment
+					producer = MAR
+				}
+				add_equipment_to_stockpile = {
+					type = APC_equipment
+					amount = MAR.MAR_FErebels_apc_equipment
+					producer = MAR
+				}
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { MAR.MAR_FErebels_adddivisions > 0 }
+			}
+			hidden_effect = {
+			capital_scope = {
+					create_unit = {
+						division = "division_template = \"Professionalnye Otryady\" start_experience_factor = 0.6 start_equipment_factor = 0.9"
+						owner = PFF
+						count = MAR.MAR_FErebels_adddivisions
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { JAP.JAP_FErebels_addpartisans > 0 }
+			}
+			add_ideas = {
+				TaS_KOR_JAP_saboteurs
+			}
+		}
+		if = {
+			limit = {
+				has_game_rule = {
+					rule = BELOZERSKY_FE_REBELLION_RESULT
+					option = BELOZERSKY_FE_REBELLION_RESULT_PFF
+				}
+			}
+			apply_war_buff_with_15_divisions = yes
+			#add_timed_idea = {
+			#	idea = war_cheat
+			#	days = 90
+			#}
+		}
+	}
+	PJP = {
+		declare_war_on = {
+			target = PFF
+			type = annex_everything
+		}
+	}
+}
+TaS_WRW2_change_devastation = { 
+	set_temp_variable = { temp_devastation_gained_txt = temp_devastation_gained }
+	add_to_variable = { WRW2_devastation = temp_devastation_gained }
+	TaS_WRW2_check_the_exhausion = yes
+	
+	clamp_variable = {
+		var = WRW2_devastation
+		min = 0
+		max = 100
+	}
+	if = {
+		limit = { check_variable = { temp_devastation_gained < 0 } }
+		multiply_temp_variable = { temp_devastation_gained_txt = -1 }
+		custom_effect_tooltip = TaS_WRW2_devastation_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = TaS_WRW2_devastation_growth_tt
+	}
+}
+
+TaS_WRW2_change_devastation_gain = { 
+	set_temp_variable = { temp_devastation_gain_gained_txt = temp_devastation_gain_gained }
+	add_to_variable = { WRW2_devastation_gain = temp_devastation_gain_gained }
+	
+	clamp_variable = {
+		var = WRW2_devastation_gain
+		min = 0
+		max = 100
+	}
+	if = {
+		limit = { check_variable = { temp_devastation_gain_gained < 0 } }
+		multiply_temp_variable = { temp_devastation_gain_gained_txt = -1 }
+		custom_effect_tooltip = TaS_WRW2_devastation_gain_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = TaS_WRW2_devastation_gain_growth_tt
+	}
+}
+Tas_WRW2_decrease_depression = {
+	custom_effect_tooltip = Tas_WRW2_decrease_depression_tt
+	if = {
+		limit = { original_tag = RUS }
+		if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_5 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_5
+				add_idea = SWRW_RUS_oper_fail_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_4 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_4
+				add_idea = SWRW_RUS_oper_fail_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_3 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_3
+				add_idea = SWRW_RUS_oper_fail_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_2 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_2
+				add_idea = SWRW_RUS_oper_fail_1
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_1 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_1
+				add_idea = SWRW_RUS_oper_succ_1
+			}	
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_1 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_1
+				add_idea = SWRW_RUS_oper_succ_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_2 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_2
+				add_idea = SWRW_RUS_oper_succ_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_3 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_3
+				add_idea = SWRW_RUS_oper_succ_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_4 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_4
+				add_idea = SWRW_RUS_oper_succ_5
+			}
+		}	
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_zero }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_zero
+				add_idea = SWRW_RUS_oper_succ_1
+			}
+		}
+	}
+	else = {
+		if = {
+			limit = { has_idea = SWRW_GER_oper_fail_5 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_5
+				add_idea = SWRW_GER_oper_fail_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_fail_4 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_4
+				add_idea = SWRW_GER_oper_fail_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_fail_3 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_3
+				add_idea = SWRW_GER_oper_fail_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_fail_2 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_2
+				add_idea = SWRW_GER_oper_fail_1
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_fail_1 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_1
+				add_idea = SWRW_GER_oper_succ_1
+			}	
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_succ_1 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_1
+				add_idea = SWRW_GER_oper_succ_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_succ_2 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_2
+				add_idea = SWRW_GER_oper_succ_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_succ_3 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_3
+				add_idea = SWRW_GER_oper_succ_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_succ_4 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_4
+				add_idea = SWRW_GER_oper_succ_5
+			}
+		}	
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_zero }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_zero
+				add_idea = SWRW_GER_oper_succ_1
+			}
+		}
+	}
+} 
+Tas_WRW2_increase_depression = {
+	custom_effect_tooltip = Tas_WRW2_increase_depression_tt
+	if = {
+		limit = { original_tag = RUS }
+		if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_5 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_5
+				add_idea = SWRW_RUS_oper_succ_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_4 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_4
+				add_idea = SWRW_RUS_oper_succ_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_3 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_3
+				add_idea = SWRW_RUS_oper_succ_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_2 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_2
+				add_idea = SWRW_RUS_oper_succ_1
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_succ_1 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_succ_1
+			add_idea = SWRW_RUS_oper_fail_1
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_1 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_1
+				add_idea = SWRW_RUS_oper_fail_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_2 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_2
+				add_idea = SWRW_RUS_oper_fail_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_3 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_3
+				add_idea = SWRW_RUS_oper_fail_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_fail_4 }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_fail_4
+				add_idea = SWRW_RUS_oper_fail_5
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_RUS_oper_zero }
+			swap_ideas = {
+				remove_idea = SWRW_RUS_oper_zero
+				add_idea = SWRW_RUS_oper_fail_1
+			}
+		}
+	}
+	else = {
+		if = {
+			limit = { has_idea = SWRW_GER_oper_succ_5 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_5
+				add_idea = SWRW_GER_oper_succ_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_succ_4 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_4
+				add_idea = SWRW_GER_oper_succ_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_succ_3 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_3
+				add_idea = SWRW_GER_oper_succ_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_succ_2 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_2
+				add_idea = SWRW_GER_oper_succ_1
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_succ_1 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_succ_1
+			add_idea = SWRW_GER_oper_fail_1
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_fail_1 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_1
+				add_idea = SWRW_GER_oper_fail_2
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_fail_2 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_2
+				add_idea = SWRW_GER_oper_fail_3
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_fail_3 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_3
+				add_idea = SWRW_GER_oper_fail_4
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_fail_4 }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_fail_4
+				add_idea = SWRW_GER_oper_fail_5
+			}
+		}
+		else_if = {
+			limit = { has_idea = SWRW_GER_oper_zero }
+			swap_ideas = {
+				remove_idea = SWRW_GER_oper_zero
+				add_idea = SWRW_GER_oper_fail_1
+			}
+		}
+	}
+} 
+TaS_WRW2_total_capitulation = {
+	custom_effect_tooltip = TaS_WRW2_total_capitulation_tt
+	set_global_flag = TaS_WRW2_Russian_victory
+	RUS = {
+		annex_country = {
+			target = MCW
+			transfer_troops = no
+		}
+		annex_country = {
+			target = OST
+			transfer_troops = no
+		}
+		annex_country = {
+			target = UKR
+			transfer_troops = no
+		}
+		annex_country = {
+			target = CAU
+			transfer_troops = no
+		}
+		annex_country = {
+			target = BLR
+			transfer_troops = no
+		}
+		#in case if ostland were annexed
+		transfer_state = 1397
+		transfer_state = 1404
+		 
+		transfer_state = 195
+		transfer_state = 137
+		transfer_state = 1532
+		transfer_state = 196
+		
+		transfer_state = 2099
+		add_state_core = 2099
+		2099 = { set_variable = { nationality = 151 } }
+		
+		transfer_state = 257
+		transfer_state = 222
+		transfer_state = 1441
+		transfer_state = 224
+		if = {
+			limit = { 
+				country_exists = TNS
+				TNS = { is_subject_of = GER }
+			}
+			annex_country = {
+				target = TNS
+				transfer_troops = no
+			}
+		}
+		if = {
+			limit = { 
+				country_exists = UTL
+				UTL = { is_in_faction_with = GER }
+			}
+			MAR_install_mil_turkestan = yes
+		}
+	}
+	if = {
+		limit = {
+			FRA = {	check_variable = { ECON_SPHERE_LEADER = MAR } }
+			OR = {
+				GER = { owns_state = 17 }
+				GLC = { owns_state = 17 }
+			}
+		}
+		FRA = {
+			annex_country = {
+				target = GLC
+				transfer_troops = no
+			}
+			transfer_state = 15
+			transfer_state = 16
+			transfer_state = 788
+			transfer_state = 1625
+			transfer_state = 1626
+			transfer_state = 1635
+			transfer_state = 17
+			transfer_state = 18
+			transfer_state = 29
+			transfer_state = 1733
+			transfer_state = 1994
+			
+			every_owned_state = {
+				remove_core_of = GLC
+				remove_core_of = GER
+				add_core_of = FRA
+			}
+			set_capital = { state = 786 remember_old_capital = no }
+		}
+		if = {
+			limit = {
+				HOL = { exists = yes }
+			}
+			HOL = {
+				transfer_state = 1734
+				transfer_state = 6
+				
+				every_owned_state = {
+					add_core_of = HOL
+				}
+			}
+		}
+		else = {
+			GER = {
+				transfer_state = 1734
+				transfer_state = 6
+			}
+		}
+	}
+	
+	TaS_2WRW_form_ost_zones = yes
+	GER = {
+		country_event = { id = TaS_GERCollapse.1 days = 7 }
+		load_focus_tree = ZZZ_blank_focus
+		set_temp_variable = { Victory_ID = 53 }
+		set_temp_variable = { Victory_Outcome = 1 }
+		set_temp_variable = { Victory_Points = -500 }
+		Cold_War_GUI_ManipulateVictory = yes
+	}
+}
+
+TaS_2WRW_spawn_volunteers = {
+	division_template = {
+		name = "OFN Infantry Volunteers"
+		priority = 2
+		regiments = {
+			infantry = { x = 0 y = 0 }
+			infantry = { x = 0 y = 1 }
+			infantry = { x = 0 y = 2 }
+			infantry = { x = 1 y = 0}
+			infantry = { X = 1 y = 1}
+			infantry = { X = 1 y = 2}
+			infantry = { x = 2 y = 0}
+			artillery_brigade = { X = 2 y = 1}
+			artillery_brigade = { X = 2 y = 2}
+		}
+		support = {
+			recon = { x = 0 y = 0 }
+			artillery = { x = 0 y = 1 }
+			logistics_company = { x = 0 y = 2 }
+		}	
+    }
+	division_template = {
+		name = "OFN International Tank Corps"
+		priority = 2
+		regiments = {
+			MBT = { x = 0 y = 0 }
+			MBT = { x = 0 y = 1 }
+			MBT = { x = 1 y = 0}
+			MBT = { X = 1 y = 1}
+			APC = { x = 2 y = 0}
+			APC = { X = 2 y = 1}
+		}
+		support = {
+			maintenance_company = { x = 0 y = 0 }
+		}
+	}
+	random_owned_controlled_state = {
+		prioritize = { 214 262 }
+		create_unit = {
+			division = "division_template = \"OFN International Tank Corps\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"OFN International Tank Corps\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"OFN Infantry Volunteers\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"OFN Infantry Volunteers\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"OFN Infantry Volunteers\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"OFN Infantry Volunteers\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+	}	
+}
+
+TaS_2WRW_spawn_antifascists = {
+	division_template = {
+		name = "Antifashistkaya Brigada"
+		priority = 2
+		regiments = {
+			infantry = { x = 0 y = 0 }
+			infantry = { x = 0 y = 1 }
+			infantry = { x = 0 y = 2 }
+			infantry = { x = 1 y = 0}
+			infantry = { X = 1 y = 1}
+			infantry = { X = 1 y = 2}
+		}
+		support = {
+			artillery = { x = 0 y = 0 }
+		}	
+    }
+	random_owned_controlled_state = {
+		prioritize = { 214 262 }
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Antifashistkaya Brigada\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+	}	
+}
+TaS_2WRW_spawn_germans = {
+	add_corps_commander_role = {
+		character = MAR_Kessler_Heinz
+		traits = {
+			politically_connected
+			commando
+		}
+		skill = 2
+		attack_skill = 3
+		defense_skill = 1
+		planning_skill = 1
+		logistics_skill = 2
+	}
+	division_template = {
+		name = "Infanterie Division"
+		priority = 2
+		regiments = {
+			infantry = { x = 0 y = 0 }
+			infantry = { x = 0 y = 1 }
+			infantry = { x = 0 y = 2 }
+			infantry = { x = 1 y = 0}
+			infantry = { X = 1 y = 1}
+			infantry = { X = 1 y = 2}
+			infantry = { x = 2 y = 0}
+			artillery_brigade = { X = 2 y = 1}
+			artillery_brigade = { X = 2 y = 2}
+		}
+		support = {
+			recon = { x = 0 y = 0 }
+			artillery = { x = 0 y = 1 }
+			logistics_company = { x = 0 y = 2 }
+		}	
+    }
+	division_template = {
+		name = "Panzerdivision"
+		priority = 2
+		regiments = {
+			MBT = { x = 0 y = 0 }
+			MBT = { x = 0 y = 1 }
+			MBT = { x = 1 y = 0}
+			MBT = { X = 1 y = 1}
+			APC = { x = 2 y = 0}
+			APC = { X = 2 y = 1}
+		}
+		support = {
+			maintenance_company = { x = 0 y = 0 }
+		}
+	}
+	random_owned_controlled_state = {
+		prioritize = { 214 262 }
+		create_unit = {
+			division = "division_template = \"Panzerdivision\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Panzerdivision\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Panzerdivision\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Panzerdivision\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Infanterie Division\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Infanterie Division\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Infanterie Division\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Infanterie Division\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Infanterie Division\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+		create_unit = {
+			division = "division_template = \"Infanterie Division\" start_experience_factor = 0.6 start_equipment_factor = 0.5"
+			owner = MAR
+		}
+	}	
+}
+TaS_WRW2_Peace_Yall = {
+	custom_effect_tooltip = TaS_WRW2_Peace_Yall_tt
+	hidden_effect = {
+		if = {
+			limit = { FIN = { has_country_flag = oh_fuck_the_russians_are_coming } }
+			SWRW_finland_peacedeal = yes
+		}
+		if = {
+			limit = { has_country_flag = BUL_refuse }
+			BUL = { leave_faction = yes }
+			declare_war_on = {
+				target = BUL
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { has_country_flag = SER_refuse }
+			SER = { leave_faction = yes }
+			declare_war_on = {
+				target = SER
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { has_country_flag = HUN_refuse }
+			HUN = { leave_faction = yes }
+			declare_war_on = {
+				target = HUN
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = { has_country_flag = ROM_refuse }
+			ROM = { leave_faction = yes }
+			declare_war_on = {
+				target = ROM
+				type = annex_everything
+			}
+		}
+		every_country = {
+			limit = {
+				OR = { 
+					is_subject_of = GER
+					is_in_faction_with = GER
+					tag = AAG
+				}
+			}
+			white_peace = RUS
+			if = { ##на всякий закину
+				limit = { country_exists = MKZ }
+				white_peace = MKZ
+			}
+			if = {
+				limit = { country_exists = MTR }
+				white_peace = MTR
+			}
+		}	
+		every_country = {
+			limit = {
+				OR = { 
+					is_subject_of = RUS
+					is_in_faction_with = RUS
+				}
+			}
+			white_peace = GER
+		}	
+		if = {
+			limit = { has_country_flag = BUL_demands }
+			BUL = {
+				econ_join_sphere_MAR = yes
+				add_ideas = RUSAlliance_Observer
+			}
+			if = {
+				limit = { country_exists = MAC } 
+				econ_join_sphere_MAR = yes
+				add_ideas = RUSAlliance_Observer
+			}
+			RUS = { 
+				set_temp_variable = { gdp_growth_temp = 0.75 }
+				econ_gdp_growth_change = yes
+			}
+		}
+		if = {
+			limit = { has_country_flag = SER_demands }
+			SER = {
+				econ_join_sphere_MAR = yes
+				add_ideas = RUSAlliance_Observer
+			}
+			RUS = { 
+				set_temp_variable = { gdp_growth_temp = 0.75 }
+				econ_gdp_growth_change = yes
+			}
+		}
+		if = {
+			limit = { has_country_flag = HUN_demands }
+			HUN = {
+				econ_join_sphere_MAR = yes
+				add_ideas = RUSAlliance_Observer
+			}
+			RUS = { 
+				set_temp_variable = { gdp_growth_temp = 0.75 }
+				econ_gdp_growth_change = yes
+			}
+		}
+		if = {
+			limit = { has_country_flag = ROM_demands }
+			ROM = {
+				econ_join_sphere_MAR = yes
+				add_ideas = RUSAlliance_Observer
+			}
+			RUS = { 
+				set_temp_variable = { gdp_growth_temp = 0.75 }
+				econ_gdp_growth_change = yes
+			}
+			if = {
+				limit = { 
+					TNS = { exists = yes }
+					TNS = { is_subject_of = ROM }
+				}
+				log = "Транснистрия марионетка Румынии"
+				if = {
+					limit = { MUK = { exists = yes } }
+					MUK = {
+						annex_country = {
+							target = TNS
+							transfer_troops = yes
+						}
+						
+						add_state_core = 198
+						add_state_core = 1965
+						add_state_core = 1966
+						if = {
+							limit = { MUK = { owns_state = 1282 } }
+							add_state_core = 1282
+							add_state_core = 192
+						}
+						else_if = {
+							limit = { MUK = { owns_state = 192 } }
+							add_state_core = 192
+						}
+						transfer_state = 80
+						transfer_state = 1286
+						transfer_state = 78
+						transfer_state = 1285
+						transfer_state = 1282
+						transfer_state = 192
+						
+						add_state_core = 80
+						add_state_core = 1286
+						add_state_core = 78
+						add_state_core = 1285
+						add_state_core = 1282
+						add_state_core = 192
+					}
+					
+				}
+				else = {
+					RUS = {
+						annex_country = {
+							target = TNS
+							transfer_troops = yes
+						}
+						
+						add_state_core = 198
+						add_state_core = 1965
+						add_state_core = 1966
+						if = {
+							limit = { MUK = { owns_state = 1282 } }
+							add_state_core = 1282
+							add_state_core = 192
+						}
+						else_if = {
+							limit = { MUK = { owns_state = 192 } }
+							add_state_core = 192
+						}
+						transfer_state = 80
+						transfer_state = 1286
+						transfer_state = 78
+						transfer_state = 1285
+						transfer_state = 1282
+						transfer_state = 192
+						
+						add_state_core = 80
+						add_state_core = 1286
+						add_state_core = 78
+						add_state_core = 1285
+						add_state_core = 1282
+						add_state_core = 192
+					}
+				}
+			}
+			else = {
+				log = "Транснистрия не марионетка Румынии"
+				if = {
+					limit = { MUK = { exists = yes } }
+					MUK = {
+						transfer_state = 80
+						transfer_state = 1286
+						transfer_state = 78
+						transfer_state = 1285
+						transfer_state = 1282
+						transfer_state = 192
+						
+						add_state_core = 80
+						add_state_core = 1286
+						add_state_core = 78
+						add_state_core = 1285
+						add_state_core = 1282
+						add_state_core = 192
+					}
+					
+				}
+				else = {
+					RUS = {
+						transfer_state = 80
+						transfer_state = 1286
+						transfer_state = 78
+						transfer_state = 1285
+						transfer_state = 1282
+						transfer_state = 192
+						
+						add_state_core = 80
+						add_state_core = 1286
+						add_state_core = 78
+						add_state_core = 1285
+						add_state_core = 1282
+						add_state_core = 192
+					}
+				}
+			}
+		}
+	}
+}
+TaS_WRW2_German_Collapse_Beloozersky = {
+	custom_effect_tooltip = TaS_WRW2_German_Collapse_Beloozersky_tt
+	hidden_effect = {
+		set_global_flag = WRW2_german_collapse
+		set_global_flag = PostGER_belooz_epilogue
+		set_country_flag = MAR_total_victory_belozersky
+		
+		if = {
+			limit = {
+				OR = {
+					GER = { owns_state = 29 }
+					GLC = { owns_state = 29 }
+				}
+			}
+			#TaS_2WRW_spawn_France = yes
+		}
+		GPL = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 91
+			transfer_state = 1394
+			transfer_state = 89
+			transfer_state = 1388
+			transfer_state = 1387
+			transfer_state = 1391
+			transfer_state = 1392	
+			transfer_state = 1390
+			transfer_state = 1384
+			transfer_state = 1386
+			transfer_state = 1389
+			transfer_state = 92
+			transfer_state = 90
+			transfer_state = 1385
+			transfer_state = 88
+			transfer_state = 1382
+			transfer_state = 1383
+			transfer_state = 1381
+			transfer_state = 10
+			transfer_state = 1380
+			transfer_state = 1393
+			transfer_state = 87
+			transfer_state = 67
+			transfer_state = 2261
+			every_owned_state = {
+				GPL = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		#GSI = {
+		#	econ_join_sphere_MAR = yes
+		#	transfer_state = 67
+		#	transfer_state = 66
+		#	every_owned_state = {
+		#		GSI = {
+		#			add_state_core = PREV
+		#		}
+		#	}
+		#}
+		GDN = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 37
+			transfer_state = 99
+			transfer_state = 774
+			transfer_state = 58
+			transfer_state = 775
+			transfer_state = 990
+			transfer_state = 1372
+			transfer_state = 991
+			transfer_state = 2463
+			transfer_state = 744
+			every_owned_state = {
+				GDN = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		GRH = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 42
+			transfer_state = 51
+			transfer_state = 8
+			transfer_state = 1809
+			transfer_state = 1810
+			transfer_state = 1811
+			if = {
+				limit = { NOT = { has_global_flag = POSTGER_FRANCE } }
+				transfer_state = 1812
+				transfer_state = 28
+			}
+			every_owned_state = {
+				GRH = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Observer
+		}
+		GWS = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 775
+			transfer_state = 188
+			transfer_state = 56
+			transfer_state = 59
+			transfer_state = 1373
+			transfer_state = 57
+			transfer_state = 55
+			transfer_state = 1815
+			every_owned_state = {
+				GWS = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Observer
+		}
+		GHL = {
+			econ_join_sphere_USA = yes
+			transfer_state = 36
+			transfer_state = 7
+			transfer_state = 35
+			transfer_state = 74
+			transfer_state = 1886
+			if = {
+				limit = { BRG = { exists = no } }
+				transfer_state = 6
+				transfer_state = 1734
+				FRA = { transfer_state = 34 }
+			}
+			if = {
+				limit = { SUR = { has_idea = SUR_queen_juliana } }
+				GHL = {
+					annex_country = {
+						target = SUR
+						transfer_troops = yes
+					}
+				}
+			}
+			else = {
+				GHL = {
+					annex_country = {
+						target = CUR
+						transfer_troops = yes
+					}
+				}
+			}	
+			every_owned_state = {
+				GHL = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = OFN_Independent_Member
+		}
+		GCZ = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 75
+			transfer_state = 9
+			transfer_state = 69
+			every_owned_state = {
+				GCZ = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Observer
+		}
+		GBW = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 50
+			transfer_state = 72
+			every_owned_state = {
+				GBW = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Observer
+		}
+		GBV = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 54
+			transfer_state = 53
+			transfer_state = 52
+			transfer_state = 1026
+			transfer_state = 68
+			every_owned_state = {
+				GBV = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Observer
+		}
+		GSV = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 71
+			transfer_state = 70
+			#transfer_state = 664
+			transfer_state = 1762
+			transfer_state = 1763
+			transfer_state = 2211
+			transfer_state = 2212
+			every_owned_state = {
+				GSV = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		GAU = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 1025
+			transfer_state = 4
+			transfer_state = 770
+			transfer_state = 152
+			transfer_state = 153
+			transfer_state = 86
+			transfer_state = 1772
+			transfer_state = 62
+			transfer_state = 98
+			every_owned_state = {
+				GAU = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Observer
+		}
+		ZNE = {
+			inherit_technology = MAR
+			econ_join_sphere_MAR = yes
+			transfer_state = 63
+			transfer_state = 65
+			transfer_state = 60
+			transfer_state = 776
+			transfer_state = 61
+			transfer_state = 66
+			transfer_state = 1814
+			transfer_state = 1813
+			every_owned_state = {
+				ZNE = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Military_Government
+		}
+		BRL = {
+			inherit_technology = MAR
+			econ_join_sphere_MAR = yes
+			transfer_state = 64
+			64 = { set_state_name = STATE_64_rus }
+			set_province_name = { id = 6521 name = VICTORY_POINTS_6521_rus }
+			every_owned_state = {
+				BRL = {
+					add_state_core = PREV
+				}
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Military_Government
+		}
+		PUS = {
+			inherit_technology = MAR
+			econ_join_sphere_MAR = yes
+			transfer_state = 5
+			transfer_state = 85
+			5 = { set_state_name = STATE_5_rus }
+			set_province_name = { id = 6332 name = VICTORY_POINTS_6332_rus }
+			set_province_name = { id = 6375 name = VICTORY_POINTS_6375_rus }
+			set_province_name = { id = 3288 name = VICTORY_POINTS_3288_rus }
+			set_province_name = { id = 348 name = VICTORY_POINTS_348_rus }
+			set_province_name = { id = 3384 name = VICTORY_POINTS_3384_rus }
+			set_province_name = { id = 6259 name = VICTORY_POINTS_6259_rus }
+			set_province_name = { id = 3254 name = VICTORY_POINTS_3254_rus }
+			TNO_startup_nation = yes
+			every_owned_state = {
+				PUS = {
+					add_state_core = PREV
+				}
+			}
+			add_ideas = RUSAlliance_Dependent_Member
+		}
+		RUS = {
+			add_to_faction = GPL
+			add_to_faction = GSV
+			add_to_faction = GDN
+			add_to_faction = ZNE
+			add_to_faction = BRL
+			add_to_faction = PUS
+			SWRW_add_RUS_coldwar_GUI = yes
+			if = {
+				limit = {
+					FRA = { check_variable = { ECON_SPHERE_LEADER = MAR } }
+				}
+				add_to_faction = FRA
+				FRA = { add_ideas = RUSAlliance_Independent_Member }
+			}
+		}
+		USA = {
+			add_to_faction = GHL
+			add_to_array = {
+				global.OFN_members = GHL
+			}
+		}
+		if = {
+			limit = {
+				TNS = {
+					is_in_faction_with = GER
+				}	
+			}	
+			MUK = {
+				annex_country = {
+					target = TNS
+					transfer_troops = no
+				}
+			}	
+		}
+		every_country = {
+			limit = { is_in_faction_with = GER }
+			leave_faction = yes
+			econ_leave_sphere = yes
+		}	
+		every_country = {
+			limit = {
+				check_variable = { econ_sphere_leader = GER }
+			}
+			econ_leave_sphere = yes
+			if = {
+				limit = { has_idea = SGR_zollverein_basic }
+				leave_zollverein = yes
+			}
+		}
+		#TaS_2WRW_post_germany_econ_setup = yes
+		GER = {
+			dismantle_faction = yes
+		}
+		if = {
+			limit = { MBL = { exists = yes } }
+			MBL = {
+				transfer_state = 97
+				add_state_core = 97
+			}
+			set_variable = { 97.nationality = 345 }
+			97 = { set_state_name = STATE_97_rus }
+			set_province_name = { id = 11301 name = VICTORY_POINTS_11301_rus }
+			set_province_name = { id = 11329 name = VICTORY_POINTS_11329_rus }
+			set_province_name = { id = 15685 name = VICTORY_POINTS_15685_rus }
+		}
+		if = {
+			limit = { MBL = { exists = no } }
+			RUS = {
+				transfer_state = 97
+				add_state_core = 97
+			}
+			set_variable = { 97.nationality = 345 }
+			97 = { set_state_name = STATE_97_rus }
+			set_province_name = { id = 11301 name = VICTORY_POINTS_11301_rus }
+			set_province_name = { id = 11329 name = VICTORY_POINTS_11329_rus }
+			set_province_name = { id = 15685 name = VICTORY_POINTS_15685_rus }
+		}
+		#if = {
+			# limit = {
+				# MAD = {
+					# is_subject_of = GER
+				# }	
+				# NOT = { GRO = { is_subject_of = GER } }
+			# }	
+			# GEX = {
+				# annex_country = {
+					# target = GER
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = MAD
+					# transfer_troops = no
+				# }
+				# every_owned_state = {
+					# GEX = {
+						# add_state_core = PREV
+					# }       
+				# }
+				# TNO_startup_nation = yes
+				# set_capital = { state = 945 }
+			# }	
+		# }
+		# if = {
+			# limit = {
+				# GRO = {
+					# is_subject_of = GER
+				# }	
+				# NOT = { MAD = { is_subject_of = GER } }	
+			# }	
+			# GEX = {
+				# annex_country = {
+					# target = GER
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = GRO
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = COG
+					# transfer_troops = no
+				# }
+				# every_owned_state = {
+					# GEX = {
+						# add_state_core = PREV
+					# }       
+				# }
+				# TNO_startup_nation = yes
+				# set_capital = { state = 295 }
+			# }	
+		# }
+		# if = {
+			# limit = {
+				# MAD = {
+					# is_subject_of = GER
+				# }
+				# GRO = {
+					# is_subject_of = GER
+				# }	
+			# }	
+			# GEX = {
+				# annex_country = {
+					# target = GER
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = GRO
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = COG
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = MAD
+					# transfer_troops = no
+				# }
+				# set_capital = { state = 295 }
+				# every_owned_state = {
+					# GEX = {
+						# add_state_core = PREV
+					# }       
+				# }
+				# TNO_startup_nation = yes
+			# }	
+		# }
+		# else = {
+			# GEX = {
+			    # annex_country = {
+				    # target = GER
+				    # transfer_troops = no
+			    # }
+                # set_capital = { state = 707 }	
+                # every_owned_state = {
+				    # GEX = {
+					    # add_state_core = PREV
+				    # }       
+			    # }				
+				# TNO_startup_nation = yes
+			# }
+		# }
+	}
+}
+TaS_WRW2_German_Collapse_Kosygin = {
+	custom_effect_tooltip = TaS_WRW2_German_Collapse_Kosygin_tt
+	hidden_effect = {
+		set_country_flag = MAR_total_victory_kosygin
+		if = {
+			limit = {
+				OR = {
+					GER = { owns_state = 29 }
+					GLC = { owns_state = 29 }
+				}
+			}
+			#TaS_2WRW_spawn_France = yes
+		}
+		ZNE = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 1813
+			transfer_state = 1814
+			transfer_state = 97
+			transfer_state = 188
+			transfer_state = 60
+			transfer_state = 65
+			transfer_state = 776
+			transfer_state = 64
+			transfer_state = 63
+			transfer_state = 61
+			transfer_state = 775
+			transfer_state = 85
+			transfer_state = 5
+			transfer_state = 188
+			transfer_state = 66
+			transfer_state = 58
+			64 = { set_state_name = STATE_64_rus }
+			set_province_name = { id = 6521 name = VICTORY_POINTS_6521_rus }
+			set_politics = {
+				ruling_party = socialist
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.45
+			}
+			every_owned_state = {
+				ZNE = {
+					add_state_core = PREV
+				}
+			}
+			set_capital = { state = 64 remember_old_capital = no }
+			remove_ideas = TaS_Post2WRW_BRL_ZNE_russian_army 
+			remove_ideas = TaS_Post2WRW_BRL_nazi_heartland_1
+			remove_ideas = TaS_Post2WRW_ZNE_exec_centre 	
+			set_cosmetic_tag = ZNE_Kosygin
+			set_variable = {
+				TNO_economy_type = token:Econ_Type_Planned
+				TNO_economy_subtype = token:Econ_Subtype_Worker_Directed
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Dependent_Member
+		}
+		GPL = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 87
+			transfer_state = 67
+			transfer_state = 88
+			transfer_state = 1382
+			transfer_state = 10
+			transfer_state = 1380
+			transfer_state = 90
+			transfer_state = 1383
+			transfer_state = 1381
+			transfer_state = 1384
+			transfer_state = 92
+			transfer_state = 1385
+			transfer_state = 1386
+			transfer_state = 1389
+			transfer_state = 1392
+			transfer_state = 2261
+			
+			transfer_state = 1390
+			transfer_state = 1391
+			transfer_state = 1387
+			transfer_state = 1393
+			transfer_state = 1388
+			transfer_state = 1394
+			transfer_state = 89
+			transfer_state = 91
+			set_politics = {
+				ruling_party = liberalism
+			}
+			add_popularity = {
+				ideology = liberalism
+				popularity = 0.45
+			}
+			every_owned_state = {
+				GPL = {
+					add_state_core = PREV
+				}
+			}
+			remove_ideas = TaS_Post2WRW_commie_activity
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		GRH = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 59
+			transfer_state = 56
+			transfer_state = 1373
+			transfer_state = 57
+			transfer_state = 1815
+			transfer_state = 1810
+			transfer_state = 1809
+			transfer_state = 51
+			transfer_state = 55
+			transfer_state = 42
+			transfer_state = 8
+			transfer_state = 1811
+			if = {
+				limit = { NOT = { has_global_flag = POSTGER_FRANCE } }
+				transfer_state = 1812
+				transfer_state = 28
+			}
+			
+			set_politics = {
+				ruling_party = progressivism
+			}
+			if = {
+				limit = { has_global_flag = GER_brandt_is_kil }
+				kill_country_leader = yes
+				promote_character = GRH_Gunter_Guillaume
+			}
+			add_popularity = {
+				ideology = progressivism
+				popularity = 0.45
+			}
+			every_owned_state = {
+				GRH = {
+					add_state_core = PREV
+				}
+			}
+			set_cosmetic_tag = GRH_Kosygin
+			remove_ideas = TaS_Post2WRW_commie_activity
+			remove_ideas = TaS_Post2WRW_GRH_lot_of_nazis
+			add_ideas = TaS_Post2WRW_GWS_volkswagen
+			add_ideas = TaS_Post2WRW_GWS_german_democracy
+			set_variable = {
+				TNO_economy_type = token:Econ_Type_Planned
+				TNO_economy_subtype = token:Econ_Subtype_Worker_Directed
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		GBV = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 72
+			transfer_state = 50
+			transfer_state = 54
+			transfer_state = 1026
+			transfer_state = 68
+			transfer_state = 52
+			transfer_state = 53
+			set_politics = {
+				ruling_party = communist
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.45
+			}
+			every_owned_state = {
+				GBV = {
+					add_state_core = PREV
+				}
+			}
+			set_cosmetic_tag = GBV_Kosygin
+			remove_ideas = TaS_Post2WRW_commie_activity
+			remove_ideas = TaS_Post2WRW_GBV_bavarian_identity
+			remove_ideas = TaS_Post2WRW_GBV_ingerman_segregation
+			add_ideas = TaS_Post2WRW_GRA_workers_and_peasant_army
+			set_variable = {
+				TNO_economy_type = token:Econ_Type_Planned
+				TNO_economy_subtype = token:Econ_Subtype_Worker_Directed
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		GAU = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 153
+			transfer_state = 86
+			transfer_state = 152
+			transfer_state = 1772
+			transfer_state = 62
+			transfer_state = 4
+			transfer_state = 1025
+			
+			transfer_state = 98
+			transfer_state = 770
+			
+			set_politics = {
+				ruling_party = progressivism
+			}
+			add_popularity = {
+				ideology = progressivism
+				popularity = 0.45
+			}
+			every_owned_state = {
+				GAU = {
+					add_state_core = PREV
+				}
+			}
+			remove_ideas = TaS_Post2WRW_commie_activity
+			remove_ideas = TaS_Post2WRW_GAU_habsburg_returns
+			remove_ideas = TaS_Post2WRW_GAU_dreams_of_germany
+			set_variable = {
+				TNO_economy_type = token:Econ_Type_Corporatism
+				TNO_economy_subtype = token:Econ_Subtype_Socialized_Economy
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		GCZ = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 69
+			transfer_state = 9
+			transfer_state = 75
+			transfer_state = 70
+			transfer_state = 1762
+			transfer_state = 71
+			transfer_state = 1763
+			transfer_state = 2211
+			transfer_state = 2212
+			#transfer_state = 664
+			#transfer_state = 73
+			
+			set_politics = {
+				ruling_party = socialist
+			}
+			add_popularity = {
+				ideology = socialist
+				popularity = 0.45
+			}
+			every_owned_state = {
+				GCZ = {
+					add_state_core = PREV
+				}
+			}
+			set_cosmetic_tag = GCZ_Kosygin
+			remove_ideas = TaS_Post2WRW_commie_activity
+			remove_ideas = TaS_Post2WRW_GCZ_big_brother
+			remove_ideas = TaS_Post2WRW_GCZ_czechia_revival
+			remove_ideas = TaS_Post2WRW_GCZ_sudetenland_genocide
+			set_variable = {
+				TNO_economy_type = token:Econ_Type_Corporatism
+				TNO_economy_subtype = token:Econ_Subtype_Socialized_Economy
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		GDN = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 37
+			transfer_state = 99
+			transfer_state = 774
+			transfer_state = 990
+			transfer_state = 1372
+			transfer_state = 991
+			transfer_state = 2463
+			transfer_state = 744
+			
+			set_politics = {
+				ruling_party = progressivism
+			}
+			add_popularity = {
+				ideology = progressivism
+				popularity = 0.45
+			}
+			every_owned_state = {
+				GDN = {
+					add_state_core = PREV
+				}
+			}
+			remove_ideas = TaS_Post2WRW_GDN_antimonarch_protests
+			set_variable = {
+				TNO_economy_type = token:Econ_Type_Corporatism
+				TNO_economy_subtype = token:Econ_Subtype_Socialized_Economy
+			}
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		GHL = {
+			econ_join_sphere_MAR = yes
+			transfer_state = 36
+			transfer_state = 1886
+			transfer_state = 7
+			transfer_state = 35
+			transfer_state = 74
+			if = {
+				limit = { BRG = { exists = no } }
+				transfer_state = 6
+				transfer_state = 1734
+				if = {
+					limit = { NOT = { FRA = { controls_state = 34 } } }
+					transfer_state = 34
+					transfer_state = 8
+				}
+			}
+			
+			set_politics = {
+				ruling_party = progressivism
+			}
+			add_popularity = {
+				ideology = progressivism
+				popularity = 0.45
+			}
+			every_owned_state = {
+				GHL = {
+					add_state_core = PREV
+				}
+			}
+			remove_ideas = TaS_Post2WRW_GHL_careless_monach
+			remove_ideas = TaS_Post2WRW_GHL_holland_identity
+			set_variable = {
+				TNO_economy_type = token:Econ_Type_Corporatism
+				TNO_economy_subtype = token:Econ_Subtype_Socialized_Economy
+			}
+			TNO_startup_nation = yes
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		set_global_flag = WRW2_german_collapse
+		set_global_flag = PostGER_kosygin_epilogue
+		RUS = {
+			add_to_faction = ZNE
+			add_to_faction = GDN
+			add_to_faction = GRH
+			add_to_faction = GBV
+			add_to_faction = GAU
+			add_to_faction = GCZ
+			add_to_faction = GHL
+			add_to_faction = GPL
+			if = {
+				limit = {
+					FRA = { check_variable = { ECON_SPHERE_LEADER = MAR } }
+				}
+				add_to_faction = FRA
+				FRA = { add_ideas = RUSAlliance_Independent_Member }
+			}
+			SWRW_add_RUS_coldwar_GUI = yes
+		}
+		every_country = {
+			news_event = { id = MAR_2WRW_world_news.11 hours = 6}
+		}
+		every_country = {
+			limit = { is_in_faction_with = GER }
+			leave_faction = yes
+			econ_leave_sphere = yes
+			white_peace = RUS
+		}	
+		every_country = {
+			limit = { check_variable = { ECON_SPHERE_LEADER = GER } }
+			econ_leave_sphere = yes
+		}
+		#TaS_2WRW_post_germany_econ_setup = yes
+		GER = {
+			dismantle_faction = yes
+		}
+		if = {
+			limit = { MBL = { exists = yes } }
+			MBL = {
+				transfer_state = 97
+				add_state_core = 97
+			}
+			set_variable = { 97.nationality = 345 }
+			97 = { set_state_name = STATE_97_rus }
+			set_province_name = { id = 11301 name = VICTORY_POINTS_11301_rus }
+			set_province_name = { id = 11329 name = VICTORY_POINTS_11329_rus }
+			set_province_name = { id = 15685 name = VICTORY_POINTS_15685_rus }
+		}
+		if = {
+			limit = { MBL = { exists = no } }
+			RUS = {
+				transfer_state = 97
+				add_state_core = 97
+			}
+			set_variable = { 97.nationality = 345 }
+			97 = { set_state_name = STATE_97_rus }
+			set_province_name = { id = 11301 name = VICTORY_POINTS_11301_rus }
+			set_province_name = { id = 11329 name = VICTORY_POINTS_11329_rus }
+			set_province_name = { id = 15685 name = VICTORY_POINTS_15685_rus }
+		}
+		RUS = {
+			transfer_state = 2098
+		}
+		# if = {
+			# limit = {
+				# MAD = {
+					# is_subject_of = GER
+				# }	
+				# NOT = { GRO = { is_subject_of = GER } }
+			# }	
+			# GEX = {
+				# annex_country = {
+					# target = GER
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = MAD
+					# transfer_troops = no
+				# }
+				# every_owned_state = {
+					# GEX = {
+						# add_state_core = PREV
+					# }       
+				# }
+				# TNO_startup_nation = yes
+				# set_capital = { state = 945 }
+			# }	
+		# }
+		# if = {
+			# limit = {
+				# GRO = {
+					# is_subject_of = GER
+				# }	
+				# NOT = { MAD = { is_subject_of = GER } }	
+			# }	
+			# GEX = {
+				# annex_country = {
+					# target = GER
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = GRO
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = COG
+					# transfer_troops = no
+				# }
+				# every_owned_state = {
+					# GEX = {
+						# add_state_core = PREV
+					# }       
+				# }
+				# TNO_startup_nation = yes
+				# set_capital = { state = 295 }
+			# }	
+		# }
+		# if = {
+			# limit = {
+				# MAD = {
+					# is_subject_of = GER
+				# }
+				# GRO = {
+					# is_subject_of = GER
+				# }	
+			# }	
+			# GEX = {
+				# annex_country = {
+					# target = GER
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = GRO
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = COG
+					# transfer_troops = no
+				# }
+				# annex_country = {
+					# target = MAD
+					# transfer_troops = no
+				# }
+				# TNO_startup_nation = yes
+				# set_capital = { state = 295 }
+				# every_owned_state = {
+					# GEX = {
+						# add_state_core = PREV
+					# }       
+				# }
+			# }	
+		# }
+		# else = {
+			# GEX = {
+			    # annex_country = {
+				    # target = GER
+				    # transfer_troops = no
+			    # }
+                # set_capital = { state = 707 }	
+				# TNO_startup_nation = yes
+                # every_owned_state = {
+				    # GEX = {
+					    # add_state_core = PREV
+				    # }       
+			    # }				
+			# }
+		# }
+	}
+}
+TaS_2WRW_form_ost_zones = {
+	custom_effect_tooltip = TaS_2WRW_form_ost_zones_tt
+	hidden_effect = {
+		if = {
+			limit = { MAR = { owns_state = 1397 } }
+			every_state = {
+				limit = { has_state_flag = SWRW_OST_state }
+				transfer_state_to = MBP
+				add_core_of = MBP
+				remove_core_of = OST
+			}
+			MBP = {
+				set_capital = { state = 1397 }
+				TaS_2WRW_set_zone_laws = yes
+				econ_join_sphere_MAR = yes
+			}
+			MBP = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+				add_ideas = RUSAlliance_Military_Government
+			}
+			RUS = {
+				set_autonomy = {
+					target = MBP
+					autonomy_state = autonomy_military_government
+				}	
+				add_to_faction = MBP
+			}	
+			MBP = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+		if = { 
+			limit = { MAR = { owns_state = 1404 } }
+			MBL = {
+				if = {
+					limit = { MAR = { has_country_flag = limited_ost_zones } }
+					transfer_state = 207
+					transfer_state = 1405
+					transfer_state = 194
+					transfer_state = 204
+					transfer_state = 206
+					transfer_state = 1404
+					transfer_state = 241
+					transfer_state = 2452
+				}
+				else = {
+					every_state = {
+						limit = { has_state_flag = SWRW_BLR_state }
+						transfer_state_to = MBL
+						add_core_of = MBL
+						remove_core_of = BLR
+						remove_core_of = OST
+					}
+				}
+				set_capital = { state = 1404 }
+				TaS_2WRW_set_zone_laws = yes
+				econ_join_sphere_MAR = yes
+			}
+			MBL = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+				add_ideas = RUSAlliance_Military_Government
+			}
+			RUS = {
+				set_autonomy = {
+					target = MBL
+					autonomy_state = autonomy_military_government
+				}	
+				add_to_faction = MBL
+			}
+			MBL = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+		if = {
+			limit = { MAR = { owns_state = 221 } }
+			MUK = {
+				if = {
+					limit = { MAR = { has_country_flag = limited_ost_zones } }
+					transfer_state = 225
+					transfer_state = 221
+					transfer_state = 228
+					transfer_state = 227
+					transfer_state = 218
+				}
+				else = {
+					every_state = {
+						limit = { has_state_flag = SWRW_UKR_state }
+						transfer_state_to = MUK
+						add_core_of = MUK
+						remove_core_of = UKR
+					}
+				}
+				set_capital = { state = 1428 }
+				TaS_2WRW_set_zone_laws = yes
+				econ_join_sphere_MAR = yes
+				if = {
+					limit = {
+						MAR = { owns_state = 1286 }
+					}
+					transfer_state = 80
+					transfer_state = 1286
+					transfer_state = 78
+					transfer_state = 1285
+					transfer_state = 1282
+					transfer_state = 198
+					transfer_state = 1965
+					transfer_state = 1966
+					transfer_state = 192
+				}
+				else_if = {
+					limit = {
+						MAR = { owns_state = 1282 }
+					}
+					transfer_state = 1282
+					transfer_state = 198
+					transfer_state = 1965
+					transfer_state = 1966
+					transfer_state = 192
+				}
+				else_if = {
+					limit = {
+						MAR = { owns_state = 192 }
+					}
+					transfer_state = 198
+					transfer_state = 1965
+					transfer_state = 1966
+					transfer_state = 192
+				}
+				else_if = {
+					limit = {
+						MAR = { owns_state = 1965 }
+					}
+					transfer_state = 198
+					transfer_state = 1965
+					transfer_state = 1966
+				}
+				else = {
+					log = "otsosi"
+				}
+			}
+			MUK = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+				add_ideas = RUSAlliance_Military_Government
+			}
+			RUS = {
+				set_autonomy = {
+					target = MUK
+					autonomy_state = autonomy_military_government
+				}	
+				add_to_faction = MUK
+			}	
+			MUK = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+		if = {
+			limit = { MAR = { owns_state = 1532 } }
+			MTV = {
+				every_state = {
+					limit = { has_state_flag = SWRW_CRI_state }
+					transfer_state_to = MTV
+					add_core_of = MTV
+					remove_core_of = GER
+				}
+				set_capital = { state = 1532 }
+				TaS_2WRW_set_zone_laws = yes
+				econ_join_sphere_MAR = yes
+			}
+			MTV = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+				add_ideas = RUSAlliance_Military_Government
+			}
+			RUS = {
+				set_autonomy = {
+					target = MTV
+					autonomy_state = autonomy_military_government
+				}	
+				add_to_faction = MTV
+			}
+			MTV = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+		if = {
+			limit = { MAR = { owns_state = 231 } }
+			MCS = {
+				every_state = {
+					limit = { has_state_flag = SWRW_CAU_state }
+					transfer_state_to = MCS
+					add_core_of = MCS
+					remove_core_of = CAU
+				}
+				set_capital = { state = 232 }
+				TaS_2WRW_set_zone_laws = yes
+				econ_join_sphere_MAR = yes
+			}
+			MCS = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+				add_ideas = RUSAlliance_Military_Government
+			}
+			RUS = {
+				set_autonomy = {
+					target = MCS
+					autonomy_state = autonomy_military_government
+				}	
+				add_to_faction = MCS
+			}
+			MCS = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+		if = {
+			limit = { 
+				MAR = { has_government = socialist }
+			}
+			MBP = {
+				set_cosmetic_tag = MilZones_Kosygin
+			}
+			MBL = {
+				set_cosmetic_tag = MilZones_Kosygin
+			}
+			MUK = {
+				set_cosmetic_tag = MilZones_Kosygin
+			}
+			MTV = {
+				set_cosmetic_tag = MilZones_Kosygin
+			}
+			MCS = {
+				set_cosmetic_tag = MilZones_Kosygin
+			}
+		}
+	}
+}
+TaS_2WRW_set_zone_laws = {
+	inherit_technology = MAR
+	add_ideas = {
+		MAR_military_administration
+	}
+	add_timed_idea = {
+		idea = MAR_economic_recovery
+		days = 900
+	}
+}
+
+TaS_2WRW_set_autonomy_laws = {
+	remove_ideas = MAR_military_administration
+	set_variable = { TNO_economy_type = token:Econ_Type_Corporatism }
+	set_variable = { TNO_economy_subtype = token:Econ_Subtype_Dirigisme }
+	
+	set_variable = { income_tax_rate = 0.30 }
+	set_variable = { business_tax_rate = 0.32 }
+	set_variable = { sales_tax_rate = 0.035 }
+	
+	swap_ideas = {
+		remove_idea = RUSAlliance_Military_Government
+		add_idea = RUSAlliance_Dependent_Member
+	}
+	add_ideas = {
+		#economic#
+		tno_trade_laws_limited_exports
+		tno_income_taxation_high_income_weighted
+		tno_minimum_wage_acceptable_minimum
+		tno_max_workhours_10_hour_work_day
+		tno_pensions_low_pensions
+		tno_unemployment_low_subsidies
+		#social#
+		tno_health_care_low_income_protections
+		tno_education_public_education
+		tno_penal_system_harsh_penal_code
+		tno_gender_rights_traditional_roles
+		tno_security_crime_prevention
+		tno_regulations_token_regulations
+		#political#
+		tno_political_parties_one_party_state
+		tno_religious_rights_state_religion
+		tno_trade_unions_illegal
+		tno_immigration_quota_immigration
+		tno_slavery_penal_labor
+		tno_public_meetings_regulated
+		tno_press_rights_censored_press
+		tno_vote_franchise_elite_voting
+		#military#
+		tno_conscription_broadened_conscription
+		tno_military_supervision_rules_of_engagement
+		tno_training_basic_training
+		tno_draft_exemptions_none
+		#misc#
+		tno_child_labor_illegal
+		tno_safety_limited_regulations
+		tno_pollution_few_regulations
+		tno_lgbt_rights_lgbt_outlawed
+		tno_minorities_institutional_discrimination
+		tno_refugees_skilled
+		tno_women_banned
+		tno_racial_integration_integrated_military
+	}
+	# ECONOMIC LAWS
+	set_variable = { tno_trade_laws_effectiveness = 65 }
+	set_variable = { tno_income_taxation_effectiveness = 40 }
+	set_variable = { tno_minimum_wage_effectiveness = 35 }
+	set_variable = { tno_max_workhours_effectiveness = 35 }
+	set_variable = { tno_pensions_effectiveness = 80 }
+	set_variable = { tno_unemployment_effectiveness = 80 }
+
+	# SOCIAL LAWS
+	set_variable = { tno_health_care_effectiveness = 25 }
+	set_variable = { tno_education_effectiveness = 50 }
+	set_variable = { tno_penal_system_effectiveness = 40 }
+	set_variable = { tno_gender_rights_effectiveness = 65 }
+	set_variable = { tno_security_effectiveness = 45 }
+	set_variable = { tno_regulations_effectiveness = 40 }
+
+	# POLITICAL LAWS
+	set_variable = { tno_political_parties_effectiveness = 45 }
+	set_variable = { tno_religious_rights_effectiveness = 35 }
+	set_variable = { tno_trade_unions_effectiveness = 60 }
+	set_variable = { tno_immigration_effectiveness = 35 }
+	set_variable = { tno_slavery_effectiveness = 90 }
+	set_variable = { tno_public_meetings_effectiveness = 75 }
+	set_variable = { tno_press_rights_effectiveness = 55 }
+	set_variable = { tno_vote_franchise_effectiveness = 65 }
+
+	# MILITARY LAWS
+	set_variable = { tno_conscription_effectiveness = 75 }
+	set_variable = { tno_military_supervision_effectiveness = 50 }
+	set_variable = { tno_training_effectiveness = 60 }
+	set_variable = { tno_draft_exemptions_effectiveness = 55 }
+}
+
+TaS_2WRW_set_free_laws = {
+	set_variable = { TNO_economy_type = token:Econ_Type_Corporatism }
+	econ_type_change = yes
+	set_variable = { TNO_economy_subtype = token:Econ_Subtype_Dirigisme }
+	econ_subtype_change = yes
+	
+	set_variable = { income_tax_rate = 0.30 }
+	set_variable = { business_tax_rate = 0.32 }
+	set_variable = { sales_tax_rate = 0.035 }
+	swap_ideas = {
+		remove_idea = RUSAlliance_Military_Government
+		add_idea = RUSAlliance_Dependent_Member
+	}
+	add_ideas = {
+		#economic#
+		tno_trade_laws_free_trade
+		tno_income_taxation_high_income_weighted
+		tno_minimum_wage_acceptable_minimum
+		tno_max_workhours_10_hour_work_day
+		tno_pensions_low_pensions
+		tno_unemployment_low_subsidies
+		#social#
+		tno_health_care_low_income_protections
+		tno_education_public_education
+		tno_penal_system_incarceration
+		tno_gender_rights_gender_equality
+		tno_security_crime_prevention
+		tno_regulations_moderate_regulations
+		#political#
+		tno_political_parties_multiparty_system
+		tno_religious_rights_secularism
+		tno_trade_unions_all_allowed
+		tno_immigration_open_immigration
+		tno_slavery_work_programs
+		tno_public_meetings_regulated
+		tno_press_rights_free_press
+		tno_vote_franchise_registered_voting
+		#military#
+		tno_conscription_broadened_conscription
+		tno_military_supervision_rules_of_engagement
+		tno_training_basic_training
+		tno_draft_exemptions_none
+		#misc#
+		tno_child_labor_illegal
+		tno_safety_limited_regulations
+		tno_pollution_few_regulations
+		tno_lgbt_rights_lgbt_outlawed
+		tno_minorities_institutional_discrimination
+		tno_refugees_skilled
+		tno_women_banned
+		tno_racial_integration_integrated_military
+	}
+	# ECONOMIC LAWS
+	set_variable = { tno_trade_laws_effectiveness = 65 }
+	set_variable = { tno_income_taxation_effectiveness = 40 }
+	set_variable = { tno_minimum_wage_effectiveness = 35 }
+	set_variable = { tno_max_workhours_effectiveness = 35 }
+	set_variable = { tno_pensions_effectiveness = 80 }
+	set_variable = { tno_unemployment_effectiveness = 80 }
+
+	# SOCIAL LAWS
+	set_variable = { tno_health_care_effectiveness = 25 }
+	set_variable = { tno_education_effectiveness = 50 }
+	set_variable = { tno_penal_system_effectiveness = 40 }
+	set_variable = { tno_gender_rights_effectiveness = 65 }
+	set_variable = { tno_security_effectiveness = 45 }
+	set_variable = { tno_regulations_effectiveness = 40 }
+
+	# POLITICAL LAWS
+	set_variable = { tno_political_parties_effectiveness = 45 }
+	set_variable = { tno_religious_rights_effectiveness = 35 }
+	set_variable = { tno_trade_unions_effectiveness = 60 }
+	set_variable = { tno_immigration_effectiveness = 35 }
+	set_variable = { tno_slavery_effectiveness = 90 }
+	set_variable = { tno_public_meetings_effectiveness = 75 }
+	set_variable = { tno_press_rights_effectiveness = 55 }
+	set_variable = { tno_vote_franchise_effectiveness = 65 }
+
+	# MILITARY LAWS
+	set_variable = { tno_conscription_effectiveness = 75 }
+	set_variable = { tno_military_supervision_effectiveness = 50 }
+	set_variable = { tno_training_effectiveness = 60 }
+	set_variable = { tno_draft_exemptions_effectiveness = 55 }
+}
+TaS_2WRW_post_germany_econ_setup = {
+	## Econ Variable Initiation
+	set_variable = { GDP_growth = 1.1 }
+	set_variable = { base_inflation_rate = 0.68 }
+	set_variable = { income_tax_rate = 0.42 }
+	set_variable = { business_tax_rate = 0.56 }
+	set_variable = { poverty_rate = 51.49 }
+	set_variable = { poverty_monthly_change = -0.12 }
+
+
+
+	initiate_display_vars = yes
+
+	## Slider Positions
+	army_funding_maximal_set_position_20 = yes
+	army_funding_minimal_set_position_0 = yes
+
+	naval_funding_maximal_set_position_20 = yes
+	naval_funding_minimal_set_position_0 = yes
+
+	social_funding_maximal_set_position_10 = yes
+	social_funding_minimal_set_position_0 = yes
+
+	admin_funding_maximal_set_position_10 = yes
+	admin_funding_minimal_set_position_0 = yes
+
+	research_funding_maximal_set_position_10 = yes
+	research_funding_minimal_set_position_0 = yes
+
+	consumer_goods_maximal_set_position_20 = yes
+	consumer_goods_minimal_set_position_0 = yes
+
+	## Credit Rating
+	set_temp_variable = { temp_credit_rating_min = 2 }
+	set_temp_variable = { temp_credit_rating_max = 6 }
+	set_temp_variable = { temp_credit_rating = 3 }
+	econ_initialize_credit_rating_system = yes
+
+	## Manpower boost so they don't start with 0
+	add_manpower = 30000
+}
+TaS_2WRW_free_baltics = {
+	XYZ = {
+		EST_Tonis_Kint = {
+			set_nationality = EST
+		}
+	}
+	XYZ = {
+		LAT_Anatols_Dinbergs = {
+			set_nationality = LAT
+		}
+	}
+	XYZ = {
+		LIT_Stasys_Lozoraitis = {
+			set_nationality = LIT
+		}
+	}
+	EST = {
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		set_variable = { national_debt = 0 }
+		transfer_state = 1440
+		transfer_state = 13
+		transfer_state = 191
+		transfer_state = 1395
+		transfer_state = 1396
+		transfer_state = 2450
+		every_owned_state = {
+			EST = {
+				add_state_core = PREV
+			}
+		}
+		set_capital = { state = 13 }
+		TaS_2WRW_set_free_laws = yes
+		add_ideas = RUSAlliance_Dependent_Member
+		#add_ideas = { MAR_military_administration }
+		set_politics = {
+			ruling_party = paternalism
+		}
+		set_popularities = {
+			communist = 0
+			socialist = 0
+			progressivism = 0
+			liberalism = 0
+			conservatism = 9
+			liberal_conservatism = 8
+			paternalism = 55
+			despotism = 15
+			fascism = 13
+			national_socialism = 0
+			ultranationalism = 0
+		}
+		set_party_name = { 
+			ideology = paternalism 
+			long_name = EST_free_party_long
+			name = EST_free_party
+		}
+		set_party_name = { 
+			ideology = conservatism 
+			long_name = EST_free_party_long
+			name = EST_free_party
+		}
+		set_party_name = { 
+			ideology = liberal_conservatism 
+			long_name = EST_free_party_long
+			name = EST_free_party
+		}
+		set_party_name = { 
+			ideology = despotism 
+			long_name = EST_free_party_long
+			name = EST_free_party
+		}
+		set_party_name = { 
+			ideology = fascism 
+			long_name = EST_free_party_long
+			name = EST_free_party
+		}
+		EST_Tonis_Kint = {
+			promote_character = yes
+		}
+		set_cosmetic_tag = EST_freedom
+		econ_join_sphere_MAR = yes
+		TNO_startup_nation = yes
+	}
+	LAT = {
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		set_variable = { national_debt = 0 }
+		transfer_state = 12
+		transfer_state = 1402
+		transfer_state = 943
+		transfer_state = 1398
+		transfer_state = 190
+		transfer_state = 1397
+		transfer_state = 1399
+		every_owned_state = {
+			LAT = {
+				add_state_core = PREV
+			}
+		}
+		set_capital = { state = 1397 }
+		TaS_2WRW_set_free_laws = yes
+		add_ideas = RUSAlliance_Dependent_Member
+		#add_ideas = { MAR_military_administration }
+		set_politics = {
+			ruling_party = liberal_conservatism
+		}
+		set_popularities = {
+			communist = 0
+			socialist = 0
+			progressivism = 0
+			liberalism = 13
+			conservatism = 19
+			liberal_conservatism = 56
+			paternalism = 12
+			despotism = 0
+			fascism = 0
+			national_socialism = 0
+			ultranationalism = 0
+		}
+		set_party_name = { 
+			ideology = liberal_conservatism 
+			long_name = LAT_free_party_long
+			name = LAT_free_party
+		}
+		set_party_name = { 
+			ideology = liberalism 
+			long_name = LAT_free_party_long
+			name = LAT_free_party
+		}
+		set_party_name = { 
+			ideology = paternalism 
+			long_name = LAT_free_party_long
+			name = LAT_free_party
+		}
+		set_party_name = { 
+			ideology = conservatism 
+			long_name = LAT_free_party_long
+			name = LAT_free_party
+		}
+		LAT_Anatols_Dinbergs = {
+			promote_character = yes
+		}
+		set_cosmetic_tag = LAT_freedom
+		econ_join_sphere_MAR = yes
+		TNO_startup_nation = yes
+	}
+	LIT = {
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		set_variable = { national_debt = 0 }
+		transfer_state = 96
+		transfer_state = 1400
+		transfer_state = 189
+		transfer_state = 1401
+		transfer_state = 11
+		transfer_state = 2451
+		transfer_state = 79
+		every_owned_state = {
+			LIT = {
+				add_state_core = PREV
+			}
+		}
+		set_capital = { state = 96 }
+		TaS_2WRW_set_free_laws = yes
+		add_ideas = RUSAlliance_Dependent_Member
+		#add_ideas = { MAR_military_administration }
+		set_politics = {
+			ruling_party = conservatism
+		}
+		set_popularities = {
+			communist = 0
+			socialist = 0
+			progressivism = 0
+			liberalism = 13
+			conservatism = 56
+			liberal_conservatism = 19
+			paternalism = 12
+			despotism = 0
+			fascism = 0
+			national_socialism = 0
+			ultranationalism = 0
+			
+		}
+		set_party_name = { 
+			ideology = conservatism 
+			long_name = LIT_free_party_long
+			name = LIT_free_party
+		}
+		set_party_name = { 
+			ideology = liberalism 
+			long_name = LIT_free_party_long
+			name = LIT_free_party
+		}
+		set_party_name = { 
+			ideology = liberal_conservatism 
+			long_name = LIT_free_party_long
+			name = LIT_free_party
+		}
+		set_party_name = { 
+			ideology = paternalism 
+			long_name = LIT_free_party_long
+			name = LIT_free_party
+		}
+		LIT_Stasys_Lozoraitis = {
+			promote_character = yes
+		}
+		set_cosmetic_tag = LIT_freedom
+		econ_join_sphere_MAR = yes
+		TNO_startup_nation = yes
+	}
+	RUS = {
+		add_to_faction = EST
+		add_to_faction = LIT
+		add_to_faction = LAT
+	}
+	hidden_effect = {
+		191 = {
+			add_manpower = -50870
+			set_variable = { nationality = 168 }
+		}
+		13 = {
+			add_manpower = -60986
+			set_variable = { nationality = 168 }
+		}
+		
+		1397 = {
+			add_manpower = -156450
+			set_variable = { nationality = 169 }
+		}
+		943 = {
+			add_manpower = -67890
+			set_variable = { nationality = 169 }
+		}
+		
+		1401 = {
+			add_manpower = -134330
+			set_variable = { nationality = 268 }
+		}
+		
+		1421 = {
+			add_manpower = -84755
+			set_variable = { nationality = 151 }
+		}
+		209 = {
+			add_manpower = -94755
+			set_variable = { nationality = 151 }
+		}
+		
+		257 = {
+			add_manpower = -44755
+			set_variable = { nationality = 151 }
+		}
+		1402 = {
+			add_manpower = -34755
+			set_variable = { nationality = 151 }
+		}
+		
+		5 = {
+			add_manpower = 178120
+		}
+		85 = {
+			add_manpower = 378120
+		}
+	}
+	MAR = {
+		transfer_state = 1402
+		transfer_state = 209
+		transfer_state = 1421
+		transfer_state = 257
+	}
+}
+TaS_2WRW_free_caucasus = { #god help us all
+	XYZ = {
+		GEO_Eduard_Shevardnadze = {
+			set_nationality = GEO
+		}
+	}
+	XYZ = {
+		AZR_Heydar_Aliyev = {
+			set_nationality = AZR
+		}
+	}
+	MAR = {
+		transfer_state = 235
+		transfer_state = 237
+		transfer_state = 234
+	}
+	KRC = {
+		transfer_state = 1559
+		add_state_core = 1559
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		econ_join_sphere_MAR = yes
+		add_ideas = RUSAlliance_Dependent_Member
+	}
+	KBR = {
+		transfer_state = 1560
+		add_state_core = 1560
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		
+		econ_join_sphere_MAR = yes
+		add_ideas = RUSAlliance_Dependent_Member
+	}
+	OSS = {
+		transfer_state = 1561
+		add_state_core = 1561
+		transfer_state = 1556
+		add_state_core = 1556
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		econ_join_sphere_MAR = yes
+		add_ideas = RUSAlliance_Dependent_Member
+	}
+	CHY	= {
+		transfer_state = 232
+		add_state_core = 232
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		econ_join_sphere_MAR = yes
+		add_ideas = RUSAlliance_Dependent_Member
+	}
+	DGS = {
+		transfer_state = 1564
+		add_state_core = 1564
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		econ_join_sphere_MAR = yes
+		add_ideas = RUSAlliance_Dependent_Member
+	}
+	ABZ = {
+		transfer_state = 1558
+		add_state_core = 1558
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		econ_join_sphere_MAR = yes
+		add_ideas = RUSAlliance_Dependent_Member
+	}
+	GEO = {
+		transfer_state = 231
+		add_state_core = 231
+		transfer_state = 1293
+		add_state_core = 1293
+		TaS_2WRW_set_autonomy_laws = yes
+		add_ideas = RUSAlliance_Dependent_Member
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		set_politics = {
+			ruling_party = progressivism
+		}
+		set_popularities = {
+			communist = 0
+			socialist = 0
+			progressivism = 87
+			liberalism = 13
+			conservatism = 0
+			liberal_conservatism = 0
+			paternalism = 0
+			despotism = 0
+			fascism = 0
+			national_socialism = 0
+			ultranationalism = 0
+			
+		}
+		set_party_name = { 
+			ideology = progressivism
+			long_name = GEO_progressivism_party_long
+			name = GEO_progressivism_party
+		}
+		add_country_leader_role = {
+			character = GEO_Eduard_Shevardnadze
+			promote_leader = yes
+			country_leader = {
+				desc = ""
+				expire = "1999.1.1"
+				ideology = progressivism_left_wing_populism_subtype
+				traits = {
+				}
+				id = -1
+			}
+		}
+		TNO_startup_nation = yes
+		econ_join_sphere_MAR = yes
+		set_cosmetic_tag = GEO_freedom
+	}
+	AZR = {
+		transfer_state = 229
+		add_state_core = 229
+		transfer_state = 1552
+		add_state_core = 1552
+		transfer_state = 244
+		add_state_core = 244
+		transfer_state = 1730
+		add_state_core = 1730
+		transfer_state = 2131
+		add_state_core = 2131
+		TaS_2WRW_set_autonomy_laws = yes
+		add_ideas = RUSAlliance_Dependent_Member
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		set_politics = {
+			ruling_party = despotism
+		}
+		set_popularities = {
+			communist = 0
+			socialist = 0
+			progressivism = 0
+			liberalism = 8
+			conservatism = 0
+			liberal_conservatism = 0
+			paternalism = 0
+			despotism = 92
+			fascism = 0
+			national_socialism = 0
+			ultranationalism = 0
+			
+		}
+		set_party_name = { 
+			ideology = despotism
+			long_name = AZR_despotism_party_long
+			name = AZR_despotism_party
+		}
+		AZR_Heydar_Aliyev = {
+			promote_character = yes
+		}
+		TNO_startup_nation = yes
+		econ_join_sphere_MAR = yes
+		set_cosmetic_tag = AZR_freedom
+	}
+	ARM = {
+		TNO_startup_nation = yes
+		add_timed_idea = {
+			idea = MAR_economic_recovery
+			days = 900
+		}
+		transfer_state = 1554
+		add_state_core = 1554
+		econ_join_sphere_MAR = yes
+	}
+	RUS = {
+		add_to_faction = KRC
+		add_to_faction = KBR
+		add_to_faction = OSS
+		add_to_faction = CHY
+		add_to_faction = DGS
+		add_to_faction = GEO
+		add_to_faction = AZR
+	}
+}
+
+TaS_WRW2_recount_exhausion_modifier = { 
+	#add_dynamic_modifier = { modifier = TaS_WRW2_exhausion_modifier } 
+	
+	set_temp_variable = { WRW2_devastation_TEMP = ROOT.WRW2_devastation }
+	add_to_temp_variable = { WRW2_devastation_TEMP = -20 }
+	
+	set_variable = { WRW2_exhausion_army_org_factor = -0.003 }
+	multiply_variable = { WRW2_exhausion_army_org_factor = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_land_reinforce_rate = -0.003 }
+	multiply_variable = { WRW2_exhausion_land_reinforce_rate = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_political_power_factor = -0.005 }
+	multiply_variable = { WRW2_exhausion_political_power_factor = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_industrial_capacity_factory = -0.004 }
+	multiply_variable = { WRW2_exhausion_industrial_capacity_factory = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_production_factory_start_efficiency_factor = -0.005 }
+	multiply_variable = { WRW2_exhausion_production_factory_start_efficiency_factor = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_required_garrison_factor = 0.005 }
+	multiply_variable = { WRW2_exhausion_required_garrison_factor = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_army_attack_factor = -0.004 }
+	multiply_variable = { WRW2_exhausion_army_attack_factor = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_army_defence_factor = -0.005 }
+	multiply_variable = { WRW2_exhausion_army_defence_factor = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_production_speed_buildings_factor = -0.005 }
+	multiply_variable = { WRW2_exhausion_production_speed_buildings_factor = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_taxable_population_modifier = -0.005 }
+	multiply_variable = { WRW2_exhausion_taxable_population_modifier = WRW2_devastation_TEMP }
+	
+	set_variable = { WRW2_exhausion_recruitable_population_factor = -0.005 }
+	multiply_variable = { WRW2_exhausion_recruitable_population_factor = WRW2_devastation_TEMP }
+	
+	log = "[?WRW2_devastation_TEMP] [?WRW2_exhausion_army_org_factor] [?ROOT.WRW2_devastation]"
+}
+
+TaS_WRW2_check_the_exhausion = {
+	if = {
+		limit = {
+			check_variable = { ROOT.WRW2_devastation > 20 }
+			NOT = {
+				OR = {
+					has_dynamic_modifier = { modifier = TaS_WRW2_exhausion_modifier_GER }
+					has_dynamic_modifier = { modifier = TaS_WRW2_exhausion_modifier_RUS }
+				}
+			} 
+		}
+		if = {
+			limit = { tag = GER } 
+			add_dynamic_modifier = { modifier = TaS_WRW2_exhausion_modifier_GER } 
+			set_variable = { WRW2_exhausion_army_org_factor = 0 }
+			set_variable = { WRW2_exhausion_land_reinforce_rate = 0 }
+			set_variable = { WRW2_exhausion_political_power_factor = 0 } 
+			set_variable = { WRW2_exhausion_industrial_capacity_factory = 0 }
+			set_variable = { WRW2_exhausion_production_factory_start_efficiency_factor = 0 }
+			set_variable = { WRW2_exhausion_required_garrison_factor = 0 }
+			set_variable = { WRW2_exhausion_army_attack_factor = 0 }
+			set_variable = { WRW2_exhausion_army_defence_factor = 0 }
+			set_variable = { WRW2_exhausion_production_speed_buildings_factor = 0 }
+			set_variable = { WRW2_exhausion_taxable_population_modifier = 0 }
+			set_variable = { WRW2_exhausion_recruitable_population_factor = 0 }
+			TaS_WRW2_recount_exhausion_modifier = yes
+		}
+		if = {
+			limit = { tag = RUS } 
+			add_dynamic_modifier = { modifier = TaS_WRW2_exhausion_modifier_RUS } 
+			set_variable = { WRW2_exhausion_army_org_factor = 0 }
+			set_variable = { WRW2_exhausion_land_reinforce_rate = 0 }
+			set_variable = { WRW2_exhausion_political_power_factor = 0 } 
+			set_variable = { WRW2_exhausion_industrial_capacity_factory = 0 }
+			set_variable = { WRW2_exhausion_production_factory_start_efficiency_factor = 0 }
+			set_variable = { WRW2_exhausion_required_garrison_factor = 0 }
+			set_variable = { WRW2_exhausion_army_attack_factor = 0 }
+			set_variable = { WRW2_exhausion_army_defence_factor = 0 }
+			set_variable = { WRW2_exhausion_production_speed_buildings_factor = 0 }
+			set_variable = { WRW2_exhausion_taxable_population_modifier = 0 }
+			set_variable = { WRW2_exhausion_recruitable_population_factor = 0 }
+			TaS_WRW2_recount_exhausion_modifier = yes
+		}
+			
+	}
+	if = {
+		limit = {
+			check_variable = { ROOT.WRW2_devastation > 20 }
+			OR = {
+				has_dynamic_modifier = { modifier = TaS_WRW2_exhausion_modifier_GER }
+				has_dynamic_modifier = { modifier = TaS_WRW2_exhausion_modifier_RUS }
+			}
+		}
+		TaS_WRW2_recount_exhausion_modifier = yes
+	}
+}
+
+TaS_2WRW_spawn_France = { 
+	GFR = {
+		transfer_state = 17
+		transfer_state = 28
+		transfer_state = 1812
+		transfer_state = 18
+		transfer_state = 1733
+		transfer_state = 29
+		transfer_state = 34
+		transfer_state = 1734
+		transfer_state = 6
+		if = {
+			limit = { GLC = { exists = yes } }
+			annex_country = {
+				target = GLC
+				transfer_troops = no
+			}
+		}
+		TNO_startup_nation = yes
+		econ_join_sphere_MAR = yes
+	}
+	set_global_flag = POSTGER_FRANCE
+
+}

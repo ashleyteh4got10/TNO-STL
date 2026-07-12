@@ -1,0 +1,830 @@
+TaS_WRW2_GER_epilogue = {
+	TaS_return_to_berezniki = {
+		icon = GFX_Postger_guot
+
+		ai_will_do = {
+			factor = 100
+		}
+
+		visible = {
+			
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_return_to_berezniki"
+			if = {
+				limit = { 
+					original_tag = MAR
+				}
+				custom_effect_tooltip = TaS_return_to_berezniki_tt
+				hidden_effect = {
+					BRL = {
+						country_event = { id = TaS_GEREpilogue.1 }
+					}
+					ZNE = {
+						country_event = { id = TaS_GEREpilogue.4 }
+					}	
+					GCZ = {
+						country_event = { id = TaS_GEREpilogue.8 }
+					}
+					GWS = {
+						country_event = { id = TaS_GEREpilogue.12 }
+					}
+					GBW = {
+						country_event = { id = TaS_GEREpilogue.15 }
+					}
+					GRH = {
+						country_event = { id = TaS_GEREpilogue.18 }
+					}
+					GBV = {
+						country_event = { id = TaS_GEREpilogue.21 }
+					}
+					GAU = {
+						country_event = { id = TaS_GEREpilogue.24 }
+					}
+					GWF = {
+						country_event = { id = TaS_GEREpilogue.27 days = 30 }
+					}
+					GRA = {
+						country_event = { id = TaS_GEREpilogue.28 days = 30 }
+					}
+					GSU = {
+						country_event = { id = TaS_GEREpilogue.29 days = 30 }
+					}
+				}
+			}
+			else = {
+				hidden_effect = {
+					MAR = {
+						change_tag_from = ROOT
+					}
+				}
+			}
+		}
+	}
+	TaS_play_guot = {
+		icon = GFX_Postger_guot
+		visible = { 
+			BRL = { exists = yes }
+				is_ai = no
+			}
+		ai_will_do = {
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = BRL }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_guot"
+			hidden_effect = {
+				BRL = {
+					change_tag_from = ROOT
+				}
+				BRL = {
+					country_event = {
+						id = TaS_GEREpilogue.1
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_garnizon = {
+		icon = {
+			key = GFX_Postger_garnizon
+			trigger = {
+				has_global_flag = PostGER_belooz_epilogue
+			}
+		}
+		icon = {
+			key = GFX_Postger_prussia
+			trigger = {
+				has_global_flag = PostGER_kosygin_epilogue
+			}
+		}
+		visible = { ZNE = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = ZNE }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_garnizon"
+			hidden_effect = {
+				ZNE = {
+					change_tag_from = ROOT
+				}
+				ZNE = {
+					country_event = {
+						id = TaS_GEREpilogue.4
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_westphalia = {
+		icon = GFX_Postger_westphalia
+		visible = { GWS = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = GWS }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_westphalia"
+			hidden_effect = {
+				GWS = {
+					change_tag_from = ROOT
+				}
+				GWS = {
+					country_event = {
+						id = TaS_GEREpilogue.12
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_rheinland = {
+		icon = {
+			key = GFX_Postger_rhein
+			trigger = {
+				has_global_flag = PostGER_belooz_epilogue
+			}
+		}
+		icon = {
+			key = GFX_Postger_rheinfed
+			trigger = {
+				has_global_flag = PostGER_kosygin_epilogue
+			}
+		}
+		visible = { GRH = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = GRH }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_rheinland"
+			hidden_effect = {
+				GRH = {
+					change_tag_from = ROOT
+				}
+				GRH = {
+					country_event = {
+						id = TaS_GEREpilogue.18
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_baden = {
+		icon = GFX_Postger_baden
+		visible = { GBW = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = GBW }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_baden"
+			hidden_effect = {
+				GBW = {
+					change_tag_from = ROOT
+				}
+				GBW = {
+					country_event = {
+						id = TaS_GEREpilogue.15
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_bavaria = {
+		icon = {
+			key = GFX_Postger_bavaria
+			trigger = {
+				has_global_flag = PostGER_belooz_epilogue
+			}
+		}
+		icon = {
+			key = GFX_Postger_bavariasoviet
+			trigger = {
+				has_global_flag = PostGER_kosygin_epilogue
+			}
+		}
+		visible = { GBV = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = GBV }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_bavaria"
+			hidden_effect = {
+				GBV = {
+					change_tag_from = ROOT
+				}
+				GBV = {
+					country_event = {
+						id = TaS_GEREpilogue.21
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_austria = {
+		icon = {
+			key = GFX_Postger_austria
+			trigger = {
+				has_global_flag = PostGER_belooz_epilogue
+			}
+		}
+		icon = {
+			key = GFX_Postger_austriarep
+			trigger = {
+				has_global_flag = PostGER_kosygin_epilogue
+			}
+		}
+		visible = { GAU = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = GAU }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_austria"
+			hidden_effect = {
+				GAU = {
+					change_tag_from = ROOT
+				}
+				GAU = {
+					country_event = {
+						id = TaS_GEREpilogue.24
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_czechia = {
+		icon = GFX_Postger_czechia
+		visible = { GCZ = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = GAU }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_czechia"
+			hidden_effect = {
+				GCZ = {
+					change_tag_from = ROOT
+				}
+				GCZ = {
+					country_event = {
+						id = TaS_GEREpilogue.8
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_sudeten = { 
+		icon = GFX_Postger_sudeten
+		visible = { GSU = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}	
+
+		allowed = {
+			NOT = { tag = GSU }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_sudeten"
+			hidden_effect = {
+				GSU = {
+					change_tag_from = ROOT
+				}
+				GSU = {
+					country_event = {
+						id = TaS_GEREpilogue.29
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_remer = {
+		icon = GFX_Postger_remer
+		visible = { GWF = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = GWF }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_remer"
+			hidden_effect = {
+				GWF = {
+					change_tag_from = ROOT
+				}
+				GWF = {
+					country_event = {
+						id = TaS_GEREpilogue.27
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_play_baader = {
+		icon = GFX_Postger_baader
+		visible = { GRA = { exists = yes }}
+		ai_will_do = { 
+			factor = 0
+		}
+
+		allowed = {
+			NOT = { tag = GRA }
+		}
+
+		visible = {
+			NOT = { has_global_flag = PostGER_second_cw }
+			is_ai = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_play_baader"
+			hidden_effect = {
+				GRA = {
+					change_tag_from = ROOT
+				}
+				GRA = {
+					country_event = {
+						id = TaS_GEREpilogue.28
+						days = 1
+					}
+					clr_country_flag = SE_WRW2_VICTORY_BELOZERSKY
+					TNO_clean_trees = yes
+				}
+			}
+		}
+	}
+	TaS_PostGER_second_cw = {	
+		icon = GFX_Postger_warstart
+		available = {
+			always = no
+		}
+    	activation = {
+			check_variable = { global.postgervisits > 10.5 }
+			is_ai = no
+			NOT = { has_global_flag = PostGER_second_cw }
+    	}
+		cancel_trigger = {
+			has_global_flag = PostGER_second_cw
+		}		
+    	is_good = no
+	
+    	days_mission_timeout = 7
+	
+		timeout_effect = {
+    		log = "[GetDateText]: [Root.GetName]: TaS_PostGER_second_cw mission timer elapsed" 
+			custom_effect_tooltip = PostGER_second_cw_started
+			hidden_effect = {
+				TaS_2WRW_start_westgerman_cw = yes
+				subtract_from_variable = { global.postgervisits = 10.5 }
+			}
+
+    	}
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission TaS_PostGER_second_cw Completed (Should never happen for this mission, please report if you see this in the log.)"
+    	}
+  	}
+	TaS_PostGER_second_cw_looming_russian_invastion = {	
+		icon = GFX_decision_red_skull
+		available = {
+			always = no
+		}
+    	activation = {
+    		has_global_flag = PostGER_second_cw
+			NOT = { has_global_flag = PostGER_warsended }
+			is_ai = no
+    	}
+		cancel_trigger = {
+			has_global_flag = PostGER_warsended
+		}		
+    	is_good = no
+	
+    	days_mission_timeout = 180
+	
+		timeout_effect = {
+    		log = "[GetDateText]: [Root.GetName]: TaS_PostGER_second_cw mission timer elapsed" 
+			TaS_2WRW_start_guot_invasion = yes
+    	}
+	
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Mission TaS_PostGER_second_cw Completed (Should never happen for this mission, please report if you see this in the log.)"
+    	}
+  	}
+	TaS_invade_czechia = {
+		icon = GFX_Postger_unifygermany
+		available = {
+			has_war = no
+		}
+		allowed = {
+			NOT = { tag = MAR }
+		}
+		visible = {
+			has_global_flag = PostGER_second_cw
+			OR = {
+				has_government = despotism
+				has_government = ultranationalism
+				has_government = communist
+			}
+			NOT = { tag = GCZ }
+			NOT = { tag = ZNE }
+			NOT = { tag = BRL }
+			country_exists = GCZ
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision west_german_reunification"
+			ROOT = {
+				declare_war_on = {
+					target = GCZ
+					type = annex_everything
+				}
+			}
+		}
+	}
+	TaS_west_german_reunification = {
+		icon = GFX_Postger_unifygermany
+		available = {
+			can_form_germany = yes
+			has_war = no
+			if = {
+				limit = {
+					has_government = despotism
+					has_government = ultranationalism
+					has_government = communist
+				}
+				owns_state = 9
+				owns_state = 75
+			}
+		}
+		visible = {
+			NOT = { tag = MAR }
+		}
+		#visible = { has_global_flag = PostGER_second_cw }
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision west_german_reunification"
+			set_global_flag = PostGER_warsended
+			add_research_slot = 1
+			custom_effect_tooltip = GER_unification_tt
+			hidden_effect = {
+				add_manpower = 150000
+			}
+			every_owned_state = {
+				add_core_of = ROOT
+			}
+			GER_select_unified_cosmotag = yes
+			GER_select_unification_news_event = yes
+			set_capital = { state = 55 }	
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							original_tag = GWF
+							original_tag = GCZ
+						}
+					}
+				}
+				TNO_Country_Closing_Screen_Show = yes
+			}
+		
+			if = {
+				limit = { original_tag = GWF }
+				custom_effect_tooltip = UnforseenConsequences_tt
+				hidden_effect = {
+					GWF = {
+						country_event = { id = TaS_GEREpilogue.30 days = 7 }
+					}
+					
+				}
+			}
+			if = {
+				limit = { original_tag = GCZ }
+				TaS_2WRW_remove_schnitzel = yes
+				TNO_Country_Closing_Screen_Show = yes
+			}
+			if = {
+				limit = { original_tag = GRA }
+				TaS_2WRW_czech_ssr = yes
+				add_country_leader_role = {
+					character = GRA_Andreas_Baader
+					country_leader = {
+						desc = "POSTWRW2_Baader_DESC"
+						ideology = communist_subtype
+						traits = { }
+						expire = "2222.2.2"
+						id = -1
+					}
+					promote_character = yes
+				}
+			}
+			if = {
+				limit = { original_tag = ZNE }
+				annex_country = {
+					target = BRL
+					transfer_troops = yes
+				}
+				MAR = {
+					MAR_Kessler_Heinz = { 
+						set_nationality = ZNE
+					}
+					add_to_faction = ZNE
+				}
+				set_cosmetic_tag = ZNE_Germany
+				retire_country_leader = yes
+				add_country_leader_role = {
+					character = MAR_Kessler_Heinz
+					promote_leader = yes
+					country_leader = {
+						ideology = despotism_military_junta_subtype
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				set_capital = { state = 64 } 
+			}
+		}
+	}
+}
+TaS_WRW2_RUS_post_collapse = {
+	RUS_post_collapse_show_hide_countries = {
+		icon = {
+			key = GFX_decision_generic_visibility_closed
+			trigger = {
+				has_country_flag = RUS_show_countries
+			}
+		}
+		icon = {
+			key = GFX_decision_generic_visibility
+			trigger = {
+				NOT = { has_country_flag = RUS_show_countries }
+			}
+		}
+		days_re_enable = 0
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_post_collapse_show_hide_countries"
+			if = {
+				limit = { has_country_flag = RUS_show_countries }
+				clr_country_flag = RUS_show_countries
+			}
+			else = {
+				set_country_flag = RUS_show_countries
+			}
+		}
+	}
+	RUS_post_collapse_play_someone = {
+		icon = GFX_decision_point
+		target_array = global.PostRus_collapse
+		target_trigger = {
+			FROM = {
+				exists = yes
+			}
+		}
+		visible = {
+			FROM = {
+				exists = yes
+			}
+			has_country_flag = RUS_show_countries
+		}
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_OC_bomb_someone"
+			FROM = {
+				change_tag_from = ROOT
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	RUS_post_collapse_show_hide_wars = {
+		icon = {
+			key = GFX_decision_generic_visibility_closed
+			trigger = {
+				has_country_flag = RUS_show_wars
+			}
+		}
+		icon = {
+			key = GFX_decision_generic_visibility
+			trigger = {
+				NOT = { has_country_flag = RUS_show_wars }
+			}
+		}
+		days_re_enable = 0
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision RUS_post_collapse_show_hide_countries"
+			if = {
+				limit = { has_country_flag = RUS_show_wars }
+				clr_country_flag = RUS_show_wars
+			}
+			else = {
+				set_country_flag = RUS_show_wars
+			}
+		}
+	}
+	RUS_post_collapse_declare_war_someone = {
+		icon = GFX_decision_generic_bombing
+		target_array = global.PostRus_collapse
+		target_trigger = {
+			FROM = {
+				exists = yes
+			}
+		}
+		visible = {
+			FROM = {
+				exists = yes
+				is_neighbor_of = ROOT
+			}
+			has_country_flag = RUS_show_wars
+		}
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_OC_bomb_someone"
+			declare_war_on = {
+				target = FROM
+				type = annex_everything
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	TaS_russian_re_reunification = {
+		icon = GFX_decision_category_generic_russia
+		available = {
+			is_subject = no
+			has_war = no
+			custom_trigger_tooltip = {
+				tooltip = can_form_west_siberia_tt
+				can_form_west_siberia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_southern_urals_tt
+				can_form_southern_urals = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_central_siberia_tt
+				can_form_central_siberia = yes
+			}
+			custom_trigger_tooltip = {
+				tooltip = can_form_far_east_tt
+				can_form_far_east = yes
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			factor = 200
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision TaS_russian_re_reunification"
+			set_global_flag = RUS_re_reunification
+			add_research_slot = 1
+			custom_effect_tooltip = GER_unification_tt
+			hidden_effect = {
+				add_manpower = 150000
+			}
+			RUS_select_re_reunified_cosmotag = yes
+			RUS_select_re_reunification_news_event = yes
+			#RUS_do_re_reunification_effects = yes
+			TNO_Country_Closing_Screen_Show = yes
+		}
+	}
+}

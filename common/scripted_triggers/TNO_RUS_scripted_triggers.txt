@@ -9,6 +9,7 @@ is_russian_unifier = {
 		original_tag = SAM
 		original_tag = KOM
 		original_tag = PRM
+original_tag = MAR
 
 		original_tag = OMS
 		original_tag = TYM
@@ -43,6 +44,7 @@ is_central_russian_nation = {
 		original_tag = PRM
 		original_tag = GAY
 		original_tag = BKR
+original_tag = MAR
 	}
 }
 
@@ -71,6 +73,7 @@ is_central_siberian_nation = {
 		original_tag = KRS
 		original_tag = KAL
 		original_tag = TAN
+		#original_tag = NRL # prevents wars with NRL + other weird debug issues
 	}
 }
 
@@ -84,6 +87,7 @@ is_far_eastern_nation = {
 		original_tag = AMR
 		original_tag = OMO
 		original_tag = YAK
+original_tag = VIL
 	}
 }
 
@@ -98,6 +102,7 @@ is_race_for_the_urals_player = {
 		original_tag = TYM
 		original_tag = SVR
 		original_tag = NTG
+		original_tag = MAR
 	}
 }
 
@@ -183,6 +188,38 @@ is_moskowien_splits = {
 		tag = OZP
 		tag = OZA
 		tag = PAU
+	}
+}
+
+is_after_midnight_nation = {
+	OR = {
+		tag = TMA
+		tag = TMB
+		tag = TMC
+		tag = TMD
+		tag = TME
+		tag = TMF
+		tag = TMG
+		tag = TMH
+		tag = TMI
+		tag = TMJ
+		tag = TMK
+		tag = TML
+		tag = TMM
+		tag = TMN
+		tag = TMO
+		tag = TMP
+		tag = TMQ
+		tag = TMR
+		tag = TMS
+		tag = TMT
+		tag = TMU
+		tag = TMV
+		tag = TMW
+		tag = TMX
+		tag = TMY
+		tag = VIL
+		tag = KOM
 	}
 }
 
@@ -1031,6 +1068,47 @@ RWS_SIB_is_compatible = {
 					}
 				}
 			}
+			AND = {
+                RWS = {
+                    original_tag = MAR
+                    has_government = despotism
+                }
+                OR = {
+                    SIB = {
+                        original_tag = CHT
+                    }
+                    SIB = {
+                        original_tag = MAG
+                        has_government = despotism
+                    }
+                    SIB = {
+                        original_tag = NOV
+                        has_government = paternalism
+                    }
+                    SIB = {
+                        original_tag = OMO
+                    }
+                    SIB = {
+                        original_tag = KEM
+                    }
+                }
+            }
+			AND = {
+                RWS = {
+                    original_tag = MAR
+                    has_government = socialist
+                }
+                OR = {
+                    SIB = {
+                        original_tag = TOM
+						has_government = socialist
+                    }
+                    SIB = {
+                        original_tag = KEM
+						has_government = paternalism
+                    }
+                }
+            }
 		}
 	}
 	else = { always = no }
@@ -1349,6 +1427,9 @@ RUS_consider_communist_regime = {
 			NOT = {
 				original_tag = SBA
 			}
+	NOT = {
+				original_tag = MAR
+			}
 		}
 		has_country_leader = {
 			character = KOM_Ivan_Serov
@@ -1396,4 +1477,49 @@ PRC_can_assign_status = {
 		}
 		is_core_of = PRC
 	}
+}
+
+RUS_consider_fascist_regime = {
+	OR = {
+		has_government = fascism
+		AND = {
+			has_government = national_socialism
+			NOT = {
+				has_country_leader = {
+					character = KOM_Sergey_Taboritsky
+					ruling_only = yes
+				}
+			}
+		}
+		AND = {
+			has_government = ultranationalism
+			NOT = {
+				has_country_leader = {
+					character = KOM_Lev_Gumilyov
+					ruling_only = yes
+				}
+			}
+		}
+		has_country_leader = {
+			character = KOM_Ivan_Serov
+			ruling_only = yes
+		}
+	}	
+}
+
+RUS_consider_monarchist_regime = {
+	OR = {
+		original_tag = CHT
+		original_tag = GAY
+		original_tag = TMD
+		original_tag = TMG
+		original_tag = TMU
+		original_tag = TMV
+		original_tag = TMY
+		original_tag = VYT
+		has_country_leader = {
+			character = KOM_Sergey_Taboritsky
+			ruling_only = yes
+		}
+	}	
 }

@@ -1,0 +1,804 @@
+GWF_initiate = {
+	XYI = {
+		GWF_Akemi_Homura = {
+			set_nationality = GWF
+		}
+		GWF_Kyubey = {
+			set_nationality = GWF
+		}
+		GWF_Contollable_Chaos = {
+			set_nationality = GWF
+		}
+		GWF_Sayaka_Miki = {
+			set_nationality = GWF
+		}
+		GWF_Hans_Filbinger = {
+			set_nationality = GWF
+		}
+		GWF_Wilhelm_Mohnke = {
+			set_nationality = GWF
+		}
+		GWF_Otto_Tetsurstamm = {
+			set_nationality = GWF
+		}
+		GWF_Arthur_Juz = {
+			set_nationality = GWF
+		}
+	}
+	GRA = {
+		GRA_Andreas_Baader = {
+			set_nationality = GWF
+		}
+	}
+	GWF = {
+		division_template = {
+			name = "Infanterie-Division"
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+				infantry = { x = 2 y = 0 }
+				infantry = { x = 2 y = 1 }
+				infantry = { x = 2 y = 2 }
+			}
+			support = {
+				engineer = { x = 0 y = 0 }
+				artillery = { x = 0 y = 1 }
+				anti_tank = { x = 0 y = 2 }
+			}
+		}
+
+		division_template = {
+			name = "Militärpolizei-Division"
+			regiments = {
+				light_infantry = { x = 0 y = 0 }
+				light_infantry = { x = 0 y = 1 }
+				light_infantry = { x = 0 y = 2 }
+				light_infantry = { x = 1 y = 0 }
+				light_infantry = { x = 1 y = 1 }
+			}
+			support = {
+				military_police = { x = 0 y = 0 }
+			}
+			priority = 0
+		}
+		inherit_technology = GER
+		set_cosmetic_tag = GWF_trvthnuke
+		set_country_flag = country_has_trvthnuked
+		transfer_state = 68
+		transfer_state = 50
+		set_capital = { state = 50 remember_old_capital = no }
+		50 = {
+			create_unit = {
+				division = "division_template = \"Militärpolizei-Division\" start_experience_factor = 0.3 start_equipment_factor = 0.6"
+				owner = GWF
+				count = 2
+			}
+		}
+		68 = {
+			create_unit = {
+				division = "division_template = \"Infanterie-Division\" start_experience_factor = 0.4 start_equipment_factor = 0.7"
+				owner = GWF
+				count = 1
+			}
+		}
+		every_owned_state = {
+			add_core_of = PREV
+		}
+		promote_character = GWF_Akemi_Homura
+		GWF_Otto_Ernst_Remer = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1999.1.1"
+					ideology = national_socialism_revolutionary_nazism_subtype
+					id = -1
+				}
+				promote_leader = yes
+			}
+		}
+		GRA_Andreas_Baader = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1999.1.1"
+					ideology = communist_guevarism_subtype
+					id = -1
+				}
+				promote_leader = yes
+			}
+		}
+		set_character_name = {
+			character = GWF_Sayaka_Miki
+			name = GWF_Sayaka_Miki_hidden
+		}
+		GWF_Sayaka_Miki = {
+			add_country_leader_role = {
+				country_leader = {
+					expire = "1999.1.1"
+					ideology = paternalism_provisional_government_subtype
+					id = -1
+				}
+				promote_leader = yes
+			}
+		}
+		set_politics = {
+			ruling_party = accelerationism
+			elections_allowed = no
+		}
+		set_party_name = {
+			ideology = accelerationism
+			long_name = GWF_AprilFools_party_long
+			name = GWF_AprilFools_party
+		}
+		set_party_name = {
+			ideology = national_socialism
+			long_name = GWF_AprilFools_ns_party_long
+			name = GWF_AprilFools_ns_party
+		}
+		set_party_name = {
+			ideology = communist
+			long_name = GWF_AprilFools_comm_party_long
+			name = GWF_AprilFools_comm_party
+		}
+		set_party_name = {
+			ideology = paternalism
+			long_name = GWF_AprilFools_pat_party_long
+			name = GWF_AprilFools_pat_party
+		}
+		remove_all_ideas = yes
+		set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Corporatism }
+		econ_type_change = yes
+		set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Dirigisme }
+		econ_subtype_change = yes
+		
+		set_popularities = {
+			accelerationism = 43
+			national_socialism = 19
+			communist = 17
+			paternalism = 21
+		}
+		
+		add_ideas = GWF_chaos_in_stuttgart
+		add_ideas = GWF_for_madoka
+		add_ideas = GWF_southgerman_tension
+		country_lock_all_division_template = yes
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 1554
+		}
+		add_equipment_to_stockpile = {
+			type = support_equipment
+			amount = 82
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 156
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 78
+		}
+		load_focus_tree = {	tree = GWF_Homura_Initial keep_completed = no }
+		add_ideas = { #yes its very important #WOKEmura
+			tno_women_combat_roles
+			tno_racial_integration_integrated_military
+			tno_lgbt_rights_equal_rights
+			tno_minorities_equal_rights
+		}
+		set_variable = { GWF.GWF_umbra_treshold = 55 }
+		set_variable = { GWF.GWF_rapinam_treshold = 65 }
+	}
+}
+
+GWF_start_homura_gui = {
+	set_country_flag = GWF_Homura_gui_active
+	
+	set_variable = { GWF_Homura_mental = 78 }
+	set_variable = { GWF_Homura_physics = 82 }
+	
+	set_variable = { GWF_homura_weekly_mental = 0.5 }
+	set_variable = { GWF_homura_weekly_physics = 0.5 }
+	
+	set_variable = { GWF_Homura_cat = 1 }
+	set_variable = { GWF_Homura_style = 2}
+	
+	GWF_calculate_homura_dynmod_effects = yes
+	add_to_variable = { GWF_Homura_GUI_dirty = 1 }
+	
+}
+GWF_calculate_homura_dynmod_effects = {
+	if = {
+		limit = { NOT = { has_idea = GWF_Homura_modifier_dummy } }
+		add_ideas = GWF_Homura_modifier_dummy
+		add_dynamic_modifier = {
+			modifier = GWF_Homura_modifier
+			scope = MAR
+		}
+	}
+
+	clear_array = GWF_Homura_modifier_array_one
+	add_to_array = { GWF_Homura_modifier_array_one = 0.1 } # research_speed_factor
+	add_to_array = { GWF_Homura_modifier_array_one = 0.25 } # political_power_factor
+	add_to_array = { GWF_Homura_modifier_array_one = -0.1 } # personnel_cost_modifier
+	add_to_array = { GWF_Homura_modifier_array_one = 0.3 } # command_power_gain
+	add_to_array = { GWF_Homura_modifier_array_one = 0.15 } # stability_factor
+	clear_array = GWF_Homura_modifier_array_two
+	add_to_array = { GWF_Homura_modifier_array_two = 0.15 } # army_attack_factor
+	add_to_array = { GWF_Homura_modifier_array_two = 0.15 } # army_defence_factor
+	add_to_array = { GWF_Homura_modifier_array_two = 0.15 } # army_org_factor
+	add_to_array = { GWF_Homura_modifier_array_two = 0.1 } # land_reinforce_rate
+	add_to_array = { GWF_Homura_modifier_array_two = -0.1 } # required_garrison_factor
+	
+	set_temp_variable = { homura_mental_stat = GWF_Homura_mental }
+	add_to_temp_variable = { homura_mental_stat = -50 } 
+	divide_temp_variable = { homura_mental_stat = 50 }
+	
+	set_temp_variable = { homura_physics_stat = GWF_Homura_physics }
+	add_to_temp_variable = { homura_physics_stat = -50 } 
+	divide_temp_variable = { homura_physics_stat = 50 }
+	
+	for_each_loop = {
+		array = GWF_Homura_modifier_array_one
+		multiply_variable = { GWF_Homura_modifier_array_one^i = homura_mental_stat }
+	}
+	for_each_loop = {
+		array = GWF_Homura_modifier_array_two
+		multiply_variable = { GWF_Homura_modifier_array_two^i = homura_physics_stat }
+	}
+	force_update_dynamic_modifier = yes
+}
+
+GWF_homura_change_stats = {
+	set_temp_variable = { temp_stat_gained_txt = temp_stat_gained }
+	if = {
+		limit = { check_variable = { opp_to_change = 1 } } #mental
+		add_to_variable = { GWF_Homura_mental = temp_stat_gained }
+		if = {
+			limit = { check_variable = { temp_stat_gained < 0 } }
+			multiply_temp_variable = { temp_stat_gained_txt = -1 }
+			custom_effect_tooltip = GWF_homura_mental_decrease_tt
+		}
+		else = {
+			custom_effect_tooltip = GWF_homura_mental_growth_tt
+		}
+		clamp_variable = { var = GWF_Homura_mental min = 0 max = 100 }
+	}
+	if = {
+		limit = { check_variable = { opp_to_change = 2 } } #phys
+		add_to_variable = { GWF_Homura_physics = temp_stat_gained }
+		if = {
+			limit = { check_variable = { temp_stat_gained < 0 } }
+			multiply_temp_variable = { temp_stat_gained_txt = -1 }
+			custom_effect_tooltip = GWF_homura_phys_decrease_tt 
+		}
+		else = {
+			custom_effect_tooltip = GWF_homura_phys_growth_tt
+		}
+		clamp_variable = { var = GWF_Homura_physics min = 0 max = 100 }
+	}
+	add_to_variable = { GWF_Homura_GUI_dirty = 1 }
+	GWF_calculate_homura_dynmod_effects = yes
+}
+
+GWF_homura_change_weekly_stats = {
+	set_temp_variable = { temp_stat_gained_txt = temp_stat_gained }
+	if = {
+		limit = { check_variable = { opp_to_change = 1 } } #mental
+		add_to_variable = { GWF_homura_weekly_mental = temp_stat_gained }
+		if = {
+			limit = { check_variable = { temp_stat_gained < 0 } }
+			multiply_temp_variable = { temp_stat_gained_txt = -1 }
+			custom_effect_tooltip = GWF_homura_weekly_mental_decrease_tt
+		}
+		else = {
+			custom_effect_tooltip = GWF_homura_weekly_mental_growth_tt
+		}
+	}
+	if = {
+		limit = { check_variable = { opp_to_change = 2 } } #phys
+		add_to_variable = { GWF_homura_weekly_physics = temp_stat_gained }
+		if = {
+			limit = { check_variable = { temp_stat_gained < 0 } }
+			multiply_temp_variable = { temp_stat_gained_txt = -1 }
+			custom_effect_tooltip = GWF_homura_weekly_phys_decrease_tt 
+		}
+		else = {
+			custom_effect_tooltip = GWF_homura_weekly_phys_growth_tt
+		}
+	}
+	add_to_variable = { GWF_Homura_GUI_dirty = 1 }
+}
+
+GWF_start_oppo_gui = {
+	set_country_flag = GWF_Opposition_gui_active
+	
+	set_variable = { endezeit_strength = 100 }
+	set_variable = { raf_strength = 100 }
+	set_variable = { gim_strength = 100 }	
+	set_variable = { GWF_oppo_cat = 1 }
+	
+	GWF_calculate_oppo_dynmod_effects = yes
+	add_to_variable = { GWF_Opposition_GUI_dirty = 1 }
+	
+}
+
+GWF_calculate_oppo_dynmod_effects = {
+	if = {
+		limit = { NOT = { has_idea = GWF_opposition_modifier_dummy } }
+		add_ideas = GWF_opposition_modifier_dummy
+		add_dynamic_modifier = {
+			modifier = GWF_opposition_modifier
+			scope = MAR
+		}
+	}
+	
+	# Country scope dynmods
+	clear_array = GWF_opposition_modifier_array
+	add_to_array = { GWF_opposition_modifier_array = 0.2 } # Resistance Target
+	add_to_array = { GWF_opposition_modifier_array = 0.3 } # Supply consumption factor
+	add_to_array = { GWF_opposition_modifier_array = -0.2 } # Resource gain efficiency
+	add_to_array = { GWF_opposition_modifier_array = -0.3 } # Stability
+	add_to_array = { GWF_opposition_modifier_array = -5 } # GDP growth
+	add_to_array = { GWF_opposition_modifier_array = 0.2 } # Misc military costs
+	
+	set_variable = { total_opposition_strength = ROOT.endezeit_strength }
+	add_to_variable = { total_opposition_strength = ROOT.raf_strength }
+	add_to_variable = { total_opposition_strength = ROOT.gim_strength }
+	divide_variable = { total_opposition_strength = 300 }
+	
+	for_each_loop = {
+		array = GWF_opposition_modifier_array
+		multiply_variable = { GWF_opposition_modifier_array^i = total_opposition_strength }
+	}
+	
+	force_update_dynamic_modifier = yes
+}
+
+GWF_opposition_change_stats = {
+	set_temp_variable = { temp_stat_gained_txt = temp_stat_gained }
+	if = {
+		limit = { check_variable = { opp_to_change = 1 } } #endzeit
+		add_to_variable = { endezeit_strength = temp_stat_gained }
+		clamp_variable = { var = endezeit_strength min = 0 max = 100 }
+	}
+	if = {
+		limit = { check_variable = { opp_to_change = 2 } } #gim
+		add_to_variable = { gim_strength = temp_stat_gained }
+		clamp_variable = { var = gim_strength min = 0 max = 100 }
+	}
+	if = {
+		limit = { check_variable = { opp_to_change = 3 } } #raf
+		add_to_variable = { raf_strength = temp_stat_gained }
+		clamp_variable = { var = raf_strength min = 0 max = 100 }
+	}
+	if = {
+		limit = { check_variable = { temp_stat_gained < 0 } }
+		multiply_temp_variable = { temp_stat_gained_txt = -1 }
+		custom_effect_tooltip = GWF_opposition_decrease_tt
+	}
+	else = {
+		custom_effect_tooltip = GWF_opposition_growth_tt
+	}
+	add_to_variable = { GWF_Opposition_GUI_dirty = 1 }
+	GWF_calculate_oppo_dynmod_effects = yes
+	
+}
+GWF_start_great_game = {
+	set_country_flag = GWF_BigGame_gui_active
+	clear_array = GWF_map_grid_array
+	add_to_array = { GWF_map_grid_array = AGS }
+	add_to_array = { GWF_map_grid_array = AUS }
+	add_to_array = { GWF_map_grid_array = DSH }
+	add_to_array = { GWF_map_grid_array = GAU }
+	add_to_array = { GWF_map_grid_array = GBV }
+	add_to_array = { GWF_map_grid_array = GBW }
+	add_to_array = { GWF_map_grid_array = GRA }
+	add_to_array = { GWF_map_grid_array = GSU }
+	add_to_array = { GWF_map_grid_array = GWF }
+	add_to_array = { GWF_map_grid_array = LHH }
+	add_to_array = { GWF_map_grid_array = OKL }
+	add_to_array = { GWF_map_grid_array = RMN }
+	add_to_array = { GWF_map_grid_array = SLO }
+	# Statuses: 1 ; 2 ; 3 
+	
+	AGS = { set_variable = { gui_display_frame = 5000 } }
+	AUS = { set_variable = { gui_display_frame = 5000 } }
+	DSH = { set_variable = { gui_display_frame = 1000 } }
+	GAU = { set_variable = { gui_display_frame = 1000 } }
+	GBV = { set_variable = { gui_display_frame = 5000 } }
+	GBW = { set_variable = { gui_display_frame = 5000 } }
+	GRA = { set_variable = { gui_display_frame = 1000 } }
+	GSU = { set_variable = { gui_display_frame = 1000 } }
+	GWF = { set_variable = { gui_display_frame = 8000 } }
+	LHH = { set_variable = { gui_display_frame = 9000 } }
+	OKL = { set_variable = { gui_display_frame = 1000 } }
+	RMN = { set_variable = { gui_display_frame = 5000 } }
+	SLO = { set_variable = { gui_display_frame = 5000 } }
+	
+	clear_array = GWF_map_x
+	clear_array = GWF_map_y
+	add_to_array = { GWF_map_x = 66 } #AGS
+	add_to_array = { GWF_map_x = 191 } #AUS
+	add_to_array = { GWF_map_x = 247 } #DSH
+	add_to_array = { GWF_map_x = 272 } #GAU
+	add_to_array = { GWF_map_x = 146 } #GBV
+	add_to_array = { GWF_map_x = 72 } #GBW
+	add_to_array = { GWF_map_x = 96 } #GRA
+	add_to_array = { GWF_map_x = 48 } #GSU
+	add_to_array = { GWF_map_x = 119 } #GWF
+	add_to_array = { GWF_map_x = 52 } #LHH
+	add_to_array = { GWF_map_x = 37 } #OKL
+	add_to_array = { GWF_map_x = 30 } #RMN
+	add_to_array = { GWF_map_x = 291 } #SLO
+	
+	add_to_array = { GWF_map_y = 53 }
+	add_to_array = { GWF_map_y = 172 }
+	add_to_array = { GWF_map_y = 130 }
+	add_to_array = { GWF_map_y = 75 }
+	add_to_array = { GWF_map_y = 22 }
+	add_to_array = { GWF_map_y = 175 }
+	add_to_array = { GWF_map_y = 54 }
+	add_to_array = { GWF_map_y = 145 }
+	add_to_array = { GWF_map_y = 65 }
+	add_to_array = { GWF_map_y = 5 }
+	add_to_array = { GWF_map_y = 37 }
+	add_to_array = { GWF_map_y = 194 }
+	add_to_array = { GWF_map_y = 187 }
+	
+	set_variable = { GWF_x_axis = 200 }
+	set_variable = { GWF_round_support = 45 }
+	
+	set_variable = { GWF_BigGame_round = 1 }
+	add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+	
+	RMN = { set_variable = { gui_display_frame = 6000 } }
+	set_variable = { BigGame_round_timeout = 60 }
+	set_variable = { BigGame_round_threshold = 55 }
+	activate_mission = GWF_BigGame_mission
+	activate_mission = GWF_BigGame_tick
+	GWF_great_game_clamp_vars = yes
+}
+
+GWF_great_game_clamp_vars = {
+	round_variable = GWF_round_support
+	clamp_variable = { var = GWF_round_support min = 0 max = 100 }
+
+	set_variable = { GWF_x_axis = 4.44 } #(481-37)/100
+	multiply_variable = { GWF_x_axis = GWF_round_support }
+	round_variable = GWF_x_axis
+	add_to_variable = { GWF_x_axis = 37 }
+	add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+}
+
+GWF_great_game_change_support = {
+	add_to_variable = { GWF_round_support = GWFBiggameAddition }
+	GWF_great_game_clamp_vars = yes
+}
+GWF_great_game_reset = {
+	set_variable = { BigGame_GWF_wins = 0 }
+	set_variable = { BigGame_LHH_wins = 0 }
+	
+	RMN = {
+		leave_faction = yes 
+		remove_ideas = Homura_Alliance_Member
+		remove_ideas = Speer_Alliance_Member
+		set_variable = { gui_display_frame = 5000 }
+	}
+	AUS = {
+		leave_faction = yes 
+		remove_ideas = Homura_Alliance_Member
+		remove_ideas = Speer_Alliance_Member
+		set_variable = { gui_display_frame = 5000 }
+	}
+	AGS = {
+		leave_faction = yes 
+		remove_ideas = Homura_Alliance_Member
+		remove_ideas = Speer_Alliance_Member
+		set_variable = { gui_display_frame = 5000 }
+	}
+	GBW = {
+		leave_faction = yes 
+		remove_ideas = Homura_Alliance_Member
+		remove_ideas = Speer_Alliance_Member
+		set_variable = { gui_display_frame = 5000 }
+	}	
+	GBV = {
+		leave_faction = yes 
+		remove_ideas = Homura_Alliance_Member
+		remove_ideas = Speer_Alliance_Member
+		set_variable = { gui_display_frame = 5000 }
+	}
+	SLO = {
+		leave_faction = yes 
+		remove_ideas = Homura_Alliance_Member
+		remove_ideas = Speer_Alliance_Member
+		set_variable = { gui_display_frame = 5000 }
+	}
+	GWF_start_great_game = yes
+}
+GWF_great_game_to_the_next_round = {
+	if = {
+		limit = { check_variable = { GWF_BigGame_round = 1 } }
+		if = { 
+			limit = { check_variable = { GWF_round_support > BigGame_round_threshold } }
+			add_to_variable = { BigGame_GWF_wins = 1 }
+			RMN = { 
+				promote_character = XYI_Bebey
+				set_variable = { gui_display_frame = 3000 }
+				set_politics = {
+					ruling_party = accelerationism
+					elections_allowed = no
+				}
+				add_ideas = Homura_Alliance_Member
+				GWF = { add_to_faction = RMN }
+			}
+		}
+		else = {
+			add_to_variable = { BigGame_LHH_wins = 1 }
+			RMN = {
+				set_variable = { gui_display_frame = 2000 }
+				XYI_Pontius_Pilat = {
+					remove_country_leader_role = { ideology = despotism_interim_government_subtype }
+					add_country_leader_role = {
+						country_leader = {
+							desc = "AprilFools_Pontius_Pilat_DESC"
+							expire = "1999.1.1"
+							ideology = despotism_personalistic_dictatorship_subtype
+							id = -1
+						}
+						promote_leader = yes
+					}
+				}
+				add_ideas = Speer_Alliance_Member
+				LHH = { add_to_faction = RMN }
+			}
+		}
+		set_variable = { GWF_round_support = 45 }
+		add_to_variable = { GWF_BigGame_round = 1 }
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+		
+		AUS = { set_variable = { gui_display_frame = 6000 } }
+		set_variable = { BigGame_round_timeout = 60 }
+		set_variable = { BigGame_round_threshold = 60 }
+		activate_mission = GWF_BigGame_mission
+		GWF_great_game_clamp_vars = yes
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+	}
+	else_if = {
+		limit = { check_variable = { GWF_BigGame_round = 2 } }
+		if = { 
+			limit = { check_variable = { GWF_round_support > BigGame_round_threshold } }
+			AUS = { set_variable = { gui_display_frame = 3000 } }
+			add_to_variable = { BigGame_GWF_wins = 1 }
+			if = {
+				limit = { RMN = { is_in_faction_with = GWF } }
+				RMN = { 
+					annex_country = {
+						target = AUS
+						transfer_troops = yes
+					}
+					every_owned_state = {
+						limit = { is_core_of = AUS }
+						add_core_of = RMN
+						remove_core_of = AUS
+					}
+					set_cosmetic_tag = RMN_trvthnuke_Bebey
+				}
+			}
+			else = {
+				RMN = {
+					XYI_Bebey = {
+						set_nationality = AUS
+					}
+				}
+				AUS = {
+					set_politics = {
+						ruling_party = accelerationism
+						elections_allowed = no
+					}
+					set_party_name = {
+						ideology = accelerationism
+						long_name = RMN_accelerationism_party_long
+						name = RMN_accelerationism_party
+					}
+					add_ideas = Homura_Alliance_Member
+					GWF = { add_to_faction = AUS }
+					set_cosmetic_tag = RMN_trvthnuke_Bebey
+				}
+			}
+		}
+		else = {
+			add_to_variable = { BigGame_LHH_wins = 1 }
+			AUS = {
+				set_variable = { gui_display_frame = 2000 }
+				add_ideas = Speer_Alliance_Member
+				LHH = { add_to_faction = AUS }
+			}
+		}
+		set_variable = { GWF_round_support = 40 }
+		add_to_variable = { GWF_BigGame_round = 1 }
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+		
+		AGS = { set_variable = { gui_display_frame = 6000 } }
+		set_variable = { BigGame_round_timeout = 60 }
+		set_variable = { BigGame_round_threshold = 60 }
+		activate_mission = GWF_BigGame_mission
+		GWF_great_game_clamp_vars = yes
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+	}
+	else_if = {
+		limit = { check_variable = { GWF_BigGame_round = 3 } }
+		if = {
+			add_to_variable = { BigGame_GWF_wins = 1 }
+			limit = { check_variable = { GWF_round_support > BigGame_round_threshold } }
+			AGS = { 
+				set_variable = { gui_display_frame = 3000 }
+				add_ideas = Homura_Alliance_Member
+				GWF = { add_to_faction = AGS }
+			}
+		}
+		else = {
+			add_to_variable = { BigGame_LHH_wins = 1 }
+			AGS = {
+				set_variable = { gui_display_frame = 2000 }
+				set_politics = {
+					ruling_party = progressivism
+					elections_allowed = no
+				}
+				add_popularity = {
+					ideology = progressivism
+					popularity = 0.5
+				}
+				set_party_name = {
+					ideology = progressivism
+					long_name = AGS_AprilFools_party_long
+					name = AGS_AprilFools_party
+				}
+				promote_character = {
+					character = XYI_Elon_Musk
+					ideology = progressivism_left_wing_populism_subtype
+				}
+				add_ideas = Speer_Alliance_Member
+				LHH = { add_to_faction = AGS }
+			}
+		}
+		set_variable = { GWF_round_support = 40 }
+		add_to_variable = { GWF_BigGame_round = 1 }
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+		
+		GBW = { set_variable = { gui_display_frame = 6000 } }
+		set_variable = { BigGame_round_timeout = 60 }
+		set_variable = { BigGame_round_threshold = 65 }
+		activate_mission = GWF_BigGame_mission
+		GWF_great_game_clamp_vars = yes
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+	}
+	else_if = {
+		limit = { check_variable = { GWF_BigGame_round = 4 } }
+		if = { 
+			limit = { check_variable = { GWF_round_support > BigGame_round_threshold } }
+			add_to_variable = { BigGame_GWF_wins = 1 }
+			GBW = { 
+				set_variable = { gui_display_frame = 3000 }
+				add_ideas = Homura_Alliance_Member
+				GWF = { add_to_faction = GBW }
+				XYI_Mikhail_Svetov = { 
+					remove_country_leader_role = { ideology = accelerationism_anarcho_capitalism_subtype }
+					add_country_leader_role = {
+						country_leader = {
+							desc = "AprilFools_Mikhail_Svetov_DESC"
+							expire = "1999.1.1"
+							ideology = accelerationism_anarcho_etatism_svetov_subtype
+							id = -1
+						}
+						promote_leader = yes
+					}
+				}
+			}
+		}
+		else = {
+			add_to_variable = { BigGame_LHH_wins = 1 }
+			GBW = {
+				set_variable = { gui_display_frame = 2000 }
+				add_ideas = Speer_Alliance_Member
+				XYI_Mikhail_Svetov = { remove_country_leader_role = { ideology = accelerationism_anarcho_capitalism_subtype } }
+				XYI_Mikhail_Pozharsky = { 
+					remove_country_leader_role = { ideology = accelerationism_anarcho_capitalism_subtype }
+					add_country_leader_role = {
+						country_leader = {
+							desc = "AprilFools_Mikhail_Svetov_DESC"
+							expire = "1999.1.1"
+							ideology = accelerationism_anarcho_etatism_pozharskiy_subtype
+							id = -1
+						}
+						promote_leader = yes
+					}
+				}
+				LHH = { add_to_faction = GBW }
+			}
+		}
+		set_variable = { GWF_round_support = 35 }
+		add_to_variable = { GWF_BigGame_round = 1 }
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+		
+		GBV = { set_variable = { gui_display_frame = 6000 } }
+		set_variable = { BigGame_round_timeout = 70 }
+		set_variable = { BigGame_round_threshold = 70 }
+		activate_mission = GWF_BigGame_mission
+		GWF_great_game_clamp_vars = yes
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+	}
+	else = {
+		if = { 
+			limit = { check_variable = { GWF_round_support > BigGame_round_threshold } }
+			add_to_variable = { BigGame_GWF_wins = 1 }
+			GBV = { 
+				set_variable = { gui_display_frame = 3000 }
+				add_ideas = Homura_Alliance_Member
+				GWF = { add_to_faction = GBV }
+				retire_character = XYI_Ernst_Rohm
+				promote_character = XYI_Billy_Herrington
+			}
+		}
+		else = {
+			add_to_variable = { BigGame_LHH_wins = 1 }
+			GBV = {
+				set_variable = { gui_display_frame = 2000 }
+				add_ideas = Speer_Alliance_Member
+				LHH = { add_to_faction = GBV }
+			}
+		}
+		if = {
+			limit = { check_variable = { BigGame_GWF_wins > BigGame_LHH_wins } }
+			SLO = {
+				set_variable = { gui_display_frame = 3000 }
+				add_ideas = Homura_Alliance_Member
+				GWF = { add_to_faction = SLO }
+			}
+		}
+		else = {
+			SLO = {
+				set_variable = { gui_display_frame = 2000 }
+				add_ideas = Speer_Alliance_Member
+				LHH = { add_to_faction = SLO }
+			}
+		}
+		if = {
+			limit = { check_variable = { BigGame_LHH_wins = 0 } }
+			every_country = {
+				limit = { is_in_faction_with = LHH }
+				add_ideas = GER_LHH_buff_full
+			}
+		}
+		else_if = {
+			limit = { check_variable = { BigGame_LHH_wins < 2.1 } }
+			every_country = {
+				limit = { is_in_faction_with = LHH }
+				add_ideas = GER_LHH_buff_part
+			}
+		}
+		else = {
+			LHH = { add_war_support = 0.05 }
+		}
+		clr_country_flag = GWF_BigGame_gui_active
+		add_to_variable = { GWF_BigGame_GUI_dirty = 1 }
+	}	
+}
+
+weekly_script_GWF = {
+	if = {
+		limit = { has_country_flag = GWF_Homura_gui_active }
+		set_temp_variable = { opp_to_change = 1 }
+		set_temp_variable = { temp_stat_gained = GWF_homura_weekly_mental }
+		GWF_homura_change_stats = yes
+		set_temp_variable = { opp_to_change = 2 }
+		set_temp_variable = { temp_stat_gained = GWF_homura_weekly_physics }
+		GWF_homura_change_stats = yes
+	}
+	if = {
+		limit = { has_country_flag = GWF_army_deccat_active }
+		add_to_variable = { GWF_meguca_manpower = GWF_meguca_weekly_manpower }
+	}
+}

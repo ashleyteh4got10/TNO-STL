@@ -1,0 +1,44 @@
+scripted_gui = {
+	TaS_FE_GUI = {
+		window_name = "TaS_FE_container"
+		context_type = decision_category
+
+		visible = {
+			#is_debug = yes
+		}
+		
+		triggers = {
+			TaS_FE_helper_visible = { is_debug = yes }
+			TaS_FE_blagoveshensk_active_visible = { check_variable = { blagoveshensk_status = 2 } }
+			TaS_FE_khabarovsk_active_visible = { check_variable = { khabarovsk_status = 2 } }
+			TaS_FE_primorie_active_visible = { check_variable = { primorie_status = 2 } }
+			TaS_FE_vladivostok_active_visible = { check_variable = { vladivostok_status = 2 } }
+		}
+		
+		properties = {
+			TaS_FE_blagoveshensk = {
+				image = "[SWRW_blagoveshensk_map]"
+				frame = blagoveshensk_status
+			} 
+			TaS_FE_active = {
+				image = "[SWRW_blagoveshensk_active_map]"
+			} 
+			TaS_FE_khabarovsk = {
+				frame = khabarovsk_status
+			} 
+			TaS_FE_primorie = {
+				frame = primorie_status
+			} 
+			TaS_FE_vladivostok = {
+				frame = vladivostok_status
+			}
+			dial_arrow_diplo = {
+				frame = swrw_diplo_jap
+			}
+			dial_arrow_corpo = {
+				frame = swrw_corpo_jap
+			}
+		}
+		ai_enabled = { always = no }
+	}
+}

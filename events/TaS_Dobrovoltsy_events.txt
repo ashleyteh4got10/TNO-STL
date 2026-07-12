@@ -1,0 +1,1452 @@
+add_namespace = berez_dobrovoltsy
+add_namespace = berez_dobrovoltsy_world_news
+add_namespace =	KUR_CW
+add_namespace = MAR_forpol
+###dobrovoltsy zone
+
+country_event = { #god damn it finland
+	id = MAR_forpol.100
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_forpol.100" }
+	title = MAR_forpol.100.t
+	desc = MAR_forpol.100.d
+	picture = GFX_report_event_lithuania_army
+	trigger = {
+		tag = MAR
+		AND = { 
+			NOT = { country_exists = FIN }
+			country_exists = RFI
+			country_exists = MPR
+		}
+	}
+	mean_time_to_happen = {
+		days = 2 
+	}
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_forpol.100.a
+		ai_chance = { factor = 1 }
+		add_political_power = 50
+		custom_effect_tooltip = MAR_RFI_alliance_tt
+		set_country_flag = MAR_RFI_alliance
+		FROM = {
+			white_peace = FIN
+			add_state_core = 215
+			add_state_core = 216
+			add_state_core = 147
+			add_state_core = 722
+			add_state_core = 1724
+			transfer_state = 215
+			transfer_state = 216
+			transfer_state = 147
+			transfer_state = 722
+			transfer_state = 1724
+			add_state_core = 859
+			add_state_core = 858
+			add_state_core = 1887
+			transfer_state = 859
+			transfer_state = 858
+			transfer_state = 1887
+			save_global_event_target_as = winning_country
+			set_temp_variable = { target = MPR }
+			TNO_clear_num_volunteers = yes
+			if = {
+				limit = {
+					country_exists = MPR
+				}
+				annex_country = {
+					target = MPR
+					transfer_troops = yes
+				}
+				MPR = {
+					every_unit_leader = {
+						set_nationality = WSR
+					}
+				}
+			}
+			else = {
+				transfer_state = 1359
+				transfer_state = 213
+			}
+			if = {
+				limit = {
+					OR = {
+						MPR = {
+							controls_state = 1724
+						}
+						WSR = {
+							controls_state = 1724
+						}
+					}
+				}
+				add_state_core = 1724
+				transfer_state = 1724
+			}
+		}
+		RFI = {
+			hidden_effect = {
+				every_country = {
+					limit = { is_ai = no }
+					news_event = {
+						id = FIN_WORLD.14
+						days = 1
+					}
+				}
+			}
+			save_global_event_target_as = losing_country
+		}
+		set_global_flag = war_won
+		set_global_flag = show_peace_popup_alert
+		add_to_variable = { global.peace_popup_dirty = 1 }
+		WSR = { RUS_reset_war_weariness = yes }
+		clr_global_flag = MURMANSK_CRISIS
+	}
+}
+
+country_event = { #god damn it japan
+	id = MAR_forpol.200
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_forpol.200" }
+	title = MAR_forpol.200.t
+	desc = MAR_forpol.200.d
+	picture = GFX_report_event_YUN_Long_Yun
+	trigger = {
+		tag = FST
+		country_exists = YUN
+		YUN = {
+			controls_state = 608
+			NOT = { has_war_with = JAP }
+		}
+		NOT = { has_global_flag = YUN_NPA_GAW_Crisis }
+	}
+	mean_time_to_happen = {
+		days = 2 
+	}
+	fire_only_once = yes
+	
+	option = { #Hippity Hoppity FE is now our property
+		name = MAR_forpol.200.a
+		ai_chance = { factor = 1 }
+		transfer_state = 1364
+		transfer_state = 657
+		transfer_state = 1646
+		transfer_state = 1644
+		transfer_state = 409
+		transfer_state = 408
+		transfer_state = 809
+		
+		add_state_core = 1644
+		add_state_core = 409
+		add_state_core = 408
+		add_state_core = 809
+		if = {
+			limit = { 
+				MAR = { #Berezniki stops being a Japanese pussy if it fucking collapses
+					has_country_flag = MAR_Kosygin_choose_JAP
+				}
+			}
+			MAR = { country_event = { id = MAR_forpol.201 } }
+		}
+	}
+}
+
+country_event = { #god damn it japan pt.2
+	id = MAR_forpol.201
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_forpol.201" }
+	title = MAR_forpol.201.t
+	desc = MAR_forpol.201.d
+	picture = GFX_report_event_YUN_Long_Yun
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #well, well, well
+		name = MAR_forpol.201.a
+		ai_chance = { factor = 1 }
+		remove_ideas = Sphere_Observer
+		set_temp_variable = { gdp_growth_temp = -0.5 } #наказание за просчёт нахуй
+		econ_gdp_growth_change = yes
+		clr_country_flag = MAR_Kosygin_choose_JAP
+		set_country_flag = MAR_Kosygin_choose_USA
+	}
+}
+
+country_event = { #any help? 
+	id = berez_dobrovoltsy.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.1"}
+	title = berez_dobrovoltsy.1.t
+	desc = berez_dobrovoltsy.1.d
+ 	is_triggered_only = yes
+	picture = GFX_event_MAR_BLZ_FAVOUR8
+	option = { #yes 
+		name = berez_dobrovoltsy.1.a
+		ai_chance = { factor = 100 }
+		ROOT = {
+			add_ideas = MAR_volunteer_mladojopa_for
+		}
+		MAR = {
+			set_temp_variable = { target = ROOT }
+			TNO_increase_volunteer_cap_3 = yes
+			country_event = {
+				id = berez_dobrovoltsy.2
+				days = 3
+			}
+			add_to_array = { supported_by_MAR = ROOT }
+		}
+	}
+	option = { #no 
+		name = berez_dobrovoltsy.1.b
+		ai_chance = { factor = 1 }
+		MAR = {
+			country_event = {
+				id = berez_dobrovoltsy.3
+				days = 3
+			}
+		}		
+	}
+}
+country_event = { #they gut
+	id = berez_dobrovoltsy.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.2"}
+	title = berez_dobrovoltsy.2.t
+	desc = berez_dobrovoltsy.2.d
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr2
+	option = { #yes
+		name = berez_dobrovoltsy.2.a
+	}
+}
+country_event = { #they not gut
+	id = berez_dobrovoltsy.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.3"}
+	title = berez_dobrovoltsy.3.t
+	desc = berez_dobrovoltsy.3.d
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr2
+	option = { #yes
+		name = berez_dobrovoltsy.3.a
+	}
+}
+
+country_event = { #Yemen 1
+	id = berez_dobrovoltsy.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.11"}
+	title = berez_dobrovoltsy.11.t
+	desc = berez_dobrovoltsy.11.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr11
+	option = { #very cool
+		name = berez_dobrovoltsy.11.a
+		YEM = {
+			set_temp_variable = { gdp_growth_temp = 0.1 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.02 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #Yemen 2
+	id = berez_dobrovoltsy.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.12"}
+	title = berez_dobrovoltsy.12.t
+	desc = berez_dobrovoltsy.12.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr12
+	option = { #very cool
+		name = berez_dobrovoltsy.12.a
+		YEM = {
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.01 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #Oman 1
+	id = berez_dobrovoltsy.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.13"}
+	title = berez_dobrovoltsy.13.t
+	desc = berez_dobrovoltsy.13.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr13
+	option = { #very cool
+		name = berez_dobrovoltsy.13.a
+		OMA = {
+			set_temp_variable = { gdp_growth_temp = 0.1 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.02 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #Oman 2
+	id = berez_dobrovoltsy.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.12"}
+	title = berez_dobrovoltsy.14.t
+	desc = berez_dobrovoltsy.14.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr12
+	option = { #very cool
+		name = berez_dobrovoltsy.14.a
+		OMA = {
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.01 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #Egypt 1
+	id = berez_dobrovoltsy.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.15"}
+	title = berez_dobrovoltsy.15.t
+	desc = berez_dobrovoltsy.15.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr15
+	option = { #very cool
+		name = berez_dobrovoltsy.15.a
+		EGQ = {
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.01 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #Saudi 1
+	id = berez_dobrovoltsy.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.16"}
+	title = berez_dobrovoltsy.16.t
+	desc = berez_dobrovoltsy.16.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr16
+	option = { #very cool
+		name = berez_dobrovoltsy.14.a
+		SAU = {
+			set_temp_variable = { gdp_growth_temp = 0.15 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #Kurds 1
+	id = berez_dobrovoltsy.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.17"}
+	title = berez_dobrovoltsy.17.t
+	desc = berez_dobrovoltsy.17.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr17
+	option = { #Zhirik
+		name = berez_dobrovoltsy.17.a
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = BELOZERSKY_IRAQ_FATE
+					option = BELOZERSKY_IRAQ_FATE_ZHIRINOVSKY
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = BELOZERSKY_IRAQ_FATE
+					option = BELOZERSKY_IRAQ_FATE_SADDAM
+				}
+			}
+		}
+		hidden_effect = {
+		    MAR = {
+				country_event = {
+					id = berez_dobrovoltsy.18
+					days = 7
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_KUR_invade
+	}
+	option = { #Saddam
+		name = berez_dobrovoltsy.17.b
+		ai_chance = {
+			base = 10
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = BELOZERSKY_IRAQ_FATE
+					option = BELOZERSKY_IRAQ_FATE_ZHIRINOVSKY
+				}
+			}
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = BELOZERSKY_IRAQ_FATE
+					option = BELOZERSKY_IRAQ_FATE_SADDAM
+				}
+			}
+		}
+		set_temp_variable = { debt_temp = 0.035 }
+		econ_national_debt_change = yes
+		hidden_effect = {
+		    MAR = {
+				country_event = {
+					id = berez_dobrovoltsy.19
+					days = 35
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_KUR_help
+	}
+}
+country_event = { #Kurds 2
+	id = berez_dobrovoltsy.18
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.18"}
+	title = berez_dobrovoltsy.18.t
+	desc = berez_dobrovoltsy.18.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr18
+	option = { 
+		name = berez_dobrovoltsy.18.a
+		hidden_effect = {
+		    MAR_Iraq_Kurdistan_zhirik = yes
+		}
+		custom_effect_tooltip = MAR_KUR_Zhirik
+		hidden_effect = {
+			every_country = {
+				news_event = { id = berez_dobrovoltsy_world_news.11 days = 1 }
+			}
+		}
+	}
+}
+country_event = { #Kurds 3
+	id = berez_dobrovoltsy.19
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.19"}
+	title = berez_dobrovoltsy.19.t
+	desc = berez_dobrovoltsy.19.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr19
+	option = { 
+		name = berez_dobrovoltsy.19.a
+		hidden_effect = {
+		    MAR_Iraq_Kurdistan_saddam = yes
+		}
+		custom_effect_tooltip = MAR_KUR_Saddam
+		hidden_effect = {
+			every_country = {
+				news_event = { id = berez_dobrovoltsy_world_news.12 days = 1 }
+			}
+		}
+	}
+
+}
+country_event = { #Sudan 1
+	id = berez_dobrovoltsy.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.20"}
+	title = berez_dobrovoltsy.20.t
+	desc = berez_dobrovoltsy.20.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr20
+	option = { #very cool
+		name = berez_dobrovoltsy.20.a
+		SDF = {
+			#econ_join_sphere_MAR = yes
+			set_temp_variable = { gdp_growth_temp = 0.1 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.04 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #Sudan 2
+	id = berez_dobrovoltsy.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.21"}
+	title = berez_dobrovoltsy.21.t
+	desc = berez_dobrovoltsy.21.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr12
+	option = { #very cool
+		name = berez_dobrovoltsy.21.a
+		SDF = {
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.02 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #SSudan 1
+	id = berez_dobrovoltsy.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.22"}
+	title = berez_dobrovoltsy.22.t
+	desc = berez_dobrovoltsy.22.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr20
+	option = { #very cool
+		name = berez_dobrovoltsy.22.a
+		hidden_effect = {
+			if = {
+				limit = { country_exists = AZA }
+				AZA = {
+					set_temp_variable = { gdp_growth_temp = 0.1 }
+					econ_gdp_growth_change = yes
+				}
+			}
+			else = {
+				AYA = {
+					set_temp_variable = { gdp_growth_temp = 0.1 }
+					econ_gdp_growth_change = yes
+				}
+			}
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.02 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+country_event = { #Congo 1
+	id = berez_dobrovoltsy.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.23"}
+	title = berez_dobrovoltsy.23.t
+	desc = berez_dobrovoltsy.23.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr23
+	option = { #very cool
+		name = berez_dobrovoltsy.23.a
+		KSI = {
+			econ_join_sphere_MAR = yes
+			set_temp_variable = { gdp_growth_temp = 0.15 }
+			econ_gdp_growth_change = yes
+		}
+		KTG = {
+			econ_join_sphere_MAR = yes
+			set_temp_variable = { gdp_growth_temp = 0.15 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.04 }
+			econ_gdp_growth_change = yes
+			TaS_fopo_remove_congo_cw_tab = yes
+		}
+	}
+}
+country_event = { #Iran 1
+	id = berez_dobrovoltsy.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.24"}
+	title = berez_dobrovoltsy.24.t
+	desc = berez_dobrovoltsy.24.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr24
+	option = { #very cool
+		name = berez_dobrovoltsy.23.a
+		IRC = {
+			econ_join_sphere_MAR = yes
+			set_temp_variable = { gdp_growth_temp = 0.10 }
+			econ_gdp_growth_change = yes
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+			TNO_improve_poverty_low = yes
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = { id = berez_dobrovoltsy_world_news.13 days = 1 }
+			}
+		}
+		give_resource_rights = { receiver = MAR state = 411 }
+		give_resource_rights = { receiver = MAR state = 412 }
+	}
+}
+country_event = { #Spain
+	id = berez_dobrovoltsy.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.25"}
+	title = berez_dobrovoltsy.25.t
+	desc = berez_dobrovoltsy.25.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr25
+	option = { #very cool
+		name = berez_dobrovoltsy.25.a
+		MAR = {
+			TNO_improve_army_professionalism_high = yes
+			army_experience	= 50
+			add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = MBT
+			}
+			set_temp_variable = { temp_econ_GDP_boost_flat = 0.15 }
+			econ_GDP_boost_once_flat = yes
+			
+			TNO_fopo_remove_IBW_tab = yes
+			set_temp_variable = { target = SPR }
+			TNO_clear_num_volunteers = yes
+		}
+	}
+}
+country_event = { #Portugal
+	id = berez_dobrovoltsy.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: berez_dobrovoltsy.26"}
+	title = berez_dobrovoltsy.26.t
+	desc = berez_dobrovoltsy.26.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	picture = GFX_event_MAR_dobr26
+	option = { #very cool
+		name = berez_dobrovoltsy.26.a
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.05 }
+			econ_gdp_growth_change = yes
+			TNO_improve_poverty_low = yes
+			TNO_improve_industrial_equipment_med = yes
+			set_temp_variable = { temp_econ_GDP_boost_flat = 0.15 }
+			econ_GDP_boost_once_flat = yes
+			
+			TNO_fopo_remove_IBW_tab = yes
+			set_temp_variable = { target = PPR }
+			TNO_clear_num_volunteers = yes
+		}
+	}
+}
+
+
+news_event = { #Kurdistan win with god's help(russian) 	
+	id = berez_dobrovoltsy_world_news.10
+	title = berez_dobrovoltsy_world_news.10.t
+	desc = berez_dobrovoltsy_world_news.10.d
+	picture = GFX_berez_world_news_010
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = berez_dobrovoltsy_world_news.10.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.10.b
+		trigger = {
+			NOT = {
+				tag = MAR
+				tag = GER
+			}
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.10.c
+		trigger = {
+			tag = GER
+		}
+	}
+}
+news_event = { #Russian colony in Iraq
+	id = berez_dobrovoltsy_world_news.11
+	title = berez_dobrovoltsy_world_news.11.t
+	desc = berez_dobrovoltsy_world_news.11.d
+	picture = GFX_berez_world_news_011
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = berez_dobrovoltsy_world_news.11.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.11.b
+		trigger = {
+			NOT = {
+				tag = MAR
+				tag = GER
+			}
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.11.c
+		trigger = {
+			tag = GER
+		}
+	}
+}
+news_event = { #Saddam in Kurdistan
+	id = berez_dobrovoltsy_world_news.12
+	title = berez_dobrovoltsy_world_news.12.t
+	desc = berez_dobrovoltsy_world_news.12.d
+	picture = GFX_berez_world_news_012
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = berez_dobrovoltsy_world_news.12.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.12.b
+		trigger = {
+			NOT = {
+				tag = MAR
+				tag = GER
+			}
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.12.c
+		trigger = {
+			tag = GER
+		}
+	}
+}
+news_event = { #Russo-Iranian Oil Company
+	id = berez_dobrovoltsy_world_news.13
+	title = berez_dobrovoltsy_world_news.13.t
+	desc = berez_dobrovoltsy_world_news.13.d
+	picture = GFX_berez_world_news_013
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = berez_dobrovoltsy_world_news.13.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.13.b
+		trigger = {
+			NOT = {
+				tag = MAR
+				tag = GER
+			}
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.13.c
+		trigger = {
+			tag = GER
+		}
+	}
+}
+news_event = { #prorus UAR
+	id = berez_dobrovoltsy_world_news.14
+	title = berez_dobrovoltsy_world_news.14.t
+	desc = berez_dobrovoltsy_world_news.14.d
+	picture = GFX_berez_dobrovoltsy_world_news_014
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = berez_dobrovoltsy_world_news.14.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.14.b
+		trigger = {
+			NOT = {
+				tag = MAR
+				tag = GER
+			}
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.14.c
+		trigger = {
+			tag = GER
+		}
+	}
+}
+news_event = { #proger UAR
+	id = berez_dobrovoltsy_world_news.15
+	title = berez_dobrovoltsy_world_news.15.t
+	desc = berez_dobrovoltsy_world_news.15.d
+	picture = GFX_berez_dobrovoltsy_world_news_015
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = berez_dobrovoltsy_world_news.15.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.15.b
+		trigger = {
+			NOT = {
+				tag = MAR
+				tag = GER
+			}
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.15.c
+		trigger = {
+			tag = GER
+		}
+	}
+}
+news_event = { #INDEPENDENT UAR
+	id = berez_dobrovoltsy_world_news.16
+	title = berez_dobrovoltsy_world_news.16.t
+	desc = berez_dobrovoltsy_world_news.16.d
+	picture = GFX_berez_dobrovoltsy_world_news_016
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = berez_dobrovoltsy_world_news.16.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.16.b
+		trigger = {
+			NOT = {
+				tag = MAR
+				tag = GER
+			}
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.16.c
+		trigger = {
+			tag = GER
+		}
+	}
+}
+news_event = { #start of shite
+	id = berez_dobrovoltsy_world_news.17
+	title = berez_dobrovoltsy_world_news.17.t
+	desc = berez_dobrovoltsy_world_news.17.d
+	picture = GFX_berez_dobrovoltsy_world_news_017
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = berez_dobrovoltsy_world_news.17.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.17.b
+		trigger = {
+			NOT = {
+				tag = MAR
+				tag = GER
+			}
+		}
+	}
+	option = {
+		name = berez_dobrovoltsy_world_news.17.c
+		trigger = {
+			tag = GER
+		}
+	}
+}
+country_event = { #KUR_CW End- Kurdish Victory (Real)
+	id = KUR_CW.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KUR_CW.14"}
+	title = KUR_CW.14.t
+	desc = KUR_CW.14.desc
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KUR_CW.14.a
+		KUR = {
+			add_ideas = {
+				MAR_KUR_ihtamnet
+				MAR_KUR_zeroaproval
+			}
+		}
+		hidden_effect = {	
+			every_country = {
+				news_event = { id = berez_dobrovoltsy_world_news.10 days = 1 }
+			}	
+		}
+	}
+}
+country_event = { # oops 1
+	id = KUR_CW.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KUR_CW.20"}
+	title = KUR_CW.20.t
+	desc = KUR_CW.20.desc
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KUR_CW.20.a
+		KUR = {
+		    291 = {
+	 	        set_demilitarized_zone = yes
+		    }
+		}
+	}
+}
+country_event = { # oops 2 
+	id = KUR_CW.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KUR_CW.21"}
+	title = KUR_CW.21.t
+	desc = KUR_CW.21.desc
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KUR_CW.21.a
+		KUR = {
+		    random_owned_controlled_state = {
+			    limit = {
+				    NOT = {
+					    is_demilitarized_zone = yes
+					    state = 781
+					    state = 1334
+				    }
+			    }
+				set_demilitarized_zone = yes
+			}	
+		    random_owned_controlled_state = {
+			    limit = {
+				    NOT = {
+					    is_demilitarized_zone = yes
+					    state = 781
+					    state = 1334	
+					}		
+				}
+				set_demilitarized_zone = yes
+			}				
+		}
+	}
+}
+country_event = { # oops 3
+	id = KUR_CW.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KUR_CW.22"}
+	title = KUR_CW.22.t
+	desc = KUR_CW.22.desc
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KUR_CW.22.a
+		KUR = {
+		    random_owned_controlled_state = {
+			    limit = {
+				    NOT = {
+					    is_demilitarized_zone = yes
+					    state = 781
+					    state = 1334
+					}	
+				}
+				set_demilitarized_zone = yes
+			}
+			
+		
+		    random_owned_controlled_state = {
+			    limit = {
+				    NOT = {
+					    is_demilitarized_zone = yes
+					    state = 781
+					    state = 1334	
+					}	
+				}
+				set_demilitarized_zone = yes
+			}
+			
+		
+		    random_owned_controlled_state = {
+			    limit = {
+				    NOT = {
+					    is_demilitarized_zone = yes
+					    state = 781
+					    state = 1334
+					}	
+				}
+				set_demilitarized_zone = yes
+			}
+		
+		}
+	}
+}
+country_event = { # oops 3, government collapsed, asking for russian help
+	id = KUR_CW.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event KUR_CW.22"}
+	title = KUR_CW.23.t
+	desc = KUR_CW.23.desc
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = KUR_CW.23.a
+		XYZ = {
+		    KUR_Collapsed_Authority = {
+			    set_nationality = KUR
+			}	
+		}
+		KUR = {
+            add_country_leader_role = {
+			    character = KUR_Saddam_Hussein
+			    country_leader = {
+				    #desc = "POLITICS_SADDAM_HUSSEIN_DESC"
+				    ideology = despotism_warlordism_subtype
+				    expire = "1999.1.1"
+				    traits = { }
+				}	
+			}
+		}
+		KUR_Saddam_Hussein = {
+			promote_character = yes
+		}		
+		random_owned_controlled_state = {
+			limit = {
+				NOT = {
+					is_demilitarized_zone = yes
+					state = 781
+					state = 1334
+				}
+			}
+			set_demilitarized_zone = yes
+		}
+		random_owned_controlled_state = {
+			limit = {
+				NOT = {
+					is_demilitarized_zone = yes
+					state = 781
+					state = 1334
+				}
+			}
+			set_demilitarized_zone = yes
+		}
+		random_owned_controlled_state = {
+			limit = {
+				NOT = {
+					is_demilitarized_zone = yes
+					state = 781
+					state = 1334
+				}
+			}
+			set_demilitarized_zone = yes
+		}
+	}
+}
+country_event = { #iran
+	id = MAR_forpol.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: MAR_forpol.1"}
+	title = MAR_forpol.1.t
+	desc = MAR_forpol.1.d
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	picture = GFX_report_event_RUS_soviet_soldiers_4
+	option = { #yes
+		name = MAR_forpol.1.a
+		TaS_fopo_add_iranian_civil_war_tab = yes
+		set_country_flag = MAR_IR_CW_ACTIVE
+	}
+}
+
+country_event = { ### Iran victory
+	id = MAR_forpol.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_forpol.2"}
+	title = MAR_forpol.2.t
+	desc = MAR_forpol.2.d
+	picture = GFX_report_event_RUS_soviet_officers_2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_forpol.2.a
+		TNO_fopo_remove_iran_civil_war_tab = yes
+		add_political_power = 100
+		add_stability = 0.03
+		add_war_support = 0.03
+		clr_country_flag = MAR_IRCW_arming_IRA
+		clr_country_flag = MAR_IR_CW_ACTIVE
+		add_popularity = { ideology = socialist popularity = 0.02 }
+		set_temp_variable = { target = IRA }
+		TNO_clear_num_volunteers = yes
+		IRA = {
+			econ_join_sphere_MAR = yes
+			give_resource_rights = { state = 411 receiver = MAR resources = { oil aluminium rubber tungsten steel chromium uranium } }
+			give_resource_rights = { state = 412 receiver = MAR resources = { oil aluminium rubber tungsten steel chromium uranium } }
+			TNO_improve_army_professionalism_low = yes
+		}
+		TaS_dobrovoltsy_dynmod_victory = yes
+	}
+}
+
+country_event = { ### Iran defeat
+	id = MAR_forpol.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_forpol.3"}
+	title = MAR_forpol.3.t
+	desc = MAR_forpol.3.d
+	picture = GFX_report_event_generic_riots
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MAR_forpol.3.a
+		TNO_fopo_remove_iran_civil_war_tab = yes
+		add_political_power = -100
+		add_stability = -0.03
+		add_war_support = -0.03
+		clr_country_flag = MAR_IRCW_arming_IRA
+		clr_country_flag = MAR_IR_CW_ACTIVE
+		add_popularity = { ideology = socialist popularity = -0.02 }
+		set_temp_variable = { target = IRA }
+		TNO_clear_num_volunteers = yes
+		TaS_dobrovoltsy_dynmod_lose = yes
+	}
+}
+
+country_event = { #oil crisis
+	id = MAR_forpol.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: MAR_forpol.4"}
+	title = MAR_forpol.4.t
+	desc = MAR_forpol.4.d
+	picture = GFX_MAR_forpol_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	picture = GFX_MAR_forpol_4
+	option = { #yes
+		name = MAR_forpol.4.a
+		MAR = {
+			TaS_fopo_add_oil_crisis_tab = yes
+			TaS_OIL_get_supported_factions = yes
+		}
+	}
+}
+
+country_event = { #congo cw
+	id = MAR_forpol.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: MAR_forpol.5"}
+	title = MAR_forpol.5.t
+	desc = MAR_forpol.5.d
+	
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	picture = GFX_MAR_forpol_5
+	option = { #yes
+		name = MAR_forpol.5.a
+		if = {
+			limit = { has_government = socialist }
+			set_country_flag = MAR_aid_CPR
+			set_temp_variable = { target = CPR }
+			TNO_increase_volunteer_cap_2 = yes
+		}
+		else_if = {
+			limit = { has_government = despotism }
+			set_country_flag = MAR_aid_KSI
+			set_temp_variable = { target = KSI }
+			TNO_increase_volunteer_cap_2 = yes
+			set_temp_variable = { target = KTG }
+			TNO_increase_volunteer_cap_2 = yes
+		}
+		TaS_fopo_add_congo_cw_tab = yes
+	}
+}
+
+country_event = { #france CW BEL join
+	id = MAR_forpol.700
+	immediate = {log = "[GetDateText]: [Root.GetName]: MAR_forpol.700"}
+	title = MAR_forpol.700.t
+	desc = MAR_forpol.700.d
+	trigger = {
+		tag = MAR
+		has_government = despotism
+		OR = {
+			has_global_flag = FRA_civil_war_sidos
+			has_global_flag = FRA_civil_war_poujade
+		}
+		has_country_flag = MAR_started_volunteer_sending
+	}
+	mean_time_to_happen = {
+		days = 2 
+	}
+	fire_only_once = yes
+	picture = GFX_report_event_RUS_soviet_soldiers_3
+	option = { #yes
+		name = MAR_forpol.700.a
+		TaS_fopo_add_france_civil_war_tab = yes
+		FRM  = { set_country_flag = MAR_aid_FRM }
+		set_temp_variable = { target = FRM }
+		set_temp_variable = { number = 4 }
+		TNO_set_num_volunteers = yes
+	}
+}
+
+country_event = { #france CW BEL win
+	id = MAR_forpol.701
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_forpol.701"}
+	title = MAR_forpol.701.t
+	desc = MAR_forpol.701.d
+	picture = GFX_report_event_RUS_soviet_officers_2
+
+	fire_only_once = yes
+	#is_triggered_only = yes
+	trigger = {
+		tag = MAR
+		has_government = despotism
+		country_exists = FRM
+		has_global_flag = FRA_civil_war_over
+	}
+	mean_time_to_happen = {
+		days = 2 
+	}
+	option = {
+		name = MAR_forpol.701.a
+		TaS_fopo_remove_france_civil_war_tab = yes
+		add_political_power = 100
+		add_stability = 0.03
+		add_war_support = 0.03
+		FRM  = {
+			clr_country_flag = MAR_aid_FRM
+			econ_join_sphere_MAR = yes
+			leave_faction = yes #тноиды идите нахуй
+		}
+		add_popularity = { ideology = despotism popularity = 0.02 }
+		set_temp_variable = { target = FRM }
+		TNO_clear_num_volunteers = yes
+		TaS_dobrovoltsy_dynmod_victory = yes
+	}
+}
+
+country_event = { #france CW BEL lose
+	id = MAR_forpol.702
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_forpol.702"}
+	title = MAR_forpol.702.t
+	desc = MAR_forpol.702.d
+	picture = GFX_report_event_generic_riots
+
+	fire_only_once = yes
+	#is_triggered_only = yes
+	trigger = {
+		tag = MAR
+		OR = {
+			AND = { 
+				NOT = { country_exists = FRM }
+				has_global_flag = FRA_civil_war_over
+			}
+			AND = { 
+				NOT = { country_exists = FRM }
+				has_global_flag = FRA_civil_war_poujade
+			}
+		}
+		has_government = despotism
+	}
+	mean_time_to_happen = {
+		days = 2 
+	}
+	option = {
+		name = MAR_forpol.702.a
+		TaS_fopo_remove_france_civil_war_tab = yes
+		add_political_power = -50
+		add_stability = -0.03
+		add_war_support = -0.03
+		FRM = { clr_country_flag = MAR_aid_FRM }
+		add_popularity = { ideology = despotism popularity = -0.02 }
+		set_temp_variable = { target = FRM }
+		TNO_clear_num_volunteers = yes
+		TaS_dobrovoltsy_dynmod_lose = yes
+	}
+}
+
+country_event = { #france CW KOS join
+	id = MAR_forpol.710
+	immediate = {log = "[GetDateText]: [Root.GetName]: MAR_forpol.710"}
+	title = MAR_forpol.710.t
+	desc = MAR_forpol.710.d
+	trigger = {
+		tag = MAR
+		has_government = socialist
+		has_global_flag = FRA_civil_war_sidos
+		has_country_flag = MAR_started_volunteer_sending
+	}
+	mean_time_to_happen = {
+		days = 2 
+	}	
+	fire_only_once = yes
+	picture = GFX_report_event_RUS_soviet_soldiers_3
+	option = { #yes
+		name = MAR_forpol.710.a
+		TaS_fopo_add_france_civil_war_tab = yes
+		set_country_flag = MAR_aid_FRV
+		FRV  = { set_country_flag = MAR_aid_FRV }
+		set_temp_variable = { target = FRV }
+		set_temp_variable = { number = 4 }
+		TNO_set_num_volunteers = yes
+	}
+}
+
+country_event = { #france CW KOS win
+	id = MAR_forpol.711
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_forpol.711"}
+	title = MAR_forpol.711.t
+	desc = MAR_forpol.711.d
+	picture = GFX_report_event_RUS_soviet_officers_2
+
+	fire_only_once = yes
+	#is_triggered_only = yes
+	trigger = {
+		tag = MAR
+		has_government = socialist
+		country_exists = FRV
+		has_global_flag = FRA_civil_war_over
+		has_country_flag = MAR_aid_FRV
+	}
+	mean_time_to_happen = {
+		days = 2 
+	}
+	option = {
+		name = MAR_forpol.711.a
+		TaS_fopo_remove_france_civil_war_tab = yes
+		add_political_power = 100
+		add_stability = 0.03
+		add_war_support = 0.03
+		FRV  = {
+			clr_country_flag = MAR_aid_FRV
+			econ_join_sphere_MAR = yes
+		}
+		add_popularity = { ideology = socialist popularity = 0.02 }
+		set_temp_variable = { target = FRV }
+		TNO_clear_num_volunteers = yes
+		TaS_dobrovoltsy_dynmod_victory = yes
+	}
+}
+
+country_event = { #france CW KOS lose
+	id = MAR_forpol.712
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_forpol.712"}
+	title = MAR_forpol.712.t
+	desc = MAR_forpol.712.d
+	picture = GFX_report_event_generic_riots
+
+	fire_only_once = yes
+	#is_triggered_only = yes
+	trigger = {
+		tag = MAR
+		has_government = socialist
+		has_country_flag = MAR_aid_FRV
+		OR = {
+			AND = { 
+				NOT = { country_exists = FRV }
+				has_global_flag = FRA_civil_war_over
+			}
+			AND = { 
+				NOT = { country_exists = FRV }
+				has_global_flag = FRA_civil_war_sidos
+			}
+		}
+	}
+	mean_time_to_happen = {
+		days = 2 
+	}
+	option = {
+		name = MAR_forpol.712.a
+		TaS_fopo_remove_france_civil_war_tab = yes
+		add_political_power = -50
+		add_stability = -0.03
+		add_war_support = -0.03
+		FRV  = { clr_country_flag = MAR_aid_FRV }
+		add_popularity = { ideology = socialist popularity = -0.02 }
+		set_temp_variable = { target = FRV }
+		TNO_clear_num_volunteers = yes
+		TaS_dobrovoltsy_dynmod_lose = yes
+	}
+}
+
+country_event = { ### Iran victory
+	id = MAR_forpol.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_forpol.8"}
+	title = MAR_forpol.8.t
+	desc = MAR_forpol.8.d
+	picture = GFX_report_event_RUS_soviet_officers_2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_forpol.8.a
+		TNO_fopo_remove_iran_civil_war_tab = yes
+		add_political_power = 100
+		add_stability = 0.03
+		add_war_support = 0.03
+		clr_country_flag = MAR_IRCW_arming_IRC
+		clr_country_flag = MAR_IR_CW_ACTIVE
+		add_popularity = { ideology = despotism popularity = 0.02 }
+		country_event = { id = berez_dobrovoltsy.24 }
+		set_temp_variable = { target = IRC }
+		TNO_clear_num_volunteers = yes
+		TaS_dobrovoltsy_dynmod_victory = yes
+	}
+}
+
+country_event = { ### Iran defeat
+	id = MAR_forpol.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_forpol.9"}
+	title = MAR_forpol.9.t
+	desc = MAR_forpol.9.d
+	picture = GFX_report_event_generic_riots
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_forpol.9.a
+		TNO_fopo_remove_iran_civil_war_tab = yes
+		add_political_power = -100
+		add_stability = -0.03
+		add_war_support = -0.03
+		clr_country_flag = MAR_IRCW_arming_IRC
+		clr_country_flag = MAR_IR_CW_ACTIVE
+		add_popularity = { ideology = despotism popularity = -0.02 }
+		set_temp_variable = { target = IRC }
+		TNO_clear_num_volunteers = yes
+		TaS_dobrovoltsy_dynmod_lose = yes
+	}
+}

@@ -1,0 +1,7514 @@
+add_namespace = MAR_2WRW
+add_namespace = MAR_Turkestan
+add_namespace = MAR_Japan
+add_namespace = MAR_territorial_fate
+add_namespace = MAR_AFG
+add_namespace = MAR_ultimatums
+add_namespace = MAR_2WRW_world_news
+###2WRW stuff
+#MAR_2WRW
+
+#MAR_Turkestan
+country_event = { #Kenes over - Germans
+	id = MAR_Turkestan.1 
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Turkestan.1"}
+	title = MAR_Turkestan.1.t
+	desc = MAR_Turkestan.1.d
+	picture = GFX_event_MAR_Turkestan_1
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #shit
+		name = MAR_Turkestan.1.a
+		set_country_flag = MAR_Turkestan_German
+	}	
+}
+
+country_event = { #Kenes over - Japs
+	id = MAR_Turkestan.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Turkestan.2"}
+	title = MAR_Turkestan.2.t
+	desc = MAR_Turkestan.2.d
+	picture = GFX_event_MAR_Turkestan_2
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #cool, let's invade this dumpster fire
+		name = MAR_Turkestan.2.a
+		if = { 
+			limit = { TRK = { has_cosmetic_tag = TRK_anarchy } }
+			annex_country = {
+				target = TRK
+				transfer_troops = no
+			}
+		}
+		else = {
+			declare_war_on = {
+				target = TRK
+				type = annex_everything
+			}
+		}
+		declare_war_on = {
+			target = UTL
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = TAJ
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = KYR
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = UZB
+			type = annex_everything
+		}
+		declare_war_on = {
+			target = KRK
+			type = annex_everything
+		}
+		hidden_effect = {
+			UZB = { leave_faction = yes }
+			KRK = { leave_faction = yes }
+			UTL = { leave_faction = yes }
+			TAJ = { leave_faction = yes }
+			KYR = { leave_faction = yes }
+			TRK = { leave_faction = yes }
+			if = {
+				limit = {
+					TAJ = {
+						is_subject_of = AFG				
+					}
+				}
+				AFG = { end_puppet = TAJ }
+				AFG = { end_puppet = KYR }
+				AFG = { end_puppet = UTL }
+			}
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.1
+				}
+			}
+		}
+	}	
+}
+country_event = { #Kenes over - Turks/Americans
+	id = MAR_Turkestan.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Turkestan.3"}
+	title = MAR_Turkestan.3.t
+	desc = MAR_Turkestan.3.d
+	picture = GFX_event_MAR_Turkestan_3
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #let's talk
+		name = MAR_Turkestan.3.a
+		hidden_effect = {
+			TRK = {
+				country_event = {
+					id = MAR_Turkestan.10 days = 3
+				}
+			}
+		}
+	}	
+}
+
+country_event = { #Kenes over - Turks/Americans - they agreed
+	id = MAR_Turkestan.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Turkestan.4"}
+	title = MAR_Turkestan.4.t
+	desc = MAR_Turkestan.4.d
+	picture = GFX_event_MAR_Turkestan_4
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #ogey
+		name = MAR_Turkestan.4.a
+		TRK = {	
+			diplomatic_relation = {
+				country = RUS
+				relation = non_aggression_pact
+				active = yes
+			}
+			diplomatic_relation = {
+				country = RUS
+				relation = military_access
+				active = yes
+			}
+			add_ideas = RUSAlliance_Independent_Member
+		}
+		RUS = {
+			diplomatic_relation = {
+				country = TRK
+				relation = non_aggression_pact
+				active = yes
+			}
+			diplomatic_relation = {
+				country = TRK
+				relation = guarantee
+				active = yes
+			}
+			diplomatic_relation = {
+				country = TRK
+				relation = military_access
+				active = yes
+			}
+			set_country_flag = MAR_Turkestan_cucked
+			add_to_faction = TRK
+		}
+		set_country_flag = MAR_allied_turkestan
+		#MAR_install_mil_turkestan = yes
+	}	
+}
+
+country_event = { #Kenes over - Turks/Americans - they didn't agree
+	id = MAR_Turkestan.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Turkestan.5"}
+	title = MAR_Turkestan.5.t
+	desc = MAR_Turkestan.5.d
+	picture = GFX_event_MAR_Turkestan_5
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #ogey
+		name = MAR_Turkestan.5.a
+		declare_war_on = {
+			target = TRK
+			type = annex_everything
+		}
+		if = {
+			limit = {
+				TRK = { has_government = paternalism }
+			}
+			TUR = {
+				RUS = { set_embargo_PREV = yes }
+				set_country_flag = SWRW_TUR_dont_negotiate_with_rus
+				add_opinion_modifier = {
+					target = RUS
+					modifier = MAR_Turkestan_attacked_kemalists
+				}
+				reverse_add_opinion_modifier = {
+					target = RUS
+					modifier = MAR_Turkestan_attacked_kemalists	
+				}
+			}
+		}	
+		else = {
+			TUR = {
+				add_opinion_modifier = {
+					target = RUS
+					modifier = MAR_Turkestan_attacked_turkestan
+				}
+				reverse_add_opinion_modifier = {
+					target = RUS
+					modifier = MAR_Turkestan_attacked_turkestan		
+				}
+			}
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.1
+				}
+			}
+		}
+	}	
+}
+
+country_event = { #Kenes over - Turks/Americans - 
+	id = MAR_Turkestan.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Turkestan.10"}
+	title = MAR_Turkestan.10.t
+	desc = MAR_Turkestan.10.d
+	#picture = GFX_report_event_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #ogey
+		name = MAR_Turkestan.10.a
+		ai_chance = { 
+			base = 35 
+			modifier = {
+				add = 20
+				NOT = { has_government = paternalism }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = MAR_NEGOT_WITH_TURKESTAN
+					option = MAR_NEGOT_WITH_TURKESTAN_SUCCESSFUL
+				}
+			}
+		}
+		MAR = {
+			country_event = {
+				id = MAR_Turkestan.4 days = 3
+			}
+		}
+	}
+	option = { #not ogey
+		name = MAR_Turkestan.10.a
+		ai_chance = { 
+			base = 65 
+			modifier = {
+				add = -20
+				NOT = { has_government = paternalism }
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = MAR_NEGOT_WITH_TURKESTAN
+					option = MAR_NEGOT_WITH_TURKESTAN_FAILURE
+				}
+			}
+		}
+		MAR = {
+			country_event = {
+				id = MAR_Turkestan.5 days = 3
+			}
+		}
+	}		
+}
+
+
+#MAR_AFG
+country_event = { #Offer ceasefire - yes
+	id = MAR_AFG.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_AFG.1"}
+	title = MAR_AFG.1.t
+	desc = MAR_AFG.1.d
+	picture = GFX_report_event_generic_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MAR_AFG.1.a
+		set_global_flag = RUS_AFG_war_ended
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_QUO
+				}
+			}
+		}
+		RUS = {
+			white_peace = AFG
+		}
+		RUS = {
+			2200 = { set_demilitarized_zone = yes }
+			2199 = { set_demilitarized_zone = yes }
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.2
+				}
+			}
+		}
+	}	
+	option = {
+		name = MAR_AFG.1.b
+		trigger = { NOT = { has_country_flag = afg_ru_cap } }
+		ai_chance = {
+			factor = 2
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_PARTWIN
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_WIN
+				}
+			}
+		}
+	}
+}
+country_event = { #conditional surrender
+	id = MAR_AFG.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_AFG.2"}
+	title = MAR_AFG.2.t
+	desc = MAR_AFG.2.d
+	picture = GFX_report_event_generic_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MAR_AFG.2.a
+		set_global_flag = RUS_AFG_war_ended
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_PARTWIN
+				}
+			}
+		}
+		AFG = { save_global_event_target_as = losing_country }
+		RUS = {
+			save_global_event_target_as = winning_country
+			white_peace = AFG
+		}
+		if = {
+			limit = { MTR = { exists = yes } } 
+			MTR = {
+				transfer_state = 1465
+				1465 = {
+					remove_core_of = AFG
+					add_core_of = MTR
+				}
+			}
+		}
+		else_if = {
+			limit = { TRK = { is_in_faction_with = RUS } } 
+			TRK = {
+				transfer_state = 1465
+				1465 = {
+					remove_core_of = AFG
+					add_core_of = TRK
+				}
+			}
+		}
+		else = {
+			RUS = {
+				transfer_state = 1465
+			}
+		}
+		AFG = {
+			1885 = { set_demilitarized_zone = yes }
+			1884 = { set_demilitarized_zone = yes }
+			2461 = { set_demilitarized_zone = yes }
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.2
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_AFG.2.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_QUO
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_AFGHAN_WAR_RESULT
+					option = SWRW_AFGHAN_WAR_RESULT_WIN
+				}
+			}
+		}
+	}
+}
+
+country_event = { #unconditional surrender
+	id = MAR_AFG.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_AFG.3"}
+	title = MAR_AFG.3.t
+	desc = MAR_AFG.3.d
+	picture = GFX_report_event_generic_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		ai_chance = { factor = 1 }
+		name = MAR_AFG.3.a
+		set_global_flag = RUS_AFG_war_ended
+		AFG = { save_global_event_target_as = losing_country }
+		RUS = {
+			save_global_event_target_as = winning_country
+			white_peace = AFG
+		}
+		if = {
+			limit = { country_exists = MTR } 
+			MTR = {
+				transfer_state = 1885
+				transfer_state = 1465
+				transfer_state = 2461
+				every_owned_state = {
+					remove_core_of = AFG
+					add_core_of = MTR
+				}
+			}
+		}
+		else_if = {
+			limit = { TRK = { is_in_faction_with = RUS } } 
+			TRK = {
+				transfer_state = 1465
+				transfer_state = 1885
+				transfer_state = 1465
+				transfer_state = 2461
+				every_owned_state = {
+					remove_core_of = AFG
+					add_core_of = MTR
+				}
+			}
+		}
+		else = {
+			RUS = {
+				transfer_state = 1885
+				transfer_state = 1465
+				transfer_state = 2461
+			}
+		}
+		hidden_effect = {
+			AFG = {
+				country_event = { id = MAR_AFG.4 days = 30 }
+			}
+		}
+		#IND = {
+		#	transfer_state = 1898
+		#	add_state_core = 1898
+		#}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.3
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Taraki coup	
+	id = MAR_AFG.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_AFG.4"}
+	title = MAR_AFG.4.t
+	desc = MAR_AFG.4.d
+	picture = GFX_report_event_generic_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = {
+		name = MAR_AFG.4.a
+		ai_chance = { base = 10 }
+		XYZ = {
+			AFG_Nur_Muhammad_Taraki = {
+				set_nationality = AFG
+			}
+		}
+		set_cosmetic_tag = AFG_republic
+		1469 = { set_demilitarized_zone = yes }
+		1470 = { set_demilitarized_zone = yes }
+		1884 = { set_demilitarized_zone = yes }
+		if = {
+			limit = { controls_state = 1896 }
+			1895 = { set_demilitarized_zone = yes }
+			1896 = { set_demilitarized_zone = yes }
+			1897 = { set_demilitarized_zone = yes }
+			1898 = { set_demilitarized_zone = yes }
+			1899 = { set_demilitarized_zone = yes }
+		}
+		
+		1472 = { set_demilitarized_zone = yes }
+		2192 = { set_demilitarized_zone = yes }
+		415 = { set_demilitarized_zone = yes }
+		if = {
+			limit = { controls_state = 1896 }
+			442 = { set_demilitarized_zone = yes }
+			929 = { set_demilitarized_zone = yes }
+			1889 = { set_demilitarized_zone = yes }
+			1890 = { set_demilitarized_zone = yes }
+			1894 = { set_demilitarized_zone = yes }
+		}
+		#how to suck russian cock better?
+		if = { #from right
+			limit = { RUS = { has_government = despotism } }
+			set_politics = {
+				ruling_party = paternalism
+				last_election = "1969.8.29"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			set_party_name = {
+				ideology = paternalism
+				name = AFG_rus_party
+				long_name = AFG_rus_party_long
+			}
+			add_popularity = {
+				ideology = paternalism
+				popularity = 0.3
+			}
+			add_country_leader_role = {
+				character = AFG_Nur_Muhammad_Taraki
+				promote_leader = yes
+				country_leader = {
+					ideology = paternalism_right_wing_populism_subtype
+					expire = "1999.1.1"
+				}
+			}
+		}
+		else = {
+			set_politics = {
+				ruling_party = progressivism
+				last_election = "1969.8.29"
+				election_frequency = 48
+				elections_allowed = no
+			}
+			set_party_name = {
+				ideology = progressivism
+				name = AFG_rus_party
+				long_name = AFG_rus_party_long
+			}
+			add_popularity = {
+				ideology = progressivism
+				popularity = 0.3
+			}
+			add_country_leader_role = {
+				character = AFG_Nur_Muhammad_Taraki
+				promote_leader = yes
+				country_leader = {
+					ideology = progressivism_left_wing_populism_subtype
+					expire = "1999.1.1"
+				}
+			}
+		}
+		country_event = { id = MAR_AFG.5 days = 7 }
+	}	
+}
+
+country_event = { #Jamiat-e-Islami breaks off
+	id = MAR_AFG.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_AFG.5"}
+	title = MAR_AFG.5.t
+	desc = MAR_AFG.5.d
+	picture = GFX_report_event_generic_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = MAR_AFG.5.a
+		ai_chance = { base = 10 }
+		NAL = {
+			1469 = { transfer_state_to = NAL }
+			1470 = { transfer_state_to = NAL }
+			1884 = { transfer_state_to = NAL }
+			2190 = { transfer_state_to = NAL }
+			if = {
+				limit = { AFG = { controls_state = 1896 } }
+				1895 = { transfer_state_to = NAL }
+				1896 = { transfer_state_to = NAL }
+				1897 = { transfer_state_to = NAL }
+				1898 = { transfer_state_to = NAL }
+				1899 = { transfer_state_to = NAL }
+			}
+			every_owned_state = {
+				add_core_of = NAL
+				set_demilitarized_zone = no
+			}
+		}
+		country_event = { id = MAR_AFG.6 days = 7 }
+	}	
+}
+
+country_event = { #Hezb-e-Islami breaks off
+	id = MAR_AFG.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_AFG.6"}
+	title = MAR_AFG.6.t
+	desc = MAR_AFG.6.d
+	picture = GFX_report_event_generic_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = MAR_AFG.6.a
+		ai_chance = { base = 10 }
+		MUJ = {
+			1472 = { transfer_state_to = MUJ }
+			2192 = { transfer_state_to = MUJ }
+			415 = { transfer_state_to = MUJ }
+			if = {
+				limit = { AFG = { controls_state = 929 } }
+				442 = { transfer_state_to = MUJ }
+				929 = { transfer_state_to = MUJ }
+				1889 = { transfer_state_to = MUJ }
+				1890 = { transfer_state_to = MUJ }
+				1894 = { transfer_state_to = MUJ }
+			}
+			every_owned_state = {
+				add_core_of = MUJ
+				set_demilitarized_zone = no
+			}
+		}
+		country_event = { id = MAR_AFG.7 days = 7 }
+	}	
+}
+
+
+country_event = { #so it begins
+	id = MAR_AFG.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_AFG.7"}
+	title = MAR_AFG.7.t
+	desc = MAR_AFG.7.d
+	picture = GFX_report_event_generic_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = { #
+		name = MAR_AFG.7.a
+		ai_chance = { base = 10 }
+		add_to_array = { global.AFG_contenders = AFG }
+		add_to_array = { global.AFG_contenders = MUJ }
+		add_to_array = { global.AFG_contenders = NAL }
+		AFG = {
+			set_capital = { state = 1474 }
+			load_oob = AFG_acw
+			declare_war_on = {
+				target = NAL
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MUJ
+				type = annex_everything
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_AFGHAN_CW_RESULT
+						option = SWRW_AFGHAN_CW_RESULT_AFG
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		NAL = {
+			load_oob = NAL_acw
+			declare_war_on = {
+				target = AFG
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MUJ
+				type = annex_everything
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_AFGHAN_CW_RESULT
+						option = SWRW_AFGHAN_CW_RESULT_NAL
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		MUJ = {
+			load_oob = MUJ_acw
+			declare_war_on = {
+				target = AFG
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = NAL
+				type = annex_everything
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_AFGHAN_CW_RESULT
+						option = SWRW_AFGHAN_CW_RESULT_MUJ
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		hidden_effect = {
+			every_country  = {
+				limit = { is_ai = no }
+				news_event = {
+					id = MAR_2WRW_world_news.26
+				}
+			}
+			MAR = { country_event = { id = MAR_AFG.10 } }
+		}
+	}
+}
+
+country_event = { #Threeside proxy starts
+	id = MAR_AFG.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_AFG.10"}
+	title = MAR_AFG.10.t
+	desc = MAR_AFG.10.d
+	picture = GFX_report_event_RUS_letter
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_AFG.10.a
+		ai_chance = { factor = 1 }
+		MAR = {
+			TaS_fopo_add_afghanistan_civil_war_tab = yes
+			set_temp_variable = { target = AFG }
+			TNO_increase_volunteer_cap_3 = yes
+		}
+		hidden_effect = {
+			JAP = {
+				TaS_fopo_add_afghanistan_civil_war_tab = yes
+				set_temp_variable = { target = MUJ }
+				TNO_increase_volunteer_cap_2 = yes
+			}
+			USA = { 
+				TaS_fopo_add_afghanistan_civil_war_tab = yes
+				set_temp_variable = { target = NAL }
+				TNO_increase_volunteer_cap_3 = yes
+			}
+		}
+	}
+}
+
+#MAR_Japan
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.1"}
+	title = MAR_Japan.1.t
+	desc = MAR_Japan.1.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.1.a
+		ai_chance = { factor = 1 }
+		PJP = {
+			PJP_Hiromichi_Yahara = {
+				set_nationality = MAN
+			}
+		}
+		MAN = {
+			set_politics = {
+				ruling_party = ultranationalism
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = ultranationalism
+				popularity = 0.25
+			}
+			retire_country_leader = yes
+			add_country_leader_role = {
+				character = PJP_Hiromichi_Yahara
+				promote_leader = yes
+				country_leader = {
+					desc = "POLITICS_HIROMICHI_YAHARA_ONE_MORE_DESC"
+					ideology = ultranationalism_stratocratic_corporatism_subtype
+					expire = "1999.1.1"
+					traits = { one_more_chance }
+				}
+			}
+			swap_ideas = {
+			    remove_idea = Sphere_Core_Member
+			    add_idea = Sphere_Imp_Protectorate
+		    }
+			remove_ideas = MAN_Partisans_In_East
+			set_cosmetic_tag = MJP_JAP_autonomy
+			
+			country_event = {
+				id = MAR_Japan.2 days = 26
+			}
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.33
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.2"}
+	title = MAR_Japan.2.t
+	desc = MAR_Japan.2.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.2.a
+		ai_chance = { factor = 1 }
+		1643 = { set_demilitarized_zone = yes }
+		1643 = { remove_core_of = MAN }
+		1643 = { add_core_of = PFF }
+		
+		801 = { set_demilitarized_zone = yes }
+		801 = { remove_core_of = MAN }
+		801 = { add_core_of = HAN }
+		
+		delete_unit = {
+			state = 1646
+			disband = no
+		}
+		delete_unit = {
+			state = 801
+			disband = no
+		}
+			
+		country_event = {
+			id = MAR_Japan.3 days = 16
+		}
+	}
+}
+
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.3"}
+	title = MAR_Japan.3.t
+	desc = MAR_Japan.3.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.3.a
+		ai_chance = { factor = 1 }
+		XYZ = {
+			MAN_Kuan_Chung = {
+				set_nationality = MAN
+			}
+		}
+		MAN = {
+			set_politics = {
+				ruling_party = despotism
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.33
+			}
+			set_party_name = { 
+				ideology = despotism
+				long_name = MAN_cw_despotism_party_long
+				name = MAN_cw_despotism_party
+			}
+			retire_country_leader = yes
+			add_country_leader_role = {
+				character = MAN_Kuan_Chung
+				promote_leader = yes
+				country_leader = {
+					desc = "POLITICS_KUAN_CHUNG_DESC"
+					ideology = despotism_corporatocracy_subtype 
+					expire = "1999.1.1"
+					traits = { leader_in_name_only }
+				}
+			}
+			set_cosmetic_tag = MAN_Second_CW
+			remove_ideas = MAN_Chained_To_Rising_Sun
+			swap_ideas = {
+				remove_idea = Sphere_Imp_Protectorate
+			    add_idea = Sphere_Core_Member
+			}
+		}
+		country_event = {
+			id = MAR_Japan.4 days = 21
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.34
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.4"}
+	title = MAR_Japan.4.t
+	desc = MAR_Japan.4.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.4.a
+		ai_chance = { factor = 1 }
+		MJP = {
+			set_cosmetic_tag = MJP_Second_CW
+			transfer_state = 810
+			add_state_core = 810
+			econ_join_sphere_JAP = yes
+			TNO_startup_nation = yes
+			set_politics = {
+				ruling_party = ultranationalism
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			MJP_Katakura_Tadashi = {
+				promote_character = yes
+			}
+		}
+		
+		715 = { set_demilitarized_zone = yes }
+		715 = { remove_core_of = MAN }
+		715 = { add_core_of = PFF }
+		
+		1637 = { set_demilitarized_zone = yes }
+		1637 = { remove_core_of = MAN }
+		1637 = { add_core_of = HAN }
+		
+		1638 = { set_demilitarized_zone = yes }
+		1638 = { remove_core_of = MAN }
+		1638 = { add_core_of = HAN }
+		
+		1639 = { set_demilitarized_zone = yes }
+		1639 = { remove_core_of = MAN }
+		1639 = { add_core_of = HAN }
+		
+		716 = { set_demilitarized_zone = yes }
+		716 = { remove_core_of = MAN }
+		716 = { add_core_of = MJP }
+		
+		1636 = { set_demilitarized_zone = yes }
+		1636 = { remove_core_of = MAN }
+		1636 = { add_core_of = MJP }
+		
+		1265 = { set_demilitarized_zone = yes }
+		1265 = { remove_core_of = MAN }
+		1265 = { add_core_of = MJP }
+		
+		MAN = {
+			delete_unit = {
+				state = 1643
+				disband = no
+			}
+			delete_unit = {
+				state = 715
+				disband = no
+			}
+			delete_unit = {
+				state = 714
+				disband = no
+			}
+			delete_unit = {
+				state = 1638
+				disband = no
+			}
+			delete_unit = {
+				state = 1639
+				disband = no
+			}
+			delete_unit = {
+				state = 1637
+				disband = no
+			}
+			delete_unit = {
+				state = 717
+				disband = no
+			}
+			delete_unit = {
+				state = 801
+				disband = no
+			}
+			delete_unit = {
+				state = 328
+				disband = no
+			}
+			delete_unit = {
+				state = 1642
+				disband = no
+			}
+			delete_unit = {
+				state = 1641
+				disband = no
+			}
+			delete_unit = {
+				state = 1640
+				disband = no
+			}
+			delete_unit = {
+				state = 610
+				disband = no
+			}
+			delete_unit = {
+				state = 1265
+				disband = no
+			}
+			delete_unit = {
+				state = 716
+				disband = no
+			}
+			delete_unit = {
+				state = 1636
+				disband = no
+			}
+			leave_faction = yes
+			econ_leave_sphere = yes
+			remove_ideas = MAN_Chained_To_Rising_Sun
+			remove_ideas = Sphere_Core_Member
+			remove_ideas = MAN_Kwantung_Army
+			remove_ideas = MAN_Vices_Of_Modernity
+			set_variable = { national_debt = 0 }
+		}
+		
+		country_event = {
+			id = MAR_Japan.5 days = 21
+		}
+	}
+}
+
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.5"}
+	title = MAR_Japan.5.t
+	desc = MAR_Japan.5.d
+	picture = GFX_report_event_collapse2
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.5.a
+		ai_chance = { factor = 1 }
+		#TaS_2WRW_spawn_divs_second_cw = yes
+		set_global_flag = TaS_MAN_second_cw
+		HAN = {
+			set_variable = { national_debt = 0 }
+			add_ideas = MAN_civil_war
+			set_cosmetic_tag = HAN_Second_CW
+			set_politics = {
+				ruling_party = despotism
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			set_popularities = {
+				communist = 0
+				ultranationalism = 13
+				socialist = 0
+				progressivism = 0
+				liberalism = 0
+				conservatism = 7
+				paternalism = 10
+				despotism = 53
+				fascism = 0
+				national_socialism = 17
+			}
+			HAN_Pujie = {
+				promote_character = yes
+			}
+			set_party_name = { 
+				ideology = despotism
+				long_name = HAN_despotism_party_long
+				name = HAN_despotism_party
+			}
+			transfer_state = 1639
+			transfer_state = 1638
+			transfer_state = 1637
+			transfer_state = 801
+			transfer_state = 146
+			transfer_state = 1645
+			TNO_startup_nation = yes
+			load_oob = HAN_second_cw
+		}
+		MJP = {
+			set_variable = { national_debt = 0 }
+			add_ideas = MAN_civil_war
+			transfer_state = 1265
+			transfer_state = 716
+			transfer_state = 1636
+			load_oob = MJP_second_cw
+		}
+		PFF = {
+			set_variable = { national_debt = 0 }
+			clr_country_flag = is_russian_nation
+			add_ideas = MAN_civil_war
+			set_cosmetic_tag = PFF_Second_CW
+			transfer_state = 1643
+			transfer_state = 715
+			set_politics = {
+				ruling_party = communist
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.47
+			}
+			PFF_Kim_Il_Sung = {
+				promote_character = yes
+			}
+			set_party_name = { 
+				ideology = communist
+				long_name = PFF_communist_party_long
+				name = PFF_communist_party
+			}
+			set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_War_Communism }
+			econ_subtype_change = yes
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = BELOZERSKY_MANCHU_CW_RESULT
+						option = BELOZERSKY_MANCHU_CW_RESULT_PFF
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+			load_oob = PFF_second_cw
+		}
+		
+		HAN = {
+			declare_war_on = {
+				target = MAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MJP
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = PFF
+				type = annex_everything
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = BELOZERSKY_MANCHU_CW_RESULT
+						option = BELOZERSKY_MANCHU_CW_RESULT_HAN
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		MJP = {
+			declare_war_on = {
+				target = MAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = PFF
+				type = annex_everything
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = BELOZERSKY_MANCHU_CW_RESULT
+						option = BELOZERSKY_MANCHU_CW_RESULT_MJP
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		MAN = {
+			add_ideas = MAN_civil_war
+			declare_war_on = {
+				target = HAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = PFF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MJP
+				type = annex_everything
+			}
+			load_oob = MAN_second_cw
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = BELOZERSKY_MANCHU_CW_RESULT
+						option = BELOZERSKY_MANCHU_CW_RESULT_MAN
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.5
+				}
+			}
+		}
+		MAR = {
+			country_event = { id = MAR_Japan.9 }
+		}
+		add_to_array = { global.MAN_contenders = MAN }
+		add_to_array = { global.MAN_contenders = MJP }
+		add_to_array = { global.MAN_contenders = HAN }
+		add_to_array = { global.MAN_contenders = PFF }
+		ZZZ = {
+			if = {
+				limit = { 
+					has_game_rule = {
+						rule = BELOZERSKY_MANCHU_CW_RESULT
+						option = BELOZERSKY_MANCHU_CW_RESULT_ANARCHY
+					}
+				}
+				country_event = { id = MAR_Japan.6 days = 90 }
+			}
+			else = {
+				country_event = { id = MAR_Japan.6 days = 210 }
+			}
+		}
+		#set_country_flag = RUS_something_goes_wrong 
+	}
+}
+
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.6"}
+	title = MAR_Japan.6.t
+	desc = MAR_Japan.6.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #IT'S ogre
+		name = MAR_Japan.6.a
+		ai_chance = { factor = 1 }
+		trigger = {
+			OR = {
+				MAN = { has_war = yes }
+				MJP = { has_war = yes }
+				HAN = { has_war = yes }
+				PFF = { has_war = yes }
+			}
+		}
+		PJP = {
+			create_country_leader = {
+				name = "Anarchy"
+				desc = "POLITICS_ANARCHY_DESC"
+				picture = "Portrait_ZZZ_Anarchy.dds"
+				expire = "3000.1.1"
+				ideology = socialist_subtype
+				traits = { }
+			}
+			set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+			set_variable = { TNO_economy_subtype = token:Econ_Subtype_Anarchic }
+			set_country_flag = TNO_eliminate_building_demand
+			set_country_flag = can_not_use_econ_system
+			set_country_flag = MAN_katastrophe
+			country_lock_all_division_template = yes
+			set_politics = {
+				ruling_party = socialist
+				last_election = "1961.1.20"
+				election_frequency = 48
+				elections_allowed = yes
+
+			}
+			set_popularities = {
+				socialist = 100
+			}
+			add_ideas = ZZZ_anarchy
+			set_cosmetic_tag = MAN_katastrophe
+			transfer_state = 1641
+			transfer_state = 149
+			transfer_state = 1600
+			set_capital = { state = 1600 remember_old_capital = no }
+		}
+		ZZZ = {
+			country_event = { id = MAR_Japan.7 days = 5 }
+		}
+	}
+	option = { #IT'S NOT ogre
+		name = MAR_Japan.6.b
+		trigger = {
+			NOT = {
+				MAN = { has_war = yes }
+				MJP = { has_war = yes }
+				HAN = { has_war = yes }
+				PFF = { has_war = yes }
+			}
+		}
+		ai_chance = { factor = 1 }
+		add_political_power = 52
+	}
+}
+
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.7"}
+	title = MAR_Japan.7.t
+	desc = MAR_Japan.7.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.7.a
+		ai_chance = { factor = 1 }
+		PJP = {
+			transfer_state = 610
+			transfer_state = 1643
+			transfer_state = 717
+			transfer_state = 1637
+		}
+		ZZZ = {
+			country_event = { id = MAR_Japan.8 days = 7 }
+		}
+	}
+}
+
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.8
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.8"}
+	title = MAR_Japan.8.t
+	desc = MAR_Japan.8.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.8.a
+		ai_chance = { factor = 1 }
+		HAN = {
+			transfer_units_fraction = {
+				target = ZZZ
+				size = 0
+				army_ratio = 1.0
+			}
+		}
+		MAN = {
+			transfer_units_fraction = {
+				target = ZZZ
+				size = 0
+				army_ratio = 1.0
+			}
+		}
+		PFF = {
+			transfer_units_fraction = {
+				target = ZZZ
+				size = 0
+				army_ratio = 1.0
+			}
+		}
+		MJP = {
+			transfer_units_fraction = {
+				target = ZZZ
+				size = 0
+				army_ratio = 1.0
+			}
+		}
+		PJP = {
+			annex_country = {
+				target = HAN
+				transfer_troops = no
+			}
+			annex_country = {
+				target = MAN
+				transfer_troops = no
+			}
+			annex_country = {
+				target = PFF
+				transfer_troops = no
+			}
+			annex_country = {
+				target = MJP
+				transfer_troops = no
+			}
+		}
+		#USA = {
+		#	set_temp_variable = { Victory_ID = 50 }
+		#	set_temp_variable = { Victory_Outcome = 2 }
+		#	set_temp_variable = { Victory_Points = -50 }
+		#	Cold_War_GUI_ManipulateVictory = yes
+		#	TaS_fopo_remove_manchurian_civil_war_tab = yes
+		#	set_temp_variable = { target = MAN }
+		#	TNO_clear_and_recall_volunteers = yes	
+		#}
+		JAP = {
+			set_temp_variable = { Victory_ID = 50 }
+			set_temp_variable = { Victory_Outcome = 1 }
+			set_temp_variable = { Victory_Points = -100 }
+			Cold_War_GUI_ManipulateVictory = yes
+			TaS_fopo_remove_manchurian_civil_war_tab = yes
+			set_temp_variable = { target = MJP }
+			TNO_clear_and_recall_volunteers = yes
+		}
+		MAR = {
+			set_temp_variable = { Victory_ID = 50 }
+			set_temp_variable = { Victory_Outcome = 1 }
+			set_temp_variable = { Victory_Points = -200 }
+			Cold_War_GUI_ManipulateVictory = yes
+			TaS_fopo_remove_manchurian_civil_war_tab = yes
+			set_temp_variable = { target = PFF }
+			TNO_clear_and_recall_volunteers = yes
+			set_temp_variable = { target = HAN }
+			TNO_clear_and_recall_volunteers = yes
+		}
+		MJP = {
+			transfer_state = 810
+			transfer_state = 1636
+			set_cosmetic_tag = MJP_JAP_autonomy
+			econ_join_sphere_JAP = yes
+			add_ideas = Sphere_Imp_Protectorate
+			add_ideas = MAN_Kwantung_Army
+			remove_ideas = MAN_civil_war
+			every_owned_state = {
+				MJP = {
+					add_state_core = PREV
+				}
+			}
+			set_country_flag = {
+				flag = MJP_reclamation_timeout
+				value = 1 
+				days = 180
+			}
+		}
+		JAP = {
+			add_to_faction = MJP
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.35
+				}
+			}
+		}
+	}
+}
+
+
+country_event = { #MANCHU CW STARTS GET UP GUYS
+	id = MAR_Japan.9
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.9"}
+	title = MAR_Japan.9.t
+	desc = MAR_Japan.9.d
+	picture = GFX_event_MAR_japan_9
+	is_triggered_only = yes
+	fire_only_once = no
+	
+	option = {
+		name = MAR_Japan.9.a
+		ai_chance = { factor = 1 }
+		TaS_fopo_add_manchurian_civil_war_tab = yes
+		if = {
+			limit = { has_government = despotism }
+			set_temp_variable = { target = HAN }
+			TNO_increase_volunteer_cap_3 = yes
+		}
+		else = {
+			set_temp_variable = { target = PFF }
+			TNO_increase_volunteer_cap_3 = yes
+		}
+		hidden_effect = {
+			JAP = {
+				set_temp_variable = { Victory_ID = 50 }
+				set_temp_variable = { Victory_Outcome = 0 }
+				set_temp_variable = { Victory_Points = 0}
+				Cold_War_GUI_ManipulateVictory = yes
+				TaS_fopo_add_manchurian_civil_war_tab = yes
+				set_temp_variable = { target = MJP }
+				TNO_increase_volunteer_cap_2 = yes
+			}
+		}
+	}
+}
+
+country_event = { #FE partisans
+	id = MAR_Japan.10
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.10"}
+	title = MAR_Japan.10.t
+	desc = MAR_Japan.10.d
+	picture = GFX_event_MAR_japan_10
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.10.a
+		ai_chance = { factor = 1 }
+		657 = { set_demilitarized_zone = yes }
+		1646 = { set_demilitarized_zone = yes }
+		if = {
+			limit = { MAN = { controls_state = 1364 } }
+			1364 = { set_demilitarized_zone = yes }
+		}
+		country_event = {
+			id = MAR_Japan.11 days = 14
+		}
+	}
+}
+
+country_event = { #Report nubma 1231413112 - start of the proxy
+	id = MAR_Japan.11
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.11"}
+	title = MAR_Japan.11.t
+	desc = MAR_Japan.11.d
+	picture = GFX_event_MAR_japan_11
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.11.a
+		ai_chance = { factor = 1 }
+		MAR = {
+			TaS_fopo_add_far_eastern_revolt_tab = yes
+		}
+		JAP = {
+			TaS_fopo_add_far_eastern_revolt_tab = yes
+			set_temp_variable = { Victory_ID = 49 }
+			set_temp_variable = { Victory_Outcome = 0 }
+			set_temp_variable = { Victory_Points = 0 }
+			Cold_War_GUI_ManipulateVictory = yes
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.30
+				}
+			}
+		}
+		set_global_flag = MAR_fareast_proxy
+		TaS_2WRW_manchuria_spawn_states = yes
+	}
+}
+country_event = { #Battle of Khabarovsk: victory #techinal
+	id = MAR_Japan.12
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.12"}
+	title = MAR_Japan.12.t
+	desc = MAR_Japan.12.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.12.a
+		ai_chance = { factor = 1 }
+		MAR = {
+			country_event = {
+				id = MAR_Japan.14 days = 1
+			}
+		}
+	}
+}
+country_event = { #Battle of Khabarovsk: lose #techinal
+	id = MAR_Japan.13
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.13"}
+	title = MAR_Japan.13.t
+	desc = MAR_Japan.13.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.13.a
+		ai_chance = { factor = 1 }
+		MAR = {
+			country_event = {
+				id = MAR_Japan.15 days = 1
+			}
+		}
+	}
+}
+country_event = { #Battle of Khabarovsk: victory 
+	id = MAR_Japan.14
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.14"}
+	title = MAR_Japan.14.t
+	desc = MAR_Japan.14.d
+	picture = GFX_event_MAR_japan_14
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.14.a
+		ai_chance = { factor = 1 }
+		PJP = {
+			add_stability = -0.03
+			add_timed_idea = {
+				idea = MJP_Boli_blocade_broke
+				days = 90
+			}
+		}
+	}
+}
+country_event = { #Battle of Khabarovsk: lose
+	id = MAR_Japan.15
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.14"}
+	title = MAR_Japan.15.t
+	desc = MAR_Japan.15.d
+	picture = GFX_event_MAR_japan_15
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.15.a
+		ai_chance = { factor = 1 }
+		PFF = {
+			add_stability = -0.1
+		}
+		PJP = {
+			transfer_state = 409
+		}
+	}
+}
+
+country_event = { #victory in FE #kosygin
+	id = MAR_Japan.16
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.16"}
+	title = MAR_Japan.16.t
+	desc = MAR_Japan.16.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.16.a
+		ai_chance = { factor = 1 }
+		annex_country = {
+			target = PFF
+			transfer_troops = yes
+		}
+		set_country_flag = MAR_has_primorie
+		hidden_effect = { #to be sure nothing wrong happens to vps
+			1364 = {
+				set_state_name = STATE_1364_rus
+				set_province_name = { id = 7763 name = VICTORY_POINTS_7763_rus }
+				set_province_name = { id = 19466 name = VICTORY_POINTS_19466_rus }
+			}
+			657 = {
+				set_state_name = STATE_657_rus
+				set_province_name = { id = 7801 name = VICTORY_POINTS_7801_rus }
+				set_province_name = { id = 7672 name = VICTORY_POINTS_7672_rus }
+			}
+			1646 = {
+				set_state_name = STATE_1646_rus
+				set_province_name = { id = 12263 name = VICTORY_POINTS_12263_rusnor }
+				set_province_name = { id = 4805 name = VICTORY_POINTS_4805_rus }
+			}
+			409 = {
+				set_state_name = STATE_409_rus
+				set_province_name = { id = 12189 name = VICTORY_POINTS_12189_rus }
+			}
+			809 = {
+				set_state_name = STATE_809_rus
+				set_province_name = { id = 957 name = VICTORY_POINTS_957_rus }
+			}
+			408 = {
+				set_state_name = STATE_408
+				set_province_name = { id = 6961 name = VICTORY_POINTS_6961_rus }
+				set_province_name = { id = 11750 name = VICTORY_POINTS_11750_rus }
+			}
+			1644 = {
+				set_state_name = STATE_1644
+				set_province_name = { id = 9604 name = VICTORY_POINTS_9604_rus }
+				set_province_name = { id = 7868 name = VICTORY_POINTS_7868_rus }
+				set_province_name = { id = 11575 name = VICTORY_POINTS_11575_rus }
+			}
+		}
+	}
+}
+country_event = { #victory in FE
+	id = MAR_Japan.17
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.17"}
+	title = MAR_Japan.17.t
+	desc = MAR_Japan.17.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.17.a
+		ai_chance = { factor = 1 }
+		annex_country = {
+			target = PFF
+			transfer_troops = yes
+		}
+		set_country_flag = MAR_has_primorie
+		hidden_effect = { #to be sure nothing wrong happens to vps
+			1364 = {
+				set_state_name = STATE_1364_rus
+				set_province_name = { id = 7763 name = VICTORY_POINTS_7763_rus }
+				set_province_name = { id = 19466 name = VICTORY_POINTS_19466_rus }
+			}
+			657 = {
+				set_state_name = STATE_657_rus
+				set_province_name = { id = 7801 name = VICTORY_POINTS_7801_rus }
+				set_province_name = { id = 7672 name = VICTORY_POINTS_7672_rus }
+			}
+			1646 = {
+				set_state_name = STATE_1646_rus
+				set_province_name = { id = 12263 name = VICTORY_POINTS_12263_rusnor }
+				set_province_name = { id = 4805 name = VICTORY_POINTS_4805_rus }
+			}
+			409 = {
+				set_state_name = STATE_409_rus
+				set_province_name = { id = 12189 name = VICTORY_POINTS_12189_rus }
+			}
+			809 = {
+				set_state_name = STATE_809_rus
+				set_province_name = { id = 957 name = VICTORY_POINTS_957_rus }
+			}
+			408 = {
+				set_state_name = STATE_408
+				set_province_name = { id = 6961 name = VICTORY_POINTS_6961_rus }
+				set_province_name = { id = 11750 name = VICTORY_POINTS_11750_rus }
+			}
+			1644 = {
+				set_state_name = STATE_1644
+				set_province_name = { id = 9604 name = VICTORY_POINTS_9604_rus }
+				set_province_name = { id = 7868 name = VICTORY_POINTS_7868_rus }
+				set_province_name = { id = 11575 name = VICTORY_POINTS_11575_rus }
+			}
+		}
+	}
+}
+
+
+country_event = { #The olive branch
+	id = MAR_Japan.20
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.20"}
+	title = MAR_Japan.20.t
+	desc = MAR_Japan.20.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.20.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = FE_negotiations_start_tt
+		
+		set_global_flag = FE_negotiations_start
+		
+		if = {
+			limit = { RUS = { controls_state = 1646 } }
+			set_variable = { fe_round = 2 }
+			
+			set_variable = { blagoveshensk_status = 3 }
+			set_variable = { khabarovsk_status = 2 }
+			set_variable = { primorie_status = 1 }
+			set_variable = { vladivostok_status = 1 }
+			
+			set_variable = { swrw_fe_threshold = 74.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			
+			set_variable = { swrw_diplo_jap = 35 }
+			set_variable = { swrw_corpo_jap = 40 }
+			set_variable = { SWRW_round_timeout = 90 }
+		}
+		else = {
+			set_variable = { fe_round = 1 }
+				
+			set_variable = { blagoveshensk_status = 2 }
+			set_variable = { khabarovsk_status = 1 }
+			set_variable = { primorie_status = 1 }
+			set_variable = { vladivostok_status = 1 }
+			
+			set_variable = { swrw_fe_threshold = 74.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			
+			set_variable = { swrw_diplo_jap = 55 }
+			set_variable = { swrw_corpo_jap = 45 }
+			set_variable = { SWRW_round_timeout = 60 }
+		}
+		if = {
+			limit = { 
+				OR = {
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_TOTAL_SUCCESS
+					}
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_SUCCESS_LEAVE_THIRD
+					}
+				}
+			}
+			set_variable = { swrw_fe_threshold = 44.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			
+			set_variable = { swrw_diplo_jap = 50 }
+			set_variable = { swrw_corpo_jap = 50 }
+		}
+	}
+}
+
+country_event = { #First round success
+	id = MAR_Japan.21
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.21"}
+	title = MAR_Japan.21.t
+	desc = MAR_Japan.21.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.21.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = FE_next_round_tt
+		set_variable = { fe_round = 2 }
+			
+		set_variable = { blagoveshensk_status = 3 }
+		set_variable = { khabarovsk_status = 2 }
+		set_variable = { primorie_status = 1 }
+		set_variable = { vladivostok_status = 1 }
+		
+		set_variable = { swrw_fe_threshold = 74.9 }
+		set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+		round_variable = swrw_fe_threshold_txt
+		
+		set_variable = { swrw_diplo_jap = 35 }
+		set_variable = { swrw_corpo_jap = 40 }
+		set_variable = { SWRW_round_timeout = 90 }
+		if = {
+			limit = { 
+				OR = {
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_TOTAL_SUCCESS
+					}
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_SUCCESS_LEAVE_THIRD
+					}
+				}
+			}
+			set_variable = { swrw_fe_threshold = 44.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			
+			set_variable = { swrw_diplo_jap = 50 }
+			set_variable = { swrw_corpo_jap = 50 }
+		}
+	}
+}
+
+country_event = { #Second round success
+	id = MAR_Japan.22
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.22"}
+	title = MAR_Japan.22.t
+	desc = MAR_Japan.22.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.22.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = FE_next_round_tt
+		set_variable = { fe_round = 3 }
+			
+		set_variable = { blagoveshensk_status = 3 }
+		set_variable = { khabarovsk_status = 3 }
+		set_variable = { primorie_status = 2 }
+		set_variable = { vladivostok_status = 1 }
+		
+		set_variable = { swrw_fe_threshold = 84.9 }
+		set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+		round_variable = swrw_fe_threshold_txt
+		
+		set_variable = { swrw_diplo_jap = 25 }
+		set_variable = { swrw_corpo_jap = 30 }
+		set_variable = { SWRW_round_timeout = 90 }
+		
+		if = {
+			limit = { 
+				has_game_rule = {
+					rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+					option = KOSYGIN_FE_NEGOTIATIONS_RESULT_FAIL
+				}
+			}
+			set_variable = { swrw_fe_threshold = 109.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			set_variable = { swrw_diplo_jap = 0 }
+			set_variable = { swrw_corpo_jap = 0 }
+		}
+		if = {
+			limit = { 
+				OR = {
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_TOTAL_SUCCESS
+					}
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_SUCCESS_LEAVE_THIRD
+					}
+				}
+			}
+			set_variable = { swrw_fe_threshold = 44.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			
+			set_variable = { swrw_diplo_jap = 50 }
+			set_variable = { swrw_corpo_jap = 50 }
+		}
+	}
+}
+
+country_event = { #3 round success
+	id = MAR_Japan.23
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.23"}
+	title = MAR_Japan.23.t
+	desc = MAR_Japan.23.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #it's over, over
+		name = MAR_Japan.23.a 
+		ai_chance = { 
+			factor = 4
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+					option = KOSYGIN_FE_NEGOTIATIONS_RESULT_SUCCESS_LEAVE_THIRD
+				}	
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_FAIL_FOURTH
+					}	
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_TOTAL_SUCCESS
+					}	
+				}
+			}
+		}
+		set_country_flag = MAR_has_primorie
+		clr_global_flag = FE_negotiations_start
+		custom_effect_tooltip = FE_primorie_success_tt
+		hidden_effect = {
+			add_to_variable = { MAR_fates_done = 1 }
+			set_country_flag = Primorie_fate_is_done
+			transfer_state = 1364
+			transfer_state = 657
+			transfer_state = 408
+			transfer_state = 409
+			transfer_state = 1644
+			transfer_state = 1646
+			if = {
+				limit = { has_country_flag = FE_demilitarize_amur }
+				1364 = { set_demilitarized_zone = yes }
+				657 = { set_demilitarized_zone = yes }
+				408 = { set_demilitarized_zone = yes }
+				409 = { set_demilitarized_zone = yes }
+				1644 = { set_demilitarized_zone = yes }
+				1646 = { set_demilitarized_zone = yes }
+			}
+			if = {
+				limit = { has_country_flag = FE_korean_resettlement }
+				1646 = { set_variable = { nationality = 10000 } }
+				657 = { set_variable = { nationality = 10000 } }
+				
+				1646 = { add_manpower = 312423 }
+				657 = { add_manpower = 434391 }
+				
+				963 = { add_manpower = -434391 }
+				655 = { add_manpower = -312423 }
+				
+				1018 = { set_variable = { nationality = 444 } }
+				1816 = { set_variable = { nationality = 444 } }
+				1817 = { set_variable = { nationality = 444 } }
+				1819 = { set_variable = { nationality = 444 } }
+				963 = { set_variable = { nationality = 445 } }
+				963 = { add_core_of = JAP }
+				655 = { add_core_of = JAP }
+			}
+		}
+	}
+	option = { #let's try
+		name = MAR_Japan.23.b 
+		ai_chance = { 
+			factor = 2
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+					option = KOSYGIN_FE_NEGOTIATIONS_RESULT_SUCCESS_LEAVE_THIRD
+				}	
+			}
+			modifier = {
+				factor = 100
+				OR = {
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_FAIL_FOURTH
+					}	
+					has_game_rule = {
+						rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+						option = KOSYGIN_FE_NEGOTIATIONS_RESULT_TOTAL_SUCCESS
+					}	
+				}
+			}
+		}
+		set_country_flag = MAR_has_primorie
+		custom_effect_tooltip = FE_next_round_tt
+		set_variable = { fe_round = 4 }
+			
+		set_variable = { blagoveshensk_status = 3 }
+		set_variable = { khabarovsk_status = 3 }
+		set_variable = { primorie_status = 3 }
+		set_variable = { vladivostok_status = 2 }
+		set_variable = { SWRW_round_timeout = 120 }
+		
+		if = {
+			limit = { 
+				has_game_rule = {
+					rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+					option = KOSYGIN_FE_NEGOTIATIONS_RESULT_FAIL_FOURTH
+				}
+			}
+			set_variable = { swrw_fe_threshold = 109.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			
+			set_variable = { swrw_diplo_jap = 0 }
+			set_variable = { swrw_corpo_jap = 0 }
+		}
+		else_if = {
+			limit = { 
+				has_game_rule = {
+					rule = KOSYGIN_FE_NEGOTIATIONS_RESULT
+					option = KOSYGIN_FE_NEGOTIATIONS_RESULT_TOTAL_SUCCESS
+				}
+			}
+			set_variable = { swrw_fe_threshold = 44.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			
+			set_variable = { swrw_diplo_jap = 50 }
+			set_variable = { swrw_corpo_jap = 50 }
+		}
+		else = {
+			set_variable = { swrw_fe_threshold = 94.9 }
+			set_variable = { swrw_fe_threshold_txt = swrw_fe_threshold }
+			round_variable = swrw_fe_threshold_txt
+			
+			set_variable = { swrw_diplo_jap = 15 }
+			set_variable = { swrw_corpo_jap = 10 }
+		}
+	}
+}
+
+country_event = { #4 round success
+	id = MAR_Japan.24
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.24"}
+	title = MAR_Japan.24.t
+	desc = MAR_Japan.24.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.24.a
+		ai_chance = { factor = 1 }
+		set_country_flag = MAR_has_primorie
+		clr_global_flag = FE_negotiations_start
+		custom_effect_tooltip = FE_vladivostok_success_tt
+		hidden_effect = {
+			add_to_variable = { MAR_fates_done = 1 }
+			set_country_flag = Primorie_fate_is_done
+			transfer_state = 1364
+			transfer_state = 657
+			transfer_state = 809
+			transfer_state = 408
+			transfer_state = 409
+			transfer_state = 1644
+			transfer_state = 1646
+			if = {
+				limit = { has_country_flag = FE_demilitarize_amur }
+				1364 = { set_demilitarized_zone = yes }
+				657 = { set_demilitarized_zone = yes }
+				408 = { set_demilitarized_zone = yes }
+				409 = { set_demilitarized_zone = yes }
+				809 = { set_demilitarized_zone = yes }
+				1644 = { set_demilitarized_zone = yes }
+				1646 = { set_demilitarized_zone = yes }
+			}
+			if = {
+				limit = { has_country_flag = FE_korean_resettlement }
+				1646 = { set_variable = { nationality = 10000 } }
+				657 = { set_variable = { nationality = 10000 } }
+				
+				1646 = { add_manpower = 312423 }
+				657 = { add_manpower = 434391 }
+				
+				963 = { add_manpower = -434391 }
+				655 = { add_manpower = -312423 }
+				
+				1018 = { set_variable = { nationality = 444 } }
+				1816 = { set_variable = { nationality = 444 } }
+				1817 = { set_variable = { nationality = 444 } }
+				1819 = { set_variable = { nationality = 444 } }
+				963 = { set_variable = { nationality = 445 } }
+				963 = { add_core_of = JAP }
+				655 = { add_core_of = JAP }
+			}
+			if = {
+				limit = { has_country_flag = FE_demilitarize_far_east }
+				637 = { set_demilitarized_zone = yes }
+				562 = { set_demilitarized_zone = yes }
+				561 = { set_demilitarized_zone = yes }
+				563 = { set_demilitarized_zone = yes }
+				889 = { set_demilitarized_zone = yes }
+				1364 = { set_demilitarized_zone = yes }
+				657 = { set_demilitarized_zone = yes }
+				408 = { set_demilitarized_zone = yes }
+				409 = { set_demilitarized_zone = yes }
+				1644 = { set_demilitarized_zone = yes }
+				1646 = { set_demilitarized_zone = yes }
+			}
+			if = {
+				limit = { has_country_flag = FE_double_administrartion }
+				809 = { set_variable = { nationality = 10001 } }
+				809 = { add_compliance = 0.95 }
+				809 = {
+					add_province_modifier = {
+						static_modifiers = { TaS_Vladivostok_Urajio_dual_administration }
+						province = {
+							all_provinces = yes
+						}
+					}
+				}
+				809 = { set_state_name = VICTORY_POINTS_957_dual }
+				set_province_name = { id = 957 name = VICTORY_POINTS_957_dual }
+			}
+		}
+	}
+}
+
+country_event = { #1-3 round fail
+	id = MAR_Japan.25
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.25"}
+	title = MAR_Japan.25.t
+	desc = MAR_Japan.25.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.25.a
+		ai_chance = { factor = 1 }
+		set_country_flag = MAR_has_primorie
+		clr_global_flag = FE_negotiations_start
+		custom_effect_tooltip = FE_blagoveshensk_safe_fail_tt
+		hidden_effect = {
+			add_to_variable = { MAR_fates_done = 1 }
+			set_country_flag = Primorie_fate_is_done
+			transfer_state = 1364
+			transfer_state = 657
+			transfer_state = 1646
+			if = {
+				limit = { has_country_flag = FE_demilitarize_amur }
+				1364 = { set_demilitarized_zone = yes }
+				657 = { set_demilitarized_zone = yes }
+				1646 = { set_demilitarized_zone = yes }
+			}
+			if = {
+				limit = { has_country_flag = FE_korean_resettlement }
+				1646 = { set_variable = { nationality = 10000 } }
+				657 = { set_variable = { nationality = 10000 } }
+				
+				1646 = { add_manpower = 312423 }
+				657 = { add_manpower = 434391 }
+				
+				963 = { add_manpower = -434391 }
+				655 = { add_manpower = -312423 }
+				
+				1018 = { set_variable = { nationality = 444 } }
+				1816 = { set_variable = { nationality = 444 } }
+				1817 = { set_variable = { nationality = 444 } }
+				1819 = { set_variable = { nationality = 444 } }
+				963 = { set_variable = { nationality = 445 } }
+				963 = { add_core_of = JAP }
+				655 = { add_core_of = JAP }
+			}
+		}
+	}
+}
+
+country_event = { #4 round fail
+	id = MAR_Japan.26
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.26"}
+	title = MAR_Japan.26.t
+	desc = MAR_Japan.26.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.26.a
+		ai_chance = { factor = 1 }
+		set_country_flag = MAR_has_primorie
+		clr_global_flag = FE_negotiations_start
+		custom_effect_tooltip = FE_khabarovsk_safe_fail_tt
+		hidden_effect = {
+			add_to_variable = { MAR_fates_done = 1 }
+			set_country_flag = Primorie_fate_is_done
+			transfer_state = 1364
+			transfer_state = 657
+			transfer_state = 409
+			transfer_state = 1644
+			transfer_state = 1646
+			if = {
+				limit = { has_country_flag = FE_demilitarize_amur }
+				1364 = { set_demilitarized_zone = yes }
+				657 = { set_demilitarized_zone = yes }
+				408 = { set_demilitarized_zone = yes }
+				409 = { set_demilitarized_zone = yes }
+				1644 = { set_demilitarized_zone = yes }
+				1646 = { set_demilitarized_zone = yes }
+			}
+			if = {
+				limit = { has_country_flag = FE_korean_resettlement }
+				1646 = { set_variable = { nationality = 10000 } }
+				1647 = { set_variable = { nationality = 10000 } }
+				
+				1646 = { add_manpower = 312423 }
+				1647 = { add_manpower = 434391 }
+				
+				963 = { add_manpower = -434391 }
+				655 = { add_manpower = -312423 }
+				
+				1018 = { set_variable = { nationality = 444 } }
+				1816 = { set_variable = { nationality = 444 } }
+				1817 = { set_variable = { nationality = 444 } }
+				1819 = { set_variable = { nationality = 444 } }
+				963 = { set_variable = { nationality = 445 } }
+				963 = { add_core_of = JAP }
+				655 = { add_core_of = JAP }
+			}
+		}
+	}
+}
+
+country_event = { #kosygin specific
+	id = MAR_Japan.27
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.27"}
+	title = MAR_Japan.27.t
+	desc = MAR_Japan.27.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.27.a
+		ai_chance = { factor = 1 }
+		#set_country_flag = MAR_has_primorie
+	}
+}
+
+country_event = { #kosygin specific
+	id = MAR_Japan.28
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.28"}
+	title = MAR_Japan.28.t
+	desc = MAR_Japan.28.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.28.a
+		ai_chance = { factor = 1 }
+		#set_country_flag = MAR_has_primorie
+	}
+}
+
+country_event = { #kosygin specific
+	id = MAR_Japan.29
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.29"}
+	title = MAR_Japan.29.t
+	desc = MAR_Japan.29.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.29.a
+		ai_chance = { factor = 1 }
+		#set_country_flag = MAR_has_primorie
+	}
+}
+
+country_event = { #kosygin specific
+	id = MAR_Japan.30
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.30"}
+	title = MAR_Japan.30.t
+	desc = MAR_Japan.30.d
+	picture = GFX_event_MAR_japan_6
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.30.a
+		ai_chance = { factor = 1 }
+		#set_country_flag = MAR_has_primorie
+	}
+}
+##LEGACY CW EVENT
+country_event = { #Technical stuff no loc #legacy
+	id = MAR_Japan.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.100"}
+	title = MAR_Japan.100.t
+	desc = MAR_Japan.100.d
+	picture = GFX_report_event_collapse2
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.100.a
+		ai_chance = { factor = 1 }
+		MJP = {
+			set_cosmetic_tag = MJP_Second_CW
+			transfer_state = 810
+			add_state_core = 810
+			set_politics = {
+				ruling_party = national_socialism
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.33
+			}
+			MJP_Katakura_Tadashi = {
+				promote_character = yes
+			}
+			set_party_name = { 
+				ideology = national_socialism
+				long_name = MJP_national_socialism_party_long
+				name = MJP_national_socialism_party
+			}
+		}
+		MAN = {
+			set_capital = { state = 328 }
+			remove_ideas = MAN_Kwantung_Army
+			retire_character = MAN_katakura_tadashi 
+			
+		}
+		
+		country_event = {
+			id = MAR_Japan.2 days = 17
+		}
+	}
+}
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.200
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.200"}
+	title = MAR_Japan.200.t
+	desc = MAR_Japan.200.d
+	picture = GFX_report_event_collapse2
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.200.a
+		ai_chance = { factor = 1 }
+		XYZ = {
+			MAN_Kuan_Chung = {
+				set_nationality = MAN
+			}
+		}
+		MAN = {
+			set_politics = {
+				ruling_party = paternalism
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = paternalism
+				popularity = 0.33
+			}
+			set_party_name = { 
+				ideology = paternalism
+				long_name = MAN_cw_despotism_party_long
+				name = MAN_cw_despotism_party
+			}
+			promote_character = MAN_Kuan_Chung	
+		}
+		country_event = {
+			id = MAR_Japan.3 days = 11
+		}
+	}
+} 
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.300
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.300"}
+	title = MAR_Japan.300.t
+	desc = MAR_Japan.300.d
+	picture = GFX_report_event_collapse2
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.300.a
+		ai_chance = { factor = 1 }
+		HAN = {
+			set_cosmetic_tag = HAN_Second_CW
+			transfer_state = 801
+			add_state_core = 801
+			set_politics = {
+				ruling_party = despotism
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = despotism
+				popularity = 0.29
+			}
+			HAN_Pujie = {
+				promote_character = yes
+			}
+			set_party_name = { 
+				ideology = despotism
+				long_name = HAN_despotism_party_long
+				name = HAN_despotism_party
+			}
+		}
+		PFF = {
+			set_cosmetic_tag = PFF_Second_CW
+			transfer_state = 1643
+			add_state_core = 1643
+			set_politics = {
+				ruling_party = communist
+				last_election = "1933.2.16"
+				election_frequency = 36
+				elections_allowed = no
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.47
+			}
+			PFF_Kim_Il_Sung = {
+				promote_character = yes
+			}
+			set_party_name = { 
+				ideology = communist
+				long_name = PFF_communist_party_long
+				name = PFF_communist_party
+			}
+		}
+		country_event = {
+			id = MAR_Japan.4 days = 11
+		}
+	}
+}
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.400
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.400"}
+	title = MAR_Japan.400.t
+	desc = MAR_Japan.400.d
+	picture = GFX_report_event_collapse2
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {	
+		name = MAR_Japan.4.a
+		ai_chance = { factor = 1 }
+		MAN = {
+			set_cosmetic_tag = MAN_Second_CW
+			leave_faction = yes
+			econ_leave_sphere = yes
+			remove_ideas = Sphere_Fully_Dependent
+			remove_ideas = MAN_Chained_To_Rising_Sun
+		}
+		MAN = {
+			delete_unit = {
+				state = 1643
+				disband = no
+			}
+			delete_unit = {
+				state = 715
+				disband = no
+			}
+			delete_unit = {
+				state = 714
+				disband = no
+			}
+			delete_unit = {
+				state = 1638
+				disband = no
+			}
+			delete_unit = {
+				state = 1639
+				disband = no
+			}
+			delete_unit = {
+				state = 1637
+				disband = no
+			}
+			delete_unit = {
+				state = 717
+				disband = no
+			}
+			delete_unit = {
+				state = 801
+				disband = no
+			}
+			delete_unit = {
+				state = 328
+				disband = no
+			}
+			delete_unit = {
+				state = 1642
+				disband = no
+			}
+			delete_unit = {
+				state = 1641
+				disband = no
+			}
+			delete_unit = {
+				state = 1640
+				disband = no
+			}
+			delete_unit = {
+				state = 610
+				disband = no
+			}
+			delete_unit = {
+				state = 1265
+				disband = no
+			}
+			delete_unit = {
+				state = 716
+				disband = no
+			}
+			delete_unit = {
+				state = 1636
+				disband = no
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = MAN
+			}
+			set_demilitarized_zone = yes
+		}			
+		country_event = {
+			id = MAR_Japan.5 days = 9
+		}
+	}
+}
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.500
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.500"}
+	title = MAR_Japan.500.t
+	desc = MAR_Japan.500.d
+	picture = GFX_report_event_collapse2
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.5.a
+		ai_chance = { factor = 1 }
+		#TaS_2WRW_spawn_divs_second_cw = yes
+		set_global_flag = TaS_MAN_second_cw
+		HAN = {
+			transfer_state = 1639
+			add_state_core = 1639
+			transfer_state = 1638
+			add_state_core = 1638
+			transfer_state = 1637
+			add_state_core = 1637
+			load_oob = HAN_second_cw
+		}
+		MJP = {
+			transfer_state = 1265
+			add_state_core = 1265
+			transfer_state = 716
+			add_state_core = 716
+			transfer_state = 1636
+			add_state_core = 1636
+			load_oob = MJP_second_cw
+		}
+		PFF = {
+			transfer_state = 715
+			add_state_core = 715
+			load_oob = PFF_second_cw
+		}
+		HAN = {
+			declare_war_on = {
+				target = MAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MJP
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = PFF
+				type = annex_everything
+			}
+		}
+		MJP = {
+			declare_war_on = {
+				target = MAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = HAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = PFF
+				type = annex_everything
+			}
+		}
+		MAN = {
+			declare_war_on = {
+				target = HAN
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = PFF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = MJP
+				type = annex_everything
+			}
+			load_oob = MAN_second_cw
+		}
+		CHI = { end_puppet = MEN }
+		MEN = { leave_faction = yes }
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.5
+				}
+			}
+		}
+		USA = {
+			country_event = { id = MAR_Japan.9 days = 3 }
+		}
+		JAP = {
+			country_event = { id = MAR_Japan.9 days = 3 }
+		}
+		MAR = {
+			country_event = { id = MAR_Japan.9 days = 3 }
+		}
+		set_country_flag = RUS_something_goes_wrong 
+	}
+}
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.700
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.700"}
+	title = MAR_Japan.700.t
+	desc = MAR_Japan.700.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.7.a
+		ai_chance = { factor = 1 }
+		MJP = {
+			annex_country = {
+				target = MAN
+				transfer_troops = yes
+			}
+			set_cosmetic_tag = MJP_JAP_autonomy
+			econ_join_sphere_JAP = yes
+			swap_ideas = {
+			    remove_idea = Sphere_Core_Member
+			    add_idea = Sphere_Imp_Protectorate
+		    }
+			add_ideas = MAN_Kwantung_Army
+			every_owned_state = {
+				MJP = {
+					add_state_core = PREV
+				}
+			}
+		}
+		JAP = {
+			add_to_faction = MJP
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.33
+				}
+			}
+		}
+	}
+}
+
+country_event = { #Technical stuff no loc
+	id = MAR_Japan.800
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_Japan.800"}
+	title = MAR_Japan.800.t
+	desc = MAR_Japan.800.d
+	picture = GFX_report_event_peace_deal
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = {
+		name = MAR_Japan.8.a
+		ai_chance = { factor = 1 }
+		HAN = {
+			annex_country = {
+				target = MAN
+				transfer_troops = no
+			}
+			create_country_leader = {
+				name = "Anarchy"
+				desc = "POLITICS_ANARCHY_DESC"
+				picture = "Portrait_ZZZ_Anarchy.dds"
+				expire = "3000.1.1"
+				ideology = socialist_subtype
+				traits = { }
+			}
+			set_variable = { TNO_economy_type = token:Econ_Type_Planned }
+			set_variable = { TNO_economy_subtype = token:Econ_Subtype_Anarchic }
+			set_country_flag = TNO_eliminate_building_demand
+			set_country_flag = can_not_use_econ_system
+			set_country_flag = MAN_katastrophe
+			set_politics = {
+				ruling_party = socialist
+				last_election = "1961.1.20"
+				election_frequency = 48
+				elections_allowed = yes
+
+			}
+			set_popularities = {
+				socialist = 100
+			}
+			add_ideas = ZZZ_anarchy
+			set_cosmetic_tag = MAN_katastrophe
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.35
+				}
+			}
+		}
+	}
+}
+##Germaney
+
+country_event = { #Offer status quo
+	id = MAR_2WRW.1
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_2WRW.1"}
+	title = MAR_2WRW.1.t
+	desc = MAR_2WRW.1.d
+	picture = GFX_swrw_event_peace
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = MAR_2WRW.1.a
+		ai_chance = {
+			factor = 0
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_QUO
+				}
+			}	
+		}
+		hidden_effect = {
+			RUS = {
+				load_focus_tree = ZZZ_blank_focus
+				set_country_flag = MAR_Good_Ending
+				TNO_Country_Closing_Screen_Show = yes
+			}
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.9
+				}
+			}
+			SWRW_clear_war_stuff = yes
+			clr_country_flag = ROM_demands
+			clr_country_flag = ROM_refuse
+			clr_country_flag = HUN_demands
+			clr_country_flag = HUN_refuse
+			clr_country_flag = SER_demands
+			clr_country_flag = SER_refuse
+			clr_country_flag = BUL_demands
+			clr_country_flag = BUL_refuse
+			FIN = { clr_country_flag = oh_fuck_the_russians_are_coming }
+		}
+		TaS_WRW2_Peace_Yall = yes
+	}
+	option = { #nope lol
+		name = MAR_2WRW.1.b
+		ai_chance = {
+			factor = 100	
+		}
+	}
+}
+country_event = { #Offer muscowy
+	id = MAR_2WRW.2
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_2WRW.2"}
+	title = MAR_2WRW.2.t
+	desc = MAR_2WRW.2.d
+	picture = GFX_swrw_event_peace
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = MAR_2WRW.2.a
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_MCW
+				}
+			}	
+		}
+		MAR = {
+			transfer_state = 2099
+			add_state_core = 2099
+			2099 = { set_variable = { nationality = 151 } }
+			annex_country = {
+				target = MCW
+				transfer_troops = no
+			}
+			every_state = {
+				limit = {
+					is_core_of = MCW
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = MCW }
+			}
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.9
+				}
+			}
+			SWRW_clear_war_stuff = yes
+			clr_country_flag = ROM_demands
+			clr_country_flag = ROM_refuse
+			clr_country_flag = HUN_demands
+			clr_country_flag = HUN_refuse
+			clr_country_flag = SER_demands
+			clr_country_flag = SER_refuse
+			clr_country_flag = BUL_demands
+			clr_country_flag = BUL_refuse
+		}	
+		TaS_WRW2_Peace_Yall = yes	
+	}
+	option = { #nope lol
+		name = MAR_2WRW.2.b
+		ai_chance = {
+			factor = 95	
+		}
+	}
+}
+country_event = { #Offer muscowy and caucasus
+	id = MAR_2WRW.3
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_2WRW.3"}
+	title = MAR_2WRW.3.t
+	desc = MAR_2WRW.3.d
+	picture = GFX_swrw_event_peace
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = MAR_2WRW.3.a
+		ai_chance = {
+			factor = 15
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_MCW_CAU
+				}
+			}	
+		}
+		MAR = {
+			transfer_state = 2099
+			add_state_core = 2099
+			2099 = { set_variable = { nationality = 151 } }
+			annex_country = {
+				target = MCW
+				transfer_troops = no
+			}
+			annex_country = {
+				target = CAU
+				transfer_troops = no
+			}				
+			every_state = {
+				limit = {
+					is_core_of = MCW
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = MCW }
+			}
+			every_state = {
+				limit = {
+					is_core_of = CAU
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = CAU }
+			}
+		}
+		hidden_effect = {
+			GER = {
+				load_focus_tree = ZZZ_blank_focus
+			}
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.9
+				}
+			}
+			SWRW_clear_war_stuff = yes
+			TaS_2WRW_form_ost_zones = yes
+			clr_country_flag = ROM_demands
+			clr_country_flag = ROM_refuse
+			clr_country_flag = HUN_demands
+			clr_country_flag = HUN_refuse
+			clr_country_flag = SER_demands
+			clr_country_flag = SER_refuse
+			clr_country_flag = BUL_demands
+			clr_country_flag = BUL_refuse
+		}	
+		TaS_WRW2_Peace_Yall = yes		
+	}
+	option = { #nope lol
+		name = MAR_2WRW.3.b
+		ai_chance = {
+			factor = 85	
+		}
+	}
+}
+country_event = { #Offer muscowy and caucasus and belarus and half of ukraine
+	id = MAR_2WRW.4
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_2WRW.4"}
+	title = MAR_2WRW.4.t
+	desc = MAR_2WRW.4.d
+	picture = GFX_swrw_event_peace
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = MAR_2WRW.4.a
+		ai_chance = {
+			factor = 25
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_MCW_CAU_BLR
+				}
+			}	
+		}
+		MAR = {
+			transfer_state = 2099
+			add_state_core = 2099
+			2099 = { set_variable = { nationality = 151 } }
+			annex_country = {
+				target = MCW
+				transfer_troops = no
+			}
+			annex_country = {
+				target = CAU
+				transfer_troops = no
+			}				
+			every_state = {
+				limit = {
+					is_core_of = MCW
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = MCW }
+			}
+			every_state = {
+				limit = {
+					is_core_of = CAU
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = CAU }
+			}
+			set_country_flag = limited_ost_zones
+			transfer_state = 218 
+			transfer_state = 228 
+			transfer_state = 227 
+			transfer_state = 221
+			transfer_state = 225 
+			#transfer_state = 193 
+			
+			transfer_state = 207
+			transfer_state = 206 
+			transfer_state = 204
+			transfer_state = 1405
+			transfer_state = 194 
+			transfer_state = 1404
+			#transfer_state = 1403 
+			#transfer_state = 95 
+			#transfer_state = 1407
+			#transfer_state = 1406
+			
+			transfer_state = 1421
+			transfer_state = 257
+			
+			transfer_state = 209
+			transfer_state = 1402
+			
+			every_owned_state = {
+				limit = {
+					is_core_of = UKR
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = UKR }
+			}
+			every_owned_state = {
+				limit = {
+					is_core_of = OST
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = OST }
+			}
+		}
+		hidden_effect = {
+			GER = {
+				load_focus_tree = ZZZ_blank_focus
+			}
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.9
+				}
+			}
+			clr_country_flag = ROM_demands
+			clr_country_flag = ROM_refuse
+			clr_country_flag = HUN_demands
+			clr_country_flag = HUN_refuse
+			clr_country_flag = SER_demands
+			clr_country_flag = SER_refuse
+			clr_country_flag = BUL_demands
+			clr_country_flag = BUL_refuse
+			SWRW_clear_war_stuff = yes
+			TaS_2WRW_form_ost_zones = yes
+		}	
+		TaS_WRW2_Peace_Yall = yes		
+	}
+	option = { #nope lol
+		name = MAR_2WRW.4.b
+		ai_chance = {
+			factor = 75	
+		}
+	}
+}
+country_event = { #Offer surrender
+	id = MAR_2WRW.5
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_2WRW.5"}
+	title = MAR_2WRW.5.t
+	desc = MAR_2WRW.5.d
+	picture = GFX_swrw_event_peace
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = MAR_2WRW.5.a
+		ai_chance = {
+			factor = 80
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_RUS_TOTAL_WIN
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_RUS_NUCLEAR_CUCKED
+				}
+			}
+		}
+		SWRW_force_effects_for_capitulated = yes
+		TaS_WRW2_Peace_Yall = yes
+		TaS_WRW2_total_capitulation = yes
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.10
+				}
+			}
+			SWRW_clear_war_stuff = yes
+		}
+	}
+	option = { #no #goes nuke
+		name = MAR_2WRW.5.b
+		ai_chance = {
+			factor = 20	
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_RUS_TOTAL_WIN
+				}
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_RUS_NUCLEAR_CUCKED
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_2WRW_gone_wrong_tt
+		hidden_effect = {
+			country_event = { id = MAR_2WRW.7 days = 3 }
+		}
+	}
+}
+
+country_event = { #TOTALEN surrender
+	id = MAR_2WRW.6
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_2WRW.6"}
+	title = MAR_2WRW.6.t
+	desc = MAR_2WRW.6.d
+	picture = GFX_event_MAR_WRW2_6
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = MAR_2WRW.6.a
+		if = {
+			limit = { has_government = socialist }
+			TaS_WRW2_German_Collapse_Kosygin = yes
+		}	
+		else = {
+			TaS_WRW2_German_Collapse_Beloozersky = yes
+		}
+		#hidden_effect = {
+		#	every_country  = {
+		#		news_event = {
+		#			id = berez_world_news.5
+		#		}
+		#	}
+		#}
+	}
+}
+
+country_event = { #german nuclear ultimatum
+	id = MAR_2WRW.7
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_2WRW.7"}
+	title = MAR_2WRW.7.t
+	desc = MAR_2WRW.7.d
+	picture = GFX_report_event_generic_missile
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = MAR_2WRW.7.a
+		custom_effect_tooltip = SWRW_we_cant_risk_everything_tt
+		ai_chance = {
+			factor = 90	
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_RUS_NUCLEAR_CUCKED
+				}
+			}
+		}
+		MAR = {
+			annex_country = {
+				target = MCW
+				transfer_troops = no
+			}
+			annex_country = {
+				target = CAU
+				transfer_troops = no
+			}				
+			every_state = {
+				limit = {
+					is_core_of = MCW
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = MCW }
+			}
+			every_state = {
+				limit = {
+					is_core_of = CAU
+				}
+				#add_core_of = RUS
+				hidden_effect = { remove_core_of = CAU }
+			}
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = MAR_2WRW_world_news.20
+				}
+			}
+			TaS_2WRW_form_ost_zones = yes
+			clr_country_flag = ROM_demands
+			clr_country_flag = ROM_refuse
+			clr_country_flag = HUN_demands
+			clr_country_flag = HUN_refuse
+			clr_country_flag = SER_demands
+			clr_country_flag = SER_refuse
+			clr_country_flag = BUL_demands
+			clr_country_flag = BUL_refuse
+		}			
+		TaS_WRW2_Peace_Yall = yes
+	}
+	option = { #boom
+		name = MAR_2WRW.7.b
+		ai_chance = {
+			factor = 10	
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_WAR_RESULT
+					option = SWRW_WAR_RESULT_RUS_NUCLEAR_CUCKED
+				}
+			}
+		}
+		clr_global_flag = nukes_disabled
+		custom_effect_tooltip = SWRW_you_dont_behave_yourself_tt
+		hidden_effect = {
+			country_event = { id = nuclearwar.5 hours = 12 }
+			GER = { 
+				set_country_flag = allout_nuclearstrike
+				load_focus_tree = ZZZ_blank_focus
+			}
+			MAR = {
+				load_focus_tree = ZZZ_blank_focus
+			}
+		}
+	}
+}
+
+country_event = { #RIP SWEET TSAR
+	id = MAR_2WRW.1978
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_2WRW.1978"}
+	title = MAR_2WRW.1978.t
+	desc = MAR_2WRW.1978.d
+	picture = GFX_report_event_peace_deal
+
+	fire_only_once = yes
+	is_triggered_only = yes
+
+	option = { #yes
+		name = MAR_2WRW.1978.a
+			retire_character = MAR_Sergey_Belozerskiy
+			TNO_Country_Closing_Screen_Show = yes
+			set_country_flag = MAR_Good_Ending
+			add_country_leader_role = {
+				character = MAR_the_throne
+				promote_leader = yes
+				country_leader = {
+					desc = "POLITICS_THE_RUSSIAN_THRONE_DESC"
+					expire = "1999.1.1"
+					ideology = despotism_interim_government_subtype
+					traits = {
+						undecided_future
+					}
+				}
+			}
+			hidden_effect = {
+				every_country  = {
+					news_event = {
+						id = MAR_2WRW_world_news.40
+					}
+				}
+			}
+		}
+}
+### ultimatums
+
+country_event = { #FIN: Russia requests
+	id = MAR_ultimatums.100
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.100"}
+	title = MAR_ultimatums.100.t
+	desc = MAR_ultimatums.100.desc
+	picture = GFX_report_event_peace_deal
+
+	is_triggered_only = yes
+
+	option = { #Okay
+		name = MAR_ultimatums.100.a 
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_FIN
+					option = SWRW_RUS_ULTIMATUM_FIN_ACCEPT
+				}	
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_FIN
+					option = SWRW_RUS_ULTIMATUM_FIN_DECLINE
+				}	
+			}
+		}
+		RUS = {
+			country_event = { id = MAR_ultimatums.101 days = 2 }
+		}
+	}
+	option = { #Not okay
+		name = MAR_ultimatums.100.b 
+		ai_chance = {
+			factor = 2
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_FIN
+					option = SWRW_RUS_ULTIMATUM_FIN_ACCEPT
+				}	
+			}
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_FIN
+					option = SWRW_RUS_ULTIMATUM_FIN_DECLINE
+				}	
+			}
+		}
+		RUS = {
+			country_event = { id = MAR_ultimatums.102 days = 2 }
+		}
+	}
+}
+
+country_event = { #FIN: Return of Karelia
+	id = MAR_ultimatums.101
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.101"}
+	title = MAR_ultimatums.101.t
+	desc = MAR_ultimatums.101.d
+	picture = GFX_report_event_generic_sign_treaty3
+
+	is_triggered_only = yes
+
+	option = { #good
+		name = MAR_ultimatums.101.a 
+		ai_chance = {
+			factor = 1
+			
+		}
+		RUS = {
+			transfer_state = 216
+			transfer_state = 213
+			transfer_state = 215
+			transfer_state = 1887
+			transfer_state = 216
+		}
+	}
+}
+
+country_event = { #FIN: They refused
+	id = MAR_ultimatums.102
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.102"}
+	title = MAR_ultimatums.102.t
+	desc = MAR_ultimatums.102.d
+	picture = GFX_report_event_generic_winter_soldiers
+
+	is_triggered_only = yes
+
+	option = { #backdown
+		name = MAR_ultimatums.102.a 
+		ai_chance = {
+			factor = 1
+		}
+		RUS = {
+			if = { 
+				limit = { controls_state = 215 } 
+				remove_state_claim = 213
+				remove_state_claim = 216
+			}
+			else = {
+				remove_state_claim = 213
+				remove_state_claim = 216
+				remove_state_claim = 215
+				remove_state_claim = 1887
+				remove_state_claim = 1359
+			}
+		}
+	}
+	option = { #oh, the misery
+		name = MAR_ultimatums.102.b 
+		ai_chance = {
+			factor = 1	
+		}
+		set_global_flag = RUS_FIN_second_war
+		add_timed_idea = {
+			idea = SWRW_war_weariness
+			days = 120
+		}
+		declare_war_on = {
+			target = FIN
+			type = annex_everything
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				news_event = { id = MAR_2WRW_world_news.44 }
+			}
+			FIN = {
+				if = {
+					limit = {
+						has_game_rule = {
+							rule = SWRW_RUS_ULTIMATUM_FIN_WAR
+							option = SWRW_RUS_ULTIMATUM_FIN_WAR_FAIL
+						}
+					}
+					apply_war_buff_with_15_divisions = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = { #TUR: Russia requests to buy Batumi
+	id = MAR_ultimatums.103
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.103"}
+	title = MAR_ultimatums.103.t
+	desc = MAR_ultimatums.103.d
+	picture = GFX_report_event_peace_deal
+
+	is_triggered_only = yes
+
+	option = { #Okay
+		name = MAR_ultimatums.103.a 
+		ai_chance = {
+			factor = 2
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR
+					option = SWRW_RUS_ULTIMATUM_TUR_ACCEPT
+				}	
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR
+					option = SWRW_RUS_ULTIMATUM_TUR_DECLINE
+				}	
+			}
+			modifier = {
+				factor = 0
+				has_country_flag = SWRW_TUR_dont_negotiate_with_rus	
+			}
+			
+		}
+		RUS = {
+			country_event = { id = MAR_ultimatums.104 days = 2 }
+		}
+	}
+	option = { #Not okay
+		name = MAR_ultimatums.103.b 
+		ai_chance = {
+			factor = 4
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR
+					option = SWRW_RUS_ULTIMATUM_TUR_ACCEPT
+				}	
+			}
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR
+					option = SWRW_RUS_ULTIMATUM_TUR_DECLINE
+				}	
+			}
+			modifier = {
+				factor = 100
+				has_country_flag = SWRW_TUR_dont_negotiate_with_rus	
+			}
+		}
+		RUS = {
+			country_event = { id = MAR_ultimatums.105 days = 2 }
+		}
+	}
+}
+
+country_event = { #TUR: The deal
+	id = MAR_ultimatums.104
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.104"}
+	title = MAR_ultimatums.104.t
+	desc = MAR_ultimatums.104.d
+	picture = GFX_report_event_generic_handshake_2
+
+	is_triggered_only = yes
+
+	option = { #good
+		name = MAR_ultimatums.104.a 
+		ai_chance = {
+			factor = 1
+		}
+		if = {
+			limit = { GEO = { owns_state = 231 } }
+			GEO = {
+				transfer_state = 1565
+				add_state_core = 1565
+			}
+			RUS = {
+				remove_state_claim = 1565
+			}
+		}
+		else_if = {
+			limit = { MCS = { owns_state = 231 } }
+			MCS = {
+				transfer_state = 1565
+				add_state_core = 1565
+			}
+			RUS = {
+				remove_state_claim = 1565
+			}
+		}
+		else = {
+			RUS = {
+				transfer_state = 1565
+				add_state_core = 1565
+			}
+			RUS = {
+				remove_state_claim = 1565
+			}
+		}
+		ARM = {
+			econ_join_sphere_MAR = yes
+			add_ideas = RUSAlliance_Dependent_Member
+			RUS = { add_to_faction = ARM }
+		}
+	}
+}
+
+country_event = { #TUR: The broken deal
+	id = MAR_ultimatums.105
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.105"}
+	title = MAR_ultimatums.105.t
+	desc = MAR_ultimatums.105.d
+	picture = GFX_report_event_generic_gun_by_phone
+
+	is_triggered_only = yes
+
+	option = { #backdowm
+		name = MAR_ultimatums.105.a 
+		ai_chance = {
+			factor = 1
+			
+		}
+		RUS = {
+			remove_state_claim = 1565
+		}
+	}
+	option = { #let's try to take it
+		name = MAR_ultimatums.105.b
+		ai_chance = {
+			factor = 1
+		}
+		country_event = { id = MAR_ultimatums.106 days = 3 }
+		#start_border_war = {
+		#	change_state_after_war = no
+		#	attacker = {
+		#		state = 1293
+		#		num_provinces = 2
+		#		on_win = MAR_ultimatums.106
+		#		on_lose = MAR_ultimatums.107
+		#	}
+		#
+		#	defender = {
+		#		state = 1565
+		#		num_provinces = 2
+		#		on_win = MAR_ultimatums.107
+		#		on_lose = MAR_ultimatums.108
+		#	}
+		#}
+	}
+}
+
+country_event = { #TUR: Batumi taken
+	id = MAR_ultimatums.106
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.106"}
+	title = MAR_ultimatums.106.t
+	desc = MAR_ultimatums.106.d
+	picture = GFX_report_event_RUS_soviet_mech_infantry_4
+
+	is_triggered_only = yes
+
+	option = { #good
+		name = MAR_ultimatums.106.a 
+		ai_chance = {
+			factor = 1
+		}
+		if = {
+			limit = { GEO = { owns_state = 231 } }
+			GEO = {
+				transfer_state = 1293
+				transfer_state = 1565
+				add_state_core = 1565
+			}
+		}
+		else_if = {
+			limit = { MCS = { owns_state = 231 } }
+			MCS = {
+				transfer_state = 1293
+				transfer_state = 1565
+				add_state_core = 1565
+			}
+		}
+		else = {
+			RUS = {
+				transfer_state = 1565
+				add_state_core = 1565
+			}
+		}
+		hidden_effect = { TUR = { country_event = { id = MAR_ultimatums.108 days = 3 } } }
+	}
+}
+
+country_event = { #TUR: Batumi fail
+	id = MAR_ultimatums.107
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.107"}
+	title = MAR_ultimatums.107.t
+	desc = MAR_ultimatums.107.d
+	picture = GFX_report_event_generic_riot
+
+	is_triggered_only = yes
+
+	option = { #fuck
+		name = MAR_ultimatums.107.a 
+		ai_chance = {
+			factor = 1	
+		}
+		RUS = {
+			remove_state_claim = 1565
+		}
+		1565 = { set_demilitarized_zone = yes }
+	}
+}
+country_event = { #TUR: Batumi occupied what to do
+	id = MAR_ultimatums.108
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.108"}
+	title = MAR_ultimatums.108.t
+	desc = MAR_ultimatums.108.d
+	picture = GFX_report_event_peace_deal
+
+	is_triggered_only = yes
+
+	option = { #do nothing - chudda
+		name = MAR_ultimatums.108.a 
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 0
+				has_country_flag = SWRW_TUR_dont_negotiate_with_rus	
+			}
+		}
+		every_country = {
+			limit = { is_ai = no }
+			news_event = { id = MAR_2WRW_world_news.45 }
+		}
+		1565 = { set_demilitarized_zone = no }
+		RUS = {
+			remove_state_claim = 1565
+		}
+	}
+	option = { #prepare to attack them
+		name = MAR_ultimatums.108.b 
+		ai_chance = {
+			factor = 1	
+			modifier = {
+				factor = 100
+				has_country_flag = SWRW_TUR_dont_negotiate_with_rus	
+			}
+		}
+		RUS = { country_event = { id = MAR_ultimatums.109 days = 2 } }
+	}
+}
+
+country_event = { #TUR: Turkey gather troops
+	id = MAR_ultimatums.109
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.109"}
+	title = MAR_ultimatums.109.t
+	desc = MAR_ultimatums.109.d
+	picture = GFX_report_event_TUR_victory_day_parade
+
+	is_triggered_only = yes
+
+	option = { #bruh we're leaving
+		name = MAR_ultimatums.109.a 
+		ai_chance = {
+			factor = 1
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				news_event = { id = MAR_2WRW_world_news.45 }
+			}
+		}
+		TUR = { transfer_state = 1565 }
+		RUS = {
+			remove_state_claim = 1565
+		}
+	}
+	option = { #Wait for attack
+		name = MAR_ultimatums.109.b 
+		ai_chance = {
+			factor = 1
+		}
+		hidden_effect = { TUR = { country_event = { id = MAR_ultimatums.110 days = 21 } } }
+	}
+	option = { #Fuck let's goo
+		name = MAR_ultimatums.109.c 
+		ai_chance = {
+			factor = 1
+		}
+		add_timed_idea = {
+			idea = SWRW_war_weariness
+			days = 120
+		}
+		declare_war_on = {
+			target = TUR
+			type = annex_everything
+		}
+		
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				news_event = { id = MAR_2WRW_world_news.46 }
+			}
+			TUR = {
+				set_country_flag = {
+					flag = TUR_WAR_TIMEOUT
+					value = 1 
+					days = 45
+				}
+				if = {
+					limit = {
+						has_game_rule = {
+							rule = SWRW_RUS_ULTIMATUM_TUR_WAR
+							option = SWRW_RUS_ULTIMATUM_TUR_WAR_FAIL
+						}
+					}
+					apply_war_buff_with_15_divisions = yes
+				}
+			}
+		}
+	}
+	
+}
+
+country_event = { #TUR: fuck let's goooooooo
+	id = MAR_ultimatums.110
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.110"}
+	title = MAR_ultimatums.110.t
+	desc = MAR_ultimatums.110.d
+	picture = GFX_report_event_peace_deal
+
+	is_triggered_only = yes
+
+	option = { #this will not go bad, right?
+		name = MAR_ultimatums.110.a 
+		ai_chance = {
+			factor = 1
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				news_event = { id = MAR_2WRW_world_news.46 }
+			}
+		}
+		declare_war_on = {
+			target = RUS
+			type = annex_everything
+		}
+		add_timed_idea = {
+			idea = SWRW_swift_attack
+			days = 30
+		}
+		set_country_flag = {
+			flag = TUR_WAR_TIMEOUT
+			value = 1 
+			days = 45
+		}
+		if = {
+			limit = {
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR_WAR
+					option = SWRW_RUS_ULTIMATUM_TUR_WAR_FAIL
+				}
+			}
+			apply_war_buff_with_15_divisions = yes
+		}
+		1565 = { set_demilitarized_zone = no }
+	}
+}
+
+country_event = { #TUR: Ceasefire
+	id = MAR_ultimatums.111
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.111"}
+	title = MAR_ultimatums.111.t
+	desc = MAR_ultimatums.111.d
+	picture = GFX_report_event_generic_peace_deal
+ 
+	is_triggered_only = yes
+	fire_only_once = yes
+
+	option = { #well, shit
+		name = MAR_ultimatums.111.a 
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR_WAR
+					option = SWRW_RUS_ULTIMATUM_TUR_WAR_CEASEFIRE
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR_WAR
+					option = SWRW_RUS_ULTIMATUM_TUR_WAR_WIN
+				}
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR_WAR
+					option = SWRW_RUS_ULTIMATUM_TUR_WAR_FAIL
+				}
+			}
+		}
+		RUS = {
+			white_peace = TUR
+		}
+		every_country = {
+			limit = { is_subject_of = TUR }
+			white_peace = RUS
+		}
+		if = {
+			limit = { GEO = { owns_state = 231 } }
+			GEO = {
+				transfer_state = 1448
+				add_state_core = 1448
+			}
+		}
+		else_if = {
+			limit = { MCS = { owns_state = 231 } }
+			MCS = {
+				transfer_state = 1448
+				add_state_core = 1448
+			}
+		}
+		else = {
+			RUS = {
+				transfer_state = 1448
+				add_state_core = 1448
+			}
+		}
+		ARM = {
+			leave_faction = yes
+			econ_join_sphere_MAR = yes
+			add_ideas = RUSAlliance_Dependent_Member
+			RUS = { add_to_faction = ARM }
+			transfer_state = 230
+			transfer_state = 1568
+			transfer_state = 1567
+			add_state_core = 1567
+		}
+	}
+	option = { #not yet
+		name = MAR_ultimatums.111.b 
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR_WAR
+					option = SWRW_RUS_ULTIMATUM_TUR_WAR_WIN
+				}
+			}
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR_WAR
+					option = SWRW_RUS_ULTIMATUM_TUR_WAR_FAIL
+				}
+			}
+		}
+		trigger = {
+			OR = {
+				RUS = {
+					casualties < 50000
+				}
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_TUR_WAR
+					option = SWRW_RUS_ULTIMATUM_TUR_WAR_WIN
+				}
+			}
+		}
+	}
+}
+
+country_event = { #ROM: Russia Demands
+	id = MAR_ultimatums.112
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.112"}
+	title = MAR_ultimatums.112.t
+	desc = MAR_ultimatums.112.d
+	picture = GFX_report_event_generic_apc_crew
+
+	is_triggered_only = yes
+
+	option = { #well, shit
+		name = MAR_ultimatums.112.a 
+		ai_chance = {
+			factor = 4
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_ROM
+					option = SWRW_RUS_ULTIMATUM_ROM_ACCEPT
+				}	
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_ROM
+					option = SWRW_RUS_ULTIMATUM_ROM_DECLINE
+				}	
+			}
+		}
+		if = {
+			limit = { MUK = { controls_state = 1428 } }
+			MUK = {
+				transfer_state = 198
+				transfer_state = 1965
+				transfer_state = 1966
+				transfer_state = 1282
+				transfer_state = 192
+				
+				add_state_core = 198
+				add_state_core = 1965
+				add_state_core = 1966
+				add_state_core = 1282
+				add_state_core = 192
+				
+				transfer_state = 80
+				transfer_state = 1286
+				transfer_state = 78
+				transfer_state = 1285
+				transfer_state = 1282
+				transfer_state = 192
+				
+				add_state_core = 80
+				add_state_core = 1286
+				add_state_core = 78
+				add_state_core = 1285
+				add_state_core = 1282
+				add_state_core = 192
+			}
+			RUS = {
+				remove_state_claim = 1285
+				remove_state_claim = 1286
+				remove_state_claim = 78
+				remove_state_claim = 198
+				remove_state_claim = 1965
+				remove_state_claim = 1966
+				remove_state_claim = 1285
+				remove_state_claim = 192
+			}
+		}
+		else = {
+			RUS = {
+				transfer_state = 198
+				transfer_state = 1965
+				transfer_state = 1966
+				transfer_state = 1282
+				transfer_state = 192
+				
+				add_state_core = 198
+				add_state_core = 1965
+				add_state_core = 1966
+				add_state_core = 1282
+				add_state_core = 192
+				
+				transfer_state = 80
+				transfer_state = 1286
+				transfer_state = 78
+				transfer_state = 1285
+				transfer_state = 1282
+				transfer_state = 192
+				
+				add_state_core = 80
+				add_state_core = 1286
+				add_state_core = 78
+				add_state_core = 1285
+				add_state_core = 1282
+				add_state_core = 192
+				
+				remove_state_claim = 1285
+				remove_state_claim = 1286
+				remove_state_claim = 78
+				remove_state_claim = 198
+				remove_state_claim = 1965
+				remove_state_claim = 1966
+				remove_state_claim = 1285
+				remove_state_claim = 192
+			}
+		}
+	}
+	option = { #well, no
+		name = MAR_ultimatums.112.b 
+		ai_chance = {
+			factor = 2
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_ROM
+					option = SWRW_RUS_ULTIMATUM_ROM_ACCEPT
+				}	
+			}
+			modifier = {
+				factor = 100
+				has_game_rule = {
+					rule = SWRW_RUS_ULTIMATUM_ROM
+					option = SWRW_RUS_ULTIMATUM_ROM_DECLINE
+				}	
+			}
+		}
+		RUS = { country_event = { id = MAR_ultimatums.113 days = 21 } }
+	}
+}
+
+country_event = { #ROM: They Refused
+	id = MAR_ultimatums.113
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.113"}
+	title = MAR_ultimatums.113.t
+	desc = MAR_ultimatums.113.d
+	picture = GFX_report_event_generic_apc_crew
+
+	is_triggered_only = yes
+
+	option = { #well, shit
+		name = MAR_ultimatums.113.a 
+		remove_state_claim = 1285
+		remove_state_claim = 1286
+		remove_state_claim = 78
+		remove_state_claim = 198
+		remove_state_claim = 1965
+		remove_state_claim = 1966
+		remove_state_claim = 1285
+		remove_state_claim = 192
+	}
+	
+	option = { #well, war reeeeee
+		name = MAR_ultimatums.113.b 
+		remove_state_claim = 1285
+		remove_state_claim = 1286
+		remove_state_claim = 78
+		remove_state_claim = 198
+		remove_state_claim = 1965
+		remove_state_claim = 1966
+		remove_state_claim = 1285
+		remove_state_claim = 192
+		add_timed_idea = {
+			idea = SWRW_war_weariness
+			days = 120
+		}
+		declare_war_on = {
+			target = ROM
+			type = annex_everything
+		}
+		hidden_effect = {
+			every_country = {
+				limit = { is_ai = no }
+				news_event = { id = MAR_2WRW_world_news.47 }
+			}
+		}
+	}
+}
+
+country_event = { #POL: Returnal of Galicia
+	id = MAR_ultimatums.114
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.114"}
+	title = MAR_ultimatums.114.t
+	desc = MAR_ultimatums.114.d
+	picture = GFX_report_event_generic_sign_treaty1
+
+	is_triggered_only = yes
+
+	option = { #well, shit
+		name = MAR_ultimatums.114.a 
+		set_variable = { 1391.nationality = 380 }
+		if = {
+			limit = { MUK = { owns_state = 1428 } }
+			MUK = {
+				transfer_state = 91
+				transfer_state = 89
+				transfer_state = 1394
+				transfer_state = 1393
+				transfer_state = 1392
+				transfer_state = 1391
+				transfer_state = 1388
+				transfer_state = 1387
+				
+				add_state_core = 91
+				add_state_core = 89
+				add_state_core = 1394
+				add_state_core = 1393
+				add_state_core = 1392
+				add_state_core = 1391
+				add_state_core = 1388
+				add_state_core = 1387
+			}
+			if = {
+				limit = {
+					OR = {
+						HUN = {	is_in_faction_with = RUS }
+						has_country_flag = HUN_demands
+					}
+				}
+				transfer_state = 73
+				add_state_core = 73
+			}
+		}
+		else = {
+			RUS = {
+				transfer_state = 91
+				transfer_state = 89
+				transfer_state = 1394
+				transfer_state = 1393
+				transfer_state = 1392
+				transfer_state = 1391
+				transfer_state = 1388
+				transfer_state = 1387
+			}
+			if = {
+				limit = {
+					OR = {
+						HUN = {	is_in_faction_with = RUS }
+						has_country_flag = HUN_demands 
+					}
+				}
+				transfer_state = 73
+			}
+		}
+	}
+}
+
+country_event = { #IR*: Returnal of some state that borders turkmenistan
+	id = MAR_ultimatums.115
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.115"}
+	title = MAR_ultimatums.115.t
+	desc = MAR_ultimatums.115.d
+	picture = GFX_report_event_generic_handshake_2
+
+	is_triggered_only = yes
+
+	option = { #do we have a choice?
+		name = MAR_ultimatums.115.a 
+		if = {
+			limit = { MTR = { exists = yes } } 
+			MTR = {
+				transfer_state = 2125
+				2125 = {
+					remove_core_of = PER
+					add_core_of = MTR
+				}
+			}
+		}
+		else_if = {
+			limit = { TRK = { is_in_faction_with = RUS } } 
+			TRK = {
+				transfer_state = 2125
+				2125 = {
+					remove_core_of = PER
+					add_core_of = TRK
+				}
+			}
+		}
+		else = {
+			RUS = {
+				transfer_state = 2125
+				2125 = {
+					remove_core_of = PER
+					add_core_of = RUS
+				}
+			}
+		}
+	}
+}
+
+country_event = { #AAG: Evacuation
+	id = MAR_ultimatums.116
+	immediate = {log = "[GetDateText]: [Root.GetName]: event MAR_ultimatums.116"}
+	title = MAR_ultimatums.116.t
+	desc = MAR_ultimatums.116.d
+	picture = GFX_report_event_usa_helicopter_ship
+
+	is_triggered_only = yes
+
+	option = { #huuuray!
+		name = MAR_ultimatums.116.a 
+		hidden_effect = {
+			XYZ = {
+				AAG_Pavel_Senko = {
+					set_nationality = AAG
+				}
+			}
+			GER = { end_puppet = AAG }
+			AAG = {
+				remove_ideas = AAG_Precarious_Supply_Situation
+				remove_ideas = AAG_Alone_in_the_Cold
+				remove_ideas = AAG_Combat_Boost
+				remove_ideas = AAG_Aircraft_Testing_Site
+				remove_ideas = GER_SGR_safe_seas
+				remove_ideas = Pakt_Military_Authority
+				set_party_name = { 
+					ideology = paternalism
+					long_name = AAG_RUS_Party_long
+					name = AAG_RUS_Party
+				}
+				set_party_name = { 
+					ideology = socialist
+					long_name = AAG_RUS_Party_long
+					name = AAG_RUS_Party
+				}
+				leave_faction = yes
+				remove_faction_status = yes
+				econ_join_sphere_MAR = yes
+				annex_country = {
+					target = AAB
+					transfer_troops = no
+				}
+				transfer_state = 2089
+				transfer_state = 2063
+				transfer_state = 2076
+				add_state_core = 2089
+				add_state_core = 2063
+				add_state_core = 2076
+				if = {
+					limit = { RUS = { has_government = socialist } }
+					set_politics = {
+						ruling_party = socialist
+					}
+					set_popularities = {
+						paternalism = 25
+						socialist = 75
+					}
+					retire_country_leader = yes
+					promote_character = AAG_Pavel_Senko
+					set_cosmetic_tag = AAG_RUS_Kosygin
+				}
+				else = {
+					set_politics = {
+						ruling_party = paternalism
+					}
+					set_popularities = {
+						paternalism = 75
+						socialist = 25
+					}
+					retire_country_leader = yes	
+					promote_character = AAG_Pavel_Senko
+					set_cosmetic_tag = AAG_RUS
+				}
+				if = {
+					limit = { controls_state = 2027 }
+					2027 = { set_state_name = STATE_2027_rus }
+					set_province_name = { id = 17800 name = VICTORY_POINTS_17800_rus }
+				}
+				if = {
+					limit = { controls_state = 2028 }
+					2028 = { set_state_name = STATE_2028_rus }
+					set_province_name = { id = 17794 name = VICTORY_POINTS_17794_rus }
+					set_province_name = { id = 17807 name = VICTORY_POINTS_17807_rus }
+					set_province_name = { id = 17810 name = VICTORY_POINTS_17810_rus }
+				}
+				if = {
+					limit = { controls_state = 2029 }
+					2029 = { set_state_name = STATE_2029_rus }
+				}
+				if = {
+					limit = { controls_state = 2030 }
+					2030 = { set_state_name = STATE_2030_rus }
+					set_province_name = { id = 17785 name = VICTORY_POINTS_17785_rus }
+				}
+				if = {
+					limit = { controls_state = 2056 }
+					2056 = { set_state_name = STATE_2056_rus }
+					set_province_name = { id = 17799 name = VICTORY_POINTS_17799_rus }
+					set_province_name = { id = 17792 name = VICTORY_POINTS_17792_rus }
+				}
+				if = {
+					limit = { controls_state = 2057 }
+					2057 = { set_state_name = STATE_2057_rus }
+					set_province_name = { id = 17804 name = VICTORY_POINTS_17804_rus }
+				}
+				if = {
+					limit = { controls_state = 2062 }
+					2062 = { set_state_name = STATE_2062_rus }
+					set_province_name = { id = 17742 name = VICTORY_POINTS_17742_rus }
+					set_province_name = { id = 17695 name = VICTORY_POINTS_17695_rus }
+				}
+				if = {
+					limit = { controls_state = 2076 }
+					2076 = { set_state_name = STATE_2076_rus }
+					set_province_name = { id = 17772 name = VICTORY_POINTS_17772_rus }
+				}
+				if = {
+					limit = { controls_state = 2453 }
+					2453 = { set_state_name = STATE_2453_rus }
+				}
+				if = {
+					limit = { controls_state = 2424 }
+					2424 = { set_state_name = STATE_2424_rus }
+				}
+			}
+			AAG = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+				add_ideas = RUSAlliance_Military_Government
+			}
+			RUS = {
+				set_autonomy = {
+					target = AAG
+					autonomy_state = autonomy_antarctic_territory
+				}	
+				add_to_faction = AAG
+			}	
+			AAG = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+	}
+}
+##MAR_territorial_fate
+country_event = { #Turkestan
+	id = MAR_territorial_fate.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.1" }
+	title = MAR_territorial_fate.1.t
+	desc = MAR_territorial_fate.1.d
+	picture = GFX_event_MAR_territorial_fate_1 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #governship
+		name = MAR_territorial_fate.1.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_TURKESTAN
+					option = RUS_FATE_OF_TURKESTAN_GOVERNSHIP
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			MAR_Turkestan_govern = yes
+		}
+	}
+	option = { #autonomy
+		name = MAR_territorial_fate.1.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_TURKESTAN
+					option = RUS_FATE_OF_TURKESTAN_AUTONOMY
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		hidden_effect = {
+			MAR_Turkestan_autonomy = yes
+		}
+	}
+	option = { #direct_rule
+		name = MAR_territorial_fate.1.c
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_TURKESTAN
+					option = RUS_FATE_OF_TURKESTAN_ANNEX
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			set_country_flag = MAR_has_turkestan
+			annex_country = {
+				target = MTR
+				transfer_troops = yes
+			}
+		}
+	}
+}
+
+country_event = { #Primorie
+	id = MAR_territorial_fate.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.2" }
+	title = MAR_territorial_fate.2.t
+	desc = MAR_territorial_fate.2.d
+	picture = GFX_event_MAR_territorial_fate_2 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #japonese can stay
+		name = MAR_territorial_fate.2.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_PRIMORIE
+					option = RUS_FATE_OF_PRIMORIE_JAPANESE_STAY
+				}
+			}
+		}
+		set_country_flag = Primorie_fate_is_done
+		add_political_power = 50
+		add_stability = -0.03
+	}
+	option = { #fuck 'em
+		name = MAR_territorial_fate.2.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_PRIMORIE
+					option = RUS_FATE_OF_PRIMORIE_FUCK_JAPANESE
+				}
+			}
+		}
+		trigger = {
+			NOT = {
+				has_country_flag = MAR_Kosygin_choose_JAP
+			}
+		}
+		set_country_flag = Primorie_fate_is_done
+		add_political_power = -50
+		1644 = {
+			add_manpower = -62391
+			set_variable = { nationality = 151 }
+		}
+		408 = {
+			add_manpower = -127543
+			set_variable = { nationality = 151 }
+		}
+		409 = {
+			add_manpower = -179190
+			set_variable = { nationality = 151 }
+		}
+		809 = {
+			add_manpower = -143314
+			set_variable = { nationality = 151 }
+		}
+		516 = {
+			add_manpower = 12339
+		}
+		576 = {
+			add_manpower = 5192
+		}
+		575 = {
+			add_manpower = 4954
+		}
+		761 = {
+			add_manpower = 5713
+		}
+		890 = {
+			add_manpower = 6341
+		}
+		886 = {
+			add_manpower = 15675
+		}
+		JAP = {
+			add_manpower = 82602
+		}
+		MAN = {
+			add_manpower = 70569
+		}			
+		CHI = {
+			add_manpower = 82536	
+		}
+	}
+}
+
+country_event = { #Moscowien
+	id = MAR_territorial_fate.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.3" }
+	title = MAR_territorial_fate.3.t
+	desc = MAR_territorial_fate.3.d
+	picture = GFX_event_MAR_territorial_fate_3 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #fuck germans
+		name = MAR_territorial_fate.3.a
+		trigger = { NOT = { has_global_flag = MCW_germans_gone } }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_MOSKVABAD
+					option = RUS_FATE_OF_MOSKVABAD_FUCK_GERMAN
+				}
+			}
+		}
+		set_country_flag = MCW_fate_is_done
+		custom_effect_tooltip = MCW_germs_away_tt
+		hidden_effect = {
+			195 = {
+				add_manpower = -343970
+				set_variable = { nationality = 151 }
+			}
+			260 = {
+				add_manpower = -141223
+				set_variable = { nationality = 151 }
+			}
+			239 = {
+				add_manpower = -412245
+				set_variable = { nationality = 151 }
+			}
+			5 = {
+				add_manpower = 112331
+			}
+			63 = {
+				add_manpower = 131622
+			}
+			776 = {
+				add_manpower = 199766
+			}
+			60 = {
+				add_manpower = 278920
+			}
+		}
+	}
+	option = { #do you know about siberia?
+		name = MAR_territorial_fate.3.b
+		trigger = { NOT = { has_global_flag = MCW_germans_gone } }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_MOSKVABAD
+					option = RUS_FATE_OF_MOSKVABAD_STAY_GERMAN_BUT_SIBERIA
+				}
+			}
+		}
+		set_country_flag = MCW_fate_is_done
+		add_political_power = 250
+		add_stability = -0.15
+		if = {
+			limit = { has_government = despotism }
+			add_popularity = {
+				ideology = despotism
+				popularity = -0.15
+			}
+		}
+		else_if = {
+			limit = { has_government = socialist }
+			add_popularity = {
+				ideology = socialist
+				popularity = -0.15
+			}
+		}
+		custom_effect_tooltip = MCW_germs_siberia_tt
+		hidden_effect = {
+			195 = {
+				add_manpower = -283615
+				set_variable = { nationality = 151 }
+			}
+			243 = {
+				add_manpower = -75238
+				set_variable = { nationality = 151 }
+			}
+			239 = {
+				add_manpower = -151173
+				set_variable = { nationality = 151 }
+			}
+			260 = {
+				add_manpower = -114755
+				set_variable = { nationality = 151 }
+			}
+			
+			862 = {
+				add_manpower = 10615
+			}
+			262 = {
+				add_manpower = 18338
+			}
+			863 = {
+				add_manpower = 44216
+			}
+			581 = {
+				add_manpower = 2326
+			}
+			756 = {
+				add_manpower = 29268
+			}
+			844 = {
+				add_manpower = 24539
+			}
+			579 = {
+				add_manpower = 19012
+			}
+			577 = {
+				add_manpower = 18246
+			}
+			516 = {
+				add_manpower = 34332
+			}
+			887 = {
+				add_manpower = 30958
+			}
+			888 = {
+				add_manpower = 40983
+			}
+			576 = {
+				add_manpower = 29509
+			}
+			575 = {
+				add_manpower = 34700
+			}
+			761 = {
+				add_manpower = 44880
+			}
+			890 = {
+				add_manpower = 49024
+			}
+			889 = {
+				add_manpower = 15115
+			}
+			759 = {
+				add_manpower = 19098
+			}
+			644 = {
+				add_manpower = 20972
+			}
+			891 = {
+				add_manpower = 40002
+			}
+			562 = {
+				add_manpower = 93233
+			}
+			637 = {
+				add_manpower = 38653
+			}
+			574 = {
+				add_manpower = 74541
+			}
+			1803 = {
+				add_manpower = 38960
+			}
+			404 = {
+				add_manpower = 159007
+			}
+			1804 = {
+				add_manpower = 226175
+			}
+			1805 = {
+				add_manpower = 81140
+			}
+			587 = {
+				add_manpower = 89495
+			}
+			571 = {
+				add_manpower = 120841
+			}
+		}
+	}
+	option = { #they can stay
+		name = MAR_territorial_fate.3.c
+		trigger = { NOT = { has_global_flag = MCW_germans_gone } }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_MOSKVABAD
+					option = RUS_FATE_OF_MOSKVABAD_STAY_GERMAN
+				}
+			}
+		}
+		set_country_flag = MCW_fate_is_done
+		add_political_power = 50
+		add_stability = -0.05
+		add_war_support = -0.05
+	}
+	
+	option = { #danm they leave already
+		name = MAR_territorial_fate.3.noger
+		trigger = { has_global_flag = MCW_germans_gone }
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MCW_nogerms_tt
+		set_country_flag = MCW_fate_is_done
+		add_political_power = 50
+	}
+}
+
+country_event = { #Baltics
+	id = MAR_territorial_fate.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.4" }
+	title = MAR_territorial_fate.4.t
+	desc = MAR_territorial_fate.4.d
+	picture = GFX_event_MAR_territorial_fate_4 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Freedom
+		name = MAR_territorial_fate.4.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_BALTIC
+					option = RUS_FATE_OF_BALTIC_PUPPET
+				}
+			}
+		}
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					character = MAR_advisor_Kosygin
+					ruling_only = yes
+				} 
+			}
+		}
+		custom_effect_tooltip = MAR_freedom_for_everyone_tt
+		custom_effect_tooltip = MBP_baltic_natmap_tt
+		hidden_effect = {
+			TaS_2WRW_free_baltics = yes
+			every_state = {
+				limit = {
+					OR = {
+						is_owned_by = EST
+						is_owned_by = LAT
+						is_owned_by = LIT
+					}
+				}
+				remove_core_of = MBP
+			}
+		}
+	}
+	option = { #Joint autonomy
+		name = MAR_territorial_fate.4.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_BALTIC
+					option = RUS_FATE_OF_BALTIC_AUTONOMY
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		hidden_effect = {
+			XYZ = {
+				MBP_Aleksandrs_Drizulis = {
+					set_nationality = MBP
+				}
+			}
+			MAR = {
+				transfer_state = 1402
+				transfer_state = 209
+				transfer_state = 1421
+				transfer_state = 257
+			}
+			MBP = {
+				every_owned_state = {
+					MBP = {
+						add_state_core = PREV
+					}
+				}
+				TaS_2WRW_set_autonomy_laws = yes
+				econ_join_sphere_MAR = yes
+				#add_ideas = { MAR_military_administration }
+				if = {
+					limit = { MAR = { has_government = despotism } }
+					retire_country_leader = yes
+					MBP_Aleksandrs_Drizulis = {
+						promote_character = yes
+					}
+					set_cosmetic_tag = MBP_autonomy
+				}
+				if = {	
+					limit = { MAR = { has_government = socialist } }
+					set_politics = {
+						ruling_party = socialist
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.35
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = -0.35
+					}
+					set_party_name = { 
+						ideology = despotism
+						long_name = MUK_despotism_postmil_party_long
+						name = MUK_despotism_postmil_party
+					}
+					MBP_Aleksandrs_Drizulis = {
+						promote_character = yes
+					}
+					set_cosmetic_tag = MBP_autonomy_Kosygin
+				}
+			}
+			every_owned_state = {
+				remove_core_of = MBP
+			}
+		}
+		custom_effect_tooltip = MBP_baltic_natmap_tt
+		hidden_effect = {
+			191 = {
+				add_manpower = -50870
+				set_variable = { nationality = 168 }
+			}
+			13 = {
+				add_manpower = -60986
+				set_variable = { nationality = 168 }
+			}
+			
+			1397 = {
+				add_manpower = -156450
+				set_variable = { nationality = 169 }
+			}
+			943 = {
+				add_manpower = -67890
+				set_variable = { nationality = 169 }
+			}
+			
+			1401 = {
+				add_manpower = -134330
+				set_variable = { nationality = 268 }
+			}
+			
+			1421 = {
+				add_manpower = -84755
+				set_variable = { nationality = 151 }
+			}
+			209 = {
+				add_manpower = -94755
+				set_variable = { nationality = 151 }
+			}
+			
+			257 = {
+				add_manpower = -44755
+				set_variable = { nationality = 151 }
+			}
+			1402 = {
+				add_manpower = -34755
+				set_variable = { nationality = 151 }
+			}
+			
+			5 = {
+				add_manpower = 178120
+			}
+			85 = {
+				add_manpower = 378120
+			}
+		}
+	}
+	option = { #annexation
+		name = MAR_territorial_fate.4.c
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_BALTIC
+					option = RUS_FATE_OF_BALTIC_ANNEX
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			annex_country = {
+				target = MBP
+				transfer_troops = yes
+			}
+			every_owned_state = {
+				remove_core_of = MBP
+			}
+		}
+		custom_effect_tooltip = MBP_baltic_natmap_tt
+		hidden_effect = {
+			191 = {
+				add_manpower = -50870
+				set_variable = { nationality = 168 }
+			}
+			13 = {
+				add_manpower = -60986
+				set_variable = { nationality = 168 }
+			}
+			
+			1397 = {
+				add_manpower = -156450
+				set_variable = { nationality = 169 }
+			}
+			943 = {
+				add_manpower = -67890
+				set_variable = { nationality = 169 }
+			}
+			
+			1401 = {
+				add_manpower = -134330
+				set_variable = { nationality = 268 }
+			}
+			
+			1421 = {
+				add_manpower = -84755
+				set_variable = { nationality = 151 }
+			}
+			209 = {
+				add_manpower = -94755
+				set_variable = { nationality = 151 }
+			}
+			
+			257 = {
+				add_manpower = -44755
+				set_variable = { nationality = 151 }
+			}
+			1402 = {
+				add_manpower = -34755
+				set_variable = { nationality = 151 }
+			}
+			
+			5 = {
+				add_manpower = 178120
+			}
+			85 = {
+				add_manpower = 378120
+			}
+		}
+	}
+}
+
+country_event = { #Belarus
+	id = MAR_territorial_fate.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.7" }
+	title = MAR_territorial_fate.7.t
+	desc = MAR_territorial_fate.7.d
+	picture = GFX_event_MAR_territorial_fate_7 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Vilna Kraina
+		name = MAR_territorial_fate.7.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_BELARUS
+					option = RUS_FATE_OF_BELARUS_PUPPET
+				}
+			}
+		}
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					character = MAR_advisor_Kosygin
+					ruling_only = yes
+				} 
+			}
+		}
+		custom_effect_tooltip = MAR_freedom_for_everyone_tt
+		hidden_effect = {
+			MAR = {
+				transfer_state = 2452
+				transfer_state = 241
+			}
+			RUS = { end_puppet = MBL } 
+			MBL = {
+				every_owned_state = {
+					MBL = {
+						add_state_core = PREV
+					}
+				}
+				econ_join_sphere_MAR = yes
+				TaS_2WRW_set_free_laws = yes
+				#add_ideas = { MAR_military_administration }
+				remove_ideas = { MAR_military_administration }
+				set_politics = {
+					ruling_party = paternalism
+				}
+				add_popularity = {
+					ideology = paternalism
+					popularity = 0.45
+				}
+				BLR_Zianon_Pazniak = {
+					promote_character = yes
+				}
+				set_cosmetic_tag = BLR_freedom
+			}
+			hidden_effect = {
+				2452 = {
+					add_manpower = -70870
+					set_variable = { nationality = 151 }
+				}
+				241 = {
+					add_manpower = -60986
+					set_variable = { nationality = 151 }
+				}
+				
+				207 = {
+					add_manpower = 70870
+				}
+				206 = {
+					add_manpower = 60986
+				}
+				every_owned_state = {
+					remove_core_of = MBL
+				}
+			}
+		}
+	}
+	option = { #Avtonomna Kraina
+		name = MAR_territorial_fate.7.b
+		trigger = {
+			NOT = {
+				has_country_flag = limited_ost_zones
+			}
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_BELARUS
+					option = RUS_FATE_OF_BELARUS_AUTONOMY
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		hidden_effect = {
+			MAR = {
+				transfer_state = 2452
+				transfer_state = 241
+			}
+			MBL = {
+				every_owned_state = {
+					MBL = {
+						add_state_core = PREV
+					}
+				}
+				econ_join_sphere_MAR = yes
+				TaS_2WRW_set_autonomy_laws = yes
+				#add_ideas = { MAR_military_administration }
+				remove_ideas = { MAR_military_administration }
+				if = {
+					limit = { MAR = { has_government = despotism } }
+					set_party_name = { 
+						ideology = despotism 
+						long_name = MBL_despotism_postmil_party_long
+						name = MBL_despotism_postmil_party
+					}
+					retire_country_leader = yes
+					MBL_Tikhon_Kiselyov = {
+						promote_character = yes
+					}
+					set_cosmetic_tag = MBL_autonomy
+				}
+				if = {
+					limit = { MAR = { has_government = socialist } }
+					set_politics = {
+						ruling_party = communist
+					}
+					add_popularity = {
+						ideology = communist
+						popularity = 0.45
+					}
+					MBL_Tikhon_Kiselyov = {
+						promote_character = yes
+					}
+					set_cosmetic_tag = MBL_autonomy_Kosygin
+				}
+			}
+			MBL = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+			}
+			RUS = {
+				set_autonomy = {
+					target = MBL
+					autonomy_state = autonomy_satellite
+				}	
+			}	
+			MBL = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+			hidden_effect = {
+				2452 = {
+					add_manpower = -70870
+					set_variable = { nationality = 151 }
+				}
+				241 = {
+					add_manpower = -60986
+					set_variable = { nationality = 151 }
+				}
+				
+				207 = {
+					add_manpower = 70870
+				}
+				206 = {
+					add_manpower = 60986
+				}
+			}
+			every_owned_state = {
+				remove_core_of = MBL
+			}
+		}
+	}
+	option = { #soyuznoye gosudarstvo
+		name = MAR_territorial_fate.7.c
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_BELARUS
+					option = RUS_FATE_OF_BELARUS_ANNEX
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			if = {
+				limit = { MBL = { controls_state = 97 } }
+				add_state_core = 97
+				97 = {
+					remove_core_of = MBL
+				}
+			}
+			annex_country = {
+				target = MBL
+				transfer_troops = yes
+			}
+			2452 = {
+				add_manpower = -70870
+				set_variable = { nationality = 151 }
+			}
+			241 = {
+				add_manpower = -60986
+				set_variable = { nationality = 151 }
+			}
+			
+			207 = {
+				add_manpower = 70870
+			}
+			206 = {
+				add_manpower = 60986
+			}
+			every_owned_state = {
+				remove_core_of = MBL
+			}
+		}
+	}
+}
+
+country_event = { #Ukraine
+	id = MAR_territorial_fate.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.8" }
+	title = MAR_territorial_fate.8.t
+	desc = MAR_territorial_fate.8.d
+	picture = GFX_event_MAR_territorial_fate_8 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Vilna Kraina
+		name = MAR_territorial_fate.8.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_UKRAINE
+					option = RUS_FATE_OF_UKRAINE_PUPPET
+				}
+			}
+		}
+		trigger = {
+			NOT = {
+				OR = {
+					has_country_leader = {
+						character = MAR_advisor_Kosygin
+						ruling_only = yes
+					} 
+					has_country_flag = limited_ost_zones
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_freedom_for_everyone_tt
+		hidden_effect = {
+			MAR = {
+				transfer_state = 221
+				transfer_state = 227
+				transfer_state = 228
+				transfer_state = 218
+			}
+			if = {
+				limit = { MAR = { controls_state = 196 } }
+				MUK = {
+					transfer_state = 196
+					add_state_core = 196
+				}
+			}
+			RUS = { end_puppet = MUK } 
+			MUK = {
+				every_owned_state = {
+					MUK = {
+						add_state_core = PREV
+					}
+				}
+				econ_join_sphere_MAR = yes
+				TaS_2WRW_set_free_laws = yes
+				#add_ideas = { MAR_military_administration }
+				remove_ideas = { MAR_military_administration }
+				set_politics = {
+					ruling_party = liberal_conservatism
+				}
+				add_popularity = {
+					ideology = liberal_conservatism
+					popularity = 0.45
+				}
+				UKR_Viacheslav_Chornovil = {
+					promote_character = yes
+				}
+				set_cosmetic_tag = MUK_freedom
+			}
+			1428 = {
+				add_manpower = -98990
+				set_variable = { nationality = 164 }
+			}
+			1430 = {
+				add_manpower = -143340
+				set_variable = { nationality = 164 }
+			}
+			every_owned_state = {
+				remove_core_of = MUK
+			}
+		}
+	}
+	option = { #Avtonomna Kraina
+		name = MAR_territorial_fate.8.b
+		trigger = {
+			NOT = {
+				has_country_flag = limited_ost_zones
+			}
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_UKRAINE
+					option = RUS_FATE_OF_UKRAINE_AUTONOMY
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		hidden_effect = {
+			MAR = {
+				transfer_state = 221
+				transfer_state = 227
+				transfer_state = 228
+				transfer_state = 218
+				transfer_state = 1426
+				transfer_state = 200
+				transfer_state = 259
+				transfer_state = 225
+				transfer_state = 1427
+			}
+			MUK = {
+				every_owned_state = {
+					MUK = {
+						add_state_core = PREV
+					}
+				}
+				TaS_2WRW_set_autonomy_laws = yes
+				#add_ideas = { MAR_military_administration }
+				remove_ideas = { MAR_military_administration }
+				econ_join_sphere_MAR = yes
+				if = {
+					limit = { MAR = { has_government = despotism } }
+					set_politics = {
+						ruling_party = paternalism
+					}
+					set_party_name = { 
+						ideology = despotism 
+						long_name = MUK_despotism_postmil_party
+						name = MUK_despotism_postmil_party
+					}
+					add_popularity = {
+						ideology = paternalism
+						popularity = 0.45
+					}
+					MUK_Oleksandr_Moroz = {
+						promote_character = yes
+					}
+					set_cosmetic_tag = MUK_autonomy
+				}
+				if = {
+					limit = { MAR = { has_government = socialist } }
+					set_politics = {
+						ruling_party = socialist
+					}
+					set_party_name = { 
+						ideology = despotism 
+						long_name = MUK_despotism_postmil_party
+						name = MUK_despotism_postmil_party
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.55
+					}
+					MUK_Oleksandr_Moroz = {
+						promote_character = yes
+					}
+					set_cosmetic_tag = MUK_autonomy_Kosygin
+				}
+			}
+			MUK = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+			}
+			RUS = {
+				set_autonomy = {
+					target = MUK
+					autonomy_state = autonomy_satellite
+				}	
+			}	
+			MUK = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+			1428 = {
+				add_manpower = -98990
+				set_variable = { nationality = 164 }
+			}
+			1430 = {
+				add_manpower = -143340
+				set_variable = { nationality = 164 }
+			}
+			every_owned_state = {
+				remove_core_of = MUK
+			}
+		}
+	}
+	option = { #SLOVNO HUY DROCHENNY V ZHOPY PIDORA
+		name = MAR_territorial_fate.8.c
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_UKRAINE
+					option = RUS_FATE_OF_UKRAINE_ANNEX
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			annex_country = {
+				target = MUK
+				transfer_troops = yes
+			}
+			every_owned_state = {
+				remove_core_of = MUK
+			}
+		}
+		1428 = {
+			add_manpower = -98990
+			set_variable = { nationality = 164 }
+		}
+		1430 = {
+			add_manpower = -143340
+			set_variable = { nationality = 164 }
+		}
+	}
+}
+
+country_event = { #Crimnea
+	id = MAR_territorial_fate.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.9" }
+	title = MAR_territorial_fate.9.t
+	desc = MAR_territorial_fate.9.d
+	picture = GFX_event_MAR_territorial_fate_9 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #deutsche autonomien ew
+		name = MAR_territorial_fate.9.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_CRIMEA
+					option = RUS_FATE_OF_CRIMEA_AUTONOMY
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		hidden_effect = {
+			#MAR = {
+			#	transfer_state = 196
+			#}
+			MTV = {
+				econ_join_sphere_MAR = yes
+				TaS_2WRW_set_autonomy_laws = yes
+				#add_ideas = { MAR_military_administration }
+				if = {
+					limit = { MAR = { has_government = despotism } }
+					set_politics = {
+						ruling_party = paternalism
+					}
+					set_party_name = { 
+						ideology = despotism 
+						long_name = MTV_despotism_postmil_party_long
+						name = MTV_despotism_postmil_party
+					}
+					add_popularity = {
+						ideology = paternalism
+						popularity = 0.45
+					}
+					MTV_Bruno_Reiter = {
+						promote_character = yes
+					}
+					set_cosmetic_tag = MTV_autonomy
+				}
+				if = {
+					limit = { MAR = { has_government = socialist } }
+					set_politics = {
+						ruling_party = socialist
+					}
+					set_party_name = { 
+						ideology = despotism 
+						long_name = MTV_despotism_postmil_party_long
+						name = MTV_despotism_postmil_party
+					}
+					add_popularity = {
+						ideology = socialist
+						popularity = 0.55
+					}
+					MTV_Bruno_Reiter = {
+						promote_character = yes
+					}
+					set_cosmetic_tag = MTV_autonomy_Kosygin
+				}
+			}
+			MTV = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+			}
+			RUS = {
+				set_autonomy = {
+					target = MTV
+					autonomy_state = autonomy_satellite
+				}	
+			}	
+			MTV = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+	}
+	option = { #0 people in crimea left
+		name = MAR_territorial_fate.9.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_CRIMEA
+					option = RUS_FATE_OF_CRIMEA_FUCK_GERMAN
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			annex_country = {
+				target = MTV
+				transfer_troops = yes
+			}
+			every_owned_state = {
+				remove_core_of = MTV
+			}
+			if = {
+				limit = { 
+					MUK = { has_cosmetic_tag = MUK_freedom }
+				}
+				MUK = {
+					transfer_state = 196
+					add_state_core = 196
+				}
+			}
+		}
+		196 = {
+			add_manpower = -434560
+			set_variable = { nationality = 432 }
+		}
+		137 = {
+			add_manpower = -276900
+			set_variable = { nationality = 151 }
+		}
+		1532 = {
+			add_manpower = -73920
+			set_variable = { nationality = 151 }
+		}
+		200 = {
+			add_manpower = -143940
+			set_variable = { nationality = 432 }
+		}
+	}
+}
+
+country_event = { #Caucasus
+	id = MAR_territorial_fate.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.10" }
+	title = MAR_territorial_fate.10.t
+	desc = MAR_territorial_fate.10.d
+	picture = GFX_event_MAR_territorial_fate_10
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #all autonomy
+		name = MAR_territorial_fate.10.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_CAUCASUS
+					option = RUS_FATE_OF_CAUCASUS_AUTONOMY_FOR_ALL
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		hidden_effect = {
+			MAR = {
+				transfer_state = 237
+				transfer_state = 234
+				transfer_state = 235
+			}
+			XYZ = {
+				GEO_Eduard_Shevardnadze = {
+					set_nationality = MCS
+				}
+			}
+			MCS = {
+				TaS_2WRW_set_autonomy_laws = yes
+				econ_join_sphere_MAR = yes
+				#add_ideas = { MAR_military_administration }
+				if = {
+					limit = { MAR = { has_government = despotism } }
+					set_politics = {
+						ruling_party = despotism
+					}
+					set_party_name = { 
+						ideology = despotism 
+						long_name = MCS_autonomy_party_long
+						name = MCS_autonomy_party
+					}
+					set_party_name = { 
+						ideology = paternalism 
+						long_name = MCS_despotism_postmil_party
+						name = MCS_despotism_postmil_party
+					}
+					add_popularity = {
+						ideology = despotism
+						popularity = 0.25
+					}
+					retire_country_leader = yes
+					MCS_Dzhokhar_Dudayev = {
+						promote_leader = yes
+					}
+					set_cosmetic_tag = MCS_autonomy
+				}
+				if = {
+					limit = { MAR = { has_government = socialist } }
+					set_politics = {
+						ruling_party = communist
+					}
+					set_party_name = { 
+						ideology = communist 
+						long_name = MCS_autonomy_party_long
+						name = MCS_autonomy_party
+					}
+					set_party_name = { 
+						ideology = despotism 
+						long_name = MCS_despotism_postmil_party
+						name = MCS_despotism_postmil_party
+					}
+					add_popularity = {
+						ideology = communist
+						popularity = 0.35
+					}
+					GEO_Eduard_Shevardnadze = {
+						promote_leader = yes
+					}
+					set_cosmetic_tag = MCS_autonomy_Kosygin
+				}
+			}
+			MCS = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+			}
+			RUS = {
+				set_autonomy = {
+					target = MCS
+					autonomy_state = autonomy_satellite
+				}	
+			}	
+			MCS = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+	}
+	option = { #south autonomy
+		name = MAR_territorial_fate.10.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_CAUCASUS
+					option = RUS_FATE_OF_CAUCASUS_AUTONOMY_FOR_SOUTH
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					character = MAR_advisor_Kosygin
+					ruling_only = yes
+				} 
+			}
+		}
+		hidden_effect = {
+			transfer_state = 235
+			transfer_state = 1564
+			transfer_state = 232
+			transfer_state = 1561
+			transfer_state = 1560
+			transfer_state = 1559
+			transfer_state = 1558
+			transfer_state = 237
+			transfer_state = 234
+			every_owned_state = {
+				remove_core_of = MCS
+			}
+			XYZ = {
+				AZR_Heydar_Aliyev = {
+					set_nationality = MCS
+				}
+			}
+			MCS = {
+				every_owned_state = {
+					MCS = {
+						add_state_core = PREV
+					}
+				}
+				econ_join_sphere_MAR = yes
+				#add_ideas = { MAR_military_administration }
+				set_party_name = { 
+					ideology = despotism 
+					long_name = MCS_autonomy_party_long
+					name = MCS_autonomy_party
+				}
+				add_popularity = {
+					ideology = despotism
+					popularity = 0.15
+				}
+				retire_country_leader = yes
+				AZR_Heydar_Aliyev = {
+					promote_character = yes
+				}
+				set_cosmetic_tag = MCS_south_autonomy
+			}
+			MCS = {
+				get_current_government_type = yes
+				save_party_popularities = yes
+			}
+			RUS = {
+				set_autonomy = {
+					target = MCS
+					autonomy_state = autonomy_satellite
+				}	
+			}	
+			MCS = {
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+	}
+	option = { #the clusterfuck
+		name = MAR_territorial_fate.10.c
+		trigger = {
+			NOT = {
+				has_country_leader = {
+					character = MAR_advisor_Kosygin
+					ruling_only = yes
+				} 
+			}
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_CAUCASUS
+					option = RUS_FATE_OF_CAUCASUS_PUPPETS
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_freedom_for_everyone_tt
+		hidden_effect = {
+			TaS_2WRW_free_caucasus = yes
+		}
+	}
+	option = { #direct rule
+		name = MAR_territorial_fate.10.e
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_CAUCASUS
+					option = RUS_FATE_OF_CAUCASUS_ANNEX
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			annex_country = {
+				target = MCS
+				transfer_troops = yes
+			}
+			every_owned_state = {
+				remove_core_of = MCS
+			}
+		}
+	}
+}
+
+country_event = { #Finland 
+	id = MAR_territorial_fate.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.11" }
+	title = MAR_territorial_fate.11.t
+	desc = MAR_territorial_fate.11.d
+	picture = GFX_event_MAR_territorial_fate_11 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Satelite Finland
+		name = MAR_territorial_fate.11.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_FINLAND
+					option = RUS_FATE_OF_FINLAND_PUPPET_STATE
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_freedom_for_everyone_tt
+		hidden_effect = {
+			XYZ = {
+				MFI_Urho_Kekkonen = {
+					set_nationality = FIN
+				}
+			}	
+			FIN = {
+				drop_cosmetic_tag = yes
+				set_politics = {
+					ruling_party = conservatism
+				}
+				add_popularity = {
+					ideology = conservatism
+					popularity = 0.45
+				}
+				add_country_leader_role = {
+					character = MFI_Urho_Kekkonen
+					promote_leader = yes
+					country_leader = {
+						desc = "MFI_Urho_Kekkonen_DESC"
+						ideology = conservatism_agrarianism_subtype
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				promote_character = MFI_Urho_Kekkonen
+				set_party_name = {
+					ideology = conservatism
+					long_name = FIN_RUS_conservative_party_long
+					name = FIN_RUS_conservative_party
+				}
+				get_current_government_type = yes
+				save_party_popularities = yes
+				econ_join_sphere_MAR = yes
+				RUS = {
+					set_autonomy = {
+						target = FIN
+						autonomy_state = autonomy_satellite
+					}	
+				}	
+				swap_ideas = {
+					remove_idea = RUSAlliance_Military_Government
+					add_idea = RUSAlliance_Dependent_Member
+				}
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+			transfer_state = 213
+			transfer_state = 216
+			transfer_state = 145
+			hidden_effect = {
+				add_state_core = 145
+			}
+		}
+	}
+	option = { #Velikoye Knyazestvo Finlyandskoye
+		name = MAR_territorial_fate.11.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_FINLAND
+					option = RUS_FATE_OF_FINLAND_KNYAZZZ
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		hidden_effect = {
+			MAR = {
+				MAR_Semen_Gitler = {
+					set_nationality = FIN
+				}
+			}	
+			FIN = {
+				drop_cosmetic_tag = yes
+				if = {
+					limit = { RUS = { has_government = socialist } }
+					set_cosmetic_tag = FIN_autonomy_Kosygin
+				}
+				else = {
+					set_cosmetic_tag = FIN_autonomy
+				}
+				set_politics = {
+					ruling_party = despotism
+				}
+				add_popularity = {
+					ideology = despotism
+					popularity = 0.25
+				}
+				econ_join_sphere_MAR = yes
+				add_country_leader_role = {
+					character = MAR_Semen_Gitler
+					promote_leader = yes
+					country_leader = {
+						desc = "MAR_Semen_Gitler_DESC"
+						ideology = despotism_colonial_government_subtype
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				set_party_name = {
+					ideology = despotism
+					long_name = FIN_POSTMIL_despotism_party_long
+					name = FIN_POSTMIL_despotism_party
+				}
+				get_current_government_type = yes
+				save_party_popularities = yes
+				RUS = {
+					set_autonomy = {
+						target = FIN
+						autonomy_state = autonomy_military_government
+					}	
+				}	
+				swap_ideas = {
+					remove_idea = RUSAlliance_Military_Government
+					add_idea = RUSAlliance_Dependent_Member
+				}
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+				111 = { set_state_name = STATE_111_rus }
+				145 = { set_state_name = STATE_145_rus }
+				147 = { set_state_name = STATE_147_rus }
+				148 = { set_state_name = STATE_148_rus }
+				150 = { set_state_name = STATE_150_rus }
+				1712 = { set_state_name = STATE_1712_rus }
+				1716 = { set_state_name = STATE_1716_rus }
+				1717 = { set_state_name = STATE_1717_rus }
+				1718 = { set_state_name = STATE_1718_rus }
+				1723 = { set_state_name = STATE_1723_rus }
+				213 = { set_state_name = STATE_213_rus }
+				216 = { set_state_name = STATE_216_rus }
+				set_province_name = { id = 11105 name = VICTORY_POINTS_11105_rus }
+				set_province_name = { id = 9228 name = VICTORY_POINTS_9228_rus }
+				set_province_name = { id = 6186 name = VICTORY_POINTS_6186_rus }
+				set_province_name = { id = 18441 name = VICTORY_POINTS_18441_rus }
+				set_province_name = { id = 3187 name = VICTORY_POINTS_3187_rus }
+				set_province_name = { id = 9105 name = VICTORY_POINTS_9105_rus }
+				set_province_name = { id = 3122 name = VICTORY_POINTS_3122_rus }
+				set_province_name = { id = 11126 name = VICTORY_POINTS_11126_rus }
+				set_province_name = { id = 169 name = VICTORY_POINTS_169_rus }
+				set_province_name = { id = 3083 name = VICTORY_POINTS_3083_rus }
+				set_province_name = { id = 3137 name = VICTORY_POINTS_3137_rus }
+				set_province_name = { id = 139 name = VICTORY_POINTS_139_rus }
+				set_province_name = { id = 9195 name = VICTORY_POINTS_9195_rus }
+				set_province_name = { id = 11159 name = VICTORY_POINTS_11159_rus }
+			}
+			transfer_state = 213
+			transfer_state = 216
+			transfer_state = 145
+			hidden_effect = {
+				add_state_core = 145
+			}
+		}
+	}
+	option = { #A zachem nezavisimost
+		name = MAR_territorial_fate.11.c
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_FINLAND
+					option = RUS_FATE_OF_FINLAND_JUST_ANNEX
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			annex_country = {
+				target = FIN
+				transfer_troops = yes
+			}
+			111 = { set_state_name = STATE_111_rus }
+			145 = { set_state_name = STATE_145_rus }
+			147 = { set_state_name = STATE_147_rus }
+			148 = { set_state_name = STATE_148_rus }
+			150 = { set_state_name = STATE_150_rus }
+			1712 = { set_state_name = STATE_1712_rus }
+			1716 = { set_state_name = STATE_1716_rus }
+			1717 = { set_state_name = STATE_1717_rus }
+			1718 = { set_state_name = STATE_1718_rus }
+			1723 = { set_state_name = STATE_1723_rus }
+			213 = { set_state_name = STATE_213_rus }
+			216 = { set_state_name = STATE_216_rus }
+			set_province_name = { id = 11105 name = VICTORY_POINTS_11105_rus }
+			set_province_name = { id = 9228 name = VICTORY_POINTS_9228_rus }
+			set_province_name = { id = 6186 name = VICTORY_POINTS_6186_rus }
+			set_province_name = { id = 18441 name = VICTORY_POINTS_18441_rus }
+			set_province_name = { id = 3187 name = VICTORY_POINTS_3187_rus }
+			set_province_name = { id = 9105 name = VICTORY_POINTS_9105_rus }
+			set_province_name = { id = 3122 name = VICTORY_POINTS_3122_rus }
+			set_province_name = { id = 11126 name = VICTORY_POINTS_11126_rus }
+			set_province_name = { id = 169 name = VICTORY_POINTS_169_rus }
+			set_province_name = { id = 3083 name = VICTORY_POINTS_3083_rus }
+			set_province_name = { id = 3137 name = VICTORY_POINTS_3137_rus }
+			set_province_name = { id = 139 name = VICTORY_POINTS_139_rus }
+			set_province_name = { id = 9195 name = VICTORY_POINTS_9195_rus }
+			set_province_name = { id = 11159 name = VICTORY_POINTS_11159_rus }
+		}
+	}
+}
+
+country_event = { #Turkish Straits 
+	id = MAR_territorial_fate.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.12" }
+	title = MAR_territorial_fate.12.t
+	desc = MAR_territorial_fate.12.d
+	picture = GFX_event_MAR_territorial_fate_12 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Satelite Turkey
+		name = MAR_territorial_fate.12.a
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_TURKEY
+					option = RUS_FATE_OF_TURKEY_PUPPET
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_freedom_for_everyone_tt
+		hidden_effect = {
+			GRM = {
+				MTU_Ahmet_Isvan = {
+					set_nationality = TUR
+				}
+			}	
+			TUR = {
+				annex_country = {
+					target = GRM
+					transfer_troops = yes
+				}
+				drop_cosmetic_tag = yes
+				set_politics = {
+					ruling_party = paternalism
+				}
+				add_popularity = {
+					ideology = paternalism
+					popularity = 0.15
+				}
+				every_country = {
+				    if = {
+					    limit = {
+						    check_variable = { ECON_SPHERE_LEADER = TUR }
+					    }
+					    clr_country_flag = HAS_ECON_SPHERE
+					    clear_variable = ECON_SPHERE_LEADER
+					}	
+				}
+				econ_join_sphere_MAR = yes
+				#retire_country_leader = yes
+				promote_character = MTU_Ahmet_Isvan
+				add_country_leader_role = {
+					character = MTU_Ahmet_Isvan
+					promote_leader = yes
+					country_leader = {
+						desc = "MTU_Ahmet_Isvan_DESC"
+						ideology = paternalism_kemalism_subtype
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				get_current_government_type = yes
+				save_party_popularities = yes
+				add_ideas = RUSAlliance_Dependent_Member
+				RUS = {
+					set_autonomy = {
+						target = TUR
+						autonomy_state = autonomy_satellite
+					}	
+					add_to_faction = TUR
+				}	
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+	}
+	option = { #Indepence
+		name = MAR_territorial_fate.12.b
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_TURKEY
+					option = RUS_FATE_OF_TURKEY_PUPPET_INDEP
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_freedom_for_everyone_tt
+		hidden_effect = {
+			GRM = {
+				set_cosmetic_tag = GRM_Independence
+				set_politics = {
+					ruling_party = conservatism
+				}
+				add_popularity = {
+					ideology = conservatism
+					popularity = 0.45
+				}
+				econ_join_sphere_MAR = yes
+				add_country_leader_role = {
+					character = MTU_Ahmet_Isvan
+					promote_leader = yes
+					country_leader = {
+						desc = "MTU_Ahmet_Isvan_DESC"
+						ideology = conservatism_right_kemalism_subtype
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				get_current_government_type = yes
+				save_party_popularities = yes
+				swap_ideas = {
+					remove_idea = RUSAlliance_Military_Government
+					add_idea = RUSAlliance_Dependent_Member
+				}
+				RUS = {
+					set_autonomy = {
+						target = GRM
+						autonomy_state = autonomy_satellite
+					}	
+				}	
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+		}
+	}
+	option = { #Autonomy
+		name = MAR_territorial_fate.12.c
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_TURKEY
+					option = RUS_FATE_OF_TURKEY_AUTONOMY
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_autonomy_create_tt
+		hidden_effect = {
+			MAR = {
+				MAR_Timur_Frunze = {
+					set_nationality = GRM
+				}
+			}	
+			GRM = {
+				if = {
+					limit = { RUS = { has_government = socialist } }
+					set_cosmetic_tag = GRM_autonomy_Kosygin
+				}
+				else = {
+					set_cosmetic_tag = GRM_autonomy
+				}
+				set_politics = {
+					ruling_party = despotism
+				}
+				add_popularity = {
+					ideology = despotism
+					popularity = 0.25
+				}
+				econ_join_sphere_MAR = yes
+				add_country_leader_role = {
+					character = MAR_Timur_Frunze
+					promote_leader = yes
+					country_leader = {
+						desc = "MAR_Timur_Frunze_DESC"
+						ideology = despotism_colonial_government_subtype
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				set_party_name = {
+					ideology = despotism
+					long_name = GRM_POSTMIL_despotism_party_long
+					name = GRM_POSTMIL_despotism_party
+				}
+				get_current_government_type = yes
+				save_party_popularities = yes
+				swap_ideas = {
+					remove_idea = RUSAlliance_Military_Government
+					add_idea = RUSAlliance_Dependent_Member
+				}
+				RUS = {
+					set_autonomy = {
+						target = GRM
+						autonomy_state = autonomy_military_government
+					}	
+				}	
+				restore_previous_government_type = yes
+				apply_party_popularities = yes
+			}
+			353 = { set_state_name = STATE_353_rus }
+			347 = { set_state_name = STATE_347_rus }
+			345 = { set_state_name = STATE_345_rus }
+			if = {
+				limit = {
+					MAR = { has_government = despotism }
+					
+				}
+				341 = { set_state_name = STATE_341_rusalt }
+				set_province_name = { id = 9833 name = VICTORY_POINTS_9833_rusalt }
+			}
+			else = {
+				341 = { set_state_name = STATE_341_rus }
+				set_province_name = { id = 9833 name = VICTORY_POINTS_9833_rusalt }
+			}
+			
+			set_province_name = { id = 16207 name = VICTORY_POINTS_16207_rus }
+			set_province_name = { id = 16209 name = VICTORY_POINTS_16209_rus }
+			set_province_name = { id = 11811 name = VICTORY_POINTS_11811_rus }
+			set_province_name = { id = 3786 name = VICTORY_POINTS_3786_rus }
+			set_province_name = { id = 16253 name = VICTORY_POINTS_16253_rus }
+			set_province_name = { id = 16208 name = VICTORY_POINTS_16208_rus }
+			set_province_name = { id = 11867 name = VICTORY_POINTS_11867_rus }
+			set_province_name = { id = 11778 name = VICTORY_POINTS_11778_rus }
+			set_province_name = { id = 6912 name = VICTORY_POINTS_6912_rus }
+			set_province_name = { id = 6864 name = VICTORY_POINTS_6864_rus }
+			set_province_name = { id = 9799 name = VICTORY_POINTS_9799_rus }
+			set_province_name = { id = 849 name = VICTORY_POINTS_849_rus }
+			set_province_name = { id = 6895 name = VICTORY_POINTS_6895_rus }
+			set_province_name = { id = 3879 name = VICTORY_POINTS_3879_rus }
+			set_province_name = { id = 3893 name = VICTORY_POINTS_3893_rus }
+			set_province_name = { id = 16205 name = VICTORY_POINTS_16205_rus }
+			set_province_name = { id = 11842 name = VICTORY_POINTS_11842_rus }
+			set_province_name = { id = 16206 name = VICTORY_POINTS_16206_rus }
+		}
+	}
+	option = { #Direct rule
+		name = MAR_territorial_fate.12.e
+		ai_chance = {
+			factor = 1
+			modifier = {
+				factor = 1000
+				has_game_rule = {
+					rule = RUS_FATE_OF_TURKEY
+					option = RUS_FATE_OF_TURKEY_ANNEX
+				}
+			}
+		}
+		custom_effect_tooltip = MAR_annex_em_all_tt
+		hidden_effect = {
+			annex_country = {
+				target = GRM
+				transfer_troops = yes
+			}
+			353 = { set_state_name = STATE_353_rus }
+			347 = { set_state_name = STATE_347_rus }
+			345 = { set_state_name = STATE_345_rus }
+			if = {
+				limit = {
+					MAR = { has_government = despotism }
+					
+				}
+				341 = { set_state_name = STATE_341_rusalt }
+				set_province_name = { id = 9833 name = VICTORY_POINTS_9833_rusalt }
+			}
+			else = {
+				341 = { set_state_name = STATE_341_rus }
+				set_province_name = { id = 9833 name = VICTORY_POINTS_9833_rusalt }
+			}
+			
+			set_province_name = { id = 16207 name = VICTORY_POINTS_16207_rus }
+			set_province_name = { id = 16209 name = VICTORY_POINTS_16209_rus }
+			set_province_name = { id = 11811 name = VICTORY_POINTS_11811_rus }
+			set_province_name = { id = 3786 name = VICTORY_POINTS_3786_rus }
+			set_province_name = { id = 16253 name = VICTORY_POINTS_16253_rus }
+			set_province_name = { id = 16208 name = VICTORY_POINTS_16208_rus }
+			set_province_name = { id = 11867 name = VICTORY_POINTS_11867_rus }
+			set_province_name = { id = 11778 name = VICTORY_POINTS_11778_rus }
+			set_province_name = { id = 6912 name = VICTORY_POINTS_6912_rus }
+			set_province_name = { id = 6864 name = VICTORY_POINTS_6864_rus }
+			set_province_name = { id = 9799 name = VICTORY_POINTS_9799_rus }
+			set_province_name = { id = 849 name = VICTORY_POINTS_849_rus }
+			set_province_name = { id = 6895 name = VICTORY_POINTS_6895_rus }
+			set_province_name = { id = 3879 name = VICTORY_POINTS_3879_rus }
+			set_province_name = { id = 3893 name = VICTORY_POINTS_3893_rus }
+			set_province_name = { id = 16205 name = VICTORY_POINTS_16205_rus }
+			set_province_name = { id = 11842 name = VICTORY_POINTS_11842_rus }
+			set_province_name = { id = 16206 name = VICTORY_POINTS_16206_rus }
+		}
+	}
+}
+
+country_event = { #Capital
+	id = MAR_territorial_fate.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_territorial_fate.13" }
+	title = MAR_territorial_fate.13.t
+	desc = MAR_territorial_fate.13.d
+	picture = GFX_report_event_RUS_double_headed_eagle 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #Petersburg
+		name = MAR_territorial_fate.13.a
+		ai_chance = { factor = 1 }
+		set_capital = { state = 195 }
+		195 = {
+			add_building_construction = {
+			    type = infrastructure
+			    level = 2
+			    instant_build = yes
+            }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = offices
+				level = 1
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.25 }
+			econ_state_value_change_multiply = yes
+		}
+	}
+	option = { #Moscow
+		name = MAR_territorial_fate.13.b
+		ai_chance = { factor = 1 }
+		set_capital = { state = 1442 }
+		1442 = {
+			add_building_construction = {
+			    type = infrastructure
+			    level = 2
+			    instant_build = yes
+            }
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+				type = offices
+				level = 1
+				instant_build = yes
+			}
+			set_temp_variable = { state_value_multiplier_temp = 1.15 }
+			econ_state_value_change_multiply = yes
+		}
+	}
+	option = { #Vyatka
+		name = MAR_territorial_fate.13.c
+		ai_chance = { factor = 1 }
+		add_stability = 0.01
+	}
+}
+##MAR_2WRW_world_news
+news_event = { 
+	id = MAR_2WRW_world_news.1
+	title = MAR_2WRW_world_news.1.t
+	desc = MAR_2WRW_world_news.1.d
+	picture = GFX_MAR_2WRW_world_news_001
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.1.a
+		trigger = {
+			tag = MAR
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.1.b
+		trigger = {
+			NOT = {
+				tag = MAR
+			}
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.2
+	title = MAR_2WRW_world_news.2.t
+	desc = MAR_2WRW_world_news.2.d
+	picture = GFX_MAR_2WRW_world_news_002
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.2.a
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.3
+	title = MAR_2WRW_world_news.3.t
+	desc = MAR_2WRW_world_news.3.d
+	picture = GFX_MAR_2WRW_world_news_003
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.3.a
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.4
+	title = MAR_2WRW_world_news.4.t
+	desc = MAR_2WRW_world_news.4.d
+	picture = GFX_MAR_2WRW_world_news_004
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.4.a
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.5
+	title = MAR_2WRW_world_news.5.t
+	desc = MAR_2WRW_world_news.5.d
+	picture = GFX_MAR_2WRW_world_news_005
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.5.a
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.6
+	title = MAR_2WRW_world_news.6.t
+	desc = MAR_2WRW_world_news.6.d
+	picture = GFX_MAR_2WRW_world_news_006
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.6.a
+		trigger = {
+			NOT = {
+				OR = {
+					original_tag = MAR
+					original_tag = GER
+				}
+			}
+		}
+		if = {
+			limit = { MAR = { has_government = despotism } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_BELOZERSKY }
+			TNO_fire_super_event = yes
+		}
+		else_if = {
+			limit = { MAR = { has_government = socialist } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_KOSYGIN }
+			TNO_fire_super_event = yes
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.6.b
+		trigger = {
+			original_tag = GER
+		}
+		if = {
+			limit = { MAR = { has_government = despotism } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_BELOZERSKY }
+			TNO_fire_super_event = yes
+		}
+		else_if = {
+			limit = { MAR = { has_government = socialist } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_KOSYGIN }
+			TNO_fire_super_event = yes
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.6.c
+		trigger = {
+			original_tag = MAR
+		}
+		if = {
+			limit = { MAR = { has_government = despotism } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_BELOZERSKY }
+			TNO_fire_super_event = yes
+		}
+		else_if = {
+			limit = { MAR = { has_government = socialist } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_KOSYGIN }
+			TNO_fire_super_event = yes
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.7
+	title = MAR_2WRW_world_news.7.t
+	desc = MAR_2WRW_world_news.7.d
+	picture = GFX_MAR_2WRW_world_news_007
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.7.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.7.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.7.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.8
+	title = MAR_2WRW_world_news.8.t
+	desc = MAR_2WRW_world_news.8.d
+	picture = GFX_MAR_2WRW_world_news_008
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.8.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.8.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.8.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.9
+	title = MAR_2WRW_world_news.9.t
+	desc = MAR_2WRW_world_news.9.d
+	picture = GFX_MAR_2WRW_world_news_009
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.9.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.9.b
+			trigger = {
+				tag = GER
+			}
+	}
+	option = {
+		name = MAR_2WRW_world_news.9.c
+			trigger = {
+				tag = MAR
+			}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.10
+	title = MAR_2WRW_world_news.10.t
+	desc = MAR_2WRW_world_news.10.d
+	picture = GFX_MAR_2WRW_world_news_010
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.10.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+		if = {
+			limit = { MAR = { has_government = despotism } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_VICTORY_BELOZERSKY }
+			TNO_fire_super_event = yes
+		}
+		else_if = {
+			limit = { MAR = { has_government = socialist } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_VICTORY_KOSYGIN }
+			TNO_fire_super_event = yes
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.10.b
+		trigger = {
+			tag = GER
+		}
+		if = {
+			limit = { MAR = { has_government = despotism } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_VICTORY_BELOZERSKY }
+			TNO_fire_super_event = yes
+		}
+		else_if = {
+			limit = { MAR = { has_government = socialist } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_VICTORY_KOSYGIN }
+			TNO_fire_super_event = yes
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.10.c
+		trigger = {
+			tag = MAR
+		}
+		if = {
+			limit = { MAR = { has_government = despotism } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_VICTORY_BELOZERSKY }
+			TNO_fire_super_event = yes
+		}
+		else_if = {
+			limit = { MAR = { has_government = socialist } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_VICTORY_KOSYGIN }
+			TNO_fire_super_event = yes
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.11
+	title = MAR_2WRW_world_news.11.t
+	desc = MAR_2WRW_world_news.11.d
+	picture = GFX_MAR_2WRW_world_news_011
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.11.a
+		trigger = {
+			NOT = {
+				tag = MAR
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.11.b
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.12
+	title = MAR_2WRW_world_news.12.t
+	desc = MAR_2WRW_world_news.12.d
+	picture = GFX_MAR_2WRW_world_news_012
+	
+	is_triggered_only = yes
+	
+	option = {
+		trigger = {
+			NOT = { tag = GER }
+		}
+		name = MAR_2WRW_world_news.12.a
+		if = {
+			limit = { MAR = { has_government = despotism } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_DEFEAT_BELOZERSKY }
+			TNO_fire_super_event = yes
+		}
+		else_if = {
+			limit = { MAR = { has_government = socialist } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_DEFEAT_KOSYGIN }
+			TNO_fire_super_event = yes
+		}	
+	}
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = MAR_2WRW_world_news.12.b
+		if = {
+			limit = { MAR = { has_government = despotism } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_DEFEAT_BELOZERSKY }
+			TNO_fire_super_event = yes
+		}
+		else_if = {
+			limit = { MAR = { has_government = socialist } }
+			set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_DEFEAT_KOSYGIN }
+			TNO_fire_super_event = yes
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.13
+	title = MAR_2WRW_world_news.13.t
+	desc = MAR_2WRW_world_news.13.d
+	picture = GFX_MAR_2WRW_world_news_013
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.13.a
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.14
+	title = MAR_2WRW_world_news.14.t
+	desc = MAR_2WRW_world_news.14.d
+	picture = GFX_MAR_2WRW_world_news_008
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.14.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.14.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.14.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.15
+	title = MAR_2WRW_world_news.15.t
+	desc = MAR_2WRW_world_news.15.d
+	picture = GFX_MAR_2WRW_world_news_015
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.15.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.15.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.15.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.16
+	title = MAR_2WRW_world_news.16.t
+	desc = MAR_2WRW_world_news.16.d
+	picture = GFX_MAR_2WRW_world_news_016
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.16.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.16.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.16.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.17
+	title = MAR_2WRW_world_news.17.t
+	desc = MAR_2WRW_world_news.17.d
+	picture = GFX_MAR_2WRW_world_news_017
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.17.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.17.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.17.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.18
+	title = MAR_2WRW_world_news.18.t
+	desc = MAR_2WRW_world_news.18.d
+	picture = GFX_MAR_2WRW_world_news_018
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.18.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.18.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.18.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.19
+	title = MAR_2WRW_world_news.19.t
+	desc = MAR_2WRW_world_news.19.d
+	picture = GFX_MAR_2WRW_world_news_019
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.19.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.19.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.19.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { 
+	id = MAR_2WRW_world_news.20
+	title = MAR_2WRW_world_news.20.t
+	desc = MAR_2WRW_world_news.20.d
+	picture = GFX_MAR_2WRW_world_news_020
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.20.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.20.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.20.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { #France leaves war
+	id = MAR_2WRW_world_news.21
+	title = MAR_2WRW_world_news.21.t
+	desc = MAR_2WRW_world_news.21.d
+	picture = GFX_MAR_2WRW_world_news_021
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.21.a
+		trigger = {
+			NOT = {
+				OR = {
+					tag = MAR
+					tag = GER
+				}
+			}
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.21.b
+		trigger = {
+			tag = GER
+		}
+	}
+	option = {
+		name = MAR_2WRW_world_news.21.c
+		trigger = {
+			tag = MAR
+		}
+	}
+}
+
+news_event = { #Free space
+	id = MAR_2WRW_world_news.22
+	title = MAR_2WRW_world_news.22.t
+	desc = MAR_2WRW_world_news.22.d
+	picture = GFX_MAR_2WRW_world_news_022
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.22.a
+	}
+}
+
+news_event = { #Free space
+	id = MAR_2WRW_world_news.23
+	title = MAR_2WRW_world_news.23.t
+	desc = MAR_2WRW_world_news.23.d
+	picture = GFX_MAR_2WRW_world_news_023
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.23.a
+	}
+}
+
+news_event = { #Free space
+	id = MAR_2WRW_world_news.24
+	title = MAR_2WRW_world_news.24.t
+	desc = MAR_2WRW_world_news.24.d
+	picture = GFX_MAR_2WRW_world_news_024
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.24.a
+	}
+}
+
+news_event = { #Russia invades again
+	id = MAR_2WRW_world_news.25
+	title = MAR_2WRW_world_news.25.t
+	desc = MAR_2WRW_world_news.25.d
+	picture = GFX_MAR_2WRW_world_news_025
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.25.a
+	}
+}
+
+news_event = { #Afghan CW
+	id = MAR_2WRW_world_news.26
+	title = MAR_2WRW_world_news.26.t
+	desc = MAR_2WRW_world_news.26.d
+	picture = GFX_MAR_2WRW_world_news_026
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.26.a
+	}
+}
+
+news_event = { #NA wins
+	id = MAR_2WRW_world_news.27
+	title = MAR_2WRW_world_news.27.t
+	desc = MAR_2WRW_world_news.27.d
+	picture = GFX_MAR_2WRW_world_news_027
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.27.a
+	}
+}
+
+news_event = { #AFG wins
+	id = MAR_2WRW_world_news.28
+	title = MAR_2WRW_world_news.28.t
+	desc = MAR_2WRW_world_news.28.d
+	picture = GFX_MAR_2WRW_world_news_028
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.28.a
+	}
+}
+
+news_event = { #MUJ wins
+	id = MAR_2WRW_world_news.29
+	title = MAR_2WRW_world_news.29.t
+	desc = MAR_2WRW_world_news.29.d
+	picture = GFX_MAR_2WRW_world_news_029
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.29.a
+	}
+}
+
+news_event = { #Martial law in Outer Manchuria
+	id = MAR_2WRW_world_news.30
+	title = MAR_2WRW_world_news.30.t
+	desc = MAR_2WRW_world_news.30.d
+	picture = GFX_MAR_2WRW_world_news_030
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.30.a
+	}
+}
+
+news_event = { #Russian Revolt victory in Outer Manchuria
+	id = MAR_2WRW_world_news.31
+	title = MAR_2WRW_world_news.31.t
+	desc = MAR_2WRW_world_news.31.d
+	picture = GFX_MAR_2WRW_world_news_031
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.31.a
+	}
+}
+
+news_event = { #Japanese corps victory in Outer Manchuria
+	id = MAR_2WRW_world_news.32
+	title = MAR_2WRW_world_news.32.t
+	desc = MAR_2WRW_world_news.32.d
+	picture = GFX_MAR_2WRW_world_news_032
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.32.a
+	}
+}
+news_event = { #Direct rule regime in Manchuria
+	id = MAR_2WRW_world_news.33
+	title = MAR_2WRW_world_news.33.t
+	desc = MAR_2WRW_world_news.33.d
+	picture = GFX_MAR_2WRW_world_news_033
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.33.a
+	}
+}
+news_event = { #Republic of Manchuria
+	id = MAR_2WRW_world_news.34
+	title = MAR_2WRW_world_news.34.t
+	desc = MAR_2WRW_world_news.34.d
+	picture = GFX_MAR_2WRW_world_news_034
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.34.a
+	}
+}
+news_event = { #Manchu Catastrophe
+	id = MAR_2WRW_world_news.35
+	title = MAR_2WRW_world_news.35.t
+	desc = MAR_2WRW_world_news.35.d
+	picture = GFX_MAR_2WRW_world_news_035
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.35.a
+	}
+}
+news_event = { #Civil war in Manchuria: Souverinist victory
+	id = MAR_2WRW_world_news.36
+	title = MAR_2WRW_world_news.36.t
+	desc = MAR_2WRW_world_news.36.d
+	picture = GFX_MAR_2WRW_world_news_036
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.36.a
+	}
+}
+news_event = { #Civil war in Manchuria: Liberal-Corporativist victory
+	id = MAR_2WRW_world_news.37
+	title = MAR_2WRW_world_news.37.t
+	desc = MAR_2WRW_world_news.37.d
+	picture = GFX_MAR_2WRW_world_news_037
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.37.a
+	}
+}
+news_event = { #Civil war in Manchuria: Kwantung Victory
+	id = MAR_2WRW_world_news.38
+	title = MAR_2WRW_world_news.38.t
+	desc = MAR_2WRW_world_news.38.d
+	picture = GFX_MAR_2WRW_world_news_038
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.38.a
+	}
+}
+news_event = { #Civil war in Manchuria: Partisan Victory
+	id = MAR_2WRW_world_news.39
+	title = MAR_2WRW_world_news.39.t
+	desc = MAR_2WRW_world_news.39.d
+	picture = GFX_MAR_2WRW_world_news_039
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.39.a
+	}
+}
+news_event = { #Rip the Tsar
+	id = MAR_2WRW_world_news.40
+	title = MAR_2WRW_world_news.40.t
+	desc = MAR_2WRW_world_news.40.d
+	picture = GFX_MAR_2WRW_world_news_040
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.40.a
+	}
+}
+
+news_event = { #Evacuation of Volga Germans
+	id = MAR_2WRW_world_news.41
+	title = MAR_2WRW_world_news.41.t
+	desc = MAR_2WRW_world_news.41.d
+	picture = GFX_MAR_2WRW_world_news_041
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.41.a
+	}
+}
+
+news_event = { #Koenigsberg on Quarantine	
+	id = MAR_2WRW_world_news.42
+	title = MAR_2WRW_world_news.42.t
+	desc = MAR_2WRW_world_news.42.d
+	picture = GFX_MAR_2WRW_world_news_042
+	
+	is_triggered_only = yes
+	
+	option = {
+		trigger = { NOT = { tag = RUS } }
+		name = MAR_2WRW_world_news.42.a
+	}
+	option = {
+		trigger = { tag = RUS }
+		name = MAR_2WRW_world_news.42.b
+	}
+}
+
+news_event = { #Black Sea Oil Stain	
+	id = MAR_2WRW_world_news.43
+	title = MAR_2WRW_world_news.43.t
+	desc = MAR_2WRW_world_news.43.d
+	picture = GFX_MAR_2WRW_world_news_043
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.43.a
+	}
+}
+
+news_event = { #Second RUS-FIN war
+	id = MAR_2WRW_world_news.44
+	title = MAR_2WRW_world_news.44.t
+	desc = MAR_2WRW_world_news.44.d
+	picture = GFX_MAR_2WRW_world_news_044
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.44.a
+	}
+}
+
+news_event = { #Batumi Crisis
+	id = MAR_2WRW_world_news.45
+	title = MAR_2WRW_world_news.45.t
+	desc = MAR_2WRW_world_news.45.d
+	picture = GFX_MAR_2WRW_world_news_045
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.45.a
+	}
+}
+
+news_event = { #RUS-TUR war
+	id = MAR_2WRW_world_news.46
+	title = MAR_2WRW_world_news.46.t
+	desc = MAR_2WRW_world_news.46.d
+	picture = GFX_MAR_2WRW_world_news_046
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.46.a
+	}
+}
+
+news_event = { #RUS-ROM war
+	id = MAR_2WRW_world_news.47
+	title = MAR_2WRW_world_news.47.t
+	desc = MAR_2WRW_world_news.47.d
+	picture = GFX_MAR_2WRW_world_news_047
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.47.a
+	}
+}
+
+news_event = { #AAG turns to Russia
+	id = MAR_2WRW_world_news.48
+	title = MAR_2WRW_world_news.48.t
+	desc = MAR_2WRW_world_news.48.d
+	picture = GFX_MAR_2WRW_world_news_048
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.48.a
+	}
+}
+
+news_event = { #Russia has nuclears now
+	id = MAR_2WRW_world_news.49
+	title = MAR_2WRW_world_news.49.t
+	desc = MAR_2WRW_world_news.49.d
+	picture = GFX_MAR_2WRW_world_news_049
+	
+	is_triggered_only = yes
+	
+	option = {
+		trigger = { NOT = { tag = RUS } }
+		name = MAR_2WRW_world_news.49.a
+	}
+	option = {
+		trigger = { tag = RUS }
+		name = MAR_2WRW_world_news.49.b
+	}
+}
+
+news_event = { #Germany attacks Russia again.. wait its really preemptive attack?
+	id = MAR_2WRW_world_news.50
+	title = MAR_2WRW_world_news.50.t
+	desc = MAR_2WRW_world_news.50.d
+	picture = GFX_MAR_2WRW_world_news_006
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.50.a
+		trigger = {
+			NOT = {
+				OR = {
+					original_tag = MAR
+					original_tag = GER
+				}
+			}
+		}
+		set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_GERMANY }
+		TNO_fire_super_event = yes
+	}
+	option = {
+		name = MAR_2WRW_world_news.50.b
+		trigger = {
+			original_tag = GER
+		}
+		set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_GERMANY }
+		TNO_fire_super_event = yes
+	}
+	option = {
+		name = MAR_2WRW_world_news.50.c
+		trigger = {
+			original_tag = MAR
+		}
+		set_temp_variable = { TNO_temp_super_event = token:SE_WRW2_BEGINNING_GERMANY }
+		TNO_fire_super_event = yes
+	}
+}
+
+news_event = { #Russo-Persian war
+	id = MAR_2WRW_world_news.51
+	title = MAR_2WRW_world_news.51.t
+	desc = MAR_2WRW_world_news.51.d
+	picture = GFX_MAR_2WRW_world_news_001
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_2WRW_world_news.51.a
+	}
+}

@@ -1039,6 +1039,11 @@ TNO_Ostland_Moscow_has_conflict = {
 		UKS = { has_war = yes }
 		FUK = { has_war = yes }
 		BOV = { has_war = yes }
+		ORL = { has_war = yes }
+		VVV = { has_war = yes }
+		SHI = { has_war = yes }
+		POV = { has_war = yes }
+		MCW = { has_war = yes }
 	}
 }
 
@@ -1067,6 +1072,7 @@ TNO_West_Russia_has_conflict = {
 		SVR = { has_war = yes }
 		TYM = { has_war = yes }
 		OMS = { has_war = yes }
+	MAR = { has_war = yes }
 	}
 }
 
@@ -1080,6 +1086,13 @@ TNO_Central_Asia_has_conflict = {
 		TAJ = { has_war = yes }
 		KYR = { has_war = yes }
 		UTL = { has_war = yes }
+		MKZ = { has_war = yes }
+		MTR = { has_war = yes }
+		AFG = { has_war = yes }
+		
+		NAL = { has_war = yes }
+		MKZ = { has_war = yes }
+		MUJ = { has_war = yes }
 	}
 }
 
@@ -2149,5 +2162,142 @@ SalvadoranCoup_HispanistsDominant = {
 	custom_trigger_tooltip = {
 		tooltip = SalvadoranCoup_HispanistsDominant_tt
 		check_variable = { ELS.SalvadoranCoup_PopularityCastrists < ELS.SalvadoranCoup_PopularityHispanists }
+	}
+}
+
+###TAS STUFF
+TNO_fopo_far_eastern_revolt_selected = {
+	OR = {
+		AND = {
+			check_variable = { selected_conflict_id = token:GC_FarEasternRevolt }
+			TNO_BoP_Viewing_GlobalConflicts = yes
+		}
+		AND = {
+			is_in_array = { TNO_active_conflicts = token:GC_FarEasternRevolt }
+			is_ai = yes
+		}
+	}
+}
+
+TNO_fopo_manchurian_civil_war_selected = {
+	OR = {
+		AND = {
+			check_variable = { selected_conflict_id = token:GC_ManchurianCivilWar }
+			TNO_BoP_Viewing_GlobalConflicts = yes
+		}
+		AND = {
+			is_in_array = { TNO_active_conflicts = token:GC_ManchurianCivilWar }
+			is_ai = yes
+		}
+	}
+}
+
+TNO_fopo_uar_influence_battle_selected = {
+	OR = {
+		AND = {
+			check_variable = { selected_conflict_id = token:GC_UAR_influence_battle }
+			TNO_BoP_Viewing_GlobalConflicts = yes
+		}
+		AND = {
+			is_in_array = { TNO_active_conflicts = token:GC_UAR_influence_battle }
+			is_ai = yes
+		}
+	}
+}
+
+TNO_fopo_afghanistan_civil_war_selected = {
+	OR = {
+		AND = {
+			check_variable = { selected_conflict_id = token:GC_AfghanistanCivilWar }
+			TNO_BoP_Viewing_GlobalConflicts = yes
+		}
+		AND = {
+			is_in_array = { TNO_active_conflicts = token:GC_AfghanistanCivilWar }
+			is_ai = yes
+		}
+	}
+}		
+
+TaS_SWRW_frontlines_preparation_selected = {
+	OR = {
+		AND = {
+			check_variable = { TaS_swrw_stage = 1 }
+			check_variable = { swrw_preparation_category = 1 }
+			TNO_BoP_Viewing_SWRW = yes
+		}
+		AND = {
+			check_variable = { TaS_swrw_stage = 1 }
+			is_ai = yes
+		}
+	}
+}
+
+TaS_SWRW_homefront_preparation_selected = {
+	OR = {
+		AND = {
+			check_variable = { TaS_swrw_stage = 1 }
+			check_variable = { swrw_preparation_category = 2 }
+			TNO_BoP_Viewing_SWRW = yes
+		}
+		AND = {
+			check_variable = { TaS_swrw_stage = 1 }
+			is_ai = yes
+		}
+	}
+}
+
+TaS_SWRW_diplomacy_preparation_selected = {
+	OR = {
+		AND = {
+			check_variable = { TaS_swrw_stage = 1 }
+			check_variable = { swrw_preparation_category = 3 }
+			TNO_BoP_Viewing_SWRW = yes
+		}
+		AND = {
+			check_variable = { TaS_swrw_stage = 1 }
+			is_ai = yes
+		}
+	}
+}
+
+TaS_SWRW_frontlines_war_selected = {
+	OR = {
+		AND = {
+			check_variable = { TaS_swrw_stage = 2 }
+			check_variable = { WRW_deccat = 1 }
+			TNO_BoP_Viewing_SWRW = yes
+		}
+		AND = {
+			check_variable = { TaS_swrw_stage = 2 }
+			is_ai = yes
+		}
+	}
+}
+
+TaS_SWRW_homefront_war_selected = {
+	OR = {
+		AND = {
+			check_variable = { TaS_swrw_stage = 2 }
+			check_variable = { WRW_deccat = 2 }
+			TNO_BoP_Viewing_SWRW = yes
+		}
+		AND = {
+			check_variable = { TaS_swrw_stage = 2 }
+			is_ai = yes
+		}
+	}
+}
+
+TaS_SWRW_diplomacy_war_selected = {
+	OR = {
+		AND = {
+			check_variable = { TaS_swrw_stage = 2 }
+			check_variable = { WRW_deccat = 3 }
+			TNO_BoP_Viewing_SWRW = yes
+		}
+		AND = {
+			check_variable = { TaS_swrw_stage = 2 }
+			is_ai = yes
+		}
 	}
 }

@@ -1,0 +1,218 @@
+ideas = {
+	hidden_ideas = {
+		GC_FarEasternRevolt = {} # FE revolt
+		GC_ManchurianCivilWar = {} # Manchurian CW
+		GC_UAR_influence_battle = {} # Germnan-Russian fight for communist Arabs
+		GC_AfghanistanCivilWar = {} # Afgani CW
+	}
+
+	country = {
+		MAR_KOR_Bombing_runs = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea MAR_Plane_Bombing"}
+			allowed = {
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			removal_cost = -1
+			picture = generic_intensified_bombing
+			modifier = {
+				war_support_factor = -0.05
+				army_org_factor = -0.1
+				army_morale_factor = -0.1
+				max_dig_in = -2
+				
+			}
+		}
+	}
+	country = {
+		TaS_KOR_JAP_saboteurs = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea MAR_MCW_partisans"}
+			allowed = {
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			removal_cost = -1
+			picture = generic_time_bomb
+			modifier = {
+				stability_factor = -0.07
+				army_attack_factor = -0.03
+				army_defence_factor = -0.05
+				
+			}
+		}
+	}
+	country = {
+		MJP_Boli_blocade_broke = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea TaS_KOR_advisors"}
+			allowed = {
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			removal_cost = -1
+			picture = generic_militia_based_army
+			modifier = {
+				experience_gain_army_factor = -0.1
+				planning_speed = -0.1
+				army_attack_factor = -0.05
+				army_defence_factor = -0.05
+			}
+		}
+	}
+	country = {
+		TaS_KOR_advisors = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea TaS_KOR_advisors"}
+			allowed = {
+				always = no
+			}
+			allowed_civil_war = {
+				always = yes
+			}
+			removal_cost = -1
+			picture = generic_militia_based_army
+			modifier = {
+				experience_gain_army_factor = 0.2
+				planning_speed = 0.1
+				army_attack_factor = 0.05
+				army_defence_factor = 0.05
+			}
+		}
+	}
+	country = {
+		TaS_KOR_technicians = {
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea JAP_OC_american_technicians"}
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_breakneck_industrialization
+			modifier = {
+				research_speed_factor = 0.05
+				industrial_capacity_factory = 0.2
+				production_speed_buildings_factor = 0.2
+			}
+		}
+	}
+	country = {
+		MAR_cheat_boost_debug = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea MAR_cheat_boost_debug"
+			}
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_attache
+			modifier = {
+				experience_gain_army_factor = 5
+				planning_speed = 5
+				army_attack_factor = 5
+				army_defence_factor = 5
+				army_speed_factor = 5
+				army_org_factor = 5
+			}
+		}
+		MAR_Plane_Bombing = { 
+			on_add = {log = "[GetDateText]: [Root.GetName]: add idea MAR_Plane_Bombing"}
+			allowed = {
+				always = no
+			}
+			removal_cost = -1
+
+			picture = generic_intensified_bombing
+
+			modifier = {
+				planning_speed = -0.15
+				army_defence_factor = -0.05
+				army_speed_factor = -0.05
+			}
+		}
+		MAR_military_advisors = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea MAR_military_advisors"
+			}
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_attache
+			modifier = {
+				experience_gain_army_factor = 0.2
+				planning_speed = 0.1
+				army_attack_factor = 0.05
+				army_defence_factor = 0.05
+			}
+			targeted_modifier = {
+				tag = MAR
+				experience_gain_army = 0.05
+				command_power_gain = 0.05
+			}
+		}
+		MAR_technician_aid = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea MAR_technician_aid"
+			}
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_breakneck_industrialization
+			modifier = {
+				research_speed_factor = 0.05
+				industrial_capacity_factory = 0.2
+				production_speed_buildings_factor = 0.2
+			}
+			targeted_modifier = { #For tooltip purpose only
+				tag = MAR
+				political_power_gain = 0.05
+			}
+		}
+
+		MAR_sabotage_effort = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea MAR_sabotage_effort"
+				add_to_variable = { MAR.MAR_sab_eff = 0.03 }
+			}
+			on_remove = {
+				subtract_from_variable = { MAR.MAR_sab_eff = 0.03 }
+			}
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_time_bomb
+			modifier = {
+				industrial_capacity_factory = -0.1
+				army_attack_factor = -0.025
+			}
+			targeted_modifier = {
+				tag = MAR
+				army_attack_factor = 0.03
+				command_power_gain = 0.03
+			}
+		}
+
+		MAR_partisan_attacks = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea MAR_partisan_attacks"
+			}
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_time_bomb
+			modifier = {
+				army_org_regain = -0.075
+				army_defence_factor = -0.05
+				army_speed_factor = -0.05
+			}
+		}
+
+		MAR_army_infiltrartion = {
+			on_add = {
+				log = "[GetDateText]: [Root.GetName]: add idea MAR_army_infiltrartion"
+			}
+			allowed = { always = no }
+			removal_cost = -1
+			picture = generic_time_bomb
+			modifier = {
+				army_attack_factor = -0.1
+				army_org_factor = -0.1
+				army_speed_factor = -0.05
+			}
+		}
+	}
+}

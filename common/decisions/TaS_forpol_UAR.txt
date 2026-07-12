@@ -1,0 +1,645 @@
+UAR_BoP_category = {
+
+	UAR_Faction_UAR_distance_ourselves_from_germany = {
+		icon = GFX_decision_generic_civil_support
+		visible = {
+			TNO_fopo_uar_influence_battle_selected  = yes
+		} 
+		cost = 25
+		days_remove = 25
+		days_re_enable = 60
+		ai_will_do = {
+			factor = 10
+
+			modifier = {
+				add = 5
+				check_variable = { UAR_faction_influence_array^1 < UAR_faction_influence_array^2 }
+			}
+
+			modifier = {
+				add = 5
+				check_variable = { UAR_leading_faction_idx = 2 }
+			}
+
+			modifier = {
+				factor = 0
+				check_variable = { UAR_faction_influence_array^1 > UAR_faction_influence_array^2 }
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		complete_effect = {
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1.25 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+				}
+			}
+		}
+	}
+
+	UAR_Faction_UAR_distance_ourselves_from_russia = {
+		icon = GFX_decision_generic_propaganda
+		visible = {
+			TNO_fopo_uar_influence_battle_selected  = yes
+		}
+		cost = 25
+		days_remove = 25
+		days_re_enable = 60
+		ai_will_do = {
+			factor = 10
+
+			modifier = {
+				add = 5
+				check_variable = { UAR_faction_influence_array^1 > UAR_faction_influence_array^2 }
+			}
+
+			modifier = {
+				add = 5
+				check_variable = { UAR_leading_faction_idx = 1 }
+			}
+
+			modifier = {
+				factor = 0
+				check_variable = { UAR_faction_influence_array^1 < UAR_faction_influence_array^2 }
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		complete_effect = {
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1.25 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+			}
+		}
+	}
+	
+	UAR_Faction_UAR_Invest_in_own_industries = {
+		icon = GFX_decision_generic_money
+		visible = {
+			TNO_fopo_uar_influence_battle_selected  = yes
+		}
+		days_remove = 20
+		days_re_enable = 60
+
+		ai_will_do = {
+			factor = 10
+
+			modifier = {
+				add = 5
+				has_global_flag = UAR_faction_mechanic_UARland_Leading
+			}
+
+			modifier = {
+				add = 10
+				OR = {
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 1 }
+						NOT = { check_variable = { UAR_faction_influence_array^0 < UAR_faction_influence_array^2 } }
+					}
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 2 }
+						NOT = { check_variable = { UAR_faction_influence_array^0 < UAR_faction_influence_array^1 } }
+					}
+				}
+			}
+
+			modifier = {
+				add = -5
+				OR = {
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 1 }
+						check_variable = { UAR_faction_influence_array^0 < UAR_faction_influence_array^2 }
+					}
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 2 }
+						check_variable = { UAR_faction_influence_array^0 < UAR_faction_influence_array^1 }
+					}
+				}
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		custom_cost_trigger = {
+			check_variable = { GDP > 0 }
+			has_political_power > 14.99
+		}
+		custom_cost_text = decision_cost_100_million_15_pp
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -15
+				set_temp_variable = { temp_econ_spending_amount = 0.1 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.75 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 2 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+					UAR_Influence_Change = yes
+				}
+			}
+			UAR = {
+				random_owned_state = {
+					add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.25 } }
+				}
+			}
+		}
+	}
+
+	UAR_Faction_UAR_rely_on_own_military = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_uar_influence_battle_selected  = yes
+		}
+		days_remove = 25
+		days_re_enable = 60
+
+		ai_will_do = {
+			factor = 15
+
+			modifier = { # EP and Russia are far in the lead
+				add = -5
+				OR = {
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 1 }
+						check_variable = { UAR_faction_influence_array^0 < UAR_faction_influence_array^2 }
+					}
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 2 }
+						check_variable = { UAR_faction_influence_array^0 < UAR_faction_influence_array^1 }
+					}
+				}
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_cp
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -25
+			}
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.75 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 2 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+					UAR_Influence_Change = yes
+				}
+			}
+		}
+	}
+
+	UAR_Faction_UAR_utilize_RUS_contacts = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_uar_influence_battle_selected  = yes
+		}
+		days_remove = 15
+		days_re_enable = 60
+		cost = 15
+		ai_will_do = {
+			factor = 10
+
+			modifier = {
+				add = 5
+				check_variable = { UAR_leading_faction_idx = 2 }
+			}
+
+			modifier = {
+				factor = 0
+				check_variable = { UAR_faction_influence_array^1 > UAR_faction_influence_array^2 }
+			}
+
+			modifier = {
+				factor = 0
+				check_variable = { UAR_leading_faction_idx = 0 }
+				set_temp_variable = { UAR_Rus_Pakt_diff = UAR_faction_influence_array^1 }
+				subtract_from_temp_variable = { UAR_Rus_Pakt_diff = UAR_faction_influence_array^2 }
+				check_variable = { UAR_Rus_Pakt_diff > -2.25 }
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		complete_effect = {
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+					set_temp_variable = { InfluenceChangeTemp = -1 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.25 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+					set_temp_variable = { InfluenceChangeTemp = -0.75 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+				}
+			}
+		}
+	}
+
+	UAR_Faction_UAR_utilize_EP_contacts = {
+		icon = GFX_decision_generic_phone_call
+		visible = {
+			TNO_fopo_uar_influence_battle_selected  = yes
+		}
+		days_remove = 15
+		days_re_enable = 60
+		cost = 15
+		ai_will_do = {
+			factor = 10
+
+			modifier = {
+				add = 5
+				check_variable = { UAR_leading_faction_idx = 1 }
+			}
+
+			modifier = {
+				factor = 0
+				check_variable = { UAR_faction_influence_array^1 < UAR_faction_influence_array^2 }
+			}
+
+			modifier = {
+				factor = 0
+				check_variable = { UAR_leading_faction_idx = 0 }
+				set_temp_variable = { UAR_Rus_Pakt_diff = UAR_faction_influence_array^1 }
+				subtract_from_temp_variable = { UAR_Rus_Pakt_diff = UAR_faction_influence_array^2 }
+				check_variable = { UAR_OFN_Pakt_diff < 2.25 }
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		complete_effect = {
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+					set_temp_variable = { InfluenceChangeTemp = -1 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.25 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+					set_temp_variable = { InfluenceChangeTemp = -0.75 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+			}
+		}
+	}
+
+	UAR_Faction_UAR_denounce_the_superpowers = {
+		icon = GFX_decision_generic_political_discourse
+		visible = {
+			TNO_fopo_uar_influence_battle_selected  = yes
+		}
+		cost = 75
+		days_remove = 30
+		days_re_enable = 120
+		ai_will_do = {
+			factor = 10
+
+			modifier = {
+				add = 5
+				OR = {
+					check_variable = { UAR_leading_faction_idx = 1 }
+					check_variable = { UAR_leading_faction_idx = 2 }
+				}
+			}
+
+			modifier = {
+				add = 10
+				check_variable = { UAR_leading_faction_idx = 0 }
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		complete_effect = {
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			set_temp_variable = { InfluenceIncreaseChangeTemp = 0.5 }
+			set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+			UAR_Influence_Increase_Change = yes
+			set_temp_variable = { InfluenceChangeTemp = -2 }
+			set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+			UAR_Influence_Increase_Change = yes
+			set_temp_variable = { InfluenceChangeTemp = -2 }
+			set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+			UAR_Influence_Increase_Change = yes
+		}
+	}
+
+	UAR_Faction_Join_Rus_Mission = {
+		icon = GFX_decision_generic_political_action
+		activation = {
+			always = no
+		}
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}	
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+			NOT = { check_variable = { UAR_leading_faction_idx = 1 } }
+		}
+		is_good = no
+		days_mission_timeout = 30
+		allowed = {
+			tag = UAR
+		}
+		timeout_effect = {
+			UAR = {
+				country_event = {
+					id = MAR_Kosygin_UAR.2
+					days = 1
+				}
+			}
+			MAR = {
+				country_event = {
+					id = MAR_Kosygin_UAR.2
+					days = 1
+				}
+			}
+			GER = {
+				country_event = {
+					id = MAR_Kosygin_UAR.2
+					days = 1
+				}
+			}
+		}
+	}
+
+	UAR_Faction_Join_Pakt_Mission = {
+		icon = GFX_decision_document_target
+		activation = {
+			always = no
+		}
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}	
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+			NOT = { check_variable = { UAR_leading_faction_idx = 2 } }
+		}
+		is_good = no
+		days_mission_timeout = 30
+		allowed = {
+			tag = UAR
+		}
+		timeout_effect = {
+			MAR = {
+				country_event = {
+					id = MAR_Kosygin_UAR.3
+					days = 1
+				}
+			}
+			UAR = {
+				country_event = {
+					id = MAR_Kosygin_UAR.3
+					days = 1
+				}
+			}
+			GER = {
+				country_event = {
+					id = MAR_Kosygin_UAR.3
+					days = 1
+				}
+			}
+		}
+	}
+
+	UAR_Faction_Close_Faction_Mechanic_Mission = {
+		icon = GFX_decision_generic_independence
+		activation = {
+			always = no
+		}
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}	
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+			NOT = { check_variable = { UAR_leading_faction_idx = 0 } }
+		}
+		is_good = yes
+		days_mission_timeout = 60
+		allowed = {
+			tag = UAR
+		}
+		timeout_effect = {
+			MAR = {
+				country_event = {
+					id = MAR_Kosygin_UAR.4
+					days = 1
+				}
+			}
+			UAR = {
+				country_event = {
+					id = MAR_Kosygin_UAR.4
+					days = 1
+				}
+			}
+			GER = {
+				country_event = {
+					id = MAR_Kosygin_UAR.4
+					days = 1
+				}
+			}
+			custom_effect_tooltip = UAR_Faction_Close_Mechanic_tt
+		}
+	}
+	UAR_Faction_timer_Mission = {
+		icon = GFX_decision_clock
+		activation = {
+			always = no
+		}
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}	
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+		}
+		is_good = no
+		days_mission_timeout = 365
+		allowed = {
+			tag = UAR
+		}
+		timeout_effect = {
+			find_highest_in_array = {
+				array = UAR_faction_influence_array
+				value = uar_lead_val
+				index = uar_lead_idx
+			}
+			set_variable = { UAR_leading_faction = uar_lead_val }
+			set_variable = { UAR_leading_faction_idx = uar_lead_idx }
+			if = { #neutral overpowers
+				limit = { 
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 0 } 
+					}
+				}
+				UAR = {
+					country_event = {
+						id = MAR_Kosygin_UAR.4
+						days = 1
+					}
+				}
+				GER = {
+					country_event = {
+						id = MAR_Kosygin_UAR.4
+						days = 1
+					}
+				}
+				MAR = {
+					country_event = {
+						id = MAR_Kosygin_UAR.4
+						days = 1
+					}
+				}
+			}
+			else_if = { #russkie wins
+				limit = { 
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 1 }  
+					}
+				}
+				UAR = {
+					country_event = {
+						id = MAR_Kosygin_UAR.2
+						days = 1
+					}
+				}
+				GER = {
+					country_event = {
+						id = MAR_Kosygin_UAR.2
+						days = 1
+					}
+				}
+				MAR = {
+					country_event = {
+						id = MAR_Kosygin_UAR.2
+						days = 1
+					}
+				}
+			}
+			else_if = { #The Pakt overpowers 
+				limit = { 
+					AND = {
+						check_variable = { UAR_leading_faction_idx = 2 } 
+					}
+				}
+				UAR = {
+					country_event = {
+						id = MAR_Kosygin_UAR.3
+						days = 1
+					}
+				}
+				GER = {
+					country_event = {
+						id = MAR_Kosygin_UAR.3
+						days = 1
+					}
+				}
+				MAR = {
+					country_event = {
+						id = MAR_Kosygin_UAR.3
+						days = 1
+					}
+				}
+			}
+			custom_effect_tooltip = UAR_Faction_timer_tt
+		}
+	}
+}

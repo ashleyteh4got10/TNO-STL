@@ -1,0 +1,1639 @@
+TaS_2WRW_start_westgerman_cw = {
+	set_global_flag = PostGER_second_cw
+	custom_effect_tooltip = Westgermancw_tt
+	hidden_effect = {
+		every_country = {
+				limit = {
+					is_german_unifier = yes
+				}				
+				division_template = {
+					name = "Heer Division"
+					priority = 2
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+						artillery = { x = 0 y = 1 }
+						logistics_company = { x = 0 y = 2 }
+					}
+				}
+				division_template = {
+					name = "Volkssturm"
+					priority = 2
+					regiments = {
+						light_infantry = { x = 0 y = 0 }
+						light_infantry = { x = 0 y = 1 }
+						light_infantry = { x = 0 y = 2 }
+						light_infantry = { x = 1 y = 0 }
+						light_infantry = { x = 1 y = 1 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+					}
+				}
+				division_template = {
+					name = "Motorisierte Infanterie"
+					regiments = {
+						motorized = { x = 0 y = 0 }
+						motorized = { x = 0 y = 1 }
+						motorized = { x = 1 y = 0 }
+						motorized = { x = 1 y = 1 }
+					}
+					support = {
+						engineer = { x = 0 y = 0 }
+					}
+				}
+		}
+		GWS = {				
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.8"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.8"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.8"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 0.7"
+					owner = GWS
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 0.7"
+					owner = GWS
+				}
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GWS
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		GRH = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GRH
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GRH
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GRH
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.3 start_equipment_factor = 0.8"
+					owner = GRH
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.8"
+					owner = GRH
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.8"
+					owner = GRH
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRH
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 0.7"
+					owner = GRH
+				}
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GRH
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		GBW = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = GBW
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 1"
+					owner = GBW
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 1"
+					owner = GBW
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 1"
+					owner = GBW
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 1"
+					owner = GBW
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 0.8"
+					owner = GBW
+				}
+			}	
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GBW
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}			
+		}
+		GBV = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = GBV
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = GBV
+				}
+			}	
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GBV
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}			
+		}
+		GAU = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GAU
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GAU
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GAU
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GAU
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GAU
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = GAU
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = GAU
+				}
+			}	
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GAU
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}	
+		}
+		GCZ = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GCZ
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GCZ
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GCZ
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GCZ
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GCZ
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GCZ
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 0.6 start_equipment_factor = 1"
+					owner = GCZ
+				}
+			}		
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GCZ
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 290
+				}
+			}
+		}
+		GSU = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GSU
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GSU
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GSU
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GSU
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GSU
+				}
+			}	
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GSU
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}	
+		}
+		GRA = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.5 start_equipment_factor = 0.8"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRA
+				}
+				create_unit = {
+					division = "division_template = \"Volkssturm\" start_experience_factor = 0.3 start_equipment_factor = 0.7"
+					owner = GRA
+				}
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GRA
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}
+		}
+		GWF = {
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 0.7 start_equipment_factor = 0.7"
+					owner = GWF
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 2 start_equipment_factor = 1"
+					owner = GWF
+				}	
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = GWF
+				}
+				create_unit = {
+					division = "division_template = \"Heer Division\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = GWF
+				}
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 2 start_equipment_factor = 1"
+					owner = GWF
+				}	
+				create_unit = {
+					division = "division_template = \"Motorisierte Infanterie\" start_experience_factor = 1 start_equipment_factor = 1"
+					owner = GWF
+				}								
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+						option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GWF
+					}
+				}
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 90
+				}
+			}	
+		}
+		GWF = {
+			declare_war_on = {
+				target = GRH
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBW
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBV
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GAU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GRA
+				type = annex_everything
+			}
+		}
+		GRA = {
+			declare_war_on = {
+				target = GRH
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBW
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBV
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GAU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWF
+				type = annex_everything
+			}
+		}
+		GBV = {
+			declare_war_on = {
+				target = GRH
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBW
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GAU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GRA
+				type = annex_everything
+			}
+		}
+		GBW = {
+			declare_war_on = {
+				target = GRH
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBV
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GAU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GRA
+				type = annex_everything
+			}
+		}
+		GAU = {
+			declare_war_on = {
+				target = GRH
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBW
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBV
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GRA
+				type = annex_everything
+			}
+		}
+		GWS = {
+			declare_war_on = {
+				target = GRH
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBW
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBV
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GAU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GRA
+				type = annex_everything
+			}
+		}
+		GRH = {
+			declare_war_on = {
+				target = GWF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBW
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBV
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GAU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GRA
+				type = annex_everything
+			}
+		}
+		GSU = {
+			declare_war_on = {
+				target = GCZ
+				type = annex_everything
+			}
+		}
+		if = {
+			limit = {
+				has_game_rule = {
+					rule = SWRW_GER_COLLAPSE_SECOND_CW_RESULT
+					option = SWRW_GER_COLLAPSE_SECOND_CW_RESULT_GUOT
+				}
+			}
+			ZNE = {
+				apply_war_buff_with_15_divisions = yes
+				add_timed_idea = {
+					idea = war_cheat
+					days = 290
+				}
+			}
+			add_days_mission_timeout = {
+				mission = TaS_PostGER_second_cw_looming_russian_invastion
+				days = -300
+			}
+		}
+		
+		
+	}
+}
+GER_select_unified_cosmotag = {
+	hidden_effect = {
+		drop_cosmetic_tag = yes
+	}
+	if = {
+		limit = {
+			original_tag = GWS
+		}
+		set_cosmetic_tag = GWS_Unified
+	}
+	if = {
+		limit = {
+			original_tag = GRH
+		}
+		set_cosmetic_tag = GRH_Unified
+	}
+	if = {
+		limit = {
+			original_tag = GBW
+		}
+		set_cosmetic_tag = GBW_Unified
+	}
+	if = {
+		limit = {
+			original_tag = GBV
+		}
+		set_cosmetic_tag = GBV_Unified
+	}
+	if = {
+		limit = {
+			original_tag = GAU
+		}
+		set_cosmetic_tag = GAU_Unified
+	}
+	if = {
+		limit = {
+			original_tag = GRA
+		}
+		set_cosmetic_tag = GRA_Unified
+	}
+	if = {
+		limit = {
+			original_tag = GWF
+		}
+		set_cosmetic_tag = GWF_Unified
+	}
+	if = {
+		limit = {
+			original_tag = GSU
+		}
+		set_cosmetic_tag = GSU_Unified
+	}
+	if = {
+		limit = {
+			original_tag = GCZ
+		}
+		set_cosmetic_tag = GCZ_Unified
+	}
+}
+GER_select_unification_news_event = {
+	if = {
+		limit = {
+			original_tag = GWS
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.1
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = GRH
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.2
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = GBW
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.3
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = GBV
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.4
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = GAU
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.5
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = GCZ
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.6
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = GSU
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.7
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = GRA
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.8
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = GWF
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_GEREpilogue_news.9
+				}
+			}
+		}
+	}
+}
+TaS_2WRW_start_guot_invasion = {
+	custom_effect_tooltip = Guotintervention_tt
+	hidden_effect = {
+		every_country  = {
+			news_event = {
+				id = TaS_GEREpilogue_news.11
+			}
+		}
+		every_country = {
+			limit = {
+				is_russian_postger = yes
+			}				
+			division_template = {
+				name = "Pekhotnaya Diviziya"
+				priority = 2
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0}
+					infantry = { X = 1 y = 1}
+					infantry = { X = 1 y = 2}
+					infantry = { x = 2 y = 0}
+					artillery_brigade = { X = 2 y = 1}
+					artillery_brigade = { X = 2 y = 2}
+				}
+				support = {
+					recon = { x = 0 y = 0 }
+					artillery = { x = 0 y = 1 }
+					logistics_company = { x = 0 y = 2 }
+				}
+			}
+			division_template = {
+				name = "Bronetankovaya Diviziya"
+				priority = 2
+				regiments = {
+					MBT = { x = 0 y = 0 }
+					MBT = { x = 0 y = 1 }
+					MBT = { x = 1 y = 0}
+					MBT = { X = 1 y = 1}
+					APC = { x = 2 y = 0}
+					APC = { X = 2 y = 1}
+				}
+				support = {
+					maintenance_company = { x = 0 y = 0 }
+				}
+			}
+		}
+		ZNE = {
+			add_ideas = { TaS_Post2WRW_RUS_for_liberation }
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Bronetankovaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Bronetankovaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Bronetankovaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Bronetankovaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Bronetankovaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+				create_unit = {
+					division = "division_template = \"Bronetankovaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = ZNE
+				}
+			}
+		}
+		BRL = {
+			add_ideas = { TaS_Post2WRW_RUS_for_liberation }
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "division_template = \"Pekhotnaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = BRL
+				}
+				create_unit = {
+					division = "division_template = \"Bronetankovaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = BRL
+				}
+				create_unit = {
+					division = "division_template = \"Bronetankovaya Diviziya\" start_experience_factor = 0.8 start_equipment_factor = 1"
+					owner = BRL
+				}
+			}
+		}
+		ZNE = {
+			declare_war_on = {
+				target = GWS
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GRH
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBW
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GBV
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GAU
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GCZ
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GRA
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GWF
+				type = annex_everything
+			}
+			declare_war_on = {
+				target = GSU
+				type = annex_everything
+			}
+			leave_faction = yes
+		}
+	}
+}
+TaS_2WRW_kill_germany = {
+	set_global_flag = TNO_Remer_Anarchy
+	MAR = {
+		change_tag_from = ROOT
+	}
+	every_country  = {
+		news_event = {
+			id = TaS_GEREpilogue_news.10
+		}
+	}
+	GWF = {
+		kill_country_leader = yes
+		transfer_state = 1601
+		set_capital = { state = 1601 remember_old_capital = no }
+		country_lock_all_division_template = yes
+		set_country_flag = TNO_eliminate_building_demand
+		set_country_flag = can_not_use_econ_system
+		transfer_units_fraction = {
+			target = ZZZ
+			size = 0
+			army_ratio = 1.0
+		}
+		create_country_leader = {
+			name = "[NO SIGNAL]"
+			picture = "gfx/leaders/POSTWRW2/Portrait_No_Signal.dds"
+			expire = "2000.1.1"
+			ideology = ultranationalism_subtype
+			traits = {
+				
+			}
+		}
+		set_cosmetic_tag = GWF_ded
+		add_ideas = {
+			TaS_Post2WRW_GWF_nuclear_holokaust
+		}
+		remove_ideas = {
+			TaS_Post2WRW_GWF_for_the_reich
+		}
+	}
+
+	ZNE = {
+		transfer_state = 69
+		transfer_state = 9
+		transfer_state = 75
+		add_state_core = 69
+		add_state_core = 9
+		add_state_core = 75
+	}
+	775 = { add_manpower = -1430912 }
+	188 = { add_manpower = -816734 }
+	56 = { add_manpower = -1139122 }
+	59 = { add_manpower = -1354894 }
+	1373 = { add_manpower = -931230 }
+	57 = { add_manpower = -6412395 }
+	51 = { add_manpower = -3123459 }
+	55 = { add_manpower = -3412385 }
+	8 = { add_manpower = -231239 }
+	42 = { add_manpower = -3123389 }
+	28 = { add_manpower = -1534993 }
+	72 = { add_manpower = -1938340 }
+	50 = { add_manpower = -2412379 }
+	54 = { add_manpower = -1623623 }
+	53 = { add_manpower = -1437489 }
+	52 = { add_manpower = -1728334 }
+	153 = { add_manpower = -972395 }
+	152 = { add_manpower = -1354398 }
+	770 = { add_manpower = -97564 }
+	4 = { add_manpower = -1823747 }
+	1025 = { add_manpower = -1345490 }
+}
+TaS_2WRW_czech_ssr = {
+	custom_effect_tooltip = CzechSSR_tt
+	hidden_effect = {
+		GCZ = {
+			remove_ideas = {
+				TaS_Post2WRW_GCZ_sudetenland_genocide
+				TaS_Post2WRW_GCZ_big_brother
+			}
+			transfer_state = 75
+			transfer_state = 9
+			transfer_state = 69
+			set_cosmetic_tag = GCZ_ssr
+		}
+		GCZ = {
+			GAU	 = { save_party_popularities = yes }
+			set_autonomy = {
+				target = GAU
+				autonomy_state = autonomy_occupied_territory
+			}
+		}
+		GCZ = {
+			apply_party_popularities = yes
+			set_politics = {
+				ruling_party = communist
+			}
+			add_popularity = {
+				ideology = communist
+				popularity = 0.45
+			}
+		}
+		#282 = { set_state_name = STATE_282_kkk set_variable = { nationality = 82 } }
+		69 = { set_state_name = STATE_89_czech set_variable = { nationality = 9999 } }
+		69 = { add_manpower = -315000 }
+		set_province_name = { id = 11432 name = VICTORY_POINTS_11432_czech }
+		74 = { set_state_name = STATE_74_czech set_variable = { nationality = 9999 } }
+		74 = { add_manpower = -123400 }
+		set_province_name = { id = 3414 name = VICTORY_POINTS_3414_czech }
+		
+		set_province_name = { id = 6418 name = VICTORY_POINTS_6418_czech }
+		set_province_name = { id = 11542 name = VICTORY_POINTS_11542_czech }
+		set_province_name = { id = 9541 name = VICTORY_POINTS_9541_czech }
+		
+		set_province_name = { id = 3553 name = VICTORY_POINTS_3553_czech }
+		set_province_name = { id = 3569 name = VICTORY_POINTS_3569_czech }
+	}
+}
+TaS_2WRW_remove_schnitzel = {
+	custom_effect_tooltip = RemoveDeutsch_tt
+	hidden_effect = {
+		ZNE = {
+			transfer_state = 775
+			transfer_state = 188
+			transfer_state = 59
+		}
+		GWS = {
+			remove_ideas = {
+				TaS_Post2WRW_commie_activity
+				TaS_Post2WRW_werewolf_activity
+				TaS_Post2WRW_GWS_volkswagen
+				TaS_Post2WRW_GWS_german_democracy
+			}
+			add_ideas = {
+				TaS_Post2WRW_GCZ_zone_of_integration
+			}
+			transfer_state = 56
+			transfer_state = 1373
+			transfer_state = 57
+			transfer_state = 51
+			transfer_state = 55
+			transfer_state = 42
+			transfer_state = 8
+			transfer_state = 1811
+			transfer_state = 1810
+			transfer_state = 1809
+			transfer_state = 1815
+			set_cosmetic_tag = GWS_czech
+			set_party_name = { 
+				ideology = ultranationalism
+				long_name = GER_czech_party
+				name = GER_czech_party
+			}
+		}
+		GBW = {
+			remove_ideas = {
+				TaS_Post2WRW_werewolf_activity
+				TaS_Post2WRW_GBW_dumb_king
+				TaS_Post2WRW_GBW_baden_wine
+			}
+			add_ideas = {
+				TaS_Post2WRW_GCZ_zone_of_integration
+			}
+			transfer_state = 72
+			transfer_state = 50
+			transfer_state = 54
+			transfer_state = 52
+			transfer_state = 153
+			transfer_state = 68
+			transfer_state = 1026
+			transfer_state = 53
+			set_cosmetic_tag = GBW_czech
+			set_party_name = { 
+				ideology = ultranationalism
+				long_name = GER_czech_party
+				name = GER_czech_party
+			}
+		}
+		GAU = {
+			remove_ideas = {
+				TaS_Post2WRW_commie_activity
+				TaS_Post2WRW_werewolf_activity
+				TaS_Post2WRW_GAU_habsburg_returns
+				TaS_Post2WRW_GAU_dreams_of_germany
+			}
+			add_ideas = {
+				TaS_Post2WRW_GCZ_zone_of_integration
+			}
+			transfer_state = 152
+			transfer_state = 4
+			transfer_state = 1025
+			transfer_state = 770
+			transfer_state = 86
+			transfer_state = 1772
+			transfer_state = 62
+			transfer_state = 98 
+			set_cosmetic_tag = GAU_czech
+			set_party_name = { 
+				ideology = ultranationalism
+				long_name = GER_czech_party
+				name = GER_czech_party
+			}
+		}
+		GCZ = {
+			GAU = { save_party_popularities = yes }
+			set_autonomy = {
+				target = GAU
+				autonomy_state = autonomy_occupied_territory
+			}
+			GWS = { save_party_popularities = yes }
+			set_autonomy = {
+				target = GWS
+				autonomy_state = autonomy_occupied_territory
+			}
+			GBW = { save_party_popularities = yes }
+			set_autonomy = {
+				target = GBW
+				autonomy_state = autonomy_occupied_territory
+			}
+		}
+		GAU = {
+			apply_party_popularities = yes
+			set_politics = {
+				ruling_party = ultranationalism
+			}
+		}
+		GBW = {
+			apply_party_popularities = yes
+			set_politics = {
+				ruling_party = ultranationalism
+			}
+		}
+		GWS = {
+			apply_party_popularities = yes
+			set_politics = {
+				ruling_party = ultranationalism
+			}
+		}
+		1025 = { set_state_name = STATE_1052_czech }
+		set_province_name = { id = 11666 name = VICTORY_POINTS_11666_czech }
+		69 = { set_state_name = STATE_89_czech set_variable = { nationality = 9999 } }
+		69 = { add_manpower = -315000 }
+		set_province_name = { id = 11432 name = VICTORY_POINTS_11432_czech }
+		set_province_name = { id = 3414 name = VICTORY_POINTS_3414_czech }
+		
+		set_province_name = { id = 6418 name = VICTORY_POINTS_6418_czech }
+		set_province_name = { id = 11542 name = VICTORY_POINTS_11542_czech }
+		set_province_name = { id = 9541 name = VICTORY_POINTS_9541_czech }
+		
+		set_province_name = { id = 3553 name = VICTORY_POINTS_3553_czech }
+		set_province_name = { id = 3569 name = VICTORY_POINTS_3569_czech }
+		
+		set_province_name = { id = 3541 name = VICTORY_POINTS_3541_czech }
+		
+		set_province_name = { id = 673 name = VICTORY_POINTS_673_czech }
+		set_province_name = { id = 692 name = VICTORY_POINTS_692_czech }
+		set_province_name = { id = 9517 name = VICTORY_POINTS_9517_czech }
+		set_province_name = { id = 6488 name = VICTORY_POINTS_6488_czech }
+		set_province_name = { id = 587 name = VICTORY_POINTS_587_czech }
+		set_province_name = { id = 6469 name = VICTORY_POINTS_6469_czech }
+		if = {
+			limit = { BRG = { exists = yes } }
+			BRG = {
+				transfer_state = 28
+				transfer_state = 1812
+			}
+		}
+		else = {
+			FRA = {
+				transfer_state = 28
+				transfer_state = 1812
+			}
+		}
+	}	
+}
+
+
+RUS_select_re_reunified_cosmotag = {
+	if = {
+		limit = { NOT = { tag = MAR } }
+		hidden_effect = {
+			drop_cosmetic_tag = yes
+		}
+	}
+	if = {
+		limit = {
+			original_tag = PAV
+		}
+		set_cosmetic_tag = PAV_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = MTR
+		}
+		set_cosmetic_tag = MTR_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = MAG
+		}
+		set_cosmetic_tag = MAG_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = YAK
+		}
+		set_cosmetic_tag = YAK_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = BRY
+		}
+		set_cosmetic_tag = BRY_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = NOV
+		}
+		set_cosmetic_tag = NOV_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = TYM
+		}
+		set_cosmetic_tag = SVR_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = OMS
+		}
+		set_cosmetic_tag = OMS_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = KOM
+		}
+		set_cosmetic_tag = KOM_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = TAR
+		}
+		set_cosmetic_tag = TAR_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = NPL
+		}
+		set_cosmetic_tag = NPL_MAR_collapse_reunified
+	}
+	if = {
+		limit = {
+			original_tag = SAM
+		}
+		set_cosmetic_tag = SAM_MAR_collapse_reunified
+	}
+}
+RUS_select_re_reunification_news_event = {
+	if = {
+		limit = {
+			original_tag = MAR
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.1
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = OMS
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.2
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = KOM
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.3
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = PAV
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.4
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = NOV
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.5
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = YAK
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.6
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = TAR
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.7
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = TYM
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.8
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = NPL
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.9
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = MAG
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.10
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = IRK
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.11
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			original_tag = MTR
+		}
+		hidden_effect = {
+			every_country  = {
+				news_event = {
+					id = TaS_RUSEpilogue_news.12
+				}
+			}
+		}
+	}
+}
+
+reichsland_in_moscowien = {
+	XYZ = {
+		MCW_Mikhail_Oktan_70s = {
+			set_nationality = MCW
+		}
+	}
+	puppet = MCW
+	MCW = {
+		set_cosmetic_tag = MCW_SGR_reichsland
+		GER_alexis_von_roenne = {
+			set_nationality = GER
+		}
+		set_politics = {
+			ruling_party = fascism
+		}
+		add_country_leader_role = {
+			character = MCW_Mikhail_Oktan_70s
+			country_leader = {
+				ideology = fascism_fascist_populism_subtype
+				expire = "1999.3.4"
+				id = -1
+			}
+		}
+		promote_character = MCW_Mikhail_Oktan_70s
+		set_popularities = {
+			fascism = 50
+			national_socialism_2 = 15
+			paternalism = 20
+			conservatism = 15
+		}
+		remove_all_ministers = yes
+		set_party_name = {
+			ideology = national_socialism_2
+			long_name = MCW_collab_national_socialism_long
+			name = MCW_collab_national_socialism
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = MCW_collab_fascism_long
+			name = MCW_collab_fascism
+		}
+		remove_faction_status = yes
+		add_ideas = Pakt_Reichsland
+		join_zollverein = yes
+		set_variable = { national_debt = 0 }
+	}
+
+}
+
+collab_regime_in_moscowien = {
+	ORL = {
+		MSK_Ivan_Bessonov = {
+			set_nationality = MCW
+		}
+	}
+	GER = {
+		set_autonomy = {
+			target = MCW
+			autonomy_state = autonomy_collaborator_puppet_state
+		}
+	}
+	MCW = {
+		clr_country_flag = german_names
+		set_cosmetic_tag = MCW_SGR_collab
+		GER_alexis_von_roenne = {
+			set_nationality = GER
+		}
+		set_politics = {
+			ruling_party = paternalism
+		}
+		add_country_leader_role = {
+			character = MSK_Ivan_Bessonov
+			country_leader = {
+				ideology = paternalism_national_conservatism_subtype
+				expire = "1999.3.4"
+				id = -1
+			}
+		}
+		promote_character = MSK_Ivan_Bessonov
+		remove_all_ministers = yes
+		remove_ideas = {
+			Pakt_Autonomous_Reichskommissariat
+			Pakt_Integrated_Reichskommissariat
+		}
+		add_ideas = {
+			Pakt_Marionettenstaat
+		}
+		join_zollverein = yes
+		set_popularities = {
+			fascism = 30
+			national_socialism = 20
+			paternalism = 34
+			conservatism = 16
+		}
+		set_party_name = {
+			ideology = national_socialism
+			long_name = MCW_collab_national_socialism_long
+			name = MCW_collab_national_socialism
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = MCW_collab_fascism_long
+			name = MCW_collab_fascism
+		}
+		set_party_name = {
+			ideology = paternalism
+			long_name = MCW_collab_paternalism_long
+			name = MCW_collab_paternalism
+		}
+		set_variable = { national_debt = 0 }
+		#state_control_effect_1431 = yes
+	}
+}

@@ -1,0 +1,2927 @@
+add_namespace = MAR_Kosygin
+add_namespace = MAR_Kosygin_Prestol
+add_namespace = MAR_Kosygin_OGAS
+add_namespace = MAR_Kosygin_UAR
+country_event = {#Dolzhnik 
+	id = MAR_Kosygin.1
+	title = MAR_Kosygin.1.t
+	desc = MAR_Kosygin.1.d
+	picture = GFX_event_MAR_Kosygin_1
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.1.a
+		ai_chance = { factor = 1 }	
+		country_event = {
+			id = MAR_Kosygin.2
+			days = 2
+		}
+	}
+}
+
+country_event = {#Vnezapniy doklad
+	id = MAR_Kosygin.2
+	title = MAR_Kosygin.2.t
+	desc = MAR_Kosygin.2.d
+	picture = GFX_event_MAR_Kosygin_2
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.2.a
+		ai_chance = { factor = 1 }	
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -100
+		}
+	}
+}
+
+country_event = {#Oblava
+	id = MAR_Kosygin.3
+	title = MAR_Kosygin.3.t
+	desc = MAR_Kosygin.3.d
+	picture = GFX_event_MAR_Kosygin_3
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.3.a
+		ai_chance = { factor = 1 }	
+		add_political_power = -50
+	}
+}
+
+country_event = {#Presolniki
+	id = MAR_Kosygin.4
+	title = MAR_Kosygin.4.t
+	desc = MAR_Kosygin.4.d
+	picture = GFX_event_MAR_Kosygin_4
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.4.a
+		ai_chance = { factor = 1 }	
+		country_event = {
+			id = MAR_Kosygin.5
+			days = 4
+		}
+	}
+}
+
+country_event = {#Prioritety
+	id = MAR_Kosygin.5
+	title = MAR_Kosygin.5.t
+	desc = MAR_Kosygin.5.d
+	picture = GFX_event_MAR_Kosygin_5
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.5.a
+		ai_chance = { factor = 1 }	
+		RUS_decrease_administrative_strain = yes
+	}
+}
+
+country_event = {#Always hide your cheat engine
+	id = MAR_Kosygin.6
+	title = MAR_Kosygin.6.t
+	desc = MAR_Kosygin.6.d
+	picture = GFX_event_MAR_Kosygin_6
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.6.a
+		country_event = { id = MAR_Kosygin.12 }
+		ai_chance = { factor = 1 }
+	}
+	option = {
+		name = MAR_Kosygin.6.b
+		ai_chance = { factor = 0 }
+		trigger = {
+			NOT = { has_country_flag = MAR_JOKER }
+		}
+		set_country_flag = MAR_JOKER
+		set_temp_variable = { TNO_temp_super_event = token:SE_KOSYGIN_SECRET }
+		TNO_fire_super_event = yes
+		MAR_advisor_Kosygin = {
+			set_portraits = {
+				civilian = { large = "gfx/leaders/MAR/Portrait_Berezniki_Kosygind_Joker.dds" }
+			}
+		}
+		add_country_leader_role = {
+			character = MAR_advisor_Kosygin
+			promote_leader = yes
+			country_leader = {
+				desc = "POLITICS_KOSYGIN_IRONY_DESC"
+				ideology = socialist_panafricanism_subtype 
+				expire = "1999.1.1"
+				traits = { char_ironist }
+			}
+		}
+		country_event = { id = MAR_Kosygin.6 }
+	}
+}
+
+country_event = {#Podgotovka
+	id = MAR_Kosygin.7
+	title = MAR_Kosygin.7.t
+	desc = MAR_Kosygin.7.d
+	picture = GFX_event_MAR_Kosygin_7
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.7.a
+		ai_chance = { factor = 1 }	
+		hidden_effect = {
+			country_event = {id = MAR_Kosygin.8 days = 7}
+		}
+		effect_tooltip = {
+			country_event = {id = MAR_Kosygin.10 days = 0}
+		}
+	}
+}
+
+country_event = {#Sled
+	id = MAR_Kosygin.8
+	title = MAR_Kosygin.8.t
+	desc = MAR_Kosygin.8.d
+	picture = GFX_event_MAR_Kosygin_8
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.8.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {id = MAR_Kosygin.9 days = 1}
+		}
+	}
+}
+
+country_event = {#Plan boini
+	id = MAR_Kosygin.9
+	title = MAR_Kosygin.9.t
+	desc = MAR_Kosygin.9.d
+	picture = GFX_event_MAR_Kosygin_9
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.9.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {id = MAR_Kosygin.10 days = 1}
+		}
+	}
+}
+
+country_event = {#Three men
+	id = MAR_Kosygin.10
+	title = MAR_Kosygin.10.t
+	desc = MAR_Kosygin.10.d
+	picture = GFX_event_MAR_Kosygin_10
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.10.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {id = MAR_Kosygin.11 days = 1}
+		}
+		effect_tooltip = {
+			country_event = {id = MAR_Kosygin.6 days = 0}
+		}
+	}
+}
+
+country_event = {#Koren Zla
+	id = MAR_Kosygin.11
+	title = MAR_Kosygin.11.t
+	desc = MAR_Kosygin.11.d
+	picture = GFX_event_MAR_Kosygin_11
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.11.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			country_event = {id = MAR_Kosygin.12 days = 1}
+		}
+		add_manpower = -1
+	}
+}
+
+country_event = {#Atack
+	id = MAR_Kosygin.12
+	title = MAR_Kosygin.12.t
+	desc = MAR_Kosygin.12.d
+	picture = GFX_event_MAR_Kosygin_12
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.12.a
+		ai_chance = { factor = 1 }	
+		country_event = {id = MAR_Kosygin.13 days = 0}
+		400 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+	}
+}
+
+country_event = {#Shock
+	id = MAR_Kosygin.13
+	title = MAR_Kosygin.13.t
+	desc = MAR_Kosygin.13.d
+	picture = GFX_event_MAR_Kosygin_13
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.13.a
+		ai_chance = { factor = 1 }	
+		country_event = {id = MAR_Kosygin.14 days = 0}
+		400 = {
+			damage_building = {
+				type = infrastructure
+				damage = 1
+			}
+		}
+		add_manpower = -502
+		
+	}
+}
+
+country_event = {#Aftermaths
+	id = MAR_Kosygin.14
+	title = MAR_Kosygin.14.t
+	desc = MAR_Kosygin.14.d
+	picture = GFX_event_MAR_Kosygin_14
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.14.a
+		ai_chance = { factor = 1 }
+		retire_character = MAR_Kazem_Bek
+		retire_character = MAR_Sergey_Belozerskiy
+		add_ideas = MAR_Generic_Vacant_hog
+		add_ideas = MAR_Generic_Vacant_sec
+		MAR_Prestol_start = yes
+		
+		hidden_effect = {
+			if = {
+				limit = { NOT = { has_country_flag = MAR_JOKER } }
+				add_country_leader_role = {
+					character = MAR_advisor_Kosygin
+					promote_leader = yes
+					country_leader = {
+						desc = "POLITICS_KOSYGIN_POSTBOMB_DESC"
+						ideology = socialist_social_monarchist_but_worse_subtype
+						expire = "1999.1.1"
+						traits = { char_reformator }
+					}
+				}
+			}
+			add_popularity = { ideology = despotism_1 popularity = -1 }
+			add_popularity = { ideology = despotism popularity = -1 }
+			add_popularity = { ideology = communist popularity = -1 }
+			set_country_flag = MAR_prestol_focus_tree
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+}
+
+country_event = {#gosplan
+	id = MAR_Kosygin.15
+	title = MAR_Kosygin.15.t
+	desc = MAR_Kosygin.15.d
+	picture = GFX_event_MAR_Kosygin_15
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.15.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#soviet capitalism
+	id = MAR_Kosygin.16
+	title = MAR_Kosygin.16.t
+	desc = MAR_Kosygin.16.d
+	picture = GFX_event_MAR_Kosygin_16
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.16.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#foreign specs
+	id = MAR_Kosygin.17
+	title = MAR_Kosygin.17.t
+	desc = MAR_Kosygin.17.d
+	picture = GFX_event_MAR_Kosygin_17
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.17.a
+		ai_chance = { factor = 1 }
+	
+	}
+}
+
+country_event = {#double factories
+	id = MAR_Kosygin.18
+	title = MAR_Kosygin.18.t
+	desc = MAR_Kosygin.18.d
+	picture = GFX_event_MAR_Kosygin_18
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.18.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#ogas
+	id = MAR_Kosygin.19
+	title = MAR_Kosygin.19.t
+	desc = MAR_Kosygin.19.d
+	picture = GFX_event_MAR_Kosygin_19
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.19.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#kulaks
+	id = MAR_Kosygin.20
+	title = MAR_Kosygin.20.t
+	desc = MAR_Kosygin.20.d
+	picture = GFX_event_MAR_Kosygin_20
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.20.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#japanese robots
+	id = MAR_Kosygin.21
+	title = MAR_Kosygin.21.t
+	desc = MAR_Kosygin.21.d
+	picture = GFX_event_MAR_Kosygin_21
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.21.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#american stuff
+	id = MAR_Kosygin.22
+	title = MAR_Kosygin.22.t
+	desc = MAR_Kosygin.22.d
+	picture = GFX_event_MAR_Kosygin_22
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.22.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#best education in the world (c)
+	id = MAR_Kosygin.23
+	title = MAR_Kosygin.23.t
+	desc = MAR_Kosygin.23.d
+	picture = GFX_event_MAR_Kosygin_23
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.23.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#based report
+	id = MAR_Kosygin.24
+	title = MAR_Kosygin.24.t
+	desc = MAR_Kosygin.24.d
+	picture = GFX_event_MAR_Kosygin_24
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.24.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#army reform
+	id = MAR_Kosygin.25
+	title = MAR_Kosygin.25.t
+	desc = MAR_Kosygin.25.d
+	picture = GFX_event_MAR_Kosygin_25
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.25.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#New training
+	id = MAR_Kosygin.26
+	title = MAR_Kosygin.26.t
+	desc = MAR_Kosygin.26.d
+	picture = GFX_event_MAR_Kosygin_26
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.26.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#new academy
+	id = MAR_Kosygin.27
+	title = MAR_Kosygin.27.t
+	desc = MAR_Kosygin.27.d
+	picture = GFX_event_MAR_Kosygin_27
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.27.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#mfa
+	id = MAR_Kosygin.28
+	title = MAR_Kosygin.28.t
+	desc = MAR_Kosygin.28.d
+	picture = GFX_event_MAR_Kosygin_28
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.28.a
+		ai_chance = { factor = 1 }	
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = MAR_RFI_alliance }
+				RFI = {
+					econ_join_sphere_MAR = yes
+				}
+			}
+		    MAR = {
+				econ_join_sphere_MAR = yes
+			}
+			set_country_flag = HAS_ECON_SPHERE
+			for_each_scope_loop = {
+				array = MAR.subjects
+				set_variable = { ECON_SPHERE_LEADER = MAR }
+			}
+			MAR = { set_variable = { SPHERE_INSULARITY = 5 } }
+		}
+		custom_effect_tooltip = MAR_create_econ_sphere
+		add_political_power = 50
+	}
+}
+
+country_event = {#two axis
+	id = MAR_Kosygin.29
+	title = MAR_Kosygin.29.t
+	desc = MAR_Kosygin.29.d
+	picture = GFX_event_MAR_Kosygin_29
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.29.a
+		ai_chance = { factor = 1 }	
+		custom_effect_tooltip = MAR_Kosygin_choose_fopo_tt
+		add_stability = -0.025
+	}
+}
+
+country_event = {#fromruswithlove
+	id = MAR_Kosygin.30
+	title = MAR_Kosygin.30.t
+	desc = MAR_Kosygin.30.d
+	picture = GFX_event_MAR_Kosygin_30
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.30.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#red cross help
+	id = MAR_Kosygin.31
+	title = MAR_Kosygin.31.t
+	desc = MAR_Kosygin.31.d
+	picture = GFX_event_MAR_Kosygin_31
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.31.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#east window
+	id = MAR_Kosygin.32
+	title = MAR_Kosygin.32.t
+	desc = MAR_Kosygin.32.d
+	picture = GFX_event_MAR_Kosygin_32
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.32.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#tokyo embussy
+	id = MAR_Kosygin.33
+	title = MAR_Kosygin.33.t
+	desc = MAR_Kosygin.33.d
+	picture = GFX_event_MAR_Kosygin_33
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.33.a
+		ai_chance = { factor = 1 }	
+		
+	}
+}
+
+country_event = {#india trip
+	id = MAR_Kosygin.34
+	title = MAR_Kosygin.34.t
+	desc = MAR_Kosygin.34.d
+	picture = GFX_event_MAR_Kosygin_34
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.34.a
+		ai_chance = { factor = 1 }	
+		set_temp_variable = { gdp_growth_temp = 0.2 }
+		econ_gdp_growth_change = yes
+		IND = {
+			set_temp_variable = { gdp_growth_temp = 0.3 }
+			econ_gdp_growth_change = yes
+		}
+	}
+}
+
+country_event = {#agents ural
+	id = MAR_Kosygin.35
+	title = MAR_Kosygin.35.t
+	desc = MAR_Kosygin.35.d
+	picture = GFX_event_MAR_Kosygin_35
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.35.a
+		ai_chance = { factor = 1 }	
+		every_country = {
+			limit = { is_west_siberian_nation = yes }
+			add_ideas = {
+				MAR_Kosygin_WSB_sabotage
+			}
+		}
+	}
+}
+
+country_event = {#red legion
+	id = MAR_Kosygin.36
+	title = MAR_Kosygin.36.t
+	desc = MAR_Kosygin.36.d
+	picture = GFX_event_MAR_Kosygin_36
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.36.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#third world stuff
+	id = MAR_Kosygin.37
+	title = MAR_Kosygin.37.t
+	desc = MAR_Kosygin.37.d
+	picture = GFX_event_MAR_Kosygin_37
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.36.a
+		ai_chance = { factor = 1 }	
+		set_temp_variable = { gdp_growth_temp = 0.1 }
+		econ_gdp_growth_change = yes
+	}
+}
+
+country_event = {#global ohvat	
+	id = MAR_Kosygin.38
+	title = MAR_Kosygin.38.t
+	desc = MAR_Kosygin.38.d
+	picture = GFX_event_MAR_Kosygin_38
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.38.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#porog
+	id = MAR_Kosygin.39
+	title = MAR_Kosygin.39.t
+	desc = MAR_Kosygin.39.d
+	picture = GFX_event_MAR_Kosygin_39
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.39.a
+		ai_chance = { factor = 1 }	
+		RUS_integration_cost_days_decrease = yes	
+	}
+}
+
+country_event = {#archives
+	id = MAR_Kosygin.40
+	title = MAR_Kosygin.40.t
+	desc = MAR_Kosygin.40.d
+	picture = GFX_event_MAR_Kosygin_40
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.40.a
+		ai_chance = { factor = 1 }	
+		add_stability = 0.05
+	}
+}
+
+country_event = {#alexei is actuali alive?????
+	id = MAR_Kosygin.41
+	title = MAR_Kosygin.41.t
+	desc = MAR_Kosygin.41.d
+	picture = GFX_event_MAR_Kosygin_41
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.41.a
+		ai_chance = { factor = 1 }	
+		add_political_power = 50
+		add_popularity = {
+			ideology = socialist
+			popularity = 0.05
+		}
+	}
+}
+country_event = {#lenin - vam nahooy
+	id = MAR_Kosygin.42
+	title = MAR_Kosygin.42.t
+	desc = MAR_Kosygin.42.d
+	picture = GFX_event_MAR_Kosygin_42
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.42.a
+		ai_chance = { factor = 1 }	
+		add_stability = 0.05
+	}
+}
+
+country_event = {#red vs whites - is bad
+	id = MAR_Kosygin.43
+	title = MAR_Kosygin.43.t
+	desc = MAR_Kosygin.43.d
+	picture = GFX_event_MAR_Kosygin_43
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.43.a
+		ai_chance = { factor = 1 }	
+		add_political_power = 100
+		custom_effect_tooltip = MAR_tt_dolina_primireniya
+        hidden_effect = {
+            set_country_flag = MAR_dolina_primireniya
+        }
+	}
+}
+
+country_event = {#monsoc is cool
+	id = MAR_Kosygin.44
+	title = MAR_Kosygin.44.t
+	desc = MAR_Kosygin.44.d
+	picture = GFX_event_MAR_Kosygin_44
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.44.a
+		ai_chance = { factor = 1 }	
+		RUS_integration_cost_days_decrease = yes	
+	}
+}
+
+country_event = {#thaw
+	id = MAR_Kosygin.45
+	title = MAR_Kosygin.45.t
+	desc = MAR_Kosygin.45.d
+	picture = GFX_event_MAR_Kosygin_45
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.45.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#red and white
+	id = MAR_Kosygin.46
+	title = MAR_Kosygin.46.t
+	desc = MAR_Kosygin.46.d
+	picture = GFX_event_MAR_Kosygin_46
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.46.a
+		ai_chance = { factor = 1 }	
+		add_manpower = 75000
+	}
+}
+
+country_event = {#gil meetup
+	id = MAR_Kosygin.47
+	title = MAR_Kosygin.47.t
+	desc = MAR_Kosygin.47.d
+	picture = GFX_event_MAR_Kosygin_47
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.47.a
+		ai_chance = { factor = 1 }	
+		add_war_support = 0.1
+	}
+}
+
+country_event = {#le etud
+	id = MAR_Kosygin.48
+	title = MAR_Kosygin.48.t
+	desc = MAR_Kosygin.48.d
+	picture = GFX_event_MAR_Kosygin_48
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.48.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#nuke event numbero uno
+	id = MAR_Kosygin.49
+	title = MAR_Kosygin.49.t
+	desc = MAR_Kosygin.49.d
+	picture = GFX_event_MAR_Kosygin_49
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.49.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#nuke event numbero dos
+	id = MAR_Kosygin.50
+	title = MAR_Kosygin.50.t
+	desc = MAR_Kosygin.50.d
+	picture = GFX_event_MAR_Kosygin_50
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.50.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#nuke event numbero tres
+	id = MAR_Kosygin.51
+	title = MAR_Kosygin.51.t
+	desc = MAR_Kosygin.51.d
+	picture = GFX_event_MAR_Kosygin_51
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.51.a
+		ai_chance = { factor = 1 }	
+		#set_country_flag = mar_has_nukes
+		#set_variable = { nuclear_stockpile = 4 }
+		#set_variable = { nuclear_global_coverage = 0.35 }
+		#add_to_variable = { nuclear_stockpile_change = 7 }
+		#calculate_strike_capability = yes
+	}
+}
+
+country_event = {#red imams
+	id = MAR_Kosygin.52
+	title = MAR_Kosygin.52.t
+	desc = MAR_Kosygin.52.d
+	picture = GFX_event_MAR_Kosygin_52
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.52.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#purges in steppe
+	id = MAR_Kosygin.53
+	title = MAR_Kosygin.53.t
+	desc = MAR_Kosygin.53.d
+	picture = GFX_event_MAR_Kosygin_53
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.53.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#arbeit macht frei - funny nazi reference i am very smart am i
+	id = MAR_Kosygin.54
+	title = MAR_Kosygin.54.t
+	desc = MAR_Kosygin.54.d
+	picture = GFX_event_MAR_Kosygin_54
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.54.a
+		ai_chance = { factor = 1 }	
+		TNO_improve_poverty_low = yes		
+		TNO_improve_industrial_expertise_med = yes
+	}
+}
+
+country_event = {#russification
+	id = MAR_Kosygin.55
+	title = MAR_Kosygin.55.t
+	desc = MAR_Kosygin.55.d
+	picture = GFX_event_MAR_Kosygin_55
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.55.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#akmola celebration
+	id = MAR_Kosygin.56
+	title = MAR_Kosygin.56.t
+	desc = MAR_Kosygin.56.d
+	picture = GFX_event_MAR_Kosygin_56
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.56.a
+		ai_chance = { factor = 1 }	
+		add_ideas = MAR_Kosygin_kaz_legions
+		if = {
+			limit = {
+				MKZ = {
+					exists = yes
+					has_government = despotism
+				}
+			}
+			custom_effect_tooltip = KAZ_mil_annexation_tt
+			hidden_effect = {
+				MKZ = {
+					every_owned_state = {
+						remove_core_of = MKZ
+						remove_core_of = KAZ
+						remove_core_of = KZR
+					}
+				}
+				annex_country = {
+					target = MKZ
+					transfer_troops = yes
+				}
+				RWS = {
+					add_state_core = 407
+					add_state_core = 406
+					add_state_core = 402
+					add_state_core = 583
+					add_state_core = 587
+					add_state_core = 404
+					add_state_core = 1807
+					add_state_core = 590
+					add_state_core = 1808
+					add_state_core = 1802
+					add_state_core = 1803
+					add_state_core = 1804
+					add_state_core = 1805
+					add_state_core = 1806
+					add_state_core = 589
+					add_state_core = 588
+				}
+			}
+		}
+	}
+}
+
+country_event = {#future, forward!
+	id = MAR_Kosygin.57
+	title = MAR_Kosygin.57.t
+	desc = MAR_Kosygin.57.d
+	picture = GFX_event_MAR_Kosygin_57
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.57.a
+		ai_chance = { factor = 1 }	
+		load_focus_tree = { tree = MAR_Kosygin_post_unification keep_completed = no }
+	}
+}
+
+country_event = {#free space
+	id = MAR_Kosygin.58
+	title = MAR_Kosygin.58.t
+	desc = MAR_Kosygin.58.d
+	picture = GFX_event_MAR_Kosygin_58
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.58.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#Y (how the fuck i forgot about this tree)
+	id = MAR_Kosygin.59
+	title = MAR_Kosygin.59.t
+	desc = MAR_Kosygin.59.d
+	picture = GFX_event_MAR_Kosygin_59	
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.59.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+
+country_event = {#KGB
+	id = MAR_Kosygin.60
+	title = MAR_Kosygin.60.t
+	desc = MAR_Kosygin.60.d
+	picture = GFX_event_MAR_Kosygin_60
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.60.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#checking the pulse
+	id = MAR_Kosygin.61
+	title = MAR_Kosygin.61.t
+	desc = MAR_Kosygin.61.d
+	picture = GFX_event_MAR_Kosygin_61
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.61.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#1984 
+	id = MAR_Kosygin.62
+	title = MAR_Kosygin.62.t
+	desc = MAR_Kosygin.62.d
+	picture = GFX_event_MAR_Kosygin_62
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.62.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#GKChP
+	id = MAR_Kosygin.63
+	title = MAR_Kosygin.63.t
+	desc = MAR_Kosygin.63.d
+	picture = GFX_event_MAR_Kosygin_63
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.63.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#work
+	id = MAR_Kosygin.64
+	title = MAR_Kosygin.64.t
+	desc = MAR_Kosygin.64.d
+	picture = GFX_event_MAR_Kosygin_64
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.64.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#new congress
+	id = MAR_Kosygin.65
+	title = MAR_Kosygin.65.t
+	desc = MAR_Kosygin.65.d
+	picture = GFX_event_MAR_Kosygin_65
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.65.a
+		ai_chance = { factor = 1 }	
+	}
+}
+country_event = {#fate of order
+	id = MAR_Kosygin.66
+	title = MAR_Kosygin.66.t
+	desc = MAR_Kosygin.66.d
+	picture = GFX_event_MAR_Kosygin_66
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.66.a
+		ai_chance = { factor = 1 }	
+		remove_dynamic_modifier = { modifier = MAR_military_order_modifier }
+		set_variable = {
+			var = MAR_ord_monthly_population
+			value = 0.05
+		}
+		set_variable = {
+			var = MAR_ord_stability_factor
+			value = 0.015
+		}
+		set_variable = {
+			var = MAR_ord_political_power_factor
+			value = -0.1
+		}
+		set_variable = {
+			var = MAR_ord_taxable_population_modifier
+			value = 0
+		}
+		set_variable = {
+			var = MAR_ord_land_reinforce_rate
+			value = 0
+		}
+		set_variable = {
+			var = MAR_ord_experience_loss_factor
+			value = 0
+		}
+		add_dynamic_modifier = {modifier = MAR_military_order_modifier}
+		country_event = { id = MAR_Kosygin.67 days = 4 }
+	}
+}
+country_event = {#the letter
+	id = MAR_Kosygin.67
+	title = MAR_Kosygin.67.t
+	desc = MAR_Kosygin.67.d
+	picture = GFX_event_MAR_Kosygin_67
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.67.a
+		ai_chance = { factor = 1 }	
+	}
+}
+country_event = {#order stuff
+	id = MAR_Kosygin.68
+	title = MAR_Kosygin.68.t
+	desc = MAR_Kosygin.68.d
+	picture = GFX_event_MAR_Kosygin_68
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.68.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = {#order stuff
+	id = MAR_Kosygin.69
+	title = MAR_Kosygin.69.t
+	desc = MAR_Kosygin.69.d
+	picture = GFX_event_MAR_Kosygin_69
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.69.a
+		ai_chance = { factor = 1 }	
+	}
+}
+
+country_event = { #Good catch
+	id = MAR_Kosygin.70
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.70" }
+	title = MAR_Kosygin.70.t
+	desc = MAR_Kosygin.70.d
+	picture = GFX_event_MAR_Kosygin_70
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.70.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.71
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.71" }
+	title = MAR_Kosygin.71.t
+	desc = MAR_Kosygin.71.d
+	picture = GFX_event_MAR_Kosygin_71
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.71.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.72
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.72" }
+	title = MAR_Kosygin.72.t
+	desc = MAR_Kosygin.72.d
+	picture = GFX_event_MAR_Kosygin_72
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.72.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.73
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.73" }
+	title = MAR_Kosygin.73.t
+	desc = MAR_Kosygin.73.d
+	picture = GFX_event_MAR_Kosygin_73
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.73.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.74
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.74" }
+	title = MAR_Kosygin.74.t
+	desc = MAR_Kosygin.74.d
+	picture = GFX_event_MAR_Kosygin_74
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.74.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.75
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.75" }
+	title = MAR_Kosygin.75.t
+	desc = MAR_Kosygin.75.d
+	picture = GFX_event_MAR_Kosygin_75
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.75.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.76
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.76" }
+	title = MAR_Kosygin.76.t
+	desc = MAR_Kosygin.76.d
+	picture = GFX_event_MAR_Kosygin_76
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.76.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.77
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.77" }
+	title = MAR_Kosygin.77.t
+	desc = MAR_Kosygin.77.d
+	picture = GFX_event_MAR_Kosygin_77
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.77.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.78
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.78" }
+	title = MAR_Kosygin.78.t
+	desc = MAR_Kosygin.78.d
+	picture = GFX_event_MAR_Kosygin_78
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.78.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.79
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.79" }
+	title = MAR_Kosygin.79.t
+	desc = MAR_Kosygin.79.d
+	picture = GFX_event_MAR_Kosygin_79
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.79.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.80
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.80" }
+	title = MAR_Kosygin.80.t
+	desc = MAR_Kosygin.80.d
+	picture = GFX_event_MAR_Kosygin_80
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.80.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.81
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.81" }
+	title = MAR_Kosygin.81.t
+	desc = MAR_Kosygin.81.d
+	picture = GFX_event_MAR_Kosygin_81
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.81.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.82
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.82" }
+	title = MAR_Kosygin.82.t
+	desc = MAR_Kosygin.82.d
+	picture = GFX_event_MAR_Kosygin_82
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.82.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.83
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.83" }
+	title = MAR_Kosygin.83.t
+	desc = MAR_Kosygin.83.d
+	picture = GFX_event_MAR_Kosygin_83
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.83.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.84
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.84" }
+	title = MAR_Kosygin.84.t
+	desc = MAR_Kosygin.84.d
+	picture = GFX_event_MAR_Kosygin_84
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.84.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.85
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.85" }
+	title = MAR_Kosygin.85.t
+	desc = MAR_Kosygin.85.d
+	picture = GFX_event_MAR_Kosygin_85
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.85.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.86
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.86" }
+	title = MAR_Kosygin.86.t
+	desc = MAR_Kosygin.86.d
+	picture = GFX_event_MAR_Kosygin_86
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.86.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.87
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.87" }
+	title = MAR_Kosygin.87.t
+	desc = MAR_Kosygin.87.d
+	picture = GFX_event_MAR_Kosygin_87
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.87.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.88
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.88" }
+	title = MAR_Kosygin.88.t
+	desc = MAR_Kosygin.88.d
+	picture = GFX_event_MAR_Kosygin_88
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.88.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.89
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.89" }
+	title = MAR_Kosygin.89.t
+	desc = MAR_Kosygin.89.d
+	picture = GFX_event_MAR_Kosygin_89
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.89.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.90
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.90" }
+	title = MAR_Kosygin.90.t
+	desc = MAR_Kosygin.90.d
+	picture = GFX_event_MAR_Kosygin_90
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.90.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin.91
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.91" }
+	title = MAR_Kosygin.91.t
+	desc = MAR_Kosygin.91.d
+	picture = GFX_event_MAR_Kosygin_91
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.91.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Alexei, tsar of all russias
+	id = MAR_Kosygin.92
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.92" }
+	title = MAR_Kosygin.92.t
+	desc = MAR_Kosygin.92.d
+	picture = GFX_report_event_RUS_double_headed_eagle
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.92.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #Training
+	id = MAR_Kosygin.93
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.93" }
+	title = MAR_Kosygin.93.t
+	desc = MAR_Kosygin.93.d
+	picture = GFX_event_MAR_Kosygin_93
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.93.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+country_event = { #Building the F-E
+	id = MAR_Kosygin.94
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.94" }
+	title = MAR_Kosygin.94.t
+	desc = MAR_Kosygin.94.d
+	picture = GFX_event_MAR_Kosygin_94
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.94.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+country_event = { #On the beaches of California
+	id = MAR_Kosygin.95
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.95" }
+	title = MAR_Kosygin.95.t
+	desc = MAR_Kosygin.95.d
+	picture = GFX_event_MAR_Kosygin_95
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.95.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+country_event = { #In the mounts of Kanto
+	id = MAR_Kosygin.96
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.96" }
+	title = MAR_Kosygin.96.t
+	desc = MAR_Kosygin.96.d
+	picture = GFX_event_MAR_Kosygin_96
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.96.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+country_event = { #Tsars speech
+	id = MAR_Kosygin.97
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin.97" }
+	title = MAR_Kosygin.97.t
+	desc = MAR_Kosygin.97.d
+	picture = GFX_report_event_RUS_motherland_calls_poster
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin.97.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = RUS_territorial_reclamation_available_tt
+		set_country_flag = RUS_postreunification_tree_completed
+	}
+}
+country_event = {#valley of peace
+	id = MAR_Kosygin.100
+	title = MAR_Kosygin.100.t
+	desc = MAR_Kosygin.100.d
+	picture = GFX_event_MAR_Kosygin_100
+	is_triggered_only = yes
+	
+	option = {
+		name = MAR_Kosygin.100.a
+		ai_chance = { factor = 1 }	
+		add_stability = 0.05
+		clr_country_flag = MAR_dolina_primireniya
+	}
+}
+
+
+country_event = { #262 event 1
+	id = MAR_Kosygin_Prestol.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.1" }
+	title = MAR_Kosygin_Prestol.1.t
+	desc = MAR_Kosygin_Prestol.1.d
+	picture = GFX_event_MAR_Kosygin_Prestol_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.1.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_oper_avaiable_tt
+		add_stability = 0.02
+		262 = {
+			set_variable = { operation_available = 1 }
+		}
+	}
+}
+
+country_event = { #262 event 2
+	id = MAR_Kosygin_Prestol.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.2" }
+	title = MAR_Kosygin_Prestol.2.t
+	desc = MAR_Kosygin_Prestol.2.d
+	picture = GFX_event_MAR_Kosygin_Prestol_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.2.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_purge_narienmar_tt
+		262 = {
+			add_to_variable = { insurgency_strengthTrend = -0.02 }
+			add_to_variable = { insurgency_strength = -0.2 }
+			set_variable = { kosygin_reception = 1 }
+			MAR_clamp_insurgency_strength = yes
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = ultranationalism
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+		MAR_prestol_calc_nationwide_strength = yes
+	}
+}
+
+country_event = { #214 event 1
+	id = MAR_Kosygin_Prestol.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.3" }
+	title = MAR_Kosygin_Prestol.3.t
+	desc = MAR_Kosygin_Prestol.3.d
+	picture = GFX_event_MAR_Kosygin_Prestol_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.3.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_oper_avaiable_tt
+		add_stability = 0.02
+		214 = {
+			set_variable = { operation_available = 1 }
+		}
+	}
+}
+
+country_event = { #214 event 2
+	id = MAR_Kosygin_Prestol.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.4" }
+	title = MAR_Kosygin_Prestol.4.t
+	desc = MAR_Kosygin_Prestol.4.d
+	picture = GFX_event_MAR_Kosygin_Prestol_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.4.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_purge_arkhangelsk_tt
+		214 = {
+			add_to_variable = { insurgency_strengthTrend = -0.02 }
+			add_to_variable = { insurgency_strength = -0.2 }
+			set_variable = { kosygin_reception = 1 }
+			MAR_clamp_insurgency_strength = yes
+		}
+		add_political_power = 50
+		MAR_prestol_calc_nationwide_strength = yes
+		hidden_effect = {
+			add_popularity = {
+				ideology = despotism_2
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+	}
+}
+
+country_event = { #397 event 1
+	id = MAR_Kosygin_Prestol.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.5" }
+	title = MAR_Kosygin_Prestol.5.t
+	desc = MAR_Kosygin_Prestol.5.d
+	picture = GFX_event_MAR_Kosygin_Prestol_5
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.5.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_oper_avaiable_tt
+		add_stability = 0.02
+		397 = {
+			set_variable = { operation_available = 1 }
+		}
+	}
+}
+
+country_event = { #397 event 2
+	id = MAR_Kosygin_Prestol.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.6" }
+	title = MAR_Kosygin_Prestol.6.t
+	desc = MAR_Kosygin_Prestol.6.d
+	picture = GFX_event_MAR_Kosygin_Prestol_6
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.6.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_purge_syktyvkar_tt
+		397 = {
+			add_to_variable = { insurgency_strengthTrend = -0.02 }
+			add_to_variable = { insurgency_strength = -0.2 }
+			set_variable = { kosygin_reception = 1 }
+			MAR_clamp_insurgency_strength = yes
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+			add_popularity = {
+				ideology = ultranationalism
+				popularity = -1
+			}
+		}
+		add_political_power = 50
+		hidden_effect = {
+			set_temp_variable = { tempRandom = 50 }
+			randomize_temp_variable = {
+				var = tempRandom
+				distribution = uniform
+				min = 20
+				max = 100
+			}
+			multiply_temp_variable = { tempRandom = -1 }
+			round_temp_variable = tempRandom
+		}
+		add_manpower = var:tempRandom
+		MAR_prestol_calc_nationwide_strength = yes
+	}
+}
+
+country_event = { #252 event 1
+	id = MAR_Kosygin_Prestol.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.7" }
+	title = MAR_Kosygin_Prestol.7.t
+	desc = MAR_Kosygin_Prestol.7.d
+	picture = GFX_event_MAR_Kosygin_Prestol_7
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.7.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_oper_avaiable_tt
+		add_stability = 0.02
+		252 = {
+			set_variable = { operation_available = 1 }
+		}
+	}
+}
+
+country_event = { #252 event 2
+	id = MAR_Kosygin_Prestol.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.8" }
+	title = MAR_Kosygin_Prestol.8.t
+	desc = MAR_Kosygin_Prestol.8.d
+	picture = GFX_event_MAR_Kosygin_Prestol_8
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.8.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_purge_gorky_tt
+		252 = {
+			add_to_variable = { insurgency_strengthTrend = -0.02 }
+			add_to_variable = { insurgency_strength = -0.2 }
+			set_variable = { kosygin_reception = 1 }
+			MAR_clamp_insurgency_strength = yes
+		}
+		add_political_power = 50
+		TNO_improve_poverty_low = yes
+		MAR_prestol_calc_nationwide_strength = yes
+		hidden_effect = {
+			add_popularity = {
+				ideology = communist_1
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+	}
+}
+
+country_event = { #753 event 1
+	id = MAR_Kosygin_Prestol.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.9" }
+	title = MAR_Kosygin_Prestol.9.t
+	desc = MAR_Kosygin_Prestol.9.d
+	picture = GFX_event_MAR_Kosygin_Prestol_9
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.9.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_oper_avaiable_tt
+		add_stability = 0.02
+		753 = {
+			set_variable = { operation_available = 1 }
+		}
+	}
+}
+
+country_event = { #753 event 2
+	id = MAR_Kosygin_Prestol.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.10" }
+	title = MAR_Kosygin_Prestol.10.t
+	desc = MAR_Kosygin_Prestol.10.d
+	picture = GFX_event_MAR_Kosygin_Prestol_10
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.10.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_purge_perm_tt
+		753 = {
+			add_to_variable = { insurgency_strengthTrend = -0.02 }
+			add_to_variable = { insurgency_strength = -0.2 }
+			set_variable = { kosygin_reception = 1 }
+			MAR_clamp_insurgency_strength = yes
+		}
+		add_political_power = 50
+		hidden_effect = {
+			set_temp_variable = { tempRandom = 100 }
+			randomize_temp_variable = {
+				var = tempRandom
+				distribution = uniform
+				min = 80
+				max = 200
+			}
+			multiply_temp_variable = { tempRandom = -1 }
+			round_temp_variable = tempRandom
+		}
+		add_manpower = var:tempRandom
+		MAR_prestol_calc_nationwide_strength = yes
+		hidden_effect = {
+			add_popularity = {
+				ideology = national_socialism_1
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+	}
+}
+
+country_event = { #850 event 1
+	id = MAR_Kosygin_Prestol.11
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.11" }
+	title = MAR_Kosygin_Prestol.11.t
+	desc = MAR_Kosygin_Prestol.11.d
+	picture = GFX_event_MAR_Kosygin_Prestol_11
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.11.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_oper_avaiable_tt
+		add_stability = 0.02
+		850 = {
+			set_variable = { operation_available = 1 }
+		}
+	}
+}
+
+country_event = { #850 event 2
+	id = MAR_Kosygin_Prestol.12
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.12" }
+	title = MAR_Kosygin_Prestol.12.t
+	desc = MAR_Kosygin_Prestol.12.d
+	picture = GFX_event_MAR_Kosygin_Prestol_12
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.12.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_purge_samara_tt
+		850 = {
+			add_to_variable = { insurgency_strengthTrend = -0.02 }
+			add_to_variable = { insurgency_strength = -0.2 }
+			set_variable = { kosygin_reception = 1 }
+			MAR_clamp_insurgency_strength = yes
+		}
+		hidden_effect = {
+			add_popularity = {
+				ideology = national_socialism_2
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = national_socialism
+				popularity = 0.01
+			}
+		}
+		add_political_power = 50
+		hidden_effect = {
+			set_temp_variable = { tempRandom = 50 }
+			randomize_temp_variable = {
+				var = tempRandom
+				distribution = uniform
+				min = 20
+				max = 100
+			}
+			multiply_temp_variable = { tempRandom = -1 }
+			round_temp_variable = tempRandom
+		}
+		add_manpower = var:tempRandom
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = 160
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = 5
+			producer = GER
+		}
+		add_equipment_to_stockpile = {
+			type = motorized_equipment
+			amount = 12
+			producer = SAM
+		}
+		MAR_prestol_calc_nationwide_strength = yes
+	}
+}
+
+country_event = { #400 event 1
+	id = MAR_Kosygin_Prestol.13
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.13" }
+	title = MAR_Kosygin_Prestol.13.t
+	desc = MAR_Kosygin_Prestol.13.d
+	picture = GFX_event_MAR_Kosygin_Prestol_13
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.13.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			set_temp_variable = { tempRandom = 20 }
+			randomize_temp_variable = {
+				var = tempRandom
+				distribution = uniform
+				min = 10
+				max = 40
+			}
+			multiply_temp_variable = { tempRandom = -1 }
+			round_temp_variable = tempRandom
+		}
+		add_manpower = var:tempRandom
+		army_experience = 5
+		country_event = { id = MAR_Kosygin_Prestol.14 days = 3 }
+	}
+}
+
+country_event = { #400 event 2
+	id = MAR_Kosygin_Prestol.14
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.14" }
+	title = MAR_Kosygin_Prestol.14.t
+	desc = MAR_Kosygin_Prestol.14.d
+	picture = GFX_event_MAR_Kosygin_Prestol_14
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.14.a
+		set_country_flag = MAR_prestol_tabby_ded
+		ai_chance = { factor = 1 }
+		add_manpower = -1
+		country_event = { id = MAR_Kosygin_Prestol.15 days = 3 }
+	}
+}
+
+country_event = { #success
+	id = MAR_Kosygin_Prestol.15
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.15" }
+	title = MAR_Kosygin_Prestol.15.t
+	desc = MAR_Kosygin_Prestol.15.d
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.15.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_prestol_end_tt
+		add_stability = 0.05
+		remove_ideas = MAR_prestol_dynmod_dummy
+		clr_country_flag = MAR_prestol_active
+		set_country_flag = MAR_order_Kosygin
+		hidden_effect = {
+			add_popularity = {
+				ideology = despotism_2
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = communist_1
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = ultranationalism
+				popularity = -1
+			}	
+			add_popularity = {
+				ideology = national_socialism
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = national_socialism_1
+				popularity = -1
+			}
+			add_popularity = {
+				ideology = national_socialism_2
+				popularity = -1
+			}
+			set_party_name = {
+				ideology = national_socialism
+				long_name = MAR_national_socialism_post_prestol_party_long
+				name = MAR_national_socialism_post_prestol_party
+			}
+		} 
+	}
+}
+
+country_event = { #fail 1
+	id = MAR_Kosygin_Prestol.16
+	immediate = {
+		log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.16"
+		hidden_effect = {
+			scoped_play_song = "clock_over"
+		}
+	}
+	title = MAR_Kosygin_Prestol.16.t
+	desc = MAR_Kosygin_Prestol.16.d
+	picture = GFX_event_MAR_Kosygin_Prestol_16
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.16.a
+		ai_chance = { factor = 1 }
+		add_stability = -0.3
+		add_war_support = -0.3
+		custom_effect_tooltip = MAR_Kosygin_die_tt
+		hidden_effect = {
+			retire_character = MAR_advisor_Kosygin
+		}
+		set_politics = {
+			ruling_party = national_socialism
+		}
+		clr_country_flag = MAR_prestol_active
+		country_event = { id = MAR_Kosygin_Prestol.17 days = 10 }
+	}
+}
+
+country_event = { #fail 2
+	id = MAR_Kosygin_Prestol.17
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.17" }
+	title = MAR_Kosygin_Prestol.17.t
+	desc = MAR_Kosygin_Prestol.17.d
+	picture = GFX_event_MAR_Kosygin_Prestol_17
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.17.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = MAR_Westrussian_collapse_tt
+		hidden_effect = {
+			TaS_Kosygin_westrussian_collapse = yes
+		}	
+	}
+}
+
+country_event = { #flavour 1
+	id = MAR_Kosygin_Prestol.18
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.18" }
+	title = MAR_Kosygin_Prestol.18.t
+	desc = MAR_Kosygin_Prestol.18.d
+	picture = GFX_event_MAR_Kosygin_Prestol_18
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.18.a
+		ai_chance = { factor = 1 }
+		add_manpower = -2
+	}
+}
+
+country_event = { #flavour 2
+	id = MAR_Kosygin_Prestol.19
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.19" }
+	title = MAR_Kosygin_Prestol.19.t
+	desc = MAR_Kosygin_Prestol.19.d
+	picture = GFX_event_MAR_Kosygin_Prestol_19
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.19.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #flavour 3
+	id = MAR_Kosygin_Prestol.20
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.20" }
+	title = MAR_Kosygin_Prestol.20.t
+	desc = MAR_Kosygin_Prestol.20.d
+	picture = GFX_event_MAR_Kosygin_Prestol_20
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.20.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			set_temp_variable = { tempRandom = 20 }
+			randomize_temp_variable = {
+				var = tempRandom
+				distribution = uniform
+				min = 10
+				max = 40
+			}
+			multiply_temp_variable = { tempRandom = -1 }
+			round_temp_variable = tempRandom
+		}
+	}
+}
+
+country_event = { #flavour 4
+	id = MAR_Kosygin_Prestol.21
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.21" }
+	title = MAR_Kosygin_Prestol.21.t
+	desc = MAR_Kosygin_Prestol.21.d
+	picture = GFX_event_MAR_Kosygin_Prestol_21
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.21.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #flavour 5
+	id = MAR_Kosygin_Prestol.22
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.22" }
+	title = MAR_Kosygin_Prestol.22.t
+	desc = MAR_Kosygin_Prestol.22.d
+	picture = GFX_event_MAR_Kosygin_Prestol_22
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.22.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #flavour 6
+	id = MAR_Kosygin_Prestol.23
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.23" }
+	title = MAR_Kosygin_Prestol.23.t
+	desc = MAR_Kosygin_Prestol.23.d
+	picture = GFX_event_MAR_Kosygin_Prestol_23
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.23.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #flavour 7
+	id = MAR_Kosygin_Prestol.24
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.24" }
+	title = MAR_Kosygin_Prestol.24.t
+	desc = MAR_Kosygin_Prestol.24.d
+	picture = GFX_event_MAR_Kosygin_Prestol_24
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.24.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #attacks 1 - civilian
+	id = MAR_Kosygin_Prestol.25
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.25" }
+	title = MAR_Kosygin_Prestol.25.t
+	desc = MAR_Kosygin_Prestol.25.d
+	picture = GFX_event_MAR_Kosygin_Prestol_25 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.25.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			set_temp_variable = { tempRandom = 50 }
+			randomize_temp_variable = {
+				var = tempRandom
+				distribution = uniform
+				min = 20
+				max = 100
+			}
+			multiply_temp_variable = { tempRandom = -1 }
+			round_temp_variable = tempRandom
+		}
+		add_manpower = var:tempRandom
+		add_stability = -0.03
+		random_owned_controlled_state = {
+			limit = { check_variable = { insurgency_strength > 0.1 } }
+			damage_building = { type = schools damage = 0.9 }
+		}
+	}
+}
+
+country_event = { #attacks 2 - millitary
+	id = MAR_Kosygin_Prestol.26
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.26" }
+	title = MAR_Kosygin_Prestol.26.t
+	desc = MAR_Kosygin_Prestol.26.d
+	picture = GFX_event_MAR_Kosygin_Prestol_26
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.26.a
+		ai_chance = { factor = 1 }
+		hidden_effect = {
+			set_temp_variable = { tempRandom = 20 }
+			randomize_temp_variable = {
+				var = tempRandom
+				distribution = uniform
+				min = 10
+				max = 40
+			}
+			multiply_temp_variable = { tempRandom = -1 }
+			round_temp_variable = tempRandom
+		}
+		add_manpower = var:tempRandom
+		
+		random_owned_controlled_state = { 
+			limit = { check_variable = { insurgency_strength > 0.1 } }
+			damage_building = { type = infrastructure damage = 0.9 }
+			damage_building = { type = barracks damage = 0.8 }
+		}
+		add_equipment_to_stockpile = {
+			type = infantry_equipment
+			amount = -150
+			producer = MAR
+		}
+		add_equipment_to_stockpile = {
+			type = anti_tank_equipment
+			amount = -10
+			producer = MAR
+		}
+	}
+}
+
+country_event = { #attacks 3 - governmnent
+	id = MAR_Kosygin_Prestol.27
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.27" }
+	title = MAR_Kosygin_Prestol.27.t
+	desc = MAR_Kosygin_Prestol.27.d
+	picture = GFX_event_MAR_Kosygin_Prestol_27
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.27.a
+		ai_chance = { factor = 1 }
+		random_owned_controlled_state = { 
+			limit = { check_variable = { insurgency_strength > 0.1 } }
+			damage_building = { type = offices damage = 0.9 }
+		}
+		hidden_effect = {
+			set_temp_variable = { tempRandom = 5 }
+			randomize_temp_variable = {
+				var = tempRandom
+				distribution = uniform
+				min = 1
+				max = 10
+			}
+			multiply_temp_variable = { tempRandom = -1 }
+			round_temp_variable = tempRandom
+		}
+		add_manpower = var:tempRandom
+	}
+}
+
+country_event = { #attacks 4? #free space
+	id = MAR_Kosygin_Prestol.28
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.28" }
+	title = MAR_Kosygin_Prestol.28.t
+	desc = MAR_Kosygin_Prestol.28.d
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.28.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #tabby le found
+	id = MAR_Kosygin_Prestol.29
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.29" }
+	title = MAR_Kosygin_Prestol.29.t
+	desc = MAR_Kosygin_Prestol.29.d
+	picture = GFX_event_MAR_Kosygin_Prestol_29
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.29.a
+		ai_chance = { factor = 1 }
+		custom_effect_tooltip = mar_prestol_check_berezniki_retard_tt
+		398 = {
+			set_variable = { operation_available = 1 }
+			set_variable = { kosygin_reception = 3 }
+		}
+	}
+}
+
+country_event = { #debug #free space
+	id = MAR_Kosygin_Prestol.30
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_Prestol.30" }
+	title = MAR_Kosygin_Prestol.30.t
+	desc = MAR_Kosygin_Prestol.30.d
+	#picture = 
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_Prestol.30.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.1" }
+	title = MAR_Kosygin_OGAS.1.t
+	desc = MAR_Kosygin_OGAS.1.d
+	picture = GFX_event_MAR_Kosygin_OGAS_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.1.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.2 
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.2" }
+	title = MAR_Kosygin_OGAS.2.t
+	desc = MAR_Kosygin_OGAS.2.d
+	picture = GFX_event_MAR_Kosygin_OGAS_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.2.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.3" }
+	title = MAR_Kosygin_OGAS.3.t
+	desc = MAR_Kosygin_OGAS.3.d
+	picture = GFX_event_MAR_Kosygin_OGAS_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.3.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.4" }
+	title = MAR_Kosygin_OGAS.4.t
+	desc = MAR_Kosygin_OGAS.4.d
+	picture = GFX_event_MAR_Kosygin_OGAS_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.4.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.5
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.5" }
+	title = MAR_Kosygin_OGAS.5.t
+	desc = MAR_Kosygin_OGAS.5.d
+	picture = GFX_event_MAR_Kosygin_OGAS_5
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.5.a
+		ai_chance = { factor = 1 }
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.6
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.6" }
+	title = MAR_Kosygin_OGAS.6.t
+	desc = MAR_Kosygin_OGAS.6.d
+	picture = GFX_event_MAR_Kosygin_OGAS_6
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.6.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.7
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.7" }
+	title = MAR_Kosygin_OGAS.7.t
+	desc = MAR_Kosygin_OGAS.7.d
+	picture = GFX_event_MAR_Kosygin_OGAS_7
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.7.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.8
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.8" }
+	title = MAR_Kosygin_OGAS.8.t
+	desc = MAR_Kosygin_OGAS.8.d
+	picture = GFX_event_MAR_Kosygin_OGAS_8
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.8.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #
+	id = MAR_Kosygin_OGAS.9
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.9" }
+	title = MAR_Kosygin_OGAS.9.t
+	desc = MAR_Kosygin_OGAS.9.d
+	picture = GFX_event_MAR_Kosygin_OGAS_9
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.9.a
+		ai_chance = { factor = 1 }
+		
+	}
+}
+
+country_event = { #р
+	id = MAR_Kosygin_OGAS.10
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_OGAS.10" }
+	title = MAR_Kosygin_OGAS.10.t
+	desc = MAR_Kosygin_OGAS.10.d
+	picture = GFX_event_MAR_Kosygin_OGAS_10
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_OGAS.10.a
+		ai_chance = { factor = 1 }
+		MAR_calculate_ogas_dynmod_effects = yes
+		clr_country_flag = MAR_ogas_dev_started
+		set_country_flag = MAR_OGAS_completed_achievement
+	}
+}
+
+country_event = { #start
+	id = MAR_Kosygin_UAR.1
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_UAR.1" }
+	title = MAR_Kosygin_UAR.1.t
+	desc = MAR_Kosygin_UAR.1.d
+	picture = GFX_event_MAR_Kosygin_UAR_1
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #
+		name = MAR_Kosygin_UAR.1.a
+		ai_chance = { factor = 1 }
+		UAR_initialize_Faction_Mechanic = yes
+	}
+}
+country_event = { #Rus win
+	id = MAR_Kosygin_UAR.2
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_UAR.2" }
+	title = MAR_Kosygin_UAR.2.t
+	desc = MAR_Kosygin_UAR.2.d
+	picture = GFX_event_MAR_Kosygin_UAR_2
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #yay
+		name = MAR_Kosygin_UAR.2.a
+		clr_global_flag = UAR_Faction_Start_Flag
+		trigger = { original_tag = MAR }
+		UAR = {
+			econ_join_sphere_MAR = yes
+			set_temp_variable = { gdp_growth_temp = 0.15 }
+			econ_gdp_growth_change = yes
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+			if = {
+				limit = { MAR = { is_faction_leader = yes } }
+				add_ideas = RUSAlliance_Observer
+			}
+			else = {
+				set_country_flag = UAR_join_rus_when_created
+			}
+		}
+		MAR = {
+			set_temp_variable = { gdp_growth_temp = 0.45 }
+			econ_gdp_growth_change = yes
+			TNO_improve_poverty_low = yes
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+			set_country_flag = MAR_middle_east_total_win
+		}
+		GER = {
+			set_temp_variable = { gdp_growth_temp = -0.35 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { Victory_ID = 51 }
+			set_temp_variable = { Victory_Outcome = 2 }
+			set_temp_variable = { Victory_Points = -100 }
+			Cold_War_GUI_ManipulateVictory = yes
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = { id =  berez_dobrovoltsy_world_news.14 days = 1 }
+			}
+			XYZ = {
+				UAR_Salah_Jadid = {
+					set_nationality = UAR
+				}
+			}
+			UAR = {
+				set_politics = {
+					ruling_party = socialist
+				}
+				add_popularity = {
+					ideology = socialist
+					popularity = 0.45
+				}
+				retire_country_leader = yes
+				add_country_leader_role = {
+					character = UAR_Salah_Jadid
+					country_leader = {
+						desc = ""
+						ideology = socialist_baathism_subtype 
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				UAR_Salah_Jadid = {
+					promote_character = yes
+				}
+				if = {
+					limit = { country_exists = SYR }
+					annex_country = {
+						target = SYR
+						transfer_troops = yes
+					}
+				}
+				add_opinion_modifier = {
+					target = MAR
+					modifier = MAR_UAR_victory
+				}
+				reverse_add_opinion_modifier = {
+					target = MAR
+					modifier = MAR_UAR_victory
+				}
+			}
+			every_country = {
+				limit = { has_socialist_government = yes }
+				add_opinion_modifier = {
+					target = MAR
+					modifier = MAR_UAR_victory_other_commies
+				}
+				reverse_add_opinion_modifier = {
+					target = MAR
+					modifier = MAR_UAR_victory_other_commies
+				}
+			}
+		}
+	}
+	option = { #ai option
+		name = MAR_Kosygin_UAR.2.b
+		trigger = { NOT = { original_tag = MAR } }
+	}
+}
+
+country_event = { #Ger win
+	id = MAR_Kosygin_UAR.3
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_UAR.3" }
+	title = MAR_Kosygin_UAR.3.t
+	desc = MAR_Kosygin_UAR.3.d
+	picture = GFX_event_MAR_Kosygin_UAR_3
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #not yay
+		name = MAR_Kosygin_UAR.3.a
+		trigger = { original_tag = MAR }
+		clr_global_flag = UAR_Faction_Start_Flag
+		UAR = {
+			econ_join_sphere_GER = yes
+			set_temp_variable = { gdp_growth_temp = 0.15 }
+			econ_gdp_growth_change = yes
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+		}
+		MAR = {
+			add_stability = -0.05
+			add_war_support = -0.05
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+		}
+		GER = {
+			set_temp_variable = { gdp_growth_temp = 0.35 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { Victory_ID = 51 }
+			set_temp_variable = { Victory_Outcome = 4 }
+			set_temp_variable = { Victory_Points = 100 }
+			Cold_War_GUI_ManipulateVictory = yes
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = { id =  berez_dobrovoltsy_world_news.15 days = 1 }
+			}
+			XYZ = {
+				UAR_Ahmed_Hassan_al_Bakr = {
+					set_nationality = UAR
+				}
+			}
+			UAR = {
+				set_politics = {
+					ruling_party = fascism
+				}
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.45
+				}
+				retire_country_leader = yes
+				add_country_leader_role = {
+					character = UAR_Ahmed_Hassan_al_Bakr
+					country_leader = {
+						desc = ""
+						ideology = fascism_baathism_subtype 
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				UAR_Ahmed_Hassan_al_Bakr = {
+					promote_character = yes
+				}
+				if = {
+					limit = { country_exists = BIR }
+					annex_country = {
+						target = BIR
+						transfer_troops = yes
+					}
+				}
+				add_opinion_modifier = {
+					target = MAR
+					modifier = MAR_UAR_fail
+				}
+				reverse_add_opinion_modifier = {
+					target = MAR
+					modifier = MAR_UAR_fail
+				}
+			}
+		}
+	}
+	option = { #ai option
+		name = MAR_Kosygin_UAR.3.b
+		trigger = { NOT = { original_tag = MAR } }
+	}
+}
+
+country_event = { #no win
+	id = MAR_Kosygin_UAR.4
+	immediate = { log = "[GetDateText]: [Root.GetName]: event MAR_Kosygin_UAR.4" }
+	title = MAR_Kosygin_UAR.4.t
+	desc = MAR_Kosygin_UAR.4.d
+	picture = GFX_event_MAR_Kosygin_UAR_4
+	
+	is_triggered_only = yes
+	fire_only_once = yes
+	
+	option = { #not yay
+		name = MAR_Kosygin_UAR.4.a
+		trigger = { original_tag = MAR }
+		clr_global_flag = UAR_Faction_Start_Flag
+		UAR = {
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+			econ_leave_sphere = yes
+		}
+		MAR = {
+			add_stability = -0.05
+			add_war_support = -0.05
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+		}
+		GER = {
+			set_temp_variable = { gdp_growth_temp = -0.15 }
+			econ_gdp_growth_change = yes
+			set_temp_variable = { Victory_ID = 51 }
+			set_temp_variable = { Victory_Outcome = 2 }
+			set_temp_variable = { Victory_Points = -100 }
+			Cold_War_GUI_ManipulateVictory = yes
+			TaS_fopo_remove_uar_influence_battle_tab = yes
+		}
+		hidden_effect = {
+			every_country = {
+				news_event = { id =  berez_dobrovoltsy_world_news.16 days = 1 }
+			}
+			XYZ = {
+				UAR_Hafez_al_Assad = {
+					set_nationality = UAR
+				}
+			}
+			UAR = {
+				set_politics = {
+					ruling_party = despotism
+				}
+				add_popularity = {
+					ideology = despotism
+					popularity = 0.45
+				}
+				retire_country_leader = yes
+				add_country_leader_role = {
+					character = UAR_Hafez_al_Assad
+					country_leader = {
+						desc = ""
+						ideology = despotism_baathism_subtype 
+						expire = "1999.1.1"
+						traits = { }
+					}
+				}
+				UAR_Hafez_al_Assad = {
+					promote_character = yes
+				}
+				if = {
+					limit = {  country_exists = SYR }
+					annex_country = {
+						target = SYR
+						transfer_troops = yes
+					}
+				}
+			}
+		}
+	}
+	option = { #ai option
+		name = MAR_Kosygin_UAR.4.b
+		trigger = { NOT = { original_tag = MAR } }
+	}
+}

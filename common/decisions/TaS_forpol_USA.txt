@@ -1,0 +1,307 @@
+USA_BoP_category = {
+
+	USA_meeting_with_generals_MCW = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+
+
+	USA_bombing_runs_MCW = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision USA_bombing_runs"
+			every_country = {
+				limit = { has_war_with = MAN }
+				add_timed_idea = {
+					idea = USA_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+	}
+
+	USA_supply_freedom_fighters_MCW = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = MAN
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = MAN
+			}
+		}
+	}
+
+
+	USA_send_military_advisors_MCW = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			MAN = {
+				add_timed_idea = { idea = USA_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	USA_technician_aid_MCW = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_technician_aid"
+			MAN = {
+				add_timed_idea = { idea = USA_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	USA_sabotage_effort_MCW = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = { has_war_with = MAN }
+				add_timed_idea = { idea = USA_sabotage_effort days = 90 }
+			}
+		}
+	}
+}
+USA_BoP_category = {
+	USA_meeting_with_generals_ACW = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+
+
+	USA_bombing_runs_ACW = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision USA_bombing_runs"
+			every_country = {
+				limit = { has_war_with = NAL }
+				add_timed_idea = {
+					idea = USA_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+	}
+
+	USA_supply_freedom_fighters_ACW = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = NAL
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = NAL
+			}
+		}
+	}
+
+
+	USA_send_military_advisors_ACW = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			NAL = {
+				add_timed_idea = { idea = USA_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	USA_technician_aid_ACW = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_technician_aid"
+			NAL = {
+				add_timed_idea = { idea = USA_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	USA_sabotage_effort_ACW = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision USA_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = { has_war_with = NAL }
+				add_timed_idea = { idea = USA_sabotage_effort days = 90 }
+			}
+		}
+	}
+}

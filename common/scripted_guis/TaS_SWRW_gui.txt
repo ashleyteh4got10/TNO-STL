@@ -1,0 +1,173 @@
+scripted_gui = {
+	TaS_SWRW_container = {
+		window_name = "TaS_SWRW_container"
+		context_type = player_context
+		parent_window_name = powerbalanceview
+
+		visible = {
+			check_variable = { TNO_BoP_SelectedTab = token:BoP_Tab_SWRW }
+		}
+		ai_enabled = { always = no }
+
+		dynamic_lists = {
+			#conflict_tabs = {
+			#	array = TNO_active_conflicts
+			#	index = conflict_idx
+			#	value = conflict_id
+			#	entry_container = TNO_fopo_conflict_tab
+			#}
+			# conflict_guis = {
+			# 	array = world_conflict_guis
+			# 	index = conflict_idx
+			# 	value = conflict_id
+			# 	entry_container = [Get_TNO_fopo_conflict_guis]
+			# }
+		}
+
+		effects = {
+			conflict_icon_click = {
+				set_variable = { selected_conflict_id = conflict_id }
+				clear_array = world_conflict_guis
+				add_to_array = { world_conflict_guis = conflict_id }
+			}
+			tab_click = {
+				set_variable = { selected_conflict_id = conflict_id }
+				clear_array = world_conflict_guis
+				add_to_array = { world_conflict_guis = conflict_id }
+			}
+
+			frontlines_btn_click = {
+				set_variable = { TNO_fopo_selected_front = 1 }
+			}
+			homefront_btn_click = {
+				set_variable = { TNO_fopo_selected_front = 2 }
+			}
+		}
+
+		triggers = {
+		}
+
+		properties = {
+			image = {
+				image = "[Get_swrw_image]"
+			}
+			seal = {
+				image = "[Get_fopo_seal]"
+			}
+			stage_frame = {
+				image = "[Get_title_image]"
+			}  
+		}
+	}
+
+	TNO_SWRW_gui = {
+		window_name = "TNO_SWRW_gui"
+		context_type = player_context
+		parent_window_name = powerbalanceview
+
+		visible = {
+			check_variable = { TNO_BoP_SelectedTab = token:BoP_Tab_SWRW }
+			check_variable = { TaS_swrw_stage = 1 }
+		}
+
+		properties = {
+			readiness_scale = { frame = SWRW_readiness_var }
+			suspicion_scale = { frame = SWRW_suspicion_var }
+		}
+		triggers = {
+			frontlines_button_selected_visible = {
+				check_variable = { swrw_preparation_category = 1 }
+			}
+			frontlines_button_visible = {
+				NOT = { check_variable = { swrw_preparation_category = 1 } }
+			}
+			homefront_button_selected_visible = {
+				check_variable = { swrw_preparation_category = 2 }
+			}
+			homefront_button_visible = {
+				NOT = { check_variable = { swrw_preparation_category = 2 } }
+			}
+			diplomacy_button_selected_visible = {
+				check_variable = { swrw_preparation_category = 3 }
+			}
+			diplomacy_button_visible = {
+				NOT = { check_variable = { swrw_preparation_category = 3 } }
+			}
+		}
+		effects = {
+			frontlines_button_click = {
+				set_variable = { swrw_preparation_category = 1 }
+			}
+			homefront_button_click = {
+				set_variable = { swrw_preparation_category = 2 }
+			}
+			diplomacy_button_click = {
+				set_variable = { swrw_preparation_category = 3 }
+			}
+		}
+	}
+
+	TNO_SWRW_war_gui = {
+		window_name = "TNO_SWRW_war_gui"
+		context_type = player_context
+		parent_window_name = powerbalanceview
+		
+		ai_enabled = {
+			check_variable = { TNO_BoP_SelectedTab = token:BoP_Tab_SWRW }
+			check_variable = { TaS_swrw_stage = 2 }
+		}
+		
+		visible = {
+			check_variable = { TNO_BoP_SelectedTab = token:BoP_Tab_SWRW }
+			check_variable = { TaS_swrw_stage = 2 }
+		}
+		
+		properties = {
+			exhaustion_main_bar_germany = {
+				frame = GER.WRW2_devastation
+			}
+			exhaustion_main_bar_russia = {
+				frame = MAR.WRW2_devastation
+			}
+		}
+		
+		triggers = {
+			exhaustion_main_bar_russia_visible = {
+				check_variable = { MAR.WRW2_devastation > 0.9 }
+			}
+			exhaustion_main_bar_germany_visible = {
+				check_variable = { GER.WRW2_devastation > 0.9 }
+			}
+			frontlines_button_selected_visible = {
+				check_variable = { WRW_deccat = 1 }
+			}
+			frontlines_button_visible = {
+				NOT = { check_variable = { WRW_deccat = 1 } }
+			}
+			homefront_button_selected_visible = {
+				check_variable = { WRW_deccat = 2 }
+			}
+			homefront_button_visible = {
+				NOT = { check_variable = { WRW_deccat = 2 } }
+			}
+			diplomacy_button_selected_visible = {
+				check_variable = { WRW_deccat = 3 }
+			}
+			diplomacy_button_visible = {
+				NOT = { check_variable = { WRW_deccat = 3 } }
+			}
+		}
+		
+		effects = {
+			frontlines_button_click = {
+				set_variable = { WRW_deccat = 1 }
+			}
+			homefront_button_click = {
+				set_variable = { WRW_deccat = 2 }
+			}
+			diplomacy_button_click = {
+				set_variable = { WRW_deccat = 3 }
+			}
+		}
+	}
+}

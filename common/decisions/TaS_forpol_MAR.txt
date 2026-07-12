@@ -1,0 +1,3215 @@
+MAR_BoP_category = {
+	MAR_FErebels_mission = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		allowed = {
+			tag = MAR
+		}			
+		available = {
+			always = no
+		}			
+		activation = {
+			has_global_flag = MAR_fareast_proxy
+		}
+
+		days_mission_timeout = 90
+		is_good = no
+
+		timeout_effect = {
+			clr_global_flag = MAR_fareast_proxy
+			hidden_effect = {
+			TaS_2WRW_manchuria_start_rebelion = yes
+			every_country  = {
+					news_event = {
+						id = MAR_2WRW_world_news.4
+					}
+				}
+			}
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	MAR_FE_Boli_planned_attack = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		allowed = {
+			tag = MAR
+		}			
+		available = {
+			always = no
+		}
+		activation = {
+			always = no
+		}
+
+		days_mission_timeout = 21
+		is_good = no
+
+		timeout_effect = {
+			custom_effect_tooltip = MAR_FE_Japs_storming_boli_tt
+		}
+
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	MAR_prepare_support_rebels_effigy = { 
+		icon = GFX_decision_generic_assault
+		visible = {
+			tag = MAR
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			always = no
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_support_rebels_effigy"
+		}
+	}
+	MAR_send_guns_rebels = {
+		icon = GFX_decision_black_market_arms_trade_increase
+		visible = {
+			tag = MAR
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			NOT = {
+				has_country_flag = MARFE_doing_stuff
+			}
+			has_equipment = {
+				infantry_equipment > 1000
+			}
+			has_equipment = {
+				anti_tank_equipment > 350
+			}
+			has_equipment = {
+				support_equipment > 200
+			}
+			has_equipment = {
+				artillery_equipment > 75
+			}
+		}
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		days_remove = 14
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_send_guns_rebels"
+			set_country_flag = MARFE_doing_stuff
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.001 }
+			econ_spend_money_once_effect_raw_money = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -1000
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = support_equipment
+				amount = -350
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = anti_tank_equipment
+				amount = -200
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = -75
+				producer = MAR
+			}
+		}
+		remove_effect = {
+			add_to_variable = { MAR_FErebels_infantry_weapons = 1000 }
+			add_to_variable = { MAR_FErebels_support_equipment = 200 }
+			add_to_variable = { MAR_FErebels_at_equipment = 350 }
+			add_to_variable = { MAR_FErebels_artillery_equipment = 75 }
+			
+			clr_country_flag = MARFE_doing_stuff
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	MAR_send_motorized_rebels = {
+		icon = GFX_decision_black_market_arms_trade_increase
+		visible = {
+			tag = MAR
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			NOT = {
+				has_country_flag = MARFE_doing_stuff
+			}
+			has_equipment = {
+				motorized_equipment > 200
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				has_equipment = {
+					MBT_chassis > 35
+				}
+				has_equipment = {
+					APC_chassis > 75
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_dlc = "No Step Back"
+					}
+				}
+				has_equipment = {
+					MBT_equipment > 35
+				}
+				has_equipment = {
+					APC_equipment > 75
+				}
+			}
+		}
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		days_remove = 14
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_send_guns_rebels"
+			set_country_flag = MARFE_doing_stuff
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			set_temp_variable = { temp_econ_spending_amount = 0.005 }
+			econ_spend_money_once_effect_raw_money = yes
+			add_equipment_to_stockpile = {
+				type = motorized_equipment
+				amount = -200
+				producer = MAR
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_equipment_to_stockpile = {
+					type = MBT_chassis
+					amount = -35
+					producer = MAR
+				}
+				add_equipment_to_stockpile = {
+					type = APC_chassis
+					amount = -75
+					producer = MAR
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_dlc = "No Step Back"
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = MBT_equipment
+					amount = -35
+					producer = MAR
+				}
+				add_equipment_to_stockpile = {
+					type = APC_equipment
+					amount = -75
+					producer = MAR
+				}
+			}
+		}
+		remove_effect = {
+			add_to_variable = { MAR_FErebels_motorized_equipment = 200 }
+			add_to_variable = { MAR_FErebels_apc_equipment = 75 }
+			add_to_variable = { MAR_FErebels_mbt_equipment = 35 }
+			clr_country_flag = MARFE_doing_stuff
+		}
+		ai_will_do = {
+			factor = 25
+		}
+	}
+	MAR_send_volunteer_corps_rebels = {
+		icon = decision_generic_military_hat
+		visible = {
+			tag = MAR
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			NOT = {
+				has_country_flag = MARFE_doing_stuff
+			}
+		}
+		custom_cost_trigger = {
+			command_power > 24.99
+		}
+		custom_cost_text = decision_cost_25_cp
+		days_remove = 14
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_send_propoganda_rebels"
+			set_country_flag = MARFE_doing_stuff
+			hidden_effect = {
+				add_command_power = -25
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = MAR_send_volunteer_corps_rebels_tt
+			add_to_variable = { MAR_FErebels_adddivisions = 2 }
+			clr_country_flag = MARFE_doing_stuff
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	MAR_send_partisans_rebels = {
+		icon = GFX_decision_generic_assault
+		visible = {
+			tag = MAR
+			PFF = { has_war = no }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+		available = {
+			NOT = {
+				has_country_flag = MARFE_doing_stuff
+			}
+		}
+		fire_only_once = yes
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp
+		days_remove = 28
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision timeout MAR_send_partisans_rebels"
+			set_country_flag = MARFE_doing_stuff
+			hidden_effect = {
+				add_command_power = -25
+			}
+		}
+		remove_effect = {
+			custom_effect_tooltip = MAR_send_partisans_rebels_tt
+			add_to_variable = { MAR_FErebels_addpartisans = 1 }
+			clr_country_flag = MARFE_doing_stuff
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+	MAR_FE_increase_commitment = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			tag = MAR
+			PFF = { has_war = yes }
+			TNO_fopo_far_eastern_revolt_selected = yes
+			TNO_volunteer_cap_less_5 = yes
+		}
+
+		cost = 50
+		days_re_enable = 21
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_FE_increase_commitment"
+				add_command_power = 25
+				MAR = {
+					set_temp_variable = { target = PFF }
+					TNO_increase_volunteer_cap_1 = yes
+				}
+
+			add_to_variable = {
+				PFF_FE_volunteer_sent = 1
+			}
+
+			custom_effect_tooltip = OIL_USA_increase_volunteers_1 #reusing the usa tooltip
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	MAR_FE_bomb_someone = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			PJP = { has_war_with = PFF }
+			tag = MAR
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+		days_re_enable = 21
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = PFF
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_FE_bomb_someone"
+			hidden_effect = { add_command_power = -15 }
+			PJP = {
+				if = {
+					limit = {
+						has_war_with = PFF
+					}
+					add_ideas = MAR_KOR_Bombing_runs
+					set_country_flag = JAP_FE_being_bombed
+					TNO_worsen_poverty_high = yes
+				}
+			}
+		}
+		remove_effect = {
+			PJP = {
+				remove_ideas = MAR_KOR_Bombing_runs
+				clr_country_flag = JAP_FE_being_bombed
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_FE_send_army_instructors = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			PJP = { has_war_with = PFF }
+			tag = MAR
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		days_remove = 7
+		days_re_enable = 21
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = PFF
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_Speer_FE_send_wehrmacht_instructors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+				set_country_flag = JAP_FE_sent_advisors
+			}
+		}
+		remove_effect = {
+			PFF = {
+				add_timed_idea = { idea = TaS_KOR_advisors days = 180 }
+				TNO_improve_conscription_policy_effectiveness_high = yes
+				TNO_improve_training_policy_effectiveness_high = yes
+				TNO_improve_army_professionalism_med = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_FE_send_industrial_support = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			PJP = { has_war_with = PFF }
+			tag = MAR
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+
+		custom_cost_trigger = {
+			always = yes
+		}
+		custom_cost_text = decision_cost_50_million
+		days_remove = 21
+		fire_only_once = yes
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = PFF
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_FE_send_industrial_support"
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			PFF = {
+				add_timed_idea = { idea = TaS_KOR_technicians days = 365 }
+				TNO_improve_industrial_expertise_med = yes
+				TNO_improve_industrial_equipment_med = yes
+
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1500
+					producer = MAR
+				}
+			}
+
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_FE_cold_of_the_taiga = {
+		icon = GFX_decision_generic_assault
+		visible = {
+			PJP = { has_war_with = PFF }
+			TNO_fopo_far_eastern_revolt_selected = yes
+		}
+
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_25_m_10_cp
+		days_remove = 365
+		fire_only_once = yes
+
+		modifier = {
+			acclimatization_cold_climate_gain_factor = 0.2
+			heat_attrition_factor = -0.2
+			recon_factor = 0.1
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision JAP_FE_cold_of_the_taiga"
+			hidden_effect = { add_command_power = -10 }
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+MAR_BoP_category = {
+
+	MAR_meeting_with_generals_MCW = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+
+
+	MAR_bombing_runs_MCW = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_bombing_runs"
+			every_country = {
+				limit = { has_war_with = HAN }
+				add_timed_idea = {
+					idea = MAR_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	MAR_supply_freedom_fighters_MCW = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = HAN
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = HAN
+			}
+		}
+	}
+
+
+	MAR_send_military_advisors_MCW = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			HAN = {
+				add_timed_idea = { idea = MAR_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	MAR_technician_aid_MCW = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_technician_aid"
+			HAN = {
+				add_timed_idea = { idea = MAR_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	MAR_sabotage_effort_MCW = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = { has_war_with = HAN }
+				add_timed_idea = { idea = MAR_sabotage_effort days = 90 }
+			}
+		}
+	}
+	
+}
+
+MAR_BoP_category = {
+
+	MAR_meeting_with_generals_MCW_kosygin = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			has_government = socialist
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+	
+	MAR_bombing_runs_MCW_kosygin = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_bombing_runs"
+			every_country = {
+				limit = { has_war_with = PFF }
+				add_timed_idea = {
+					idea = MAR_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+	}
+
+	MAR_supply_freedom_fighters_MCW_kosygin = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			has_government = socialist
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = PFF
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = PFF
+			}
+		}
+	}
+
+
+	MAR_send_military_advisors_MCW_kosygin = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			PFF = {
+				add_timed_idea = { idea = MAR_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	MAR_technician_aid_MCW_kosygin = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_technician_aid"
+			PFF = {
+				add_timed_idea = { idea = MAR_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	MAR_sabotage_effort_MCW_kosygin = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_manchurian_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = { has_war_with = PFF }
+				add_timed_idea = { idea = MAR_sabotage_effort days = 90 }
+			}
+		}
+	}
+}
+
+MAR_BoP_category = {
+
+	UAR_Faction_MAR_Pro_RUS_Propaganda = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = {
+					check_variable = { UAR_leading_faction_idx = 1 }
+				}
+				factor = 30
+			}
+		}
+		cost = 25
+		days_remove = 25
+		days_re_enable = 60
+		complete_effect = {
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.25 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.75 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 2 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+			}
+		}
+	}
+
+	UAR_Faction_MAR_Anti_Pakt_Propaganda = {
+		icon = GFX_decision_generic_propaganda
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				check_variable = { UAR_leading_faction_idx = 2 }
+				factor = 30
+			}
+		}
+		cost = 25
+		days_remove = 25
+		days_re_enable = 60
+		complete_effect = {
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1.25 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = -1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+					UAR_Influence_Change = yes
+				}
+			}
+		}
+	}
+
+	UAR_Faction_MAR_Invest_in_Arab_Industries = {
+		icon = GFX_decision_generic_money
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}
+		days_remove = 20
+		days_re_enable = 60
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = {
+					check_variable = { UAR_leading_faction_idx = 1 }
+				}
+				factor = 30
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		custom_cost_trigger = {
+			check_variable = { GDP > 0 }
+			has_political_power > 19.99
+		}
+		custom_cost_text = decision_cost_150_million_20_pp
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -20
+				set_temp_variable = { temp_econ_spending_amount = 0.150 }
+				econ_spend_money_once_effect_raw_money = yes
+			}
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.75 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 2 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+			}
+			UAR = {
+				random_owned_state = {
+					add_state_modifier = { modifier = { state_GDP_growth_modifier = 0.35 } }
+				}
+			}
+		}
+	}
+
+	UAR_Faction_MAR_send_advisors_to_arabs = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}
+		days_remove = 25
+		days_re_enable = 60
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				NOT = {
+					check_variable = { UAR_leading_faction_idx = 1 }
+				}
+				factor = 30
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		custom_cost_trigger = {
+			command_power > 29.99
+		}
+		custom_cost_text = decision_cost_30_cp
+		complete_effect = {
+			hidden_effect = {
+				add_command_power = -30
+			}
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.5 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 1.75 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceChangeTemp = 2 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+					UAR_Influence_Change = yes
+				}
+			}
+		}
+	}
+
+	UAR_Faction_MAR_Remember_who_helps_them = {
+		icon = GFX_decision_propaganda_off
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}
+		days_remove = 25
+		days_re_enable = 60
+		cost = 20
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				check_variable = { UAR_leading_faction_idx = 0 }
+				factor = 20
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		complete_effect = {
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			random_list = {
+				1 = {
+					set_temp_variable = { InfluenceIncreaseChangeTemp = -1 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+					UAR_Influence_Increase_Change = yes
+				}
+				1 = {
+					set_temp_variable = { InfluenceIncreaseChangeTemp = -1.25 }
+					set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+					UAR_Influence_Increase_Change = yes
+				}
+			}
+		}
+	}
+
+	UAR_Faction_MAR_trans_kaspi_exercise = {
+		icon = GFX_decision_generic_use_force
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}
+		cost = 75
+		days_remove = 30
+		days_re_enable = 120
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				check_variable = { UAR_leading_faction_idx = 0 }
+				factor = 30
+			}
+		}
+		available = {
+			UAR_faction_mech_no_other_decisions = yes
+		}
+		custom_cost_trigger = {
+			command_power > 39.99
+			has_political_power > 74.99
+		}
+		custom_cost_text = decision_cost_40_cp_75_pp
+		complete_effect = {
+			hidden_effect = {
+				add_political_power = -75
+				add_command_power = -40
+			}
+			set_country_flag = UAR_international_mech_decision
+		}
+		remove_effect = {
+			clr_country_flag = UAR_international_mech_decision
+			set_temp_variable = { InfluenceIncreaseChangeTemp = 1 }
+			set_temp_variable = { InfluenceChangeFactionTemp = 1 }
+			UAR_Influence_Increase_Change = yes
+			set_temp_variable = { InfluenceIncreaseChangeTemp = -3 }
+			set_temp_variable = { InfluenceChangeFactionTemp = 2 }
+			UAR_Influence_Increase_Change = yes
+			set_temp_variable = { InfluenceIncreaseChangeTemp = -3 }
+			set_temp_variable = { InfluenceChangeFactionTemp = 0 }
+			UAR_Influence_Increase_Change = yes
+		}
+	}
+	MAR_Faction_Join_Rus_Mission = {
+		icon = GFX_decision_generic_phone_call
+		activation = {
+			always = no
+		}
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}	
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+			NOT = { check_variable = { UAR_leading_faction_idx = 1 } }
+		}
+		is_good = yes
+		days_mission_timeout = 60
+		allowed = {
+			tag = MAR
+		}
+		timeout_effect = {
+			custom_effect_tooltip = MAR_Faction_Join_Rus_Mission.tt
+		}
+	}
+
+	MAR_Faction_Join_Pakt_Mission = {
+		icon = GFX_decision_document_cancel
+		activation = {
+			always = no
+		}
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}	
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+			NOT = { check_variable = { UAR_leading_faction_idx = 2 } }
+		}
+		is_good = no
+		days_mission_timeout = 60
+		allowed = {
+			tag = MAR
+		}
+		timeout_effect = {
+			custom_effect_tooltip = MAR_Faction_Join_Pakt_Mission.tt
+		}
+	}
+	MAR_Faction_Close_Faction_Mechanic_Mission = {
+		icon = GFX_decision_clock
+		activation = {
+			always = no
+		}
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}	
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+			NOT = { check_variable = { UAR_leading_faction_idx = 0 } }
+		}
+		is_good = no
+		days_mission_timeout = 60
+		allowed = {
+			tag = UAR
+		}
+		timeout_effect = {
+			custom_effect_tooltip = UAR_Faction_Close_Mechanic_tt
+		}
+	}
+	MAR_Faction_timer_Mission = {
+		icon = GFX_decision_clock
+		activation = {
+			always = no
+		}
+		visible = {
+			TNO_fopo_uar_influence_battle_selected = yes
+		}	
+		available = {
+			always = no
+		}
+		cancel_trigger = {
+		}
+		is_good = no
+		days_mission_timeout = 365
+		allowed = {
+			tag = UAR
+		}
+		timeout_effect = {
+			custom_effect_tooltip = UAR_Faction_timer_tt 
+		}
+	}
+}
+
+MAR_BoP_category = {
+	MAR_ICW_send_weapons = {
+		icon = GFX_decision_market_infantry
+		visible = {
+			TNO_fopo_iran_selected = yes
+			NOT = { has_government = socialist }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 599 }
+			has_equipment = { anti_tank_equipment > 349 }
+			has_equipment = { support_equipment > 299 }
+			has_equipment = { artillery_equipment > 99 }
+		}
+
+		custom_cost_trigger = { command_power > 2.99 }
+		custom_cost_text = decision_cost_3_cp
+		days_remove = 3
+		days_re_enable = 14
+
+		highlight_states = {
+			highlight_states_trigger = {
+				is_owned_and_controlled_by = IRC
+				is_capital = yes
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_ICW_send_weapons"
+			hidden_effect = { add_command_power = -3 }
+		}
+		remove_effect = {
+			send_equipment = {
+				type = infantry_equipment
+				amount = 600
+				target = IRC
+			}
+			send_equipment = {
+				type = anti_tank_equipment
+				amount = 350
+				target = IRC
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 300
+				target = IRC
+			}
+			send_equipment = {
+				type = artillery_equipment
+				amount = 100
+				target = IRC
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_ICW_send_vehicles = {
+		icon = GFX_decision_market_motorized
+		visible = {
+			TNO_fopo_iran_selected = yes
+			NOT = { has_government = socialist }
+		}
+		available = {
+			has_equipment = { motorized_equipment > 199 }
+			has_equipment = { MBT_chassis > 99 }
+		}
+
+		custom_cost_trigger = { command_power > 2.99 }
+		custom_cost_text = decision_cost_3_cp
+		days_remove = 6
+		days_re_enable = 30
+
+		highlight_states = {
+			highlight_states_trigger = {
+				is_owned_and_controlled_by = IRC
+				is_capital = yes
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_ICW_send_vehicles"
+			hidden_effect = { add_command_power = -3 }
+		}
+		remove_effect = {
+			send_equipment = {
+				type = motorized_equipment
+				amount = 200
+				target = IRC
+			}
+			send_equipment = {
+				type = MBT_chassis
+				amount = 100
+				target = IRC
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_ICW_iranian_expeditionary_corps = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_iran_selected = yes
+			NOT = { has_government = socialist }
+		}
+		available = {
+			has_manpower > 10000
+		}
+
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		fire_only_once = yes
+		days_remove = 3
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_ICW_iranian_expeditionary_corps"
+			hidden_effect = { add_command_power = -5 }
+		}
+		remove_effect = {
+			set_temp_variable = { target = IRC }
+			TNO_increase_volunteer_cap_1 = yes
+
+			set_country_flag = MAR_iran_volunteers
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	MAR_ICW_expand_the_iranian_expeditionary_corps = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_country_flag = MAR_iran_volunteers
+			NOT = { has_government = socialist }
+		}
+		available = {
+			set_temp_variable = { target = IRC }
+			TNO_volunteer_cap_less_4 = yes
+		}
+
+		cost = 50
+		days_re_enable = 30
+		days_remove = 3
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_ICW_expand_the_iranian_expeditionary_corps"
+		}
+		remove_effect = {
+			set_temp_variable = { target = IRC }
+			TNO_increase_volunteer_cap_1 = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	MAR_ICW_create_the_russian_airgroupe_in_iran = {
+		icon = GFX_decision_market_helicopter
+		visible = {
+			TNO_fopo_iran_selected = yes
+			NOT = { has_government = socialist }
+		}
+		available = { has_country_flag = MAR_iran_volunteers }
+
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		fire_only_once = yes
+		days_remove = 7
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_ICW_create_the_russian_airgroupe_in_iran"
+			hidden_effect = { add_command_power = -5 }
+		}
+		remove_effect = {
+			set_country_flag = MAR_ICW_squadron
+			air_experience = 25
+			add_equipment_to_stockpile = {
+				type = tac_bomber_equipment
+				amount = 100
+				producer = MAR
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment
+				amount = 50
+				producer = MAR
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_ICW_operation_sun_of_desert = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_iran_selected = yes
+			NOT = { has_government = socialist }
+		}
+		available = { has_country_flag = MAR_ICW_squadron }
+
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		fire_only_once = yes
+		days_remove = 7
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_ICW_operation_sun_of_desert"
+			hidden_effect = { add_command_power = -10 }
+		}
+		remove_effect = {
+			every_other_country = {
+				limit = { has_war_with = IRC }
+				add_timed_idea = { idea = MAR_Plane_Bombing days = 90 }
+				TNO_worsen_poverty_high = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_ICW_group_of_military_advisors = {
+		icon = GFX_decision_generic_military_parade
+
+		visible = {
+			TNO_fopo_iran_selected = yes
+			NOT = { has_government = socialist }
+		}
+		custom_cost_trigger = {
+			has_political_power > 19.99
+			command_power > 4.99
+		}
+		custom_cost_text = decision_cost_5_cp_20_pp
+		fire_only_once = no
+		days_remove = 7
+		days_re_enable = 90
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_ICW_group_of_military_advisors"
+			hidden_effect = { add_command_power = -5 add_political_power = -20 }
+		}
+		remove_effect = {
+			IRC = {
+				add_command_power = 20
+				add_timed_idea = { idea = MAR_military_advisors days = 90 }
+				TNO_improve_training_policy_effectiveness_high = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_ICW_russian_industrial_aid = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_iran_selected = yes
+			NOT = { has_government = socialist }
+		}
+		cost = 20
+		fire_only_once = yes
+		days_remove = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_ICW_russian_industrial_aid"
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			add_command_power = 25
+			IRC = {
+				add_ideas = MAR_technician_aid
+				TNO_improve_industrial_equipment_high = yes
+				TNO_improve_industrial_expertise_med = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+MAR_BoP_category = {
+	MAR_Kosygin_ICW_send_weapons = {
+		icon = GFX_decision_market_infantry
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_government = socialist
+		}
+		available = {
+			has_equipment = { infantry_equipment > 599 }
+			has_equipment = { anti_tank_equipment > 349 }
+			has_equipment = { support_equipment > 299 }
+			has_equipment = { artillery_equipment > 99 }
+		}
+
+		custom_cost_trigger = { command_power > 2.99 }
+		custom_cost_text = decision_cost_3_cp
+		days_remove = 3
+		days_re_enable = 14
+
+		highlight_states = {
+			highlight_states_trigger = {
+				is_owned_and_controlled_by = IRA
+				is_capital = yes
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_ICW_send_weapons"
+			hidden_effect = { add_command_power = -3 }
+		}
+		remove_effect = {
+			send_equipment = {
+				type = infantry_equipment
+				amount = 600
+				target = IRA
+			}
+			send_equipment = {
+				type = anti_tank_equipment
+				amount = 350
+				target = IRA
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 300
+				target = IRA
+			}
+			send_equipment = {
+				type = artillery_equipment
+				amount = 100
+				target = IRA
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_Kosygin_ICW_send_vehicles = {
+		icon = GFX_decision_market_motorized
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_government = socialist
+		}
+		available = {
+			has_equipment = { motorized_equipment > 199 }
+			has_equipment = { MBT_chassis > 99 }
+		}
+
+		custom_cost_trigger = { command_power > 2.99 }
+		custom_cost_text = decision_cost_3_cp
+		days_remove = 6
+		days_re_enable = 30
+
+		highlight_states = {
+			highlight_states_trigger = {
+				is_owned_and_controlled_by = IRA
+				is_capital = yes
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_ICW_send_vehicles"
+			hidden_effect = { add_command_power = -3 }
+		}
+		remove_effect = {
+			send_equipment = {
+				type = motorized_equipment
+				amount = 200
+				target = IRA
+			}
+			send_equipment = {
+				type = MBT_chassis
+				amount = 100
+				target = IRA
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_Kosygin_ICW_iranian_expeditionary_corps = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_government = socialist
+		}
+		available = {
+			has_manpower > 10000
+		}
+
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		fire_only_once = yes
+		days_remove = 3
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_ICW_iranian_expeditionary_corps"
+			hidden_effect = { add_command_power = -5 }
+		}
+		remove_effect = {
+			set_temp_variable = { target = IRA }
+			TNO_increase_volunteer_cap_1 = yes
+
+			set_country_flag = MAR_Kosygin_iran_volunteers
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	MAR_Kosygin_ICW_expand_the_iranian_expeditionary_corps = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_country_flag = MAR_Kosygin_iran_volunteers
+			has_government = socialist
+		}
+		available = {
+			set_temp_variable = { target = IRA }
+			TNO_volunteer_cap_less_4 = yes
+		}
+
+		cost = 50
+		days_re_enable = 30
+		days_remove = 3
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_ICW_expand_the_iranian_expeditionary_corps"
+		}
+		remove_effect = {
+			set_temp_variable = { target = IRA }
+			TNO_increase_volunteer_cap_1 = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	MAR_Kosygin_ICW_create_the_russian_airgroupe_in_iran = {
+		icon = GFX_decision_MAR_Kosyginket_helicopter
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_government = socialist
+		}
+		available = { has_country_flag = MAR_Kosygin_iran_volunteers }
+
+		custom_cost_trigger = { command_power > 4.99 }
+		custom_cost_text = decision_cost_5_cp
+		fire_only_once = yes
+		days_remove = 7
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_ICW_create_the_russian_airgroupe_in_iran"
+			hidden_effect = { add_command_power = -5 }
+		}
+		remove_effect = {
+			set_country_flag = MAR_Kosygin_ICW_squadron
+			air_experience = 25
+			add_equipment_to_stockpile = {
+				type = tac_bomber_equipment
+				amount = 100
+				producer = MAR_Kosygin
+			}
+			add_equipment_to_stockpile = {
+				type = CAS_equipment
+				amount = 50
+				producer = MAR_Kosygin
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_Kosygin_ICW_operation_sun_of_desert = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_government = socialist
+		}
+		available = { has_country_flag = MAR_Kosygin_ICW_squadron }
+
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		fire_only_once = yes
+		days_remove = 7
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_ICW_operation_sun_of_desert"
+			hidden_effect = { add_command_power = -10 }
+		}
+		remove_effect = {
+			every_other_country = {
+				limit = { has_war_with = IRA }
+				add_timed_idea = { idea = MAR_Plane_Bombing days = 90 }
+				TNO_worsen_poverty_high = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_Kosygin_ICW_group_of_military_advisors = {
+		icon = GFX_decision_generic_military_parade
+
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_government = socialist
+		}
+		custom_cost_trigger = {
+			has_political_power > 19.99
+			command_power > 4.99
+		}
+		custom_cost_text = decision_cost_5_cp_20_pp
+		fire_only_once = no
+		days_remove = 7
+		days_re_enable = 90
+		
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_ICW_group_of_military_advisors"
+			hidden_effect = { add_command_power = -5 add_political_power = -20 }
+		}
+		remove_effect = {
+			IRA = {
+				add_command_power = 20
+				add_timed_idea = { idea = MAR_military_advisors days = 90 }
+				TNO_improve_training_policy_effectiveness_high = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_Kosygin_ICW_russian_industrial_aid = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_iran_selected = yes
+			has_government = socialist
+		}
+		cost = 20
+		fire_only_once = yes
+		days_remove = 25
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_ICW_russian_industrial_aid"
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		remove_effect = {
+			add_command_power = 25
+			IRA = {
+				add_ideas = MAR_technician_aid
+				TNO_improve_industrial_equipment_high = yes
+				TNO_improve_industrial_expertise_med = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+
+
+MAR_BoP_category = {
+	MAR_Kosygin_OC_increase_commitment = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			has_government = socialist
+			TNO_fopo_baathism_support_selected = yes
+			TNO_volunteer_cap_less_5 = yes
+			check_variable = {
+				MAR_OC_volunteer_sent < 3
+			}
+		}
+
+		cost = 50
+		days_re_enable = 21
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_OC_increase_commitment"
+			add_command_power = 25
+			add_stability = -0.02
+
+			for_each_scope_loop = {
+				array = global.OIL_supported_by_MAR
+				MAR = {
+					set_temp_variable = { target = PREV }
+					TNO_increase_volunteer_cap_1 = yes
+				}
+			}
+
+			add_to_variable = {
+				MAR_OC_volunteer_sent = 1
+			}
+
+			custom_effect_tooltip = OIL_MAR_increase_volunteers_1
+
+			add_to_variable = {
+				MAR_OC_volunteer_sent = 8
+				tooltip = BOR_OC_add_participation
+			}
+			clamp_variable = { var = MAR_OC_participation min = 0 max = 100 }
+
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_Kosygin_OC_bomb_someone = {
+		icon = GFX_decision_generic_bombing
+		target_array = global.OIL_supported_by_MAR
+		target_trigger = {
+			FROM = {
+				exists = yes
+				has_war = yes
+			}
+		}
+		visible = {
+			MAR = { has_government = socialist }
+			FROM = {
+				exists = yes
+				has_war = yes
+				NOT = {
+					has_country_flag = MAR_OC_being_bombed
+				}
+			}
+			TNO_fopo_baathism_support_selected = yes
+		}
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+		days_re_enable = 21
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_OC_bomb_someone"
+			hidden_effect = { add_command_power = -15 }
+			every_other_country = {
+				limit = {
+					has_war_with = FROM
+					NOT = { is_in_faction_with = GER } #Prevent Japan trying to bomb goering's allies
+				}
+				add_ideas = MAR_Plane_Bombing 
+				set_country_flag = MAR_OC_being_bombed
+				TNO_worsen_poverty_high = yes
+			}
+
+			add_to_variable = {
+				MAR_OC_participation = 5
+				tooltip = BOR_OC_add_participation
+			}
+			clamp_variable = { var = MAR_OC_participation min = 0 max = 100 }
+		}
+		remove_effect = {
+			every_other_country = {
+				limit = { has_country_flag = MAR_OC_being_bombed }
+				remove_ideas = MAR_Plane_Bombing 
+				clr_country_flag = MAR_OC_being_bombed
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_Kosygin_OC_send_army_instructors = {
+		icon = GFX_decision_generic_military_parade
+		target_array = global.OIL_supported_by_MAR
+		target_trigger = {
+			FROM = {
+				exists = yes
+				has_war = yes
+			}
+		}
+		visible = {
+			MAR = { has_government = socialist }
+			FROM = {
+				exists = yes
+				has_war = yes
+				NOT = {
+					has_country_flag = MAR_OC_sent_advisors
+				}
+			}
+			TNO_fopo_baathism_support_selected = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		days_remove = 7
+		days_re_enable = 21
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_Speer_OC_send_wehrmacht_instructors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+				set_country_flag = MAR_OC_sent_advisors
+			}
+
+			add_to_variable = {
+				MAR_OC_participation = 3
+				tooltip = BOR_OC_add_participation
+			}
+			clamp_variable = { var = MAR_OC_participation min = 0 max = 100 }
+		}
+		remove_effect = {
+			FROM = {
+				add_timed_idea = { idea = MAR_military_advisors  days = 180 }
+				TNO_improve_conscription_policy_effectiveness_high = yes
+				TNO_improve_training_policy_effectiveness_high = yes
+				TNO_improve_army_professionalism_med = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_Kosygin_OC_send_industrial_support = {
+		icon = GFX_decision_generic_industry
+		target_array = global.OIL_supported_by_MAR
+		target_trigger = {
+			FROM = {
+				exists = yes
+				has_war = yes
+			}
+		}
+		visible = {
+			MAR = { has_government = socialist }
+			FROM = {
+				exists = yes
+				has_war = yes
+				NOT = {
+					has_country_flag = MAR_OC_sent_advisors
+				}
+			}
+			TNO_fopo_baathism_support_selected = yes
+		}
+
+		custom_cost_trigger = {
+			always = yes
+		}
+		custom_cost_text = decision_cost_50_million
+		days_remove = 21
+		fire_only_once = yes
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_OC_send_industrial_support"
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+
+			add_to_variable = {
+				MAR_OC_participation = 5
+				tooltip = BOR_OC_add_participation
+			}
+			clamp_variable = { var = MAR_OC_participation min = 0 max = 100 }
+		}
+		remove_effect = {
+			FROM = {
+				add_timed_idea = { idea = MAR_technician_aid  days = 365 }
+				TNO_improve_industrial_expertise_med = yes
+				TNO_improve_industrial_equipment_med = yes
+
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1500
+					producer = JAP
+				}
+			}
+
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+	MAR_Kosygin_OC_heat_of_the_desert = {
+		icon = GFX_decision_generic_assault
+		visible = {
+			has_government = socialist
+			TNO_fopo_baathism_support_selected = yes
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAR_Kosygin_OC_heat_of_the_desert_tt
+				check_variable = {
+					MAR_OC_participation > 0
+				}
+			}
+		}
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_25_m_10_cp
+		days_remove = 365
+		fire_only_once = yes
+
+		modifier = {
+			acclimatization_hot_climate_gain_factor = 0.2
+			heat_attrition_factor = -0.2
+			recon_factor = 0.1
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_OC_heat_of_the_desert"
+			hidden_effect = { add_command_power = -10 }
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+MAR_BoP_category = {
+
+	MAR_OC_increase_commitment = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			tag = MAR
+			NOT = { has_government = socialist }
+			TNO_fopo_baathism_support_selected = yes
+			TNO_volunteer_cap_less_5 = yes
+			check_variable = {
+				MAR_OC_volunteer_sent < 3
+			}
+		}
+
+		cost = 50
+		days_re_enable = 21
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_OC_increase_commitment"
+			add_command_power = 25
+
+			for_each_scope_loop = {
+				array = global.OIL_supported_by_MAR
+
+				MAR = {
+					set_temp_variable = { target = PREV }
+					TNO_increase_volunteer_cap_1 = yes
+				}
+			}
+
+			add_to_variable = {
+				MAR_OC_volunteer_sent = 1
+			}
+
+			custom_effect_tooltip = OIL_USA_increase_volunteers_1 #reusing the usa tooltip
+
+			add_to_variable = {
+				MAR_OC_participation = 8
+				tooltip = BOR_OC_add_participation
+			}
+			clamp_variable = { var = MAR_OC_participation min = 0 max = 100 }
+
+		}
+		ai_will_do = {
+			factor = 10
+		}
+	}
+
+	MAR_OC_bomb_someone = {
+		icon = GFX_decision_generic_bombing
+		target_array = global.OIL_supported_by_MAR
+		target_trigger = {
+			FROM = {
+				exists = yes
+				has_war = yes
+			}
+		}
+		visible = {
+			MAR = { NOT = { has_government = socialist } }
+			FROM = {
+				exists = yes
+				has_war = yes
+				NOT = {
+					has_country_flag = MAR_OC_being_bombed
+				}
+			}
+			TNO_fopo_baathism_support_selected = yes
+		}
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+		days_re_enable = 21
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_OC_bomb_someone"
+			hidden_effect = { add_command_power = -15 }
+			every_other_country = {
+				limit = {
+					has_war_with = FROM
+					NOT = { is_in_faction_with = GER } #Prevent Japan trying to bomb goering's allies
+				}
+				add_ideas = MAR_Plane_Bombing 
+				set_country_flag = MAR_OC_being_bombed
+				TNO_worsen_poverty_high = yes
+			}
+
+			add_to_variable = {
+				MAR_OC_participation = 5
+				tooltip = BOR_OC_add_participation
+			}
+			clamp_variable = { var = MAR_OC_participation min = 0 max = 100 }
+		}
+		remove_effect = {
+			every_other_country = {
+				limit = { has_country_flag = MAR_OC_being_bombed }
+				remove_ideas = MAR_Plane_Bombing 
+				clr_country_flag = MAR_OC_being_bombed
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_OC_send_army_instructors = {
+		icon = GFX_decision_generic_military_parade
+		target_array = global.OIL_supported_by_MAR
+		target_trigger = {
+			FROM = {
+				exists = yes
+				has_war = yes
+			}
+		}
+		visible = {
+			NOT = { has_government = socialist }
+			FROM = {
+				exists = yes
+				has_war = yes
+				NOT = {
+					has_country_flag = MAR_OC_sent_advisors
+				}
+			}
+			TNO_fopo_baathism_support_selected = yes
+		}
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		days_remove = 7
+		days_re_enable = 21
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision GER_Speer_OC_send_wehrmacht_instructors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+				set_country_flag = MAR_OC_sent_advisors
+			}
+
+			add_to_variable = {
+				MAR_OC_participation = 3
+				tooltip = BOR_OC_add_participation
+			}
+			clamp_variable = { var = MAR_OC_participation min = 0 max = 100 }
+		}
+		remove_effect = {
+			FROM = {
+				add_timed_idea = { idea = MAR_military_advisors  days = 180 }
+				TNO_improve_conscription_policy_effectiveness_high = yes
+				TNO_improve_training_policy_effectiveness_high = yes
+				TNO_improve_army_professionalism_med = yes
+			}
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_OC_send_industrial_support = {
+		icon = GFX_decision_generic_industry
+		target_array = global.OIL_supported_by_MAR
+		target_trigger = {
+			FROM = {
+				exists = yes
+				has_war = yes
+			}
+		}
+		visible = {
+			NOT = { has_government = socialist }
+			FROM = {
+				exists = yes
+				has_war = yes
+				NOT = {
+					has_country_flag = MAR_OC_sent_advisors
+				}
+			}
+			TNO_fopo_baathism_support_selected = yes
+		}
+
+		custom_cost_trigger = {
+			always = yes
+		}
+		custom_cost_text = decision_cost_50_million
+		days_remove = 21
+		fire_only_once = yes
+
+		on_map_mode = map_and_decisions_view
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = FROM
+			}
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_OC_send_industrial_support"
+			set_temp_variable = { temp_econ_spending_amount = 0.05 }
+			econ_spend_money_once_effect_raw_money = yes
+
+			add_to_variable = {
+				MAR_OC_participation = 5
+				tooltip = BOR_OC_add_participation
+			}
+			clamp_variable = { var = MAR_OC_participation min = 0 max = 100 }
+		}
+		remove_effect = {
+			FROM = {
+				add_timed_idea = { idea = MAR_technician_aid  days = 365 }
+				TNO_improve_industrial_expertise_med = yes
+				TNO_improve_industrial_equipment_med = yes
+
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1500
+					producer = JAP
+				}
+			}
+
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+
+	MAR_OC_heat_of_the_desert = {
+		icon = GFX_decision_generic_assault
+		visible = {
+			NOT = { has_government = socialist }
+			TNO_fopo_baathism_support_selected = yes
+		}
+
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_OC_volunteers_in_the_middle_east_tt
+				check_variable = {
+					MAR_OC_volunteer_sent > 0
+				}
+			}
+		}
+		custom_cost_trigger = {
+			command_power > 9.99
+		}
+		custom_cost_text = decision_cost_25_m_10_cp
+		days_remove = 365
+		fire_only_once = yes
+
+		modifier = {
+			acclimatization_hot_climate_gain_factor = 0.2
+			heat_attrition_factor = -0.2
+			recon_factor = 0.1
+		}
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_OC_heat_of_the_desert"
+			hidden_effect = { add_command_power = -10 }
+			set_temp_variable = { temp_econ_spending_amount = 0.025 }
+			econ_spend_money_once_effect_raw_money = yes
+		}
+		ai_will_do = {
+			factor = 20
+		}
+	}
+}
+
+MAR_BoP_category = {
+
+	MAR_meeting_with_generals_CCW = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+
+
+	MAR_bombing_runs_CCW = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_bombing_runs"
+			every_country = {
+				limit = {
+					OR = {
+						has_war_with = KSI
+						has_war_with = KTG
+					}
+				}
+				add_timed_idea = {
+					idea = MAR_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+	}
+
+	MAR_supply_freedom_fighters_CCW = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = KSI
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = KSI
+			}
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = KTG
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = KTG
+			}
+		}
+	}
+
+
+	MAR_send_military_advisors_CCW = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			KSI = {
+				add_timed_idea = { idea = MAR_military_advisors days = 180 }
+			}
+			KTG = {
+				add_timed_idea = { idea = MAR_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	MAR_technician_aid_CCW = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_technician_aid"
+			KSI = {
+				add_timed_idea = { idea = MAR_technician_aid days = 180 }
+			}
+			KTG = {
+				add_timed_idea = { idea = MAR_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	MAR_sabotage_effort_CCW = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = {
+					OR = {
+						has_war_with = KSI
+						has_war_with = KTG
+					}
+				}
+				add_timed_idea = { idea = MAR_sabotage_effort days = 90 }
+			}
+		}
+	}
+	
+	MAR_meeting_with_generals_CCW_kosygin = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			has_government = socialist
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+	
+	MAR_bombing_runs_CCW_kosygin = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_bombing_runs"
+			every_country = {
+				limit = { has_war_with = CPR }
+				add_timed_idea = {
+					idea = MAR_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+	}
+
+	MAR_supply_freedom_fighters_CCW_kosygin = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			has_government = socialist
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = CPR
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = CPR
+			}
+		}
+	}
+
+
+	MAR_send_military_advisors_CCW_kosygin = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			CPR = {
+				add_timed_idea = { idea = MAR_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	MAR_technician_aid_CCW_kosygin = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_technician_aid"
+			CPR = {
+				add_timed_idea = { idea = MAR_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	MAR_sabotage_effort_CCW_kosygin = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_congo_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = { has_war_with = CPR }
+				add_timed_idea = { idea = MAR_sabotage_effort days = 90 }
+			}
+		}
+	}
+}
+
+MAR_BoP_category = {
+	# / Generic Decisions
+	MAR_FrenchReclamation_Decision_SupportSupplyLines = {
+		icon = GFX_decision_generic_supply
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_FrenchReclamation_Decision_SupportCrossChannelSupplyLines"
+			hidden_effect = {
+				add_command_power = -15
+			}
+		}
+		days_remove = 20
+		targeted_modifier = {
+			tag = FRM
+			army_org_regain = 0.15
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_FrenchReclamation_Decision_SendInfantryEquipmentShipments = {
+		icon = GFX_decision_generic_arms_crate
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_FrenchReclamation_Decision_SendInfantryEquipmentShipments"
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		days_remove = 10
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_FrenchReclamation_Decision_SendInfantryEquipmentShipments"
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 800
+				target = FRM
+			}
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_FrenchReclamation_Decision_SendMotorizedEquipmentShipments = {
+		icon = GFX_decision_generic_arms_crate
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		days_remove = 10
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			send_equipment = {
+				equipment = motorized_equipment
+				amount = 400
+				target = FRM
+			}
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_FrenchReclamation_Decision_SendTechnicalAid = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		days_remove = 10
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			FRM = {
+				add_timed_idea = { idea = MAR_technician_aid days = 180 }
+			}
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_FrenchReclamation_Decision_MAR_TacticalBombingRuns = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_FrenchReclamation_Decision_MAR_TacticalBombingRuns"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			every_country = {
+				limit = { has_war_with = FRM }
+				add_ideas = MAR_Plane_Bombing
+			}	
+		}
+		remove_effect = {
+			every_country = {
+				limit = { has_war_with = FRM }
+				remove_ideas = MAR_Plane_Bombing
+			}	
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_FrenchReclamation_Decision_MAR_send_military_advisors = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			FRM = {
+				add_timed_idea = { idea = MAR_military_advisors days = 180 }
+			}
+
+		}
+	}
+	MAR_FrenchReclamation_Decision_MAR_MeetWithGenerals = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			NOT = { has_government = socialist }
+		}
+		cost = 50
+		days_re_enable = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_FrenchReclamation_Decision_MAR_MeetWithGenerals"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_FrenchReclamation_Decision_MAR_MeetWithGenerals"
+			add_command_power = 50
+		}
+		days_remove = 5
+		ai_will_do = {
+			base = 10
+		}
+	}
+	
+	MAR_Kosygin_FrenchReclamation_Decision_SupportSupplyLines = {
+		icon = GFX_decision_generic_supply
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			has_government = socialist
+		}
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_Kosygin_FrenchReclamation_Decision_SupportCrossChannelSupplyLines"
+			hidden_effect = {
+				add_command_power = -15
+			}
+		}
+		days_remove = 20
+		targeted_modifier = {
+			tag = FRV
+			army_org_regain = 0.15
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_Kosygin_FrenchReclamation_Decision_SendInfantryEquipmentShipments = {
+		icon = GFX_decision_generic_arms_crate
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			has_government = socialist
+		}
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_Kosygin_FrenchReclamation_Decision_SendInfantryEquipmentShipments"
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		days_remove = 10
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_Kosygin_FrenchReclamation_Decision_SendInfantryEquipmentShipments"
+			send_equipment = {
+				equipment = infantry_equipment
+				amount = 800
+				target = FRV
+			}
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_Kosygin_FrenchReclamation_Decision_SendMotorizedEquipmentShipments = {
+		icon = GFX_decision_generic_arms_crate
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			has_government = socialist
+		}
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_Kosygin_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		days_remove = 10
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_Kosygin_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			send_equipment = {
+				equipment = motorized_equipment
+				amount = 400
+				target = FRV
+			}
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_Kosygin_FrenchReclamation_Decision_SendTechnicalAid = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			has_government = socialist
+		}
+		custom_cost_trigger = { command_power > 9.99 }
+		custom_cost_text = decision_cost_10_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_Kosygin_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			hidden_effect = {
+				add_command_power = -10
+			}
+		}
+		days_remove = 10
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_Kosygin_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			FRV = {	
+				add_timed_idea = { idea = MAR_technician_aid days = 180 }
+			}
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_Kosygin_FrenchReclamation_Decision_MAR_TacticalBombingRuns = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			has_government = socialist
+		}
+		custom_cost_trigger = { command_power > 19.99 }
+		custom_cost_text = decision_cost_20_cp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_Kosygin_FrenchReclamation_Decision_MAR_Kosygin_TacticalBombingRuns"
+			hidden_effect = {
+				add_command_power = -20
+			}
+		}
+		days_remove = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_Kosygin_FrenchReclamation_Decision_SendMotorizedEquipmentShipments"
+			every_country = {
+				limit = { has_war_with = FRV }
+				add_ideas = MAR_Plane_Bombing
+			}	
+		}
+		remove_effect = {
+			every_country = {
+				limit = { has_war_with = FRV }
+				remove_ideas = MAR_Plane_Bombing
+			}	
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	MAR_Kosygin_FrenchReclamation_Decision_MAR_send_military_advisors = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			has_government = socialist
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_Kosygin_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			FRV = {
+				add_timed_idea = { idea = MAR_military_advisors days = 180 }
+			}
+
+		}
+	}
+	MAR_Kosygin_FrenchReclamation_Decision_MAR_MeetWithGenerals = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_french_civil_war_selected = yes
+			has_government = socialist
+		}
+		cost = 50
+		days_re_enable = 30
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete MAR_Kosygin_FrenchReclamation_Decision_MAR_Kosygin_MeetWithGenerals"
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove MAR_Kosygin_FrenchReclamation_Decision_MAR_Kosygin_MeetWithGenerals"
+			add_command_power = 50
+		}
+		days_remove = 5
+		ai_will_do = {
+			base = 10
+		}
+	}
+}
+
+MAR_BoP_category = {
+	MAR_meeting_with_generals_ACW = {
+		icon = GFX_decision_handshake
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 100
+		days_re_enable = 120
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_meeting_with_generals"
+			add_command_power = 40
+		}
+
+	}
+
+
+	MAR_bombing_runs_ACW = {
+		icon = GFX_decision_generic_bombing
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		days_re_enable = 120
+
+		custom_cost_trigger = { command_power > 14.99 }
+		custom_cost_text = decision_cost_15_cp
+		days_remove = 90
+
+		complete_effect = {
+			hidden_effect = { add_command_power = -15 }
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_bombing_runs"
+			every_country = {
+				limit = { has_war_with = AFG }
+				add_timed_idea = {
+					idea = MAR_Plane_Bombing
+					days = 90
+				}
+			}
+		}
+	}
+
+	MAR_supply_freedom_fighters_ACW = {
+		icon = GFX_decision_generic_prepare_civil_war
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+		days_re_enable = 30
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_supply_freedom_fighters"
+			send_equipment = {
+				type = infantry_equipment
+				amount = 1000
+				target = AFG
+			}
+			send_equipment = {
+				type = support_equipment
+				amount = 500
+				target = AFG
+			}
+		}
+	}
+
+
+	MAR_send_military_advisors_ACW = {
+		icon = GFX_decision_generic_military_parade
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_send_military_advisors"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			AFG = {
+				add_timed_idea = { idea = MAR_military_advisors days = 180 }
+			}
+
+		}
+	}
+
+
+	MAR_technician_aid_ACW = {
+		icon = GFX_decision_generic_industry
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 180
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 50
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_technician_aid"
+			AFG = {
+				add_timed_idea = { idea = MAR_technician_aid days = 180 }
+			}
+		}
+	}
+
+
+	MAR_sabotage_effort_ACW = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			TNO_fopo_afghanistan_civil_war_selected = yes
+		}
+
+		days_re_enable = 90
+
+		custom_cost_trigger = {
+			has_political_power > 24.99
+			command_power > 9.99
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		custom_cost_text = decision_cost_10_cp_25_pp
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision MAR_sabotage_effort"
+			hidden_effect = {
+				add_command_power = -10
+				add_political_power = -25
+			}
+			every_country = {
+				limit = { has_war_with = AFG }
+				add_timed_idea = { idea = MAR_sabotage_effort days = 90 }
+			}
+		}
+	}
+}

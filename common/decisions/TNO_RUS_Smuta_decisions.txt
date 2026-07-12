@@ -865,6 +865,40 @@ RUS_DecisionCategory_Smuta = {
 		ai_will_do = { factor = 1000 }
 
 	}
+	RUS_Decision_Smuta_Occupation_MAR = {
+
+		icon = GFX_decision_generic_document_building
+		visible = {
+			MAR = { exists = no }
+			any_owned_state = { is_core_of = MAR }
+		}
+		available = {
+			NOT = { has_decision = RUS_Decision_Smuta_Chaos_Decrease_FuckFuckFUck }
+		}
+		cost = var:Smuta_CoringCost
+
+		fire_only_once = yes
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete RUS_Decision_Smuta_Occupation_MAR"
+			set_temp_variable = { TargetTag = MAR }
+			custom_effect_tooltip = RUS_Smuta_Occupation_TargetTag_Tt
+			add_command_power = MAR.command_power
+			hidden_effect = {
+				FROM = {
+					every_owned_state = {
+						limit = { is_core_of = MAR }
+						add_core_of = PREV
+						remove_core_of = MAR
+					}
+				}
+			}
+			RUS_Smuta_Occupation_Generic = yes
+			#RUS_Smuta_Occupation_Unique_BKR = yes
+		}
+
+		ai_will_do = { factor = 20 }
+
+	}
 
 	############################
 	# {===| WEST SIBERIA |===} #
@@ -2350,12 +2384,108 @@ RUS_DecisionCategory_Smuta = {
 		ai_will_do = { #AI can't prepare multiple wars, players can cause more if they want
 			factor = 125 # Gets Vyatka moving south, prevents Samara-Gorky one province border war
 			modifier = {
-				factor = 2
-				tag = SAM
+				factor = 0
+				has_country_flag = RUS_Smuta_preparing_expansion
 			}
+		}
+	}
+	
+	#####################
+	# {=| BEREZNIKI |=} #
+	#####################
+	RUS_Decision_Smuta_Expansion_MAR_Generic = {
+
+		icon = GFX_decision_generic_assault
+
+		visible = {
+			is_central_russian_nation = yes
+			is_neighbor_of = MAR
+			has_war = no
+			NOT = { has_non_aggression_pact_with = MAR }
+			RUS_Smuta_ScriptedTrigger_Expansion_MAR_Generic_NotVisible = yes
+		}
+		available = {
+			set_temp_variable = { Y = 250 }
+			RUS_Smuta_ScriptedTrigger_Chaos_LessThanY = yes
+		}
+
+		fire_only_once = yes
+
+		custom_cost_trigger = {
+			set_temp_variable = { N = 0.7 }
+			check_variable = { Smuta_Supplies > 0.69 }
+		}
+		custom_cost_text = decision_cost_N_smuta_supplies
+
+		modifier = {
+			command_power_gain = -0.5
+			political_power_gain = -1
+		}
+
+		complete_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete RUS_Decision_Smuta_Expansion_MAR_Generic"
+			if = {
+				limit = {
+					has_country_flag = tukha_in_power
+				}
+				custom_effect_tooltip = WRS_SMUTA_SEND_ULTIMATUM_tt
+				hidden_effect = {
+					MAR = {
+						country_event = {
+							id = tukha_ultimatum.29
+						}
+					}
+				}
+			}
+			set_temp_variable = { TargetTag = MAR }
+			RUS_Smuta_Expansion_TargetTag_Generic_Complete = yes
+			set_country_flag = RUS_Smuta_preparing_expansion
+		}
+
+		days_remove = 15
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Remove RUS_Decision_Smuta_Expansion_MAR_Generic"
+			set_temp_variable = { TargetTag = MAR }
+			RUS_Smuta_Expansion_TargetTag_Generic_Remove = yes
+			clr_country_flag = RUS_Smuta_preparing_expansion
+		}
+
+		cancel_trigger = {
+			hidden_trigger = {
+				NOT = {
+					country_exists = MAR
+					has_war_with = MAR
+				}
+			}
+		}
+		cancel_effect = {
+			remove_from_array = { Smuta_PrepareWarOn = MAR }
+			clr_country_flag = RUS_Smuta_preparing_expansion
+		}
+
+		ai_will_do = { #AI can't prepare multiple wars, players can cause more if they want
+			factor = 125
 			modifier = {
 				factor = 0
 				has_country_flag = RUS_Smuta_preparing_expansion
+			}
+			modifier = { #AI WRRF less likely to attack Berzniki Berezniki while Vologda or Komi exists
+				add = -110
+				MAR = { is_ai = no }
+				original_tag = WRS
+				OR = {
+					country_exists = KOM
+					country_exists = VOL
+				}
+			}
+			modifier = { #AI Vyatka-controlling country less likely to attack Berzniki if Tatarstan or Perm exists
+				add = -115
+				MAR = { is_ai = no }
+				controls_state = 400
+				OR = {
+					country_exists = TAR
+					country_exists = PRM
+				}
 			}
 		}
 	}
@@ -3300,6 +3430,117 @@ RUS_DecisionCategory_Smuta = {
 		cancel_trigger = { hidden_trigger = { NOT = { country_exists = BKR } } }
 
 		ai_will_do = { factor = 1000 }
+	}
+	
+	#######################
+	# {==| BEREZNIKI |==} #
+	#######################
+	
+	RUS_Decision_Smuta_Expansion_VOL_MAR_Propose_Union = {
+
+		icon = GFX_decision_generic_shake_hands
+
+		visible = {
+			tag = MAR
+			VOL = {
+				exists = yes
+			}
+		}
+		available = {
+			is_neighbor_of = VOL
+			set_temp_variable = { Y = 250 }
+			RUS_Smuta_ScriptedTrigger_Chaos_LessThanY = yes
+			NOT = {
+				has_war_with = VOL
+			}
+		}
+		days_remove = 15
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			set_country_flag = INVASION_VOL_DISALLOWED
+			MAR = { country_event = MAR_smuta.14 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete RUS_Decision_Smuta_Expansion_WRS_MAR_Propose_Union"
+			VOL = { country_event = MAR_smuta.15 }
+		}
+
+		ai_will_do = { factor = 20 }
+
+	}
+
+	RUS_Decision_Smuta_Expansion_KOM_MAR_Propose_Union = {
+
+		icon = GFX_decision_generic_shake_hands
+
+		visible = {
+			tag = MAR
+			KOM = {
+				exists = yes
+				OR = {
+					has_government = liberalism
+					has_government = liberal_conservatism
+					has_government = progressivism
+					has_government = paternalism
+				}
+			}
+		}
+		available = {
+			is_neighbor_of = KOM
+			set_temp_variable = { Y = 250 }
+			RUS_Smuta_ScriptedTrigger_Chaos_LessThanY = yes
+			NOT = {
+				has_war_with = KOM
+			}
+		}
+		days_remove = 15
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			set_country_flag = INVASION_KOM_DISALLOWED
+			MAR = { country_event = MAR_smuta.18 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete RUS_Decision_Smuta_Expansion_WRS_MAR_Propose_Union"
+			KOM = { country_event = MAR_smuta.19 }
+		}
+
+		ai_will_do = { factor = 20 }
+
+	}
+
+	RUS_Decision_Smuta_Expansion_BKR_MAR_Propose_Union = {
+
+		icon = GFX_decision_generic_shake_hands
+
+		visible = {	
+			tag = MAR
+			BKR = {
+				exists = yes
+			}
+		}
+		available = {
+			is_neighbor_of = BKR
+			set_temp_variable = { Y = 250 }
+			RUS_Smuta_ScriptedTrigger_Chaos_LessThanY = yes
+			NOT = {
+				has_war_with = BKR
+			}
+		}
+		days_remove = 15
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			set_country_flag = INVASION_BKR_DISALLOWED
+			MAR = { country_event = MAR_smuta.10 }
+		}
+		remove_effect = {
+			log = "[GetDateText]: [Root.GetName]: Decision Complete RUS_Decision_Smuta_Expansion_WRS_KOM_Propose_Union"
+			BKR = { country_event = MAR_smuta.11 }
+		}
+
+		ai_will_do = { factor = 20 }
 
 	}
 
