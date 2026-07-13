@@ -25,15 +25,9 @@ news_event = {
 	desc = WORLD_2WRWTER.114514.desc
 	picture = GFX_news_event_STL_april_fools_news_event
 
-	is_triggered_only = yes
-
-	option = { #
-		name = WORLD_2WRWTER.114514.a
-		set_temp_variable = { TNO_temp_super_event = token:SE_THE_GREAT_MAGICAL_GIRL_WITCH_TRIAL }
-		TNO_fire_super_event = yes
-		ai_chance = { factor = 1 }
+	immediate = {
 		hidden_effect = {
-			GER = {
+						GER = {
 				set_faction_name = Anti_Majos_Alliance_European
 			}
 			USA = {
@@ -43,11 +37,17 @@ news_event = {
 				set_faction_name = Anti_Majos_Alliance_PacificIndian
 			}
 			CAO = {
-				create_faction = Anti_Majos_Alliance_African
+				create_faction_from_template = { name = Anti_Majos_Alliance_African template = faction_template_generic }
+	add_faction_goal_slot = { category = short_term  value = -10 }
+    add_faction_goal_slot = { category = medium_term value = -10 }
+    add_faction_goal_slot = { category = long_term   value = -10 }
 			}
 			every_country = {
 				limit = {
-					is_european_nation = yes
+					capital_scope = { is_in_europe = yes }
+					NOT = {
+						tag = MGI
+					}
 				}
 				GER = {
 					add_to_faction = PREV
@@ -56,8 +56,11 @@ news_event = {
 			every_country = {
 				limit = {
 					OR = {
-						is_in_asia = yes
-						is_in_middle_east = yes
+						capital_scope = { is_in_asia = yes }
+						capital_scope = { is_in_middle_east = yes }
+					}
+					NOT = {
+						tag = MGI
 					}
 				}
 				JAP = {
@@ -66,8 +69,10 @@ news_event = {
 			}
 			every_country = {
 				limit = {
-					is_in_north_america = yes
-					is_in_south_america = yes
+					OR = {
+						capital_scope = { is_in_north_america = yes }
+						capital_scope = { is_in_south_america = yes }
+					}
 				}
 				USA = {
 					add_to_faction = PREV
@@ -75,13 +80,22 @@ news_event = {
 			}
 			every_country = {
 				limit = {
-					is_in_africa = yes
+					capital_scope = { is_in_africa = yes }
 				}
 				CAO = {
 					add_to_faction = PREV
 				}
 			}
 		}
+	}
+
+	is_triggered_only = yes
+
+	option = { #
+		name = WORLD_2WRWTER.114514.a
+		set_temp_variable = { TNO_temp_super_event = token:SE_THE_GREAT_MAGICAL_GIRL_WITCH_TRIAL }
+		TNO_fire_super_event = yes
+		ai_chance = { factor = 1 }
 	}
 }
 

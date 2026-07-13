@@ -1,5 +1,5 @@
 name="The New Order: Sperne Tuta Limina"
-version="1.2.2c"
+version="1.3.0a"
 dependencies={
 	"The New Order: Last Days of Europe"
 	"The New Order: Last Days of Europe(CN.Ver)"
