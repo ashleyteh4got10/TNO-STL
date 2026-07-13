@@ -12,4 +12,4 @@ replace_path="localisation/simp_chinese/TNO_Country_Info_Screen_l_simp_chinese.y
 replace_path="localisation/simp_chinese/TNO_Kamchatka_l_simp_chinese.yml"
 supported_version="1.19.*"
 path="C:/Program Files (x86)/Steam/steamapps/workshop/content/3532278099"
-remote_file_id="3730538275"
+remote_file_id="3532278099"
