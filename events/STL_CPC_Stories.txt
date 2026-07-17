@@ -18,8 +18,13 @@ country_event = {
 	
 	option = {
 		name = STL_CPC_main_story.1.o
-		country_event = { id = STL_CPC_main_story.2 days = 5 }
+		country_event = { id = STL_CPC_main_story.2 days = 14 }
 		ai_chance = { factor = 100 }
+		hidden_effect = {
+			KAZ = {
+				retire_character = KAZ_Mao_Anying
+			}
+		}
 	}
 }
 
@@ -167,7 +172,7 @@ country_event = {
 	}
 }
 
-# 10. 幸福的一瞬（完结）
+# 10. 幸福的一瞬
 country_event = {
 	id = STL_CPC_main_story.11
 	title = STL_CPC_main_story.11.t
@@ -178,9 +183,58 @@ country_event = {
 	
 	option = {
 		name = STL_CPC_main_story.11.o
+		country_event = { id = STL_CPC_main_story.12 days = 30 }
 		ai_chance = { factor = 100 }
 	}
 }
+# 11. 父与子
+country_event = {
+	id = STL_CPC_main_story.12
+	title = STL_CPC_main_story.12.t
+	desc = STL_CPC_main_story.12.desc
+	picture = GFX_Mao_dad_and_son
+
+	is_triggered_only = yes
+	
+	option = {
+		name = STL_CPC_main_story.12.o
+		ai_chance = { factor = 100 }
+		recruit_character = KAZ_Mao_Anying
+		hidden_effect = {
+			set_portraits = {
+				character = KAZ_Mao_Anying
+				army = {
+					large = "gfx/interface/2WRWTER/leaders/CPC/CPC_Mao_Anying.png"
+				}
+			}
+			division_template = {
+				name = "CPC Elite Infantry"
+				regiments = {
+					elite_infantry = { x = 0 y = 0 }
+					elite_infantry = { x = 0 y = 1 }
+					elite_infantry = { x = 0 y = 2 }
+					elite_infantry = { x = 1 y = 0 }
+					elite_infantry = { x = 1 y = 1 }
+					elite_infantry = { x = 1 y = 2 }
+					elite_infantry = { x = 2 y = 0 }
+					elite_infantry = { x = 2 y = 1 }
+					elite_infantry = { x = 2 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+			}
+		}
+		956 = {
+			create_unit = {
+				division = "division_template = \"CPC Elite Infantry\" start_experience_factor = 5 start_equipment_factor = 1"
+				owner = CPC
+				count = 1
+			}
+		}
+	}
+}
+
 
 # ==================== 战后大选事件链 ====================
 
