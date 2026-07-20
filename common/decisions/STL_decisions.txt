@@ -463,3 +463,150 @@ CPC_Mon_Mfn_help_dec = {
 		}
 	}
 }
+
+TER_new_automatic_dec = {
+	TER_cal_NWB_SWB = {
+		visible = {
+			NOT = { check_variable = { TER_importance = 1 } }
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CPC_unlock_NWB
+				has_country_flag = CPC_unlock_SWB
+			}
+		}
+		fire_only_once = no
+		complete_effect = {
+			hidden_effect = {
+				set_variable = { TER_importance = 1 }
+				if = {
+					limit = {
+						has_country_flag = TER_cal_automatic
+					}
+					TER_CPC_cal_automatic = yes
+				}
+			}
+		}
+	}
+	TER_cal_NWB_XJB = {
+		visible = {
+			NOT = { check_variable = { TER_importance = 2 } }
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CPC_unlock_NWB
+				has_country_flag = CPC_unlock_XJB
+			}
+		}
+		fire_only_once = no
+		complete_effect = {
+			hidden_effect = {
+				set_variable = { TER_importance = 2 }
+				if = {
+					limit = {
+						has_country_flag = TER_cal_automatic
+					}
+					TER_CPC_cal_automatic = yes
+				}
+			}
+		}
+	}
+	TER_cal_XJB_SWB = {
+		visible = {
+			NOT = { check_variable = { TER_importance = 3 } }
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CPC_unlock_XJB
+				has_country_flag = CPC_unlock_SWB
+			}
+		}
+		fire_only_once = no
+		complete_effect = {
+			hidden_effect = {
+				set_variable = { TER_importance = 3 }
+				if = {
+					limit = {
+						has_country_flag = TER_cal_automatic
+					}
+					TER_CPC_cal_automatic = yes
+				}
+			}
+		}
+	}
+	TER_cal_shortbtn = {
+		visible = {
+			NOT = { check_variable = { TER_importance = 0 } }
+		}
+		available = {
+			hidden_trigger = {
+				always = yes
+			}
+		}
+		fire_only_once = no
+		days_re_enable = 0
+		complete_effect = {
+			hidden_effect = {
+				set_variable = { TER_importance = 4 }
+				if = {
+					limit = {
+						has_country_flag = TER_cal_automatic
+					}
+					TER_CPC_cal_automatic = yes
+				}
+			}
+		}
+	}
+	TER_cal_automatic_admit_open = {
+		visible = {
+			NOT = { has_country_flag = TER_cal_automatic }
+		}
+		available = {
+			has_variable = TER_importance
+		}
+		fire_only_once = no
+		days_re_enable = 0
+		complete_effect = {
+			hidden_effect = {
+				set_country_flag = TER_cal_automatic
+				activate_mission = TER_cal_automatic
+				TER_CPC_cal_automatic = yes
+			}
+		}
+	}
+	TER_cal_automatic_admit_close = {
+		visible = {
+			has_country_flag = TER_cal_automatic
+		}
+		available = {
+			has_variable = TER_importance
+		}
+		fire_only_once = no
+		days_re_enable = 0
+		complete_effect = {
+			hidden_effect = {
+				clr_country_flag = TER_cal_automatic
+			}
+		}
+	}
+	TER_cal_automatic = {
+		activation = {
+			has_country_flag = TER_cal_automatic
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CPC_TRCW_begins_flag
+				has_global_flag = CPC_WINS_TRCW
+				NOT = { has_country_flag = TER_cal_automatic }
+			}
+		}
+		is_good = yes
+		days_mission_timeout = 10
+		timeout_effect = {
+			hidden_effect = {
+				TER_CPC_cal_automatic = yes
+				activate_mission = TER_cal_automatic
+			}
+		}
+	}
+}

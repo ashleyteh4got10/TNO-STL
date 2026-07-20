@@ -224,10 +224,8 @@ country_event = { # NWB
 			limit = { 
 				check_variable = { CPC_hosting_service_NWB_var = 2 }
 				NOT = { 
-					OR = {
-						has_country_flag = CPC_TRCW_begins_flag
-						has_global_flag = CPC_WINS_TRCW
-					}
+					has_country_flag = CPC_TRCW_begins_flag
+					has_global_flag = CPC_WINS_TRCW
 			 	}
 			}
 			set_temp_variable = { pp_tmp = 5 }
@@ -235,32 +233,7 @@ country_event = { # NWB
 			multiply_temp_variable = { pp_tmp = -1 }
 			add_political_power = pp_tmp
 			#遍历六大任务情况
-			while_loop_effect = {
-				limit = { 
-					NOT = { has_country_flag = CPC_NWB_all_missions_completed } 
-					NOT = { has_country_flag = NWB_activate_task }
-				}
-				random_list = {
-					1 = { set_variable = { NWB_acted_state = 283 } }
-					1 = { set_variable = { NWB_acted_state = 604 } }
-					1 = { set_variable = { NWB_acted_state = 616 } }
-					1 = { set_variable = { NWB_acted_state = 764 } }
-					1 = { set_variable = { NWB_acted_state = 906 } }
-					1 = { set_variable = { NWB_acted_state = 955 } }
-					1 = { set_variable = { NWB_acted_state = 1302 } }
-					1 = { set_variable = { NWB_acted_state = 2408 } }
-					1 = { set_variable = { NWB_acted_state = 2409 } }
-					1 = { set_variable = { NWB_acted_state = 2423 } }
-					1 = { set_variable = { NWB_acted_state = 2424 } }
-					1 = { set_variable = { NWB_acted_state = 2425 } }
-					1 = { set_variable = { NWB_acted_state = 2426 } }
-					1 = { set_variable = { NWB_acted_state = 2427 } }
-					1 = { set_variable = { NWB_acted_state = 2429 } }
-				}
-				var:NWB_acted_state = {
-					CPC_hosting_service_NWB_event_effect = yes
-				}
-			}
+			TER_NWB_new_automatic = yes
 		}
 		else = {
 			set_variable = { CPC_hosting_service_NWB_var = 1 }
@@ -280,56 +253,12 @@ country_event = { # SWB
 		ai_chance = { base = 1 }
 		if = {
 			limit = { 
-				NOT = { 
-					OR = {
-						has_country_flag = CPC_TRCW_begins_flag
-						has_global_flag = CPC_WINS_TRCW
-					}
+				NOT = {
+					has_country_flag = CPC_TRCW_begins_flag
+					has_global_flag = CPC_WINS_TRCW
 			 	}
 			}
-			if = {
-				limit = { 
-					XIK = { exists = yes } 
-					NOT = { XIK = { has_country_flag = SWB_focus_begins } }
-				}
-				if = {
-					limit = { check_variable = { TER_SWB_map_controller_state = 2 } }
-					set_variable = { SWB_focus_state^0 = 2 }
-					XIK = { set_country_flag = SWB_focus_begins }
-					set_country_flag = SWB_focus_begins
-					add_political_power = -20
-					Alert_SWB_focus_enabled_remove_alerts = yes
-				}
-				else = {
-					set_temp_variable_to_random = {
-						var = idx
-						min = 0
-						max = 3
-						integer = yes
-					}
-					set_variable = { SWB_focus_state^idx = 2 }
-					XIK = { set_country_flag = SWB_focus_begins }
-					set_country_flag = SWB_focus_begins
-					add_political_power = -20
-					Alert_SWB_focus_enabled_remove_alerts = yes
-				}
-			}
-			else_if = {
-				limit = { 
-					XIK = { exists = no } 
-					NOT = { has_country_flag = SWB_focus_begins }
-				}
-				set_temp_variable_to_random = {
-					var = idx
-					min = 0
-					max = 3
-					integer = yes
-				}
-				set_variable = { SWB_focus_state^idx = 2 }
-				set_country_flag = SWB_focus_begins
-				add_political_power = -20
-				Alert_SWB_focus_enabled_remove_alerts = yes
-			}
+			TER_SWB_new_automatic = yes
 		}
 		else = {
 			set_variable = { CPC_hosting_service_SWB_var = 1 }
@@ -351,64 +280,12 @@ country_event = { # XJB
 		if = {
 			limit = { 
 				NOT = { 
-					OR = {
-						has_country_flag = CPC_TRCW_begins_flag
-						has_global_flag = CPC_WINS_TRCW
-						has_country_flag = CPC_XJ_mess_up
-					}
+					has_country_flag = CPC_TRCW_begins_flag
+					has_global_flag = CPC_WINS_TRCW
+					has_country_flag = CPC_XJ_mess_up
 			 	}
 			}
-			if = {
-				limit = { 
-					NOT = { has_country_flag = XJB_focus_working }
-					check_variable = { XJB_abilities_num > 2 }
-				}
-				subtract_from_variable = { XJB_abilities_num = 3 }
-				CPC_XJB_clear_cards_states = yes
-				set_variable_to_random = {
-					var = XJB_selected_card
-					min = 1
-					max = 6
-					integer = yes
-				}
-				CPC_XJB_fix_position_focus = yes
-				set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
-				while_loop_effect = {
-					limit = { check_variable = { XJB_abilities_num > 0 } }
-					set_variable_to_random = {
-						var = XJ_id
-						min = 1
-						max = 12
-						integer = yes
-					}
-					CPC_XJB_choose_state_visual_upgrade = yes
-					if = { 
-						limit = { 
-							var:XJ_state_active = { 
-								NOT = { has_state_flag = CPC_XJ_working }
-								OR = {
-									is_controlled_by = ROS
-									is_controlled_by = HTC
-								}
-							}
-						} 
-						set_temp_variable_to_random = {
-							var = XJB_vice_focus_index
-							min = 0
-							max = 13
-							integer = yes
-						}
-						CPC_XJB_start_the_region_focus = yes
-					}
-				}
-			}
-			else_if = {
-				limit = { 
-					NOT = { has_country_flag = XJB_focus_working }
-					check_variable = { XJB_abilities_num < 2 }
-				}
-				country_event = { id = TER_support_backend_events.8 days = 1 }
-			}
+			TER_XJB_new_automatic = yes
 		}
 		else = {
 			set_variable = { CPC_hosting_service_XJB_var = 1 }

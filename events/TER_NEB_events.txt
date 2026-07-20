@@ -165,7 +165,7 @@ country_event = {
 		name = NEB_main_story_events.9.o2
 		custom_effect_tooltip = "NEB_main_story_events.9.tt"
 		ai_chance = {
-			factor = 50
+			factor = 60
 		}
 		set_country_flag = NEB_mission_202
 		Alert_NEB_enabled_alerts = yes
@@ -295,7 +295,10 @@ country_event = {
 			set_variable = { NEB_mission_complete^7 = 1 }
 			if = {
 				limit = {
-					has_country_flag = NEB_mission_201_complete
+					OR = {
+						has_country_flag = NEB_mission_201_complete
+						has_country_flag = NEB_mission_202_complete
+					}
 				}
 				country_event = { id = NEB_main_story_events.18 days = 60 }
 			}
@@ -307,7 +310,7 @@ country_event = {
 	option = {
 		name = NEB_main_story_events.17.o2
 		ai_chance = {
-			factor = 50
+			factor = 60
 		}
 		set_variable = { NEB_leader = 3 }
 		hidden_effect = {
@@ -318,7 +321,10 @@ country_event = {
 			set_variable = { NEB_mission_complete^8 = 1 }
 			if = {
 				limit = {
-					has_country_flag = NEB_mission_202_complete
+					OR = {
+						has_country_flag = NEB_mission_201_complete
+						has_country_flag = NEB_mission_202_complete
+					}
 				}
 				country_event = { id = NEB_main_story_events.18 days = 60 }
 			}

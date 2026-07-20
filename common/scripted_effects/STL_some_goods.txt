@@ -5,3 +5,268 @@ STL_add_infrastructure = {
 		instant_build = yes
 	}
 }
+
+TER_CPC_cal_automatic = {
+	set_temp_variable = { CPC_sum = NCCPC_current_party_pop }
+	set_temp_variable = { NWB_need = NCCPC_PP_NWB_needed }
+	set_temp_variable = { SWB_need = NCCPC_PP_SWB_needed }
+	set_temp_variable = { XJB_need = NCCPC_PP_XJB_needed }
+	if = {
+		limit = { check_variable = { TER_importance = 1 } }
+		set_variable = { NCCPC_PP_NWB_provided = NWB_need }
+		subtract_from_temp_variable = { CPC_sum = NWB_need }
+		set_variable = { NCCPC_PP_SWB_provided = SWB_need }
+		subtract_from_temp_variable = { CPC_sum = SWB_need }
+		set_variable = { NCCPC_PP_XJB_provided = CPC_sum }
+	}
+	else_if = {
+		limit = { check_variable = { TER_importance = 2 } }
+		set_variable = { NCCPC_PP_NWB_provided = NWB_need }
+		subtract_from_temp_variable = { CPC_sum = NWB_need }
+		set_variable = { NCCPC_PP_XJB_provided = XJB_need }
+		subtract_from_temp_variable = { CPC_sum = XJB_need }
+		set_variable = { NCCPC_PP_SWB_provided = CPC_sum }
+	}
+	else_if ={
+		limit = { check_variable = { TER_importance = 3 } }
+		set_variable = { NCCPC_PP_SWB_provided = SWB_need }
+		subtract_from_temp_variable = { CPC_sum = SWB_need }
+		set_variable = { NCCPC_PP_XJB_provided = XJB_need }
+		subtract_from_temp_variable = { CPC_sum = XJB_need }
+		set_variable = { NCCPC_PP_NWB_provided = CPC_sum }
+	}
+	else_if = {
+		limit = { check_variable = { TER_importance = 4 } }
+		TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+	}
+}
+TER_NWB_new_automatic = {
+	if = {
+		limit = {
+			604 = {
+				check_variable = { NWB_unity_level < 2 }
+			}
+		}
+		set_variable = { NWB_acted_state = 604 }
+		var:NWB_acted_state = {
+			CPC_hosting_service_NWB_event_effect = yes
+		}
+	}
+	else_if = {
+		limit = {
+			906 = {
+				check_variable = { NWB_unity_level < 2 }
+			}
+		}
+		set_variable = { NWB_acted_state = 906 }
+		var:NWB_acted_state = {
+			CPC_hosting_service_NWB_event_effect = yes
+		}
+	}
+	else_if = {
+		limit = {
+			2429 = {
+				check_variable = { NWB_unity_level < 2 }
+			}
+		}
+		set_variable = { NWB_acted_state = 2429 }
+		var:NWB_acted_state = {
+			CPC_hosting_service_NWB_event_effect = yes
+		}
+	}
+	else = {
+		while_loop_effect = {
+			limit = { 
+				NOT = { has_country_flag = CPC_NWB_all_missions_completed } 
+				NOT = { has_country_flag = NWB_activate_task }
+			}
+			random_list = {
+				1 = { set_variable = { NWB_acted_state = 283 } }
+				1 = { set_variable = { NWB_acted_state = 604 } }
+				1 = { set_variable = { NWB_acted_state = 616 } }
+				1 = { set_variable = { NWB_acted_state = 764 } }
+				1 = { set_variable = { NWB_acted_state = 906 } }
+				1 = { set_variable = { NWB_acted_state = 955 } }
+				1 = { set_variable = { NWB_acted_state = 1302 } }
+				1 = { set_variable = { NWB_acted_state = 2408 } }
+				1 = { set_variable = { NWB_acted_state = 2409 } }
+				1 = { set_variable = { NWB_acted_state = 2423 } }
+				1 = { set_variable = { NWB_acted_state = 2424 } }
+				1 = { set_variable = { NWB_acted_state = 2425 } }
+				1 = { set_variable = { NWB_acted_state = 2426 } }
+				1 = { set_variable = { NWB_acted_state = 2427 } }
+				1 = { set_variable = { NWB_acted_state = 2429 } }
+			}
+			var:NWB_acted_state = {
+				CPC_hosting_service_NWB_event_effect = yes
+			}
+		}
+	}
+}
+TER_SWB_new_automatic = {
+	if = {
+		limit = { 
+			XIK = { exists = yes } 
+			NOT = { XIK = { has_country_flag = SWB_focus_begins } }
+		}
+		if = {
+			limit = { check_variable = { TER_SWB_map_controller_state = 2 } }
+			set_variable = { SWB_focus_state^0 = 2 }
+			XIK = { set_country_flag = SWB_focus_begins }
+			set_country_flag = SWB_focus_begins
+			add_political_power = -20
+			Alert_SWB_focus_enabled_remove_alerts = yes
+		}
+		else = {
+			set_temp_variable_to_random = {
+				var = idx
+				min = 0
+				max = 3
+				integer = yes
+			}
+			set_variable = { SWB_focus_state^idx = 2 }
+			XIK = { set_country_flag = SWB_focus_begins }
+			set_country_flag = SWB_focus_begins
+			add_political_power = -20
+			Alert_SWB_focus_enabled_remove_alerts = yes
+		}
+	}
+	else_if = {
+		limit = { 
+			XIK = { exists = no } 
+			NOT = { has_country_flag = SWB_focus_begins }
+		}
+		set_temp_variable_to_random = {
+			var = idx
+			min = 0
+			max = 3
+			integer = yes
+		}
+		set_variable = { SWB_focus_state^idx = 2 }
+		set_country_flag = SWB_focus_begins
+		add_political_power = -20
+		Alert_SWB_focus_enabled_remove_alerts = yes
+	}
+	if = {
+		limit = {
+			OR = {
+				NOT = {
+					any_of = {
+						array = SWB_region_development_pct_city
+						value = v
+						check_variable = { v = 100 }
+					}
+				}
+				NOT = {
+					any_of = {
+						array = SWB_region_military_pct_city
+						value = v
+						check_variable = { v = 100 }
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				XIK = {
+					NOT = { has_cosmetic_tag = XIK_UNIFIED }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { SWB_region_military_pct_city^0 < 100 }
+				}
+				set_variable = { city_state_weapon_var^0 = 2 }
+				set_variable = { city_state_consumer_var^0 = 1 }
+			}
+			else = {
+				set_variable = { city_state_weapon_var^0 = 1 }
+				set_variable = { city_state_consumer_var^0 = 2 }
+			}
+			SWB_calc_modifiers = yes
+		}
+		else = {
+			for_each_loop = {
+				array = SWB_region_military_pct_city
+				index = i
+				value = v
+				if = {
+					limit = { check_variable = { v < 100 } }
+					set_variable = { city_state_weapon_var^i = 2 }
+					set_variable = { city_state_consumer_var^i = 1 }
+				}
+				else = {
+					set_variable = { city_state_weapon_var^i = 1 }
+					set_variable = { city_state_consumer_var^i = 2 }
+				}
+				SWB_calc_modifiers = yes
+			}
+		}
+	}
+}
+TER_XJB_new_automatic = {
+	if = {
+		limit = { 
+			NOT = { has_country_flag = XJB_focus_working }
+			check_variable = { XJB_abilities_num > 2 }
+		}
+		subtract_from_variable = { XJB_abilities_num = 3 }
+		CPC_XJB_clear_cards_states = yes
+		set_variable_to_random = {
+			var = XJB_selected_card
+			min = 1
+			max = 6
+			integer = yes
+		}
+		CPC_XJB_fix_position_focus = yes
+		set_variable = { XJB_focus_card_state^XJB_selected_card = 2 }
+		while_loop_effect = {
+			limit = { check_variable = { XJB_abilities_num > 0 } }
+			set_variable_to_random = {
+				var = XJ_id
+				min = 1
+				max = 12
+				integer = yes
+			}
+			CPC_XJB_choose_state_visual_upgrade = yes
+			if = { 
+				limit = { 
+					var:XJ_state_active = { 
+						NOT = { has_state_flag = CPC_XJ_working }
+						OR = {
+							is_controlled_by = ROS
+							is_controlled_by = HTC
+						}
+					}
+				}
+				if = {
+					limit = {
+						check_variable = { XJ_popular_will < 50 }
+					}
+					set_temp_variable_to_random = {
+						var = XJB_vice_focus_index
+						min = 0
+						max = 11
+						integer = yes
+					}
+				}
+				else = {
+					set_temp_variable_to_random = {
+						var = XJB_vice_focus_index
+						min = 0
+						max = 13
+						integer = yes
+					}
+				}
+				CPC_XJB_start_the_region_focus = yes
+			}
+		}
+	}
+	else_if = {
+		limit = { 
+			NOT = { has_country_flag = XJB_focus_working }
+			check_variable = { XJB_abilities_num < 2 }
+		}
+		country_event = { id = TER_support_backend_events.8 days = 1 }
+	}
+}
