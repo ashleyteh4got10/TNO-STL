@@ -160,8 +160,14 @@ on_actions = {
 						add_core_of = XIK
 						remove_core_of = SIC
 					}
-					every_country = {
-						news_event = { id = WORLD_TER.32 days = 2 }
+					if = {
+						limit = {
+							SIK = { exists = no }
+							CHQ = { exists = no }
+						}
+						every_country = {
+							news_event = { id = WORLD_TER.32 days = 2 }
+						}
 					}
 					give_resource_rights = { receiver = CPC state = 964 }
 					give_resource_rights = { receiver = CPC state = 905 }
@@ -208,6 +214,15 @@ on_actions = {
 						limit = { is_core_of = CHQ }
 						add_core_of = XIK
 						remove_core_of = CHQ
+					}
+					if = {
+						limit = {
+							SIK = { exists = no }
+							CHQ = { exists = no }
+						}
+						every_country = {
+							news_event = { id = WORLD_TER.32 days = 2 }
+						}
 					}
 					clear_variable = 1538.TNO_admin_title
 				}
