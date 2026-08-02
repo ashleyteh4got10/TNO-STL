@@ -102,7 +102,7 @@ CPC_RUS_debug_dec = {
 				transfer_state = 2402
             }
             CPC = {
-                set_cosmetic_tag = CPC_PRC_1_1
+                set_cosmetic_tag = CPC_PRC_3_2
 				annex_country = { target = CHI }
 				annex_country = { target = LOY }
 				annex_country = { target = KIS }
@@ -126,11 +126,10 @@ CPC_RUS_debug_dec = {
 						target = VIN
 						transfer_troops = no
 					}
-
-	create_faction_from_template = { name = SEA_revolution_league template = faction_template_generic }
-	add_faction_goal_slot = { category = short_term  value = -10 }
-    add_faction_goal_slot = { category = medium_term value = -10 }
-    add_faction_goal_slot = { category = long_term   value = -10 }
+					create_faction_from_template = { name = SEA_revolution_league template = faction_template_generic }
+					add_faction_goal_slot = { category = short_term  value = -10 }
+					add_faction_goal_slot = { category = medium_term value = -10 }
+					add_faction_goal_slot = { category = long_term   value = -10 }
 
 				add_to_faction = KPA
 				if = {
@@ -207,7 +206,7 @@ CPC_RUS_debug_dec = {
 				transfer_state = 2402
             }
             CPC = {
-                set_cosmetic_tag = CPC_PRC_2_2
+                set_cosmetic_tag = CPC_PRC_3_2
 				annex_country = { target = CHI }
 				annex_country = { target = LOY }
 				annex_country = { target = KIS }
@@ -308,6 +307,32 @@ CPC_RUS_debug_dec = {
                                 ANRL_foundation = yes
 
         }
+	}
+	STL_debug_dec_get_ter_good_ending = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			set_variable = { CPC_final_hidden_score_reform = 40 }
+			add_to_variable = { CPC_rural_dem_num_radical = 3 }
+			add_to_variable = { CPC_rural_dem_num_conservate = 3 }
+			set_variable = { CPC_final_hidden_score = 100 }
+			
+		}
+	}
+	STL_debug_dec_get_ter_normal_ending = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			#CPC_begin_TRCW_bad_trigger = no
+			#CPC_begin_TRCW_good_trigger = no
+			set_variable = { CPC_final_hidden_score = 50 }
+		}
+	}
+	STL_debug_fangge = {
+		cost = 0
+		complete_effect = {
+			play_song = TNO_SE_CHINA_REUNIFIED_NORMAL_MAO
+		}
 	}
 }
 
