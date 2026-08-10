@@ -1,0 +1,1431 @@
+CPC_debug_dec = {
+	CPC_debug_dec_activate_test_prop = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			TER_CPGAC_begin_a_proposal_test = yes
+		}
+	}
+	CPC_debug_dec_temp_test = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			load_focus_tree = CPC_eighth_national_congress_tree
+			mark_focus_tree_layout_dirty = yes
+		}
+	}
+	CPC_debug_dec_activate_bureau_GUI = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			hidden_effect = {
+				CPC_unlock_SWB_gui = yes
+				TER_NWB_unlock_GUI = yes
+				set_country_flag = CPC_unlock_XJB
+				CPC_initialize_XJB_gui = yes
+				TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+
+				add_dynamic_modifier = {
+					modifier = SCB_CPC_modifier
+				}
+				TER_SCB_visual_update = yes
+				set_country_flag = CPC_unlock_SCB
+			}
+		}
+	}
+	CPC_debug_dec_phase_2_start_test_mao = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = "CPC_debug_dec_phase_2_start_test_mao_tt"
+			hidden_effect = {
+				set_country_flag = TER_debug_phase_2_test
+				# 领土
+				annex_country = {
+					target = QIN
+					transfer_troops = no
+				}
+				XIK = {
+					annex_country = {
+						target = SIC
+						transfer_troops = no
+					}
+					annex_country = {
+						target = CHQ
+						transfer_troops = no
+					}
+					every_state = {
+						limit = { is_core_of = SIC }
+						add_core_of = XIK
+						remove_core_of = SIC
+					}
+					every_state = {
+						limit = { is_core_of = CHQ }
+						add_core_of = XIK
+						remove_core_of = CHQ
+					}
+				}
+				HTC = {
+					annex_country = {
+						target = ROS
+						transfer_troops = yes
+					} 
+					annex_country = {
+						target = XIN
+						transfer_troops = no
+					} 
+				}
+				KIS = {
+					every_state = {
+						limit = { is_core_of = GUX }
+						KIS = {
+							add_state_core = PREV
+						}
+					}
+					annex_country = {
+						target = GUX
+						transfer_troops = no
+					}
+					set_capital = { state = 599 }
+					GNG = {
+						transfer_state = 1464
+						add_state_core = 1464
+					}
+					JAP = {
+						add_to_faction = KIS
+					}
+					set_cosmetic_tag = KIS_GUX
+					retire_country_leader = yes
+					CHI = {
+						set_autonomy = {
+							target = KIS
+							autonomy_state = autonomy_china_warlord_regime
+						}
+					}
+					create_country_leader = {
+						name = "KIS_Duan_Xiwen"
+						ideology = despotism_civilian_dictatorship_subtype
+						picture = "gfx/leaders/KIS/KIS_Duan_Xiwen.png"
+					}
+					set_popularities = {
+						despotism = 100
+					}
+					set_capital = {
+						state = 599
+					}
+					add_ideas = Sphere_Chinese_Warlord
+					set_party_name = {
+						ideology = despotism
+						long_name = KIS_GUX_despotism_party_long
+						name = KIS_GUX_despotism_party_long
+					}
+					remove_ideas = KTW_support_from_IJN
+					remove_ideas = KTW_special_war
+				}
+				LOY = {
+					set_cosmetic_tag = LOY_UG
+					CHI = {
+						set_autonomy = {
+							target = LOY
+							autonomy_state = autonomy_china_warlord_regime
+						}
+					}
+					set_portraits = {
+						character = LOY_lu_han
+						civilian = { large = "gfx/leaders/LOY/Portrait_Yunnan_Lu_Han_post_SWC.png" }
+					}
+					set_popularities = {
+						communist = 0
+						socialist = 0
+						progressivism = 3
+						liberalism = 5
+						despotism = 65
+						conservatism = 0
+						paternalism = 20
+						fascism = 7
+						national_socialism = 0
+						ultranationalism = 0
+					}					
+					annex_country = {
+						target = GUZ
+						transfer_troops = no
+					}
+					every_state = {
+						limit = { is_core_of = GUZ }
+						LOY = {
+							add_state_core = PREV
+						}
+					}
+					JAP = {
+						add_to_faction = LOY
+					}
+				}
+				BJC = {
+					transfer_state = 608
+					transfer_state = 609
+					transfer_state = 2365
+					add_state_core = 2365
+					transfer_state = 2436
+					add_state_core = 2436
+					transfer_state = 2325
+					add_state_core = 2325
+					add_state_core = 608
+					add_state_core = 609
+
+					set_variable = { GDP = 608.state_value_B }
+					add_to_variable = { GDP = 609.state_value_B }
+					add_to_variable = { GDP = 2365.state_value_B }
+					add_to_variable = { GDP = 2436.state_value_B }
+					add_to_variable = { GDP = 2325.state_value_B }
+					set_variable = { GDP_growth = 4 }
+					set_variable = { income_tax_rate = 0.3 }
+					set_variable = { business_tax_rate = 0.25 }
+					set_variable = { poverty_rate = 76 }
+					set_variable = { poverty_monthly_change = -0.03 }
+					set_variable = { money_reserves = 0 }	#in billions
+					set_variable = { national_debt = 0 }	#in billions
+					set_variable = { misc_income = 0.1 }
+					set_variable = { misc_costs = 0 }
+					set_variable = { base_inflation_rate = 1.3 }
+					set_temp_variable = { temp_credit_rating = 3 }
+					set_temp_variable = { temp_credit_rating_min = 2 }
+					set_temp_variable = { temp_credit_rating_max = 8 }
+					econ_initialize_credit_rating_system = yes
+					initiate_display_vars = yes
+					set_cosmetic_tag = BJC_JIN
+					set_variable = { ECON_SPHERE_LEADER = JAP }
+					set_politics = {	
+						ruling_party = despotism
+						elections_allowed = no
+					}
+					add_ideas = {
+						Sphere_special_administrative_region
+					}
+					set_party_name = {
+						ideology = despotism
+						long_name = BJC_JIN_despotism_party_long
+						name = BJC_JIN_despotism_party
+					}
+					set_party_name = {
+						ideology = paternalism
+						long_name = BJC_JIN_paternalism_party_long
+						name = BJC_JIN_paternalism_party
+					}
+					retire_country_leader = yes
+					create_country_leader = {
+						name = BJC_Tianjin_KMT
+						ideology = despotism_civilian_dictatorship_subtype
+						picture = "gfx/leaders/BJC/BJC_YEAH_WE_ARE_TIANJINESE.png"
+						traits = { }
+						expire = "1999.1.1.1"
+					}
+					set_capital = { state = 2325 remember_old_capital = no }
+					CHI = {
+						set_autonomy = {
+							target = BJC
+							autonomy_state = autonomy_china_special_administrative_region
+						}
+					}
+					set_popularities = {
+						communist = 0
+   						ultranationalism = 0
+   						national_socialism = 0
+   						socialist = 0
+   						progressivism = 0
+   						liberalism = 0
+   						conservatism = 0
+   						paternalism = 22
+   						despotism = 78
+   						fascism = 0
+					}
+				}
+				TIB = {
+					transfer_state = 964
+				}
+				# 解锁该阶段的全部GUI
+				CPC_unlock_SWB_gui = yes
+				TER_NWB_unlock_GUI = yes
+				set_country_flag = CPC_unlock_XJB
+				CPC_initialize_XJB_gui = yes
+				TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+
+				# 主要的国策效果
+				set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_pol_1 }
+				TER_PLA_CMC_reform_task_without_options_begins = yes
+				TER_PLA_CMC_reform_proj_complete_effect = yes
+				annex_country = {
+					target = GSM
+					transfer_troops = yes
+				}
+				every_state = {
+					limit = { is_core_of = GSM }
+					add_core_of = CPC
+					remove_core_of = GSM
+				}
+				set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_party_committee_appointment_reform }
+				set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+				add_to_array = { CPGAC_prop_option = 1 }
+				add_to_array = { CPGAC_prop_option_in_party = 1 }
+				add_to_array = { CPGAC_prop_option = 1 }
+				add_to_array = { CPGAC_prop_option_in_party = 0 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 100 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 0 }
+				set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 100 }
+				set_temp_variable = { CPGAC_no_attitude_tmp^0 = 0 }
+				set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 100 }
+				set_temp_variable = { CPGAC_no_attitude_tmp^1 = 0 }
+				TER_CPGAC_begin_a_proposal = yes
+				CPGAC_end_voting = yes
+
+				MON = {
+					white_peace = MEN
+					transfer_state = 815
+					add_state_core = 815
+					transfer_state = 2405
+					add_state_core = 2405
+					transfer_state = 2401
+					add_state_core = 2401
+					transfer_state = 2403
+					add_state_core = 2403
+					transfer_state = 2404
+					add_state_core = 2404
+					transfer_state = 330
+					add_state_core = 330
+					set_capital = { state = 330 remember_old_capital = no }
+				}
+				MFN = {
+					white_peace = MEN
+					transfer_state = 2408
+					transfer_state = 2409
+				}
+				JAP = { add_to_faction = MEN }
+				330 = { state_control_effect_330 = yes }
+				612 = { state_control_effect_612 = yes }
+				621 = { state_control_effect_621 = yes }
+				955 = { state_control_effect_955 = yes }
+				621 = { set_demilitarized_zone = yes }
+				set_variable = { MRC_at_MON = 100 }
+				set_variable = { MRC_at_CPC = 100 }
+				set_variable = { MRC_choice^1 = 1 }
+				set_variable = { MRC_choice^2 = 1 }
+				set_variable = { MRC_choice^3 = 3 }
+				set_variable = { MRC_choice^4 = 1 }
+				set_variable = { MRC_choice^5 = 4 }
+				MRC_final_effect = yes
+
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				set_temp_variable = { RBM_1_tmp = -0.07 }
+				set_temp_variable = { RBM_2_tmp = 0.07 }
+				set_temp_variable = { RBM_3_tmp = 0.07 }
+				set_temp_variable = { RBM_4_tmp = 0.07 }
+				set_temp_variable = { RBM_5_tmp = 0.07 }
+				set_temp_variable = { RBM_6_tmp = 0.07 }
+				set_temp_variable = { RBM_7_tmp = 0.07 }
+				set_temp_variable = { RBM_8_tmp = 0.07 }
+				set_temp_variable = { RBM_9_tmp = 0.07 }
+				set_temp_variable = { RBM_10_tmp = 0.3 }
+				set_temp_variable = { RBM_11_tmp = 0.005 }
+				set_temp_variable = { RBM_12_tmp = 0.07 }
+				CPC_RBM_modifier_change = yes
+
+				set_autonomy = {
+					target = HTC
+					autonomy_state = autonomy_Liberated_area
+				}
+				HTC = { 
+					clr_country_flag = XJB_phase_IW
+					set_country_flag = XJB_phase_PW
+					set_cosmetic_tag = HTC_UNIFIED
+					set_party_name = {
+						ideology = communist
+						long_name = "HTC_UNIFIED_communist_party_long"
+						name = "HTC_UNIFIED_communist_party"
+					}
+					set_variable = { CPC.XJB_real_pct_C = 95 }
+					set_variable = { CPC.XJB_real_pct_M = 5 }
+					set_capital = { state = 617 }
+					set_popularities = {
+						communist = CPC.XJB_real_pct_C
+						despotism = CPC.XJB_real_pct_M
+					}
+				}				
+
+				set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_liberate_Sichuan }
+				set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+				add_to_array = { CPGAC_prop_option = 1 }
+				add_to_array = { CPGAC_prop_option_in_party = 1 }
+				add_to_array = { CPGAC_prop_option = 1 }
+				add_to_array = { CPGAC_prop_option_in_party = 0 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 100 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 0 }
+				set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 100 }
+				set_temp_variable = { CPGAC_no_attitude_tmp^0 = 0 }
+				set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 100 }
+				set_temp_variable = { CPGAC_no_attitude_tmp^1 = 0 }
+				TER_CPGAC_begin_a_proposal = yes
+				CPGAC_end_voting = yes
+
+				XIK = {
+					set_cosmetic_tag = XIK_UNIFIED
+					set_capital = { state = 605 }
+					if = {
+						limit = { NOT = { is_puppet_of = CPC } }
+						CPC = {
+							set_autonomy = {
+								target = XIK
+								autonomous_state = autonomy_Liberated_area
+							}
+						}
+					}
+					set_politics = {	
+						ruling_party = communist
+						last_election = "1962.1.1"
+						election_frequency = 48
+						elections_allowed = no
+					}
+					set_popularities = {
+						communist = 20
+						socialist = 8
+						progressivism = 7
+						liberalism = 15
+						paternalism = 30
+						despotism = 20
+					}
+					build_railway = {
+						level = 2
+						fallback = yes
+						path = { 6999 19826 19819 12705 19834 1395 4925 }
+						start_province = 4925
+						target_province = 6999
+					}
+				}
+				set_temp_variable = { time_tmp = 100 }
+				set_temp_variable = { proj_name_tmp = token:NADT_proj_1 }
+				set_temp_variable = { money_tmp = 0.12 }
+				TER_NADT_begin_sp_tech_proj = yes
+				TER_NADT_complete_sp_tech_proj = yes
+
+				# 党中央效果模拟
+				# set_variable = { NCCPC_current_party_budget = 45 }
+				# set_variable = { TER_pol_str_real_percent^0 = 55 }
+				# set_variable = { TER_pol_str_real_percent^1 = 35 }
+				# set_variable = { TER_pol_str_real_percent^2 = 4 }
+				# set_variable = { TER_pol_str_real_percent^3 = 6 }
+				# compare_inner_party_powers = yes
+				# set_temp_variable = { NCCPC_1_tmp = 5 }
+				# set_temp_variable = { NCCPC_2_tmp = 5 }
+				# set_temp_variable = { NCCPC_3_tmp = 5 }
+				# set_temp_variable = { NCCPC_4_tmp = 5 }
+				# set_temp_variable = { NCCPC_5_tmp = 5 }
+				# set_temp_variable = { NCCPC_6_tmp = 5 }
+				# set_temp_variable = { NCCPC_7_tmp = 5 }
+				# set_temp_variable = { NCCPC_8_tmp = 5 }
+				# TER_CPC_NCCPC_modifier_change_effect = yes
+				# NCCPC_spirit_clamp = yes
+				# calc_politics_powers_in_CPC = yes
+				set_portraits = {
+					character = CPC_Mao_Zedong
+					civilian = { large ="GFX_CPC_Mao_Zedong_phase_2" }
+				}
+
+				# 西北局效果模拟
+				every_state = {
+					limit = { check_variable = { china_northwest_ref > 0 } }
+					set_variable = { NWB_task_level^1 = 3 }
+					set_variable = { NWB_task_level^2 = 3 }
+					set_variable = { NWB_task_level^3 = 3 }
+					set_variable = { NWB_task_level^4 = 3 }
+					set_variable = { NWB_task_level^5 = 3 }
+					set_variable = { NWB_task_level^6 = 3 }
+					set_variable = { NWB_unity_level = 6 }
+					set_variable = { NWB_btn_visual_ctrl^0 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^1 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^2 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^3 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^4 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^5 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^6 = 1 }
+					add_core_of = CPC
+					remove_dynamic_modifier = { modifier = TER_NWB_modifier_0 }
+					remove_dynamic_modifier = { modifier = TER_NWB_modifier_1 }
+					remove_dynamic_modifier = { modifier = TER_NWB_modifier_2 }
+					remove_dynamic_modifier = { modifier = TER_NWB_modifier_3 }
+					add_dynamic_modifier = { modifier = TER_NWB_modifier_3 }
+					add_building_construction = {
+						type = hospitals
+						level = 1
+					}
+					add_building_construction = {
+						type = schools
+						level = 1
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+					add_building_construction = {
+						type = prisons
+						level = 1
+					}
+					CPC = { add_to_variable = { agriculture_counter = 75 } }
+					set_temp_variable = { state_value_multiplier_temp = 1.075 }
+					econ_state_value_change_multiply_specified_state = yes
+				}
+				TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+				# 西南局效果模拟
+				set_variable = { SWB_region_state^1 = 1 }
+				set_variable = { SWB_region_state^2 = 1 }
+				set_variable = { SWB_region_state^3 = 1 }
+				set_variable = { SWB_region_military_pct_mine^0 = 45 } 
+				set_variable = { SWB_region_military_pct_mine^1 = 45 }
+				set_variable = { SWB_region_military_pct_mine^2 = 45 }
+				set_variable = { SWB_region_military_pct_city^0 = 45 } 
+				set_variable = { SWB_region_development_pct_mine^0 = 45 } 
+				set_variable = { SWB_region_development_pct_mine^1 = 45 }
+				set_variable = { SWB_region_development_pct_mine^2 = 45 }
+				set_variable = { SWB_region_development_pct_city^0 = 45 }
+				SWB_we_got_the_SIC = yes
+				SWB_calc_dev_mil_effect = yes
+				SWB_calc_balance = yes
+				SWB_calc_modifiers = yes
+
+				# 新疆局效果模拟
+				set_temp_variable = { popular_will_change = 40 }
+				CPC_XJ_popular_will_change = yes
+				# 政务院效果模拟
+				load_focus_tree = CPC_phase_2_Mao_tree
+				set_party_name = {
+					ideology = communist
+					long_name = CPC_phase_2_Mao_long
+					name = CPC_communist_party
+				}
+				every_country = {
+					limit = {
+						OR = { original_tag = CPC is_ai = no }
+						HasSphereInterest = yes
+					}
+					news_event = WORLD_TER.34
+				}
+				clear_array = CPGAC_ordinary_policy
+				clear_array = CPGAC_ordinary_policy_enable_times
+				clear_array = CPGAC_ordinary_policy_intensified
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_restrict_individual_business }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_urban_rural_conference }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_down_to_the_countryside }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_additional_cooperatives }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_labor_protection_allowance }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_clean_up_our_party }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_handle_registered_residence }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_S_public_private_partnership }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_S_develop_industry }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_M_S_rectify_factory_environment }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p0_empty }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				# 汉中效果模拟
+				add_victory_points = {
+					province = 17053
+					value = 3
+				}
+				2413 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = supply_node
+						level = 1
+						instant_build = yes
+						province = 17053
+					}
+				}
+				build_railway = {
+					path = { 16941 4256 16993 17053 }
+					level = 2
+ 					start_province = 16941
+ 					target_province = 17053
+				}
+				set_country_flag = CPC_HZ_unlock
+
+				2413 = {
+					add_building_construction = {
+						type = offices
+						level = 2
+						instant_build = yes
+					}
+				}
+				add_victory_points = {
+					province = 17053
+					value = 3
+				}
+				2413 = {
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_stability = 0.01
+				add_manpower = 5000
+				set_country_flag = TER_HZ_E1_fin
+
+				# 社会发展效果模拟
+				set_temp_variable = { pus_temp = 1 }
+				econ_pus_change = yes
+				tno_improve_agriculture = yes
+				tno_improve_admin_efficiency = yes
+				tno_improve_research_facilities = yes
+				tno_improve_academic_base = yes
+				tno_improve_industrial_expertise = yes
+				tno_improve_industrial_equipment = yes
+				tno_improve_army_professionalism = yes
+			}
+		}
+	}
+	CPC_debug_dec_phase_2_start_test_liu = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			custom_effect_tooltip = "CPC_debug_dec_phase_2_start_test_liu_tt"
+			hidden_effect = {
+				set_country_flag = TER_debug_phase_2_test
+				# 领土
+				annex_country = {
+					target = QIN
+					transfer_troops = no
+				}
+				XIK = {
+					annex_country = {
+						target = SIC
+						transfer_troops = no
+					}
+					annex_country = {
+						target = CHQ
+						transfer_troops = no
+					}
+					every_state = {
+						limit = { is_core_of = SIC }
+						add_core_of = XIK
+						remove_core_of = SIC
+					}
+					every_state = {
+						limit = { is_core_of = CHQ }
+						add_core_of = XIK
+						remove_core_of = CHQ
+					}
+				}
+				HTC = {
+					annex_country = {
+						target = ROS
+						transfer_troops = yes
+					} 
+					annex_country = {
+						target = XIN
+						transfer_troops = no
+					} 
+				}
+				KIS = {
+					every_state = {
+						limit = { is_core_of = GUX }
+						KIS = {
+							add_state_core = PREV
+						}
+					}
+					annex_country = {
+						target = GUX
+						transfer_troops = no
+					}
+					set_capital = { state = 599 }
+					GNG = {
+						transfer_state = 1464
+						add_state_core = 1464
+					}
+					JAP = {
+						add_to_faction = KIS
+					}
+					set_cosmetic_tag = KIS_GUX
+					retire_country_leader = yes
+					CHI = {
+						set_autonomy = {
+							target = KIS
+							autonomy_state = autonomy_china_warlord_regime
+						}
+					}
+					create_country_leader = {
+						name = "KIS_Duan_Xiwen"
+						ideology = despotism_civilian_dictatorship_subtype
+						picture = "gfx/leaders/KIS/KIS_Duan_Xiwen.png"
+					}
+					set_popularities = {
+						despotism = 100
+					}
+					set_capital = {
+						state = 599
+					}
+					add_ideas = Sphere_Chinese_Warlord
+					set_party_name = {
+						ideology = despotism
+						long_name = KIS_GUX_despotism_party_long
+						name = KIS_GUX_despotism_party_long
+					}
+					remove_ideas = KTW_support_from_IJN
+					remove_ideas = KTW_special_war
+				}
+				LOY = {
+					set_cosmetic_tag = LOY_UG
+					CHI = {
+						set_autonomy = {
+							target = LOY
+							autonomy_state = autonomy_china_warlord_regime
+						}
+					}
+					set_portraits = {
+						character = LOY_lu_han
+						civilian = { large = "gfx/leaders/LOY/Portrait_Yunnan_Lu_Han_post_SWC.png" }
+					}
+					set_popularities = {
+						communist = 0
+						socialist = 0
+						progressivism = 3
+						liberalism = 5
+						despotism = 65
+						conservatism = 0
+						paternalism = 20
+						fascism = 7
+						national_socialism = 0
+						ultranationalism = 0
+					}					
+					annex_country = {
+						target = GUZ
+						transfer_troops = no
+					}
+					every_state = {
+						limit = { is_core_of = GUZ }
+						LOY = {
+							add_state_core = PREV
+						}
+					}
+					JAP = {
+						add_to_faction = LOY
+					}
+				}
+				BJC = {
+					transfer_state = 608
+					transfer_state = 609
+					transfer_state = 2365
+					add_state_core = 2365
+					transfer_state = 2436
+					add_state_core = 2436
+					transfer_state = 2325
+					add_state_core = 2325
+					add_state_core = 608
+					add_state_core = 609
+
+					set_variable = { GDP = 608.state_value_B }
+					add_to_variable = { GDP = 609.state_value_B }
+					add_to_variable = { GDP = 2365.state_value_B }
+					add_to_variable = { GDP = 2436.state_value_B }
+					add_to_variable = { GDP = 2325.state_value_B }
+					set_variable = { GDP_growth = 4 }
+					set_variable = { income_tax_rate = 0.3 }
+					set_variable = { business_tax_rate = 0.25 }
+					set_variable = { poverty_rate = 76 }
+					set_variable = { poverty_monthly_change = -0.03 }
+					set_variable = { money_reserves = 0 }	#in billions
+					set_variable = { national_debt = 0 }	#in billions
+					set_variable = { misc_income = 0.1 }
+					set_variable = { misc_costs = 0 }
+					set_variable = { base_inflation_rate = 1.3 }
+					set_temp_variable = { temp_credit_rating = 3 }
+					set_temp_variable = { temp_credit_rating_min = 2 }
+					set_temp_variable = { temp_credit_rating_max = 8 }
+					econ_initialize_credit_rating_system = yes
+					initiate_display_vars = yes
+					set_cosmetic_tag = BJC_JIN
+					set_variable = { ECON_SPHERE_LEADER = JAP }
+					set_politics = {	
+						ruling_party = despotism
+						elections_allowed = no
+					}
+					add_ideas = {
+						Sphere_special_administrative_region
+					}
+					set_party_name = {
+						ideology = despotism
+						long_name = BJC_JIN_despotism_party_long
+						name = BJC_JIN_despotism_party
+					}
+					set_party_name = {
+						ideology = paternalism
+						long_name = BJC_JIN_paternalism_party_long
+						name = BJC_JIN_paternalism_party
+					}
+					retire_country_leader = yes
+					create_country_leader = {
+						name = BJC_Tianjin_KMT
+						ideology = despotism_civilian_dictatorship_subtype
+						picture = "gfx/leaders/BJC/BJC_YEAH_WE_ARE_TIANJINESE.png"
+						traits = { }
+						expire = "1999.1.1.1"
+					}
+					set_capital = { state = 2325 remember_old_capital = no }
+					CHI = {
+						set_autonomy = {
+							target = BJC
+							autonomy_state = autonomy_china_special_administrative_region
+						}
+					}
+					set_popularities = {
+						communist = 0
+   						ultranationalism = 0
+   						national_socialism = 0
+   						socialist = 0
+   						progressivism = 0
+   						liberalism = 0
+   						conservatism = 0
+   						paternalism = 22
+   						despotism = 78
+   						fascism = 0
+					}
+				}
+				TIB = {
+					transfer_state = 964
+				}
+				# 解锁该阶段的全部GUI
+				CPC_unlock_SWB_gui = yes
+				TER_NWB_unlock_GUI = yes
+				set_country_flag = CPC_unlock_XJB
+				CPC_initialize_XJB_gui = yes
+				TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+
+				# 主要的国策效果
+				set_temp_variable = { CMC_ongoing_proj_tmp = token:PLA_CMC_p_pol_1 }
+				TER_PLA_CMC_reform_task_without_options_begins = yes
+				TER_PLA_CMC_reform_proj_complete_effect = yes
+				annex_country = {
+					target = GSM
+					transfer_troops = yes
+				}
+				every_state = {
+					limit = { is_core_of = GSM }
+					add_core_of = CPC
+					remove_core_of = GSM
+				}
+				set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_party_committee_appointment_reform }
+				set_temp_variable = { CPGAC_option_chosen_faction_tmp = 0 }
+				add_to_array = { CPGAC_prop_option = 1 }
+				add_to_array = { CPGAC_prop_option_in_party = 1 }
+				add_to_array = { CPGAC_prop_option = 1 }
+				add_to_array = { CPGAC_prop_option_in_party = 0 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 100 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 0 }
+				set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 100 }
+				set_temp_variable = { CPGAC_no_attitude_tmp^0 = 0 }
+				set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 100 }
+				set_temp_variable = { CPGAC_no_attitude_tmp^1 = 0 }
+				TER_CPGAC_begin_a_proposal = yes
+				CPGAC_end_voting = yes
+
+				MON = {
+					white_peace = MEN
+					transfer_state = 815
+					add_state_core = 815
+					transfer_state = 2405
+					add_state_core = 2405
+					transfer_state = 2401
+					add_state_core = 2401
+					transfer_state = 2403
+					add_state_core = 2403
+					transfer_state = 2404
+					add_state_core = 2404
+					transfer_state = 330
+					add_state_core = 330
+					set_capital = { state = 330 remember_old_capital = no }
+				}
+				MFN = {
+					white_peace = MEN
+					transfer_state = 2408
+					transfer_state = 2409
+				}
+				JAP = { add_to_faction = MEN }
+				330 = { state_control_effect_330 = yes }
+				612 = { state_control_effect_612 = yes }
+				621 = { state_control_effect_621 = yes }
+				955 = { state_control_effect_955 = yes }
+				621 = { set_demilitarized_zone = yes }
+				set_variable = { MRC_at_MON = 100 }
+				set_variable = { MRC_at_CPC = 100 }
+				set_variable = { MRC_choice^1 = 1 }
+				set_variable = { MRC_choice^2 = 1 }
+				set_variable = { MRC_choice^3 = 3 }
+				set_variable = { MRC_choice^4 = 1 }
+				set_variable = { MRC_choice^5 = 4 }
+				MRC_final_effect = yes
+
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				CPC_RBM_level_up = yes
+				set_temp_variable = { RBM_1_tmp = -0.07 }
+				set_temp_variable = { RBM_2_tmp = 0.07 }
+				set_temp_variable = { RBM_3_tmp = 0.07 }
+				set_temp_variable = { RBM_4_tmp = 0.07 }
+				set_temp_variable = { RBM_5_tmp = 0.07 }
+				set_temp_variable = { RBM_6_tmp = 0.07 }
+				set_temp_variable = { RBM_7_tmp = 0.07 }
+				set_temp_variable = { RBM_8_tmp = 0.07 }
+				set_temp_variable = { RBM_9_tmp = 0.07 }
+				set_temp_variable = { RBM_10_tmp = 0.3 }
+				set_temp_variable = { RBM_11_tmp = 0.005 }
+				set_temp_variable = { RBM_12_tmp = 0.07 }
+				CPC_RBM_modifier_change = yes
+
+				set_autonomy = {
+					target = HTC
+					autonomy_state = autonomy_Liberated_area
+				}
+				HTC = { 
+					clr_country_flag = XJB_phase_IW
+					set_country_flag = XJB_phase_PW
+					set_cosmetic_tag = HTC_UNIFIED
+					set_party_name = {
+						ideology = communist
+						long_name = "HTC_UNIFIED_communist_party_long"
+						name = "HTC_UNIFIED_communist_party"
+					}
+					set_variable = { CPC.XJB_real_pct_C = 95 }
+					set_variable = { CPC.XJB_real_pct_M = 5 }
+					set_capital = { state = 617 }
+					set_popularities = {
+						communist = CPC.XJB_real_pct_C
+						despotism = CPC.XJB_real_pct_M
+					}
+				}				
+
+				set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_liberate_Sichuan }
+				set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+				add_to_array = { CPGAC_prop_option = 1 }
+				add_to_array = { CPGAC_prop_option_in_party = 1 }
+				add_to_array = { CPGAC_prop_option = 1 }
+				add_to_array = { CPGAC_prop_option_in_party = 0 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 100 }
+				set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 100 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 0 }
+				set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 0 }
+				set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 100 }
+				set_temp_variable = { CPGAC_no_attitude_tmp^0 = 0 }
+				set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 100 }
+				set_temp_variable = { CPGAC_no_attitude_tmp^1 = 0 }
+				TER_CPGAC_begin_a_proposal = yes
+				CPGAC_end_voting = yes
+
+				XIK = {
+					set_cosmetic_tag = XIK_UNIFIED
+					set_capital = { state = 605 }
+					if = {
+						limit = { NOT = { is_puppet_of = CPC } }
+						CPC = {
+							set_autonomy = {
+								target = XIK
+								autonomous_state = autonomy_Liberated_area
+							}
+						}
+					}
+					set_politics = {	
+						ruling_party = communist
+						last_election = "1962.1.1"
+						election_frequency = 48
+						elections_allowed = no
+					}
+					set_popularities = {
+						communist = 20
+						socialist = 8
+						progressivism = 7
+						liberalism = 15
+						paternalism = 30
+						despotism = 20
+					}
+					build_railway = {
+						level = 2
+						fallback = yes
+						path = { 6999 19826 19819 12705 19834 1395 4925 }
+						start_province = 4925
+						target_province = 6999
+					}
+				}
+				set_temp_variable = { time_tmp = 100 }
+				set_temp_variable = { proj_name_tmp = token:NADT_proj_1 }
+				set_temp_variable = { money_tmp = 0.12 }
+				TER_NADT_begin_sp_tech_proj = yes
+				TER_NADT_complete_sp_tech_proj = yes
+
+				# 党中央效果模拟
+				# set_variable = { NCCPC_current_party_budget = 45 }
+				# set_variable = { TER_pol_str_real_percent^0 = 40 }
+				# set_variable = { TER_pol_str_real_percent^1 = 50 }
+				# set_variable = { TER_pol_str_real_percent^2 = 6 }
+				# set_variable = { TER_pol_str_real_percent^3 = 4 }
+				# compare_inner_party_powers = yes
+				# set_temp_variable = { NCCPC_1_tmp = 5 }
+				# set_temp_variable = { NCCPC_2_tmp = 5 }
+				# set_temp_variable = { NCCPC_3_tmp = 5 }
+				# set_temp_variable = { NCCPC_4_tmp = 5 }
+				# set_temp_variable = { NCCPC_5_tmp = 5 }
+				# set_temp_variable = { NCCPC_6_tmp = 5 }
+				# set_temp_variable = { NCCPC_7_tmp = 5 }
+				# set_temp_variable = { NCCPC_8_tmp = 5 }
+				# TER_CPC_NCCPC_modifier_change_effect = yes
+				# NCCPC_spirit_clamp = yes
+				# calc_politics_powers_in_CPC = yes
+
+				# 西北局效果模拟
+				every_state = {
+					limit = { check_variable = { china_northwest_ref > 0 } }
+					set_variable = { NWB_task_level^1 = 3 }
+					set_variable = { NWB_task_level^2 = 3 }
+					set_variable = { NWB_task_level^3 = 3 }
+					set_variable = { NWB_task_level^4 = 3 }
+					set_variable = { NWB_task_level^5 = 3 }
+					set_variable = { NWB_task_level^6 = 3 }
+					set_variable = { NWB_unity_level = 6 }
+					set_variable = { NWB_btn_visual_ctrl^0 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^1 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^2 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^3 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^4 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^5 = 1 }
+					set_variable = { NWB_btn_visual_ctrl^6 = 1 }
+					add_core_of = CPC
+					remove_dynamic_modifier = { modifier = TER_NWB_modifier_0 }
+					remove_dynamic_modifier = { modifier = TER_NWB_modifier_1 }
+					remove_dynamic_modifier = { modifier = TER_NWB_modifier_2 }
+					remove_dynamic_modifier = { modifier = TER_NWB_modifier_3 }
+					add_dynamic_modifier = { modifier = TER_NWB_modifier_3 }
+					add_building_construction = {
+						type = hospitals
+						level = 1
+					}
+					add_building_construction = {
+						type = schools
+						level = 1
+					}
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+					add_building_construction = {
+						type = prisons
+						level = 1
+					}
+					CPC = { add_to_variable = { agriculture_counter = 75 } }
+					set_temp_variable = { state_value_multiplier_temp = 1.075 }
+					econ_state_value_change_multiply_specified_state = yes
+				}
+				TER_NWB_update_bureau_PTMB_num_by_shortcut_btn = yes
+				# 西南局效果模拟
+				set_variable = { SWB_region_state^1 = 1 }
+				set_variable = { SWB_region_state^2 = 1 }
+				set_variable = { SWB_region_state^3 = 1 }
+				set_variable = { SWB_region_military_pct_mine^0 = 45 } 
+				set_variable = { SWB_region_military_pct_mine^1 = 45 }
+				set_variable = { SWB_region_military_pct_mine^2 = 45 }
+				set_variable = { SWB_region_military_pct_city^0 = 45 } 
+				set_variable = { SWB_region_development_pct_mine^0 = 45 } 
+				set_variable = { SWB_region_development_pct_mine^1 = 45 }
+				set_variable = { SWB_region_development_pct_mine^2 = 45 }
+				set_variable = { SWB_region_development_pct_city^0 = 45 }
+				SWB_we_got_the_SIC = yes
+				SWB_calc_dev_mil_effect = yes
+				SWB_calc_balance = yes
+				SWB_calc_modifiers = yes
+
+				# 新疆局效果模拟
+				set_temp_variable = { popular_will_change = 40 }
+				CPC_XJ_popular_will_change = yes
+				# 政务院效果模拟
+				retire_country_leader = yes
+				load_focus_tree = CPC_phase_2_Liu_tree
+				set_party_name = {
+					ideology = communist
+					long_name = CPC_phase_2_Liu_long
+					name = CPC_communist_party
+				}
+				every_country = {
+					limit = {
+						OR = { original_tag = CPC is_ai = no }
+						HasSphereInterest = yes
+					}
+					news_event = WORLD_TER.33
+				}
+				clear_array = CPGAC_ordinary_policy
+				clear_array = CPGAC_ordinary_policy_enable_times
+				clear_array = CPGAC_ordinary_policy_intensified
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_acquisition_of_cooperatives }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_lower_food_prices }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_increase_agricultural_loans }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_check_local_finances }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_central_group_enters_factory }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = 1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_handle_registered_residence }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_S_redeem_company_shares }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_S_develop_industry }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_S_we_need_more_schools }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p2_L_S_we_need_more_hospitals }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p0_empty }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				# 汉中效果模拟
+				add_victory_points = {
+					province = 17053
+					value = 3
+				}
+				2413 = {
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = supply_node
+						level = 1
+						instant_build = yes
+						province = 17053
+					}
+				}
+				build_railway = {
+					path = { 16941 4256 16993 17053 }
+					level = 2
+ 					start_province = 16941
+ 					target_province = 17053
+				}
+				set_country_flag = CPC_HZ_unlock
+
+				2413 = {
+					add_building_construction = {
+						type = offices
+						level = 2
+						instant_build = yes
+					}
+				}
+				add_victory_points = {
+					province = 17053
+					value = 3
+				}
+				2413 = {
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_stability = 0.01
+				add_manpower = 5000
+				set_country_flag = TER_HZ_E1_fin
+
+				# 社会发展效果模拟
+				set_temp_variable = { pus_temp = 1 }
+				econ_pus_change = yes
+				tno_improve_agriculture = yes
+				tno_improve_admin_efficiency = yes
+				tno_improve_research_facilities = yes
+				tno_improve_academic_base = yes
+				tno_improve_industrial_expertise = yes
+				tno_improve_industrial_equipment = yes
+				tno_improve_army_professionalism = yes
+			}
+		}
+	}
+	CPC_debug_dec_phase_2_mao_complete_social_dev = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		available = { 
+			has_country_flag = TER_debug_phase_2_test 
+			has_focus_tree = CPC_phase_2_Mao_tree
+		}
+		complete_effect = {
+			complete_national_focus = CPC_rural_commsearization
+			CPGAC_end_voting = yes
+			complete_national_focus = CPC_big_community_is_preferred
+			complete_national_focus = CPC_cancel_three_one
+			complete_national_focus = CPC_wage_system
+			complete_national_focus = CPC_state_monopoly_of_purchasing_and_marketing
+			CPGAC_end_voting = yes
+			complete_national_focus = CPC_state_monopoly_of_purchasing_and_marketing
+			complete_national_focus = CPC_team_settlement
+			complete_national_focus = CPC_grain_hard_indicator
+			complete_national_focus = CPC_farmers
+			complete_national_focus = CPC_factory_docking
+			complete_national_focus = CPC_supply_and_marketing_agency
+			complete_national_focus = CPC_socialist_education
+			complete_national_focus = CPC_abundance
+			complete_national_focus = CPC_anti_corruption
+			complete_national_focus = CPC_bright_bureaucracy
+			complete_national_focus = CPC_anti_revisionism
+			complete_national_focus = CPC_new_name_word
+			set_variable = { CPGAC_ongoing_urgent_task_level = 4 }
+			TER_CPGAC_end_an_urgent_task = yes
+			complete_national_focus = CPC_socialist_agriculture
+
+			complete_national_focus = CPC_equity_recovery
+			CPGAC_end_voting = yes
+			complete_national_focus = CPC_industrial_collective
+			complete_national_focus = CPC_unified_production_criterion_Mao
+			complete_national_focus = CPC_go_to_the_mountains_and_the_countryside
+			CPGAC_end_voting = yes
+			complete_national_focus = CPC_beating_exercise
+			complete_national_focus = CPC_factory_community_construction
+			complete_national_focus = CPC_anti_economicist_black_wind
+			complete_national_focus = CPC_labor_protection_compensation_Mao
+			complete_national_focus = CPC_expand_product_release
+			complete_national_focus = CPC_eliminate_three_major_differences
+
+			complete_national_focus = CPC_PLA_announcement
+			CPGAC_end_voting = yes
+			complete_national_focus = CPC_PLA_reform_Mission_command
+			complete_national_focus = CPC_PLA_emphasize_military_democracy
+			complete_national_focus = CPC_PLA_newtype_reorg_movement #
+			complete_national_focus = CPC_PLA_reorg_movement
+			complete_national_focus = CPC_PLA_emphasize_backend_construction
+			complete_national_focus = CPC_PLA_military_academy_construction
+			complete_national_focus = CPC_PLA_FOR_THE_FINAL_TRIUMPH
+			TER_PLA_CMC_reform_proj_complete_effect = yes
+			add_tech_bonus = {
+				bonus = 1
+				uses = 2
+				category = computing_tech 
+			}
+			set_temp_variable = { CMC_cp_gain_tmp = 0.25 }
+			set_temp_variable = { CMC_mcp_tmp = 50 }
+			set_temp_variable = { CMC_xp_gain_tmp = 0.15 }
+			TER_PLA_CMC_add_modifier_effect = yes
+
+			set_temp_variable = { CMC_army_org_regain_tmp = 0.1 }
+			set_temp_variable = { CMC_ap_monthly_rate_tmp = 0.3 }
+			set_temp_variable = { CMC_pp_gain_tmp = 0.1 }
+			set_temp_variable = { CMC_max_planning_tmp = 0.05 }
+			TER_PLA_CMC_add_modifier_effect = yes
+
+			set_temp_variable = { CMC_army_s_tmp = 0.15 }
+			set_temp_variable = { CMC_scf_tmp = -0.05 }
+			TER_PLA_CMC_add_modifier_effect = yes
+
+			set_temp_variable = { CMC_lrr_tmp = 0.15 }
+			set_temp_variable = { CMC_army_ad_tmp = 0.075 }
+			TNO_improve_training_policy_effectiveness_med = yes
+			TNO_improve_army_professionalism_med = yes
+			TER_PLA_CMC_add_modifier_effect = yes
+
+			set_temp_variable = { CMC_xp_gain_tmp = 0.05 }
+			set_temp_variable = { CMC_xp_loss_tmp = -0.1 }
+			set_temp_variable = { CMC_lrr_tmp = 0.1 }
+			set_temp_variable = { CMC_scf_tmp = -0.05 }
+			TER_PLA_CMC_add_modifier_effect = yes
+			set_variable = { PLA_CMC_ongoing_proj_num = token:PLA_CMC_p_empty }
+			clear_variable = PLA_CMC_proj_slct_num_1
+			clear_variable = PLA_CMC_proj_slct_num_2
+			force_update_dynamic_modifier = yes
+		}
+	}
+	CPC_debug_dec_phase_2_SEA_rev = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		available = { 
+			has_country_flag = TER_debug_phase_2_test 
+			OR = {
+				has_focus_tree = CPC_phase_2_Liu_tree
+				has_focus_tree = CPC_phase_2_Mao_tree
+			}
+			CPC_phase_2_done_most_focuses = yes
+		}
+		complete_effect = {
+			# 越南
+			VIC = {
+				set_cosmetic_tag = VIC_final
+				annex_country = {
+					target = VIN
+					transfer_troops = no
+				}
+			}
+			# 柬埔寨
+			CRC = {
+				set_cosmetic_tag = CRC_final
+				annex_country = {
+					target = CAM
+					transfer_troops = no
+				}
+				set_politics = {
+					ruling_party = communist
+				}
+				set_party_name = {
+					ideology = communist
+					long_name = CRC_normal_communist_party_long
+					name = CRC_normal_communist_party
+				}
+				set_popularities = {
+					communist = 90
+					paternalism = 10
+				}
+				swap_ideas = {
+					remove_idea = CRC_avengers_from_the_past
+					add_idea = CRC_avengers_from_the_future
+				}
+				swap_ideas = {
+					remove_idea = CRC_secret_garden
+					add_idea = CRC_secret_garden_get_fucked
+				}
+				transfer_state = 841
+				transfer_state = 876
+				transfer_state = 1535
+				transfer_state = 741
+				transfer_state = 2229
+				transfer_state = 2230
+				transfer_state = 2247
+				transfer_state = 2248
+				transfer_state = 2249
+				transfer_state = 2250
+				transfer_state = 2251
+				transfer_state = 2252
+				set_capital = { state = 1535 }
+			}
+			# 缅甸
+			KPA = {
+				set_cosmetic_tag = KPA_BUR
+				annex_country = {
+					target = BUR
+					transfer_troops = no
+				}
+				set_capital = { state = 288 }
+			}
+			# 西藏
+			CPC_XGZ_unify = yes
+			XGZ = {
+				annex_country = {
+					target = TIB
+					transfer_troops = no
+				}
+				set_capital = { state = 765 }
+			}
+			# 大同
+			DAT = {
+				transfer_state = 621
+				add_state_core = 621
+				transfer_state = 2422
+				add_state_core = 2422
+				CPC = { 
+					set_autonomy = {
+						target = DAT
+						autonomy_state = autonomy_Liberated_area
+					} 
+				}
+				load_oob = DAT_PLA
+				add_ideas = ANRL_puppet
+				set_politics = {
+					ruling_party = paternalism
+				}
+				set_popularities = {
+					communist = 60
+					paternalism = 40
+				}
+			}
+			# 印度
+			CPC_CPIML_tag_unified = yes
+			# 亚革盟
+			ANRL_foundation = yes
+		}
+	}
+}

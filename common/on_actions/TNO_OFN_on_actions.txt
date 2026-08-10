@@ -36,7 +36,7 @@ on_actions = {
 			if = { # East London capture event
 				limit = {
 					OR = {
-						AND = { 
+						AND = {
 							ROOT = { tag = BOR }
 							FROM = { tag = SAF }
 							FROM.FROM = { state = 934 }
@@ -292,9 +292,22 @@ on_actions = {
 			#	}
 			#}
 			every_country = {
+				limit = {
+					is_ai = no
+				}
 				news_event = { # FIFA
 					id = LATAM_news.42
 					days = 167
+				}
+				#news_event = { # Martyrs Day
+				#	id = LATAM_news.3
+				#	days = 738
+				#}
+			}
+			every_country = {
+				limit = {
+					is_ai = no
+					HasAmericasInterest = yes
 				}
 				news_event = { # Che Guevara Released
 					id = LATAM_news.17
@@ -304,18 +317,16 @@ on_actions = {
 					id = LATAM_news.18
 					days = 388
 				}
-				#news_event = { # Martyrs Day
-				#	id = LATAM_news.3
-				#	days = 738
-				#}
 				news_event = { # Latam Congress of Fascist Youth!
 					id = LATAM_news.43
 					days = 340
 				}
 			}
 			BLZ = {
+				country_event = { id = BLZ_skeleton.1 days = 450 } #1963 Elections
+				country_event = { id = BLZ_skeleton.2 days = 2270 } #1967 Elections
 				country_event = { # Belmopan Plan
-					id = BLZ_skeleton.1
+					id = BLZ_skeleton.10
 					days = 480
 				}
 			}
@@ -329,40 +340,13 @@ on_actions = {
 					days = 1405
 				}
 			}
-
-			COL = {
-				country_event = { # Gomez fucking dies
-					id = colombia.0
-					days = 100
-				}
-				country_event = { # Pinilla takes over
-					id = colombia.1
-					days = 160
-				}
-				country_event = { # Pinilla check
-					id = colombia.2
-					days = 365
-				}
-				country_event = { # Border clashes
-					id = colombia.7
-					days = 1281
-				}
-				country_event = { #nazis spawn
-					id = colombia.18
-					days = 1295
-				}
-				country_event = { # Civil War restarts
-					id = colombia.8
-					days = 1712
-				}
-			}
 			####
 
 			USA = {
 				set_country_flag = USA_var_display_hidden #Hides var display
-				
+
 				set_variable = { USA_political_weekly_tick = 0.004 }
-				
+
 				set_variable = { USA_crisis_counter = 0 } #Variable used to track crisis status, if > 0 country is in crisis
 
 				#MLK speech
@@ -490,19 +474,19 @@ on_actions = {
 				country_event = { id = USA.1905 days = 2736 } #Stonewall Riots
 
 				country_event = { id = USASJ.2 days = 100 random_hours = 16000 }
-				
+
 				###PHILIPPINES### Deprecated for now
 				#country_event = { id = PHI_Blitz.1 days = 35 }
 				###
-				
+
 				#country_event = { id = WFB.315 days = 2920 }
-				
+
 				#Indonesia#
 				country_event = { id = USA_INS.100 days = 150 }
-				
+
 				#India
 				country_event = { id = USA_IND.6 days = 800 }
-				
+
 				#Flavor events
 				#country_event = { id = USA.culture.1 days = 2876 } #Death of Joseph Kennedy, event is all old lore
 				country_event = { id = USA.culture.5 days = 1571 }
@@ -586,7 +570,7 @@ on_actions = {
 				news_event = { id = WORLD.18216 days = 1943 } #Expo 67 Montréal
 				#news_event = { id = WORLD.18217 days = 2008 } #Canadian Centennial
 			}
-			
+
 			AST = {
 				country_event = { id = AST_scripted.1 days = 57 } #Porking Scandal/1962 snap election
 				country_event = { id = AST_scripted.3 days = 1190 } #1965 election
@@ -599,6 +583,9 @@ on_actions = {
 			PRU = {
 				country_event = { id = peru_skel.1 days = 160 } # 1962 Elections
 			}
+			IBR = {
+				country_event = { id = IBR_latam.8 days = 130 } # Fuck the guy above me
+			}
 
 			USA = {
 				country_event = {
@@ -610,6 +597,28 @@ on_actions = {
 				country_event = { id = USA.128 days = 2400 } #MLK Dies
 			}
 
+			#Central America
+			ELS = {
+				country_event = { id = ELS_scripted.0 days = 256 } #Ruler Steps Down
+				country_event = { id = ELS_scripted.3 days = 2081 } #1967 election
+			}
+			USA = { country_event = { id = ELS_forpol.1 days = 250 } }
+
+			HON = {
+				country_event = { id = HON_scripted.0 } #Skeleton Start
+				country_event = { id = CA_Football_War.1 days = 2750 } #Football War - July 15
+				country_event = { id = CA_Football_War.0 days = 2706 } #Using this event to fire war events for playable tags - June 1
+			}
+
+			GUA = { country_event = { id = GUA_scripted.0 } }
+			NIC = { country_event = { id = NIC_scripted.0 } }
+			COS = { country_event = { id = COS_scripted.0 days = 37 } }
+			#Panama Martyr's Day
+			USA = { country_event = { id = PAN_forpol.1 days = 867 } }
+			PAN = { country_event = { id = PAN_scripted.1 days = 887 } }
+			#Panama Elections
+			PAN = { country_event = { id = PAN_scripted.2 days = 2343 } } #1968 Election
+			PAN = { country_event = { id = PAN_scripted.8 days = 3799 } } #1972 Election
 		}
 	}
 
@@ -706,12 +715,12 @@ on_actions = {
 			NZL = {
 				# RESOURCE RIGHTS
 				give_resource_rights = { receiver = USA state = 723 resources = { oil aluminium rubber tungsten steel chromium uranium } }
-				
+
 				# National Spirits
 				set_variable = { NZL_Culture_War_var = 9 } # Anglo Dominance
 				set_variable = { NZL_World_Stage_var = 9 } # Bearer of the Torch
 				set_variable = { NZL_Social_Fabric_var = 9 } # Pristine
-				
+
 				# Skeleton PM Events
 				country_event = { id = new_zealand_pm_skeleton.1 days = 698 }
 			}
@@ -721,6 +730,13 @@ on_actions = {
 				recalculate_supreme_court = yes
 			}
 
+			FWI = { country_event = { id = FWI_skeleton.0 } } #This starts the French West Indies Skeleton
+			JAM = { country_event = { id = Caribbean_scripted.0 } } #KD's Notes - This starts up the Caribbean Skeleton
+			GUY = {
+				country_event = { id = GUY.0 days = 826 }
+				country_event = { id = ESQ_scripted.1 days = 2558 }
+			}
+			BAH = { country_event = { id = BAH_skeleton.0 } }
 			CUB = {
 				#Starting event
 				#Cuban starting tourism level
@@ -890,7 +906,7 @@ on_actions = {
 				limit = { check_variable = { US_voting_region_cooldown:US_voting_campaign_countdown < 1 } }
 				clear_variable = US_voting_region_cooldown:US_voting_campaign_timer
 			}
-			
+
 			if = { #Campaigns effects - opposition campaign start
 				limit = {
 					NOT = { has_country_flag = currently_campaigning_opposition }
@@ -905,7 +921,7 @@ on_actions = {
 					}
 				}
 				USA_opposition_set_campaign_area = yes
-				
+
 				set_variable = { USA_opposition_campaign_region:US_voting_opposition_timer = 100 }
 				divide_variable = { USA_opposition_campaign_region:US_voting_opposition_timer = 30 }
 			}
@@ -953,7 +969,7 @@ on_actions = {
 	on_weekly_USA = {
 		effect = {
 			USA_Controversy_Weekly_Tick = yes # already has a check in it.
-			USA_all_demographic_shifts = yes 
+			USA_all_demographic_shifts = yes
 		}
 	}
 
@@ -969,13 +985,13 @@ on_actions = {
 			}
 
 			if = {
-				limit = { 
+				limit = {
 					check_variable = { date > 1971.6.10 } #mid 71, 1.5 years before 72 presidential election
 					has_country_flag = USA_64_FR_NPP #wallace president, still in power (no lemay funnies)
 				}
 				country_event = { id = wallace.634 days = 7 } #wallace doesnt do a third term flavor event
 			}
-			
+
 			if = {
 				limit = {
 					OR = {
@@ -993,7 +1009,7 @@ on_actions = {
 				}
 				USA_extremist_unity_check = yes
 			}
-			
+
 			if = {
 				limit = {
 					has_country_flag = USA_64_R_RDC
@@ -1094,64 +1110,7 @@ on_actions = {
 		}
 	}
 
-	on_weekly_COL = { # Border Clashes '64
-		effect = {
-			if = {
-				limit = {
-					has_global_flag = COL_border_clashes_happening
-					NOT = { has_global_flag = COL_border_war_ongoing }
-				}
-				random_country = { # Attacker country
-					limit = {
-						OR = {
-							tag = COL
-							AND = {
-								OR = {
-									tag = CLL
-									tag = CLC
-								}
-								OR = {
-									owns_state = 1662
-									owns_state = 1660
-									owns_state = 493
-									owns_state = 1699
-									owns_state = 1700
-								}
-							}
-						}
-					}
-					country_event = { id = colombia.9 days = 3 random_hours = 7 }
-				}
-				set_global_flag = COL_border_war_ongoing
-			}
-		}
-	}
-	on_daily_COL = {
-		effect = {
-			if = {
-				limit = {
-					has_global_flag = COL_civil_war_ongoing
-					OR = {
-						AND = {
-							country_exists = COL
-							country_exists = CLL
-						}
-						AND = {
-							country_exists = COL
-							country_exists = CLC
-						}
-						AND = {
-							country_exists = CLL
-							country_exists = CLC
-						}
-					}
-				}
-				CCW_rubberband_update_effect = yes
-			}
-		}
-	}
-
-	on_monthly_IND = { 
+	on_monthly_IND = {
 		effect = {
 			if = {
 				limit = {

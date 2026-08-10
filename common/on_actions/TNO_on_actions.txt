@@ -59,6 +59,22 @@ on_actions = {
 
 			#War Taxes auto disable stuff
 			AI_War_Tax_Check = yes
+
+			if = { #Backup for volunteer idea not being removed 
+				limit = {
+					ROOT = { 
+						is_in_array = { array = TNO_volunteers_tags value = THIS } 
+					}
+				}
+				ROOT = {
+					every_country = {
+						limit = { has_country_flag = may_send_volunteers_to_@PREV }
+						log = "[THIS.GetName]: Recalling volunteers from [PREV.GetTag]"
+						set_temp_variable = { target = PREV }
+						TNO_clear_and_recall_volunteers = yes
+					}
+				}
+			}
 		}
 	}
 
