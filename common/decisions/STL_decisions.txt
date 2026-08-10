@@ -334,6 +334,21 @@ CPC_RUS_debug_dec = {
 			play_song = TNO_SE_CHINA_REUNIFIED_NORMAL_MAO
 		}
 	}
+	STL_new_focus_tree = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			load_focus_tree = CPC_rebuild_1
+		}
+	}
+	STL_new_gui = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			set_country_flag = CPC_unlock_rebuild_center
+			set_country_flag = CPC_unlock_rebuild_bureau
+		}
+	}
 }
 
 CPC_Mon_Mfn_help_dec = {
@@ -617,6 +632,10 @@ TER_new_automatic_dec = {
 	TER_cal_automatic = {
 		activation = {
 			has_country_flag = TER_cal_automatic
+		}
+		cancel_trigger = {
+			has_country_flag = CPC_TRCW_begins_flag
+			has_global_flag = CPC_WINS_TRCW
 		}
 		available = {
 			hidden_trigger = {
