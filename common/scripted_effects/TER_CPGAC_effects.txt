@@ -2404,6 +2404,20 @@ CPGAC_end_ordinary_policy_effect = {
 		add_to_variable = { CPC_TRCW_div_nums = 1 }
 		custom_effect_tooltip = "CPC_yeah_we_do_have_divisions_tt"
 	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_build_building } }
+		set_temp_variable = { money_reserves_temp = 0.3 }
+		econ_money_reserves_change_raw_money = yes
+		add_stability = -0.005
+		add_political_power = -30
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_test } }
+		set_temp_variable = { money_reserves_temp = 0.3 }
+		econ_money_reserves_change_raw_money = yes
+		add_stability = -0.005
+		add_political_power = -30
+	}
 }
 
 CPGAC_intensify_policy_effect = {
@@ -3587,6 +3601,83 @@ CPGAC_end_ordinary_policy_sub_effect = {
 			set_temp_variable = { money_reserves_temp = 0.1 }
 			econ_money_reserves_change_raw_money = yes
 			add_war_support = -0.03
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+	 	}
+	}
+	#123
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_build_building } }
+		if = { 
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			add_stability = 0.01
+			add_political_power = 15
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+	 	}
+		else_if = { 
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			add_political_power = 10
+			set_temp_variable = { money_reserves_temp = 0.1 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+	 	}
+		else_if = { 
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { inflation_temp = -0.05 }
+			econ_inflation_change = yes
+			add_political_power = -10
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+	 	}
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_test } }
+		if = { 
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			add_stability = 0.01
+			add_political_power = 15
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+	 	}
+		else_if = { 
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			add_political_power = 10
+			set_temp_variable = { money_reserves_temp = 0.1 }
+			econ_money_reserves_change_raw_money = yes
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+	 	}
+		else_if = { 
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { inflation_temp = -0.05 }
+			econ_inflation_change = yes
+			add_political_power = -10
 			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
