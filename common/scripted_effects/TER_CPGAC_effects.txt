@@ -2406,17 +2406,30 @@ CPGAC_end_ordinary_policy_effect = {
 	}
 	else_if = {
 		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_restore_eco } }
-		set_temp_variable = { money_reserves_temp = 0.3 }
-		econ_money_reserves_change_raw_money = yes
-		add_stability = -0.005
-		add_political_power = -30
 	}
 	else_if = {
 		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_company } }
-		set_temp_variable = { money_reserves_temp = 0.3 }
-		econ_money_reserves_change_raw_money = yes
-		add_stability = -0.005
-		add_political_power = -30
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_art } }
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_sino_japan } }
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_ur_fired } }
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_punish_bad_capital } }
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_sce } }
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_eip_eci } }
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_catch_fox } }
 	}
 }
 
@@ -3609,82 +3622,276 @@ CPGAC_end_ordinary_policy_sub_effect = {
 			CPGAC_satisfaction_change_LIB = yes
 	 	}
 	}
-	#123
+	#rebuild policy
 	else_if = {
 		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_restore_eco } }
-		if = { 
+		if = {
 			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
-			add_stability = 0.01
-			add_political_power = 15
 			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
 			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
 			CPGAC_satisfaction_change_CPC = yes
 			CPGAC_satisfaction_change_DEM = yes
 			CPGAC_satisfaction_change_LIB = yes
-	 	}
-		else_if = { 
+		}
+		else_if = {
 			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
-			add_political_power = 10
-			set_temp_variable = { money_reserves_temp = 0.1 }
-			econ_money_reserves_change_raw_money = yes
 			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
 			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
 			CPGAC_satisfaction_change_CPC = yes
 			CPGAC_satisfaction_change_DEM = yes
 			CPGAC_satisfaction_change_LIB = yes
-	 	}
-		else_if = { 
+		}
+		else_if = {
 			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
-			set_temp_variable = { inflation_temp = -0.05 }
-			econ_inflation_change = yes
-			add_political_power = -10
 			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
 			CPGAC_satisfaction_change_CPC = yes
 			CPGAC_satisfaction_change_DEM = yes
 			CPGAC_satisfaction_change_LIB = yes
-	 	}
+		}
 	}
 	else_if = {
 		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_company } }
-		if = { 
+		if = {
 			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
-			add_stability = 0.01
-			add_political_power = 15
 			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
 			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
 			CPGAC_satisfaction_change_CPC = yes
 			CPGAC_satisfaction_change_DEM = yes
 			CPGAC_satisfaction_change_LIB = yes
-	 	}
-		else_if = { 
+		}
+		else_if = {
 			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
-			add_political_power = 10
-			set_temp_variable = { money_reserves_temp = 0.1 }
-			econ_money_reserves_change_raw_money = yes
 			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
 			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
 			CPGAC_satisfaction_change_CPC = yes
 			CPGAC_satisfaction_change_DEM = yes
 			CPGAC_satisfaction_change_LIB = yes
-	 	}
-		else_if = { 
+		}
+		else_if = {
 			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
-			set_temp_variable = { inflation_temp = -0.05 }
-			econ_inflation_change = yes
-			add_political_power = -10
 			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
 			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
 			CPGAC_satisfaction_change_CPC = yes
 			CPGAC_satisfaction_change_DEM = yes
 			CPGAC_satisfaction_change_LIB = yes
-	 	}
+		}
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_art } }
+		if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_sino_japan } }
+		if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_ur_fired } }
+		if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_punish_bad_capital } }
+		if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_sce } }
+		if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_eip_eci } }
+		if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+	}
+	else_if = {
+		limit = { check_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_catch_fox } }
+		if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 1 } }
+			set_temp_variable = { satisfaction_tmp_1 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 2 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = 0.05 }
+			set_temp_variable = { satisfaction_tmp_3 = -0.02 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_op_execute_faction_tmp = 3 } }
+			set_temp_variable = { satisfaction_tmp_1 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_2 = -0.02 }
+			set_temp_variable = { satisfaction_tmp_3 = 0.05 }
+			CPGAC_satisfaction_change_CPC = yes
+			CPGAC_satisfaction_change_DEM = yes
+			CPGAC_satisfaction_change_LIB = yes
+		}
 	}
 }
 

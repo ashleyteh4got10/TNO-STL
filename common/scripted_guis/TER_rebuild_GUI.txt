@@ -10,6 +10,8 @@ scripted_gui = {
 			check_variable = { CPC_GUI_tab_issue^0 = 2 }
 		}
 		triggers = {
+			region_bureau_intro_visible = { check_variable = { intro_frame = 1 } }
+			party_member_intro_visible = { check_variable = { party_member_frame = 1 } }
 			rebuild_button_slt_visible = {
 				has_country_flag = CPC_rebuild_list
 				meta_trigger = {
@@ -38,6 +40,8 @@ scripted_gui = {
 			}
 		}
 		properties = {
+			intro_button = { frame = intro_frame }
+			party_member_button = { frame = party_member_frame }
 			party_coverage_bar = { frame = party_coverage }
 			people_altitude_bar = { frame = people_support }
 			land_reform_bar = { frame = land_reform }
@@ -54,6 +58,14 @@ scripted_gui = {
 			}
 		}
 		effects = {
+			intro_button_click = {
+				set_variable = { intro_frame = 1 }
+				set_variable = { party_member_frame = 2 }
+			}
+			party_member_button_click = {
+				set_variable = { intro_frame = 2 }
+				set_variable = { party_member_frame = 1 }
+			}
 			rebuild_button_click = {
 				TER_rebuild_effect = yes
 			}
@@ -233,6 +245,27 @@ scripted_gui = {
 			check_variable = { CPC_GUI_tab_frames^2 = 2 }
 			check_variable = { CPC_GUI_tab_issue^0 = 2 }
 		}
+		triggers = {
+			rebuild_button_slt_visible = {
+				has_country_flag = CPC_rebuild_list
+				meta_trigger = {
+					text = {
+						check_variable = { CPC_rebuild_list^CPC_rebuild_list_i = [REGION]_add_buff }
+					}
+					REGION = "[?region_choose.GetTokenKey]"
+				}
+				
+			}
+			rebuild_button_visible = {
+				has_country_flag = CPC_rebuild_list
+				meta_trigger = {
+					text = {
+						NOT = { check_variable = { CPC_rebuild_list^CPC_rebuild_list_i = [REGION]_add_buff } }
+					}
+					REGION = "[?region_choose.GetTokenKey]"
+				}
+			}
+		}
 		dynamic_lists = {
 			CPC_rebuild_list = {
 				array = CPC_rebuild_list
@@ -251,6 +284,9 @@ scripted_gui = {
 			}
 		}
 		effects = {
+			rebuild_button_click = {
+				TER_rebuild_effect = yes
+			}
 			NWB_rebuild_button_click = {
 				set_variable = { region_choose = token:NWB }
 				add_to_array = { CPC_rebuild_list_x = 248 }

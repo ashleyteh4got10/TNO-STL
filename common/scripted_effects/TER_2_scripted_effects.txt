@@ -267,8 +267,7 @@ TER_choose_buff_sum = {
 TER_rebuild_buff_effect = {
 	set_temp_variable = { party_coverage_rate = PRC_base_rate_2 }
 	add_to_temp_variable = { party_coverage_rate = PRC_base_rate_6 }
-	add_to_temp_variable = { party_coverage_rate = bonus_count_2 }
-	add_to_temp_variable = { party_coverage_rate = bonus_count_6 }
+	add_to_temp_variable = { party_coverage_rate = {value = bonus_count_2 add = bonus_count_6 } }
 	multiply_temp_variable = { party_coverage_rate = { value = recover_speed divide = 100 } }
 	add_to_variable = { party_coverage = party_coverage_rate }
 
@@ -321,14 +320,14 @@ TER_CPC_party_member_init = {
 	multiply_temp_variable = { PRC_NFE_PP = 0.2 }
 	multiply_temp_variable = { PRC_center_PP = 2.0 }
 	set_variable = { PRC_NWB_PP_provided = PRC_PP_NWB_needed }
-	set_variable = { PRC_SWB_PP_provided = PRC_PP_SWB_needed }
-	set_variable = { PRC_NCB_PP_provided = PRC_PP_NCB_needed }
-	set_variable = { PRC_SCB_PP_provided = PRC_PP_SCB_needed }
-	set_variable = { PRC_NEB_PP_provided = PRC_PP_NEB_needed }
+	set_variable = { PRC_SWB_PP_provided = PRC_SWB_PP }
+	set_variable = { PRC_NCB_PP_provided = PRC_NCB_PP }
+	set_variable = { PRC_SCB_PP_provided = PRC_SCB_PP }
+	set_variable = { PRC_NEB_PP_provided = PRC_NEB_PP }
 	set_variable = { PRC_MON_PP_provided = PRC_PP_MON_needed }
 	set_variable = { PRC_XJB_PP_provided = PRC_PP_XJB_needed }
 	set_variable = { PRC_XGZ_PP_provided = PRC_PP_XGZ_needed }
-	set_variable = { PRC_NFE_PP_provided = PRC_PP_NFE_needed }
+	set_variable = { PRC_NFE_PP_provided = PRC_NFE_PP }
 	set_variable = { PRC_center_PP_provided = PRC_PP_center_needed }
 	add_to_variable = { PRC_NWB_PP_provided = 10 }
 	add_to_variable = { PRC_SWB_PP_provided = 10 }
@@ -342,66 +341,74 @@ TER_CPC_party_member_init = {
 	add_to_variable = { PRC_center_PP_provided = 10 }
 
 	#计算盈余
+	set_variable = { PRC_total_PP = PRC_NWB_PP }
+	add_to_variable = {
+		PRC_total_PP = {
+			value = PRC_SWB_PP
+			add = PRC_NCB_PP
+			add = PRC_SCB_PP
+			add = PRC_NEB_PP
+			add = PRC_MON_PP
+			add = PRC_XJB_PP
+			add = PRC_XGZ_PP
+			add = PRC_NFE_PP
+			add = PRC_center_PP
+		}
+	}
 	# NWB
-	set_variable = { NWB_member_surplus = PRC_NWB_PP }
-	subtract_from_variable = { NWB_member_surplus = { value = PRC_PP_NWB_needed add = PRC_NWB_PP_provided } }
-	clamp_variable = { var = NWB_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_NWB_PP = PRC_NWB_PP_provided }
+	clamp_variable = { var = PRC_NWB_PP min = 0 }
 	
 	# SWB
-	set_variable = { SWB_member_surplus = PRC_SWB_PP }
-	subtract_from_variable = { SWB_member_surplus = { value = PRC_PP_SWB_needed add = PRC_SWB_PP_provided } }
-	clamp_variable = { var = SWB_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_SWB_PP = PRC_SWB_PP_provided }
+	clamp_variable = { var = PRC_SWB_PP min = 0 }
 	
 	# NCB
-	set_variable = { NCB_member_surplus = PRC_NCB_PP }
-	subtract_from_variable = { NCB_member_surplus = { value = PRC_PP_NCB_needed add = PRC_NCB_PP_provided } }
-	clamp_variable = { var = NCB_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_NCB_PP = PRC_NCB_PP_provided }
+	clamp_variable = { var = PRC_NCB_PP min = 0 }
 	
 	# SCB
-	set_variable = { SCB_member_surplus = PRC_SCB_PP }
-	subtract_from_variable = { SCB_member_surplus = { value = PRC_PP_SCB_needed add = PRC_SCB_PP_provided } }
-	clamp_variable = { var = SCB_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_SCB_PP = PRC_SCB_PP_provided }
+	clamp_variable = { var = PRC_SCB_PP min = 0 }
 	
 	# NEB
-	set_variable = { NEB_member_surplus = PRC_NEB_PP }
-	subtract_from_variable = { NEB_member_surplus = { value = PRC_PP_NEB_needed add = PRC_NEB_PP_provided } }
-	clamp_variable = { var = NEB_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_NEB_PP = PRC_NEB_PP_provided }
+	clamp_variable = { var = PRC_NEB_PP min = 0 }
 	
 	# MON
-	set_variable = { MON_member_surplus = PRC_MON_PP }
-	subtract_from_variable = { MON_member_surplus = { value = PRC_PP_MON_needed add = PRC_MON_PP_provided } }
-	clamp_variable = { var = MON_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_MON_PP = PRC_MON_PP_provided }
+	clamp_variable = { var = PRC_MON_PP min = 0 }
 	
 	# XJB
-	set_variable = { XJB_member_surplus = PRC_XJB_PP }
-	subtract_from_variable = { XJB_member_surplus = { value = PRC_PP_XJB_needed add = PRC_XJB_PP_provided } }
-	clamp_variable = { var = XJB_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_XJB_PP = PRC_XJB_PP_provided }
+	clamp_variable = { var = PRC_XJB_PP min = 0 }
 	
 	# XGZ
-	set_variable = { XGZ_member_surplus = PRC_XGZ_PP }
-	subtract_from_variable = { XGZ_member_surplus = { value = PRC_PP_XGZ_needed add = PRC_XGZ_PP_provided } }
-	clamp_variable = { var = XGZ_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_XGZ_PP = PRC_XGZ_PP_provided }
+	clamp_variable = { var = PRC_XGZ_PP min = 0 }
 	
 	# NFE
-	set_variable = { NFE_member_surplus = PRC_NFE_PP }
-	subtract_from_variable = { NFE_member_surplus = { value = PRC_PP_NFE_needed add = PRC_NFE_PP_provided } }
-	clamp_variable = { var = NFE_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_NFE_PP = PRC_NFE_PP_provided }
+	clamp_variable = { var = PRC_NFE_PP min = 0 }
 	
 	# center
-	set_variable = { center_member_surplus = PRC_center_PP }
-	subtract_from_variable = { center_member_surplus = { value = PRC_PP_center_needed add = PRC_center_PP_provided } }
-	clamp_variable = { var = center_member_surplus min = 0 }
+	subtract_from_temp_variable = { PRC_center_PP = PRC_center_PP_provided }
+	clamp_variable = { var = PRC_center_PP min = 0 }
 
-	set_variable = { PRC_total_surplus = NWB_member_surplus }
-	add_to_variable = { PRC_total_surplus = SWB_member_surplus }
-	add_to_variable = { PRC_total_surplus = NCB_member_surplus }
-	add_to_variable = { PRC_total_surplus = SCB_member_surplus }
-	add_to_variable = { PRC_total_surplus = NEB_member_surplus }
-	add_to_variable = { PRC_total_surplus = MON_member_surplus }
-	add_to_variable = { PRC_total_surplus = XJB_member_surplus }
-	add_to_variable = { PRC_total_surplus = XGZ_member_surplus }
-	add_to_variable = { PRC_total_surplus = NFE_member_surplus }
-	add_to_variable = { PRC_total_surplus = center_member_surplus }
+	set_variable = { PRC_total_surplus = PRC_NWB_PP }
+	add_to_variable = {
+		PRC_total_surplus = {
+			value = PRC_SWB_PP
+			add = PRC_NCB_PP
+			add = PRC_SCB_PP
+			add = PRC_NEB_PP
+			add = PRC_MON_PP
+			add = PRC_XJB_PP
+			add = PRC_XGZ_PP
+			add = PRC_NFE_PP
+			add = PRC_center_PP
+		}
+	}
 }
 TER_rebuild_member_add = {
 	meta_effect = {
@@ -489,7 +496,7 @@ NCB_member_need = {
 		CPC = { add_to_variable = { PRC_PP_NCB_needed = PREV.NCB_PP_needed } }
 		clear_variable = NCB_PP_needed
 	}
-	multiply_variable = { PRC_PP_NCB_needed = 0.04 }
+	multiply_variable = { PRC_PP_NCB_needed = 0.022 }
 }
 SCB_member_need = {
 	every_state = {
@@ -518,7 +525,7 @@ SCB_member_need = {
 		CPC = { add_to_variable = { PRC_PP_SCB_needed = PREV.SCB_PP_needed } }
 		clear_variable = SCB_PP_needed
 	}
-	multiply_variable = { PRC_PP_SCB_needed = 0.004 }
+	multiply_variable = { PRC_PP_SCB_needed = 0.002 }
 }
 XGZ_member_need = {
 	every_state = {
