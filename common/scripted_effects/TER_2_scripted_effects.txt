@@ -100,6 +100,506 @@ TER_ultimate_initialization = {
 	clear_variable = CRC.SCB_trade_will_value
 	clear_variable = CRC.SCB_level
 }
-CPGAC_rebuild_effect = {
+TER_region_bureau_init = {
+	606 = { set_variable = { china_state_ref = 3 } }
+	614 = { set_variable = { china_state_ref = 11 } }
+	621 = { set_variable = { china_state_ref = 14 } }
+	2329 = { set_variable = { china_state_ref = 3 } }
+	2330 = { set_variable = { china_state_ref = 3 } }
+	2434 = { set_variable = { china_state_ref = 24 } }
+	2326 = { set_variable = { china_state_ref = 34 } }
+	964 = { set_variable = { china_state_ref = 22 } }
+	TNO_admin_title_asia = yes
+	set_variable = { PRC_PP_NWB_needed = 0 }
+	set_variable = { PRC_PP_SWB_needed = 0 }
+	set_variable = { PRC_PP_XJB_needed = 0 }
+	set_variable = { PRC_PP_XGZ_needed = 100 }
+	set_variable = { PRC_PP_MON_needed = 50 }
+	set_variable = { PRC_PP_NCB_needed = 350 }
+	set_variable = { PRC_PP_SCB_needed = 250 }
+	set_variable = { PRC_PP_NEB_needed = 600 }
+	set_variable = { PRC_PP_NFE_needed = 200 }
+	set_variable = { PRC_PP_center_needed = 0 }
+	NWB_member_need = yes
+	SWB_member_need = yes
+	NCB_member_need = yes
+	SCB_member_need = yes
+	NEB_member_need = yes
+	MON_member_need = yes
+	XJB_member_need = yes
+	XGZ_member_need = yes
+	NFE_member_need = yes
+	center_member_need = yes
+	TER_CPC_party_member_init = yes
+	set_variable = { east_rebuild_level = 0 }
+	set_variable = { party_coverage = 0 }
+	set_variable = { people_support = 0 }
+	set_variable = { land_reform = 0 }
+	set_variable = { industrial_coordination = 0 }
+	set_variable = { bandit_coverage = 100 }
+	set_variable = { recover_speed = 100 }
+	set_variable = { NWB_add_buff = 3 }
+	set_variable = { SWB_add_buff = 4 }
+	set_variable = { NCB_add_buff = 1 }
+	set_variable = { SCB_add_buff = 5 }
+	set_variable = { NEB_add_buff = 1 }
+	set_variable = { MON_add_buff = 4 }
+	set_variable = { XJB_add_buff = 3 }
+	set_variable = { XGZ_add_buff = 4 }
+	set_variable = { NFE_add_buff = 5 }
+	set_variable = { center_add_buff = 1 }
+	set_variable = { PRC_base_rate_1 = 3.8 }# anti_bandit
+	set_variable = { PRC_base_rate_2 = 1.3 }# build_party
+	set_variable = { PRC_base_rate_3 = 3.8 }# coordinate_industry
+	set_variable = { PRC_base_rate_4 = 4.1 }# land_reform
+	set_variable = { PRC_base_rate_5 = 3.8 }# reasure_people
+	set_variable = { PRC_base_rate_6 = 1.3 }# send_partner
+}
+TER_set_rebuild_list_1 = {
+	if = {
+		limit = {
+			has_country_flag = CPC_rebuild_list
+		}
+		clr_country_flag = CPC_rebuild_list
+		clear_array = CPC_rebuild_list_x
+		clear_array = CPC_rebuild_list_y
+	}
+	else = {
+		set_country_flag = CPC_rebuild_list
+	}
+	clear_array = CPC_rebuild_list
+	add_to_array = { CPC_rebuild_list = 3 }
+	add_to_array = { CPC_rebuild_list = 4 }
+	add_to_array = { CPC_rebuild_list = 6 }
+}
+TER_set_rebuild_list_2 = {
+	if = {
+		limit = {
+			has_country_flag = CPC_rebuild_list
+		}
+		clr_country_flag = CPC_rebuild_list
+		clear_array = CPC_rebuild_list_x
+		clear_array = CPC_rebuild_list_y
+	}
+	else = {
+		set_country_flag = CPC_rebuild_list
+	}
+	clear_array = CPC_rebuild_list
+	add_to_array = { CPC_rebuild_list = 1 }
+	add_to_array = { CPC_rebuild_list = 2 }
+	add_to_array = { CPC_rebuild_list = 5 }
+}
+TER_set_rebuild_list_3 = {
+	if = {
+		limit = {
+			has_country_flag = CPC_rebuild_list
+		}
+		clr_country_flag = CPC_rebuild_list
+		clear_array = CPC_rebuild_list_x
+		clear_array = CPC_rebuild_list_y
+	}
+	else = {
+		set_country_flag = CPC_rebuild_list
+	}
+	clear_array = CPC_rebuild_list
+	add_to_array = { CPC_rebuild_list = 1 }
+	add_to_array = { CPC_rebuild_list = 3 }
+	add_to_array = { CPC_rebuild_list = 5 }
+}
+TER_set_rebuild_list_4 = {
+	if = {
+		limit = {
+			has_country_flag = CPC_rebuild_list
+		}
+		clr_country_flag = CPC_rebuild_list
+		clear_array = CPC_rebuild_list_x
+		clear_array = CPC_rebuild_list_y
+	}
+	else = {
+		set_country_flag = CPC_rebuild_list
+	}
+	clear_array = CPC_rebuild_list
+	add_to_array = { CPC_rebuild_list = 1 }
+	add_to_array = { CPC_rebuild_list = 2 }
+	add_to_array = { CPC_rebuild_list = 3 }
+	add_to_array = { CPC_rebuild_list = 4 }
+	add_to_array = { CPC_rebuild_list = 5 }
+	add_to_array = { CPC_rebuild_list = 6 }
+}
+TER_rebuild_effect = {
+	meta_effect = {
+		text = {
+				set_variable = { [REGION]_add_buff = CPC_rebuild_list^CPC_rebuild_list_i }
+		}
+		REGION = "[?region_choose.GetTokenKey]"
+	}
+}
+TER_choose_buff_sum = {
+	add_to_temp_array = { buff_value = NWB_add_buff }
+	add_to_temp_array = { buff_value = SWB_add_buff }
+	add_to_temp_array = { buff_value = NCB_add_buff }
+	add_to_temp_array = { buff_value = SCB_add_buff }
+	add_to_temp_array = { buff_value = NEB_add_buff }
+	add_to_temp_array = { buff_value = MON_add_buff }
+	add_to_temp_array = { buff_value = XJB_add_buff }
+	add_to_temp_array = { buff_value = XGZ_add_buff }
+	add_to_temp_array = { buff_value = NFE_add_buff }
+	add_to_temp_array = { buff_value = center_add_buff }
+
+	set_temp_variable = { bonus_count_1 = 0 }#anti bandit
+	set_temp_variable = { bonus_count_2 = 0 }#build party
+	set_temp_variable = { bonus_count_3 = 0 }#coordinate industry
+	set_temp_variable = { bonus_count_4 = 0 }#land reform
+	set_temp_variable = { bonus_count_5 = 0 }#reasure people
+	set_temp_variable = { bonus_count_6 = 0 }#send partner
+
+	for_each_loop = {
+		array = buff_value
+		value = v
+		meta_effect = {
+			text = {
+				add_to_temp_variable = { bonus_count_[VAL] = 1 }
+			}
+			VAL = "[?v|.0]"
+		}
+	}
+}
+TER_rebuild_buff_effect = {
+	set_temp_variable = { party_coverage_rate = PRC_base_rate_2 }
+	add_to_temp_variable = { party_coverage_rate = PRC_base_rate_6 }
+	add_to_temp_variable = { party_coverage_rate = {value = bonus_count_2 add = bonus_count_6 } }
+	multiply_temp_variable = { party_coverage_rate = { value = recover_speed divide = 100 } }
+	add_to_variable = { party_coverage = party_coverage_rate }
+
+	set_temp_variable = { people_support_rate = PRC_base_rate_5 }
+	add_to_temp_variable = { people_support_rate = bonus_count_5 }
+	multiply_temp_variable = { people_support_rate = { value = recover_speed divide = 100 } }
+	add_to_variable = { people_support = people_support_rate }
+
+	set_temp_variable = { land_reform_rate = PRC_base_rate_4 }
+	add_to_temp_variable = { land_reform_rate = bonus_count_4 }
+	multiply_temp_variable = { land_reform_rate = { value = recover_speed divide = 100 } }
+	add_to_variable = { land_reform = land_reform_rate }
+
+	set_temp_variable = { industrial_coordination_rate = PRC_base_rate_3 }
+	add_to_temp_variable = { bonus_iindustrial_coordination_ratendustry = bonus_count_3 }
+	multiply_temp_variable = { industrial_coordination_rate = { value = recover_speed divide = 100 } }
+	add_to_variable = { industrial_coordination = industrial_coordination_rate }
+
+	set_temp_variable = { bandit_coverage_rate = PRC_base_rate_1 }
+	add_to_temp_variable = { bandit_coverage_rate = bonus_count_1 }
+	multiply_temp_variable = { bandit_coverage_rate = { value = recover_speed divide = 100 } }
+	subtract_from_variable = { bandit_coverage = bandit_coverage_rate }
+
+	clamp_variable = { var = party_coverage min = 0 max = 100 }
+	clamp_variable = { var = people_support min = 0 max = 100 }
+	clamp_variable = { var = land_reform min = 0 max = 100 }
+	clamp_variable = { var = industrial_coordination min = 0 max = 100 }
+	clamp_variable = { var = bandit_coverage min = 0 max = 100 }
+}
+TER_CPC_party_member_init = {
+	#党员理论值计算
+	set_temp_variable = { PRC_NWB_PP = PRC_PP_NWB_needed }
+	set_temp_variable = { PRC_SWB_PP = PRC_PP_SWB_needed }
+	set_temp_variable = { PRC_NCB_PP = PRC_PP_NCB_needed }
+	set_temp_variable = { PRC_SCB_PP = PRC_PP_SCB_needed }
+	set_temp_variable = { PRC_NEB_PP = PRC_PP_NEB_needed }
+	set_temp_variable = { PRC_MON_PP = PRC_PP_MON_needed }
+	set_temp_variable = { PRC_XJB_PP = PRC_PP_XJB_needed }
+	set_temp_variable = { PRC_XGZ_PP = PRC_PP_XGZ_needed }
+	set_temp_variable = { PRC_NFE_PP = PRC_PP_NFE_needed }
+	set_temp_variable = { PRC_center_PP = PRC_PP_center_needed }
+	multiply_temp_variable = { PRC_NWB_PP = 1.5 }
+	multiply_temp_variable = { PRC_SWB_PP = 0.8 }
+	multiply_temp_variable = { PRC_NCB_PP = 0.3 }
+	multiply_temp_variable = { PRC_SCB_PP = 0.5 }
+	multiply_temp_variable = { PRC_NEB_PP = 0.4 }
+	multiply_temp_variable = { PRC_MON_PP = 1.3 }
+	multiply_temp_variable = { PRC_XJB_PP = 1.1 }
+	multiply_temp_variable = { PRC_XGZ_PP = 1.1 }
+	multiply_temp_variable = { PRC_NFE_PP = 0.2 }
+	multiply_temp_variable = { PRC_center_PP = 2.0 }
+	set_variable = { PRC_NWB_PP_provided = PRC_PP_NWB_needed }
+	set_variable = { PRC_SWB_PP_provided = PRC_SWB_PP }
+	set_variable = { PRC_NCB_PP_provided = PRC_NCB_PP }
+	set_variable = { PRC_SCB_PP_provided = PRC_SCB_PP }
+	set_variable = { PRC_NEB_PP_provided = PRC_NEB_PP }
+	set_variable = { PRC_MON_PP_provided = PRC_PP_MON_needed }
+	set_variable = { PRC_XJB_PP_provided = PRC_PP_XJB_needed }
+	set_variable = { PRC_XGZ_PP_provided = PRC_PP_XGZ_needed }
+	set_variable = { PRC_NFE_PP_provided = PRC_NFE_PP }
+	set_variable = { PRC_center_PP_provided = PRC_PP_center_needed }
+	add_to_variable = { PRC_NWB_PP_provided = 10 }
+	add_to_variable = { PRC_SWB_PP_provided = 10 }
+	add_to_variable = { PRC_NCB_PP_provided = 10 }
+	add_to_variable = { PRC_SCB_PP_provided = 10 }
+	add_to_variable = { PRC_NEB_PP_provided = 10 }
+	add_to_variable = { PRC_MON_PP_provided = 10 }
+	add_to_variable = { PRC_XJB_PP_provided = 10 }
+	add_to_variable = { PRC_XGZ_PP_provided = 10 }
+	add_to_variable = { PRC_NFE_PP_provided = 10 }
+	add_to_variable = { PRC_center_PP_provided = 10 }
+
+	#计算盈余
+	set_variable = { PRC_total_PP = PRC_NWB_PP }
+	add_to_variable = {
+		PRC_total_PP = {
+			value = PRC_SWB_PP
+			add = PRC_NCB_PP
+			add = PRC_SCB_PP
+			add = PRC_NEB_PP
+			add = PRC_MON_PP
+			add = PRC_XJB_PP
+			add = PRC_XGZ_PP
+			add = PRC_NFE_PP
+			add = PRC_center_PP
+		}
+	}
+	# NWB
+	subtract_from_temp_variable = { PRC_NWB_PP = PRC_NWB_PP_provided }
+	clamp_variable = { var = PRC_NWB_PP min = 0 }
 	
+	# SWB
+	subtract_from_temp_variable = { PRC_SWB_PP = PRC_SWB_PP_provided }
+	clamp_variable = { var = PRC_SWB_PP min = 0 }
+	
+	# NCB
+	subtract_from_temp_variable = { PRC_NCB_PP = PRC_NCB_PP_provided }
+	clamp_variable = { var = PRC_NCB_PP min = 0 }
+	
+	# SCB
+	subtract_from_temp_variable = { PRC_SCB_PP = PRC_SCB_PP_provided }
+	clamp_variable = { var = PRC_SCB_PP min = 0 }
+	
+	# NEB
+	subtract_from_temp_variable = { PRC_NEB_PP = PRC_NEB_PP_provided }
+	clamp_variable = { var = PRC_NEB_PP min = 0 }
+	
+	# MON
+	subtract_from_temp_variable = { PRC_MON_PP = PRC_MON_PP_provided }
+	clamp_variable = { var = PRC_MON_PP min = 0 }
+	
+	# XJB
+	subtract_from_temp_variable = { PRC_XJB_PP = PRC_XJB_PP_provided }
+	clamp_variable = { var = PRC_XJB_PP min = 0 }
+	
+	# XGZ
+	subtract_from_temp_variable = { PRC_XGZ_PP = PRC_XGZ_PP_provided }
+	clamp_variable = { var = PRC_XGZ_PP min = 0 }
+	
+	# NFE
+	subtract_from_temp_variable = { PRC_NFE_PP = PRC_NFE_PP_provided }
+	clamp_variable = { var = PRC_NFE_PP min = 0 }
+	
+	# center
+	subtract_from_temp_variable = { PRC_center_PP = PRC_center_PP_provided }
+	clamp_variable = { var = PRC_center_PP min = 0 }
+
+	set_variable = { PRC_total_surplus = PRC_NWB_PP }
+	add_to_variable = {
+		PRC_total_surplus = {
+			value = PRC_SWB_PP
+			add = PRC_NCB_PP
+			add = PRC_SCB_PP
+			add = PRC_NEB_PP
+			add = PRC_MON_PP
+			add = PRC_XJB_PP
+			add = PRC_XGZ_PP
+			add = PRC_NFE_PP
+			add = PRC_center_PP
+		}
+	}
+}
+TER_rebuild_member_add = {
+	meta_effect = {
+		text = {
+			set_temp_variable = { party_member_sum = PRC_[REGION]_PP_provided }
+			clamp_variable = { var = party_change_num min = 0 max = PRC_total_surplus}
+			add_to_temp_variable = { party_member_sum = party_change_num }
+			subtract_from_variable = { PRC_total_surplus = party_change_num }
+			set_variable = { PRC_[REGION]_PP_provided = party_member_sum }
+		}
+		REGION = "[?region_choose.GetTokenKey]"
+	}
+}
+TER_rebuild_member_subtract = {
+	meta_effect = {
+		text = {
+			set_temp_variable = { party_member_sum = PRC_[REGION]_PP_provided }
+			clamp_variable = { var = party_change_num min = 0 max = PRC_[REGION]_PP_provided }
+			subtract_from_temp_variable = { party_member_sum = party_change_num }
+			add_to_variable = { PRC_total_surplus = party_change_num }
+			set_variable = { PRC_[REGION]_PP_provided = party_member_sum }
+		}
+		REGION = "[?region_choose.GetTokenKey]"
+	}
+}
+XJB_member_need = {
+	every_state = {
+		limit = { check_variable = { china_state_ref = 43 } }
+		set_variable = { XJB_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_XJB_needed = PREV.XJB_PP_needed } }
+		clear_variable = XJB_PP_needed
+	}
+	multiply_variable = { PRC_PP_XJB_needed = 0.015 }
+}
+NWB_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 42 }
+				check_variable = { china_state_ref = 41 }
+				check_variable = { china_state_ref = 40 }
+				check_variable = { china_state_ref = 39 }
+				check_variable = { china_state_ref = 55 }
+			}
+		}
+		set_variable = { NWB_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_NWB_needed = PREV.NWB_PP_needed } }
+		clear_variable = NWB_PP_needed
+	}
+	multiply_variable = { PRC_PP_NWB_needed = 0.01 }
+}
+SWB_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 21 }
+				check_variable = { china_state_ref = 17 }
+				check_variable = { china_state_ref = 15 }
+				check_variable = { china_state_ref = 18 }
+				check_variable = { china_state_ref = 20 }
+			}
+		}
+		set_variable = { SWB_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_SWB_needed = PREV.SWB_PP_needed } }
+		clear_variable = SWB_PP_needed
+	}
+	multiply_variable = { PRC_PP_SWB_needed = 0.02 }
+}
+NCB_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 14 }
+				check_variable = { china_state_ref = 11 }
+				check_variable = { china_state_ref = 12 }
+				check_variable = { china_state_ref = 13 }
+				check_variable = { china_state_ref = 30 }
+				check_variable = { china_state_ref = 29 }
+				check_variable = { china_state_ref = 26 }
+				check_variable = { china_state_ref = 3 }
+				check_variable = { china_state_ref = 9 }
+			}
+		}
+		set_variable = { NCB_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_NCB_needed = PREV.NCB_PP_needed } }
+		clear_variable = NCB_PP_needed
+	}
+	multiply_variable = { PRC_PP_NCB_needed = 0.022 }
+}
+SCB_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 27 }
+				check_variable = { china_state_ref = 24 }
+				check_variable = { china_state_ref = 23 }
+				check_variable = { china_state_ref = 25 }
+				check_variable = { china_state_ref = 6 }
+				check_variable = { china_state_ref = 2 }
+				check_variable = { china_state_ref = 4 }
+				check_variable = { china_state_ref = 5 }
+				check_variable = { china_state_ref = 33 }
+				check_variable = { china_state_ref = 34 }
+				check_variable = { china_state_ref = 0 }
+				check_variable = { china_state_ref = 1 }
+				check_variable = { china_state_ref = 31 }
+				check_variable = { china_state_ref = 19 }
+				check_variable = { china_state_ref = 32 }
+				check_variable = { china_state_ref = 35 }
+				check_variable = { china_state_ref = 36 }
+			}
+		}
+		set_variable = { SCB_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_SCB_needed = PREV.SCB_PP_needed } }
+		clear_variable = SCB_PP_needed
+	}
+	multiply_variable = { PRC_PP_SCB_needed = 0.002 }
+}
+XGZ_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 22 }
+			}
+		}
+		set_variable = { XGZ_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_XGZ_needed = PREV.XGZ_PP_needed } }
+		clear_variable = XGZ_PP_needed
+	}
+	multiply_variable = { PRC_PP_XGZ_needed = 0.005 }
+}
+NEB_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 50 }
+				check_variable = { china_state_ref = 46 }
+				check_variable = { china_state_ref = 49 }
+				check_variable = { china_state_ref = 45 }
+				check_variable = { china_state_ref = 44 }
+				check_variable = { china_state_ref = 48 }
+				check_variable = { china_state_ref = 56 }
+				check_variable = { china_state_ref = 47 }
+			}
+		}
+		set_variable = { NEB_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_NEB_needed = PREV.NEB_PP_needed } }
+		clear_variable = NEB_PP_needed
+	}
+	multiply_variable = { PRC_PP_NEB_needed = 0.02 }
+}
+NFE_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 51 }
+				check_variable = { china_state_ref = 52 }
+			}
+		}
+		set_variable = { NFE_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_NFE_needed = PREV.NFE_PP_needed } }
+		clear_variable = NFE_PP_needed
+	}
+	multiply_variable = { PRC_PP_NFE_needed = 0.003 }
+}
+MON_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 57 }
+			}
+		}
+		set_variable = { MON_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_MON_needed = PREV.MON_PP_needed } }
+		clear_variable = MON_PP_needed
+	}
+	multiply_variable = { PRC_PP_MON_needed = 0.011 }
+}
+center_member_need = {
+	every_state = {
+		limit = {
+			OR = {
+				check_variable = { china_state_ref = 10 }
+				check_variable = { china_state_ref = 8 }
+				check_variable = { china_state_ref = 7 }
+				check_variable = { china_state_ref = 54 }
+			}
+		}
+		set_variable = { center_PP_needed = this.state_population_k }
+		CPC = { add_to_variable = { PRC_PP_center_needed = PREV.center_PP_needed } }
+		clear_variable = center_PP_needed
+	}
+	multiply_variable = { PRC_PP_center_needed = 0.01 }
 }

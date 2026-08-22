@@ -37,56 +37,56 @@ CPC_RUS_debug_dec = {
 		icon = GFX_decision_generic_form_nation
 		cost = 0
 		complete_effect = {
-            set_faction_name = TOT_comintern
-            TOT_comintern_startup = yes
-            every_country = {
-                limit = {
-                    OR = {
-                        has_idea = KOM_socintern_associate
-                        has_idea = KOM_socintern_member
-                    }
-                    NOT = { tag = ROOT }
-                    is_subject = no
-                    NOT = { tag = TOT }
-                }
-                country_event = {
-                    id = TOT_comintern.1
-                }
-            }
-            remove_ideas = {
-                KOM_socintern_associate
-                KOM_socintern_member
-            }
+			set_faction_name = TOT_comintern
+			TOT_comintern_startup = yes
+			every_country = {
+				limit = {
+					OR = {
+						has_idea = KOM_socintern_associate
+						has_idea = KOM_socintern_member
+					}
+					NOT = { tag = ROOT }
+					is_subject = no
+					NOT = { tag = TOT }
+				}
+				country_event = {
+					id = TOT_comintern.1
+				}
+			}
+			remove_ideas = {
+				KOM_socintern_associate
+				KOM_socintern_member
+			}
 			add_ideas = TOT_comintern_leader
-            set_global_flag = TOT_comintern_eeclaration_released
-            every_country = {
-                limit = {
-                    OR = {
-                        has_idea = TOT_comintern_member
-                        has_idea = TOT_comintern_temp_gov
-                    }
-                }
-                
-                TOT_comintern_add_to_comintern = yes
-            }
-    
-            TOT_comintern_member_reflesh = yes
-    
-            TOT_comintern_comecon_startup = yes
+			set_global_flag = TOT_comintern_eeclaration_released
+			every_country = {
+				limit = {
+					OR = {
+						has_idea = TOT_comintern_member
+						has_idea = TOT_comintern_temp_gov
+					}
+				}
+				
+				TOT_comintern_add_to_comintern = yes
+			}
+	
+			TOT_comintern_member_reflesh = yes
+	
+			TOT_comintern_comecon_startup = yes
 
-		    econ_join_sphere_CPC = yes
+			econ_join_sphere_CPC = yes
 
-            every_country = {
-                news_event = TOT_comintern_news.1
-            }
-        }
-    }
-    TER2WRW_debug_dec_russia_reunification = {
+			every_country = {
+				news_event = TOT_comintern_news.1
+			}
+		}
+	}
+	TER2WRW_debug_dec_russia_reunification = {
 		icon = GFX_decision_generic_form_nation
 		cost = 0
-	    available = {
-		    is_russian_unifier = yes
-	    }
+		available = {
+			is_russian_unifier = yes
+		}
 		complete_effect = {
 			unite_russia = yes
 		}
@@ -98,87 +98,86 @@ CPC_RUS_debug_dec = {
 			complete_national_focus = CPC_1968_GOOD_NEWS
 		}
 	}
-    TER2WRW_debug_dec_china_reunification = {
+	TER2WRW_debug_dec_china_reunification = {
 		icon = GFX_decision_generic_form_nation
 		cost = 0
 		complete_effect = {
-            MON = {
-                set_cosmetic_tag = MON_MRC_1
+			MON = {
+				set_cosmetic_tag = MON_MRC_1
 				transfer_state = 814
 				transfer_state = 2400
 				transfer_state = 2402
-            }
-            CPC = {
-                set_cosmetic_tag = CPC_PRC_3_2
+			}
+			CPC = {
+				set_cosmetic_tag = CPC_PRC_3_2
 				annex_country = { target = CHI }
 				annex_country = { target = LOY }
 				annex_country = { target = KIS }
 				annex_country = { target = SHX }
-     	        annex_country = {
+	 			annex_country = {
 					target = QIN
 					transfer_troops = no
 				}
 
 				hidden_effect ={
 					complete_national_focus = CPC_PLA_announcement
-				    CPGAC_end_voting = yes
-				    complete_national_focus = CPC_PLA_reform_Mission_command
-				    complete_national_focus = CPC_PLA_emphasize_military_democracy
-			        complete_national_focus = CPC_PLA_newtype_reorg_movement #
-			        complete_national_focus = CPC_PLA_reorg_movement
-			        complete_national_focus = CPC_PLA_emphasize_backend_construction
-			        complete_national_focus = CPC_PLA_military_academy_construction
-			        complete_national_focus = CPC_PLA_FOR_THE_FINAL_TRIUMPH
-			        TER_PLA_CMC_reform_proj_complete_effect = yes
-				    add_tech_bonus = {
+					CPGAC_end_voting = yes
+					complete_national_focus = CPC_PLA_reform_Mission_command
+					complete_national_focus = CPC_PLA_emphasize_military_democracy
+					complete_national_focus = CPC_PLA_newtype_reorg_movement #
+					complete_national_focus = CPC_PLA_reorg_movement
+					complete_national_focus = CPC_PLA_emphasize_backend_construction
+					complete_national_focus = CPC_PLA_military_academy_construction
+					complete_national_focus = CPC_PLA_FOR_THE_FINAL_TRIUMPH
+					TER_PLA_CMC_reform_proj_complete_effect = yes
+					add_tech_bonus = {
 						bonus = 1
-				        uses = 2
-				        category = computing_tech 
-				    }
-			        set_temp_variable = { CMC_cp_gain_tmp = 0.25 }
-			        set_temp_variable = { CMC_mcp_tmp = 50 }
-			        set_temp_variable = { CMC_xp_gain_tmp = 0.15 }
-			        TER_PLA_CMC_add_modifier_effect = yes
+						uses = 2
+						category = computing_tech 
+					}
+					set_temp_variable = { CMC_cp_gain_tmp = 0.25 }
+					set_temp_variable = { CMC_mcp_tmp = 50 }
+					set_temp_variable = { CMC_xp_gain_tmp = 0.15 }
+					TER_PLA_CMC_add_modifier_effect = yes
 
-			        set_temp_variable = { CMC_army_org_regain_tmp = 0.1 }
-			        set_temp_variable = { CMC_ap_monthly_rate_tmp = 0.3 }
-			        set_temp_variable = { CMC_pp_gain_tmp = 0.1 }
-			        set_temp_variable = { CMC_max_planning_tmp = 0.05 }
-			        TER_PLA_CMC_add_modifier_effect = yes
+					set_temp_variable = { CMC_army_org_regain_tmp = 0.1 }
+					set_temp_variable = { CMC_ap_monthly_rate_tmp = 0.3 }
+					set_temp_variable = { CMC_pp_gain_tmp = 0.1 }
+					set_temp_variable = { CMC_max_planning_tmp = 0.05 }
+					TER_PLA_CMC_add_modifier_effect = yes
 
-			        set_temp_variable = { CMC_army_s_tmp = 0.15 }
-			        set_temp_variable = { CMC_scf_tmp = -0.05 }
-			        TER_PLA_CMC_add_modifier_effect = yes
+					set_temp_variable = { CMC_army_s_tmp = 0.15 }
+					set_temp_variable = { CMC_scf_tmp = -0.05 }
+					TER_PLA_CMC_add_modifier_effect = yes
 
-			        set_temp_variable = { CMC_lrr_tmp = 0.15 }
-			        set_temp_variable = { CMC_army_ad_tmp = 0.075 }
-			        TNO_improve_training_policy_effectiveness_med = yes
-			        TNO_improve_army_professionalism_med = yes
-			        TER_PLA_CMC_add_modifier_effect = yes
+					set_temp_variable = { CMC_lrr_tmp = 0.15 }
+					set_temp_variable = { CMC_army_ad_tmp = 0.075 }
+					TNO_improve_training_policy_effectiveness_med = yes
+					TNO_improve_army_professionalism_med = yes
+					TER_PLA_CMC_add_modifier_effect = yes
 
-			        set_temp_variable = { CMC_xp_gain_tmp = 0.05 }
-			        set_temp_variable = { CMC_xp_loss_tmp = -0.1 }
-			        set_temp_variable = { CMC_lrr_tmp = 0.1 }
-			        set_temp_variable = { CMC_scf_tmp = -0.05 }
-			        TER_PLA_CMC_add_modifier_effect = yes
-			        set_variable = { PLA_CMC_ongoing_proj_num = token:PLA_CMC_p_empty }
-			        clear_variable = PLA_CMC_proj_slct_num_1
-			        clear_variable = PLA_CMC_proj_slct_num_2
+					set_temp_variable = { CMC_xp_gain_tmp = 0.05 }
+					set_temp_variable = { CMC_xp_loss_tmp = -0.1 }
+					set_temp_variable = { CMC_lrr_tmp = 0.1 }
+					set_temp_variable = { CMC_scf_tmp = -0.05 }
+					TER_PLA_CMC_add_modifier_effect = yes
+					set_variable = { PLA_CMC_ongoing_proj_num = token:PLA_CMC_p_empty }
+					clear_variable = PLA_CMC_proj_slct_num_1
+					clear_variable = PLA_CMC_proj_slct_num_2
 
-				    swap_ideas = {
-					    remove_idea = CPC_PLA_issue_1
-					    add_idea = CPC_PLA_issue_3
-				    } 
+					swap_ideas = {
+						remove_idea = CPC_PLA_issue_1
+						add_idea = CPC_PLA_issue_3
+					} 
 				
-				    add_ideas = { CPC_AT_eco_issue_idea CPC_AT_gov_issue_idea CPC_AT_party_issue_idea}
-				    remove_ideas = { CPC_red_star_in_rev_base CPC_RBM_dummy_1 CPC_RBM_dummy_2 CPC_RBM_dummy_3}
-				    CPC_WE_GOT_THE_FINAL_VICTORY = yes
-				    load_focus_tree = CPC_phase_3
+					add_ideas = { CPC_AT_eco_issue_idea CPC_AT_gov_issue_idea CPC_AT_party_issue_idea}
+					remove_ideas = { CPC_red_star_in_rev_base CPC_RBM_dummy_1 CPC_RBM_dummy_2 CPC_RBM_dummy_3}
+					CPC_WE_GOT_THE_FINAL_VICTORY = yes
+					load_focus_tree = CPC_phase_3
 				}
 			}
 		}
-    }
-	
+	  }
 
 	TER2WRW_debug_dec_SEARL_full_ver = {
 		icon = GFX_decision_generic_form_nation
@@ -207,7 +206,7 @@ CPC_RUS_debug_dec = {
 					days = 14
 					}
 			}
-        KPA = {
+		KPA = {
 					set_cosmetic_tag = KPA_BUR
 					annex_country = {
 						target = BUR
@@ -259,36 +258,36 @@ CPC_RUS_debug_dec = {
 		}
 	}
 
-    TER2WRW_debug_dec_ANRL_full_ver = {
+	TER2WRW_debug_dec_ANRL_full_ver = {
 		icon = GFX_decision_generic_form_nation
 		cost = 0
 		complete_effect = {
-            MON = {
-                set_cosmetic_tag = MON_MRC_1
+			MON = {
+				set_cosmetic_tag = MON_MRC_1
 				transfer_state = 814
 				transfer_state = 2400
 				transfer_state = 2402
-            }
-            CPC = {
-                set_cosmetic_tag = CPC_PRC_3_2
+			}
+			CPC = {
+				set_cosmetic_tag = CPC_PRC_3_2
 				annex_country = { target = CHI }
 				annex_country = { target = LOY }
 				annex_country = { target = KIS }
 				annex_country = { target = SHX }
-     	        annex_country = {
+	 			annex_country = {
 						target = QIN
 						transfer_troops = no
+				}
+				CPC_WE_GOT_THE_FINAL_VICTORY = yes
 			}
-			CPC_WE_GOT_THE_FINAL_VICTORY = yes
-		}
-		VIC = {
+			VIC = {
 					set_cosmetic_tag = VIC_final
 					annex_country = {
 						target = VIN
 						transfer_troops = no
 					}
 				}
-                KPA = {
+				KPA = {
 					set_cosmetic_tag = KPA_BUR
 					annex_country = {
 						target = BUR
@@ -296,7 +295,7 @@ CPC_RUS_debug_dec = {
 					}
 					set_capital = { state = 288 }
 				}
-		CRC = {
+			CRC = {
 					set_politics = {
 						ruling_party = communist
 					}
@@ -338,7 +337,7 @@ CPC_RUS_debug_dec = {
 					CPC = { TNO_clear_num_volunteers = yes }
 				}
 
-                				set_global_flag = skip_default_capitulation
+				set_global_flag = skip_default_capitulation
 				AFG = {
 							set_politics = {
 			ruling_party = communist
@@ -366,11 +365,9 @@ CPC_RUS_debug_dec = {
 		end_puppet = UTL
 		AFG_Ahmad_Shah_Khan = { promote_character = despotism_absolute_monarchy_subtype }
 		set_cosmetic_tag = AFG_mao
-				}
-
-                                ANRL_foundation = yes
-
-        }
+		}
+		ANRL_foundation = yes
+		}
 	}
 
 	STL_debug_dec_get_ter_good_ending = {
@@ -419,17 +416,17 @@ CPC_RUS_debug_dec = {
 			clr_country_flag = CPC_phase_1
 			set_country_flag = CPC_phase_2
 			clear_array = CPGAC_ordinary_policy
-		    clear_array = CPGAC_ordinary_policy_enable_times
-		    clear_array = CPGAC_ordinary_policy_intensified
+			clear_array = CPGAC_ordinary_policy_enable_times
+			clear_array = CPGAC_ordinary_policy_intensified
 			add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_restore_eco }
-		    add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
-		    add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+			add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
 			add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_company }
-		    add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
-		    add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+			add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
 			add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_art }
-		    add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
-		    add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+			add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
 			add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_sino_japan }
 		    add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
 		    add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
@@ -481,11 +478,11 @@ CPC_Mon_Mfn_help_dec = {
 		}
 		modifier = { 
 			consumer_goods_production_factor = 0.1 
-		    political_power_gain = 0.5
+			political_power_gain = 0.5
 		}
 		complete_effect = {
 			set_temp_variable = { debt_temp = 0.01 }
-		    econ_national_debt_change = yes
+			econ_national_debt_change = yes
 		}
 
 		remove_effect = {
@@ -517,7 +514,7 @@ CPC_Mon_Mfn_help_dec = {
 		complete_effect = {
 			TNO_improve_industrial_expertise_low = yes
 			set_temp_variable = { debt_temp = 0.01 }
-		    econ_national_debt_change = yes
+			econ_national_debt_change = yes
 		}
 		remove_effect = {
 			random_list = {
@@ -576,7 +573,7 @@ CPC_Mon_Mfn_help_dec = {
 		}
 		complete_effect = {
 			set_temp_variable = { debt_temp = 0.01 }
-		    econ_national_debt_change = yes
+			econ_national_debt_change = yes
 		}
 		
 		remove_effect = {
