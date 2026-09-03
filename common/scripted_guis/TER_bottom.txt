@@ -12,9 +12,11 @@ scripted_gui = {
 		triggers = {
 			NCCPC_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^0 = 2 }
 										check_variable = { CPC_GUI_tab_issue^0 = 2 } }
-			NWB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^1 = 2 } 
+			NWB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^1 = 2 }
+									  has_country_flag = CPC_unlock_NWB
 									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
-			SWB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^2 = 2 } 
+			SWB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^2 = 2 }
+									  has_country_flag = CPC_unlock_SWB
 									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
 			XJB_entry_btn_visible = { check_variable = { CPC_GUI_tab_frames^3 = 2 } 
 									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
@@ -24,6 +26,16 @@ scripted_gui = {
 									  check_variable = { CPC_GUI_tab_issue^0 = 2 } }
 			CPGAC_entry_btn_visible = { check_variable = { CPC_GUI_tab_issue^1 = 2 } }
 			CMC_entry_btn_visible = { check_variable = { CPC_GUI_tab_issue^2 = 2 } }
+			center_rebuild_entry_btn_visible = {
+				check_variable = { CPC_GUI_tab_frames^1 = 2 }
+				has_country_flag = CPC_unlock_rebuild_center
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			}
+			bureau_rebuild_entry_btn_visible = {
+				check_variable = { CPC_GUI_tab_frames^2 = 2 }
+				has_country_flag = CPC_unlock_rebuild_bureau
+				check_variable = { CPC_GUI_tab_issue^0 = 2 }
+			}
 		}
 
 		effects = {
@@ -156,6 +168,38 @@ scripted_gui = {
 					}
 					set_country_flag = CPC_main_GUI_open
 					TER_NWB_calc_party_members = yes 
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+			center_rebuild_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open
+				}
+				else_if = {
+					limit = {
+						has_country_flag = CPC_main_GUI_open 
+					}
+					clr_country_flag = CPC_main_GUI_open 
+				}
+			}
+			bureau_rebuild_entry_btn_click = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = CPC_main_GUI_open 
+						}
+					}
+					set_country_flag = CPC_main_GUI_open
 				}
 				else_if = {
 					limit = {
