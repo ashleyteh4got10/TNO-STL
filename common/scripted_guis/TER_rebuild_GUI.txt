@@ -12,6 +12,10 @@ scripted_gui = {
 		triggers = {
 			region_bureau_intro_visible = { check_variable = { intro_frame = 1 } }
 			party_member_intro_visible = { check_variable = { party_member_frame = 1 } }
+			XJB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			XGZ_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			NFE_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			center_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
 			rebuild_button_slt_visible = {
 				has_country_flag = CPC_rebuild_list
 				meta_trigger = {
@@ -20,7 +24,6 @@ scripted_gui = {
 					}
 					REGION = "[?region_choose.GetTokenKey]"
 				}
-				
 			}
 			rebuild_button_visible = {
 				has_country_flag = CPC_rebuild_list
@@ -112,6 +115,7 @@ scripted_gui = {
 			XJB_party_btn_add_click = {
 				set_variable = { region_choose = token:XJB }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			XJB_party_btn_subtract_click = {
@@ -122,6 +126,7 @@ scripted_gui = {
 			XJB_party_btn_add_control_click = {
 				set_variable = { region_choose = token:XJB }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			XJB_party_btn_subtract_control_click = {
@@ -132,6 +137,7 @@ scripted_gui = {
 			XJB_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:XJB }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			XJB_party_btn_subtract_shift_click = {
@@ -143,6 +149,7 @@ scripted_gui = {
 			XGZ_party_btn_add_click = {
 				set_variable = { region_choose = token:XGZ }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			XGZ_party_btn_subtract_click = {
@@ -153,6 +160,7 @@ scripted_gui = {
 			XGZ_party_btn_add_control_click = {
 				set_variable = { region_choose = token:XGZ }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			XGZ_party_btn_subtract_control_click = {
@@ -163,6 +171,7 @@ scripted_gui = {
 			XGZ_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:XGZ }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			XGZ_party_btn_subtract_shift_click = {
@@ -174,6 +183,7 @@ scripted_gui = {
 			NFE_party_btn_add_click = {
 				set_variable = { region_choose = token:NFE }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NFE_party_btn_subtract_click = {
@@ -184,6 +194,7 @@ scripted_gui = {
 			NFE_party_btn_add_control_click = {
 				set_variable = { region_choose = token:NFE }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NFE_party_btn_subtract_control_click = {
@@ -194,6 +205,7 @@ scripted_gui = {
 			NFE_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:NFE }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NFE_party_btn_subtract_shift_click = {
@@ -205,6 +217,7 @@ scripted_gui = {
 			center_party_btn_add_click = {
 				set_variable = { region_choose = token:center }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			center_party_btn_subtract_click = {
@@ -215,6 +228,7 @@ scripted_gui = {
 			center_party_btn_add_control_click = {
 				set_variable = { region_choose = token:center }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			center_party_btn_subtract_control_click = {
@@ -225,6 +239,7 @@ scripted_gui = {
 			center_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:center }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			center_party_btn_subtract_shift_click = {
@@ -246,6 +261,12 @@ scripted_gui = {
 			check_variable = { CPC_GUI_tab_issue^0 = 2 }
 		}
 		triggers = {
+			NWB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			SWB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			NCB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			SCB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			NEB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			MON_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
 			rebuild_button_slt_visible = {
 				has_country_flag = CPC_rebuild_list
 				meta_trigger = {
@@ -330,6 +351,7 @@ scripted_gui = {
 			NWB_party_btn_add_click = {
 				set_variable = { region_choose = token:NWB }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NWB_party_btn_subtract_click = {
@@ -340,6 +362,7 @@ scripted_gui = {
 			NWB_party_btn_add_control_click = {
 				set_variable = { region_choose = token:NWB }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NWB_party_btn_subtract_control_click = {
@@ -350,6 +373,7 @@ scripted_gui = {
 			NWB_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:NWB }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NWB_party_btn_subtract_shift_click = {
@@ -361,6 +385,7 @@ scripted_gui = {
 			SWB_party_btn_add_click = {
 				set_variable = { region_choose = token:SWB }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			SWB_party_btn_subtract_click = {
@@ -371,6 +396,7 @@ scripted_gui = {
 			SWB_party_btn_add_control_click = {
 				set_variable = { region_choose = token:SWB }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			SWB_party_btn_subtract_control_click = {
@@ -381,6 +407,7 @@ scripted_gui = {
 			SWB_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:SWB }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			SWB_party_btn_subtract_shift_click = {
@@ -392,6 +419,7 @@ scripted_gui = {
 			NCB_party_btn_add_click = {
 				set_variable = { region_choose = token:NCB }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NCB_party_btn_subtract_click = {
@@ -402,6 +430,7 @@ scripted_gui = {
 			NCB_party_btn_add_control_click = {
 				set_variable = { region_choose = token:NCB }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NCB_party_btn_subtract_control_click = {
@@ -412,6 +441,7 @@ scripted_gui = {
 			NCB_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:NCB }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NCB_party_btn_subtract_shift_click = {
@@ -423,6 +453,7 @@ scripted_gui = {
 			SCB_party_btn_add_click = {
 				set_variable = { region_choose = token:SCB }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			SCB_party_btn_subtract_click = {
@@ -433,6 +464,7 @@ scripted_gui = {
 			SCB_party_btn_add_control_click = {
 				set_variable = { region_choose = token:SCB }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			SCB_party_btn_subtract_control_click = {
@@ -443,6 +475,7 @@ scripted_gui = {
 			SCB_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:SCB }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			SCB_party_btn_subtract_shift_click = {
@@ -454,6 +487,7 @@ scripted_gui = {
 			NEB_party_btn_add_click = {
 				set_variable = { region_choose = token:NEB }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NEB_party_btn_subtract_click = {
@@ -464,6 +498,7 @@ scripted_gui = {
 			NEB_party_btn_add_control_click = {
 				set_variable = { region_choose = token:NEB }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NEB_party_btn_subtract_control_click = {
@@ -474,6 +509,7 @@ scripted_gui = {
 			NEB_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:NEB }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			NEB_party_btn_subtract_shift_click = {
@@ -485,6 +521,7 @@ scripted_gui = {
 			MON_party_btn_add_click = {
 				set_variable = { region_choose = token:MON }
 				set_variable = { party_change_num = 1 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			MON_party_btn_subtract_click = {
@@ -495,6 +532,7 @@ scripted_gui = {
 			MON_party_btn_add_control_click = {
 				set_variable = { region_choose = token:MON }
 				set_variable = { party_change_num = 10 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			MON_party_btn_subtract_control_click = {
@@ -505,6 +543,7 @@ scripted_gui = {
 			MON_party_btn_add_shift_click = {
 				set_variable = { region_choose = token:MON }
 				set_variable = { party_change_num = 100 }
+				TER_CPC_party_member = yes
 				TER_rebuild_member_add = yes
 			}
 			MON_party_btn_subtract_shift_click = {

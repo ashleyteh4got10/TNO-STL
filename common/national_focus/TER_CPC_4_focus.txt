@@ -1,0 +1,816 @@
+focus_tree = {
+	id = CPC_rebuild_1
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = CPC
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_1
+		icon = GFX_goals_CPC_10th_progress
+		cost = 3
+		x = 0
+		y = 0
+		available = {
+			hidden_trigger = { always = no }
+		}
+		completion_reward = {
+			custom_effect_tooltip = "CPC_rebuild_1_medium_1_tt"
+			hidden_effect = {
+				TER_region_bureau_init = yes
+				TER_rebuild_initialization = yes
+				clear_array = CPGAC_ordinary_policy
+				clear_array = CPGAC_ordinary_policy_enable_times
+				clear_array = CPGAC_ordinary_policy_intensified
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_restore_eco }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_company }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_art }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_sino_japan }
+			    add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			    add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_punish_bad_capital }
+			    add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+			    add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_ur_fired }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_care }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_edu }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_catch_fox }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p0_empty }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+
+				set_country_flag = CPC_unlock_rebuild_center
+				set_country_flag = CPC_unlock_rebuild_bureau
+				set_country_flag = TER_rebuild_state
+			}
+			country_event = { id = STL_CPC_2_main_story.3 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_2
+		icon = GFX_fronticons_tooltip
+		cost = 1
+		prerequisite = { focus = CPC_rebuild_1_medium_1 }
+		x = 0
+		y = 1
+		completion_reward = {
+			hidden_effect = {
+				add_to_variable = { PRC_SWB_PP_rate = 0.2 }
+				add_to_variable = { PRC_NCB_PP_rate = 0.3 }
+				add_to_variable = { PRC_SCB_PP_rate = 0.3 }
+				add_to_variable = { PRC_NEB_PP_rate = 0.2 }
+				add_to_variable = { PRC_NFE_PP_rate = 0.4 }
+				TER_CPC_party_member = yes
+			}
+			custom_effect_tooltip = "CPC_rebuild_1_medium_2_tt"
+			country_event = { id = STL_CPC_2_main_story.4 days = 1 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_3
+		icon = GFX_fronticons_tooltip
+		cost = 1
+		prerequisite = { focus = CPC_rebuild_1_medium_2 }
+		x = -2
+		y = 2
+		completion_reward = {
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_new_officers_training_program }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 1 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 90 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 10 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 15 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 30 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 10 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 70 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 20 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 25 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 50 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 30 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 50 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 45 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+			country_event = { id = STL_CPC_2_main_story.5 days = 1 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_3_left_1
+		icon = GFX_goals_CPC_promote_worker_peasant_cadres
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_medium_3 }
+		available = { has_country_flag = CPGAC_admit_worker_peasant_cards }
+		mutually_exclusive = { focus = CPC_rebuild_1_medium_3_left_2 }
+		x = -3
+		y = 3
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_6 = 0.5 }
+			TER_rebuild_speed_change = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_3_left_2
+		icon = GFX_goals_CPC_strict_cdres_standard
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_medium_3 }
+		available = { has_country_flag = CPGAC_admit_strict_party_member }
+		mutually_exclusive = { focus = CPC_rebuild_1_medium_3_left_1 }
+		x = -1
+		y = 3
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_2 = 0.5 }
+			TER_rebuild_speed_change = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_4
+		icon = GFX_goals_CPC_retain_puppet_officials
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_medium_2 }
+		x = 2
+		y = 2
+		completion_reward = {
+			CPC_decrease_administrative_strain = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_4_left_1
+		icon = GFX_goals_CPC_clear_puppet_officers
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_medium_4 }
+		x = 1
+		y = 3
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_ur_fired }
+			set_temp_variable = { times_tmp = 2 }
+			CPGAC_unlock_limited_policy_effect = yes
+			custom_effect_tooltip = "CPC_rebuild_1_medium_4_left_1_tt"
+			hidden_effect = {
+				add_to_variable = { PRC_NCB_PP_rate = 0.3 }
+				add_to_variable = { PRC_SCB_PP_rate = 0.2 }
+				add_to_variable = { PRC_NEB_PP_rate = 0.3 }
+				add_to_variable = { PRC_NFE_PP_rate = 0.1 }
+				TER_CPC_party_member = yes
+				country_event = { id = STL_CPC_2_main_story.6 days = 1 }
+			}
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_4_left_2
+		icon = GFX_goals_CPC_keep_advanced_talents
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_medium_4 }
+		x = 3
+		y = 3
+		completion_reward = {
+			TNO_improve_admin_efficiency_low = yes
+			custom_effect_tooltip = "CPC_rebuild_1_medium_4_left_2_tt"
+			hidden_effect = {
+				add_to_variable = { PRC_SWB_PP_rate = 0.3 }
+				add_to_variable = { PRC_NCB_PP_rate = 0.2 }
+				add_to_variable = { PRC_SCB_PP_rate = 0.2 }
+				add_to_variable = { PRC_NEB_PP_rate = 0.3 }
+				add_to_variable = { PRC_NFE_PP_rate = 0.2 }
+				TER_CPC_party_member = yes
+				country_event = { id = STL_CPC_2_main_story.7 days = 1 }
+			}
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_5
+		icon = GFX_goals_CPC_people_supervision
+		cost = 2
+		prerequisite = {
+			focus = CPC_rebuild_1_medium_3_left_1
+			focus = CPC_rebuild_1_medium_3_left_2
+		}
+		x = -2
+		y = 4
+		completion_reward = {
+			CPC_decrease_administrative_strain = yes
+			country_event = { id = STL_CPC_2_main_story.8 days = 1 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_6
+		icon = GFX_goals_CPC_three_antis_five_antis
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_medium_4_left_1 }
+		prerequisite = { focus = CPC_rebuild_1_medium_4_left_2 }
+		x = 2
+		y = 4
+		completion_reward = {
+			CPC_decrease_administrative_strain = yes
+			country_event = { id = STL_CPC_2_main_story.9 days = 1 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_7
+		icon = GFX_goals_CPC_consolidate_people_democratic_dictatorship
+		cost = 3
+		prerequisite = { focus = CPC_rebuild_1_medium_5 }
+		prerequisite = { focus = CPC_rebuild_1_medium_6 }
+		x = 0
+		y = 5
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_2 = 0.5 }
+			TER_rebuild_speed_change = yes
+			tno_political_parties_improve = yes
+			CPC_decrease_administrative_strain = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_ur_fired }
+			set_temp_variable = { times_tmp = 2 }
+			CPGAC_unlock_limited_policy_effect = yes
+		}
+	}
+
+	focus = {
+		id = CPC_rebuild_1_left_1
+		icon = GFX_goals_CPC_countryside_depth
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_medium_7 }
+		x = -5
+		y = 6
+		completion_reward = {
+			country_event = { id = STL_CPC_2_main_story.10 days = 1 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_2
+		icon = GFX_goals_CPC_crush_banditry_and_despotism
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_1 }
+		x = -5
+		y = 7
+		completion_reward = {
+			set_temp_variable = { begin_ut_temp = token:CPGAC_u_anit_bandit_and_hage }
+			set_temp_variable = { days_temp = 150 }
+			TER_CPGAC_begin_an_urgent_task = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_3
+		icon = GFX_goals_CPC_check_field_and_product
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_2 }
+		x = -6
+		y = 8
+		completion_reward = {
+			TNO_improve_agriculture_low = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_3_left_1
+		icon = GFX_goals_CPC_categorize_class
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_3 }
+		x = -8
+		y = 9
+		completion_reward = {
+			add_to_variable = { land_reform = 10 }
+			custom_effect_tooltip = "CPC_rebuild_1_left_3_tt"
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_3_left_2
+		icon = GFX_goals_CPC_new_countryside_face
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_3_left_1 }
+		x = -8
+		y = 10
+		completion_reward = {
+			TNO_improve_poverty_low = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_3_right_1
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_3 }
+		x = -6
+		y = 9
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_4 = 0.5 }
+			TER_rebuild_speed_change = yes
+			TNO_improve_poverty_low = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_3_right_2
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_3_right_1 }
+		x = -6
+		y = 10
+		completion_reward = {
+			TNO_improve_agriculture_low = yes
+			set_temp_variable = { money_reserves_temp = 1 }
+			econ_money_reserves_change_raw_money = yes
+			update_economy_tab = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_4
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_2 }
+		x = -4
+		y = 8
+		completion_reward = {
+			TNO_improve_academic_base_med = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_4_left_1
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_4 }
+		x = -4
+		y = 9
+		completion_reward = {
+			TNO_improve_academic_base_low = yes 
+			TNO_improve_industrial_expertise_low = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_4_left_2
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_4_left_1 }
+		x = -4
+		y = 10
+		completion_reward = {
+			TNO_improve_academic_base_low = yes 
+			TNO_improve_industrial_expertise_low = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_4_right_1
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_4 }
+		x = -2
+		y = 9
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_3 = 0.5 }
+			TER_rebuild_speed_change = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_4_right_2
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_left_4_right_1 }
+		x = -2
+		y = 10
+		completion_reward = {
+			TNO_improve_industrial_equipment_low = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_5
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = {
+			focus = CPC_rebuild_1_left_3_left_2
+			focus = CPC_rebuild_1_left_3_right_2
+		}
+		prerequisite = {
+			focus = CPC_rebuild_1_left_4_left_2
+			focus = CPC_rebuild_1_left_4_right_2
+		}
+		mutually_exclusive = { focus = CPC_rebuild_1_left_6 }
+		x = -7
+		y = 11
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_4 = 0.5 }
+			TER_rebuild_speed_change = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_left_6
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = {
+			focus = CPC_rebuild_1_left_3_left_2
+			focus = CPC_rebuild_1_left_3_right_2
+		}
+		prerequisite = {
+			focus = CPC_rebuild_1_left_4_left_2
+			focus = CPC_rebuild_1_left_4_right_2
+		}
+		mutually_exclusive = { focus = CPC_rebuild_1_left_5 }
+		x = -3
+		y = 11
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_4 = 0.5 }
+			TER_rebuild_speed_change = yes
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.18 days = 7 }
+			}
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_1
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_medium_7 }
+		x = 5
+		y = 6
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_1 = -0.5 }
+			TER_rebuild_speed_change = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_care }
+			set_temp_variable = { times_tmp = 1 }
+			CPGAC_unlock_limited_policy_effect = yes
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.19 days = 3 }
+			}
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_2
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_1 }
+		x = 4
+		y = 7
+		completion_reward = {
+			#议案主题
+			set_temp_variable = { begin_proposal_temp = token:CPGAC_prop_restructure_national_industry }
+			set_temp_variable = { CPGAC_option_chosen_faction_tmp = 1 }
+			#议案选项
+			add_to_array = { CPGAC_prop_option = 1 }
+			add_to_array = { CPGAC_prop_option_in_party = 0 }
+			add_to_array = { CPGAC_prop_option = 2 }
+			#初始态度 - 党内
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^0 = 80 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^1 = 35 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^2 = 10 }
+			set_temp_variable = { CPGAC_Y_attitude_in_party_tmp^3 = 35 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^0 = 10 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^1 = 50 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^2 = 75 }
+			set_temp_variable = { CPGAC_N_attitude_in_party_tmp^3 = 5 }
+			#初始态度 - 党外
+			set_temp_variable = { CPGAC_yes_attitude_tmp^0 = 35 }
+			set_temp_variable = { CPGAC_yes_attitude_tmp^1 = 40 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^0 = 60 }
+			set_temp_variable = { CPGAC_no_attitude_tmp^1 = 25 }
+			#启动议案
+			TER_CPGAC_begin_a_proposal = yes
+			custom_effect_tooltip = "CPGAC_begin_a_proposal_tips"
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.20 days = 1 }
+			}
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_2_left_1
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_2 }
+		x = 2
+		y = 8
+		completion_reward = {
+			TER_coordinate_industrial_support = yes
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_edu }
+			set_temp_variable = { times_tmp = 1 }
+			CPGAC_unlock_limited_policy_effect = yes
+			set_temp_variable = { PRC_temp_rate_3 = 0.5 }
+			TER_rebuild_speed_change = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_2_left_2
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = {
+			focus = CPC_rebuild_1_right_2_left_1
+			focus = CPC_rebuild_1_right_2_right_1
+		}
+		available = { has_country_flag = CPGAC_admit_appease_national_capitalism }
+		mutually_exclusive = { focus = CPC_rebuild_1_right_2_right_2 }
+		x = 2
+		y = 9
+		completion_reward = {
+			country_event = { id = STL_CPC_2_main_story.21 days = 7 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_2_left_3
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_2_left_2 }
+		x = 2
+		y = 10
+		completion_reward = {
+			set_temp_variable = { money_reserves_temp = -1 }
+			econ_money_reserves_change_raw_money = yes
+			update_economy_tab = yes
+			country_event = { id = STL_CPC_2_main_story.23 days = 7 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_2_right_1
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_2 }
+		x = 4
+		y = 8
+		completion_reward = {
+			set_temp_variable = { money_reserves_temp = 0.5 }
+			econ_money_reserves_change_raw_money = yes
+			update_economy_tab = yes
+			TER_coordinate_industrial_support = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_2_right_2
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = {
+			focus = CPC_rebuild_1_right_2_left_1
+			focus = CPC_rebuild_1_right_2_right_1
+		}
+		available = { has_country_flag = CPGAC_admit_reform_national_capitalism }
+		mutually_exclusive = { focus = CPC_rebuild_1_right_2_left_2 }
+		x = 4
+		y = 9
+		completion_reward = {
+			TNO_worsen_admin_efficiency_low = yes
+			country_event = { id = STL_CPC_2_main_story.22 days = 7 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_2_right_3
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_2_right_2 }
+		x = 4
+		y = 10
+		completion_reward = {
+			TNO_improve_slavery_policy_effectiveness_med = yes
+			TER_coordinate_industrial_support = yes
+			country_event = { id = STL_CPC_2_main_story.24 days = 7 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_3
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_1 }
+		x = 6
+		y = 7
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p4_catch_fox }
+			set_temp_variable = { times_tmp = 1 }
+			CPGAC_unlock_limited_policy_effect = yes
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.25 days = 7 }
+			}
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_3_left_1
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_3 }
+		x = 6
+		y = 8
+		completion_reward = {
+			add_stability = 0.1
+			TNO_improve_admin_efficiency_low = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_3_left_2
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_3_left_1 }
+		mutually_exclusive = { focus = CPC_rebuild_1_right_3_right_2 }
+		x = 6
+		y = 9
+		completion_reward = {
+			TNO_improve_security_policy_effectiveness_low = yes
+			country_event = { id = STL_CPC_2_main_story.26 days = 7 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_3_right_1
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_3 }
+		x = 8
+		y = 8
+		completion_reward = {
+			set_temp_variable = { PRC_temp_rate_5 = 0.5 }
+			TER_rebuild_speed_change = yes
+			TNO_improve_political_parties_policy_effectiveness_med = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_3_right_2
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = { focus = CPC_rebuild_1_right_3_right_1 }
+		x = 8
+		y = 9
+		completion_reward = {
+			TNO_improve_penal_system_policy_effectiveness_med = yes
+			country_event = { id = STL_CPC_2_main_story.27 days = 7 }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_right_4
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = {
+			focus = CPC_rebuild_1_right_3_left_2
+			focus = CPC_rebuild_1_right_3_right_2
+		}
+		x = 7
+		y = 10
+		completion_reward = {
+			add_political_power = 150
+			remove_ideas = CPC_anti_revolution
+			add_to_variable = { people_support = 10 }
+			custom_effect_tooltip = "CPC_rebuild_1_right_4_tt"
+			hidden_effect = { country_event = { id = STL_CPC_2_main_story.28 days = 7 } }
+		}
+	}
+	focus = {
+		id = CPC_rebuild_1_medium_8
+		icon = GFX_fronticons_tooltip
+		cost = 2
+		prerequisite = {
+			focus = CPC_rebuild_1_left_5
+			focus = CPC_rebuild_1_left_6
+		}
+		prerequisite = {
+			focus = CPC_rebuild_1_right_2_left_3
+			focus = CPC_rebuild_1_right_2_right_3
+		}
+		prerequisite = { focus = CPC_rebuild_1_right_4 }
+		x = 0
+		y = 12
+		completion_reward = {
+			country_event = { id = STL_CPC_2_main_story.29 days = 7 }
+		}
+	}
+}
+focus_tree = {
+	id = CPC_rebuild_2
+	country = {
+		factor = 0
+		modifier = {
+			add = 20
+			tag = CPC
+		}
+	}
+	focus = {
+		id = CPC_rebuild_2_medium_1
+		icon = GFX_goals_CPC_new_liberation_socialist_revolution
+		cost = 2
+		x = 5
+		y = 0
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_left_1
+		icon = GFX_goals_CPC_argicultrual_collectivization
+		cost = 2
+		x = 3
+		y = 1
+		prerequisite = { focus = CPC_rebuild_2_medium_1 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_medium_2
+		icon = GFX_goals_CPC_establish_collectivist_company
+		cost = 2
+		x = 5
+		y = 1
+		prerequisite = { focus = CPC_rebuild_2_medium_1 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_right_1
+		icon = GFX_goals_CPC_workers_union
+		cost = 2
+		x = 7
+		y = 1
+		prerequisite = { focus = CPC_rebuild_2_medium_1 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_medium_3
+		icon = GFX_goals_CPC_intend_NPC
+		cost = 2
+		x = 5
+		y = 2
+		prerequisite = { focus = CPC_rebuild_2_left_1 }
+		prerequisite = { focus = CPC_rebuild_2_medium_2 }
+		prerequisite = { focus = CPC_rebuild_2_right_1 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_left_2
+		icon = GFX_goals_CPC_census_people
+		cost = 2
+		x = 4
+		y = 3
+		prerequisite = { focus = CPC_rebuild_2_medium_3 }
+		completion_reward = { }
+	}
+
+	focus = {
+		id = CPC_rebuild_2_right_2
+		icon = GFX_goals_CPC_build_worker_group
+		cost = 2
+		x = 6
+		y = 3
+		prerequisite = { focus = CPC_rebuild_2_medium_3 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_left_3
+		icon = GFX_goals_CPC_register_voter
+		cost = 2
+		x = 4
+		y = 4
+		prerequisite = { focus = CPC_rebuild_2_left_2 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_right_3
+		icon = GFX_goals_CPC_draft_nomination_list
+		cost = 2
+		x = 6
+		y = 4
+		prerequisite = { focus = CPC_rebuild_2_right_2 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_medium_4
+		icon = GFX_goals_CPC_hold_local_elections
+		cost = 2
+		x = 5
+		y = 5
+		prerequisite = { focus = CPC_rebuild_2_left_3 }
+		prerequisite = { focus = CPC_rebuild_2_right_3 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_left_4
+		icon = GFX_goals_CPC_keep_election_rule
+		cost = 2
+		x = 4
+		y = 6
+		prerequisite = { focus = CPC_rebuild_2_medium_4 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_right_4
+		icon = GFX_goals_CPC_strict_discipline
+		cost = 2
+		x = 6
+		y = 6
+		prerequisite = { focus = CPC_rebuild_2_medium_4 }
+		completion_reward = { }
+	}
+	focus = {
+		id = CPC_rebuild_2_medium_5
+		icon = GFX_goals_CPC_First_National_Peoples_Congress
+		cost = 2
+		x = 5
+		y = 7
+		prerequisite = { focus = CPC_rebuild_2_left_4 }
+		prerequisite = { focus = CPC_rebuild_2_right_4 }
+		completion_reward = { }
+	}
+}

@@ -395,28 +395,28 @@ defined_text = {
 	}
 	text = {
 		trigger = {
-			check_variable = { east_rebuild_level > 20 }
+			check_variable = { var = east_rebuild_level greater_than_or_equals = 20 }
 			check_variable = { east_rebuild_level < 40 }
 		}
 		localization_key = TER_rebuild_intiial
 	}
 	text = {
 		trigger = {
-			check_variable = { east_rebuild_level < 40 }
+			check_variable = { var = east_rebuild_level greater_than_or_equals = 40 }
 			check_variable = { east_rebuild_level < 60 }
 		}
 		localization_key = TER_rebuild_low
 	}
 	text = {
 		trigger = {
-			check_variable = { east_rebuild_level > 60 }
+			check_variable = { var = east_rebuild_level greater_than_or_equals = 60 }
 			check_variable = { east_rebuild_level < 80 }
 		}
 		localization_key = TER_rebuild_medium
 	}
 	text = {
 		trigger = {
-			check_variable = { east_rebuild_level > 80 }
+			check_variable = { var = east_rebuild_level greater_than_or_equals = 80 }
 			check_variable = { east_rebuild_level < 100 }
 		}
 		localization_key = TER_rebuild_high
@@ -426,5 +426,77 @@ defined_text = {
 			check_variable = { east_rebuild_level = 100 }
 		}
 		localization_key = TER_rebuild_done
+	}
+}
+defined_text = {
+	name = TER_rebuild_pattern
+	text = {
+		trigger = {
+			check_variable =  { TER_rebuild_pattern_speed = 1 }
+		}
+		localization_key = TER_bandit_coverage
+	}
+	text = {
+		trigger = {
+			OR = {
+				check_variable =  { TER_rebuild_pattern_speed = 2 }
+				check_variable =  { TER_rebuild_pattern_speed = 6 }
+			}
+		}
+		localization_key = TER_party_coverage
+	}
+	text = {
+		trigger = {
+			check_variable =  { TER_rebuild_pattern_speed = 3 }
+		}
+		localization_key = TER_industrial_coordination
+	}
+	text = {
+		trigger = {
+			check_variable =  { TER_rebuild_pattern_speed = 4 }
+		}
+		localization_key = TER_land_reform
+	}
+	text = {
+		trigger = {
+			check_variable =  { TER_rebuild_pattern_speed = 5 }
+		}
+		localization_key = TER_people_altitude
+	}
+	text = {
+		trigger = {
+			check_variable =  { TER_rebuild_pattern_speed = 7 }
+		}
+		localization_key = TER_recover_speed
+	}
+}
+defined_text = {
+	name = TER_rubuild_NEB
+	text = {
+		trigger = {
+			has_game_rule ={
+				rule = SWRWTER_Northeast_Bureau_content
+				option = DEFAULT
+			}
+		}
+		localization_key = TER_rubuild_NEB_yes
+	}
+	text = {
+		localization_key = ""
+	}
+}
+defined_text = {
+	name = TER_rebuild_no_NEB
+	text = {
+		trigger = {
+			has_game_rule ={
+				rule = SWRWTER_Northeast_Bureau_content
+				option = DEFAULT
+			}
+		}
+		localization_key = ""
+	}
+	text = {
+		localization_key = TER_rubuild_NEB_yes
 	}
 }

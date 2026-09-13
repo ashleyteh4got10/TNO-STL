@@ -5551,6 +5551,8 @@ country_event = {
 			remove_ideas = { CPC_RBM_dummy_1 CPC_RBM_dummy_2 CPC_RBM_dummy_3 }
 			remove_dynamic_modifier = { modifier = CPC_rev_base_modifier }
 			set_variable = { poverty_rate = 80 }
+			add_ideas = CPC_AT_eco_issue_idea
+			add_ideas = CPC_AT_gov_issue_idea
 			TER_reset_agriculture = yes
 			tno_worsen_academic_base = yes
 			tno_worsen_research_facilities = yes
@@ -5667,76 +5669,7 @@ country_event = {
 		}
 		custom_effect_tooltip = "CPC_TRCW_people_dem_effect_tt"
 		hidden_effect = {
-			retire_country_leader = yes
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = communist_peoples_democracy_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-				traits = {
-					CPC_people_dem
-				}
-			}
-			retire_ideology_leader = socialist
-			retire_ideology_leader = progressivism
-			retire_ideology_leader = liberalism
-			retire_ideology_leader = conservatism
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = socialist_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-			}
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = progressivism_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-			}
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = liberalism_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-			}
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = conservatism_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-			}
-			set_party_name = {
-				ideology = communist
-				long_name = CPC_final_communist_good_long
-				name = CPC_final_communist_good
-			}
-			set_party_name = {
-				ideology = socialist
-				long_name = CPC_final_socialist_good_long
-				name = CPC_final_socialist_good
-			}
-			set_party_name = {
-				ideology = progressivism
-				long_name = CPC_final_progressivism_good_long
-				name = CPC_final_progressivism_good
-			}
-			set_party_name = {
-				ideology = liberalism
-				long_name = CPC_final_others_good_long
-				name = CPC_final_others_good
-			}
-			set_party_name = {
-				ideology = conservatism
-				long_name = CPC_final_others_good_long
-				name = CPC_final_others_good
-			}
-			set_popularities = {
-				communist = 50
-				socialist = 25
-				progressivism = 20
-				liberalism = 3
-				conservatism = 2
-			}
+			country_event = { id = STL_CPC_2_main_story.1 days = 3 }
 		}
 		TNO_Country_Closing_Screen_Show = yes
 	}
@@ -5769,6 +5702,9 @@ country_event = {
 			factor = 50
 		}
 		custom_effect_tooltip = "CPC_TRCW_party_mao_effect_tt"
+		hidden_effect = {
+			country_event = { id = STL_CPC_2_main_story.1 days = 3 }
+		}
 		TNO_Country_Closing_Screen_Show = yes
 	}
 }
