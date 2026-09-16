@@ -568,6 +568,11 @@ scripted_gui = {
 				NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing } 
 				check_variable = { CPGAC_ongoing_urgent_task_level < 4 }
 			}
+			TER_CPGAC_urgent_task_btn_6_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_anit_bandit_and_hage }
+				NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing } 
+				check_variable = { CPGAC_ongoing_urgent_task_level < 4 }
+			}
 			TER_CPGAC_urgent_task_icon_1_visible = {
 				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_field_investigation_movement }
 				OR = {
@@ -618,6 +623,16 @@ scripted_gui = {
 					}
 				}
 			}
+			TER_CPGAC_urgent_task_icon_6_visible = {
+				check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_anit_bandit_and_hage }
+				OR = {
+					has_country_flag = CPC_we_have_an_urgent_task_pushing
+					AND = {
+						NOT = { has_country_flag = CPC_we_have_an_urgent_task_pushing }
+						check_variable = { CPGAC_ongoing_urgent_task_level = 4 }
+					}
+				}
+			}
 			TER_CPGAC_urgent_task_glow_visible = { has_country_flag = CPC_we_have_an_urgent_task_pushing }
 		}
 		effects = {
@@ -654,6 +669,14 @@ scripted_gui = {
 				}
 			}
 			TER_CPGAC_urgent_task_btn_5_click = { 
+				effect_tooltip = { TER_CPGAC_end_an_urgent_task = yes }
+				TER_motion_u_remove_alerts = yes
+				set_country_flag = CPC_we_have_an_urgent_task_pushing
+				hidden_effect = {
+					activate_mission = CPGAC_urgent_task_pushing
+				}
+			}
+			TER_CPGAC_urgent_task_btn_6_click = { 
 				effect_tooltip = { TER_CPGAC_end_an_urgent_task = yes }
 				TER_motion_u_remove_alerts = yes
 				set_country_flag = CPC_we_have_an_urgent_task_pushing

@@ -1332,6 +1332,8 @@ TER_CPGAC_end_an_urgent_task = {
 					target = CPC
 					type = independence_wargoal
 				}
+				retire_country_leader = yes
+				recruit_character = SHX_su_tiren
 				load_oob = SHX_1962
 				load_oob = SHX_1962
 			}
@@ -1344,6 +1346,11 @@ TER_CPGAC_end_an_urgent_task = {
 				set_demilitarized_zone = no
 			}
 			LOY = {
+				create_country_leader = {
+					name = "LOY_anit_rev_leader"
+					picture = "gfx/leaders/YUN/Portrait_Yunnan_Yunnan_Provisional_Authority.png"
+					ideology = despotism_civilian_dictatorship_subtype
+				}
 				declare_war_on = {
 					target = CPC
 					type = independence_wargoal
@@ -1366,7 +1373,9 @@ TER_CPGAC_end_an_urgent_task = {
 				load_oob = MEN_1962
 			}
 			every_state = {
-				limit = { OR = { check_variable = { china_state_ref = 19 } } }
+				limit = { OR = { check_variable = { china_state_ref = 19 }
+								 check_variable = { china_state_ref = 35 }
+								} }
 				transfer_state_to = KIS
 				add_core_of = KIS
 				set_demilitarized_zone = no
@@ -1377,20 +1386,6 @@ TER_CPGAC_end_an_urgent_task = {
 					type = independence_wargoal
 				}
 				load_oob = KIS_war
-			}
-			every_state = {
-				limit = { OR = { check_variable = { china_state_ref = 35 } } }
-				transfer_state_to = GNG
-				add_core_of = GNG
-				set_demilitarized_zone = no
-			}
-			GNG = {
-				declare_war_on = {
-					target = CPC
-					type = independence_wargoal
-				}
-				load_oob = GNG_1962
-				load_oob = GNG_1962
 			}
 			every_state = {
 				limit = { OR = { check_variable = { china_state_ref = 44 }

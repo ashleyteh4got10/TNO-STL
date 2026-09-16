@@ -70,10 +70,27 @@ TER_rebuild_initialization = {
 	set_variable = { CPC_production_factory_efficiency_gain_factor = 0.05 }
 	set_variable = { CPC_production_speed_buildings_factor = 0.05 }
 	add_dynamic_modifier = { modifier = PRC_situation_modifier }
+	set_variable = { academic_base_monthly_change = 0.05 }
+	set_variable = { research_facilities_monthly_change = 0.05 }
+	set_variable = { healthcare_monthly_change = 0.05 }
+	set_variable = { agriculture_monthly_change = 0.05 }
+	set_variable = { admin_efficiency_monthly_change = 0.05 }
+	set_variable = { industrial_equipment_monthly_change = 0.05 }
+	set_variable = { industrial_expertise_monthly_change = 0.05 }
+	set_variable = { army_professionalism_monthly_change = 0.05 }
+	set_variable = { academic_base_counter = 0.00 }
+	set_variable = { research_facilities_counter = 0.00 }
+	set_variable = { agriculture_counter = 0.00 }
+	set_variable = { healthcare_counter = 0.00 }
+	set_variable = { admin_efficiency_counter = 0.00 }
+	set_variable = { industrial_expertise_counter = 0.00 }
+	set_variable = { industrial_equipment_counter = 0.00 }
+	set_variable = { army_professionalism_counter = 0.00 }
 	set_variable = { intro_frame = 1 }
 	set_variable = { party_member_frame = 2 }
 }
 TER_ultimate_initialization = {
+	clr_country_flag = TNO_Country_Closing_Screen_Visible
 	clear_array = global.china_northwest_states
 	clear_array = global.china_northwest_states_X
 	clear_array = global.china_northwest_states_Y
@@ -488,7 +505,6 @@ TER_rebuilding_effect = {
 		add_to_temp_variable = { party_coverage_rate = { value = bonus_count_2 add = bonus_count_6 } }
 		multiply_temp_variable = { party_coverage_rate = { value = recover_speed divide = 100 } }
 		add_to_variable = { party_coverage = party_coverage_rate }
-		add_to_variable = { east_rebuild_level = 20 }
 	}
 
 	if = {
@@ -497,7 +513,6 @@ TER_rebuilding_effect = {
 		add_to_temp_variable = { people_support_rate = bonus_count_5 }
 		multiply_temp_variable = { people_support_rate = { value = recover_speed divide = 100 } }
 		add_to_variable = { people_support = people_support_rate }
-		add_to_variable = { east_rebuild_level = 20 }
 	}
 
 	if = {
@@ -506,7 +521,6 @@ TER_rebuilding_effect = {
 		add_to_temp_variable = { land_reform_rate = bonus_count_4 }
 		multiply_temp_variable = { land_reform_rate = { value = recover_speed divide = 100 } }
 		add_to_variable = { land_reform = land_reform_rate }
-		add_to_variable = { east_rebuild_level = 20 }
 	}
 
 	if = {
@@ -515,7 +529,6 @@ TER_rebuilding_effect = {
 		add_to_temp_variable = { industrial_coordination_rate = bonus_count_3 }
 		multiply_temp_variable = { industrial_coordination_rate = { value = recover_speed divide = 100 } }
 		add_to_variable = { industrial_coordination = industrial_coordination_rate }
-		add_to_variable = { east_rebuild_level = 20 }
 	}
 
 	if = {
@@ -524,7 +537,6 @@ TER_rebuilding_effect = {
 		add_to_temp_variable = { bandit_coverage_rate = bonus_count_1 }
 		multiply_temp_variable = { bandit_coverage_rate = { value = recover_speed divide = 100 } }
 		subtract_from_variable = { bandit_coverage = bandit_coverage_rate }
-		add_to_variable = { east_rebuild_level = 20 }
 	}
 
 	clamp_variable = { var = party_coverage min = 0 max = 100 }
@@ -532,37 +544,62 @@ TER_rebuilding_effect = {
 	clamp_variable = { var = land_reform min = 0 max = 100 }
 	clamp_variable = { var = industrial_coordination min = 0 max = 100 }
 	clamp_variable = { var = bandit_coverage min = 0 max = 100 }
-	clamp_variable = { var = east_rebuild_level min = 0 max = 100 }
+	clamp_variable = { var = east_rebuild_level min = 0 max = 5 }
 }
 TER_rebuild_complete = {
 	if = {
-		limit = { check_variable = { party_coverage = 100 } }
+		limit = {
+			check_variable = { party_coverage = 100 }
+			NOT = { has_country_flag = party_coverage_complete }
+		}
 		CPC_decrease_administrative_strain = yes
+		set_country_flag = party_coverage_complete
+		add_to_variable = { east_rebuild_level = 1 }
 	}
 	if = {
-		limit = { check_variable = { people_support = 100 } }
+		limit = {
+			check_variable = { people_support = 100 }
+			NOT = { has_country_flag = people_support_complete }
+		}
 		every_state = {
 			limit = { has_dynamic_modifier = CPC_restless_society }
 			remove_dynamic_modifier = { modifier = CPC_restless_society }
 		}
+		set_country_flag = people_support_complete
+		add_to_variable = { east_rebuild_level = 1 }
 	}
 	if = {
-		limit = { check_variable = { land_reform = 100 } }
+		limit = {
+			check_variable = { land_reform = 100 }
+			NOT = { has_country_flag = land_reform_complete }
+		}
 		every_state = {
 			limit = { has_dynamic_modifier = CPC_no_land_reform }
 			remove_dynamic_modifier = { modifier = CPC_no_land_reform }
 		}
+		set_country_flag = land_reform_complete
+		add_to_variable = { east_rebuild_level = 1 }
 	}
 	if = {
-		limit = { check_variable = { industrial_coordination = 100 } }
+		limit = {
+			check_variable = { industrial_coordination = 100 }
+			NOT = { has_country_flag = industrial_coordination_complete }
+		}
 		TER_coordinate_industrial_support = yes
+		set_country_flag = industrial_coordination_complete
+		add_to_variable = { east_rebuild_level = 1 }
 	}
 	if = {
-		limit = { check_variable = { bandit_coverage = 0 } }
+		limit = {
+			check_variable = { bandit_coverage = 0 }
+			NOT = { has_country_flag = bandit_coverage_complete }
+		}
 		every_state = {
 			limit = { has_dynamic_modifier = CPC_banditry_activation }
 			remove_dynamic_modifier = { modifier = CPC_banditry_activation }
 		}
+		set_country_flag = bandit_coverage_complete
+		add_to_variable = { east_rebuild_level = 1 }
 	}
 }
 TER_CPC_party_member = {
