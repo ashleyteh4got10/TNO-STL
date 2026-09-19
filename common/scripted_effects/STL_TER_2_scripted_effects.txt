@@ -717,7 +717,7 @@ TER_rebuild_member_add = {
 				}
 			}
 			clamp_variable = { var = party_change_num min = 0 max = party_member_sum }
-			subtract_from_variable = { PRC_[REGION]_PP_provided = party_change_num }
+			add_to_variable = { PRC_[REGION]_PP_provided = party_change_num }
 		}
 		REGION = "[?region_choose.GetTokenKey]"
 	}
@@ -726,7 +726,7 @@ TER_rebuild_member_subtract = {
 	meta_effect = {
 		text = {
 			clamp_variable = { var = party_change_num min = 0 max = PRC_[REGION]_PP_provided }
-			subtract_from_variable = { PRC_[REGION]_PP_provided = party_member_sum }
+			subtract_from_variable = { PRC_[REGION]_PP_provided = party_change_num }
 			clamp_variable = { var = PRC_[REGION]_PP_provided min = 0 }
 		}
 		REGION = "[?region_choose.GetTokenKey]"
@@ -1060,7 +1060,7 @@ TER_coordinate_industrial_support = {
 	else_if = {
 		limit = { has_idea = CPC_disintegrated_industrial_2 }
 		hidden_effect = {
-		swap_ideas = {
+			swap_ideas = {
 				remove_idea = CPC_disintegrated_industrial_2
 				add_idea = CPC_disintegrated_industrial_3
 			}
