@@ -19,6 +19,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = "CPC_rebuild_1_medium_1_tt"
 			hidden_effect = {
+				set_country_flag = TER_rebuild_state
 				set_country_flag = CPC_colonial_region
 				every_state = {
 					limit = {
@@ -53,11 +54,11 @@ focus_tree = {
 				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
 				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
 				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_sino_japan }
-			    add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
-			    add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
 				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_punish_bad_capital }
-			    add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
-			    add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = -1 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
 
 				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p4_ur_fired }
 				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
@@ -77,7 +78,6 @@ focus_tree = {
 
 				set_country_flag = CPC_unlock_rebuild_center
 				set_country_flag = CPC_unlock_rebuild_bureau
-				set_country_flag = TER_rebuild_state
 			}
 			country_event = { id = STL_CPC_2_main_story.3 }
 		}
@@ -350,6 +350,9 @@ focus_tree = {
 			set_temp_variable = { money_reserves_temp = 1 }
 			econ_money_reserves_change_raw_money = yes
 			update_economy_tab = yes
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.13 days = 5 }
+			}
 		}
 	}
 	focus = {
@@ -361,6 +364,9 @@ focus_tree = {
 		y = 8
 		completion_reward = {
 			TNO_improve_academic_base_med = yes
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.14 days = 3 }
+			}
 		}
 	}
 	focus = {
@@ -397,6 +403,9 @@ focus_tree = {
 		completion_reward = {
 			set_temp_variable = { PRC_temp_rate_3 = 0.5 }
 			TER_rebuild_speed_change = yes
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.15 days = 7 }
+			}
 		}
 	}
 	focus = {
@@ -408,6 +417,9 @@ focus_tree = {
 		y = 10
 		completion_reward = {
 			TNO_improve_industrial_equipment_low = yes
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.16 days = 7 }
+			}
 		}
 	}
 	focus = {
@@ -428,6 +440,9 @@ focus_tree = {
 		completion_reward = {
 			set_temp_variable = { PRC_temp_rate_4 = 0.5 }
 			TER_rebuild_speed_change = yes
+			hidden_effect = {
+				country_event = { id = STL_CPC_2_main_story.17 days = 7 }
+			}
 		}
 	}
 	focus = {
@@ -739,7 +754,11 @@ focus_tree = {
 		x = 3
 		y = 1
 		prerequisite = { focus = CPC_rebuild_2_medium_1 }
-		completion_reward = { }
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p5_agri_collective }
+			set_temp_variable = { times_tmp = 1 }
+			CPGAC_unlock_limited_policy_effect = yes
+		}
 	}
 	focus = {
 		id = CPC_rebuild_2_medium_2
@@ -748,7 +767,11 @@ focus_tree = {
 		x = 5
 		y = 1
 		prerequisite = { focus = CPC_rebuild_2_medium_1 }
-		completion_reward = { }
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p5_combine_company }
+			set_temp_variable = { times_tmp = 1 }
+			CPGAC_unlock_limited_policy_effect = yes
+		}
 	}
 	focus = {
 		id = CPC_rebuild_2_right_1
@@ -757,7 +780,11 @@ focus_tree = {
 		x = 7
 		y = 1
 		prerequisite = { focus = CPC_rebuild_2_medium_1 }
-		completion_reward = { }
+		completion_reward = {
+			set_temp_variable = { CPGAC_op_theme_tmp = token:CPGAC_o_p5_repair_trade_union }
+			set_temp_variable = { times_tmp = 1 }
+			CPGAC_unlock_limited_policy_effect = yes
+		}
 	}
 	focus = {
 		id = CPC_rebuild_2_medium_3
@@ -768,7 +795,12 @@ focus_tree = {
 		prerequisite = { focus = CPC_rebuild_2_left_1 }
 		prerequisite = { focus = CPC_rebuild_2_medium_2 }
 		prerequisite = { focus = CPC_rebuild_2_right_1 }
-		completion_reward = { }
+		completion_reward = {
+			hidden_effect = {
+				clr_country_flag = TER_rebuild_state
+				set_country_flag = TER_congress_state
+			}
+		}
 	}
 	focus = {
 		id = CPC_rebuild_2_left_2

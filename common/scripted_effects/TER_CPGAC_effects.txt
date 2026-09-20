@@ -1112,6 +1112,11 @@ CPGAC_UT_modifier_level_update = {
 			set_variable = { CPGAC_UT_misc_costs_modifier = 0.15 }
 			set_variable = { CPGAC_UT_NP_PP_cost = 0.15 }
 		}
+		else_if = {
+			limit = { check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_anit_bandit_and_hage } }
+			set_variable = { CPGAC_UT_misc_costs_modifier = 0.15 }
+			set_variable = { CPGAC_UT_NP_PP_cost = 0.2 }
+		}
 	}
 	else_if = {
 		limit = { check_variable = { CPGAC_ongoing_urgent_task_level = 2 } }
@@ -1151,6 +1156,11 @@ CPGAC_UT_modifier_level_update = {
 			set_variable = { CPGAC_UT_NP_PP_cost = 0.15 }
 			set_variable = { CPGAC_UT_stability_factor = -0.05 }
 			set_variable = { CPGAC_UT_army_professionalism_monthly_rate = 1 }
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_anit_bandit_and_hage } }
+			set_variable = { CPGAC_UT_misc_costs_modifier = 0.15 }
+			set_variable = { CPGAC_UT_NP_PP_cost = 0.15 }
 		}
 	}
 	else_if = {
@@ -1193,6 +1203,11 @@ CPGAC_UT_modifier_level_update = {
 			set_variable = { CPGAC_UT_stability_factor = -0.05 }
 			set_variable = { CPGAC_UT_army_professionalism_monthly_rate = 1 }
 		}
+		else_if = {
+			limit = { check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_recontact_NAJUA } }
+			set_variable = { CPGAC_UT_misc_costs_modifier = 0.15 }
+			set_variable = { CPGAC_UT_NP_PP_cost = 0.1 }
+		}
 	}
 	else_if = {
 		limit = { check_variable = { CPGAC_ongoing_urgent_task_level = 4 } }
@@ -1231,6 +1246,11 @@ CPGAC_UT_modifier_level_update = {
 			set_variable = { CPGAC_UT_NP_PP_cost = 0.3 }
 			set_variable = { CPGAC_UT_stability_factor = -0.05 }
 			set_variable = { CPGAC_UT_army_professionalism_monthly_rate = 2.5 }
+		}
+		else_if = {
+			limit = { check_variable = { CPGAC_ongoing_urgent_task = token:CPGAC_u_recontact_NAJUA } }
+			set_variable = { CPGAC_UT_misc_costs_modifier = 0.2 }
+			set_variable = { CPGAC_UT_NP_PP_cost = 0.05 }
 		}
 	}
 	force_update_dynamic_modifier = yes
@@ -1288,29 +1308,23 @@ TER_CPGAC_end_an_urgent_task = {
 								 check_variable = { china_state_ref = 24 }
 								 check_variable = { china_state_ref = 23 }
 								 check_variable = { china_state_ref = 25 }
+								 check_variable = { china_state_ref = 26 }
+								 check_variable = { china_state_ref = 28 }
+								 check_variable = { china_state_ref = 29 }
 								 check_variable = { china_state_ref = 6 }
 								 check_variable = { china_state_ref = 2 }
+								 check_variable = { china_state_ref = 3 }
 								 check_variable = { china_state_ref = 4 }
 								 check_variable = { china_state_ref = 5 }
 								 check_variable = { china_state_ref = 33 }
 								 check_variable = { china_state_ref = 34 }
-								 check_variable = { china_state_ref = 0 }
 								 check_variable = { china_state_ref = 1 }
 								 check_variable = { china_state_ref = 31 }
-								 check_variable = { china_state_ref = 32 }
-								 check_variable = { china_state_ref = 36 }
+								 state = 613
 								} }
 				transfer_state_to = CHI
 				add_core_of = CHI
 				set_demilitarized_zone = no
-			}
-			CHI = {
-				declare_war_on = {
-					target = CPC
-					type = independence_wargoal
-				}
-				load_oob = CHI_1962
-				load_oob = CHI_1962
 			}
 			every_state = {
 				limit = { OR = { check_variable = { china_state_ref = 7 }
@@ -1323,19 +1337,9 @@ TER_CPGAC_end_an_urgent_task = {
 								 check_variable = { china_state_ref = 14 }
 								 check_variable = { china_state_ref = 30 }
 								} }
-				transfer_state_to = SHX
-				add_core_of = SHX
+				transfer_state_to = NCC
+				add_core_of = NCC
 				set_demilitarized_zone = no
-			}
-			SHX = {
-				declare_war_on = {
-					target = CPC
-					type = independence_wargoal
-				}
-				retire_country_leader = yes
-				recruit_character = SHX_su_tiren
-				load_oob = SHX_1962
-				load_oob = SHX_1962
 			}
 			every_state = {
 				limit = { OR = { check_variable = { china_state_ref = 18 }
@@ -1345,47 +1349,21 @@ TER_CPGAC_end_an_urgent_task = {
 				add_core_of = LOY
 				set_demilitarized_zone = no
 			}
-			LOY = {
-				create_country_leader = {
-					name = "LOY_anit_rev_leader"
-					picture = "gfx/leaders/YUN/Portrait_Yunnan_Yunnan_Provisional_Authority.png"
-					ideology = despotism_civilian_dictatorship_subtype
-				}
-				declare_war_on = {
-					target = CPC
-					type = independence_wargoal
-				}
-				load_oob = YUN_1962
-				load_oob = YUN_1962
-			}
 			every_state = {
 				limit = { OR = { check_variable = { china_state_ref = 54 } } }
 				transfer_state_to = MEN
 				add_core_of = MEN
 				set_demilitarized_zone = no
 			}
-			MEN = {
-				declare_war_on = {
-					target = CPC
-					type = independence_wargoal
-				}
-				load_oob = MEN_1962
-				load_oob = MEN_1962
-			}
 			every_state = {
 				limit = { OR = { check_variable = { china_state_ref = 19 }
+								 check_variable = { china_state_ref = 32 }
 								 check_variable = { china_state_ref = 35 }
+								 check_variable = { china_state_ref = 36 }
 								} }
 				transfer_state_to = KIS
 				add_core_of = KIS
 				set_demilitarized_zone = no
-			}
-			KIS = {
-				declare_war_on = {
-					target = CPC
-					type = independence_wargoal
-				}
-				load_oob = KIS_war
 			}
 			every_state = {
 				limit = { OR = { check_variable = { china_state_ref = 44 }
@@ -1404,6 +1382,55 @@ TER_CPGAC_end_an_urgent_task = {
 				transfer_state_to = MAN
 				add_core_of = MAN
 				set_demilitarized_zone = no
+			}
+			CHI = {
+				set_politics = {
+					ruling_party = despotism
+				}
+				declare_war_on = {
+					target = CPC
+					type = independence_wargoal
+				}
+				load_oob = CHI_1962
+				load_oob = CHI_1962
+			}
+			NCC = {
+				declare_war_on = {
+					target = CPC
+					type = independence_wargoal
+				}
+				load_oob = SHX_1962
+				load_oob = SHX_1962
+			}
+			LOY = {
+				create_country_leader = {
+					name = "LOY_anit_rev_leader"
+					picture = "gfx/leaders/YUN/Portrait_Yunnan_Yunnan_Provisional_Authority.png"
+					ideology = despotism_civilian_dictatorship_subtype
+				}
+				declare_war_on = {
+					target = CPC
+					type = independence_wargoal
+				}
+				load_oob = YUN_1962
+				load_oob = YUN_1962
+			}
+			MEN = {
+				declare_war_on = {
+					target = CPC
+					type = independence_wargoal
+				}
+				retire_country_leader = yes
+				load_oob = MEN_1962
+				load_oob = MEN_1962
+			}
+			KIS = {
+				declare_war_on = {
+					target = CPC
+					type = independence_wargoal
+				}
+				load_oob = KIS_war
+				set_cosmetic_tag = KIS_UG
 			}
 			MAN = {
 				declare_war_on = {
@@ -1460,7 +1487,6 @@ TER_CPGAC_end_an_urgent_task = {
 								 check_variable = { china_state_ref = 5 }
 								 check_variable = { china_state_ref = 33 }
 								 check_variable = { china_state_ref = 34 }
-								 check_variable = { china_state_ref = 0 }
 								 check_variable = { china_state_ref = 1 }
 								 check_variable = { china_state_ref = 31 }
 								 check_variable = { china_state_ref = 32 }
@@ -2774,7 +2800,6 @@ CPGAC_end_ordinary_policy_effect = {
 					check_variable = { china_state_ref = 5 }
 					check_variable = { china_state_ref = 33 }
 					check_variable = { china_state_ref = 34 }
-					check_variable = { china_state_ref = 0 }
 					check_variable = { china_state_ref = 1 }
 					check_variable = { china_state_ref = 31 }
 					check_variable = { china_state_ref = 19 }
@@ -2870,7 +2895,6 @@ CPGAC_end_ordinary_policy_effect = {
 					check_variable = { china_state_ref = 5 }
 					check_variable = { china_state_ref = 33 }
 					check_variable = { china_state_ref = 34 }
-					check_variable = { china_state_ref = 0 }
 					check_variable = { china_state_ref = 1 }
 					check_variable = { china_state_ref = 31 }
 					check_variable = { china_state_ref = 19 }
@@ -2960,7 +2984,6 @@ CPGAC_end_ordinary_policy_effect = {
 					check_variable = { china_state_ref = 5 }
 					check_variable = { china_state_ref = 33 }
 					check_variable = { china_state_ref = 34 }
-					check_variable = { china_state_ref = 0 }
 					check_variable = { china_state_ref = 1 }
 					check_variable = { china_state_ref = 31 }
 					check_variable = { china_state_ref = 19 }

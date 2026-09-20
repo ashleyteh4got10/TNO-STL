@@ -392,10 +392,12 @@ CPC_RUS_debug_dec = {
 		}
 	}
 
-	STL_debug_fangge = {
+	STL_debug_urgent = {
 		cost = 0
 		complete_effect = {
-			play_song = TNO_SE_CHINA_REUNIFIED_NORMAL_MAO
+			set_temp_variable = { begin_ut_temp = token:CPGAC_u_anit_bandit_and_hage }
+			set_temp_variable = { days_temp = 150 }
+			TER_CPGAC_begin_an_urgent_task = yes
 		}
 	}
 
@@ -406,12 +408,24 @@ CPC_RUS_debug_dec = {
 			load_focus_tree = CPC_rebuild_1
 		}
 	}
+	STL_congress = {
+		icon = GFX_decision_generic_form_nation
+		cost = 0
+		complete_effect = {
+			clr_country_flag = TER_rebuild_state
+			set_country_flag = TER_congress_state
+			load_focus_tree = CPC_rebuild_2
+		}
+	}
 
 	STL_rebuild_ideas = {
 		icon = GFX_decision_generic_form_nation
 		cost = 0
 		complete_effect = {
+			hidden_effect = {
+			TER_ultimate_initialization = yes
 			TER_rebuild_initialization = yes
+			}
 		}
 	}
 
@@ -698,9 +712,7 @@ TER_new_automatic_dec = {
 			NOT = { check_variable = { TER_importance = 4 } }
 		}
 		available = {
-			hidden_trigger = {
-				always = yes
-			}
+			has_variable = TER_importance
 		}
 		fire_only_once = no
 		days_re_enable = 0

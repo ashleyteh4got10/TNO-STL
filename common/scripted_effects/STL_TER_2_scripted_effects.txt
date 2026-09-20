@@ -1,15 +1,14 @@
 TER_rebuild_initialization = {
-	hidden_effect = {
-		remove_ideas = CPC_AT_eco_issue_idea
-		remove_ideas = CPC_AT_gov_issue_idea
-		clr_country_flag = CPC_NCCPC_canceled_final
-		clr_country_flag = CPC_GAC_canceled_final
-		add_ideas = CPC_PRC_period_1
-		add_ideas = CPC_ununified_countryadd_ideas = CPC_cold_war_with_JAP
-		add_ideas = CPC_disintegrated_industrial_1
-		add_ideas = CPC_anti_revolution
-		add_ideas = CPC_administrative_overload_1
-	}
+	remove_ideas = CPC_AT_eco_issue_idea
+	remove_ideas = CPC_AT_gov_issue_idea
+	clr_country_flag = CPC_NCCPC_canceled_final
+	clr_country_flag = CPC_GAC_canceled_final
+	add_ideas = CPC_PRC_period_1
+	add_ideas = CPC_ununified_country
+	add_ideas = CPC_cold_war_with_JAP
+	add_ideas = CPC_disintegrated_industrial_1
+	add_ideas = CPC_anti_revolution
+	add_ideas = CPC_administrative_overload_1
 	every_controlled_state = {
 		limit = {
 			OR = {
@@ -95,7 +94,7 @@ TER_ultimate_initialization = {
 	clear_array = global.china_northwest_states
 	clear_array = global.china_northwest_states_X
 	clear_array = global.china_northwest_states_Y
-	every_state = {
+	every_controlled_state = {
 		clear_array = NWB_task_level
 		clear_variable = china_northwest_ref
 	}
@@ -564,7 +563,7 @@ TER_rebuild_complete = {
 			check_variable = { people_support = 100 }
 			NOT = { has_country_flag = people_support_complete }
 		}
-		every_state = {
+		every_controlled_state = {
 			limit = { has_dynamic_modifier = CPC_restless_society }
 			remove_dynamic_modifier = { modifier = CPC_restless_society }
 		}
@@ -576,7 +575,7 @@ TER_rebuild_complete = {
 			check_variable = { land_reform = 100 }
 			NOT = { has_country_flag = land_reform_complete }
 		}
-		every_state = {
+		every_controlled_state = {
 			limit = { has_dynamic_modifier = CPC_no_land_reform }
 			remove_dynamic_modifier = { modifier = CPC_no_land_reform }
 		}
@@ -597,7 +596,7 @@ TER_rebuild_complete = {
 			check_variable = { bandit_coverage = 0 }
 			NOT = { has_country_flag = bandit_coverage_complete }
 		}
-		every_state = {
+		every_controlled_state = {
 			limit = { has_dynamic_modifier = CPC_banditry_activation }
 			remove_dynamic_modifier = { modifier = CPC_banditry_activation }
 		}
@@ -699,41 +698,55 @@ TER_rebuild_backup_init = {
 	divide_variable = { PRC_backup_PP = 10 }
 }
 TER_rebuild_member_add = {
+	set_temp_variable = { party_member_mod = PRC_total_PP }
+	subtract_from_temp_variable = {
+		party_member_mod = {
+			value = PRC_NWB_PP_provided
+			add = PRC_SWB_PP_provided
+			add = PRC_NCB_PP_provided
+			add = PRC_SCB_PP_provided
+			add = PRC_NEB_PP_provided
+			add = PRC_MON_PP_provided
+			add = PRC_XJB_PP_provided
+			add = PRC_XGZ_PP_provided
+			add = PRC_NFE_PP_provided
+			add = PRC_center_PP_provided
+		}
+	}
+	clamp_temp_variable = { var = party_change_num min = 0 max = party_member_mod }
 	meta_effect = {
 		text = {
-			set_temp_variable = { party_member_sum = PRC_total_PP }
-			subtract_from_temp_variable = {
-				party_member_sum = {
-					value = PRC_PP_NWB_provided
-					add = PRC_PP_SWB_provided
-					add = PRC_PP_NCB_provided
-					add = PRC_PP_SCB_provided
-					add = PRC_PP_NEB_provided
-					add = PRC_PP_MON_provided
-					add = PRC_PP_XJB_provided
-					add = PRC_PP_XGZ_provided
-					add = PRC_PP_NFE_provided
-					add = PRC_center_PP_provided
-				}
-			}
-			clamp_variable = { var = party_change_num min = 0 max = party_member_sum }
 			add_to_variable = { PRC_[REGION]_PP_provided = party_change_num }
 		}
 		REGION = "[?region_choose.GetTokenKey]"
 	}
 }
 TER_rebuild_member_subtract = {
+	set_temp_variable = { party_member_mod = PRC_total_PP }
+	subtract_from_temp_variable = {
+		party_member_mod = {
+			value = PRC_NWB_PP_provided
+			add = PRC_SWB_PP_provided
+			add = PRC_NCB_PP_provided
+			add = PRC_SCB_PP_provided
+			add = PRC_NEB_PP_provided
+			add = PRC_MON_PP_provided
+			add = PRC_XJB_PP_provided
+			add = PRC_XGZ_PP_provided
+			add = PRC_NFE_PP_provided
+			add = PRC_center_PP_provided
+		}
+	}
 	meta_effect = {
 		text = {
-			clamp_variable = { var = party_change_num min = 0 max = PRC_[REGION]_PP_provided }
+			clamp_temp_variable = { var = party_change_num min = 0 max = PRC_[REGION]_PP_provided }
 			subtract_from_variable = { PRC_[REGION]_PP_provided = party_change_num }
-			clamp_variable = { var = PRC_[REGION]_PP_provided min = 0 }
 		}
 		REGION = "[?region_choose.GetTokenKey]"
 	}
 }
 XJB_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = { check_variable = { china_state_ref = 43 } }
 		set_variable = { XJB_PP_needed = this.state_population_k }
 		CPC = { add_to_variable = { PRC_PP_XJB_needed = PREV.XJB_PP_needed } }
@@ -742,7 +755,7 @@ XJB_member_need = {
 	multiply_variable = { PRC_PP_XJB_needed = 0.015 }
 }
 NWB_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 42 }
@@ -759,7 +772,7 @@ NWB_member_need = {
 	multiply_variable = { PRC_PP_NWB_needed = 0.01 }
 }
 SWB_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 21 }
@@ -776,7 +789,7 @@ SWB_member_need = {
 	multiply_variable = { PRC_PP_SWB_needed = 0.02 }
 }
 NCB_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 14 }
@@ -797,7 +810,7 @@ NCB_member_need = {
 	multiply_variable = { PRC_PP_NCB_needed = 0.01 }
 }
 SCB_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 27 }
@@ -810,23 +823,23 @@ SCB_member_need = {
 				check_variable = { china_state_ref = 5 }
 				check_variable = { china_state_ref = 33 }
 				check_variable = { china_state_ref = 34 }
-				check_variable = { china_state_ref = 0 }
 				check_variable = { china_state_ref = 1 }
 				check_variable = { china_state_ref = 31 }
 				check_variable = { china_state_ref = 19 }
 				check_variable = { china_state_ref = 32 }
 				check_variable = { china_state_ref = 35 }
 				check_variable = { china_state_ref = 36 }
+				state = 613
 			}
 		}
 		set_variable = { SCB_PP_needed = this.state_population_k }
 		CPC = { add_to_variable = { PRC_PP_SCB_needed = PREV.SCB_PP_needed } }
 		clear_variable = SCB_PP_needed
 	}
-	multiply_variable = { PRC_PP_SCB_needed = 0.001 }
+	multiply_variable = { PRC_PP_SCB_needed = 0.01 }
 }
 XGZ_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 22 }
@@ -839,7 +852,7 @@ XGZ_member_need = {
 	multiply_variable = { PRC_PP_XGZ_needed = 0.005 }
 }
 NEB_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 50 }
@@ -859,7 +872,7 @@ NEB_member_need = {
 	multiply_variable = { PRC_PP_NEB_needed = 0.02 }
 }
 NFE_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 51 }
@@ -873,7 +886,7 @@ NFE_member_need = {
 	multiply_variable = { PRC_PP_NFE_needed = 0.003 }
 }
 MON_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 57 }
@@ -886,7 +899,7 @@ MON_member_need = {
 	multiply_variable = { PRC_PP_MON_needed = 0.011 }
 }
 center_member_need = {
-	every_state = {
+	every_controlled_state = {
 		limit = {
 			OR = {
 				check_variable = { china_state_ref = 10 }
@@ -1084,4 +1097,19 @@ TER_coordinate_industrial_support = {
 		}
 		custom_effect_tooltip = "TER_coordinate_industrial_complete_tt"
 	}
+}
+TER_congress_initialization = {
+	set_variable = { CPC_congress_process = 0 }
+	clear_array = CPGAC_ordinary_policy
+	clear_array = CPGAC_ordinary_policy_enable_times
+	clear_array = CPGAC_ordinary_policy_intensified
+	add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p5_agri_collective }
+	add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+	add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+	add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p5_combine_company }
+	add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+	add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+	add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p5_repair_trade_union }
+	add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+	add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
 }
