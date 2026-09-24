@@ -1,8 +1,132 @@
 STL_CPC_remove_colonial_culture = {
-	STL_CPC_anti_colonial_lang = {
-		icon = GFX_decision_generic_form_nation
-	}
 	STL_CPC_specify_chinese_lang_study = {
-		icon = GFX_decision_generic_form_nation
+		icon = GFX_decision_generic_hammer_and_sickle
+		allowed = {
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_culture_mission }
+			}
+		}
+		cost = 150
+		days_remove = 90
+		complete_effect = {
+			hidden_effect = {
+				set_country_flag = CPC_culture_mission
+				set_variable = { 2407.nationality = 654 }
+			}
+			custom_effect_tooltip = "STL_CPC_specify_chinese_lang_study_tt"
+		}
+		remove_effect = {
+			clr_country_flag = CPC_culture_mission
+		}
+	}
+	STL_CPC_break_zhuren_opinion = {
+		icon = GFX_decision_generic_hammer_and_sickle
+		allowed = {
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_culture_mission }
+			}
+		}
+		cost = 100
+		days_remove = 90
+		complete_effect = {
+			hidden_effect = {
+				set_country_flag = CPC_culture_mission
+				set_variable = { 729.nationality = 915 }
+				set_variable = { 326.nationality = 915 }
+				set_variable = { 592.nationality = 915 }
+				set_variable = { 593.nationality = 811 }
+				set_variable = { 1017.nationality = 812 }
+				set_variable = { 1438.nationality = 69 }
+				set_variable = { 1439.nationality = 70 }
+				729 = { add_core_of = CPC }
+				326 = { add_core_of = CPC }
+				592 = { add_core_of = CPC }
+				593 = { add_core_of = CPC }
+				1017 = { add_core_of = CPC }
+				1438 = { add_core_of = CPC }
+				1439 = { add_core_of = CPC }
+			}
+			custom_effect_tooltip = "STL_CPC_break_zhuren_opinion_tt"
+		}
+		remove_effect = {
+			clr_country_flag = CPC_culture_mission
+		}
+	}
+	STL_CPC_conduct_jap_colonial_reality = {
+		icon = GFX_decision_generic_hammer_and_sickle
+		allowed = {
+			hidden_trigger = {
+				NOT = { has_country_flag = CPC_culture_mission }
+			}
+		}
+		cost = 100
+		days_remove = 90
+		complete_effect = {
+			hidden_effect = {
+				set_country_flag = CPC_culture_mission
+				add_to_variable = { CPC_political_power_gain = 0.25 }
+			}
+			custom_effect_tooltip = "STL_CPC_conduct_jap_colonial_reality_tt"
+		}
+		remove_effect = {
+			clr_country_flag = CPC_culture_mission
+			set_variable = { 1364.nationality = 556 }
+			set_variable = { 657.nationality = 556 }
+			set_variable = { 1646.nationality = 556 }
+			set_variable = { 409.nationality = 880 }
+			set_variable = { 809.nationality = 880 }
+			every_controlled_state = {
+				limit = {
+					check_variable = { china_state_ref = 50 }
+					check_variable = { china_state_ref = 46 }
+					check_variable = { china_state_ref = 49 }
+					check_variable = { china_state_ref = 45 }
+					check_variable = { china_state_ref = 44 }
+					check_variable = { china_state_ref = 48 }
+					check_variable = { china_state_ref = 56 }
+					check_variable = { china_state_ref = 47 }
+					check_variable = { china_state_ref = 51 }
+					check_variable = { china_state_ref = 52 }
+				}
+				add_core_of = CPC
+				remove_core_of = SOR
+				remove_claim_by = MAN
+			}
+		}
+	}
+	STL_CPC_anti_colonial_over = {
+		icon = GFX_decision_generic_hammer_and_sickle
+		allowed = {
+			custom_override_tooltip = {
+				tooltip = "STL_CPC_anti_colonial_over_trigger"
+				NOT = { has_country_flag = CPC_culture_mission }
+				check_variable = { 729.nationality = 915 }
+				check_variable = { 326.nationality = 915 }
+				check_variable = { 592.nationality = 915 }
+				check_variable = { 593.nationality = 811 }
+				check_variable = { 1017.nationality = 812 }
+				check_variable = { 1438.nationality = 69 }
+				check_variable = { 1439.nationality = 70 }
+				check_variable = { 2407.nationality = 654 }
+				check_variable = { 1364.nationality = 556 }
+				check_variable = { 657.nationality = 556 }
+				check_variable = { 1646.nationality = 556 }
+				check_variable = { 409.nationality = 880 }
+				check_variable = { 809.nationality = 880 }
+			}
+		}
+		cost = 50
+		days_remove = 7
+		complete_effect = {
+			hidden_effect = {
+				set_country_flag = CPC_culture_mission
+				add_to_variable = { CPC_political_power_gain = 0.25 }
+				clr_country_flag = CPC_colonial_region
+			}
+			custom_effect_tooltip = "STL_CPC_anti_colonial_over_tt"
+		}
+		remove_effect = {
+			clr_country_flag = CPC_culture_mission
+		}
 	}
 }
