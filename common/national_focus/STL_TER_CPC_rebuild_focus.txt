@@ -19,13 +19,12 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = "CPC_rebuild_1_medium_1_tt"
 			hidden_effect = {
-				set_country_flag = TER_rebuild_state
 				set_country_flag = CPC_colonial_region
-				every_state = {
+				every_controlled_state = {
 					limit = {
 						OR = {
-							check_variable = { china_state_ref = 51 }
-							check_variable = { china_state_ref = 52 }
+							check_variable = { china_state_ref = 32 }
+							check_variable = { china_state_ref = 35 }
 							check_variable = { china_state_ref = 50 }
 							check_variable = { china_state_ref = 46 }
 							check_variable = { china_state_ref = 49 }
@@ -34,7 +33,8 @@ focus_tree = {
 							check_variable = { china_state_ref = 48 }
 							check_variable = { china_state_ref = 56 }
 							check_variable = { china_state_ref = 47 }
-							check_variable = { china_state_ref = 35 }
+							check_variable = { china_state_ref = 51 }
+							check_variable = { china_state_ref = 52 }
 						}
 					}
 					remove_core_of = CPC
@@ -289,6 +289,55 @@ focus_tree = {
 			set_temp_variable = { begin_ut_temp = token:CPGAC_u_anit_bandit_and_hage }
 			set_temp_variable = { days_temp = 150 }
 			TER_CPGAC_begin_an_urgent_task = yes
+			hidden_effect = {
+				every_controlled_state = {
+					limit = {
+						OR = {
+							check_variable = { china_state_ref = 44 }
+							check_variable = { china_state_ref = 45 }
+							check_variable = { china_state_ref = 46 }
+							check_variable = { china_state_ref = 47 }
+							check_variable = { china_state_ref = 48 }
+							check_variable = { china_state_ref = 49 }
+							check_variable = { china_state_ref = 50 }
+							check_variable = { china_state_ref = 51 }
+							check_variable = { china_state_ref = 52 }
+							check_variable = { china_state_ref = 53 }
+							check_variable = { china_state_ref = 56 }
+							check_variable = { china_state_ref = 27 }
+							check_variable = { china_state_ref = 24 }
+							check_variable = { china_state_ref = 23 }
+							check_variable = { china_state_ref = 25 }
+							check_variable = { china_state_ref = 6 }
+							check_variable = { china_state_ref = 2 }
+							check_variable = { china_state_ref = 4 }
+							check_variable = { china_state_ref = 5 }
+							check_variable = { china_state_ref = 33 }
+							check_variable = { china_state_ref = 34 }
+							check_variable = { china_state_ref = 1 }
+							check_variable = { china_state_ref = 31 }
+							check_variable = { china_state_ref = 32 }
+							check_variable = { china_state_ref = 36 }
+							check_variable = { china_state_ref = 7 }
+							check_variable = { china_state_ref = 8 }
+							check_variable = { china_state_ref = 9 }
+							check_variable = { china_state_ref = 10 }
+							check_variable = { china_state_ref = 11 }
+							check_variable = { china_state_ref = 12 }
+							check_variable = { china_state_ref = 13 }
+							check_variable = { china_state_ref = 14 }
+							check_variable = { china_state_ref = 30 }
+							check_variable = { china_state_ref = 19 }
+							check_variable = { china_state_ref = 18 }
+							check_variable = { china_state_ref = 20 }
+							check_variable = { china_state_ref = 32 }
+							check_variable = { china_state_ref = 35 }
+							check_variable = { china_state_ref = 54 }
+						}
+					}
+					set_demilitarized_zone = yes
+				}
+			}
 		}
 	}
 	focus = {
@@ -742,10 +791,15 @@ focus_tree = {
 	focus = {
 		id = CPC_rebuild_2_medium_1
 		icon = GFX_goals_CPC_new_liberation_socialist_revolution
-		cost = 2
+		cost = 1
 		x = 5
 		y = 0
-		completion_reward = { }
+		completion_reward = {
+			custom_effect_tooltip = "CPC_rebuild_2_medium_1_tt"
+			add_to_variable = { CPC_agriculture_monthly_rate = 1 }
+			add_to_variable = { CPC_industrial_expertise_monthly_rate = 1 }
+			add_to_variable = { CPC_industrial_equipment_monthly_rate = 1 }
+		}
 	}
 	focus = {
 		id = CPC_rebuild_2_left_1
@@ -789,92 +843,181 @@ focus_tree = {
 	focus = {
 		id = CPC_rebuild_2_medium_3
 		icon = GFX_goals_CPC_intend_NPC
-		cost = 2
+		cost = 1
 		x = 5
 		y = 2
 		prerequisite = { focus = CPC_rebuild_2_left_1 }
 		prerequisite = { focus = CPC_rebuild_2_medium_2 }
 		prerequisite = { focus = CPC_rebuild_2_right_1 }
 		completion_reward = {
+			custom_effect_tooltip = "CPC_rebuild_2_medium_3_tt"
 			hidden_effect = {
 				clr_country_flag = TER_rebuild_state
 				set_country_flag = TER_congress_state
+				TER_congress_initialization = yes
 			}
 		}
 	}
 	focus = {
 		id = CPC_rebuild_2_left_2
 		icon = GFX_goals_CPC_census_people
-		cost = 2
-		x = 4
+		cost = 5
+		x = 3
 		y = 3
 		prerequisite = { focus = CPC_rebuild_2_medium_3 }
-		completion_reward = { }
+		completion_reward = {
+			add_to_variable = { CPC_war_support_factor = 0.1 }
+			add_days_mission_timeout = {
+				mission = CPC_election_task
+				days = -15
+			}
+			set_temp_variable = { CPC_temp_congress_process = 10 }
+			TER_election_update = yes
+		}
 	}
 
 	focus = {
 		id = CPC_rebuild_2_right_2
 		icon = GFX_goals_CPC_build_worker_group
-		cost = 2
-		x = 6
+		cost = 5
+		x = 7
 		y = 3
 		prerequisite = { focus = CPC_rebuild_2_medium_3 }
-		completion_reward = { }
+		completion_reward = {
+			add_days_mission_timeout = {
+				mission = CPC_election_task
+				days = -15
+			}
+			set_temp_variable = { CPC_temp_congress_process = 10 }
+			TER_election_update = yes
+		}
 	}
 	focus = {
 		id = CPC_rebuild_2_left_3
 		icon = GFX_goals_CPC_register_voter
-		cost = 2
-		x = 4
+		cost = 5
+		x = 3
 		y = 4
 		prerequisite = { focus = CPC_rebuild_2_left_2 }
-		completion_reward = { }
+		completion_reward = {
+			add_days_mission_timeout = {
+				mission = CPC_election_task
+				days = -15
+			}
+			tno_vote_franchise_improve = yes
+			set_temp_variable = { CPC_temp_congress_process = 10 }
+			TER_election_update = yes
+		}
 	}
 	focus = {
 		id = CPC_rebuild_2_right_3
 		icon = GFX_goals_CPC_draft_nomination_list
-		cost = 2
-		x = 6
+		cost = 5
+		x = 7
 		y = 4
 		prerequisite = { focus = CPC_rebuild_2_right_2 }
-		completion_reward = { }
+		completion_reward = {
+			add_days_mission_timeout = {
+				mission = CPC_election_task
+				days = -15
+			}
+			set_temp_variable = { CPC_temp_congress_process = 10 }
+			TER_election_update = yes
+		}
 	}
 	focus = {
 		id = CPC_rebuild_2_medium_4
+		icon = GFX_goals_CPC_keep_election_rule
+		cost = 5
+		x = 5
+		y = 3
+		prerequisite = { focus = CPC_rebuild_2_medium_3 }
+		completion_reward = {
+			TNO_improve_vote_franchise_policy_effectiveness_low = yes
+			set_temp_variable = { CPC_temp_congress_process = 10 }
+			TER_election_update = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_2_medium_5
+		icon = GFX_goals_CPC_strict_discipline
+		cost = 5
+		x = 5
+		y = 4
+		prerequisite = { focus = CPC_rebuild_2_medium_4 }
+		completion_reward = {
+			add_days_mission_timeout = {
+				mission = CPC_election_task
+				days = -15
+			}
+			TNO_improve_vote_franchise_policy_effectiveness_med = yes
+			set_temp_variable = { CPC_temp_congress_process = 10 }
+			TER_election_update = yes
+		}
+	}
+	focus = {
+		id = CPC_rebuild_2_medium_6
 		icon = GFX_goals_CPC_hold_local_elections
-		cost = 2
+		cost = 1
 		x = 5
 		y = 5
 		prerequisite = { focus = CPC_rebuild_2_left_3 }
 		prerequisite = { focus = CPC_rebuild_2_right_3 }
-		completion_reward = { }
+		prerequisite = { focus = CPC_rebuild_2_medium_5 }
+		available = {
+			custom_override_tooltip = {
+				tooltip = "CPC_rebuild_2_medium_6_trigger"
+				check_variable = { NWB_election = 1 }
+				check_variable = { SWB_election = 1 }
+				check_variable = { NCB_election = 1 }
+				check_variable = { SCB_election = 1 }
+				check_variable = { NEB_election = 1 }
+				check_variable = { MON_election = 1 }
+				check_variable = { XJB_election = 1 }
+				check_variable = { XGZ_election = 1 }
+				check_variable = { NFE_election = 1 }
+				check_variable = { center_election = 1 }
+			}
+		}
+		completion_reward = {
+			set_temp_variable = { CPC_temp_congress_process = 39 }
+			TER_election_update = yes
+			set_country_flag = CPC_election_complete
+		}
 	}
 	focus = {
-		id = CPC_rebuild_2_left_4
-		icon = GFX_goals_CPC_keep_election_rule
-		cost = 2
-		x = 4
-		y = 6
-		prerequisite = { focus = CPC_rebuild_2_medium_4 }
-		completion_reward = { }
-	}
-	focus = {
-		id = CPC_rebuild_2_right_4
-		icon = GFX_goals_CPC_strict_discipline
-		cost = 2
-		x = 6
-		y = 6
-		prerequisite = { focus = CPC_rebuild_2_medium_4 }
-		completion_reward = { }
-	}
-	focus = {
-		id = CPC_rebuild_2_medium_5
+		id = CPC_rebuild_2_medium_7
 		icon = GFX_goals_CPC_First_National_Peoples_Congress
-		cost = 2
+		cost = 3
 		x = 5
-		y = 7
-		prerequisite = { focus = CPC_rebuild_2_left_4 }
-		prerequisite = { focus = CPC_rebuild_2_right_4 }
-		completion_reward = { }
+		y = 6
+		available = {
+			custom_override_tooltip = {
+				tooltip = "CPC_rebuild_2_medium_7_trigger"
+				check_variable = { CPC_congress_process = 100 }
+			}
+		}
+		prerequisite = { focus = CPC_rebuild_2_medium_6 }
+		completion_reward = {
+			custom_effect_tooltip = "CPC_rebuild_2_medium_7_tt"
+			clr_country_flag = CPC_unlock_rebuild_center
+			clr_country_flag = CPC_unlock_rebuild_bureau
+			clr_country_flag = TER_congress_state
+			set_country_flag = CPC_NCCPC_canceled_final
+			set_country_flag = CPC_GAC_canceled_final
+			set_country_flag = CPC_CMC_canceled_final
+			clear_variable = CPC_congress_process
+			clear_variable = NWB_election
+			clear_variable = SWB_election
+			clear_variable = NCB_election
+			clear_variable = SCB_election
+			clear_variable = NEB_election
+			clear_variable = MON_election
+			clear_variable = XJB_election
+			clear_variable = XGZ_election
+			clear_variable = NFE_election
+			clear_variable = center_election
+			set_country_flag = first_winner_is_CPC
+		}
 	}
 }

@@ -83,20 +83,26 @@ scripted_gui = {
 			icon_1_visible = {
 				check_variable = { CPC_GUI_tab_issue^0 = 2 }
 				OR = {
-					has_country_flag = CPC_unlock_NWB
+					AND = {
+						has_country_flag = CPC_unlock_NWB
+						NOT = { has_country_flag = CPC_TRCW_begins_flag }
+						NOT = { has_global_flag = CPC_WINS_TRCW }
+					}
 					has_country_flag = CPC_unlock_rebuild_center
 				}
-				NOT = { has_country_flag = CPC_TRCW_begins_flag }
-				NOT = { has_global_flag = CPC_WINS_TRCW }
+				
 			}
 			icon_2_visible = {
 				check_variable = { CPC_GUI_tab_issue^0 = 2 }
 				OR = {
-					has_country_flag = CPC_unlock_SWB
+					AND = {
+						has_country_flag = CPC_unlock_SWB
+						NOT = { has_country_flag = CPC_TRCW_begins_flag }
+						NOT = { has_global_flag = CPC_WINS_TRCW }
+					}
 					has_country_flag = CPC_unlock_rebuild_bureau
 				}
-				NOT = { has_country_flag = CPC_TRCW_begins_flag }
-				NOT = { has_global_flag = CPC_WINS_TRCW }
+				
 			}
 			icon_3_visible = {
 				check_variable = { CPC_GUI_tab_issue^0 = 2 }
@@ -174,6 +180,10 @@ scripted_gui = {
 			icon_CPGAC_visible = { NOT = { has_country_flag = CPC_GAC_canceled_final } }
 			tab_government_issue_visible = { NOT = { has_country_flag = CPC_GAC_canceled_final } }
 			title_government_issue_visible = { NOT = { has_country_flag = CPC_GAC_canceled_final } }
+
+			icon_PLA_visible = { NOT = { has_country_flag = CPC_CMC_canceled_final } }
+			tab_military_issue_visible = { NOT = { has_country_flag = CPC_CMC_canceled_final } }
+			title_military_issue_visible = { NOT = { has_country_flag = CPC_CMC_canceled_final } }
 		}
 		effects = {
 			tab_party_issue_click = { 

@@ -12,10 +12,6 @@ scripted_gui = {
 		triggers = {
 			region_bureau_intro_visible = { check_variable = { intro_frame = 1 } }
 			party_member_intro_visible = { check_variable = { party_member_frame = 1 } }
-			XJB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
-			XGZ_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
-			NFE_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
-			center_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
 			bureau_mission_container_visible = { has_country_flag = TER_rebuild_state }
 			rebuild_process_visible = { has_country_flag = TER_rebuild_state }
 			party_coverage_visible = { has_country_flag = TER_rebuild_state }
@@ -32,10 +28,44 @@ scripted_gui = {
 			industrial_coordination_bar_visible = { has_country_flag = TER_rebuild_state }
 			bandit_coverage_bar_visible = { has_country_flag = TER_rebuild_state }
 			recover_speed_bar_visible = { has_country_flag = TER_rebuild_state }
+			XJB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			XGZ_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			NFE_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			center_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			XJB_congress_button_visible = { has_country_flag = TER_congress_state }
+			XGZ_congress_button_visible = { has_country_flag = TER_congress_state }
+			NFE_congress_button_visible = { has_country_flag = TER_congress_state }
+			center_congress_button_visible = { has_country_flag = TER_congress_state }
+			XJB_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { XJB_election = 0 }
+				}
+			}
+			XGZ_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { XGZ_election = 0 }
+				}
+			}
+			NFE_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { NFE_election = 0 }
+				}
+			}
+			center_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { center_election = 0 }
+				}
+			}
 			CPC_soviet_congress_bg_visible = { has_country_flag = TER_congress_state }
 			CPC_soviet_congress_bar_visible = { has_country_flag = TER_congress_state }
 			CPC_ticket_button_visible = { has_country_flag = TER_congress_state }
+			CPC_ticket_button_click_enabled = { has_country_flag = CPC_election_complete }
 			rebuild_button_slt_visible = {
+				has_country_flag = TER_rebuild_state
 				has_country_flag = CPC_rebuild_list
 				meta_trigger = {
 					text = {
@@ -45,6 +75,7 @@ scripted_gui = {
 				}
 			}
 			rebuild_button_visible = {
+				has_country_flag = TER_rebuild_state
 				has_country_flag = CPC_rebuild_list
 				meta_trigger = {
 					text = {
@@ -70,7 +101,7 @@ scripted_gui = {
 			industrial_coordination_bar = { frame = industrial_coordination }
 			bandit_coverage_bar = { frame = bandit_coverage }
 			recover_speed_bar = { frame = recover_speed }
-			CPC_soviet_congress_bar = { frame = 1 }
+			CPC_soviet_congress_bar = { frame = CPC_congress_process }
 			rebuild_button_slt = {
 				x = CPC_rebuild_list_x^CPC_rebuild_list_i
 				y = CPC_rebuild_list_y^CPC_rebuild_list_i
@@ -93,191 +124,187 @@ scripted_gui = {
 				TER_rebuild_effect = yes
 			}
 			XJB_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:XJB }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 180 }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 182 }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 184 }
-					TER_set_rebuild_list_1 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:XJB }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 180 }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 182 }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 184 }
+				TER_set_rebuild_list_1 = yes
 			}
 			XGZ_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:XGZ }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 536 }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 538 }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 540 }
-					TER_set_rebuild_list_1 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:XGZ }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 536 }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 538 }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 540 }
+				TER_set_rebuild_list_1 = yes
 			}
 			NFE_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:NFE }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 180 }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 182 }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 184 }
-					TER_set_rebuild_list_2 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:NFE }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 180 }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 182 }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 184 }
+				TER_set_rebuild_list_2 = yes
 			}
 			center_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:center }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 536 }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 538 }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 540 }
-					TER_set_rebuild_list_3 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:center }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 536 }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 538 }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 540 }
+				TER_set_rebuild_list_3 = yes
+			}
+			XJB_congress_button_click = {
+				set_temp_variable = { region_choose = token:XJB }
+				TER_election_effect = yes
+			}
+			XGZ_congress_button_click = {
+				set_temp_variable = { region_choose = token:XGZ }
+				TER_election_effect = yes
+			}
+			NFE_congress_button_click = {
+				set_temp_variable = { region_choose = token:NFE }
+				TER_election_effect = yes
+			}
+			center_congress_button_click = {
+				set_temp_variable = { region_choose = token:center }
+				TER_election_effect = yes
 			}
 			XJB_party_btn_add_click = {
-				set_variable = { region_choose = token:XJB }
+				set_temp_variable = { region_choose = token:XJB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			XJB_party_btn_subtract_click = {
-				set_variable = { region_choose = token:XJB }
+				set_temp_variable = { region_choose = token:XJB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			XJB_party_btn_add_control_click = {
-				set_variable = { region_choose = token:XJB }
+				set_temp_variable = { region_choose = token:XJB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			XJB_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:XJB }
+				set_temp_variable = { region_choose = token:XJB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			XJB_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:XJB }
+				set_temp_variable = { region_choose = token:XJB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			XJB_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:XJB }
+				set_temp_variable = { region_choose = token:XJB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
 
 			XGZ_party_btn_add_click = {
-				set_variable = { region_choose = token:XGZ }
+				set_temp_variable = { region_choose = token:XGZ }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			XGZ_party_btn_subtract_click = {
-				set_variable = { region_choose = token:XGZ }
+				set_temp_variable = { region_choose = token:XGZ }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			XGZ_party_btn_add_control_click = {
-				set_variable = { region_choose = token:XGZ }
+				set_temp_variable = { region_choose = token:XGZ }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			XGZ_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:XGZ }
+				set_temp_variable = { region_choose = token:XGZ }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			XGZ_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:XGZ }
+				set_temp_variable = { region_choose = token:XGZ }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			XGZ_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:XGZ }
+				set_temp_variable = { region_choose = token:XGZ }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
 
 			NFE_party_btn_add_click = {
-				set_variable = { region_choose = token:NFE }
+				set_temp_variable = { region_choose = token:NFE }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			NFE_party_btn_subtract_click = {
-				set_variable = { region_choose = token:NFE }
+				set_temp_variable = { region_choose = token:NFE }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			NFE_party_btn_add_control_click = {
-				set_variable = { region_choose = token:NFE }
+				set_temp_variable = { region_choose = token:NFE }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			NFE_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:NFE }
+				set_temp_variable = { region_choose = token:NFE }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			NFE_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:NFE }
+				set_temp_variable = { region_choose = token:NFE }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			NFE_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:NFE }
+				set_temp_variable = { region_choose = token:NFE }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
 
 			center_party_btn_add_click = {
-				set_variable = { region_choose = token:center }
+				set_temp_variable = { region_choose = token:center }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			center_party_btn_subtract_click = {
-				set_variable = { region_choose = token:center }
+				set_temp_variable = { region_choose = token:center }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			center_party_btn_add_control_click = {
-				set_variable = { region_choose = token:center }
+				set_temp_variable = { region_choose = token:center }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			center_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:center }
+				set_temp_variable = { region_choose = token:center }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			center_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:center }
+				set_temp_variable = { region_choose = token:center }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			center_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:center }
+				set_temp_variable = { region_choose = token:center }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
+			}
+			CPC_ticket_button_click = {
+				clr_country_flag = CPC_election_complete
+				add_to_variable = { CPC_congress_process = 1 }
 			}
 		}
 	}
@@ -299,7 +326,50 @@ scripted_gui = {
 			SCB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
 			NEB_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
 			MON_rebuild_button_visible = { has_country_flag = TER_rebuild_state }
+			NWB_congress_button_visible = { has_country_flag = TER_congress_state }
+			SWB_congress_button_visible = { has_country_flag = TER_congress_state }
+			NCB_congress_button_visible = { has_country_flag = TER_congress_state }
+			SCB_congress_button_visible = { has_country_flag = TER_congress_state }
+			NEB_congress_button_visible = { has_country_flag = TER_congress_state }
+			MON_congress_button_visible = { has_country_flag = TER_congress_state }
+			NWB_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { NWB_election = 0 }
+				}
+			}
+			SWB_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { SWB_election = 0 }
+				}
+			}
+			NCB_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { NCB_election = 0 }
+				}
+			}
+			SCB_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { SCB_election = 0 }
+				}
+			}
+			NEB_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { NEB_election = 0 }
+				}
+			}
+			MON_congress_button_click_enabled = {
+				OR = {
+					has_country_flag = CPC_election_task
+					check_variable = { MON_election = 0 }
+				}
+			}
 			rebuild_button_slt_visible = {
+				has_country_flag = TER_rebuild_state
 				has_country_flag = CPC_rebuild_list
 				meta_trigger = {
 					text = {
@@ -310,6 +380,7 @@ scripted_gui = {
 				
 			}
 			rebuild_button_visible = {
+				has_country_flag = TER_rebuild_state
 				has_country_flag = CPC_rebuild_list
 				meta_trigger = {
 					text = {
@@ -341,283 +412,277 @@ scripted_gui = {
 				TER_rebuild_effect = yes
 			}
 			NWB_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:NWB }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 180 }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 182 }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 184 }
-					TER_set_rebuild_list_1 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:NWB }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 180 }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 182 }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 184 }
+				TER_set_rebuild_list_1 = yes
 			}
 			SWB_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:SWB }
-					add_to_array = { CPC_rebuild_list_x = 683 }
-					add_to_array = { CPC_rebuild_list_y = 180 }
-					add_to_array = { CPC_rebuild_list_x = 683 }
-					add_to_array = { CPC_rebuild_list_y = 182 }
-					add_to_array = { CPC_rebuild_list_x = 683 }
-					add_to_array = { CPC_rebuild_list_y = 184 }
-					TER_set_rebuild_list_1 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:SWB }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 174 }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 176 }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 178 }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 180 }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 182 }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 184 }
+				TER_set_rebuild_list_4 = yes
 			}
 			NEB_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:NEB }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 536 }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 538 }
-					add_to_array = { CPC_rebuild_list_x = 248 }
-					add_to_array = { CPC_rebuild_list_y = 540 }
-					TER_set_rebuild_list_1 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:NEB }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 536 }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 538 }
+				add_to_array = { CPC_rebuild_list_x = 248 }
+				add_to_array = { CPC_rebuild_list_y = 540 }
+				TER_set_rebuild_list_1 = yes
 			}
 			NCB_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:NCB }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 180 }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 182 }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 184 }
-					TER_set_rebuild_list_2 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:NCB }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 180 }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 182 }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 184 }
+				TER_set_rebuild_list_2 = yes
 			}
 			SCB_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:SCB }
-					add_to_array = { CPC_rebuild_list_x = 683 }
-					add_to_array = { CPC_rebuild_list_y = 536 }
-					add_to_array = { CPC_rebuild_list_x = 683 }
-					add_to_array = { CPC_rebuild_list_y = 538 }
-					add_to_array = { CPC_rebuild_list_x = 683 }
-					add_to_array = { CPC_rebuild_list_y = 540 }
-					TER_set_rebuild_list_2 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:SCB }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 536 }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 538 }
+				add_to_array = { CPC_rebuild_list_x = 683 }
+				add_to_array = { CPC_rebuild_list_y = 540 }
+				TER_set_rebuild_list_2 = yes
 			}
 			MON_rebuild_button_click = {
-				if = {
-					limit = { has_country_flag = TER_rebuild_state }
-					set_variable = { region_choose = token:MON }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 536 }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 538 }
-					add_to_array = { CPC_rebuild_list_x = 1116 }
-					add_to_array = { CPC_rebuild_list_y = 540 }
-					TER_set_rebuild_list_3 = yes
-				}
-				else_if = {
-					limit = { has_country_flag = TER_congress_state }
-				}
+				set_temp_variable = { region_choose = token:MON }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 536 }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 538 }
+				add_to_array = { CPC_rebuild_list_x = 1116 }
+				add_to_array = { CPC_rebuild_list_y = 540 }
+				TER_set_rebuild_list_1 = yes
+			}
+			NWB_congress_button_click = {
+				set_temp_variable = { region_choose = token:NWB }
+				TER_election_effect = yes
+			}
+			SWB_congress_button_click = {
+				set_temp_variable = { region_choose = token:SWB }
+				TER_election_effect = yes
+			}
+			NCB_congress_button_click = {
+				set_temp_variable = { region_choose = token:NCB }
+				TER_election_effect = yes
+			}
+			SCB_congress_button_click = {
+				set_temp_variable = { region_choose = token:SCB }
+				TER_election_effect = yes
+			}
+			NEB_congress_button_click = {
+				set_temp_variable = { region_choose = token:NEB }
+				TER_election_effect = yes
+			}
+			MON_congress_button_click = {
+				set_temp_variable = { region_choose = token:MON }
+				TER_election_effect = yes
 			}
 			NWB_party_btn_add_click = {
-				set_variable = { region_choose = token:NWB }
+				set_temp_variable = { region_choose = token:NWB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			NWB_party_btn_subtract_click = {
-				set_variable = { region_choose = token:NWB }
+				set_temp_variable = { region_choose = token:NWB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			NWB_party_btn_add_control_click = {
-				set_variable = { region_choose = token:NWB }
+				set_temp_variable = { region_choose = token:NWB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			NWB_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:NWB }
+				set_temp_variable = { region_choose = token:NWB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			NWB_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:NWB }
+				set_temp_variable = { region_choose = token:NWB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			NWB_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:NWB }
+				set_temp_variable = { region_choose = token:NWB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
 
 			SWB_party_btn_add_click = {
-				set_variable = { region_choose = token:SWB }
+				set_temp_variable = { region_choose = token:SWB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			SWB_party_btn_subtract_click = {
-				set_variable = { region_choose = token:SWB }
+				set_temp_variable = { region_choose = token:SWB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			SWB_party_btn_add_control_click = {
-				set_variable = { region_choose = token:SWB }
+				set_temp_variable = { region_choose = token:SWB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			SWB_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:SWB }
+				set_temp_variable = { region_choose = token:SWB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			SWB_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:SWB }
+				set_temp_variable = { region_choose = token:SWB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			SWB_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:SWB }
+				set_temp_variable = { region_choose = token:SWB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
 
 			NCB_party_btn_add_click = {
-				set_variable = { region_choose = token:NCB }
+				set_temp_variable = { region_choose = token:NCB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			NCB_party_btn_subtract_click = {
-				set_variable = { region_choose = token:NCB }
+				set_temp_variable = { region_choose = token:NCB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			NCB_party_btn_add_control_click = {
-				set_variable = { region_choose = token:NCB }
+				set_temp_variable = { region_choose = token:NCB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			NCB_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:NCB }
+				set_temp_variable = { region_choose = token:NCB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			NCB_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:NCB }
+				set_temp_variable = { region_choose = token:NCB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			NCB_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:NCB }
+				set_temp_variable = { region_choose = token:NCB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
 
 			SCB_party_btn_add_click = {
-				set_variable = { region_choose = token:SCB }
+				set_temp_variable = { region_choose = token:SCB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			SCB_party_btn_subtract_click = {
-				set_variable = { region_choose = token:SCB }
+				set_temp_variable = { region_choose = token:SCB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			SCB_party_btn_add_control_click = {
-				set_variable = { region_choose = token:SCB }
+				set_temp_variable = { region_choose = token:SCB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			SCB_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:SCB }
+				set_temp_variable = { region_choose = token:SCB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			SCB_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:SCB }
+				set_temp_variable = { region_choose = token:SCB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			SCB_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:SCB }
+				set_temp_variable = { region_choose = token:SCB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
 
 			NEB_party_btn_add_click = {
-				set_variable = { region_choose = token:NEB }
+				set_temp_variable = { region_choose = token:NEB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			NEB_party_btn_subtract_click = {
-				set_variable = { region_choose = token:NEB }
+				set_temp_variable = { region_choose = token:NEB }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			NEB_party_btn_add_control_click = {
-				set_variable = { region_choose = token:NEB }
+				set_temp_variable = { region_choose = token:NEB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			NEB_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:NEB }
+				set_temp_variable = { region_choose = token:NEB }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			NEB_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:NEB }
+				set_temp_variable = { region_choose = token:NEB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			NEB_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:NEB }
+				set_temp_variable = { region_choose = token:NEB }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
 
 			MON_party_btn_add_click = {
-				set_variable = { region_choose = token:MON }
+				set_temp_variable = { region_choose = token:MON }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_add = yes
 			}
 			MON_party_btn_subtract_click = {
-				set_variable = { region_choose = token:MON }
+				set_temp_variable = { region_choose = token:MON }
 				set_temp_variable = { party_change_num = 1 }
 				TER_rebuild_member_subtract = yes
 			}
 			MON_party_btn_add_control_click = {
-				set_variable = { region_choose = token:MON }
+				set_temp_variable = { region_choose = token:MON }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_add = yes
 			}
 			MON_party_btn_subtract_control_click = {
-				set_variable = { region_choose = token:MON }
+				set_temp_variable = { region_choose = token:MON }
 				set_temp_variable = { party_change_num = 10 }
 				TER_rebuild_member_subtract = yes
 			}
 			MON_party_btn_add_shift_click = {
-				set_variable = { region_choose = token:MON }
+				set_temp_variable = { region_choose = token:MON }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_add = yes
 			}
 			MON_party_btn_subtract_shift_click = {
-				set_variable = { region_choose = token:MON }
+				set_temp_variable = { region_choose = token:MON }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
 			}
