@@ -31,14 +31,31 @@ CPC_Mon_Mfn_help_dec = {
 		
 	}
 }
+STL_CPC_remove_colonial_culture = {
+	icon = GFX_decision_category_generic_communism
+	allowed = {
+		tag = CPC
+	}
+	available = {
+		CPC = {
+			in_peace = yes
+		}
+	}
+	visible = {
+		tag = CPC
+		CPC_u_anit_bandit_and_hage_trigger = no
+		has_country_flag = CPC_colonial_region
+	}
+}
 TER_new_automatic_dec = {
 	icon = GFX_decision_category_generic_building
 	allowed = {
 		tag = CPC
 	}
 	visible = {
-		NOT = { 
+		NOT = {
 			OR = {
+				NOT = { has_country_flag = CPC_unlock_NWB }
 				has_country_flag = CPC_TRCW_begins_flag
 				has_global_flag = CPC_WINS_TRCW
 			}
