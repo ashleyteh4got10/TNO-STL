@@ -854,7 +854,19 @@ focus_tree = {
 			hidden_effect = {
 				clr_country_flag = TER_rebuild_state
 				set_country_flag = TER_congress_state
-				TER_congress_initialization = yes
+				set_variable = { CPC_congress_process = 0 }
+				clear_array = CPGAC_ordinary_policy
+				clear_array = CPGAC_ordinary_policy_enable_times
+				clear_array = CPGAC_ordinary_policy_intensified
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p5_agri_collective }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p5_combine_company }	
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
+				add_to_array = { CPGAC_ordinary_policy = token:CPGAC_o_p5_repair_trade_union }
+				add_to_array = { CPGAC_ordinary_policy_enable_times = 0 }
+				add_to_array = { CPGAC_ordinary_policy_intensified = -1 }
 			}
 		}
 	}
@@ -868,7 +880,7 @@ focus_tree = {
 		completion_reward = {
 			add_to_variable = { CPC_war_support_factor = 0.1 }
 			add_days_mission_timeout = {
-				mission = CPC_election_task
+				mission = CPC_election_executing_task
 				days = -15
 			}
 			set_temp_variable = { CPC_temp_congress_process = 10 }
@@ -885,7 +897,7 @@ focus_tree = {
 		prerequisite = { focus = CPC_rebuild_2_medium_3 }
 		completion_reward = {
 			add_days_mission_timeout = {
-				mission = CPC_election_task
+				mission = CPC_election_executing_task
 				days = -15
 			}
 			set_temp_variable = { CPC_temp_congress_process = 10 }
@@ -901,7 +913,7 @@ focus_tree = {
 		prerequisite = { focus = CPC_rebuild_2_left_2 }
 		completion_reward = {
 			add_days_mission_timeout = {
-				mission = CPC_election_task
+				mission = CPC_election_executing_task
 				days = -15
 			}
 			tno_vote_franchise_improve = yes
@@ -918,7 +930,7 @@ focus_tree = {
 		prerequisite = { focus = CPC_rebuild_2_right_2 }
 		completion_reward = {
 			add_days_mission_timeout = {
-				mission = CPC_election_task
+				mission = CPC_election_executing_task
 				days = -15
 			}
 			set_temp_variable = { CPC_temp_congress_process = 10 }
@@ -947,7 +959,7 @@ focus_tree = {
 		prerequisite = { focus = CPC_rebuild_2_medium_4 }
 		completion_reward = {
 			add_days_mission_timeout = {
-				mission = CPC_election_task
+				mission = CPC_election_executing_task
 				days = -15
 			}
 			TNO_improve_vote_franchise_policy_effectiveness_med = yes

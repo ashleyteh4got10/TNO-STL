@@ -199,14 +199,14 @@ TER_main_issue_entry_category = {
 			}
         }
     }
-	CPC_election_task = {
+	CPC_election_executing_task = {
 		allowed = { tag = CPC }
         icon = GFX_decision_generic_hammer_and_sickle
 		activation = {
 			has_country_flag = CPC_election_task
         }
 		available = {
-			hidden_trigger = { has_country_flag = TER_congress_state }
+			hidden_trigger = { NOT = { has_country_flag = TER_congress_state } }
 		}
 		is_good = yes
         days_mission_timeout = 90
