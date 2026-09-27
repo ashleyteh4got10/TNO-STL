@@ -311,69 +311,44 @@ TER_region_bureau_complete = {
 	clear_variable = PRC_base_rate_5
 	clear_variable = PRC_base_rate_6
 }
-TER_set_rebuild_list_1 = {
+TER_rebuid_button_check = {
 	if = {
 		limit = {
+			NOT = { check_variable = { CPC_check_region = region_choose } }
 			has_country_flag = CPC_rebuild_list
 		}
 		clr_country_flag = CPC_rebuild_list
-		clear_array = CPC_rebuild_list_x
-		clear_array = CPC_rebuild_list_y
+		set_country_flag = CPC_rebuild_list
+	}
+	else_if = {
+		limit = { has_country_flag = CPC_rebuild_list }
+		clr_country_flag = CPC_rebuild_list
 	}
 	else = {
 		set_country_flag = CPC_rebuild_list
 	}
+	clear_array = CPC_rebuild_list_x
+	clear_array = CPC_rebuild_list_y
+}
+TER_set_rebuild_list_1 = {
 	clear_array = CPC_rebuild_list
 	add_to_array = { CPC_rebuild_list = 3 }
 	add_to_array = { CPC_rebuild_list = 4 }
 	add_to_array = { CPC_rebuild_list = 6 }
 }
 TER_set_rebuild_list_2 = {
-	if = {
-		limit = {
-			has_country_flag = CPC_rebuild_list
-		}
-		clr_country_flag = CPC_rebuild_list
-		clear_array = CPC_rebuild_list_x
-		clear_array = CPC_rebuild_list_y
-	}
-	else = {
-		set_country_flag = CPC_rebuild_list
-	}
 	clear_array = CPC_rebuild_list
 	add_to_array = { CPC_rebuild_list = 1 }
 	add_to_array = { CPC_rebuild_list = 2 }
 	add_to_array = { CPC_rebuild_list = 5 }
 }
 TER_set_rebuild_list_3 = {
-	if = {
-		limit = {
-			has_country_flag = CPC_rebuild_list
-		}
-		clr_country_flag = CPC_rebuild_list
-		clear_array = CPC_rebuild_list_x
-		clear_array = CPC_rebuild_list_y
-	}
-	else = {
-		set_country_flag = CPC_rebuild_list
-	}
 	clear_array = CPC_rebuild_list
 	add_to_array = { CPC_rebuild_list = 1 }
 	add_to_array = { CPC_rebuild_list = 3 }
 	add_to_array = { CPC_rebuild_list = 5 }
 }
 TER_set_rebuild_list_4 = {
-	if = {
-		limit = {
-			has_country_flag = CPC_rebuild_list
-		}
-		clr_country_flag = CPC_rebuild_list
-		clear_array = CPC_rebuild_list_x
-		clear_array = CPC_rebuild_list_y
-	}
-	else = {
-		set_country_flag = CPC_rebuild_list
-	}
 	clear_array = CPC_rebuild_list
 	add_to_array = { CPC_rebuild_list = 1 }
 	add_to_array = { CPC_rebuild_list = 2 }
