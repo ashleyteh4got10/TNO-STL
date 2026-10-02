@@ -366,46 +366,27 @@ TER_rebuild_effect = {
 	}
 }
 TER_rebuild_speed_change = {
+	meta_effect = {
+		text = { set_variable = { PRC_rate_pattern = PRC_temp_rate_[num] } }
+		num = "[?TER_rebuild_pattern_speed|.0]"
+	}
 	if = {
-		limit = { has_variable = PRC_temp_rate_1 }
-		set_temp_variable = { TER_rebuild_pattern_speed = 1 }
-		add_to_variable = { PRC_base_rate_1 = PRC_temp_rate_1 }
+		limit = { check_variable = { TER_rebuild_pattern_speed = 1 } }
+		add_to_variable = { PRC_base_rate_1 = PRC_rate_pattern }
 		custom_effect_tooltip = "TER_rebuild_pattern_bad_tt"
 	}
 	else_if = {
-		limit = { has_variable = PRC_temp_rate_2 }
-		set_temp_variable = { TER_rebuild_pattern_speed = 2 }
-		add_to_variable = { PRC_base_rate_2 = PRC_temp_rate_2 }
-		custom_effect_tooltip = "TER_rebuild_pattern_good_tt"
-	}
-	else_if = {
-		limit = { has_variable = PRC_temp_rate_3 }
-		set_temp_variable = { TER_rebuild_pattern_speed = 3 }
-		add_to_variable = { PRC_base_rate_3 = PRC_temp_rate_3 }
-		custom_effect_tooltip = "TER_rebuild_pattern_good_tt"
-	}
-	else_if = {
-		limit = { has_variable = PRC_temp_rate_4 }
-		set_temp_variable = { TER_rebuild_pattern_speed = 4 }
-		add_to_variable = { PRC_base_rate_4 = PRC_temp_rate_4 }
-		custom_effect_tooltip = "TER_rebuild_pattern_good_tt"
-	}
-	else_if = {
-		limit = { has_variable = PRC_temp_rate_5 }
-		set_temp_variable = { TER_rebuild_pattern_speed = 5 }
-		add_to_variable = { PRC_base_rate_5 = PRC_temp_rate_5 }
-		custom_effect_tooltip = "TER_rebuild_pattern_good_tt"
-	}
-	else_if = {
-		limit = { has_variable = PRC_temp_rate_6 }
-		set_temp_variable = { TER_rebuild_pattern_speed = 6 }
-		add_to_variable = { PRC_base_rate_6 = PRC_temp_rate_6 }
-		custom_effect_tooltip = "TER_rebuild_pattern_good_tt"
-	}
-	else_if = {
-		limit = { has_variable = recover_speed_temp }
-		set_temp_variable = { TER_rebuild_pattern_speed = 7 }
+		limit = { check_variable = { TER_rebuild_pattern_speed = 7 } }
 		TER_recover_speed_buff_effect = yes
+		custom_effect_tooltip = "TER_rebuild_pattern_good_tt"
+	}
+	else = {
+		meta_effect = {
+			text = {
+				add_to_variable = { PRC_base_rate_[num] = PRC_rate_pattern }
+			}
+			num = "[?TER_rebuild_pattern_speed|.0]"
+		}
 		custom_effect_tooltip = "TER_rebuild_pattern_good_tt"
 	}
 }
@@ -452,7 +433,7 @@ TER_recover_speed_buff_effect = {
 			REGION = "[?v.GetTokenKey]"
 		}
 	}
-	add_to_variable = { recover_speed = recover_speed_temp }
+	add_to_variable = { recover_speed = PRC_rate_pattern }
 	clamp_variable = { var = recover_speed min = 0 max = 100 }
 }
 TER_rebuilding_effect = {
