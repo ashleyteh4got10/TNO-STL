@@ -35,22 +35,10 @@ scripted_gui = {
 			XGZ_congress_button_visible = { has_country_flag = TER_congress_state }
 			NFE_congress_button_visible = { has_country_flag = TER_congress_state }
 			center_congress_button_visible = { has_country_flag = TER_congress_state }
-			XJB_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { XJB_election = 0 }
-			}
-			XGZ_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { XGZ_election = 0 }
-			}
-			NFE_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { NFE_election = 0 }
-			}
-			center_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { center_election = 0 }
-			}
+			XJB_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
+			XGZ_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
+			NFE_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
+			center_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
 			CPC_soviet_congress_bg_visible = { has_country_flag = TER_congress_state }
 			CPC_soviet_congress_bar_visible = { has_country_flag = TER_congress_state }
 			CPC_ticket_button_visible = { has_country_flag = TER_congress_state }
@@ -93,6 +81,10 @@ scripted_gui = {
 			bandit_coverage_bar = { frame = bandit_coverage }
 			recover_speed_bar = { frame = recover_speed }
 			CPC_soviet_congress_bar = { frame = CPC_congress_process }
+			XJB_congress_bar = { frame = CPC_election_prepare_speed^7 }
+			XGZ_congress_bar = { frame = CPC_election_prepare_speed^8 }
+			NFE_congress_bar = { frame = CPC_election_prepare_speed^9 }
+			center_congress_bar = { frame = CPC_election_prepare_speed^10 }
 			rebuild_button_slt = {
 				x = CPC_rebuild_list_x^CPC_rebuild_list_i
 				y = CPC_rebuild_list_y^CPC_rebuild_list_i
@@ -163,19 +155,19 @@ scripted_gui = {
 				TER_set_rebuild_list_3 = yes
 			}
 			XJB_congress_button_click = {
-				set_variable = { region_choose = token:XJB }
+				set_variable = { CPC_elect_region = 7 }
 				TER_election_effect = yes
 			}
 			XGZ_congress_button_click = {
-				set_variable = { region_choose = token:XGZ }
+				set_variable = { CPC_elect_region = 8 }
 				TER_election_effect = yes
 			}
 			NFE_congress_button_click = {
-				set_variable = { region_choose = token:NFE }
+				set_variable = { CPC_elect_region = 9 }
 				TER_election_effect = yes
 			}
 			center_congress_button_click = {
-				set_variable = { region_choose = token:center }
+				set_variable = { CPC_elect_region = 10 }
 				TER_election_effect = yes
 			}
 			XJB_party_btn_add_click = {
@@ -331,30 +323,12 @@ scripted_gui = {
 			SCB_congress_button_visible = { has_country_flag = TER_congress_state }
 			NEB_congress_button_visible = { has_country_flag = TER_congress_state }
 			MON_congress_button_visible = { has_country_flag = TER_congress_state }
-			NWB_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { NWB_election = 0 }
-			}
-			SWB_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { SWB_election = 0 }
-			}
-			NCB_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { NCB_election = 0 }
-			}
-			SCB_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { SCB_election = 0 }
-			}
-			NEB_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { NEB_election = 0 }
-			}
-			MON_congress_button_click_enabled = {
-				NOT = { has_country_flag = CPC_election_task }
-				check_variable = { MON_election = 0 }
-			}
+			NWB_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
+			SWB_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
+			NCB_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
+			SCB_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
+			NEB_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
+			MON_congress_button_click_enabled = { check_variable = { CPC_election_num < 3 } }
 			rebuild_button_slt_visible = {
 				has_country_flag = TER_rebuild_state
 				has_country_flag = CPC_rebuild_list
@@ -385,6 +359,12 @@ scripted_gui = {
 			}
 		}
 		properties = {
+			NWB_congress_bar = { frame = CPC_election_prepare_speed^1 }
+			SWB_congress_bar = { frame = CPC_election_prepare_speed^2 }
+			NCB_congress_bar = { frame = CPC_election_prepare_speed^3 }
+			SCB_congress_bar = { frame = CPC_election_prepare_speed^4 }
+			NEB_congress_bar = { frame = CPC_election_prepare_speed^5 }
+			MON_congress_bar = { frame = CPC_election_prepare_speed^6 }
 			rebuild_button_slt = {
 				x = CPC_rebuild_list_x^CPC_rebuild_list_i
 				y = CPC_rebuild_list_y^CPC_rebuild_list_i
@@ -477,27 +457,27 @@ scripted_gui = {
 				TER_set_rebuild_list_1 = yes
 			}
 			NWB_congress_button_click = {
-				set_variable = { region_choose = token:NWB }
+				set_variable = { CPC_elect_region = 1 }
 				TER_election_effect = yes
 			}
 			SWB_congress_button_click = {
-				set_variable = { region_choose = token:SWB }
+				set_variable = { CPC_elect_region = 2 }
 				TER_election_effect = yes
 			}
 			NCB_congress_button_click = {
-				set_variable = { region_choose = token:NCB }
+				set_variable = { CPC_elect_region = 3 }
 				TER_election_effect = yes
 			}
 			SCB_congress_button_click = {
-				set_variable = { region_choose = token:SCB }
+				set_variable = { CPC_elect_region = 4 }
 				TER_election_effect = yes
 			}
 			NEB_congress_button_click = {
-				set_variable = { region_choose = token:NEB }
+				set_variable = { CPC_elect_region = 5 }
 				TER_election_effect = yes
 			}
 			MON_congress_button_click = {
-				set_variable = { region_choose = token:MON }
+				set_variable = { CPC_elect_region = 6 }
 				TER_election_effect = yes
 			}
 			NWB_party_btn_add_click = {
