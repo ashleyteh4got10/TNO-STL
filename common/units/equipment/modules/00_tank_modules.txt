@@ -76,15 +76,15 @@ equipment_modules = {
 		sfx = sfx_ui_sd_module_sonar
 
 		add_stats = {
-			soft_attack = 0.1 # that's when rivets shoot back because they got dislodged by the shock. That was in fact the first reactive armor.
-			armor_value = -2.5
-			defense = 2
+			# soft_attack = 0.1 # that's when rivets shoot back because they got dislodged by the shock. That was in fact the first reactive armor.
+			# armor_value = -2.5
+			# defense = 2
 			breakthrough = 2
 		}
-		xp_cost = 8 
+		xp_cost = 4 # 8
 		multiply_stats = {
  			build_cost_ic = -0.2
-			armor_value = -0.5
+			# armor_value = -0.5
  		}
 	}
 
@@ -96,12 +96,11 @@ equipment_modules = {
 		add_stats = {
 			defense = 4
 			breakthrough = 4
-			armor_value = 15
 		}
 		xp_cost = 8
 		multiply_stats = {
 			build_cost_ic = 0.1
-			armor_value = 0.5
+			armor_value = 0.4 # 0.5
 
 		}
 	}
@@ -114,11 +113,10 @@ equipment_modules = {
 		add_stats = {
 			defense = 2
 			breakthrough = 2
-			armor_value = 5
 		}
 
 		multiply_stats = {
-			armor_value = 0.4
+			armor_value = 0.2 # 0.4
 		}
 	}
 
@@ -165,20 +163,23 @@ equipment_modules = {
 		add_stats = {
 			build_cost_ic = 1
 			breakthrough = 4
+			defense = -2 #
 			reliability = -0.1
 		}
 		multiply_stats =  {
+			hard_attack  = 0.05 #
 		}
 	}
 
 	tank_hydropneumatic_suspension = {
-		abbreviation = "int"
+		abbreviation = "hyd"
 		category = tank_suspension_type
 		sfx = sfx_ui_sd_module_sonar
 
 		add_stats = {
 			build_cost_ic = 2
 			breakthrough = 4
+			defense = 6
 		}
 		multiply_stats =  {
 			maximum_speed = 0.1
@@ -192,10 +193,11 @@ equipment_modules = {
 		sfx = sfx_ui_sd_module_sonar
 
 		add_stats = {
-			reliability = -0.2
+			# reliability = -0.2
 		}
 		multiply_stats =  {
-			build_cost_ic = -0.1
+			defense = -0.1 #
+			build_cost_ic = -0.25 # -0.1
 			hardness = -0.3
 		}
 	}
@@ -206,12 +208,13 @@ equipment_modules = {
 		sfx = sfx_ui_sd_module_sonar
 
 		add_stats = {
-			build_cost_ic = 0.5
+			# build_cost_ic = 0.5
 			reliability = -0.1
 		}
 		multiply_stats =  {
-			build_cost_ic = -0.05
-			hardness = -0.2
+			defense = -0.05 #
+			build_cost_ic = -0.1 # -0.05
+			hardness = -0.15 # -0.2
 		}
 	}
 
@@ -845,8 +848,8 @@ equipment_modules = {
 
 		add_stats = {
 			soft_attack = 4
-			hard_attack = 36 # 13
-			ap_attack = 90 # 35
+			hard_attack = 13 # 36 # 13
+			ap_attack = 150 # 35
 			build_cost_ic = 3 # 2.5
 			maximum_speed = -0.1
 			reliability = -0.1
@@ -866,8 +869,8 @@ equipment_modules = {
 
 		add_stats = {
 			soft_attack = 5
-			hard_attack = 45 # 25
-			ap_attack = 120 # 70
+			hard_attack = 20 # 45 # 25
+			ap_attack = 180 # 70
 			build_cost_ic = 4 # 3
 			maximum_speed = -0.1
 			reliability = -0.1
@@ -887,8 +890,8 @@ equipment_modules = {
 
 		add_stats = {
 			soft_attack = 6
-			hard_attack = 54 # 35
-			ap_attack = 160 # 90
+			hard_attack = 30 # 54 # 35
+			ap_attack = 225 # 160 # 90
 			build_cost_ic = 5 # 4
 			maximum_speed = -0.1
 			reliability = -0.1
@@ -1637,10 +1640,10 @@ equipment_modules = {
 		allow_equipment_type = artillery
 
 		add_stats = {
-			soft_attack = 40
+			soft_attack = 45
 			hard_attack = 10
-			ap_attack = 20
-			build_cost_ic = 5
+			ap_attack = 35
+			build_cost_ic = 4
 			maximum_speed = -0.3
 			reliability = -0.2
 		}
@@ -1661,17 +1664,17 @@ equipment_modules = {
 		allow_equipment_type = artillery
 		parent = MBT_heavy_artillery
 		add_stats = {
-			soft_attack = 56
+			soft_attack = 60
 			hard_attack = 20
-			ap_attack = 30
-			build_cost_ic = 6.5
+			ap_attack = 45
+			build_cost_ic = 5
 			maximum_speed = -0.4
 			reliability = -0.2
 		}
 		xp_cost = 1
 		can_convert_from = {
 			module_category = MBT_main_armament
-			convert_cost_ic = 7.5
+			convert_cost_ic = 5.5
 		}
 		build_cost_resources = {
 			tungsten = 3
@@ -1688,15 +1691,15 @@ equipment_modules = {
 		add_stats = {
 			soft_attack = 70
 			hard_attack = 30
-			ap_attack = 40
-			build_cost_ic = 7
+			ap_attack = 50
+			build_cost_ic = 6
 			maximum_speed = -0.4
 			reliability = -0.2
 		}
 		xp_cost = 1
 		can_convert_from = {
 			module_category = MBT_main_armament
-			convert_cost_ic = 8
+			convert_cost_ic = 6.5
 		}
 		build_cost_resources = {
 			tungsten = 3
@@ -1881,8 +1884,8 @@ equipment_modules = {
 		allow_equipment_type = artillery
 
 		add_stats = {
-			soft_attack = 20
-			hard_attack = 20
+			soft_attack = 25 # 20
+			hard_attack = 18 # 20
 			ap_attack = 70
 			build_cost_ic = 6
 			maximum_speed = -0.2
@@ -1907,8 +1910,8 @@ equipment_modules = {
 		allow_equipment_type = artillery
 		parent = heavy_cannon
 		add_stats = {
-			soft_attack = 35
-			hard_attack = 35
+			soft_attack = 37 # 35
+			hard_attack = 25 # 35
 			ap_attack = 100
 			build_cost_ic = 7
 			maximum_speed = -0.3
@@ -1934,7 +1937,7 @@ equipment_modules = {
 		parent = heavy_cannon_2
 		add_stats = {
 			soft_attack = 45
-			hard_attack = 45
+			hard_attack = 30 # 45
 			ap_attack = 140
 			build_cost_ic = 8
 			maximum_speed = -0.35
@@ -1960,7 +1963,7 @@ equipment_modules = {
 		parent = heavy_cannon_3
 		add_stats = {
 			soft_attack = 55
-			hard_attack = 55
+			hard_attack = 35 # 55
 			ap_attack = 170
 			build_cost_ic = 9
 			maximum_speed = -0.35
@@ -2608,8 +2611,8 @@ equipment_modules = {
 
 		add_stats = {
 			soft_attack = 4
-			hard_attack = 36 # 13
-			ap_attack = 90 # 35
+			hard_attack = 13 # 36 # 13
+			ap_attack = 150 # 90 # 35
 			build_cost_ic = 3 # 2.5
 			maximum_speed = -0.1
 			reliability = -0.1
@@ -2635,7 +2638,7 @@ equipment_modules = {
 
 		add_stats = {
 			soft_attack = 5
-			hard_attack = 45 # 25
+			hard_attack = 20 # 45 # 25
 			ap_attack = 120 # 70
 			build_cost_ic = 4 # 3
 			maximum_speed = -0.1
@@ -2662,8 +2665,8 @@ equipment_modules = {
 
 		add_stats = {
 			soft_attack = 6
-			hard_attack = 54 # 35
-			ap_attack = 160 # 90
+			hard_attack = 30 # 54 # 35
+			ap_attack = 225 # 160 # 90
 			build_cost_ic = 5
 			maximum_speed = -0.1
 			reliability = -0.1
