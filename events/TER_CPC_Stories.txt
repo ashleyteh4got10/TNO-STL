@@ -792,7 +792,7 @@ country_event = {
 					option = SWRWTER_COMPLETELY_DONE
 				}
 			}
-		    }
+			}
 		country_event = {
 			id = CPC_main_story_events.43
 			days = 10
@@ -3735,45 +3735,56 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = CPC_TRCW.15.o
-		declare_war_on = {
-			target = JAP
-			type  = annex_everything
-		}
-		declare_war_on = {
-			target = MAN
-			type  = annex_everything
-		}
-		declare_war_on = {
-			target = MEN
-			type  = annex_everything
-		}
-		hidden_effect = {
-			if = {
-				limit = { has_country_flag = CPGAC_u_recontact_NAJUA_end_2 }
-				815 = {
-					create_unit = {
-						division = "division_template = \"PLA Bubing Shi\" start_experience_factor = 0.6 start_equipment_factor = 1.0"
-						owner = CPC
-						count = 3
-					}
+		if = {
+			limit = {
+				has_game_rule = {
+					rule = SWRWTER_Northeast_Bureau_content
+					option = DEFAULT
 				}
 			}
-			if = {
-				limit = { has_country_flag = CPGAC_u_recontact_NAJUA_end_3 }
-				transfer_state = 1643
-				1643 = {
-					create_unit = {
-						division = "division_template = \"PLA Bubing Shi\" start_experience_factor = 0.6 start_equipment_factor = 1.0"
-						owner = CPC
-						count = 5
+			country_event = { id = NEB_history.20 }
+		}
+		else = {
+			declare_war_on = {
+				target = JAP
+				type  = annex_everything
+			}
+			declare_war_on = {
+				target = MAN
+				type  = annex_everything
+			}
+			declare_war_on = {
+				target = MEN
+				type  = annex_everything
+			}
+			hidden_effect = {
+				if = {
+					limit = { has_country_flag = CPGAC_u_recontact_NAJUA_end_2 }
+					815 = {
+						create_unit = {
+							division = "division_template = \"PLA Bubing Shi\" start_experience_factor = 0.6 start_equipment_factor = 1.0"
+							owner = CPC
+							count = 3
+						}
 					}
 				}
-			}
-			MAN_oob_TRCW = yes
-			JAP_oob_TRCW = yes
-			JAP = {
-				JAP_remove_all_showa_ideas = yes
-				add_ideas = JAP_showa_emperor_gaw
+				if = {
+					limit = { has_country_flag = CPGAC_u_recontact_NAJUA_end_3 }
+					transfer_state = 1643
+					1643 = {
+						create_unit = {
+							division = "division_template = \"PLA Bubing Shi\" start_experience_factor = 0.6 start_equipment_factor = 1.0"
+							owner = CPC
+							count = 5
+						}
+					}
+				}
+				MAN_oob_TRCW = yes
+				JAP_oob_TRCW = yes
+				JAP = {
+					JAP_remove_all_showa_ideas = yes
+					add_ideas = JAP_showa_emperor_gaw
+				}
 			}
 			every_country = {
 				news_event = {
@@ -5542,13 +5553,13 @@ country_event = {
 			set_variable = { poverty_rate = 80 }
 			add_ideas = CPC_AT_eco_issue_idea
 			add_ideas = CPC_AT_gov_issue_idea
-			tno_worsen_agriculture = yes
+			TER_reset_agriculture = yes
 			tno_worsen_academic_base = yes
 			tno_worsen_research_facilities = yes
 			tno_worsen_healthcare = yes
-			tno_worsen_admin_efficiency = yes
-			tno_worsen_industrial_equipment = yes
-			tno_improve_industrial_expertise = yes
+			TER_reset_admin_efficiency = yes
+			TER_reset_industrial_equipment = yes
+			TER_reset_industrial_expertise = yes
 			tno_worsen_army_professionalism = yes
 		}
 		custom_effect_tooltip = "CPC_GAC_canceled_final"
@@ -5658,76 +5669,7 @@ country_event = {
 		}
 		custom_effect_tooltip = "CPC_TRCW_people_dem_effect_tt"
 		hidden_effect = {
-			retire_country_leader = yes
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = communist_peoples_democracy_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-				traits = {
-					CPC_people_dem
-				}
-			}
-			retire_ideology_leader = socialist
-			retire_ideology_leader = progressivism
-			retire_ideology_leader = liberalism
-			retire_ideology_leader = conservatism
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = socialist_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-			}
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = progressivism_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-			}
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = liberalism_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-			}
-			create_country_leader = {
-				name = "CPC_presidium_of_the_NPC"
-				ideology = conservatism_subtype
-				picture = "gfx/leaders/CPC/CPC_presidium_of_the_NPC.png"
-				desc = "CPC_presidium_of_the_NPC_desc"
-			}
-			set_party_name = {
-				ideology = communist
-				long_name = CPC_final_communist_good_long
-				name = CPC_final_communist_good
-			}
-			set_party_name = {
-				ideology = socialist
-				long_name = CPC_final_socialist_good_long
-				name = CPC_final_socialist_good
-			}
-			set_party_name = {
-				ideology = progressivism
-				long_name = CPC_final_progressivism_good_long
-				name = CPC_final_progressivism_good
-			}
-			set_party_name = {
-				ideology = liberalism
-				long_name = CPC_final_others_good_long
-				name = CPC_final_others_good
-			}
-			set_party_name = {
-				ideology = conservatism
-				long_name = CPC_final_others_good_long
-				name = CPC_final_others_good
-			}
-			set_popularities = {
-				communist = 50
-				socialist = 25
-				progressivism = 20
-				liberalism = 3
-				conservatism = 2
-			}
+			#country_event = { id = STL_CPC_2_main_story.1 days = 3 }
 		}
 		TNO_Country_Closing_Screen_Show = yes
 	}
@@ -5741,7 +5683,6 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = CPC_TRCW_end.201.o
-		country_event = { id = CPC_main_story_events.125 days = 10 }
 		ai_chance = {
 			factor = 50
 		}
@@ -5760,6 +5701,9 @@ country_event = {
 			factor = 50
 		}
 		custom_effect_tooltip = "CPC_TRCW_party_mao_effect_tt"
+		hidden_effect = {
+			#country_event = { id = STL_CPC_2_main_story.1 days = 3 }
+		}
 		TNO_Country_Closing_Screen_Show = yes
 	}
 }
@@ -5771,7 +5715,6 @@ country_event = {
 	picture = GFX_TZCZX
 	is_triggered_only = yes
 	option = {
-		country_event = { id = CPC_main_story_events.125 days = 10 }
 		name = CPC_TRCW_end.301.o
 		ai_chance = {
 			factor = 50
@@ -5789,6 +5732,9 @@ country_event = {
 		name = CPC_TRCW_end.302.o
 		ai_chance = {
 			factor = 50
+		}
+		hidden_effect = {
+			#country_event = { id = STL_CPC_2_main_story.1 days = 3 }
 		}
 		custom_effect_tooltip = "CPC_TRCW_party_liu_effect_tt"
 		TNO_Country_Closing_Screen_Show = yes
@@ -6417,122 +6363,6 @@ country_event = { #
 	option = {
 		name = CPC_funni.3.o
 		custom_effect_tooltip = "CPC_funni.3.o_tt"
-		ai_chance = {
-			factor = 50
-		}
-	}
-}
-
-country_event = {
-	id = CPC_Zombie_Pre.1
-	title = CPC_Zombie_Pre.1.t
-	desc = CPC_Zombie_Pre.1.d
-	is_triggered_only = yes
-	option = {
-		name = CPC_Zombie_Pre.1.o
-		country_event = {
-			id = CPC_Zombie_Pre.2
-			days = 7
-		}
-		ai_chance = {
-			factor = 50
-		}
-	}
-}
-
-country_event = {
-	id = CPC_Zombie_Pre.2
-	title = CPC_Zombie_Pre.2.t
-	desc = CPC_Zombie_Pre.2.d
-	is_triggered_only = yes
-	option = {
-		name = CPC_Zombie_Pre.2.o
-		country_event = {
-			id = CPC_Zombie_Pre.3
-			days = 7
-		}
-		ai_chance = {
-			factor = 50
-		}
-	}
-}
-
-country_event = {
-	id = CPC_Zombie_Pre.3
-	title = CPC_Zombie_Pre.3.t
-	desc = CPC_Zombie_Pre.3.d
-	is_triggered_only = yes
-	option = {
-		name = CPC_Zombie_Pre.3.o
-		country_event = {
-			id = CPC_Zombie_Pre.4
-			days = 7
-		}
-		ai_chance = {
-			factor = 50
-		}
-	}
-}
-
-country_event = {
-	id = CPC_Zombie_Pre.4
-	title = CPC_Zombie_Pre.4.t
-	desc = CPC_Zombie_Pre.4.d
-	is_triggered_only = yes
-	option = {
-		name = CPC_Zombie_Pre.4.o
-		country_event = {
-			id = CPC_Zombie_Pre.5
-			days = 7
-		}
-		ai_chance = {
-			factor = 50
-		}
-	}
-}
-
-country_event = {
-	id = CPC_Zombie_Pre.5
-	title = CPC_Zombie_Pre.5.t
-	desc = CPC_Zombie_Pre.5.d
-	is_triggered_only = yes
-	option = {
-		name = CPC_Zombie_Pre.5.o
-		country_event = {
-			id = CPC_Zombie_Pre.6
-			days = 7
-		}
-		ai_chance = {
-			factor = 50
-		}
-	}
-}
-
-country_event = {
-	id = CPC_Zombie_Pre.6
-	title = CPC_Zombie_Pre.6.t
-	desc = CPC_Zombie_Pre.6.d
-	is_triggered_only = yes
-	option = {
-		name = CPC_Zombie_Pre.6.o
-		country_event = {
-			id = CPC_Zombie_Pre.7
-			days = 7
-		}
-		ai_chance = {
-			factor = 50
-		}
-	}
-}
-
-country_event = {
-	id = CPC_Zombie_Pre.7
-	title = CPC_Zombie_Pre.7.t
-	desc = CPC_Zombie_Pre.7.d
-	is_triggered_only = yes
-	option = {
-		name = CPC_Zombie_Pre.7.o
-		custom_effect_tooltip = "CPC_Zombie_Pre.7.o.tt"
 		ai_chance = {
 			factor = 50
 		}

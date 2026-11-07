@@ -1,6 +1,7 @@
 add_namespace = STL_CPC_main_story
 add_namespace = CPC_postwar
 
+
 # CPC风味事件 ids:	
 # STL_CPC_main_story.1-11 - 毛岸英长路归乡事件链
 # CPC_postwar.1-9 - 战后大选事件
@@ -12,7 +13,7 @@ country_event = {
 	id = STL_CPC_main_story.1
 	title = STL_CPC_main_story.1.t
 	desc = STL_CPC_main_story.1.desc
-	picture = GFX_evt_almaty_mountain
+	#picture = GFX_evt_almaty_mountain
 	
 	is_triggered_only = yes
 	
@@ -28,7 +29,7 @@ country_event = {
 	id = STL_CPC_main_story.2
 	title = STL_CPC_main_story.2.t
 	desc = STL_CPC_main_story.2.desc
-	picture = GFX_evt_soviet_military
+	#picture = GFX_evt_soviet_military
 	
 	is_triggered_only = yes
 	
@@ -44,7 +45,7 @@ country_event = {
 	id = STL_CPC_main_story.3
 	title = STL_CPC_main_story.3.t
 	desc = STL_CPC_main_story.3.desc
-	picture = GFX_evt_couple_almaty
+	#picture = GFX_evt_couple_almaty
 	
 	is_triggered_only = yes
 	
@@ -60,7 +61,7 @@ country_event = {
 	id = STL_CPC_main_story.4
 	title = STL_CPC_main_story.4.t
 	desc = STL_CPC_main_story.4.desc
-	picture = GFX_evt_war_love
+	#picture = GFX_evt_war_love
 	
 	is_triggered_only = yes
 	
@@ -76,7 +77,7 @@ country_event = {
 	id = STL_CPC_main_story.5
 	title = STL_CPC_main_story.5.t
 	desc = STL_CPC_main_story.5.desc
-	picture = GFX_evt_kazakh_soldier
+	#picture = GFX_evt_kazakh_soldier
 	
 	is_triggered_only = yes
 	
@@ -92,7 +93,7 @@ country_event = {
 	id = STL_CPC_main_story.6
 	title = STL_CPC_main_story.6.t
 	desc = STL_CPC_main_story.6.desc
-	picture = GFX_evt_long_march
+	#picture = GFX_evt_long_march
 	
 	is_triggered_only = yes
 	
@@ -108,7 +109,7 @@ country_event = {
 	id = STL_CPC_main_story.7
 	title = STL_CPC_main_story.7.t
 	desc = STL_CPC_main_story.7.desc
-	picture = GFX_evt_desert_march
+	#picture = GFX_evt_desert_march
 	
 	is_triggered_only = yes
 	
@@ -124,7 +125,7 @@ country_event = {
 	id = STL_CPC_main_story.8
 	title = STL_CPC_main_story.8.t
 	desc = STL_CPC_main_story.8.desc
-	picture = GFX_evt_xian_reunion
+	#picture = GFX_evt_xian_reunion
 	
 	is_triggered_only = yes
 	
@@ -140,7 +141,7 @@ country_event = {
 	id = STL_CPC_main_story.9
 	title = STL_CPC_main_story.9.t
 	desc = STL_CPC_main_story.9.desc
-	picture = GFX_evt_xian_reunion
+	#picture = GFX_evt_xian_reunion
 	
 	is_triggered_only = yes
 	
@@ -156,7 +157,7 @@ country_event = {
 	id = STL_CPC_main_story.10
 	title = STL_CPC_main_story.10.t
 	desc = STL_CPC_main_story.10.desc
-	picture = GFX_evt_family_xian
+	#picture = GFX_evt_family_xian
 	
 	is_triggered_only = yes
 	
@@ -172,7 +173,7 @@ country_event = {
 	id = STL_CPC_main_story.11
 	title = STL_CPC_main_story.11.t
 	desc = STL_CPC_main_story.11.desc
-	picture = GFX_evt_wedding_xian
+	#picture = GFX_evt_wedding_xian
 	
 	is_triggered_only = yes
 	
@@ -187,17 +188,56 @@ country_event = {
 	id = STL_CPC_main_story.12
 	title = STL_CPC_main_story.12.t
 	desc = STL_CPC_main_story.12.desc
+	picture = GFX_Mao_dad_and_son
 
 	is_triggered_only = yes
 	
 	option = {
 		name = STL_CPC_main_story.12.o
 		ai_chance = { factor = 100 }
+		KAZ = {
+			set_nationality = {
+				target_country = CPC
+				character = KAZ_Mao_Anying
+			}
+		}
+		hidden_effect = {
+			set_portraits = {
+				character = KAZ_Mao_Anying
+				army = {
+					large = "gfx/interface/2WRWTER/leaders/CPC/CPC_Mao_Anying.png"
+				}
+			}
+			division_template = {
+				name = "CPC Elite Infantry"
+				regiments = {
+					elite_infantry = { x = 0 y = 0 }
+					elite_infantry = { x = 0 y = 1 }
+					elite_infantry = { x = 0 y = 2 }
+					elite_infantry = { x = 1 y = 0 }
+					elite_infantry = { x = 1 y = 1 }
+					elite_infantry = { x = 1 y = 2 }
+					elite_infantry = { x = 2 y = 0 }
+					elite_infantry = { x = 2 y = 1 }
+					elite_infantry = { x = 2 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+			}
+		}
+		956 = {
+			create_unit = {
+				division = "division_template = \"CPC Elite Infantry\" start_experience_factor = 5 start_equipment_factor = 1"
+				owner = CPC
+				count = 1
+			}
+		}
 	}
 }
 
 
-# ==================== 战后大选事件链 ====================
+# ==================== 战后事件链 ====================
 
 #春岚，即邓小平对于朱德辞职一事的看法
 country_event = {
@@ -211,10 +251,10 @@ country_event = {
 	option = {
 		name = CPC_postwar.1.o
 
-        #country_event = {
-        #    id = CPC_postwar.2
-        #    days = 7
-        #}
+		#country_event = {
+		#	id = CPC_postwar.2
+		#	days = 7
+		#}
 		ai_chance = { factor = 100 }
 	}
 }
@@ -245,24 +285,24 @@ country_event = {
 	option = {
 		name = CPC_postwar.7.o
 
-        custom_effect_tooltip = CPC_into_postwar_zhang
-        hidden_effect = {
-            retire_country_leader = yes
-            retire_country_leader = yes
-            create_country_leader = {
-                name = CPC_Zhang_Chunqiao
-                picture = "gfx/interface/2WRWTER/leaders/CPC/CPC_Zhang_Chunqiao.png"
-                desc = "Zhang_Chunqiao_DESC"
-                ideology = communist_mao_zedong_thought_TER_subtype
-                traits = { zhang }
-            }
+		custom_effect_tooltip = CPC_into_postwar_zhang
+		hidden_effect = {
+			retire_country_leader = yes
+			retire_country_leader = yes
+			create_country_leader = {
+				name = CPC_Zhang_Chunqiao
+				picture = "gfx/interface/2WRWTER/leaders/CPC/CPC_Zhang_Chunqiao.png"
+				desc = "Zhang_Chunqiao_DESC"
+				ideology = communist_mao_zedong_thought_TER_subtype
+				traits = { zhang }
+			}
 			set_party_name = {
-                ideology = communist
-			    long_name = "CPC_phase_4_Mao_Zhang_long"
-			    name = "CPC_communist_party"
-		    }
-            #TER_CPGAC_initialization = yes
-        }
+				ideology = communist
+				long_name = "CPC_phase_4_Mao_Zhang_long"
+				name = "CPC_communist_party"
+			}
+			#TER_CPGAC_initialization = yes
+		}
 
 		ai_chance = { factor = 100 }
 	}
@@ -279,25 +319,23 @@ country_event = {
 	option = {
 		name = CPC_postwar.8.o
 
-        custom_effect_tooltip = CPC_into_postwar_deng
-        hidden_effect = {
-            retire_country_leader = yes
-            retire_country_leader = yes
-            create_country_leader = {
-                name = CPC_Deng_Xiaoping
-                picture = "gfx/interface/2WRWTER/leaders/CPC/CPC_Deng_Xiaoping.png"
-                desc = "Deng_Xiaoping_DESC"
-                ideology = communist_mao_zedong_thought_TER_subtype
-                traits = { deng }
-            }
+		custom_effect_tooltip = CPC_into_postwar_deng
+		hidden_effect = {
+			retire_country_leader = yes
+			create_country_leader = {
+				name = CPC_Deng_Xiaoping
+				picture = "gfx/interface/2WRWTER/leaders/CPC/CPC_Deng_Xiaoping.png"
+				desc = "Deng_Xiaoping_DESC"
+				ideology = communist_mao_zedong_thought_TER_subtype
+				traits = { deng }
+			}
 			set_party_name = {
-                ideology = communist
-			    long_name = "CPC_phase_4_Mao_Deng_long"
-			    name = "CPC_communist_party"
-		    }
-            #ER_CPGAC_initialization = yes
-        }
+				ideology = communist
+				long_name = "CPC_phase_4_Mao_Deng_long"
+				name = "CPC_communist_party"
+			}
+			#ER_CPGAC_initialization = yes
+		}
 		ai_chance = { factor = 100 }
 	}
 }
-

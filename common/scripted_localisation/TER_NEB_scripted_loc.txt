@@ -230,12 +230,6 @@ defined_text = {
 	}
 	text = {
 		trigger = {
-			check_variable = { NEB_history_num = 13 }
-		}
-		localization_key = NEB_history.13.t
-	}
-	text = {
-		trigger = {
 			check_variable = { NEB_history_num = 14 }
 		}
 		localization_key = NEB_history.14.t
@@ -269,6 +263,12 @@ defined_text = {
 			check_variable = { NEB_history_num = 19 }
 		}
 		localization_key = NEB_history.19.t
+	}
+	text = {
+		trigger = {
+			check_variable = { NEB_history_num = 20 }
+		}
+		localization_key = NEB_history.20.t
 	}
 }
 defined_text = {
@@ -386,6 +386,12 @@ defined_text = {
 			check_variable = { NEB_history_num = 19 }
 		}
 		localization_key = NEB_history.19.d
+	}
+	text = {
+		trigger = {
+			check_variable = { NEB_history_num = 20 }
+		}
+		localization_key = NEB_history.20.d
 	}
 }
 #总体情况
@@ -881,5 +887,74 @@ defined_text = {
 			check_variable = { NEB_leader = 3 }
 		}
 		localization_key = NEB_num_2
+	}
+}
+defined_text = {
+	name = TER_cal_NWB
+	text = {
+		trigger = {
+			set_temp_variable = { CAL_provided = NCCPC_PP_NWB_provided }
+			add_to_temp_variable = { CAL_provided = { value = NCCPC_PP_SWB_provided add = NCCPC_PP_XJB_provided } }
+			set_temp_variable = { CAL_needed = NCCPC_PP_XJB_needed }
+			add_to_temp_variable = { CAL_needed = { value = NCCPC_PP_SWB_needed add = NCCPC_PP_NWB_needed } }
+			check_variable = { CAL_provided < CAL_needed }
+		}
+		localization_key = TER_cal_NWB_1
+	}
+	text = {
+		trigger = {
+			set_temp_variable = { CAL_provided = NCCPC_PP_NWB_provided }
+			add_to_temp_variable = { CAL_provided = { value = NCCPC_PP_SWB_provided add = NCCPC_PP_XJB_provided } }
+			set_temp_variable = { CAL_needed = NCCPC_PP_XJB_needed }
+			add_to_temp_variable = { CAL_needed = { value = NCCPC_PP_SWB_needed add = NCCPC_PP_NWB_needed } }
+			check_variable = { CAL_provided > CAL_needed }
+		}
+		localization_key = TER_cal_NWB_2
+	}
+}
+defined_text = {
+	name = TER_cal_SWB
+	text = {
+		trigger = {
+			set_temp_variable = { CAL_provided = NCCPC_PP_NWB_provided }
+			add_to_temp_variable = { CAL_provided = { value = NCCPC_PP_SWB_provided add = NCCPC_PP_XJB_provided } }
+			set_temp_variable = { CAL_needed = NCCPC_PP_XJB_needed }
+			add_to_temp_variable = { CAL_needed = { value = NCCPC_PP_SWB_needed add = NCCPC_PP_NWB_needed } }
+			check_variable = { CAL_provided < CAL_needed }
+		}
+		localization_key = TER_cal_SWB_1
+	}
+	text = {
+		trigger = {
+			set_temp_variable = { CAL_provided = NCCPC_PP_NWB_provided }
+			add_to_temp_variable = { CAL_provided = { value = NCCPC_PP_SWB_provided add = NCCPC_PP_XJB_provided } }
+			set_temp_variable = { CAL_needed = NCCPC_PP_XJB_needed }
+			add_to_temp_variable = { CAL_needed = { value = NCCPC_PP_SWB_needed add = NCCPC_PP_NWB_needed } }
+			check_variable = { CAL_provided > CAL_needed }
+		}
+		localization_key = TER_cal_SWB_2
+	}
+}
+defined_text = {
+	name = TER_cal_XJB
+	text = {
+		trigger = {
+			set_temp_variable = { CAL_provided = NCCPC_PP_NWB_provided }
+			add_to_temp_variable = { CAL_provided = { value = NCCPC_PP_SWB_provided add = NCCPC_PP_XJB_provided } }
+			set_temp_variable = { CAL_needed = NCCPC_PP_XJB_needed }
+			add_to_temp_variable = { CAL_needed = { value = NCCPC_PP_SWB_needed add = NCCPC_PP_NWB_needed } }
+			check_variable = { CAL_provided < CAL_needed }
+		}
+		localization_key = TER_cal_XJB_1
+	}
+	text = {
+		trigger = {
+			set_temp_variable = { CAL_provided = NCCPC_PP_NWB_provided }
+			add_to_temp_variable = { CAL_provided = { value = NCCPC_PP_SWB_provided add = NCCPC_PP_XJB_provided } }
+			set_temp_variable = { CAL_needed = NCCPC_PP_XJB_needed }
+			add_to_temp_variable = { CAL_needed = { value = NCCPC_PP_SWB_needed add = NCCPC_PP_NWB_needed } }
+			check_variable = { CAL_provided > CAL_needed }
+		}
+		localization_key = TER_cal_XJB_2
 	}
 }

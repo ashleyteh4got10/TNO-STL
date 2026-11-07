@@ -601,302 +601,302 @@ on_actions = {
 						TNS = { remove_state_core = PREV }
 					}
 				}
-
-				#West China War
-				else_if = {
-					limit = {
-						FROM = { original_tag = QIN }
-						OR = {
-							ROOT = { original_tag = GAN }
-							ROOT = { original_tag = TIB }
-							ROOT = { original_tag = XIN }
-						}
-					}
-					FROM = {
-						annex_country = {
-							target = ROOT
-							transfer_troops = no
-						}
-					}
-					if = {
-						limit = {
-							NOT = {
-								country_exists = GAN
-								country_exists = TIB
-								country_exists = XIN
-							}
-						}
-						every_state = {
-							limit = {
-								is_owned_by = FROM
-							}
-							add_core_of = FROM
-						}
-						QIN = {
-							add_ideas = WCH_national_reconstruction
-							add_ideas =	WCH_diverse_nation
-							econ_join_sphere_RUS = yes
-							if = {
-								limit = {
-									RUS = { is_faction_leader = yes }
-								}
-								add_ideas = CSTO_Member
-							}
-							else = {
-								add_ideas = OFN_Independent_Member
-							}
-						}
-						set_autonomy = {
-							target = QIN
-							autonomy_state = autonomy_client_state
-						}
-						XXX = {
-							QIN_Sun_Tse_Ping = { set_nationality = QIN }
-							QIN_Li_Xiannian = { set_nationality = QIN }
-						}
-						QIN = {
-							save_global_event_target_as = winning_country
-							set_cosmetic_tag = QIN_WCH
-							set_politics = {
-								ruling_party = paternalism
-							}
-							promote_character = QIN_Sun_Tse_Ping
-							promote_character = QIN_Li_Xiannian
-							set_popularities = {
-								paternalism = 50
-								conservatism = 20
-								liberalism = 20
-								despotism = 10
-							}
-							set_party_name = {
-								ideology = despotism
-								long_name = QIN_WCH_despotism_long
-								name = QIN_WCH_despotism_party
-							}
-							set_party_name = {
-								ideology = paternalism
-								long_name = QIN_WCH_paternalism_long
-								name = QIN_WCH_paternalism_party
-							}
-							set_party_name = {
-								ideology = conservatism
-								long_name = QIN_WCH_conservatism_long
-								name = QIN_WCH_conservatism_party
-							}
-							set_party_name = {
-								ideology = liberalism
-								long_name = QIN_WCH_liberalism_long
-								name = QIN_WCH_liberalism_party
-							}
-							set_party_name = {
-								ideology = communist
-								long_name = QIN_WCH_communist_long
-								name = QIN_WCH_communist_party
-							}
-						}
-						GAN = {
-							save_global_event_target_as = losing_country
-						}
-						if = {
-							limit = {
-								GAN = {
-									has_government = ultranationalism
-									has_country_leader = { character = GAN_tsuji_masanobu }
-								}
-							}
-							GAN = {
-								transfer_state = 2424
-								add_state_core = 2424
-							}
-							CHI = {
-								country_event = {
-									id = tnolar_chi.464
-									hours = 12
-									random_hours = 2
-								}
-								country_event = {
-									id = tnolar_chi.465
-									hours = 24
-									random_hours = 4
-								}
-								set_country_flag = LAR_CHI_ACHIEVE_NORTHWESTWAR_WIN
-							}
-							set_global_flag = war_won
-							set_global_flag = show_peace_popup_alert
-							add_to_variable = { global.peace_popup_dirty = 1 }
-							set_global_flag = skip_default_capitulation
-						}	
-						RUS = { 
-							add_to_faction = QIN 
-							set_temp_variable = { Victory_ID = 101 }
-							set_temp_variable = { Victory_Outcome = 5 }
-							set_temp_variable = { Victory_Points = 200 }
-							Cold_War_GUI_AddVictory = yes
-						}
-						JAP = {
-							set_temp_variable = { Victory_ID = 101 }
-							set_temp_variable = { Victory_Outcome = 1 }
-							set_temp_variable = { Victory_Points = -200 }
-							Cold_War_GUI_AddVictory = yes
-						}
-						every_country = { limit = { is_ai = no } news_event = { id = SWRW_Chinanews.1 days = 1 } }
-						NOV_Global_Conflict_Helper = yes
-						set_global_flag = skip_default_capitulation
-						RUS = { set_country_flag = WEST_CHINA_WAR_ENDED}
-						
-					}
-				}
-				#West china war Lose
-				else_if = {
-					limit = {
-						FROM = {
-							OR = {
-								original_tag = XIK
-								original_tag = XIN
-								original_tag = TIB
-								original_tag = GAN
-							}
-						}
-						ROOT = { original_tag = QIN }
-					}
-					FROM = {
-						white_peace = ROOT
-						annex_country = {
-							target = ROOT
-							transfer_troops = yes
-						}
-					}
-					NOV_Global_Conflict_Helper = yes
-					set_global_flag = skip_default_capitulation
-					RUS = { set_country_flag = WEST_CHINA_WAR_ENDED}
-					RUS = {  
-						set_temp_variable = { Victory_ID = 101 }
-						set_temp_variable = { Victory_Outcome = 1 }
-						set_temp_variable = { Victory_Points = -200 }
-						Cold_War_GUI_AddVictory = yes
-					}
-					JAP = {
-						set_temp_variable = { Victory_ID = 101 }
-						set_temp_variable = { Victory_Outcome = 5 }
-						set_temp_variable = { Victory_Points = 200 }
-						Cold_War_GUI_AddVictory = yes
-					}
-					JAP = { add_to_faction = GAN }
-					GAN = { add_ideas = Sphere_Chinese_Warlord }
-
-				}
-
-				#Mongolia
-				else_if = {
-					limit = {
-						FROM = { original_tag = MON }
-						ROOT = { original_tag = MEN }
-						date > 1970.1.1
-					}
-					FROM = {
-						white_peace = ROOT
-						white_peace = JAP
-						annex_country = { target = ROOT transfer_troops = yes }
-						every_owned_state = {
-							add_core_of = MON
-						}
-						if = {
-							limit = {
-								RUS = { is_faction_leader = yes }
-							}
-							add_ideas = CSTO_Member
-						}
-						else = {
-							add_ideas = OFN_Independent_Member
-						}
-						econ_join_sphere_RUS = yes
-						RUS = { add_to_faction = MON }
-						if = {
-							limit = {
-								GAN = {
-									has_government = ultranationalism
-									has_country_leader = { character = GAN_tsuji_masanobu }
-								}
-							}
-							MEN = {
-								transfer_state = 2409
-								transfer_state = 2407
-								transfer_state = 2406
-								transfer_state = 2612
-								transfer_state = 2422
-								transfer_state = 621
-								transfer_state = 2408
-								transfer_state = 955
-							}
-						}
-						RUS = {  
-							set_temp_variable = { Victory_ID = 102 }
-							set_temp_variable = { Victory_Outcome = 5 }
-							set_temp_variable = { Victory_Points = 150 }
-							Cold_War_GUI_AddVictory = yes
-						}
-						JAP = {
-							set_temp_variable = { Victory_ID = 102 }
-							set_temp_variable = { Victory_Outcome = 1 }
-							set_temp_variable = { Victory_Points = -150 }
-							Cold_War_GUI_AddVictory = yes
-						}
-					}
-					NOV_Global_Conflict_Helper = yes
-					set_global_flag = skip_default_capitulation
-				}
-
-
-				#If you lose mongolia war like a retard
-				else_if = {
-					limit = {
-						FROM = { original_tag = MEN }
-						ROOT = { original_tag = MON }
-						date > 1970.1.1
-					}
-					FROM = {
-						RUS = {  
-							set_temp_variable = { Victory_ID = 102 }
-							set_temp_variable = { Victory_Outcome = 1 }
-							set_temp_variable = { Victory_Points = -150 }
-							Cold_War_GUI_AddVictory = yes
-						}
-						if = {
-							limit = {
-								GAN = {
-									check_variable = { econ_sphere_leader = JAP }
-									JAP = { add_to_faction = GAN }
-								}
-							}
-						}
-						JAP = {
-							set_temp_variable = { Victory_ID = 102 }
-							set_temp_variable = { Victory_Outcome = 5 }
-							set_temp_variable = { Victory_Points = 150 }
-							Cold_War_GUI_AddVictory = yes
-						}
-						white_peace = ROOT
-						MEN = {
-							transfer_state = 814
-							transfer_state = 330
-							transfer_state = 2401
-							transfer_state = 2402
-							transfer_state = 2400
-							transfer_state = 2403
-							transfer_state = 815
-							annex_country = { target = MON transfer_troops = yes }
-						}
-						JAP = {
-							add_to_faction = MEN
-						}
-						MON = {
-							remove_state_core = 814
-							remove_state_core = 330
-						}
-					}
-					NOV_Global_Conflict_Helper = yes
-					set_global_flag = skip_default_capitulation
-				}
+#要是你看了我在2wrw蒙古决议文件里的注释的话,那挺好的,我的目的是相同的 --nai.
+#				West China War
+#				else_if = {
+#					limit = {
+#						FROM = { original_tag = QIN }
+#						OR = {
+#							ROOT = { original_tag = GAN }
+#							ROOT = { original_tag = TIB }
+#							ROOT = { original_tag = XIN }
+#						}
+#					}
+#					FROM = {
+#						annex_country = {
+#							target = ROOT
+#							transfer_troops = no
+#						}
+#					}
+#					if = {
+#						limit = {
+#							NOT = {
+#								country_exists = GAN
+#								country_exists = TIB
+#								country_exists = XIN
+#							}
+#						}
+#						every_state = {
+#							limit = {
+#								is_owned_by = FROM
+#							}
+#							add_core_of = FROM
+#						}
+#						QIN = {
+#							add_ideas = WCH_national_reconstruction
+#							add_ideas =	WCH_diverse_nation
+#							econ_join_sphere_RUS = yes
+#							if = {
+#								limit = {
+#									RUS = { is_faction_leader = yes }
+#								}
+#								add_ideas = CSTO_Member
+#							}
+#							else = {
+#								add_ideas = OFN_Independent_Member
+#							}
+#						}
+#						set_autonomy = {
+#							target = QIN
+#							autonomy_state = autonomy_client_state
+#						}
+#						XXX = {
+#							QIN_Sun_Tse_Ping = { set_nationality = QIN }
+#							QIN_Li_Xiannian = { set_nationality = QIN }
+#						}
+#						QIN = {
+#							save_global_event_target_as = winning_country
+#							set_cosmetic_tag = QIN_WCH
+#							set_politics = {
+#								ruling_party = paternalism
+#							}
+#							promote_character = QIN_Sun_Tse_Ping
+#							promote_character = QIN_Li_Xiannian
+#							set_popularities = {
+#								paternalism = 50
+#								conservatism = 20
+#								liberalism = 20
+#								despotism = 10
+#							}
+#							set_party_name = {
+#								ideology = despotism
+#								long_name = QIN_WCH_despotism_long
+#								name = QIN_WCH_despotism_party
+#							}
+#							set_party_name = {
+#								ideology = paternalism
+#								long_name = QIN_WCH_paternalism_long
+#								name = QIN_WCH_paternalism_party
+#							}
+#							set_party_name = {
+#								ideology = conservatism
+#								long_name = QIN_WCH_conservatism_long
+#								name = QIN_WCH_conservatism_party
+#							}
+#							set_party_name = {
+#								ideology = liberalism
+#								long_name = QIN_WCH_liberalism_long
+#								name = QIN_WCH_liberalism_party
+#							}
+#							set_party_name = {
+#								ideology = communist
+#								long_name = QIN_WCH_communist_long
+#								name = QIN_WCH_communist_party
+#							}
+#						}
+#						GAN = {
+#							save_global_event_target_as = losing_country
+#						}
+#						if = {
+#							limit = {
+#								GAN = {
+#									has_government = ultranationalism
+#									has_country_leader = { character = GAN_tsuji_masanobu }
+#								}
+#							}
+#							GAN = {
+#								transfer_state = 2424
+#								add_state_core = 2424
+#							}
+#							CHI = {
+#								country_event = {
+#									id = tnolar_chi.464
+#									hours = 12
+#									random_hours = 2
+#								}
+#								country_event = {
+#									id = tnolar_chi.465
+#									hours = 24
+#									random_hours = 4
+#								}
+#								set_country_flag = LAR_CHI_ACHIEVE_NORTHWESTWAR_WIN
+#							}
+#							set_global_flag = war_won
+#							set_global_flag = show_peace_popup_alert
+#							add_to_variable = { global.peace_popup_dirty = 1 }
+#							set_global_flag = skip_default_capitulation
+#						}	
+#						RUS = { 
+#							add_to_faction = QIN 
+#							set_temp_variable = { Victory_ID = 101 }
+#							set_temp_variable = { Victory_Outcome = 5 }
+#							set_temp_variable = { Victory_Points = 200 }
+#							Cold_War_GUI_AddVictory = yes
+#						}
+#						JAP = {
+#							set_temp_variable = { Victory_ID = 101 }
+#							set_temp_variable = { Victory_Outcome = 1 }
+#							set_temp_variable = { Victory_Points = -200 }
+#							Cold_War_GUI_AddVictory = yes
+#						}
+#						every_country = { limit = { is_ai = no } news_event = { id = SWRW_Chinanews.1 days = 1 } }
+#						NOV_Global_Conflict_Helper = yes
+#						set_global_flag = skip_default_capitulation
+#						RUS = { set_country_flag = WEST_CHINA_WAR_ENDED}
+#						
+#					}
+#				}
+#				#West china war Lose
+#				else_if = {
+#					limit = {
+#						FROM = {
+#							OR = {
+#								original_tag = XIK
+#								original_tag = XIN
+#								original_tag = TIB
+#								original_tag = GAN
+#							}
+#						}
+#						ROOT = { original_tag = QIN }
+#					}
+#					FROM = {
+#						white_peace = ROOT
+#						annex_country = {
+#							target = ROOT
+#							transfer_troops = yes
+#						}
+#					}
+#					NOV_Global_Conflict_Helper = yes
+#					set_global_flag = skip_default_capitulation
+#					RUS = { set_country_flag = WEST_CHINA_WAR_ENDED}
+#					RUS = {  
+#						set_temp_variable = { Victory_ID = 101 }
+#						set_temp_variable = { Victory_Outcome = 1 }
+#						set_temp_variable = { Victory_Points = -200 }
+#						Cold_War_GUI_AddVictory = yes
+#					}
+#					JAP = {
+#						set_temp_variable = { Victory_ID = 101 }
+#						set_temp_variable = { Victory_Outcome = 5 }
+#						set_temp_variable = { Victory_Points = 200 }
+#						Cold_War_GUI_AddVictory = yes
+#					}
+#					JAP = { add_to_faction = GAN }
+#					GAN = { add_ideas = Sphere_Chinese_Warlord }
+#
+#				}
+#
+#				#Mongolia
+#				else_if = {
+#					limit = {
+#						FROM = { original_tag = MON }
+#						ROOT = { original_tag = MEN }
+#						date > 1970.1.1
+#					}
+#					FROM = {
+#						white_peace = ROOT
+#						white_peace = JAP
+#						annex_country = { target = ROOT transfer_troops = yes }
+#						every_owned_state = {
+#							add_core_of = MON
+#						}
+#						if = {
+#							limit = {
+#								RUS = { is_faction_leader = yes }
+#							}
+#							add_ideas = CSTO_Member
+#						}
+#						else = {
+#							add_ideas = OFN_Independent_Member
+#						}
+#						econ_join_sphere_RUS = yes
+#						RUS = { add_to_faction = MON }
+#						if = {
+#							limit = {
+#								GAN = {
+#									has_government = ultranationalism
+#									has_country_leader = { character = GAN_tsuji_masanobu }
+#								}
+#							}
+#							MEN = {
+#								transfer_state = 2409
+#								transfer_state = 2407
+#								transfer_state = 2406
+#								transfer_state = 2612
+#								transfer_state = 2422
+#								transfer_state = 621
+#								transfer_state = 2408
+#								transfer_state = 955
+#							}
+#						}
+#						RUS = {  
+#							set_temp_variable = { Victory_ID = 102 }
+#							set_temp_variable = { Victory_Outcome = 5 }
+#							set_temp_variable = { Victory_Points = 150 }
+#							Cold_War_GUI_AddVictory = yes
+#						}
+#						JAP = {
+#							set_temp_variable = { Victory_ID = 102 }
+#							set_temp_variable = { Victory_Outcome = 1 }
+#							set_temp_variable = { Victory_Points = -150 }
+#							Cold_War_GUI_AddVictory = yes
+#						}
+#					}
+#					NOV_Global_Conflict_Helper = yes
+#					set_global_flag = skip_default_capitulation
+#				}
+#
+#
+#				#If you lose mongolia war like a retard
+#				else_if = {
+#					limit = {
+#						FROM = { original_tag = MEN }
+#						ROOT = { original_tag = MON }
+#						date > 1970.1.1
+#					}
+#					FROM = {
+#						RUS = {  
+#							set_temp_variable = { Victory_ID = 102 }
+#							set_temp_variable = { Victory_Outcome = 1 }
+#							set_temp_variable = { Victory_Points = -150 }
+#							Cold_War_GUI_AddVictory = yes
+#						}
+#						if = {
+#							limit = {
+#								GAN = {
+#									check_variable = { econ_sphere_leader = JAP }
+#									JAP = { add_to_faction = GAN }
+#								}
+#							}
+#						}
+#						JAP = {
+#							set_temp_variable = { Victory_ID = 102 }
+#							set_temp_variable = { Victory_Outcome = 5 }
+#							set_temp_variable = { Victory_Points = 150 }
+#							Cold_War_GUI_AddVictory = yes
+#						}
+#						white_peace = ROOT
+#						MEN = {
+#							transfer_state = 814
+#							transfer_state = 330
+#							transfer_state = 2401
+#							transfer_state = 2402
+#							transfer_state = 2400
+#							transfer_state = 2403
+#							transfer_state = 815
+#							annex_country = { target = MON transfer_troops = yes }
+#						}
+#						JAP = {
+#							add_to_faction = MEN
+#						}
+#						MON = {
+#							remove_state_core = 814
+#							remove_state_core = 330
+#						}
+#					}
+#					NOV_Global_Conflict_Helper = yes
+#					set_global_flag = skip_default_capitulation
+#				}
 
 				#Krakow Uprising
 				else_if = {

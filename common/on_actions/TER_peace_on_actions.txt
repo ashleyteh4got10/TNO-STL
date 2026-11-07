@@ -160,8 +160,14 @@ on_actions = {
 						add_core_of = XIK
 						remove_core_of = SIC
 					}
-					every_country = {
-						news_event = { id = WORLD_TER.32 days = 2 }
+					if = {
+						limit = {
+							SIK = { exists = no }
+							CHQ = { exists = no }
+						}
+						every_country = {
+							news_event = { id = WORLD_TER.32 days = 2 }
+						}
 					}
 					give_resource_rights = { receiver = CPC state = 964 }
 					give_resource_rights = { receiver = CPC state = 905 }
@@ -169,6 +175,7 @@ on_actions = {
 					give_resource_rights = { receiver = CPC state = 1537 }
 					give_resource_rights = { receiver = CPC state = 1538 }
 				}
+				CHI = { transfer_state = 2360 }
 				set_global_flag = skip_default_capitulation
 			}
 			else_if = {
@@ -209,6 +216,15 @@ on_actions = {
 						add_core_of = XIK
 						remove_core_of = CHQ
 					}
+					if = {
+						limit = {
+							SIK = { exists = no }
+							CHQ = { exists = no }
+						}
+						every_country = {
+							news_event = { id = WORLD_TER.32 days = 2 }
+						}
+					}
 					clear_variable = 1538.TNO_admin_title
 				}
 				CHI = {
@@ -216,6 +232,7 @@ on_actions = {
 						remove_idea = CHI_small_army
 						add_idea = CHI_small_army_TER_1
 					}
+					transfer_state = 2360
 				}
 				set_global_flag = skip_default_capitulation
 			}
@@ -258,7 +275,6 @@ on_actions = {
 						transfer_troops = no
 					} 
 				}
-				
 				set_global_flag = skip_default_capitulation
 			}
 			else_if = {
@@ -550,10 +566,10 @@ on_actions = {
 					}
 					set_capital = { state = 599 }
 				}
-				GNG = {
-					transfer_state = 1464
-					add_state_core = 1464
-				}
+				#GNG = {
+				#	transfer_state = 1464
+				#	add_state_core = 1464
+				#}
 				JAP = {
 					add_to_faction = KIS
 				}

@@ -1,7 +1,7 @@
 ###CPC Second Phase
 shared_focus = {
 	id = CPC_PLA_announcement
-	icon = GFX_goals_CPC_expand_the_troop
+	icon = GFX_goals_CPC_PLA_announcement
 	cost = 1
 	x = 23
 	y = 0
@@ -215,7 +215,7 @@ shared_focus = {
 
 shared_focus = {
 	id = CPC_PLA_reorg_movement
-	icon = GFX_goals_CPC_four_first
+	icon = GFX_goals_CPC_PLA_reorg_movement
 	relative_position_id = CPC_PLA_announcement
 	prerequisite = { focus = CPC_PLA_announcement }
 	available = {
@@ -239,7 +239,7 @@ shared_focus = {
 
 shared_focus = {
 	id = CPC_PLA_military_academy_construction
-	icon = GFX_goals_CPC_notebook_of_quotations
+	icon = GFX_goals_CPC_PLA_military_academy_construction
 	relative_position_id = CPC_PLA_reorg_movement
 	prerequisite = { focus = CPC_PLA_reorg_movement }
 	available = {
@@ -368,6 +368,14 @@ shared_focus = {
 		set_temp_variable = { begin_ut_temp = token:CPGAC_u_recontact_NAJUA }
 		set_temp_variable = { days_temp = 140 }
 		TER_CPGAC_begin_an_urgent_task = yes
+		hidden_effect = {
+			if ={
+				limit = {
+					is_ai = yes
+				}
+				country_event = { id = NEB_main_story_events.1 }
+			}
+		}
 	}
 	relative_position_id = CPC_belated_consult
 	prerequisite = { focus = CPC_belated_consult }

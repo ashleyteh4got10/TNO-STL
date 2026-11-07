@@ -1,0 +1,33 @@
+on_actions = {
+	on_monthly_CPC = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						has_country_flag = NEB_mission_201
+						has_country_flag = NEB_mission_202
+					}
+				}
+				NEB_get_equip_monthly = yes
+			}
+			if = {
+				limit = { has_country_flag = TER_rebuild_state }
+				subtract_from_variable = { recover_speed = 2 }
+				TER_rebuilding_effect = yes
+				TER_rebuild_complete = yes
+			}
+			if = {
+				limit = { has_country_flag = TER_congress_state }
+				TER_election_preparing = yes
+			}
+		}
+	}
+	on_weekly_CPC = {
+		effect = {
+			if = {
+				limit = { has_country_flag = TER_congress_state }
+				TER_election_preparing_reduce = yes
+			}
+		}
+	}
+}

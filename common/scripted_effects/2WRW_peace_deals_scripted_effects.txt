@@ -257,12 +257,6 @@ RUS_generic_moskowien_occupation = {
 			}
 		}
 		
-		MCW = {
-			every_core_state = {
-				remove_core_of = MCW
-			}
-		}
-		
 		if = {
 			limit = {
 				has_global_flag = german_civil_war_speervic
@@ -290,6 +284,11 @@ RUS_generic_moskowien_occupation = {
 		MCW = {
 			every_owned_state = {
 				add_core_of = ORL
+			}
+		}
+		MCW = {
+			every_core_state = {
+				remove_core_of = MCW
 			}
 		}
 		ORL = {
@@ -408,10 +407,11 @@ RUS_generic_moskowien_occupation = {
 			set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Military_Directed }
 			econ_type_change = yes
 			econ_subtype_change = yes
-			econ_join_sphere_RUS = yes
+		
+			
 			add_ideas = CSTO_Member
 
-			set_variable = { national_debt = 0 }
+			set_variable = { national_debt = 0.5 }
 			calculate_display_variables = yes
 			TNO_improve_poverty_high = yes
 			TNO_improve_poverty_high = yes
@@ -420,9 +420,11 @@ RUS_generic_moskowien_occupation = {
 					has_global_flag = RUS_generic_communist_unifier
 				}
 				set_cosmetic_tag = ORL_generic_commie
+				econ_join_sphere_CME = yes
 			}
 			else = {
 				set_cosmetic_tag = RDC_Novosibirsk
+				econ_join_sphere_RUS = yes
 			}
 		}
 	}
@@ -446,7 +448,7 @@ RUS_generic_petrograd_occupation = {
 				OKB_Moskowien_Refugee_Crisis
 			}
 
-			set_variable = { national_debt = 0 }
+			set_variable = { national_debt = 0.5 }
 			calculate_display_variables = yes
 			TNO_improve_poverty_high = yes
 			TNO_improve_poverty_high = yes
@@ -581,7 +583,7 @@ RUS_generic_petrograd_occupation = {
 				set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Military_Directed }
 				econ_type_change = yes
 				econ_subtype_change = yes
-				econ_join_sphere_RUS = yes
+				econ_join_sphere_CME = yes
 			}
 		}
 		if = {
@@ -1387,10 +1389,10 @@ RUS_generic_baltic_occupation = {
 			UPO = {
 				set_cosmetic_tag = UPO_generic_commie
 				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
-				# set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Worker_Directed }
+				set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Worker_Directed }
 				econ_type_change = yes
 				econ_subtype_change = yes
-				# econ_join_sphere_RUS = yes
+				econ_join_sphere_CME = yes
 				set_politics = {
 					ruling_party = communist
 				}
@@ -2270,10 +2272,10 @@ RUS_generic_caucasian_occupation = {
 					name = RUS_communist_cosmtag_natsoc
 				}
 				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
-				# set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Worker_Directed }
+				set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Worker_Directed }
 				econ_type_change = yes
 				econ_subtype_change = yes
-				# econ_join_sphere_RUS = yes
+				econ_join_sphere_CME = yes
 			}
 		}
 		if = {
@@ -3325,10 +3327,10 @@ RUS_generic_ukraine_occupation = {
 				}
 				TNO_startup_nation = yes
 				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
-				# set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Worker_Directed }
+				set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Worker_Directed }
 				econ_type_change = yes
 				econ_subtype_change = yes
-				# econ_join_sphere_RUS = yes
+				econ_join_sphere_CME = yes
 			}
 		}
 		if = {
@@ -4785,10 +4787,10 @@ RUS_generic_belarus_occupation = {
 					fascism = 12
 				}
 				set_temp_variable = { TNO_economy_type_temp = token:Econ_Type_Planned }
-				# set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Worker_Directed }
+				set_temp_variable = { TNO_economy_subtype_temp = token:Econ_Subtype_Worker_Directed }
 				econ_type_change = yes
 				econ_subtype_change = yes
-				# econ_join_sphere_RUS = yes
+				econ_join_sphere_cme = yes
 			}
 		}
 		if = {

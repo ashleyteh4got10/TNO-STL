@@ -199,7 +199,23 @@ TER_main_issue_entry_category = {
 			}
         }
     }
-     
+	CPC_election_executing_task = {
+		allowed = { tag = CPC }
+        icon = GFX_decision_generic_hammer_and_sickle
+		activation = {
+			has_country_flag = CPC_election_task
+        }
+		available = {
+			hidden_trigger = { NOT = { has_country_flag = TER_congress_state } }
+		}
+		is_good = yes
+        days_mission_timeout = 30
+		timeout_effect = {
+			clr_country_flag = CPC_election_task
+			clear_variable = CPC_election_num
+		}
+	}
+    
     TRCW_sp_mission = {
         allowed = { tag = CPC }
         icon = GFX_decision_generic_phone_call
