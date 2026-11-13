@@ -238,48 +238,89 @@ country_event = {
 
 
 # ==================== 战后事件链 ====================
-
-#春岚，即邓小平对于朱德辞职一事的看法
 country_event = {
 	id = CPC_postwar.1
 	title = CPC_postwar.1.t
 	desc = CPC_postwar.1.desc
 	#picture = GFX_evt_wedding_xian
-	
+	timeout_days = 2
 	is_triggered_only = yes
 	
 	option = {
 		name = CPC_postwar.1.o
-
-		#country_event = {
-		#	id = CPC_postwar.2
-		#	days = 7
-		#}
+		hidden_effect = { country_event = { id = CPC_postwar.2 days = 7 } }
 		ai_chance = { factor = 100 }
 	}
 }
-
-#卫道士，即张春桥对于朱德辞职一事的看法
 country_event = {
 	id = CPC_postwar.2
 	title = CPC_postwar.2.t
 	desc = CPC_postwar.2.desc
-	
+	timeout_days = 2
 	is_triggered_only = yes
 	
 	option = {
 		name = CPC_postwar.2.o
+		hidden_effect = { country_event = { id = CPC_postwar.3 days = 7 } }
 		ai_chance = { factor = 100 }
 	}
 }
+country_event = {
+	id = CPC_postwar.3
+	title = CPC_postwar.3.t
+	desc = CPC_postwar.3.desc
+	timeout_days = 1
+	is_triggered_only = yes
+	
+	option = {
+		name = CPC_postwar.3.o
+		hidden_effect = { country_event = { id = CPC_postwar.4 } }
+		ai_chance = { factor = 100 }
+	}
+}
+country_event = {
+	id = CPC_postwar.4
+	title = CPC_postwar.4.t
+	desc = CPC_postwar.4.desc
+	timeout_days = 1
+	is_triggered_only = yes
+	
+	option = {
+		name = CPC_postwar.4.o
+		hidden_effect = { country_event = { id = CPC_postwar.4 } }
+		ai_chance = { factor = 100 }
+	}
+}
+country_event = {
+	id = CPC_postwar.5
+	title = CPC_postwar.5.t
+	desc = CPC_postwar.5.desc
+	timeout_days = 1
+	is_triggered_only = yes
+	
+	option = {
+		name = CPC_postwar.5.o
+		hidden_effect = { country_event = { id = CPC_postwar.5 } }
+		ai_chance = { factor = 100 }
+	}
+}
+country_event = {
+	id = CPC_postwar.6
+	title = CPC_postwar.6.t
+	desc = CPC_postwar.6.desc
 
-
-#选举 - 中发展度，正统毛派占优——张春桥当选为国家主席
+	is_triggered_only = yes
+	
+	option = {
+		name = CPC_postwar.6.o
+		ai_chance = { factor = 100 }
+	}
+}
 country_event = {
 	id = CPC_postwar.7
 	title = CPC_postwar.7.t
 	desc = CPC_postwar.7.desc
-	
+	timeout_days = 2
 	is_triggered_only = yes
 	
 	option = {
@@ -301,14 +342,12 @@ country_event = {
 				long_name = "CPC_phase_4_Mao_Zhang_long"
 				name = "CPC_communist_party"
 			}
-			#TER_CPGAC_initialization = yes
+			country_event = { id = CPC_postwar.9 days = 7 }
 		}
 
 		ai_chance = { factor = 100 }
 	}
 }
-
-#选举 - 低发展度，书记派占优——邓小平当选为国家主席
 country_event = {
 	id = CPC_postwar.8
 	title = CPC_postwar.8.t
@@ -334,8 +373,32 @@ country_event = {
 				long_name = "CPC_phase_4_Mao_Deng_long"
 				name = "CPC_communist_party"
 			}
-			#ER_CPGAC_initialization = yes
+			country_event = { id = CPC_postwar.10 days = 7 }
 		}
+		ai_chance = { factor = 100 }
+	}
+}
+country_event = {
+	id = CPC_postwar.9
+	title = CPC_postwar.9.t
+	desc = CPC_postwar.9.desc
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CPC_postwar.9.o
+		ai_chance = { factor = 100 }
+	}
+}
+country_event = {
+	id = CPC_postwar.10
+	title = CPC_postwar.10.t
+	desc = CPC_postwar.10.desc
+
+	is_triggered_only = yes
+	
+	option = {
+		name = CPC_postwar.10.o
 		ai_chance = { factor = 100 }
 	}
 }

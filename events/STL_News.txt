@@ -1,4 +1,4 @@
-#add_namespace = WORLD_STL
+add_namespace = WORLD_STL
 
 # STL 新闻事件 ids:
 # WORLD_STL.*
@@ -17,3 +17,19 @@
 #        ai_chance = { factor = 20 }
 #    }
 #}
+
+news_event = {
+	id = WORLD_STL.4
+	title = WORLD_STL.4.t
+	desc = WORLD_STL.4.d
+	picture = GFX_news_event_STL_NPC_hold
+	is_triggered_only = yes
+	option = {
+		name = WORLD_STL.4.a
+        ai_chance = { factor = 20 }
+		hidden_effect = {
+			set_temp_variable = { TNO_temp_super_event = token:SE_NPC_HOLD }
+			TNO_fire_super_event = yes
+		}
+	}
+}

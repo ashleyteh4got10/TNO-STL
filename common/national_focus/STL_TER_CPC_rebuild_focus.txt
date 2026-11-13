@@ -886,7 +886,7 @@ focus_tree = {
 			hidden_effect = {
 				clr_country_flag = TER_rebuild_state
 				set_country_flag = TER_congress_state
-				set_variable = { CPC_congress_process = 0 }
+				TER_congress_initialization = yes
 			}
 		}
 	}
@@ -899,12 +899,6 @@ focus_tree = {
 		prerequisite = { focus = CPC_rebuild_2_medium_3 }
 		completion_reward = {
 			add_to_variable = { CPC_war_support_factor = 0.1 }
-			add_days_mission_timeout = {
-				mission = CPC_election_executing_task
-				days = -15
-			}
-			set_temp_variable = { CPC_temp_congress_process = 10 }
-			TER_election_update = yes
 		}
 	}
 
@@ -920,8 +914,6 @@ focus_tree = {
 				mission = CPC_election_executing_task
 				days = -15
 			}
-			set_temp_variable = { CPC_temp_congress_process = 10 }
-			TER_election_update = yes
 		}
 	}
 	focus = {
@@ -932,13 +924,7 @@ focus_tree = {
 		y = 4
 		prerequisite = { focus = CPC_rebuild_2_left_2 }
 		completion_reward = {
-			add_days_mission_timeout = {
-				mission = CPC_election_executing_task
-				days = -15
-			}
 			tno_vote_franchise_improve = yes
-			set_temp_variable = { CPC_temp_congress_process = 10 }
-			TER_election_update = yes
 		}
 	}
 	focus = {
@@ -953,8 +939,6 @@ focus_tree = {
 				mission = CPC_election_executing_task
 				days = -15
 			}
-			set_temp_variable = { CPC_temp_congress_process = 10 }
-			TER_election_update = yes
 		}
 	}
 	focus = {
@@ -966,8 +950,6 @@ focus_tree = {
 		prerequisite = { focus = CPC_rebuild_2_medium_3 }
 		completion_reward = {
 			TNO_improve_vote_franchise_policy_effectiveness_low = yes
-			set_temp_variable = { CPC_temp_congress_process = 10 }
-			TER_election_update = yes
 		}
 	}
 	focus = {
@@ -978,13 +960,7 @@ focus_tree = {
 		y = 4
 		prerequisite = { focus = CPC_rebuild_2_medium_4 }
 		completion_reward = {
-			add_days_mission_timeout = {
-				mission = CPC_election_executing_task
-				days = -15
-			}
 			TNO_improve_vote_franchise_policy_effectiveness_med = yes
-			set_temp_variable = { CPC_temp_congress_process = 10 }
-			TER_election_update = yes
 		}
 	}
 	focus = {
@@ -997,19 +973,7 @@ focus_tree = {
 		prerequisite = { focus = CPC_rebuild_2_right_3 }
 		prerequisite = { focus = CPC_rebuild_2_medium_5 }
 		available = {
-			custom_override_tooltip = {
-				tooltip = "CPC_rebuild_2_medium_6_trigger"
-				check_variable = { NWB_election = 1 }
-				check_variable = { SWB_election = 1 }
-				check_variable = { NCB_election = 1 }
-				check_variable = { SCB_election = 1 }
-				check_variable = { NEB_election = 1 }
-				check_variable = { MON_election = 1 }
-				check_variable = { XJB_election = 1 }
-				check_variable = { XGZ_election = 1 }
-				check_variable = { NFE_election = 1 }
-				check_variable = { center_election = 1 }
-			}
+			has_country_flag = CPC_election_prepared
 		}
 		completion_reward = {
 			set_temp_variable = { CPC_temp_congress_process = 39 }
