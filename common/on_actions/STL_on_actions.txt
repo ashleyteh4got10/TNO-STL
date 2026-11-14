@@ -18,4 +18,16 @@ on_actions = {
 			}
 		}
 	}
+	on_weekly_CPC = {
+		effect = {
+			if = {
+				limit = { check_variable = { CPC_congress_process < 60 } }
+				TER_election_preparing_reduce = yes
+			}
+			else_if = {
+				limit = { check_variable = { CPC_congress_process = 60 } }
+				set_country_flag = CPC_election_prepared
+			}
+		}
+	}
 }
