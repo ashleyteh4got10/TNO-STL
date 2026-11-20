@@ -60,6 +60,10 @@ TER_rebuild_initialization = {
 		add_dynamic_modifier = { modifier = CPC_no_land_reform }
 		add_dynamic_modifier = { modifier = CPC_restless_society }
 	}
+	set_temp_variable = { temp_econ_GDP_boost_percentage = -0.5 }
+	econ_GDP_boost_once_percentage = yes
+	set_variable = { GDP_growth = 1.33 }       # 直接设为 6%
+	update_economy_tab = yes
 	set_variable = { CPC_admin_efficiency_monthly_rate = 0.1 }
 	set_variable = { CPC_political_power_gain = 0.75 }
 	set_variable = { CPC_stability_factor = 0.15 }
@@ -261,16 +265,6 @@ TER_region_bureau_init = {
 	set_variable = { PRC_base_rate_6 = 1.3 }# send_partner
 }
 TER_region_bureau_complete = {
-	clear_variable = PRC_NWB_PP_rate
-	clear_variable = PRC_SWB_PP_rate
-	clear_variable = PRC_NCB_PP_rate
-	clear_variable = PRC_SCB_PP_rate
-	clear_variable = PRC_NEB_PP_rate
-	clear_variable = PRC_MON_PP_rate
-	clear_variable = PRC_XJB_PP_rate
-	clear_variable = PRC_XGZ_PP_rate
-	clear_variable = PRC_NFE_PP_rate
-	clear_variable = PRC_center_PP_rate
 	clear_variable = east_rebuild_level
 	clear_variable = party_coverage
 	clear_variable = people_support
@@ -1051,7 +1045,13 @@ TER_congress_initialization = {
 	add_to_array = { CPC_election_prepare_speed = 95 }#XJB
 	add_to_array = { CPC_election_prepare_speed = 99 }#XGZ
 	add_to_array = { CPC_election_prepare_speed = 45 }#NFE
-	add_to_array = { CPC_election_prepare_speed = 100 }#center	
+	add_to_array = { CPC_election_prepare_speed = 100 }#center
+	
+	add_to_array = { TER_ballot_candidate_vote = 0 }
+	add_to_array = { TER_ballot_candidate_vote = 0 }
+	add_to_array = { TER_ballot_candidate_vote = 0 }
+	add_to_array = { TER_ballot_candidate_vote = 0 }
+	add_to_array = { TER_ballot_candidate_vote = 0 }
 }
 TER_election_preparing = {
 	add_to_temp_array = { CPC_region_array = 0 }
@@ -1116,4 +1116,67 @@ TER_election_effect = {
 		}
 		add_to_variable = { CPC_election_num = 1 }
 	}
+}
+TER_ballot_prepare = {
+	clear_array = TER_ballot_candidate_list
+	clear_array = TER_ballot_candidate_vote
+	add_to_array = { TER_ballot_candidate_list = token:name_Deng }
+	add_to_array = { TER_ballot_candidate_list = token:name_Chen }
+	set_variable = { TER_ballot_candidate_sum = 0 }
+	for_each_loop = {
+		array = TER_ballot_candidate_list
+		value = v
+		break = b
+		if = {
+			limit = { NOT = { v = 0 } }
+			add_to_variable = { TER_ballot_candidate_sum = 1 }
+		}
+		else = {
+			set_temp_variable = { b = 1 }
+		}
+	}
+}
+TER_ballot_complete = {
+	add_to_temp_array = { TER_ballot_candidate_vote_yes = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_yes = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_yes = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_yes = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_yes = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_yes = 0 }
+
+	add_to_temp_array = { TER_ballot_candidate_vote_no = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_no = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_no = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_no = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_no = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_no = 0 }
+
+	add_to_temp_array = { TER_ballot_candidate_vote_waive = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_waive = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_waive = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_waive = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_waive = 0 }
+	add_to_temp_array = { TER_ballot_candidate_vote_waive = 0 }
+
+	for_each_loop = {
+		array = TER_ballot_candidate_vote
+		index = i
+		value = v
+		if = {
+			limit = { check_variable = { v = 1 } }
+			add_to_variable = { TER_ballot_candidate_vote_yes^i = 1 }
+		}
+		else_if = {
+			limit = { check_variable = { v = 2 } }
+			add_to_variable = { TER_ballot_candidate_vote_no^i = 1 }
+		}
+		else = {
+			add_to_variable = { TER_ballot_candidate_vote_waive^i = 1 }
+		}
+	}
+	find_highest_in_array = {
+		array = TER_ballot_candidate_vote_yes
+		index = TER_ballot_candidate_winner_i
+	}
+	set_variable = { TER_ballot_candidate_winner = TER_ballot_candidate_list^TER_ballot_candidate_winner_i }
 }
