@@ -294,8 +294,8 @@ scripted_gui = {
 				TER_rebuild_member_subtract = yes
 			}
 			CPC_ticket_button_click = {
+				set_country_flag = CPC_ballot_paper_open
 				clr_country_flag = CPC_election_complete
-				add_to_variable = { CPC_congress_process = 1 }
 			}
 		}
 	}
@@ -664,6 +664,59 @@ scripted_gui = {
 				set_variable = { region_choose = token:MON }
 				set_temp_variable = { party_change_num = 100 }
 				TER_rebuild_member_subtract = yes
+			}
+		}
+	}
+	TER_ballot_paper = {
+		context_type = player_context
+		window_name = "TER_ballot_paper"
+		visible = {
+			has_country_flag = CPC_ballot_paper_open
+		}
+
+		dynamic_lists = {
+			TER_ballot_candidate_list = {
+				array = TER_ballot_candidate_list
+				index = TER_ballot_candidate_list_i
+				value = TER_ballot_candidate_list_v
+				entry_container = ballot_candidate_entry
+			}
+		}
+
+		triggers = {
+			#未选：常态格；已选：画○（赞成）/ 画×（反对），与说明中的画符号规则一致
+			TER_ballot_yes_visible = {
+				NOT = { check_variable = { TER_ballot_candidate_vote^TER_ballot_candidate_list_i = 1 } }
+			}
+			TER_ballot_yes_slt_visible = {
+				check_variable = { TER_ballot_candidate_vote^TER_ballot_candidate_list_i = 1 }
+			}
+			TER_ballot_no_visible = {
+				NOT = { check_variable = { TER_ballot_candidate_vote^TER_ballot_candidate_list_i = 2 } }
+			}
+			TER_ballot_no_slt_visible = {
+				check_variable = { TER_ballot_candidate_vote^TER_ballot_candidate_list_i = 2 }
+			}
+		}
+
+		effects = {
+			#点击记录选票：1 = 赞成，2 = 反对（同一候选人再点另一项即改票）
+			TER_ballot_yes_click = {
+				set_variable = { TER_ballot_candidate_vote^TER_ballot_candidate_list_i = 1 }
+			}
+			TER_ballot_no_click = {
+				set_variable = { TER_ballot_candidate_vote^TER_ballot_candidate_list_i = 2 }
+			}
+			#另选他人三行（静态按钮占位，按需扩展）
+			TER_ballot_confirm_click = {
+				add_to_variable = { CPC_congress_process = 1 }
+				clr_country_flag = CPC_ballot_paper_open
+				clr_country_flag = CPC_election_complete
+				TER_ballot_complete = yes
+			}
+			TER_ballot_cancel_click = {
+				clr_country_flag = CPC_ballot_paper_open
+				set_country_flag = CPC_election_complete
 			}
 		}
 	}

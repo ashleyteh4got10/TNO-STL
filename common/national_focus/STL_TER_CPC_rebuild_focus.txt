@@ -532,7 +532,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CPC_rebuild_1_right_1
-		icon = GFX_fronticons_tooltip
+		icon = GFX_focus_generic_city_planning
 		cost = 2
 		prerequisite = { focus = CPC_rebuild_1_medium_7 }
 		x = 5
@@ -605,7 +605,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CPC_rebuild_1_right_2_left_2
-		icon = GFX_fronticons_tooltip
+		icon = GFX_focus_CHL_reassure_businessmen
 		cost = 3
 		prerequisite = {
 			focus = CPC_rebuild_1_right_2_left_1
@@ -636,7 +636,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CPC_rebuild_1_right_2_right_1
-		icon = GFX_fronticons_tooltip
+		icon = GFX_focus_BRA_submit_anti_trust_laws
 		cost = 3
 		prerequisite = { focus = CPC_rebuild_1_right_2 }
 		x = 4
@@ -650,7 +650,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CPC_rebuild_1_right_2_right_2
-		icon = GFX_fronticons_tooltip
+		icon = GFX_focus_generic_workers_rights
 		cost = 3
 		prerequisite = {
 			focus = CPC_rebuild_1_right_2_left_1
@@ -668,7 +668,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CPC_rebuild_1_right_2_right_3
-		icon = GFX_fronticons_tooltip
+		icon = GFX_focus_generic_the_planned_economy
 		cost = 3
 		prerequisite = { focus = CPC_rebuild_1_right_2_right_2 }
 		x = 4
@@ -697,7 +697,7 @@ focus_tree = {
 	}
 	focus = {
 		id = CPC_rebuild_1_right_3_left_1
-		icon = GFX_fronticons_tooltip
+		icon = GFX_focus_KOM_arrest_officers
 		cost = 3
 		prerequisite = { focus = CPC_rebuild_1_right_3 }
 		x = 6
@@ -979,6 +979,7 @@ focus_tree = {
 			set_temp_variable = { CPC_temp_congress_process = 39 }
 			TER_election_update = yes
 			set_country_flag = CPC_election_complete
+			hidden_effect = { id = CPC_postwar.1 days = 7 }
 		}
 	}
 	focus = {
@@ -1003,17 +1004,17 @@ focus_tree = {
 			set_country_flag = CPC_GAC_canceled_final
 			set_country_flag = CPC_CMC_canceled_final
 			clear_variable = CPC_congress_process
-			clear_variable = NWB_election
-			clear_variable = SWB_election
-			clear_variable = NCB_election
-			clear_variable = SCB_election
-			clear_variable = NEB_election
-			clear_variable = MON_election
-			clear_variable = XJB_election
-			clear_variable = XGZ_election
-			clear_variable = NFE_election
-			clear_variable = center_election
 			set_country_flag = first_winner_is_CPC
+			hidden_effect = {
+				if = {
+					limit = { check_variable = { TER_ballot_candidate_winner = token:name_Deng } }
+					country_event = { id = CPC_postwar.8 }
+				}
+				else_if = {
+					limit = { check_variable = { TER_ballot_candidate_winner = token:name_Chen } }
+					country_event = { id = CPC_postwar.7 }
+				}
+			}
 		}
 	}
 }
