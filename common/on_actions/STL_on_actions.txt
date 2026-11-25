@@ -17,7 +17,10 @@ on_actions = {
 				TER_rebuild_complete = yes
 			}
 			if = {
-				limit = { has_country_flag = TER_congress_state }
+				limit = {
+					has_country_flag = TER_congress_state
+					NOT = { has_country_flag = CPC_election_complete }
+				}
 				TER_election_preparing = yes
 			}
 		}
@@ -29,11 +32,11 @@ on_actions = {
 					has_country_flag = TER_congress_state
 					check_variable = { CPC_congress_process < 60 }
 				}
-				if = {
-					limit = { check_variable = { CPC_congress_process = 60 } }
-					set_country_flag = CPC_election_prepared
-				}
 				TER_election_preparing_reduce = yes
+			}
+			else_if = {
+				limit = { check_variable = { CPC_congress_process = 60 } }
+				set_country_flag = CPC_election_prepared
 			}
 		}
 	}
